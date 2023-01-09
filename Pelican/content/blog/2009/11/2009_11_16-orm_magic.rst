@@ -1,0 +1,105 @@
+ORM magic
+=========
+
+:date: 2009-11-16 23:01
+:tags: performance,ORM
+:slug: 2009_11_16-orm_magic
+:category: Technologies
+:status: published
+
+The ORM layer is magic, right?
+
+The ORM layer "hides" the database, right?
+
+We *never* have to think about persistence, right? It just magically
+"happens."
+
+Wrong.
+
+Here's some quotes from a recent email:
+
+   "Somehow people are surprised that we would have performance issues.
+   Somehow people are surprised that now that we are putting humpy/dumpy
+   together that we would have to go back and look at how we have
+   partitioned the system."
+
+I'm not sure what all of that means except that it appears that the
+author thinks mysterious "people" think performance considerations are
+secondary.
+
+I don't have a lot of technical details, just a weird ranting list of
+complaints, including the following.
+
+   "... the root cause of the performance issue was that each call to
+   the component did a very small amount of work. So, they were having
+   to make 10 calls to 10 different components to gather useful info.
+   Even though each component calls was quick (something like 0.1
+   second), to populate the gui screen, they had to make 15 of them."
+
+Read the following Stack Overflow questions: `Optimizing this Django
+Code? <http://stackoverflow.com/questions/1691207/optimizing-this-django-code>`__,
+and `Overhead of a Round-trip to
+MySql? <http://stackoverflow.com/questions/1689031/overhead-of-a-round-trip-to-mysql>`__
+
+**ORM Is A "Silver Bullet" -- It Solves All Our Problems**
+
+If you think that you can adopt some architectural component and then
+program without further regard for the what that component actually
+does, stop coding now and find another job. Seriously.
+
+If you think you don't have to consider performance, please save us from
+having to clean up your mess.
+
+I'm repeatedly shocked at people who claim that some particular ORM
+(e.g., Hibernate) was unacceptable because of poor performance.
+
+ORM's like `Hibernate <https://www.hibernate.org/>`__,
+`iBatis <http://ibatis.apache.org/>`__,
+`SQLAlchemy <http://www.sqlalchemy.org/>`__, `Django
+ORM <http://docs.djangoproject.com/en/dev/topics/db/models/#topics-db-models>`__,
+etc., are not performance problems. They're solutions to specific
+problems. And like all solution technology, they're very easy to misuse.
+
+**Hint 1: ORM == Mapping**. Not Magic. Mapping.
+
+The mapping is from low-rent relational row-column (with no usable
+collections) to object instances. That's all. Just mapping rows to
+objects. No magic. Object collections and SQL foreign keys are cleverly
+exchanged using specific techniques that must be understood to be used.
+
+**Hint 2: Encapsulation != Ignorance**. OO design frees us from
+"implementation details". This does not mean that it frees us from
+performance considerations. Performance is not an "implementation
+detail". The performance considerations of class encapsulation are
+*central* to the very idea of encapsulation.
+
+One central reason we have object-oriented design is to separate
+performance from programming nuts and bolts. We want to be able to pick
+and choose alternative class definitions based on performance
+considerations.
+
+**ORM's Role.**
+
+ORM saves writing mappings from column names to class instances. It
+saves us from writing SQL. It doesn't remove the need to actually think
+about what's actually going on.
+
+If an attribute is implemented as a property that actually does a query,
+we need to pay attention to this. We need to read the API documentation,
+know what features of a class do queries, and think about how to manage
+this.
+
+If we don't know, we need to write experiments and spikes to demonstrate
+what is happening. Reading the SQL logs should be done early in the
+architecture definition.
+
+**You can't write random code and complain that the performance isn't
+very good.**
+
+If you think you should be able to write code without thinking and
+understanding what you're doing, you need to find a new job.
+
+
+
+
+

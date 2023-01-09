@@ -1,0 +1,136 @@
+Found an ancient CGI script -- part IV -- OpenAPI specification
+===============================================================
+
+:date: 2021-09-21 11:00
+:tags: CGI,wsgi,LaTeX,design,building skills books,software process improvement,random numbers,Apache,#python,packtpub,RST,pydata
+:slug: 2021_09_21-found_an_ancient_cgi_script_part_iv_openapi_specification
+:category: Books
+:status: published
+
+See the previous sections, starting with the first on finding an
+`ancient CGI
+script <https://slott-softwarearchitect.blogspot.com/2021/08/we-have-ancient-python2-cgi-script-what.html>`__.
+
+We don't **need** an OpenAPI specification. But, it is so helpful to
+formalize the behavior of a web site that it's hard for me to imagine
+working without it.
+
+In this case, the legacy script only have a few paths, so the OpenAPI
+specification is relatively small.
+
+::
+
+   openapi: 3.0.1
+   info:
+     title: CGI Conversion
+     version: 1.0.0
+   paths:
+     /resources/{type}/:
+       get:
+         summary: Query Form
+         operationId: form
+         parameters:
+         - name: type
+           in: path
+           required: true
+           schema:
+             type: string
+         responses:
+           200:
+             description: Form
+             content: {}
+       post:
+         summary: Add a document
+         operationId: update
+         requestBody:
+           description: document
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/Document'
+           required: true
+         parameters:
+         - name: type
+           in: path
+           required: true
+           schema:
+             type: string
+         responses:
+           201:
+             description: Created
+             content: 
+               text/html:
+                 {}
+           405:
+             description: Invalid input
+             content: 
+               text/html:
+                 {}
+     /resources/{type}/{guid}:
+       get:
+         summary: Find documents
+         operationId: find
+         parameters:
+         - name: type
+           in: path
+           required: true
+           schema:
+             type: string
+         - name: guid
+           in: path
+           required: true
+           schema:
+             type: string
+         responses:
+           200:
+             description: successful operation
+             content:
+               text/html:
+                 {}
+           404:
+             description: Not Found
+             content:
+               text/html:
+                 {}
+
+   components:
+     schemas:
+       Document:
+         type: object
+         properties:
+           fname:
+             type: string
+           lname:
+             type: string
+
+This shows the rudiments of the paths and the responses. There are three
+"successful" kinds of responses, plus two additional error responses
+that are formally defined.
+
+There is a lot of space in this document for additional documentation
+and details. Every opportunity should be taken to capture details about
+the application, what it does now, and what it should do when it's
+rewritten.
+
+In our example, the form (and resulting data structure) is a degenerate
+class with a pair of fields. We simply write the ``repr()`` string to a
+file. In a practical application, this will often be a bit more complex.
+There may be validation rules, some of which are obscure, hidden in odd
+places in the application code.
+
+What's essential here is continuing the refactoring process to more
+fully understand the underlying data model and state processing. These
+features need to be disentangled from HTML output and CGI input.
+
+The OpenAPI spec serves as an important part of the definition of done.
+It supplements the context diagram with implementation details. In a
+very real and practical way, this drives the integration test suite. We
+can transform OpenAPI to Gherkin and use this to test the overall web
+site.
+See https://medium.com/capital-one-tech/spec-to-gherkin-to-code-902e346bb9aa
+for more on this topic.
+
+
+
+
+

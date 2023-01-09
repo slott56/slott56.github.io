@@ -1,0 +1,39 @@
+SubUnit
+=======
+
+:date: 2005-12-20 18:36
+:tags: #python,unit testing
+:slug: 2005_12_20-subunit
+:category: Python
+:status: published
+
+
+
+
+
+SubUnit's http://www.robertcollins.net/unittest/subunit/ purpose appears to be to manage testing
+via subprocesses.
+
+
+
+Consequently, it can
+run external tests not in Python, it can fork a subprocess to manage the Fixture
+in an isolated process.
+
+
+
+Adding this
+subprocess execution context extends the
+**Test Runner**  implementation of the built-in
+unittest
+module.  This can be useful in contexts where the Fixture includes
+**Singletons** 
+or connection pools or other per-process design features.
+
+
+
+
+
+
+
+

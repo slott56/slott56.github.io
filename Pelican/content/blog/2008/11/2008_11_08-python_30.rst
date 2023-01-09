@@ -1,0 +1,73 @@
+Python 3.0
+==========
+
+:date: 2008-11-08 13:17
+:tags: news
+:slug: 2008_11_08-python_30
+:category: News
+:status: published
+
+
+
+
+
+
+
+The SD Times article (`Python 3.0 won't be compatible... <http://www.sdtimes.com/link/32947>`_ ) was very helpful -- crisp, to the point, management-friendly coverage.  [For some additional thoughts, see the `Python 3.0 and Language Evolution <http://stackoverflow.com/questions/273524/python-30-and-language-evolution>`_  question on Stackoverflow.]
+
+
+
+This applied to what we're building at work.  Here's the best part.  When I started on my "it's not broke but we still need to fix it" rant, the business owner stopped me and said, "years of delaying maintenance got us into trouble over and over again.  This time we're doing it right."
+
+
+
+One of the reasons is that the risk of change with Python is so small.
+
+
+
+Here's our plan.
+
+
+
+1.  Finish our production deployment under 2.5.2.
+
+
+
+2.  Upgrade development to 2.6.  Fix what breaks.
+
+
+
+3.  Upgrade test to 2.6.  The testing at the level is pro-forma.  We spend more time testing new features.  We have scripts for regression testing.
+
+
+
+4.  Upgrade production to 2.6.  This mostly means doing the Red Hat upgrades instead of delaying them.
+
+
+
+5.  Start running with the '-3' option to determine what -- if anything -- will break.
+
+
+
+What are the risks?
+
+
+
+None, to speak of.
+
+
+
+First, it's open source.  We have all the source.  We can lock down our current environment without any difficulty or additional cost.
+
+
+
+Second, it's so open that finding and fixing problems is easy.  There's no "legacy DLL" or "JAR file of unknown provenance" that limits our ability to find and fix problems.
+
+
+
+Third, it's so flexible that fixing bugs in our stuff is as easy as fixing bugs in the components we're using. Since we have extensive patches to the `Django-REST Interface <http://code.google.com/p/django-rest-interface/>`_ , we're getting good at this "patch the source" world.
+
+
+
+
+

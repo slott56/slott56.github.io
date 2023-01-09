@@ -1,0 +1,161 @@
+Comments
+========
+
+:date: 2006-08-23 16:22
+:tags: books,building skills,#python
+:slug: 2006_08_23-comments
+:category: Books
+:status: published
+
+
+
+
+
+In a recent code review, I saw a bizarre habit. 
+The author defended it so vehemently, I gave up on trying to explain the
+needless confusion it caused.  The author was one of those "I always do it this
+way, and I'm always right." people, so nothing was gained by pursuing
+it.
+
+
+
+Here's the
+practice.
+
+
+
+..  code:
+
+::
+
+    def myFunction( someArgs ):
+       """Synopsis...
+    
+       Formal Definition...
+    
+       Some Design Decisions...
+    
+       Overview of Processing: 
+       1.  Step 1, a summary
+       2.  Step 2, a summary
+       3.  Step 3, a summary
+       4.  Step 4, a summary
+       """
+       # 1. Step 1, a summary
+       the actual code
+       # 2. Step 2, a summary
+       the actual code
+       # 3. Step 3, a summary
+       the actual code
+       # 3. Step 4, a summary
+       the actual code
+
+
+
+
+
+Besides the silly redundancy in the
+numbers, there was the total redundancy of the comment
+sequence.
+
+
+
+I asked why the comments were
+duplicated, and got a strange non-answer.  The rework eliminated the in-the-code
+comments, and kept the in-the-comment-block comments, separated from the
+code.
+
+
+
+I was shocked by this, and had to
+ask -- rhetorically -- Who is the audience for the
+comments?
+
+
+
+The answer was something
+like: "Comments help me, the author, know what to expect in the body of the
+function."
+
+
+
+I was dumb-founded.  I
+thought my question was rhetorical.  I thought everyone knew that comments were
+for the benefit of maintainers.  Further, I thought everyone knew that the
+distance between a comment and the code was inversely proportional to the
+accuracy of the comment: the further the comment was from the code, the less
+likely that the two will agree.  I'm sure this is
+*Someone's* 
+law of code-to-comment distance, but I can't find it
+anywhere.
+
+
+
+Boy was I wrong.  I was glad
+to see Celenko's `Comments Fix Bugs <http://jroller.com/page/slobodan?entry=comments_fix_bugs>`_  post, it gives me a good
+reference on what comments are all about.
+
+1.  It's a good policy to write an overview as
+    comments.  It seems simplest to then supplement those comments with the actual
+    code.  In my case, the author must have copied and pasted the comments from the
+    comment block to begin making the code.  Why the extra step?
+
+2.  It's a good policy to say things only once. 
+    If you say something twice, one of the two may be wrong.  In the case of a
+    comment -- a summary or interpretation -- it
+    *isn't* 
+    completely correct.  If you say something three times, now what are you supposed
+    to believe?  In my case, the author didn't seem to realize that someone else
+    would do maintenance and -- very likely -- make one or more of the comments
+    disagree with the code.
+
+3.  As Celenko points out, if the comment doesn't
+    match the code, you'd best think about that situation.  When they're cheek by
+    jowls, that thinking is relatively easy.  When they're separated (or in several
+    places) that thinking is now impossible.  How, precisely, did the author expect
+    a maintainer to do a three-way diff between two comments and the
+    code?
+
+4.  Comments (indeed all code) is knowledge
+    capture for the benefit of users and maintainers.  The author
+    *has* 
+    the knowledge; the point is to present the knowledge to others.  First, of
+    course, it must be correct and complete.  Succinct has tremendous value, also. 
+    Simple redundancy (via cut and paste of all the rotten techniques) is a
+    make-work procedure that doesn't create any recognizable
+    value.
+
+
+
+I guess that proper use of
+comments isn't obvious to some programmers.  Why not?
+
+
+
+Weinberg, in
+*The Psychology of Computer Programming*  noted that programmers don't spend
+enough time reading code.  
+Jeff Raskin, in ACM Queue (`"The Woes of IDEs" <http://www.acmqueue.org/modules.php?name=Content&pa=showpage&pid=22>`_), noted that one consequence
+of this is that some IDE's make comments a painful exercise.  It's as if the
+source doesn't really matter very
+much.
+
+
+
+Maybe I'm confused by my own
+preference for Literate Programming, but I think code (including comments) can
+be correct, complete,  succinct and still meaningful to authors and their
+audience.  In this era of open-source software, it's disappointing that every
+programmer hasn't read enough source to see what constitutes good practice and
+bad practice.  
+
+
+
+
+
+
+
+
+
+
+

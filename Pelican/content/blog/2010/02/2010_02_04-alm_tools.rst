@@ -1,0 +1,287 @@
+ALM Tools
+=========
+
+:date: 2010-02-04 08:00
+:tags: software process improvement,configuration management,agile
+:slug: 2010_02_04-alm_tools
+:category: Technologies
+:status: published
+
+There's a Special Report in the January 15 SDTimes with a headline that
+bothers me -- a lot. In the print edition, it's called "Can ALM tame the
+agile beast?". Online it's `ALM Tools Evolve in the Face of Agile
+Processes <http://www.sdtimes.com/ALM_TOOLS_EVOLVE_IN_FACE_OF_AGILE_PROCESSES/By_Jeff_Feinman/About_AGILE_and_ALM/34058>`__.
+
+The online title makes a lot more sense than the print title. The
+print title is very disturbing. "Agile Beast?" Is Agile a bad thing?
+Is it somehow out of control? It needs to be "tamed"?
+
+The article makes the case -- correctly -- that ALM tools are biased
+toward waterfall projects with (a) long lead times, (b) a giant drop
+of deliverables, and (c) a sudden ending. Agile projects often lack
+these attributes.
+
+The best part of the special report is the acknowledgement that
+"barriers between developers and QA are disappearing". TDD works to
+blur the distinction between test and development, which is a very
+good thing. Without unit tests, how do you know you're finished
+coding?
+
+**How Many Tools Do We Need?**
+
+The point in the article was that the ALM vendors have created a
+collection of tools, each of which seems like a good idea. However,
+it's too much of the wrong thing for practical, Agile, project
+management.
+
+The article claims that there were three tools for requirements,
+tests and defects. I've seen organizations with wishlists that are
+much bigger than these three. The `Wikipedia ALM
+Article <http://en.wikipedia.org/wiki/Application_lifecycle_management#Categories_of_ALM_tools>`__
+has an insane list of 16 tools (with some overlaps).
+
+Of these, we can summarize them into the following eight categories,
+based on the kind of information kept. Since the boundaries are
+blurry, it isn't sensible to break these up by who uses them.
+
+-  Requirements - in user terms; the "what"
+-  Modeling and Design - in technical terms; an overview of "how"
+-  Project Management (backlog, etc.) - requirements and dates
+-  Configuration Management - technology components
+-  Build Management - technology components
+-  Testing - components, tests (and possibly requirements)
+-  Release and Deployment - more components
+-  Bug, Issue and Defect Tracking - user terms, requirements, etc.
+
+Agile methods can remove the need for most (but not all) of these
+categories of tools. If the team is small, and really collaborating
+with the users, then there isn't the need to capture a mountain of
+details as well as complex management overviews for slice-and-dice
+reporting.
+
+**YAGNI**
+
+Here's a list of tools that shouldn't be necessary -- if you're
+collaborating.
+
+-   **Requirements** have an overview in the backlog, on the
+    scrumboard. Details can be captured in text documents written
+    using simple markup like RST or Markdown. You don't need much
+    because this is an ongoing conversation.
+
+-   **Modeling and Design** is a mixture of UML pictures and narrative
+    text. Again, simpler tools are better for this. Tool integration
+    can be accomplished with a simple web site of entirely static
+    content showing the current state of the architecture and any
+    detail designs need to clarify the architecture. Write in RST,
+    build it with `Sphinx <http://sphinx.pocoo.org/>`__.
+
+-   **Project Management** should be simply the backlog. This is
+    digested into periodic presentations to various folks outside the
+    scrum team. There isn't much that can be automated.
+
+For UML pictures, `ARGO UML <http://argouml.tigris.org/>`__ is very
+nice. Here's a more complete list of `Open Source UML
+Tools <http://en.wikipedia.org/wiki/List_of_Unified_Modeling_Language_tools#Open_Source>`__
+from Wikipedia.
+
+**Configuration Management**
+
+This is, perhaps, the single most important tool. However, there are
+two parts to this discipline.
+
+-   Source Code Control, sometimes called Revision Control. See the
+    `Comparison of Revision Control
+    Software <http://en.wikipedia.org/wiki/Comparison_of_revision_control_software>`__
+    page for more information.
+
+-   Software Configuration Management; the actual deployment of
+    assets. See the `Comparison of Configuration Management
+    Software <http://en.wikipedia.org/wiki/Comparison_of_open_source_configuration_management_software>`__
+    page for more information.
+
+    For Revision Control,
+    `Subversion <http://subversion.apache.org/>`__ works very nicely.
+
+**Continuous Integration**
+
+The more interesting tools fall under the cover of "Continuous
+Integration". Mostly, however, this is just automation of some common
+tasks.
+
+-   **Build Management** might be interesting for complex, statically
+    compiled applications. Use of a dynamic language (e.g., Python)
+    can prevent this. Build management should be little more than
+    `Ant <http://ant.apache.org/>`__,
+    `Maven <http://maven.apache.org/>`__ or
+    `SCons <http://www.scons.org/>`__.
+
+    Additional tools include the `Build
+    Automation <http://en.wikipedia.org/wiki/Build_automation#Software_tools>`__
+    list of tools.
+
+-   **Testing** is part of the daily build as well as each developer's
+    responsibility. It should be part of the nightly build, and is
+    simply a task in the build script.
+
+    Overall integration or acceptance testing, however, might require
+    some additional tools to exercise the application and confirm that
+    some suite of requirements are met. It may be necessary to have a
+    formal match-up between user stories and acceptance tests.
+
+      There's a Wikipedia article with `Testing
+      Tools <http://en.wikipedia.org/wiki/Software_Testing#Testing_Tools>`__
+      and `Automated
+      Testing <http://en.wikipedia.org/wiki/Automated_testing>`__. Much
+      of this is architecture-specific, and it's difficult to locate a
+      generic recommendation.
+
+-   **Release and Deployment** can be complex for some architectures.
+    The article on `Software
+    Deployment <http://en.wikipedia.org/wiki/Software_deployment>`__
+    doesn't list any tools. Indeed, it says "Because every software
+    system is unique, the precise processes or procedures within each
+    activity can hardly be defined."
+
+    Something that's important is a naming and packaging standard,
+    similar to that used by RPM's or Python .egg files. It can be
+    applied to Java .EAR/.WAR/.JAR files. Ideally, the installed
+    software sits in a standard directory (under /opt) and a
+    configuration file determines which version is used for
+    production.
+
+    Perhaps most important is the asset tracking, `configuration
+    management <http://en.wikipedia.org/wiki/Configuration_management>`__
+    aspect of this. We need to plan and validate what components are
+    in use in what locations. For this
+    `BCFG2 <http://trac.mcs.anl.gov/projects/bcfg2/>`__ seems to
+    embody a sensible approach.
+
+For most build, test and release automation, SCons is sufficient.
+It's easily extended and customized to include testing.
+
+More elaborate tools are listed in the `Continuous
+Integration <http://en.wikipedia.org/wiki/Continuous_integration#Software>`__
+article.
+
+**Customer Relationship Management**
+
+The final interesting category isn't really technical. It includes
+tools for **Bug, Issue and Defect Tracking**. This is about being
+responsive to customer requests for bug fixes and enhancements.
+
+The `Comparison of Issue Tracking
+Systems <http://en.wikipedia.org/wiki/Comparison_of_issue_tracking_systems>`__
+article lists a number of products.
+`Bugzilla <http://www.bugzilla.org/>`__ is typical, and probably does
+everything one would actually require.
+
+**Old and Busted**
+
+I've seen organizations actively reject requirements management tools
+and use unstructured documents because the tool (`Requisite
+Pro <http://www.ibm.com/software/awdtools/reqpro/>`__) imposed too
+many constraints on how requirements could be formalized and
+analyzed.
+
+This was not a problem with tool at all. Rather, the use of a
+requirements management tool exposes serious requirements analysis
+and backlog management issues. The tool had to be dropped. The excuse
+was that it was "cumbersome" and didn't add value.
+
+    [This same customer couldn't use Microsoft Project, either, because
+    it "didn't level the resources properly." They consistently
+    overbooked resources and didn't like the fact that this made the
+    schedule slip.]
+
+When asked about requirements tools, I suggest people look at blog
+entries like this one on `Create a Collaborative
+Workspace <http://www.agile-software-development.com/2007/10/how-to-implement-scrum-in-10-easy-steps_16.html>`__
+or these pictures of a well-used
+`scrumboard <http://www.xqa.com.ar/visualmanagement/tag/scrumboard/>`__.
+
+Too much software can become an impediment. The point of Agile is to
+collaborate, not use different tools. Software tools can (and do)
+enforce a style of work that may not be very collaborative.
+
+**Bottom Line**
+
+Starting from the ALM overview, there are potentially a lot of tools.
+
+Apply Agile methods and prune away some of the tools. You'll still
+want some design tools to help visualize really complex
+architectures. Use Argo UML and plain text.
+
+Developers need source code revision control. Use Subversion.
+
+Most everything else will devolve to "Continuous Integration", which
+is really about Build and Test, possibly Release. SCons covers a lot
+of bases.
+
+You have some asset management issues (what is running where?)
+There's a planning side of this as well as an inventory side of
+confirming the configuration. Use BCFG2.
+
+And you have customer relationship management issues (what would you
+like to see changed?) Use Bugzilla.
+
+
+
+-----
+
+Toyata: Computer-Addled Design? ... impractical to...
+-----------------------------------------------------
+
+Robert Lucente<noreply@blogger.com>
+
+2010-02-04 21:29:07.184000-05:00
+
+Toyata: Computer-Addled Design? ... impractical to expect any company to
+develop products that have zero defects ... what we need is very agile
+in detecting and responding to events ...
+http://www.forbes.com/2010/02/02/toyota-recall-pedal-business-autos-virtual.html
+
+
+Manual processes of attending projects can create ...
+-----------------------------------------------------
+
+protein powder<noreply@blogger.com>
+
+2010-06-15 07:24:15.048000-04:00
+
+Manual processes of attending projects can create major problems
+sometimes due to lack of accuracy. In web based `Project Management
+Software <http://www.project-drive.net/>`__, all the errors can be
+removed easily and apart from that you can track and record all of your
+jobs. Even companies can customize project management software as per
+their requirements.
+
+
+Project teams often require coordination of activi...
+-----------------------------------------------------
+
+Unknown<noreply@blogger.com>
+
+2010-06-16 06:51:26.375000-04:00
+
+Project teams often require coordination of activities, resources,
+equipment, and information. To satisfy this need the project coordinator
+functions in their primary role. Any coordination issues which cannot be
+resolved are elevated to the project manager.
+
+
+Most everything else will devolve to &quot;Continu...
+-----------------------------------------------------
+
+protein powder<noreply@blogger.com>
+
+2010-06-18 06:39:47.555000-04:00
+
+Most everything else will devolve to "Continuous Integration", which is
+really about Build and Test, possibly Release. SCons covers a lot of
+bases.
+
+
+
+
+

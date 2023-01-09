@@ -1,0 +1,143 @@
+The Old Days -- ca. 1974 -- Random Numbers before Python
+========================================================
+
+:date: 2022-01-04 20:52
+:tags: LaTeX,design,building skills books,software process improvement,random numbers,#python,packtpub,fortran,RST,pydata
+:slug: 2022_01_04-the_old_days_ca_1974_random_numbers_before_python
+:category: Books
+:status: published
+
+See "`The Old Old Days -- ca.
+1968 <https://slott-softwarearchitect.blogspot.com/2021/12/the-old-old-days-ca-1968.html>`__"
+for my first exposure to an actual computer. Nothing about Python there.
+But. It's what motivated me to get started learning to code -- I was
+fascinated by games that involved randomization. Games with cards or
+dice.
+
+After filling in a little background, I will get to the Python part of
+this. First, however, I want to compare the olden days with what we have
+now.
+
+From 1969 to 1974 I had access to the high school's `IBM
+1620 <https://en.wikipedia.org/wiki/IBM_1620>`__. This means programming
+in `IBM's SPS
+assembler <https://www.ibm.com/ibm/history/exhibits/mainframe/mainframe_PP1620.html>`__,
+or using the NCE Load-and-Go Fortran compiler.
+See https://www.cs.utexas.edu/users/EWD/transcriptions/EWD00xx/EWD37.html
+for a scathing review of the problems with this machine.
+
+See http://www.bitsavers.org/pdf/ibm/1620/GC20-1603-10_1620_Catalog_of_Programs_Jan71.pdf
+Page 36 has this:
+
+
+
+.. image:: https://blogger.googleusercontent.com/img/a/AVvXsEhqdj0dP7xqXFicGwS19bRSeBqx7GYb0HjP5UnwK39-2k9bDaUk-lUkMrJ3LvFuIXytsR__6_r9_ruj6wifonpikGA8khYKORpED8YW9QAZav1JAl6NJp2-63I_7Bij1fLx-tiNg_WoG3JgrMFO4y06Axf-s2f7z2vTnWeMwy7mXA9d1fYD92Hh6QLd=s320
+   :width: 238px
+   :height: 320px
+   :target: https://blogger.googleusercontent.com/img/a/AVvXsEhqdj0dP7xqXFicGwS19bRSeBqx7GYb0HjP5UnwK39-2k9bDaUk-lUkMrJ3LvFuIXytsR__6_r9_ruj6wifonpikGA8khYKORpED8YW9QAZav1JAl6NJp2-63I_7Bij1fLx-tiNg_WoG3JgrMFO4y06Axf-s2f7z2vTnWeMwy7mXA9d1fYD92Hh6QLd=s1334
+   :alt: Load-and-Go Fortran Manual Cover Page
+
+That's a quick overview of my earliest programming language. What's
+essential here is the NCE Fortran used 4-digit integers.
+
+I'll repeat that for those skimming, and wondering what the Python
+connection is.
+
+**Four. Digit. Integers.**
+
+That's four decimal digits. Decimal digits required at least 4
+hardware bits. IBM 1620 digits also had flags and signs, so, there
+were maybe 6 bits per digit. 24 bits of hardware used to represent
+just under 14 bits of useful information.
+
+My interest is in simulation and randomness. So. I have this question
+of how to create random sequences of numbers limited to 4-digit
+integers.
+
+PRNG Algorithms
+---------------
+
+There are a number of classic Pseudo-Random Number Generator (PRNG)
+algorithms from the early days before Mersenne Twister took over in
+1997.
+
+We used to be super-careful to emphasize the letter **P** in
+**P**\ RNG because the numbers we're really random. They just behaved
+randomish. This is contrasted with real randomness, also known as
+*entropy*. For example, ``/dev/random`` device driver has a fair
+amount of entropy. I think it's comparable to a person throwing dice
+across a table. I think it's as random as a noise-generating diode
+with a sample-and-hold circuit to pluck out random values from the
+noise.
+
+Pre-Mersenne-Twister -- pre-1997 -- we worried a lot about random
+number generation. See Knuth, Donald E. *The Art of Computer
+Programming, Volume 2, Seminumerical Algorithms*, Addison-Wesley,
+1969. Section 3.3.2. covers empirical testing of random number
+generators. Section 3.3.1. covers the Chi-squared test for fit
+between actual and expected frequency distributions.
+
+Back in the olden days, it was stylish to perform an empirical test
+(or ten) to confirm we really had "good" random numbers. The built-in
+libraries that came with your compiler or OS could not be trusted
+without evidence.
+
+One of the classic (bad) PRNG's is the "Middle-Squared" method.
+See https://en.wikipedia.org/wiki/Middle-square_method. I learned
+about this in the 70's. And used it in the old NCE Fortran.
+
+With **Four. Digit. Integers**.
+
+Did I mention that the Fortran compiler used **four** decimal digits
+for integers? That means plucking the middle two digits out of a
+four-digit number. How random can that be?
+
+Not very. The longest possible sequence is 100 numbers. If, by some
+miracle, you found a seed number with the right properties and only
+two digits.
+
+Nowadays I can, in Python, do a quick middle-squared analysis for all
+100 seed values.
+
+This kind of thing.
+
+::
+
+      def csqr4(value: int) -> list[int]:
+          """The 4 decimal digit center-squared PRNG."""
+          sequence = []
+          while value not in sequence:
+              sequence.append(value)
+              value = (((value**2) // 10) % 100)
+          return sequence
+
+Which you can run and see that **all** of my early attempts at games
+and simulations were doomed. The seed values of 76, 42, and 69
+provided kind of long sequences of almost random-seeming numbers.
+Otherwise, pfft, this was junk computer science. 50% of the seeds
+provide 5 or fewer numbers before repeating.
+
+For blackjack, a few random numbers for shuffling *might* be enough.
+For other games, the lack of randomness made the outcomes trivially
+predictable.
+
+What's funny is how far the state of the art has moved since then.
+
+#. Hardware now has more than 20,000 decimal digits (about 10K bytes) of storage.
+
+#. Software with algorithms that are really, really clever.
+
+It's hard to understate these two advances, particularly, the second
+one. I'll return to the algorithm thing a lot in the next few posts.
+
+My focus was on games and randomization. Ideally, simple stuff.
+But... under the hood, it's not simple. I've spent some time (not
+much, and not in much depth) looking at the tip of this iceberg.
+
+It served me as an incentive to dive just a little more deeply into a
+topic, like math or a programming language or a statistical tool.
+
+
+
+
+

@@ -1,0 +1,193 @@
+Reading Spreadsheets with Stingray Reader and Type Hinting
+==========================================================
+
+:date: 2021-11-16 08:00
+:tags: LaTeX,design,building skills books,software process improvement,random numbers,type hints,#python,packtpub,RST,pydata
+:slug: 2021_11_16-reading_spreadsheets_with_stingray_reader_and_type_hinting
+:category: Books
+:status: published
+
+See `Spreadsheets, COBOL, and schema-driven file
+processing <https://slott-softwarearchitect.blogspot.com/2021/08/spreadsheets-cobol-and-schema-driven.html>`__,
+etc. for some history on this project.
+
+Also, see
+`Stingray-Reader <https://github.com/slott56/Stingray-Reader>`__ for the
+current state of this effort.
+
+(This started almost 20 years ago, I've been refining and revising a
+lot.)
+
+Big Lesson Up Front
+-------------------
+
+Python is very purely driven by the idea that everything you write is
+generic with respect to type. Adding type hints narrows the type domain,
+removing the concept of "generic".
+
+Generally, this is good.
+
+But not universally.
+
+Duck Typing -- and Python's generic approach to types -- is made visible
+via Protocols and Generics.
+
+An Ugly Type Hinting Problem
+----------------------------
+
+One type hint complication arises when writing code that really is
+generic. Decorators are a canonical example of functions that are
+generic with respect to the function being decorated. This, then, leads
+to kind of complicated-looking type hints.
+
+See the mypy page on `declaring
+decorators <https://mypy.readthedocs.io/en/stable/generics.html?highlight=typevar#declaring-decorators>`__.
+The use of a ``TypeVar`` to show that how a decorator's argument type
+matches the the return type is big help. Not all decorators follow the
+simple pattern, but many do.
+
+::
+
+   from typing import TypeVar
+   F = TypeVar('F', bound=Callable[..., Any])
+   def myDecorator(function: F) -> F:
+       etc.
+
+The Stingray Reader problem is that a number of abstractions are generic
+with respect to an underlying instance object.
+
+If we're working with CSV files, the instance is a ``tuple[str]``.
+
+If we're working with ND JSON objects, the instance is some JSON type.
+
+If we're working with some Workbook (e.g., via xlrd, openpyxl, or
+pyexcel) then, the instance is defined by one of these external
+libraries.
+
+If we're working with COBOL files, then the instances may be str or may
+be bytes. The ``typing.AnyStr`` type provides a useful generic
+definition.
+
+Traditional OO Design Is The Problem
+------------------------------------
+
+Once upon a time, in the dark days, we had exactly one design choice:
+inheritance.
+
+Actually, we had two, but so many writers get focused on "explaining" OO
+programming, that they tend to gloss over composition. The focus on the
+sort-of novel concept of inheritance.
+
+And this leads to folks arguing that inheritance shouldn't be thought of
+as central. Which is a kind of moot argument over what we're doing when
+we're writing about OO design. We have to cover both. Inheritance has
+more drama, so it becomes a bit more visible than composition. Indeed,
+inheritance creates a number of design constraints, and that's where the
+drama surfaces.
+
+Any discussion of design patterns tends to be more balanced. Many
+patterns -- like **Strategy** and **State** -- are compositional
+patterns. Inheritance actually plays a relatively minor role until you
+reach interesting boundary cases.
+
+Specifically.
+
+What do you do when you have a **Strategy** class hierarchy and ONE of
+those strategies has an unique type hint for a parameter? Most of the
+classes use one type. One unique subclass needs a distinct type. For
+example, this outlier among the **Strategy** alternatives uses a str
+parameter instead of float.
+
+Do you push that type distinction up to the top of the hierarchy? Maybe
+define it as ``edge_case: Optional[Union[str, float]] = None``?
+
+You can't simply change the parameter's value in one subclass with
+impunity. mypy will catch you at this, and tell you you have Liskov
+Substitution problems.
+
+Traditionally, we would often take this to mean that we have a larger
+problem here. We have a leaky abstraction. Some implementation details
+are surfacing in a bad way and we need more abstract classes.
+
+It's A Protocol ("Duck Typing")
+-------------------------------
+
+When I started rewriting Stingray Reader, I started with a fair number
+of abstract classes. These classes were supposed to have widely varying
+implementations, but common semantics.
+
+Applying a schema definition to a CSV file means that data values can be
+converted from strings to something more useful,
+
+Applying a schema to a JSON file means doing a validation pass to be
+sure the loaded object meets the schema's expectations.
+
+Applying a schema to a Workbook file is a kind of hybrid between CSV
+processing and JSON processing. The workbook's values will have been
+unpacked by the interface module. Each row will look like a
+``list[Any]`` that can be subject to JSON schema validation.
+
+Apply a schema to COBOL means using the schema details to figure out how
+to unpack the bytes. This is suddenly a lot more complex than the other
+cases.
+
+The concepts of inheritance and composition aren't really applicable.
+
+This is something even more open-ended. It's a protocol.
+
+We want a common interface and common semantics. But. We're not really
+going to leverage any common code.
+
+This unwinds a lot abstract superclasses, replacing them with
+``Protocol`` class definitions.
+
+::
+
+   class Workbook(abc.ABC):
+       @abc.abstractmethod
+       def sheet(self, name: str, schema: Schema) -> Sheet:
+           ...
+       def row_iter(self) -> Iterator[list[Union[str, bytes, int, float, etc.]]]:
+           ...
+
+The above is not universally useful. Liskov Substitution has to apply.
+In some cases, we don't have a tidy set of relationships. Here's the
+alternative
+
+::
+
+   class Workbook(Protocol):
+       def sheet(self, name: str, schema: Schema) -> Sheet:
+           ...
+       def row_iter(self) -> Iterator[list[Any]]:
+           ...
+
+This gives us the ability to define classes that adhere to the Workbook
+Protocol but don't have a simple, strict subclass-superclass-Liskov
+substitution relationship.
+
+It's A Generic Protocol
+-----------------------
+
+It turns out, this isn't quite right. What's really required is a
+``Generic[Type]``, not the simple ``Protocol``.
+
+::
+
+   class Workbook(Generic[Instance]):
+       def sheet(self, name: str, schema: Schema) -> Sheet:
+           ...
+       def row_iter(self) -> Iterator[list[Instance]]:
+           ...
+
+This lets us create Workbook variants that are highly type-specific, but
+not narrowly constrained by inheritance rules.
+
+This type hinting technique describes Python code that really is generic
+with respect to implementation type details. It allows a single Facade
+to contain a number of implementations.
+
+
+
+
+

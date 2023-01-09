@@ -1,0 +1,322 @@
+Found an ancient cgi script -- part III -- refactoring
+======================================================
+
+:date: 2021-09-17 14:27
+:tags: CGI,wsgi,LaTeX,design,building skills books,software process improvement,random numbers,Apache,#python,packtpub,RST,pydata
+:slug: 2021_09_17-found_an_ancient_cgi_script_part_iii_refactoring
+:category: Books
+:status: published
+
+Be sure to see the `original
+script <https://slott-softwarearchitect.blogspot.com/2021/08/we-have-ancient-python2-cgi-script-what.html>`__
+and the test cases in the prior posts.
+
+We need to understand a little about what a web request is. This can
+help us do the refactoring.
+
+It can help to think of a web server a function that maps a request to a
+response. The request is really a composite object with headers,
+\\(h\\), method verb, \\(v\\), and URL, (\\u\\). Similarly, the response
+is a composite with headers, \\(h\\), and content, (\\c\\).
+
+$$h, c = s(h, v, u)$$
+
+The above is true for idempotent requests; usually, the method verb is
+GET.
+
+Some requests make a state change, however, and use method verbs like
+POST, PUT, PATCH, or DELETE.
+
+$$h, c; \\hat S = s(h, v, u; S)$$
+
+There's a state,  \\(S\\), which is transformed to a new state, \\(\\hat
+S\\), as part of making the request.
+
+For the most part, CGI scripts are limited to GET and POST methods. The
+GET method is (ideally) for idempotent, no-state-change requests. The
+POST should be limited to making state changes. In some cases, there
+will be an explicit GET-after-POST sequence of operations using an
+intermediate redirection so the browser's "back" button works properly.
+
+In too many cases, the rules aren't followed well and their will be
+state transitions on GET and idempotent POST operations. Sigh.
+
+Multiple Resources
+------------------
+
+Most web servers will provide content for a number of resource
+instances. Often they will work with a number of instances of a variety
+of resource types. The degenerate case is a server providing content for
+a single instance of a single type.
+
+Each resource comes from the servers's universe of resources, \\(R\\).
+
+$$r \\in R$$
+
+Each resource type, \\(t(r )\\), is part of some overall collection of
+types that describe the various resources. In some cases we'll identify
+resources with a path that includes the type of the resource,  \\(t(r
+)\\), and an identifier within that type, \\(i(r )\\), \\(\\langle t( r
+), i( r ) \\rangle\\). This often maps to a character string "type/name"
+that's part of a URL's path.
+
+We can think of a response's content as the HTML markup, \\(m_h\\),
+around a resource, \\(r\\), managed by the web server.
+
+$$ c = m_h( r )$$
+
+This is a representation of the resource's state. The HTML
+representation can have both semantic and style components. We might,
+for example, have a number of HTML structure elements like ``<p>``, as
+well as CSS styles. Ideally, the styles don't convey semantic
+information, but the HTML tags do.
+
+Multiple Services
+-----------------
+
+There are often multiple, closely-related services within a web server.
+A common design pattern is to have services that vary based on a path
+item, \\(p(u)\\), within the url.
+
+$$ h, m_h(r ); \\hat S = s(h, v, u; S) = \\begin{cases} s_x(h, v, u; S)
+\\textbf{ if $p(u) = x$} \\\\ s_y(h, v, u; S) \\textbf{ if $p(u) = y$}
+\\\\ \\end{cases} $$
+
+There isn't, of course, any formal requirement for a tidy mapping from
+some element of the path, \\(p(u)\\), to a type, \\(t ( r ) \\), that
+characterizes a resource, \\(r\\). Utter chaos is allowed. Thankfully,
+it's not common.
+
+While there may not be a tidy type-based mapping, there must be a
+mapping from a triple and a state, \\(\\langle h, u, v; S \\rangle \\)
+to a resource, \\(r\\). This mapping can be considered a database or
+filesystem query, \\(q(\\langle h, u, v; S \\rangle)\\). The request may
+also involve state change.  It can help to think of the state as a
+function that can emit a new state for a request. This implies two
+low-level processing concepts:
+
+$$ \\{ r \\in R \| q(\\langle h, u, v; S \\rangle, r) \\} $$
+
+And
+
+$$ \\hat S = S(\\langle h, u, v \\rangle) $$
+
+The query processing to locate resources is one aspect of the underlying
+model. The state change for the universe of resources is another aspect
+of the underlying model. Each request must return a resource; it may
+also make a state change.
+
+What's essential, then, is to see how these various \\(s_x\\) functions
+are related to the original code. The \\(m_h(r)\\) function, the \\(p( u
+)\\) mappings, and the \\(s_{t(u)}(h, v, u; S)\\) functions are all
+separate features that can be disentangled from each other.
+
+Why All The Math?
+-----------------
+
+We need to be utterly ruthless about separating several things that are
+often jumbled together.
+
+-  A web server works with a universe of resources. These can be
+   filesystem objects, database rows, external web services, anything.
+-  Resources have an internal state. Resources may also have internal
+   types (or classes) to define common features.
+-  There's at least one function to create an HTML representation of
+   state. This may be partial or ambiguous. It may also be complete and
+   unambiguous.
+-  There is at least one function to map a URL to zero or more
+   resources. This can (and often does) result in 404 errors because a
+   resource cannot be found.
+-  There may be a function to create a server state from the existing
+   server state and a request. This can result in 403 errors because an
+   operation is forbidden.
+
+Additionally, there can be user authentication and authorization rules.
+The users are simply resources. Authentication is simply a query to
+locate a user. It may involve using the password as part of the user
+lookup. Users can have roles. Authorization is a property of a user's
+role required by a specific query or state change (or both.)
+
+As we noted in the overview, the HTML representation of state is handled
+(entirely) by Jinja. HTML templates are used. Any non-Jinja HTML
+processing in legacy CGI code can be deleted.
+
+The mapping from URL to resource may involve several steps. In Flask,
+some of these steps are handled by the mapping from a URL to a view
+function. This is often used to partition resources by type. Within a
+view function, individual resources will be located based on URL
+mapping.
+
+What do we do?
+--------------
+
+In our example code, we have a great deal of redundant HTML processing.
+One sensible option is to separate all of the HTML printing into one or
+more functions that emit the various kinds of pages.
+
+In our example, the parsing of the path is a single, long nested bunch
+of if-elif processing. This should be refactored into individual
+functions. A single, top-level function can decide what the URL pattern
+and verb mean, and then delegate the processing to a view function. The
+view function can then use an HTML rendering function to build the
+resulting page.
+
+One family of URL's result in presentation of a form. Another family of
+URL's processes the form input. The form data leads to a resource with
+internal state. The form content should be used to define a Python
+class. A separate class should read and write files with these Python
+objects. The forms should be defined at a high level using a module like
+`WTForms <https://wtforms.readthedocs.io/en/2.3.x/>`__.
+
+When rewriting, I find it helps to keep several things separated:
+
+-  A class for the individual resource objects.
+-  A  form that is one kind of serialization of the resource objects.
+-  An HTML page that is another kind of serialization of the resource
+   objects.
+
+While these things are related very closely, they are not isomorphic to
+each other. Objects may have implementation details or derived values
+that should not be trivially shown on a form or HTML page.
+
+In our example, the form only has two fields. These should be properly
+described in a class. The field objects have different types. The types
+should also be modeled more strictly, not treated casually as a piece of
+a file path. (What happens if we use a type name of "this/that"?)
+
+Persistent state change is handled with filesystem updates. These, too,
+are treated informally, without a class to encapsulate the valid
+operations, and reject invalid operations.
+
+Some Examples
+-------------
+
+Here is one the HTML output functions.
+
+::
+
+   def html_post_response(type_name, name, data):
+       print "Status: 201 CREATED"
+       print "Content-Type: text/html"
+       print
+       print "<!DOCTYPE html>"
+       print "<html>"
+       print "<head><title>Created New %s</title></head>" % type_name
+       print "<body>"
+       print "<h1>Created New %s</h1>" % type_name
+       print "<p>Path: %s/%s</p>" % (type_name, name)
+       print "<p>Content: </p><pre>"
+       print data
+       print "</pre>"
+       # cgi.print_environ()
+       print "</body>"
+       print "</html>"
+
+There are several functions like this. We aren't wasting any time
+optimizing all these functions. We're simply segregating them from the
+rest of the processing. There's a huge amount of redundancy; we'll fix
+this when we starting using jinja templates.
+
+Here's the revised ``main()`` function.
+
+::
+
+   def main():
+       try:
+           os.mkdir("data")
+       except OSError:
+           pass
+
+       path_elements = os.environ["PATH_INFO"].split("/")
+       if path_elements[0] == "" and path_elements[1] == "resources":
+           if os.environ["REQUEST_METHOD"] == "POST":
+               type_name = path_elements[2]
+               base = os.path.join("data", type_name)
+               try:
+                   os.mkdir(base)
+               except OSError:
+                   pass
+               name = str(uuid.uuid4())
+               full_name = os.path.join(base, name)
+               data = cgi.parse(sys.stdin)
+               output_file = open(full_name, 'w')
+               output_file.write(repr(data))
+               output_file.write('\n')
+               output_file.close()
+               html_post_response(type_name, name, data)
+
+           elif os.environ["REQUEST_METHOD"] == "GET" and len(path_elements) == 3:
+               type_name = path_elements[2]
+               html_get_form_response(type_name)
+
+           elif os.environ["REQUEST_METHOD"] == "GET" and len(path_elements) == 4:
+               type_name = path_elements[2]
+               resource_name = path_elements[3]
+               full_name = os.path.join("data", type_name, resource_name)
+               input_file = open(full_name, 'r')
+               content = input_file.read()
+               input_file.close()
+               html_get_response(type_name, resource_name, content)
+
+           else:
+               html_error_403_response(path_elements)
+       else:
+           html_error_404_response(path_elements)
+
+This has the HTML output fully segregated from the rest of the
+processing. We can now see the request parsing and the model processing
+more clearly. This lets us move further and refactor into yet smaller
+and more focused functions. We can see file system updates and file path
+creation as part of the underlying model.
+
+Since these examples are contrived. The processing is essentially a
+``repr()`` function call. Not too interesting, but the point is to
+identify this clearly by refactoring the application to expose it.
+
+Summary
+-------
+
+When we start to define the classes to properly model the persistent
+objects and their state, we'll see that there are zero lines of legacy
+code that we can keep.
+
+**Zero lines of legacy code have enduring value.**
+
+This is not unusual. Indeed, I think it's remarkably common.
+
+Reworking a CGI application should not be called a "migration."
+
+-  There is no "migration" of code from Python 2 to Python 3. The Python
+   2 code is (almost) entirely useless except to explain the use cases.
+-  There is no "migration" of code from CGI to some better framework.
+   Flask (and any of the other web frameworks) are nothing like CGI
+   scripts.
+
+The functionality should be completely rewritten into Python 3 and
+Flask. The processing concept is preserved. The data is preserved. The
+code is not preserved.
+
+In some projects, where there are proper classes defined, there may be
+some code that can be preserved. However, a Python dataclass may do
+everything a more complex Python2 class definition does with a lot less
+code. **The Python2 code is not sacred**. Code should not be preserved
+because someone thinks it might reduce cost or risk.
+
+The old code is useful for three things.
+
+-  Define the unit test cases.
+-  Define the integration test cases.
+-  Answer questions about edge cases when writing new code.
+
+This means we won't be using the **2to3** tool to convert any of the
+code.
+
+It also means the unit test cases are the new definition of the project.
+These are the single most valuable part of the work. Given test cases
+that describe the old application, writing the new app using Flask is
+relatively easy.
+
+
+
+
+

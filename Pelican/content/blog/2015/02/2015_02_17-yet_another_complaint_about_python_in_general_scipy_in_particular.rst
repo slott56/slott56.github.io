@@ -1,0 +1,85 @@
+Yet Another Complaint about Python in General, SciPy in Particular
+==================================================================
+
+:date: 2015-02-17 07:59
+:tags: #python,Data Science,Anaconda,scipy
+:slug: 2015_02_17-yet_another_complaint_about_python_in_general_scipy_in_particular
+:category: Technologies
+:status: published
+
+The context is an ongoing question about optimization -- not my strong
+suit -- and the SciPy algorithms for this. See
+`Scipy.optimization.anneal
+Problems <{filename}/blog/2014/10/2014_10_09-scipyoptimizationanneal_problems.rst>`__ for
+some additional confusion over simple things.
+
+The new quote is this:
+
+    However, firing up Python, NumPy, SciPy and figuring out which solver
+    to use is not convoluted? Keep on writing code and over engineering
+    as opposed to using the minimum tech in order to get the job. After
+    all, we are professionals.
+
+It appears that using a packaged, proven optimizer is somehow
+"convoluted." Apparently, the
+`Anaconda <https://store.continuum.io/cshop/anaconda/>`__ product
+never surfaced in a Google search. This seems to indicate that
+perhaps (a) Google was never used or (b) the author didn't get to
+page 4 of the search results, or (c) the author never tried another
+search beyond the single-word "scipy".
+
+I'm guessing they did not google "Python simulated annealing" -- the
+actual subject -- because there are a fairly large number of existing
+solutions to this. Lots and lots of lecture notes and tutorials. It
+seems to be a rich area full of tutorials on both optimization and
+Python. Reading a few of these would probably have addressed all of
+the concerns.
+
+Anaconda, BTW, appears to be an amazing product. It seems to be the
+gold standard for data science. (I know of organizations that have
+in-house variations on this theme They bundle Python plus numerous
+extra packages and a variety of installers for Mac OS X, Windows and
+Linux.)
+
+The "Keep on writing code" complaint is peculiar. The optimization
+examples in SciPy seem to involve less than a half-dozen lines of
+code. Reading a CSV file can be digested down to four lines of code.
+
+::
+
+  import cvs
+  with open("constrains.csv", newline="") as source;
+      rdr= DictReader(source)
+      data = list(rdr)
+
+I can only guess that the threshold for "over engineering" is a
+dozen lines of code. Fewer lines are acceptable; more are bad.
+I don't know what "using the minimum tech in order to get the job"
+means, but the context included an example spreadsheet that was
+somehow a solution to an instance of a problem. I'm guessing from
+this that "minimum tech" means "spreadsheet."
+
+Read this: `When spreadsheets go
+bad <http://decisionmechanics.com/when-spreadsheets-go-bad/>`__.
+There are a lot of war stories like this. (For information on the
+original quote, read '`What is meant by "Now you have two
+problems"? <http://arstechnica.com/information-technology/2014/05/what-is-meant-by-now-you-have-two-problems/>`__')
+
+I regret not asking follow-up questions.
+
+The more complete story is this: rather than actually leverage
+SciPy, the author of the quote appears to be fixated on rewriting
+a classic Simulated Annealing textbook example into a spreadsheet
+because reasons. One of which is that more modern algorithms in
+SciPy aren't actually classic simulated annealing. The newer
+algorithms may be better, but since they're not literally from the
+textbook, this is a problem.
+
+And my suggestion -- just use SciPy -- was dismissed as
+"convoluted", "over-engineering", and -- I guess --
+unprofessional.
+
+
+
+
+
