@@ -4,7 +4,8 @@ Publications
 Books
 -----
 
-`Functional Python Programming, 2e <https://www.packtpub.com/product/functional-python-programming-second-edition/9781788627061>`_
+**New! December 2022**
+`Functional Python Programming, 3e <https://www.packtpub.com/product/functional-python-programming-third-edition/9781803232577>`_
 
 `Modern Python Cookbook, 2e <https://www.packtpub.com/product/modern-python-cookbook-second-edition/9781800207455>`_
 
@@ -18,6 +19,9 @@ Books
 
 `Python 3 Object-Oriented Programming, 4e <https://www.packtpub.com/product/python-object-oriented-programming-fourth-edition/9781801077262>`_
 
+Self-Published
+--------------
+
 `Pivot to Python: A Guide for Professionals and skilled beginners <https://play.google.com/store/books/details/Steven_F_Lott_Pivot_to_Python?id=fQ6IEAAAQBAJ>`_
 
 `Unlearning SQL: “When your only tool is a hammer, every problem looks like a nail.” <https://play.google.com/store/books/details/Steven_F_Lott_Unlearning_SQL?id=23WAEAAAQBAJ>`_
@@ -25,8 +29,10 @@ Books
 Blogs
 -----
 
-For `CapitalOne Tech <https://medium.com/capital-one-tech/search?q=Lott>`_
-
-Legacy: http://slott-softwarearchitect.blogspot.com
-
 Current: https://slott56.github.io
+
+Some legacy posts:
+
+- `CapitalOne Tech <https://medium.com/capital-one-tech/search?q=Lott>`_
+
+- http://slott-softwarearchitect.blogspot.com
