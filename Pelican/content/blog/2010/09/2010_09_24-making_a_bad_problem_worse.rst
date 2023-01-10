@@ -154,7 +154,7 @@ Sounds scary. Couple typos for you:
 http://www.emendapp.com/sites/slott-softwarearchitect.blogspot.com
 
 
-you just describe magento&#39;s EAV design.
+you just describe magento's EAV design.
 
 Just ...
 -----------------------------------------------------

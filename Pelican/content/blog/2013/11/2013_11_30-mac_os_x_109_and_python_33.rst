@@ -9,11 +9,14 @@ Mac OS X 10.9 and Python 3.3
 
 Finally upgraded to Python 3.3.3. The ordinary maintenance release fixed
 the problem with the previous release.
+
 The previously documented patch
-(http://slott-softwarearchitect.blogspot.com/2013/10/mac-os-x-109-mavericks-crashes-python.html)
+({filename}/blog/2013/10/2013_10_25-mac_os_x_109_mavericks_crashes_python_patch_available.rst)
 is no longer required.
+
 Time to start incrementally installing all the various add-on
 components: docutils, PyYaml, Django, Jinja2, SQLAlchemy, etc.
+
 Also, time to put more focus into rewriting various projects to finally
 cut the cord with Python2. At this point, there's no longer a reason to
 be looking backwards.

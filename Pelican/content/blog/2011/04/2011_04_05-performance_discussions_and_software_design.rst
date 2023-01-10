@@ -96,8 +96,7 @@ Robert Lucente<noreply@blogger.com>
 2011-04-05 21:43:13.029000-04:00
 
 For a related blog which Steve Lott also posted, check out
-Questions, or, How to Ask For Help
-http://slott-softwarearchitect.blogspot.com/2010/11/questions-or-how-to-ask-for-help.html
+`Questions, or, How to Ask For Help <{filename}/blog/2010/11/2010_11_30-questions_or_how_to_ask_for_help.rst>`_
 
 
 Thank you for writing this! :)

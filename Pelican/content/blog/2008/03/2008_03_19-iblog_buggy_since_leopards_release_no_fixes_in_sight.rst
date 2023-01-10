@@ -29,7 +29,8 @@ This is a detailed, specific case study showing how to structure the "what tool 
 
 
 
-:strong:`Strategy`
+Strategy
+--------
 
 
 
@@ -61,7 +62,8 @@ On the other hand, moving to a new site should be a matter of migrating existing
 
 
 
-:strong:`Approach`
+Approach
+--------
 
 
 
@@ -85,7 +87,8 @@ On the other hand, moving to a new site should be a matter of migrating existing
 
 
 
-:strong:`Use Cases`
+Use Cases
+---------
 
 
 
@@ -114,6 +117,7 @@ Authors have the (1) write draft, (2) search, (3) publish, (4) maintain sidebar 
 
 
 Tools - Overview
+-----------------
 
 
 
@@ -188,7 +192,8 @@ The version 1 products leave me a little cold.  iBlog was version 1 and never go
 
 
 
-:strong:`The Short List`
+The Short List
+--------------
 
 
 
@@ -198,27 +203,28 @@ The short list is MacJournal, MarsEdit and and iWeb.  Blog.Mac has some appeal, 
 
 
 
-:strong:`MacJournal`.  Does a lot of things.  Blogging feels like an add-on.  The HTML Templates aren't described well.  It isn't clear how hard it would be to extract elements of my iBlog pages and turn them into a MacJournal template and have some consistency.  The list of MacJournal template tags are undocumented, making this template conversion a dicy proposition.
+**MacJournal**.  Does a lot of things.  Blogging feels like an add-on.  The HTML Templates aren't described well.  It isn't clear how hard it would be to extract elements of my iBlog pages and turn them into a MacJournal template and have some consistency.  The list of MacJournal template tags are undocumented, making this template conversion a dicy proposition.
 
 
 
 
-:strong:`MarsEdit`.  Focused.  However, it's not clear what template capabilities it has for putting entries into a blog page context.  Must have something, but the documentation available on-line is just advertising copy.  Not clear how AdSense or Haloscan would work, either.  No on-line doco is the end of my interest.
+**MarsEdit**.  Focused.  However, it's not clear what template capabilities it has for putting entries into a blog page context.  Must have something, but the documentation available on-line is just advertising copy.  Not clear how AdSense or Haloscan would work, either.  No on-line doco is the end of my interest.
 
 
 
 
-:strong:`iWeb`.  Does many things.  Part of iLife.  New release is aware of AdSense ads.  Missing obvious Haloscan integration; an add-on is required (http://web.mac.com/cbrantly/iWeb/Software/iComment.html).  Has some ability to reconstruct templates similar to iBlog templates (minus the calendar, specifically).  No obvious social networking support.
+**iWeb**.  Does many things.  Part of iLife.  New release is aware of AdSense ads.  Missing obvious Haloscan integration; an add-on is required (http://web.mac.com/cbrantly/iWeb/Software/iComment.html).  Has some ability to reconstruct templates similar to iBlog templates (minus the calendar, specifically).  No obvious social networking support.
 
 
 
 
-:strong:`Blog.Mac`.  Focused.  Has AdSense and Haloscan comments already available.  Template editing and multiple templates available.  New blog would trivially go to a directory parallel to my existing iblog directory tree.
+**Blog.Mac**.  Focused.  Has AdSense and Haloscan comments already available.  Template editing and multiple templates available.  New blog would trivially go to a directory parallel to my existing iblog directory tree.
 
 
 
 
 Detailed Comparison
+-------------------
 
 
 
@@ -227,9 +233,9 @@ Detailed Comparison
 
     "Product","Reader/ Syndicator","Author"
     " ","Bookmark, Permalink","Comments","Social Networking","RSS","Write, Search, Publish","Sidebar","AdSense","Comment"
-    ":strong:`MacJournal` ","Good","Not Clear","Not Clear","Not Clear","Good","Not Clear","Not Clear","Not Clear"
-    ":strong:`iWeb` ","Good","Haloscan is an Add-on","Missing","Good","Good but No Search","Template","New Feature",".Mac"
-    ":strong:`Blog.Mac` ","Good","Good","Missing","Good","Good","Template","Good","Haloscan",
+    "**MacJournal** ","Good","Not Clear","Not Clear","Not Clear","Good","Not Clear","Not Clear","Not Clear"
+    "**iWeb** ","Good","Haloscan is an Add-on","Missing","Good","Good but No Search","Template","New Feature",".Mac"
+    "**Blog.Mac** ","Good","Good","Missing","Good","Good","Template","Good","Haloscan",
 
 
 
@@ -242,31 +248,32 @@ Detailed Comparison
 
 
 
-:strong:`Solution`
+Solution
+--------
 
 
 
-:strong:`MarsEdit`  might be good, but it's too hard to penetrate the fog on what it does.
+**MarsEdit**  might be good, but it's too hard to penetrate the fog on what it does.
 
 
 
-While :strong:`iWeb`  has some incumbency, it doesn't have idiot-simple social networking capabilities.  It doesn't have an easy-to-use blog search.
+While **iWeb**  has some incumbency, it doesn't have idiot-simple social networking capabilities.  It doesn't have an easy-to-use blog search.
 
 
 
-This leads me to look closely at :strong:`Blog.Mac`  for a trial.
+This leads me to look closely at **Blog.Mac**  for a trial.
 
 
 
-:strong:`Consequences`
-
+Consequences
+-------------
 
 
 Here's the potential course of events.
 
 
 
-First, I need to pilot :strong:`Blog.Mac`: create a new Blog, parallel to my existing iBlog material.  This involves creating (or finding) a template that matches the legacy blog.  It also involves trying to resolve the Social Networking capabilities of Blog.Mac.
+First, I need to pilot **Blog.Mac**: create a new Blog, parallel to my existing iBlog material.  This involves creating (or finding) a template that matches the legacy blog.  It also involves trying to resolve the Social Networking capabilities of Blog.Mac.
 
 
 

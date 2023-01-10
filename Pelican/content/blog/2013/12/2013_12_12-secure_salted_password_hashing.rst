@@ -16,7 +16,7 @@ This was really quite nice. It didn't have a Python version, but the
 clarity of the exposition makes the Python easy to write.
 
 A few months back, I had this mystery
-conversation: http://slott-softwarearchitect.blogspot.com/2012/08/password-encryption-short-answer-dont.html.
+conversation: {filename}/blog/2013/06/2013_06_27-password_encryption_short_answer_dont.rst
 
 While this is not going to produce identical results to the code shown
 in the blog post, it seems to fit the requirements.

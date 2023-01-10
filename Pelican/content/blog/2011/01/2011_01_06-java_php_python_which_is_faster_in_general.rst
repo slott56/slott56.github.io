@@ -281,7 +281,7 @@ Innofied<noreply@blogger.com>
 Hi,
 Recently I came across some great articles on your site.
 The other day, I was discussing
-(http://slott-softwarearchitect.blogspot.in/2011/01/java-php-python-which-is-faster-in.html)with
+(This post) with
 my colleagues and they suggested I submit an article of my own. Your
 site is just perfect for what I have written!
 

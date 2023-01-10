@@ -8,7 +8,7 @@ Continuous Data Migration
 :status: published
 
 
-See http://slott-softwarearchitect.blogspot.com/2013/07/database-conversion-or-schema-migration.html
+See {filename}/blog/2016/06/2016_06_10-database_conversion_or_schema_migration.rst
 
 People talk about CI/CD (Continuous Integration/Continuous
 Deployment).

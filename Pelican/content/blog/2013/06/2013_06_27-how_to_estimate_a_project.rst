@@ -284,13 +284,13 @@ definition) a **learning** process. As knowledge is accumulated, it's
 encoded in the form of software. Once all the knowledge is available,
 the software happens to be done, also.
 
-Also: http://slott-softwarearchitect.blogspot.com/2011/11/justification-of-project-staffing.html.
+Also: {filename}/blog/2011/11/2011_11_28-justification_of_project_staffing.rst
 
-And this: http://slott-softwarearchitect.blogspot.com/2010/03/great-lies-design-vs-construction.html.
+And this: {filename}/blog/2010/03/2011_11_28-justification_of_project_staffing.rst
 
-This, too: http://slott-softwarearchitect.blogspot.com/2009/11/on-risk-and-estimating-and-agile.html.
+This, too: {filename}/blog/2013/06/2013_06_27-on_risk_and_estimating_and_agile_methods
 
-Okay, fine: http://slott-softwarearchitect.blogspot.com/2009/10/breaking-into-agile.html.
+Okay, fine: {filename}/blog/2009/10/2009_10_22-breaking_into_agile.rst
 
 
 

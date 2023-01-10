@@ -204,8 +204,7 @@ Tom Roche<noreply@blogger.com>
 
 2020-04-07 23:13:45.372000-04:00
 
-[Good
-response](https://slott-softwarearchitect.blogspot.com/2020/04/why-isnt-cobol-dead-or-why-didnt-it.html),
+[Good response]({filename}/blog/2020/04/2020_04_07-why_isnt_cobol_dead_or_why_didnt_it_evolve.rst),
 thanks.
 
 

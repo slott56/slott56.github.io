@@ -293,7 +293,9 @@ Robert Lucente<noreply@blogger.com>
 
 This also falls nicely into the “anti if campaign” genra
 http://www.antiifcampaign.com/
-http://slott-softwarearchitect.blogspot.com/2010/12/anti-if-campaign.html
+
+`"The Anti-IF Campaign"
+<{filename}/blog/2010/12/2010_12_27-the_anti_if_campaign.rst>`_
 
 
 

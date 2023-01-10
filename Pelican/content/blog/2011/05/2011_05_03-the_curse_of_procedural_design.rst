@@ -189,9 +189,9 @@ Robert Lucente<noreply@blogger.com>
 
 2011-05-03 21:33:20.399000-04:00
 
-For a related blog also posted by Steve Lott, check out "The Anti-IF
-Campaign"
-http://slott-softwarearchitect.blogspot.com/2010/12/anti-if-campaign.html
+For a related blog also posted by Steve Lott, check out
+`"The Anti-IF Campaign"
+<{filename}/blog/2010/12/2010_12_27-the_anti_if_campaign.rst>`_
 
 
 

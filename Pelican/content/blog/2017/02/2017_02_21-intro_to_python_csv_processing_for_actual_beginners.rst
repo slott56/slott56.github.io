@@ -8,7 +8,7 @@ Intro to Python CSV Processing for Actual Beginners
 :status: published
 
 I've written a lot about CSV processing. Here are some
-examples http://slott-softwarearchitect.blogspot.com/search/label/csv.
+examples {tag}csv.
 
 It crops up in my books. A lot.
 

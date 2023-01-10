@@ -7,8 +7,7 @@ Stingray Reader Rewrite
 :category: Technologies
 :status: published
 
-See
-https://slott-softwarearchitect.blogspot.com/2020/01/stingrayreader-upgrade.html
+See {filename}/blog/2020/01/2020_01_26-stingrayreader_upgrade.rst
 
 
 This drifted into some serious rethinking of bad design decisions.

@@ -7,7 +7,7 @@ Another shiny new MacBook pro
 :category: Technologies
 :status: published
 
-See https://slott-softwarearchitect.blogspot.com/2014/03/shiny-new-macbook-pro.html
+See {filename}/blog/2014/03/2014_03_20-shiny_new_macbook_pro.rst
 
 At the time (2014), the 8Gb machine was way more than adequate for all
 my needs as a writer.

@@ -71,19 +71,21 @@ Tom Roche<noreply@blogger.com>
 technical inertia, which makes the language a kind of bellwether for the
 rest of the organization. [...] This is a consequence of very large
 organizations with regulatory advantages.
+
 I misspent the mid-noughties at a Giant Acronym for which banks are a
 major [host](https://en.wikipedia.org/wiki/Host_(biology)) genus. While
 there, I'm fairly sure I heard at least 3 different versions of [this
-post's
-predecessor](https://slott-softwarearchitect.blogspot.com/2020/04/the-cobol-problem.html),
+post's predecessor]({filename}/blog/2020/04/2020_04_07-the_cobol_problem.rst),
 all given by quasi-academic manager/mandarins sufficiently
 up-the-food-chain that junior/grunt software engineers (like me) were
 paid to Sit and Listen (and eat snacks :-) My group built IDEs designed
 to make big bucks [^Hx14] help bankers wrap, refactor, and ultimately
 replace their COBOL.
+
 (I also once heard it said there--I have no idea if it's true, or who
 has ever studied this sort of thing--that CICS is the single most
 profitable piece of software ever written. And still earning.)
+
 My impression (from a long spatiotemporal distance, and which again is
 open to your empirical correction) is, banks \*did\* lotsa
 better-engineered wraps and extensions. But when it came to getting
@@ -91,6 +93,7 @@ dirty with the COBOL base, banks just maintained, because offshoring
 was--and, IIUC, remains--sooo much cheaper. Not just because Indians (et
 al) cost less, but also because they were/are the only folks getting
 trained in not just COBOL but the whole 370-390-Z ecosystem.
+
 So my guess (YMMV) is, no change until boolean-OR (1) cheap labor gets
 lots less cheap (2) governments/quangos (e.g., standards organizations)
 with teeth start regulating software the way they currently do other
