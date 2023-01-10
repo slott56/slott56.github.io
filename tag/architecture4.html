@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>architecture - S.Lott -- Software Architect</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <meta name="author" content="S.Lott" />
+    <meta name="keywords" content="architecture" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="S.Lott -- Software Architect" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="S.Lott -- Software Architect"/>
+        <meta property="og:url" content="https://slott56.github.io"/>
+        <meta property="og:description" content="S.Lott -- Software Architect"/>
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://slott56.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="https://slott56.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://slott56.github.io/theme/css/pygments/native.css" rel="stylesheet">
+        <link href="https://slott56.github.io/theme/css/html4css1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://slott56.github.io/theme/css/style.css" type="text/css"/>
+
+        <link href="https://slott56.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="S.Lott -- Software Architect ATOM Feed"/>
+
+        <link href="https://slott56.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="S.Lott -- Software Architect RSS Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://slott56.github.io/" class="navbar-brand">
+S.Lott -- Software Architect            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="https://slott56.github.io/pages/publications.html">
+                             Publications
+                          </a></li>
+                         <li><a href="https://slott56.github.io/pages/slott-biography.html">
+                             S.Lott Biography
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <article>
+                <h2><a href="https://slott56.github.io/2011_09_27-threads_and_io.html">Threads and I/O</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2011-09-27T18:58:00-04:00"> Tue 27 September 2011</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/performance.html">performance</a>
+        /
+	<a href="https://slott56.github.io/tag/design.html">design</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><div class="line-block">
+<div class="line">Threads don't promote concurrent I/O.</div>
+<div class="line">Kernel threads may.  Most of us write user threads.  Here's a great
+summary under <a class="reference external" href="http://en.wikipedia.org/wiki/Thread_(computer_science)">Thread (Computer
+Science)</a>.</div>
+</div>
+<blockquote>
+However, the use of blocking system calls in user threads (as opposed
+to kernel threads) or fibers can be problematic. If a user thread or
+a fiber …</blockquote>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_09_27-threads_and_io.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2011_03_30-code_deletion.html">Code Deletion</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2011-03-30T16:55:00-04:00"> Wed 30 March 2011</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/refactoring.html">refactoring</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>A joyous milestone today. Removed much of our
+pre-<a class="reference external" href="https://bitbucket.org/jespern/django-piston/wiki/Home">Piston</a>
+RESTful web services code.</p>
+<p>We started with the <a class="reference external" href="http://code.google.com/p/django-rest-interface/">Django-REST
+Interface</a>. While
+nice, it imposed a number of restrictions that were onerous. In
+particular, we have a lot of non-model responses. They're model-like
+data that we serialize to be compatible with …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_03_30-code_deletion.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2011_01_25-wild_card_like_clause_searches_are_slow_what_to_do.html">Wild-Card (LIKE-clause) searches are slow.  What to do?</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2011-01-25T08:00:00-05:00"> Tue 25 January 2011</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/design.html">design</a>
+        /
+	<a href="https://slott56.github.io/tag/sql.html">SQL</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Patient: &quot;Doctor, doctor, it hurts when I do this.&quot;</p>
+<p>Doctor: &quot;Then don't do that.&quot;</p>
+<p>I got an email with hundreds of words of content. This part made
+sense: &quot;...doing wild card searches using Oracle's database engine
+and are wondering why is it so slow and how do they make it …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_01_25-wild_card_like_clause_searches_are_slow_what_to_do.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2011_01_11-client_server_partitioning.html">Client-Server Partitioning</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2011-01-11T08:00:00-05:00"> Tue 11 January 2011</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/rest.html">REST</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>I have slowly grown to love RESTful web services.</p>
+<p>I was asked about a nearly empty section in the code repository
+labeled &quot;Java client&quot;.</p>
+<p>&quot;Yes,&quot; I said, &quot;it's a place-holder for a Java package that includes
+classes to wrap our RESTful web services.&quot;</p>
+<p>&quot;Really?&quot; I was asked, &quot;Why? We use …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_01_11-client_server_partitioning.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2011_01_04-hypothetical_designs_and_numerosity.html">Hypothetical Designs and Numerosity</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2011-01-04T07:22:00-05:00"> Tue 04 January 2011</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/numerosity.html">numerosity</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+        /
+	<a href="https://slott56.github.io/tag/oo-design.html">OO design</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>I love hypothetical questions. Got a bunch recently. I guess it's the
+season for hypotheticals.</p>
+<p>These all seem to come from the &quot;Averted Glance&quot; school of
+management. The best part about the &quot;I don't want to know the
+details&quot; management is that we need to substitute metrics for
+understanding. One …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_01_04-hypothetical_designs_and_numerosity.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2010_12_14-code_base_fragmentation_again.html">Code Base Fragmentation -- Again</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-12-14T08:00:00-05:00"> Tue 14 December 2010</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/django.html">Django</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+        /
+	<a href="https://slott56.github.io/tag/template.html">template</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Check this out: &quot;<a class="reference external" href="http://pydanny.blogspot.com/2010/12/stupid-template-languages.html">Stupid Template
+Languages</a>&quot;.</p>
+<p>Love this:</p>
+<blockquote>
+&quot;The biggest annoyance I have with smart template
+languages (Mako, Genshi, Jinja2, PHP, Perl, ColdFusion, etc) is that
+you have the capability to mix core business logic with your end
+views, hence violating the rules of Model-View-Controller
+architecture.&quot;</blockquote>
+<p>Yes, too much power …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2010_12_14-code_base_fragmentation_again.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2010_12_09-the_wrapper_vs_library_vs_aspect_problem.html">The Wrapper vs. Library vs. Aspect Problem</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-12-09T08:00:00-05:00"> Thu 09 December 2010</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/api-design.html">API Design</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Imagine that we've got a collection of applications used by customers to
+provide data, a collection of applications we use to collect data from
+vendors. We've got a third collection of analytical tools.</p>
+<p>Currently, they share a common database, but the focus, use cases,
+and interfaces are different.</p>
+<p>Okay so …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2010_12_09-the_wrapper_vs_library_vs_aspect_problem.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2010_10_19-technical_debt.html">Technical Debt</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-10-19T08:00:00-04:00"> Tue 19 October 2010</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/refactoring.html">refactoring</a>
+        /
+	<a href="https://slott56.github.io/tag/software-process-improvement.html">software process improvement</a>
+        /
+	<a href="https://slott56.github.io/tag/agile.html">agile</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Love this from Gartner. &quot;<a class="reference external" href="http://www.gartner.com/it/page.jsp?id=1439513">Gartner Estimates Global 'IT Debt' to Be $500
+Billion This Year, with Potential to Grow to $1 Trillion by
+2015</a>&quot;.</p>
+<p>NetworkWorld ran a quicky version of the story. Gartner: <a class="reference external" href="http://www.networkworld.com/news/2010/092310-global-it-debt.html">Global 'IT
+debt' hits $500 billion, on the way to $1
+trillion</a>.</p>
+<p>ComputerWorld -- to be proper journalists …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2010_10_19-technical_debt.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2010_10_18-nosql_old_wine_new_bottle.html">NoSQL -- Old Wine, New Bottle</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-10-18T10:15:00-04:00"> Mon 18 October 2010</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+        /
+	<a href="https://slott56.github.io/tag/nosql.html">noSQL</a>
+        /
+	<a href="https://slott56.github.io/tag/design.html">design</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Got an email with links about NoSQL. Links like &quot;<a class="reference external" href="http://msdn.microsoft.com/en-us/magazine/ee310029.aspx">Going NoSQL with
+MongoDB</a>&quot;.
+This -- like many such articles -- includes the phrase &quot;the NoSQL
+movement&quot; as if there's something new going on. Thank goodness Ted
+Neward includes quotes around &quot;new&quot;. This isn't new. And doubly good,
+Neward doesn't use words like …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2010_10_18-nosql_old_wine_new_bottle.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2010_06_25-if_only_architectures_were_this_simple.html">If only architectures were this simple</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2010-06-25T06:10:00-04:00"> Fri 25 June 2010</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/complexity.html">complexity</a>
+        /
+	<a href="https://slott56.github.io/tag/humor.html">humor</a>
+        /
+	<a href="https://slott56.github.io/tag/api-design.html">API Design</a>
+        /
+	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p><a class="reference external" href="http://xkcd.com/730/">http://xkcd.com/730/</a></p>
+<p>I almost wet myself. This is so typical.</p>
+
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2010_06_25-if_only_architectures_were_this_simple.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
+        <ul class="pagination">
+                <li class="prev"><a href="https://slott56.github.io/tag/architecture3.html">&laquo;</a>
+                </li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture.html">1</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture2.html">2</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture3.html">3</a></li>
+                    <li class="active"><a
+                            href="https://slott56.github.io/tag/architecture4.html">4</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture5.html">5</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture6.html">6</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture7.html">7</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture8.html">8</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture9.html">9</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture10.html">10</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture11.html">11</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture12.html">12</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture13.html">13</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture14.html">14</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture15.html">15</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture16.html">16</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture17.html">17</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture18.html">18</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture19.html">19</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture20.html">20</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture21.html">21</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture22.html">22</a></li>
+                    <li class=""><a
+                            href="https://slott56.github.io/tag/architecture23.html">23</a></li>
+                <li class="next"><a
+                        href="https://slott56.github.io/tag/architecture5.html">&raquo;</a></li>
+        </ul>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
+    <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Categories -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
+  <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/architecture-design.html"><i class="fa fa-folder-open fa-lg"></i>Architecture & Design</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/books.html"><i class="fa fa-folder-open fa-lg"></i>Books</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/foss.html"><i class="fa fa-folder-open fa-lg"></i>FOSS</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/management.html"><i class="fa fa-folder-open fa-lg"></i>Management</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/news.html"><i class="fa fa-folder-open fa-lg"></i>News</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/python.html"><i class="fa fa-folder-open fa-lg"></i>Python</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/technologies.html"><i class="fa fa-folder-open fa-lg"></i>Technologies</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Categories -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="https://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://www.python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
+    </li>
+    <li class="list-group-item">
+      <a href="#" target="_blank">You can modify those links in your config file</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+
+<!-- Sidebar/Archive -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
+  <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2022 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2021 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2021 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2020 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2020 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2019 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2018 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2017 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2017 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2017 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2017 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2017 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2017 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2016 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2015 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2015 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2014 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2014 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2013 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2013 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2013 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2012 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2011 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2011 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2011 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2011 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2010 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2010 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2010 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2010 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2010 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2009 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2009 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2009 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2009 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2009 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2008 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2008 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2008 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2008 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2008 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2008 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2007 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2007 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2007 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2007 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2007 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2007 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2007 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2007 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2006 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2006 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2006 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2006 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2006 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2005 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2005 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (15)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2005 (28)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2005 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
+          </a>
+        </li>
+  </ul>
+</li>
+<!-- End Sidebar/Archive -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2022 S.Lott
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://slott56.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://slott56.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://slott56.github.io/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

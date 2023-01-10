@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Learning about Python from Pharo - S.Lott -- Software Architect</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://slott56.github.io/drafts/2019_06_20-learning_about_python_from_pharo.html">
+
+        <meta name="author" content="S.Lott" />
+        <meta name="keywords" content="pharo,#python" />
+        <meta name="description" content="See https://blog.usejournal.com/python-vs-pharo-2c2c1a3b1afe for a language description with a bunch of interesting anecdotes. The context is comparing Pharo with Python. I&#39;m not interested in which language is better. I&#39;m interested in the points used to describe a language. Starting with these two: Simplicity, Conciseness, and Elegance. This …" />
+
+        <meta property="og:site_name" content="S.Lott -- Software Architect" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Learning about Python from Pharo"/>
+        <meta property="og:url" content="https://slott56.github.io/drafts/2019_06_20-learning_about_python_from_pharo.html"/>
+        <meta property="og:description" content="See https://blog.usejournal.com/python-vs-pharo-2c2c1a3b1afe for a language description with a bunch of interesting anecdotes. The context is comparing Pharo with Python. I&#39;m not interested in which language is better. I&#39;m interested in the points used to describe a language. Starting with these two: Simplicity, Conciseness, and Elegance. This …"/>
+        <meta property="article:published_time" content="2019-06-20" />
+            <meta property="article:section" content="Technologies" />
+            <meta property="article:tag" content="pharo" />
+            <meta property="article:tag" content="#python" />
+            <meta property="article:author" content="S.Lott" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://slott56.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="https://slott56.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://slott56.github.io/theme/css/pygments/native.css" rel="stylesheet">
+        <link href="https://slott56.github.io/theme/css/html4css1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://slott56.github.io/theme/css/style.css" type="text/css"/>
+
+        <link href="https://slott56.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="S.Lott -- Software Architect ATOM Feed"/>
+
+        <link href="https://slott56.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
+              title="S.Lott -- Software Architect RSS Feed"/>
+        <link href="https://slott56.github.io/feeds/technologies.atom.xml" type="application/atom+xml" rel="alternate"
+              title="S.Lott -- Software Architect Technologies ATOM Feed"/>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://slott56.github.io/" class="navbar-brand">
+S.Lott -- Software Architect            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="https://slott56.github.io/pages/publications.html">
+                             Publications
+                          </a></li>
+                         <li><a href="https://slott56.github.io/pages/slott-biography.html">
+                             S.Lott Biography
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://slott56.github.io/drafts/2019_06_20-learning_about_python_from_pharo.html"
+                       rel="bookmark"
+                       title="Permalink to Learning about Python from Pharo">
+                        Learning about Python from Pharo
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2019-06-20T13:36:00-04:00"> Thu 20 June 2019</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/pharo.html">pharo</a>
+        /
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>See <a class="reference external" href="https://blog.usejournal.com/python-vs-pharo-2c2c1a3b1afe">https://blog.usejournal.com/python-vs-pharo-2c2c1a3b1afe</a> for a
+language description with a bunch of interesting anecdotes. The
+context is comparing Pharo with Python. I'm not interested in which
+language is <strong>better</strong>. I'm interested in the points used to describe
+a language. Starting with these two:</p>
+<ul class="simple">
+<li><strong>Simplicity, Conciseness, and Elegance</strong>. This has an example with a
+number of syntax elements that fits on a postcard when rendered in a
+reasonable font. It's an interesting approach to asking people to
+read code and understand legibility.</li>
+<li><strong>One-Liners</strong>. While Code Golf is a game everyone loses at, the
+anecdotal value of one-liners may be important to some. A few of them
+seem interestingly difficult, and might serve as handy tutorials more
+than comparisons.</li>
+</ul>
+<p>I'll return to these two topics below. I think they're interesting
+and insightful ways to talk about a programming language.</p>
+<p>The other points seem to fall into three major categories. I don't
+want to sound like I'm debating these in any depth. Rather, I want to
+look at them as ways to teach (and not teach) a programming language.</p>
+<p>One point is commonly repeated and misleading. This doesn't seem
+helpful.</p>
+<ul class="simple">
+<li>&quot;Off-side Rule&quot; -- really a side-bar on how whitespace is called
+&quot;controversial.&quot; Having helped a lot of people debug languages like C
+and C++, I can say people get whitespace correct more often than they
+get ;'s and {}'s correct. I'm going to ignore this complaint. It
+doesn't reflect the experienced reality of programming in Python.</li>
+</ul>
+<p>A number of points labels an aspect of Python as bad. I'd rather
+focus on what Pharo does right. While some of these are strawmen --
+Python non-problems -- the topics seem potentially interesting. These
+are things to be covered when teaching a language.</p>
+<ul class="simple">
+<li>Object-oriented Programming. One detail (encapsulation) is lifted up
+as an indictment of the Python language. Setting that aside, the OOP
+features are important.</li>
+<li>Functional Programming. Python's use of generators and immutable
+namedtuples makes this partially achievable. The itertools library
+covers a lot of territory.</li>
+<li>IDE (integrated development environment). Not sure this is even part
+of the language, but Python has many IDE's.</li>
+<li>Productivity and Ease of Development. This seems part of the previous
+point.</li>
+<li>Multithreading. One detail is described as a problem for Python when
+-- in practice -- it isn't. Setting this aside, the covering
+something like the Dining Philosophers is always an important part of
+maximizing resource use through concurrency.</li>
+</ul>
+<p>Also, an aspect of Python is identified good. That's cool.</p>
+<ul class="simple">
+<li>Ecosystem.</li>
+</ul>
+<p>I like this list as a jumping-off point for seven to nine key points
+to cover. (I'd like to omit the two IDE-related considerations.)</p>
+<p>Back to the first two kinds of examples: Simplicity (Syntax on a
+Postcard) and One-Liners.</p>
+<div class="section" id="postcard-syntax-summary">
+<h2>Postcard Syntax Summary</h2>
+<p>Here's the version from
+GitHub: <a class="reference external" href="https://github.com/pavel-krivanek/pharoMaterials">https://github.com/pavel-krivanek/pharoMaterials</a></p>
+<p>This isn't precisely the version used in the Medium Post, but it will
+do for our purposes.</p>
+<blockquote>
+<pre class="literal-block">
+&quot;A &quot;&quot;complete&quot;&quot; Pharo syntax&quot;
+
+| y |
+
+true &amp; false not &amp; (nil isNil)
+ ifFalse: [ self perform: #add: with: x ].
+
+y := thisContext stack size + super size.
+
+byteArray := #[2 2r100 8r20 16rFF].
+
+{ -42 . #($a #a #'I''m' 'a' 1.0 1.23e2 3.14s2 1) }
+ do: [ :each |
+  | var |
+  var := Transcript
+   show: each class name;
+   show: each printString ].
+
+^ x &lt; y
+</pre>
+<p>The medium article presents this &quot;You sure as hell can’t do that with
+Python!&quot; which seems a little odd to me. The code and the example
+syntax for Python can be mashed onto a postcard. The details on the
+postcard itself indicate the syntax aren't really the complete Pharo
+language; a few features have been omitted. Omissions should be
+allowed for Python, also.</p>
+<p>This <a class="reference external" href="https://ci.inria.fr/pharo-contribution/job/UpdatedPharoByExample/lastSuccessfulBuild/artifact/book-result/SyntaxNutshell/SyntaxNutshell.html">https://ci.inria.fr/pharo-contribution/job/UpdatedPharoByExample/lastSuccessfulBuild/artifact/book-result/SyntaxNutshell/SyntaxNutshell.html</a>
+seems to be a useful syntax summary.</p>
+<p>If we take similar latitude with completeness for Python, we can fit
+a great deal of Python syntax onto a postcard. We can, for instance,
+translate this method definition. The notable gaps would be the
+<tt class="docutils literal">import</tt>, <tt class="docutils literal">while</tt> and <tt class="docutils literal">with</tt> statements. We'll get to those,
+later.</p>
+<pre class="literal-block">
+def example_with_number(self, x):
+    &quot;&quot;&quot;A 'complete' Python Syntax&quot;&quot;&quot;
+    if (not (True and False) and (None is None)):
+        pass
+    else:
+        getattr(self, 'add')(with_=x)
+    y = sys.getsizeof(traceback.extract_stack()) + sys.getsizeof(self)
+    self.byte_array = bytes([2, 0b1100, 0o20, 0xff])
+    for each in [-42, ('a', sys.intern('a'), sys.intern(&quot;I'm&quot;), 'a', 1.23e2, Decimal('3.14'), 1)]:
+        var = Transcript().show(each.__class__.__name__).show(str(each))
+    return x &lt; y
+</pre>
+</blockquote>
+<p>This covers the same, essential bases as the Pharo example.</p>
+<ul class="simple">
+<li>method name</li>
+<li>parameter</li>
+<li>(There are no pragmas in Python, maybe a decorator would be the equivalent?)</li>
+<li>comment</li>
+<li>(Local variables aren't annotated in Python)</li>
+<li>boolean literals</li>
+<li>binary &quot;message&quot;</li>
+<li>None literal</li>
+<li>unary &quot;message&quot;</li>
+<li>block</li>
+<li>keyword &quot;message&quot;</li>
+<li>&quot;pseudo variables&quot; (self, really, in Python)</li>
+<li>assignment</li>
+<li>instance variable</li>
+<li>integer literals in various bases</li>
+<li>array generated at runtime</li>
+<li>(Characters aren't a distinct type in Python, so some of the example isn't helpful)</li>
+<li>(Symbols are more-or-less interned strings in Python, and may not be relevant)</li>
+<li>string</li>
+<li>floating point</li>
+<li>scaled decimal</li>
+<li>iteration with a &quot;block parameter&quot;</li>
+<li>global reference</li>
+<li>(Python doesn't automatically cascade to create a fluent interface, but it's easy to implement.)</li>
+<li>return</li>
+</ul>
+<p>I think the point of the example is that Python does have more
+language features than can be shown in a small example. Because
+Pharo has fewer language features, the example has better
+coverage. Whether some of the features (like symbols) are even
+useful in Python is a separate question.</p>
+<p>I do think this example is helps identify a focused subset of a
+language for the first day of learning Python (or Pharo, or almost
+any other OO language.)</p>
+<p>I don't like the features shown, however. I think it's possible to
+stick to 12 lines of code and cover a some more important points.</p>
+</div>
+<div class="section" id="one-liners">
+<h2>One Liners</h2>
+<p>There are nine &quot;one-liners&quot; which show some strengths of Pharo. Most
+of these are really interesting exercises. Let's begin.</p>
+</div>
+<div class="section" id="days-between-two-dates">
+<h2>Days Between Two Dates</h2>
+<blockquote>
+Here's the original:</blockquote>
+<pre class="literal-block">
+&quot;Compute difference in days between two dates&quot;
+('2014-07-01' asDate - '2013/2/1' asDate) days
+</pre>
+<p>This is based in a string class which is aware of YMD format dates,
+and is flexible with respect to punctuation.  Python datetime isn't
+quite as clever as this string function.</p>
+<p>We wind up with this, as a first pass.</p>
+<pre class="literal-block">
+import datetime
+diff = (datetime.datetime.strptime('2014-07-01', '%Y-%m-%d') - datetime.datetime.strptime('2013/2/1', '%Y/%m/%d')).days
+print(f&quot;days {diff}&quot;)
+</pre>
+<p>This is one line, but it misses some of the nuanced flexibility.</p>
+<p>Really, we're talking about something more like this:</p>
+<pre class="literal-block">
+import datetime
+import re
+strpymd = lambda text: datetime.datetime(*map(int, re.split(r'[/-]', text)))
+diff2 = (strpymd('2014-07-01') - strpymd('2013/2/1')).days
+print(f&quot;days {diff2}&quot;)
+</pre>
+<p>This captures the essential simplicity by introducing a function to
+Python that's effectively built-in to a Pharo class.</p>
+<p>What we really want is this:</p>
+<pre class="literal-block">
+import datetime
+import re
+
+class DateAwareStr(str):
+    def asDate(self):
+        return datetime.datetime(*map(int, re.split(r'[/-]', self)))
+
+diff3 = (DateAwareStr('2014-07-01').asDate() - DateAwareStr('2013/2/1').asDate()).days
+print(f&quot;days {diff3}&quot;)
+</pre>
+<p>This captures the core simplicity of the Pharo string class. There's
+an <tt class="docutils literal">asDate()</tt> method we can use to parse certain common date
+formats. We can imagine expanding <tt class="docutils literal">asDate()</tt> to include more
+flexibility in defining the punctuation rules.</p>
+<blockquote>
+<strong>Sidebar</strong>.
+I'm not a fan of this implementation. The binding to the
+<tt class="docutils literal">datetime.datetime</tt> class also needs to be exposed. The Pharo
+approach is elegantly succinct, but lacks needed flexibility. I
+suppose monkeypatching or perhaps traits might be useful here.</blockquote>
+<p>This problem is excellent as an introduction to the <tt class="docutils literal">datetime</tt>
+module. I think I'm going to use this a lot for tutorials and
+code-dojo examples.</p>
+</div>
+<div class="section" id="weekday-of-a-date">
+<h2>Weekday of a date</h2>
+<p>This is similar to the previous one-liner. Here's the original:</p>
+<pre class="literal-block">
+&quot;Return the weekday of a date&quot;
+'2013/5/7' asDate dayOfWeekName
+</pre>
+<p>Pretty slick, right?</p>
+<p>Here's one Python version:</p>
+<pre class="literal-block">
+from calendar import day_name
+dow = datetime.datetime.strptime('2013/5/7', '%Y/%m/%d').weekday()
+print(f&quot;weekday {dow} {day_name[dow]}&quot;)
+</pre>
+<p>Another Python version reuses the <tt class="docutils literal">DateAwareStr</tt> class defined
+above:</p>
+<pre class="literal-block">
+dow2 = DateAwareStr('2013/5/7').asDate().weekday()
+print(f&quot;weekday {dow2} {day_name[dow2]}&quot;)
+</pre>
+<p>The first example shows how Python can be exactly as one-liney as
+Pharo, when the feature is part of the standard library.</p>
+<p>The second example uses a subclass of <tt class="docutils literal">str</tt> to provide a very
+Pharo-like implementation. As noted above, there's a too-strong
+binding between <tt class="docutils literal">str</tt> and <tt class="docutils literal">datetime</tt> in the <tt class="docutils literal">DateAwareStr</tt>
+class.</p>
+</div>
+<div class="section" id="leap-years">
+<h2>Leap Years</h2>
+<p>This is a little trickier than the previous date-processing examples.
+What's trickier is knowing the standard library.</p>
+<p>Here's the original:</p>
+<pre class="literal-block">
+&quot;Count the number of, or show the leap years between two years&quot;
+(1914 to: 1945) count: [ :each Year isLeapYear: each ].
+(1895 to: 1915) select: [ :each Year isLeapYear: each ].
+</pre>
+<p>Here's a python version:</p>
+<pre class="literal-block">
+from calendar import isleap
+c = sum(isleap(y) for y in range(1914, 1946))
+s = list(y for y in range(1895, 1916) if isleap(y))
+print(f&quot;Leaps from 1914-1964 = {c}&quot;)
+print(f&quot;Leaps from 1895-1916 = {s}&quot;)
+</pre>
+<p>It's very cool that Python's generator expressions are every bit as
+powerful as Pharo. The syntax is different, but, not dramatically
+more complex.</p>
+</div>
+<div class="section" id="string-reformatting">
+<h2>String Reformatting</h2>
+<p>Here's the original:</p>
+<pre class="literal-block">
+&quot;Split a string on dashes, reverse the order of the elements and join them using slashes&quot;
+$/ join: ($- split: '1969-07-20') reverse
+</pre>
+<p>This can be done in a very similar style in Python:</p>
+<pre class="literal-block">
+r = '/'.join(reversed('1969-07-20'.split('-')))
+print(f&quot;reversed {r}&quot;)
+</pre>
+<dl class="docutils">
+<dt>This example of parsing and rebuildinga  string is what made me think</dt>
+<dd>a collection of these &quot;one-liners&quot; is a helpful thing to give to
+students.</dd>
+</dl>
+<div class="section" id="unicode-encoding">
+<h3>Unicode Encoding</h3>
+<p>Here's the original:</p>
+<pre class="literal-block">
+&quot;Encode the same string using Latin1, UTF-8 and UTF-16&quot;
+#(latin1 utf8 utf16) collect: [ :each
+
+  (ZnCharacterEncoder newForEncoding: each)
+    encodeString: 'Les élèves Français' ]
+</pre>
+<p>The Python version is also very short:</p>
+<pre class="literal-block">
+encoded = ('Les élèves Français'.encode(encoding) for encoding in ('latin1', 'utf8', 'utf16'))
+</pre>
+<p>Python seems simpler because we can encode the string as a whole
+instead of encoding each individual character.</p>
+<p>This is a generator expression. We can't simply <tt class="docutils literal">print(encoded)</tt>. We
+need to use <tt class="docutils literal">print(list(encoded))</tt>.</p>
+</div>
+<div class="section" id="obscure-data-formats">
+<h3>Obscure Data Formats</h3>
+<p>This seems to be an unusual example. Perhaps it seems unusual to me
+because I've spent so long doing big data/data science work where
+parsing blocks of bytes is a rarity.</p>
+<p>This problem requires knowing some obscure corners of the Python
+standard library.</p>
+<p>Here's the original:</p>
+<pre class="literal-block">
+&quot;Extract a Unix format timestamp from the 5th to 8th byte of a byte array given in hex&quot;
+DateAndTime fromUnixTime:
+  ((ByteArray readHexFrom: 'CAFEBABE4422334400FF')
+      copyFrom: 5 to: 8) asInteger
+</pre>
+<p>Here's a Python version:</p>
+<pre class="literal-block">
+import binascii
+import struct
+import datetime
+
+packed = struct.pack('10B', *binascii.unhexlify('CAFEBABE4422334400FF'))
+data = struct.unpack('4xI2x', packed)
+ts = datetime.datetime.fromtimestamp(data[0])
+print(f&quot;timestamp {ts}&quot;)
+</pre>
+<p>I didn't cram the whole thing onto one line, but it certainly can be
+done as a single, long expression. The liberal use of ()'s means line
+breaks won't matter.</p>
+<p>The presence of the <tt class="docutils literal">binascii</tt> module in the standard library isn't
+widely known. But. If we hand this out as a hint to new learners, it
+can show how important it is to understand Python's standard library.</p>
+<blockquote>
+<strong>Sidebar</strong>.
+The pack-unpack pattern is something that I have a weak objection to.
+It fits here, but I prefer doing this as an arithmetic operation on
+the byte values and ignore the details of how the bytes form a 32-bit
+integer.
+<tt class="docutils literal">dt = <span class="pre">(((b[7]*256)+b[6])*256+b[5])*256+b[4]</span></tt></blockquote>
+</div>
+<div class="section" id="http-server">
+<h3>HTTP Server</h3>
+<p>This example is the Pharo code to create a simple HTTP server.</p>
+<pre class="literal-block">
+&quot;Set up an HTTP server that returns the current timestamp&quot;
+(ZnServer startDefaultOn: 8080)
+  onRequestRespond: [ :request
+    ZnResponse ok: (ZnEntity with: DateAndTime now printString) ]
+</pre>
+<p>The Python code based on the standard library is not comparable at
+all.</p>
+<pre class="literal-block">
+import datetime
+import http.server
+from http import HTTPStatus
+class TimeHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        now_text = datetime.datetime.now().isoformat()
+        self.send_response(HTTPStatus.OK)
+        self.send_header('Content-Type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(now_text.encode('utf-8'))
+
+server = http.server.HTTPServer(('localhost', 8080), TimeHandler)
+</pre>
+<p>This reveals the possibility of adding a pleasant wrapper to
+http.server to permit Pharo-like simplicity. The step-by-step handling
+of a simple response seems to be superficially more complex than the
+Pharo example.</p>
+<p>One choice is a method to write a textual response with any of the
+common MIME types like <tt class="docutils literal">text/plain</tt>, <tt class="docutils literal">text/html</tt>,
+<tt class="docutils literal">application/json</tt>, <tt class="docutils literal">application/yaml</tt>, and <tt class="docutils literal">application/csv</tt>.</p>
+<p>Another choice is to create a class similar to the Pharo <tt class="docutils literal">ZnEntity</tt>
+class to contain status, headers, and body. Then, a subclass of
+<tt class="docutils literal">SimpleHTTPRequestHandler</tt> can return this entity object using
+step-by-step operations.</p>
+</div>
+<div class="section" id="http-client">
+<h3>HTTP Client</h3>
+<p>This example is the Pharo code to create a simple HTTP client.</p>
+<pre class="literal-block">
+&quot;Save the HTML source of a web page to a file&quot;
+'http://www.pharo.org' asUrl saveContentsToFile: 'page.html'
+</pre>
+<p>Here's the Python version of a simple HTTP client.</p>
+<pre class="literal-block">
+import urllib.request
+import pathlib
+with urllib.request.urlopen('http://www.pharo.org') as source:
+    with pathlib.Path('page.html').open('wb') as target:
+        target.write(source.read())
+</pre>
+<p>This is not a one-liner. It relies on the <tt class="docutils literal">with</tt> statements to be sure
+the resources are properly closed and released when the operation
+completes.</p>
+<p>Here's another Python version of a simple HTTP client as a one-liner.</p>
+<pre class="literal-block">
+import urllib.request
+import pathlib
+(open(&quot;page.html&quot;, &quot;wb&quot;)
+    .write(
+        urllib.request.urlopen('http://www.pharo.org').read()
+    )
+)
+</pre>
+<dl class="docutils">
+<dt>This is likely to close files when it's finished processing. However,</dt>
+<dd>an exception may leak an open network connection or an open file (or
+both.)</dd>
+</dl>
+</div>
+<div class="section" id="prime-testing">
+<h3>Prime Testing</h3>
+<p>The final example we'll look at is a Pharo example to sum primes.
+Here's the Pharo version:</p>
+<pre class="literal-block">
+&quot;Sum of the primes up to 64&quot;
+(Integer primesUpTo: 64) sum
+</pre>
+<p>The code relies on prime-testing features in Pharo integers. The
+<tt class="docutils literal">primesUpTo:</tt> method does a lot of processing by default.</p>
+<p>Here's one variation in Python with an extra function for prime
+testing.</p>
+<pre class="literal-block">
+import math
+from functools import lru_cache
+
+&#64;lru_cache()
+def prime(x):
+    if x &gt;= 4 and x % 2 == 0: return False
+    for p in range(3, int(1+math.sqrt(x)), 2):
+        if x % p == 0: return False
+    return True
+
+sp_64 = sum(p for p in range(2, 64) if prime(p))
+print(f&quot;prime sum {sp_64}&quot;)
+</pre>
+<p>This combines an external function -- <tt class="docutils literal">prime()</tt> -- into a generator
+expression to emit primes. The <tt class="docutils literal">prime()</tt> function is fairly complex,
+not a one-liner at all.</p>
+<p>Here's a slightly more sophisticated generator function.</p>
+<pre class="literal-block">
+def primes_up_to(x):
+    for i in range(2, x):
+        if prime(i):
+            yield i
+
+sp_64_b = sum(primes_up_to(64))
+print(f&quot;prime sum {sp_64_b}&quot;)
+</pre>
+<p>This leads to a slightly simpler <tt class="docutils literal">primes_up_to()</tt> generator
+function. It's still outside any existing class. We can extend the
+<tt class="docutils literal">int</tt> class like this.</p>
+<pre class="literal-block">
+class PrimeAwareInt(int):
+
+    def _check(self, n=3):
+        if n * n &gt; self: return True
+        if self % n == 0: return False
+        return self._check(n + 2)
+
+    def prime(self):
+        if self in (2, 3): return True
+        if self % 2 == 0: return False
+        return self._check()
+</pre>
+<p>The <tt class="docutils literal">prime()</tt> method definition gives us a simple &quot;is this prime?&quot;
+test. This isn't an ideal approach because we can't easily cache the
+common prime values the way the stand-alone <tt class="docutils literal">prime()</tt> function
+worked.</p>
+<p>Once we have a simple <tt class="docutils literal">prime()</tt> method for an <tt class="docutils literal">int</tt> object, we can
+create a prime-aware function based on the <tt class="docutils literal">range()</tt> object.</p>
+<pre class="literal-block">
+PrimeAwareRange = lambda stop: (PrimeAwareInt(x) for x in range(2, stop))
+sp_64_c = sum(p for p in PrimeAwareRange(64) if p.prime())
+print(f&quot;prime sum {sp_64_c}&quot;)
+</pre>
+<p>This <tt class="docutils literal">PrimeAwareRange()</tt> object takes a &quot;stop&quot; value and emits prime
+values up to the given limit. Because ranges in Python do *not*
+include the given value, this isn't *exactly* like the Pharo
+version.</p>
+<p>In Python, the range() object is not a first-class part of the int
+class, but is a separate class.</p>
+</div>
+</div>
+<div class="section" id="one-liner-exercises">
+<h2>One-Liner Exercises</h2>
+<dl class="docutils">
+<dt>Here's the short list, organized around some general principles I</dt>
+<dd>think I saw:</dd>
+</dl>
+<ul class="simple">
+<li>Date Processing
+-  &quot;Compute difference in days between two dates&quot;
+-  &quot;Return the weekday of a date&quot;
+-  &quot;Count the number of, or show the leap years between two years&quot;</li>
+<li>String Wrangling
+-  &quot;Split a string on dashes, reverse the order of the elements and join them using slashes&quot;
+-  &quot;Encode the same string using Latin1, UTF-8 and UTF-16&quot;
+-  &quot;Extract a Unix format timestamp from the 5th to 8th byte of a byte array given in hex&quot;</li>
+<li>HTTP/RESTful API
+-  &quot;Set up an HTTP server that returns the current timestamp&quot;
+-  &quot;Save the HTML source of a web page to a file&quot;</li>
+<li>Basic Number Theory
+-  &quot;Sum of the primes up to 64&quot;</li>
+</ul>
+<p>I think we need some one-liners related to the following topics:</p>
+<ul class="simple">
+<li>float processing</li>
+<li>list processing</li>
+<li>dict processing</li>
+<li>set processing</li>
+</ul>
+<p>Once we get outside the built-in data structures, we get beyond
+things that can be done as one-liners. But the philosophy of
+leveraging the built-in data structures seems to be really
+essential.</p>
+</div>
+
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
+    <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Categories -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
+  <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/architecture-design.html"><i class="fa fa-folder-open fa-lg"></i>Architecture & Design</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/books.html"><i class="fa fa-folder-open fa-lg"></i>Books</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/foss.html"><i class="fa fa-folder-open fa-lg"></i>FOSS</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/management.html"><i class="fa fa-folder-open fa-lg"></i>Management</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/news.html"><i class="fa fa-folder-open fa-lg"></i>News</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/python.html"><i class="fa fa-folder-open fa-lg"></i>Python</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://slott56.github.io/category/technologies.html"><i class="fa fa-folder-open fa-lg"></i>Technologies</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Categories -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="https://getpelican.com/" target="_blank">Pelican</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://www.python.org/" target="_blank">Python.org</a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
+    </li>
+    <li class="list-group-item">
+      <a href="#" target="_blank">You can modify those links in your config file</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+
+<!-- Sidebar/Archive -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
+  <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2022 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2022 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2022 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2022 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2022 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2022 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2022 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2022 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2022 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2022 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2022 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2022/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2022 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2021 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2021 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2021 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2021 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2021 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2021 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2021 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2021 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2021 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2021 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2021 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2021/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2021 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2020 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2020 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2020 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2020 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2020 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2020 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2020 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2020 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2020 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2020 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2020 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2020/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2020 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2019 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2019 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2019 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2019 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2019 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2019 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2019 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2019 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2019 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2019 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2019 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2019/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2019 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2018 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2018 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2018 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2018 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2018 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2018 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2018 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2018 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2018 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2018/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2018 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2017 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2017 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2017 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2017 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2017 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2017 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2017/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2017 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2016 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2016 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2016 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2016 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2016 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2016 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2016 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2016 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2016 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2016 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2016 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2016/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2016 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2015 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2015 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2015 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2015 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2015 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2015 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2015/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2015 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2014 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2014 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2014 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2014 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2014 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2014 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2014 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2014 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2014 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2014 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2014 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2014/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2014 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2013 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2013 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2013 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2013 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2013 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2013 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2013 (12)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2013 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2013/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2013 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2012 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2012 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2012 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2012 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2012 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2012 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2012 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2012 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2012/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2012 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2011 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2011 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2011 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2011 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2011 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2011 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2011 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2011 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2011 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2011 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2011 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2011/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2011 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2010 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2010 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2010 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2010 (10)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2010 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2010 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2010 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2010 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2010 (11)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2010 (13)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2010 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2010/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2010 (12)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2009 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2009 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2009 (11)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2009 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2009 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2009 (11)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2009 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2009 (14)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2009 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2009/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2009 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2008 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2008 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2008 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2008 (10)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2008 (9)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2008 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2008 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2008 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2008 (12)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2008 (10)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2008 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2008/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2008 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2007 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2007 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2007 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2007 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2007 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2007 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2007 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2007 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2007/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2007 (10)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2006 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2006 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2006 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2006 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2006 (12)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2006 (7)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2006 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2006 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2006 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2006 (5)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2006 (6)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2006/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2006 (4)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2005 (8)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2005 (10)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (23)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2005 (32)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Aug/index.html"><i class="fa fa-calendar fa-lg"></i>August 2005 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2003/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2003 (3)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2003/Nov/index.html"><i class="fa fa-calendar fa-lg"></i>November 2003 (4)
+          </a>
+        </li>
+  </ul>
+</li>
+<!-- End Sidebar/Archive -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2023 S.Lott
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://slott56.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://slott56.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://slott56.github.io/theme/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>

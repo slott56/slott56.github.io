@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - FOSS</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/foss.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2008-12-31T23:17:00-05:00</updated><entry><title>Building Documentation</title><link href="https://slott56.github.io/2008_12_31-building_documentation.html" rel="alternate"></link><published>2008-12-31T23:17:00-05:00</published><updated>2008-12-31T23:17:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-12-31:/2008_12_31-building_documentation.html</id><summary type="html">&lt;p&gt;For years, I've written documentation using &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;ReStructured Text&lt;/a&gt;  (RST).  It's just one of several &amp;quot;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Lightweight_markup_language"&gt;lightweight markup languages&lt;/a&gt; &amp;quot;.  For others, look at &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/syntax"&gt;Markdown&lt;/a&gt; , &lt;a class="reference external" href="http://dev.zope.org/Members/jim/StructuredTextWiki/FrontPage/"&gt;StructuredText&lt;/a&gt; , &lt;a class="reference external" href="http://docutils.sourceforge.net/mirror/setext.html"&gt;Setext&lt;/a&gt; , among many others.&lt;/p&gt;
+&lt;p&gt;I generally use the &lt;a class="reference external" href="http://docutils.sourceforge.net/docs/user/tools.html#rst2html-py"&gt;rst2html&lt;/a&gt;  utility that comes with &lt;a class="reference external" href="http://docutils.sourceforge.net/"&gt;Docutils&lt;/a&gt; .  It works fine for small things.&lt;/p&gt;
+&lt;p&gt;I just read about the &lt;a class="reference external" href="http://sphinx.pocoo.org/"&gt;Sphinx&lt;/a&gt;  documentation …&lt;/p&gt;</summary><content type="html">&lt;p&gt;For years, I've written documentation using &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;ReStructured Text&lt;/a&gt;  (RST).  It's just one of several &amp;quot;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Lightweight_markup_language"&gt;lightweight markup languages&lt;/a&gt; &amp;quot;.  For others, look at &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/syntax"&gt;Markdown&lt;/a&gt; , &lt;a class="reference external" href="http://dev.zope.org/Members/jim/StructuredTextWiki/FrontPage/"&gt;StructuredText&lt;/a&gt; , &lt;a class="reference external" href="http://docutils.sourceforge.net/mirror/setext.html"&gt;Setext&lt;/a&gt; , among many others.&lt;/p&gt;
+&lt;p&gt;I generally use the &lt;a class="reference external" href="http://docutils.sourceforge.net/docs/user/tools.html#rst2html-py"&gt;rst2html&lt;/a&gt;  utility that comes with &lt;a class="reference external" href="http://docutils.sourceforge.net/"&gt;Docutils&lt;/a&gt; .  It works fine for small things.&lt;/p&gt;
+&lt;p&gt;I just read about the &lt;a class="reference external" href="http://sphinx.pocoo.org/"&gt;Sphinx&lt;/a&gt;  documentation generator and I am totally hooked.&lt;/p&gt;
+&lt;p&gt;I spent a productive day making a bunch of small revisions to a big library of documentation to move it from some home-brewed rst2html tooling into Sphinx.  I got to delete some boilerplate markup from a lot of files, delete some tools, and generally tidy up.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;API Documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sphinx says that they don't produce API docs.  They're not &lt;a class="reference external" href="http://epydoc.sourceforge.net/"&gt;epydoc&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;Previously, all of my internal API documentation was done using &lt;a class="reference external" href="http://epydoc.sourceforge.net/manual-epytext.html"&gt;epytext&lt;/a&gt; , but not for a great reason.  Because Sphinx works in RST, I need to convert my internal documentation from epytext to RST.&lt;/p&gt;
+&lt;p&gt;At first, this looked painful.  However, 90% of the changes are from &amp;#64;param this: some text to :param this: some text.  The other 10% are some massaging of &amp;#64;todo: and &amp;#64;note:; partly to change &lt;tt class="docutils literal"&gt;&amp;#64;todo:&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;:todo:&lt;/tt&gt; but also to change the indentation to RST rules.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Organizational Issues&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My original home-brewed documentation had lots of complex cross-references.  However, I couldn't bear the idea of putting all of the documents into some rational directory structure because all the links would break.&lt;/p&gt;
+&lt;p&gt;Sphinx tacks references across files, allowing me to define a name in one file and reference it in another.  Problem solved.  I can arrange and rearrange the components into an outline that actually makes sense for maintenance and management.&lt;/p&gt;
+&lt;p&gt;And nothing beats semantically rich pure text markup of RST as implemented by Sphinx.  Documentation is fun when there are no barriers to entry.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>Open Source In The News</title><link href="https://slott56.github.io/2008_11_24-open_source_in_the_news.html" rel="alternate"></link><published>2008-11-24T15:24:00-05:00</published><updated>2008-11-24T15:24:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-11-24:/2008_11_24-open_source_in_the_news.html</id><summary type="html">&lt;p&gt;The &lt;a class="reference external" href="http://www.informationweek.com/news/software/open_source/showArticle.jhtml?articleID=212002355&amp;amp;subSection=Open+Source"&gt;Open Source Enterprise&lt;/a&gt;  article in the November 15th InformationWeek is quite cool.  Here's the &amp;quot;wow&amp;quot; quote for me.&lt;/p&gt;
+&lt;blockquote&gt;
+Another way that open source code meets current needs is through lighter-weight integration than commercial vendors typically offer. By definition, open source code adheres to publicly approved standards. That means open …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://www.informationweek.com/news/software/open_source/showArticle.jhtml?articleID=212002355&amp;amp;subSection=Open+Source"&gt;Open Source Enterprise&lt;/a&gt;  article in the November 15th InformationWeek is quite cool.  Here's the &amp;quot;wow&amp;quot; quote for me.&lt;/p&gt;
+&lt;blockquote&gt;
+Another way that open source code meets current needs is through lighter-weight integration than commercial vendors typically offer. By definition, open source code adheres to publicly approved standards. That means open source developers and vendors are ready to compete in a software market that's increasingly relying on Web standards.&lt;/blockquote&gt;
+&lt;p&gt;The standards issue is interesting.  Open Source software is more standards-compliant than the proprietary source world.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>My Bias is Showing</title><link href="https://slott56.github.io/2007_10_10-my_bias_is_showing.html" rel="alternate"></link><published>2007-10-10T10:23:00-04:00</published><updated>2007-10-10T10:23:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-10-10:/2007_10_10-my_bias_is_showing.html</id><summary type="html">&lt;p&gt;Why Python, indeed?&lt;/p&gt;
+&lt;p&gt;&amp;quot;It's clear that &lt;em&gt;you&lt;/em&gt; find it easier and quicker to use Python, and that's fine. It's often quickest for people to use the tools that they know best.&amp;quot;&lt;/p&gt;
+&lt;p&gt;As they say on Fark.com, &amp;quot;This&amp;quot;.&lt;/p&gt;
+&lt;p&gt;However, the Python advantage doesn't stem from knowing Python better than Java …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Why Python, indeed?&lt;/p&gt;
+&lt;p&gt;&amp;quot;It's clear that &lt;em&gt;you&lt;/em&gt; find it easier and quicker to use Python, and that's fine. It's often quickest for people to use the tools that they know best.&amp;quot;&lt;/p&gt;
+&lt;p&gt;As they say on Fark.com, &amp;quot;This&amp;quot;.&lt;/p&gt;
+&lt;p&gt;However, the Python advantage doesn't stem from knowing Python better than Java.  It's a wash, actually.  I know both quite well, and I'm paid to write Java.&lt;/p&gt;
+&lt;p&gt;What is the Python advantage?&lt;/p&gt;
+&lt;p&gt;Hacknot has a great analysis of the &lt;a class="reference external" href="http://www.hacknot.info/hacknot/action/showEntry?eid=93"&gt;Invasion of the Dynamic Language Weenies&lt;/a&gt; .  It's a bit over-the-top, but it's quite scathing in it's analysis of a few truly ridiculous claims.  The article totally rejects all value for dynamic languages, which flies in the face of experience.  But, it also deprecates all non-numeric, qualitative experience as &amp;quot;delusion&amp;quot;, so it lacks some important perspective on what programming is.&lt;/p&gt;
+&lt;p&gt;Programming is knowledge capture.  &amp;quot;Productivity&amp;quot; -- lines of code per day -- is just a part of the value of a programming language.  The problem here is that programming is an inherently communicative activity, similar to writing Blog posts in English.  It isn't an exercise like sailing where velocity made good (VMG) is the key metric for success.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Some Claims&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The best part about the Hacknot article is a specific list of dynamic language claims.  The attempted refutations of those claims, in most cases, is incomplete or narrowly focuses on exactly one kind of evidence.  Additionally, not all of the argument is strictly linear.  One refutation conflates code volume and development speed together, another treats them separately.  We'll borrow the topics, since they're the most useful part of the posting.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Dynamic Typing Increases Development Speed&lt;/li&gt;
+&lt;li&gt;Interpretation Increases Development Speed&lt;/li&gt;
+&lt;li&gt;Reduced Code Volume Increases Development Speed&lt;/li&gt;
+&lt;li&gt;Support From Major Companies Legitimizes DLs&lt;/li&gt;
+&lt;li&gt;As The Problems Change, People Use New Languages&lt;/li&gt;
+&lt;li&gt;You Can Assess Productivity By Feel&lt;/li&gt;
+&lt;li&gt;Syntax Can Be Natural&lt;/li&gt;
+&lt;li&gt;A Strength Of My Language Is Its Community&lt;/li&gt;
+&lt;li&gt;No Harm, No Foul&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We'll look at each of these from a narrow Java vs. Python perspective.  I can't speak about Ruby; I don't like PERL or PHP, so I can't address DL's in general.   See &lt;a class="reference external" href="http://www.ferg.org/projects/python_java_side-by-side.html"&gt;Python &amp;amp;amp; Java: Side by Side Comparison&lt;/a&gt;  for additional information.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Typing Increases Development Speed&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is manifestly true.  Claims are exaggerated (and the exaggeration should be refuted.)  Duck typing has some advantages over static typing.  Specifically, here's an example that bugs me in Java.&lt;/p&gt;
+&lt;!-- code: --&gt;
+&lt;pre class="literal-block"&gt;
+class Something {
+    class MyKey implements Comparable {
+        String aField; int anotherField; ... }
+    Map theRealPoint = new TreeMap();
+    ...
+}
+&lt;/pre&gt;
+&lt;p&gt;In Python, this isn't interesting enough to justify all the static typing declarations.&lt;/p&gt;
+&lt;!-- code: --&gt;
+&lt;pre class="literal-block"&gt;
+class Something:
+    def __init__( self ):
+        self.theRealPoint= {}
+&lt;/pre&gt;
+&lt;p&gt;A map's key can be a simple Python tuple; I don't need to create a unique class to simply collect a bunch of objects together to create a composite key.  Java forces a kind of overhead that doesn't clarify much to the reader.  The overhead just keeps the compiler happy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interpretation Increases Development Speed&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This, too, is manifestly true.  Also, claims are often exaggerated.  The issue isn't the time saved by skipping the compile (or compile and link) step(s).  The issue is direct interaction with data structures.&lt;/p&gt;
+&lt;p&gt;In exploring a new part of the libraries in Java, I have to write test cases that are really technology spikes.  They simply demonstrate how the API works with an example that is focused on my problem.&lt;/p&gt;
+&lt;p&gt;In exploring a new part of the libraries in Python, I can just type stuff interactively into the interpreter and watch it work.  Similarly, I can debug more easily by evaluating expressions in the interpreter directly.  The whole single-step into a method kind of debugging tends to obscure the semantic link between language and meaning by introducing the grubby details of how the virtual machine works.&lt;/p&gt;
+&lt;p&gt;This is worth hours of development time.  New development &lt;em&gt;always&lt;/em&gt;  means a technical unknown.  We don't write new software unless some part of the problem domain or technology chosen as the solution is a complete unknown.  Discovery is part of the knowledge capture process.  Interpreted languages facilitate exploration and discovery.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reduced Code Volume Increases Development Speed&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Of course.  It also reduces the maintenance cost.  And it reduces the intellectual burden of coming to grips with what the software means.  The Python code volume is smaller than the Java code volume.  I could show one or two amazing results.  Instead, I'll say that Python is universally 10% to 20% smaller.&lt;/p&gt;
+&lt;p&gt;Common statements (expression and assignment) are generally the same size.  However, compound statements like &lt;strong&gt;for&lt;/strong&gt;  and &lt;strong&gt;if&lt;/strong&gt;  statements, function and class definitions are wordy in Java.  The &lt;strong&gt;for&lt;/strong&gt;  statement, in particular, can be irritatingly wordy in Java.  Most Python collection classes have proper iterators that are usable by the &lt;strong&gt;for&lt;/strong&gt;  statement; in Java I have to explicitly create and manage the Iterator.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Support From Major Companies Legitimizes DL's&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For me, this is irrelevant.  Few of my customers would ever consider Python; it has the taint of open source.  My customers align randomly with &amp;quot;major companies&amp;quot;.  They'll claim they're all Microsoft, but most of their in-house programming is actually Oracle PL/SQL stored procedures.&lt;/p&gt;
+&lt;p&gt;This doesn't impact my productivity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;As The Problems Change, People Use New Languages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is an interesting point, but not really part of the dynamic-static debate.  It's more about Domain Specific Languages (DSL) than it is about Dynamic Languages.  In the Java vs. Python conversation, it has no real purpose.  Both are general-purpose programming languages, neither is particularly well-suited or ill-suited to a given problem.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You Can Assess Productivity By Feel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;While completely true, it is an uncomfortable issue.  As pointed out to me, &amp;quot;It's often quickest for people to use the tools that they know best.&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The Hacknot post decries this as &amp;quot;delusion&amp;quot; and &amp;quot;emotion&amp;quot;.  It's as if to say &amp;quot;programming is not knowledge capture; it is not communication among a community of developers, maintainers and users.&amp;quot;  I have to reject this implicit premise.  Programming includes a &amp;quot;feel&amp;quot; factor.  If the representation of the knowledge is opaque, we didn't capture it very well.  If we capture knowledge quickly, and it passes all the unit tests, but we can't interpret the resulting code, we've failed.&lt;/p&gt;
+&lt;p&gt;We have to be careful what we mean by &amp;quot;productivity&amp;quot;.  Lines of code per day isn't a terribly useful metric.  We have to fold in the various quality attributes like need satisfaction, maintainability, adaptability, resource use and overall cost of ownership.  Many of these are based on people's skills, preferences and experiences.  Eventually we might be able to measure all of this, but presently, that's too ambitious.&lt;/p&gt;
+&lt;p&gt;Lacking a theory of software development, and associated observations, we still have to make some progress.  Rather than refute &amp;quot;feel&amp;quot;, we should work up a theory that includes feel and try and measure feel.  Until we have the theory, we have a starting point, and that's a narrative that puts feel into context of &amp;quot;got something done&amp;quot;, &amp;quot;understood it&amp;quot;, &amp;quot;optimized it&amp;quot;, &amp;quot;adapted it&amp;quot;, &amp;quot;corrected it&amp;quot; kinds of things.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax Can Be Natural&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is trivially true.  However, if English isn't your natural language, then Python's syntax won't appear natural.  There is no natural language that aligns with Java.&lt;/p&gt;
+&lt;p&gt;The natural syntax counter-example is to hold up Ruby examples to an English-reading audience.  Ruby wasn't created by someone with English as their first language.  Ruby looks odd to English-reading eyes.&lt;/p&gt;
+&lt;p&gt;Python, however, was created by someone who said that Python should look like English, eschewing cryptic techno-babble.  The Python style guide specifically emphasizes the natural language look.&lt;/p&gt;
+&lt;p&gt;Java was created to be familiar to C programmers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A Strength Of My Language Is Its Community&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Language defines community; and conversely a community is often defined by a common language.  For artificial languages, like Python or Java, this is still true.&lt;/p&gt;
+&lt;p&gt;However, the match between language and community is only of value in the context of  some specific, well-defined community.  Since most of my customers use Java, that's the community I'm aiming at.  Deliverable code must be in Java, because that's the community's common language.&lt;/p&gt;
+&lt;p&gt;I can do drafts, experiments, tools and utilities in Python.  I just can't easily deliver that.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;No Harm, No Foul&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is often a final milksop apology for hyperbole.  My preference for Python over Java has nothing to do with having another tool in the toolbox.  My claims are pretty specific:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Duck Typing makes my life easier;&lt;/li&gt;
+&lt;li&gt;An interpreter makes programming faster;&lt;/li&gt;
+&lt;li&gt;Less code is better (no code is best);&lt;/li&gt;
+&lt;li&gt;Feel and natural syntax help.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Some Additional Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is one of those topics that is a constant balancing act in the software development world.  People like to label it a &amp;quot;religious war&amp;quot; because they refuse to give up their position, and there isn't an easy metric that provides a properly scientific-looking answer.&lt;/p&gt;
+&lt;p&gt;See, for example, the &lt;a class="reference external" href="http://c2.com/cgi/wiki?BizarroStaticTypingDebate"&gt;Bizarro Static Typing Debate&lt;/a&gt; , &lt;a class="reference external" href="http://plpatterns.blogspot.com/2007/08/static-vs-dynamic-typing.html"&gt;pl patterns: Static Vs. Dynamic Typing&lt;/a&gt;  for some additional commentary.&lt;/p&gt;
+&lt;p&gt;This debate isn't &amp;quot;technical&amp;quot; or even &amp;quot;scientific&amp;quot;.  It is a consequence of being at the leading edge of human capabilities.  What is language?  What is knowledge?  How does language map to knowledge?  These are fundamental epistemological questions that don't have tidy answers.  We aren't measuring velocity made good.  We don't even have a context in which VMG kinds of metrics are central.  I'm not sure we can ever measure &amp;quot;comprehensibility&amp;quot;, &amp;quot;actionability&amp;quot;, &amp;quot;finite&amp;quot;, &amp;quot;definite&amp;quot;, or &amp;quot;effective&amp;quot;.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>Something Else I Invented</title><link href="https://slott56.github.io/2007_08_25-something_else_i_invented.html" rel="alternate"></link><published>2007-08-25T11:58:00-04:00</published><updated>2007-08-25T11:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-08-25:/2007_08_25-something_else_i_invented.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_07_04-what_i_love_about_python_what_i_hate_about_the_word_of_open_source.html"&gt;Recently&lt;/a&gt; , I found out that my HTML parser was only a mere shadow &lt;a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/"&gt;Beautiful Soup&lt;/a&gt; .  I invented what is -- essentially -- a similar core structure.  I didn't carry it to the same level of completion.  From what little research I've done, my invention predates Beautiful Soup.&lt;/p&gt;
+&lt;p&gt;It's one of those &amp;quot;collective …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_07_04-what_i_love_about_python_what_i_hate_about_the_word_of_open_source.html"&gt;Recently&lt;/a&gt; , I found out that my HTML parser was only a mere shadow &lt;a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/"&gt;Beautiful Soup&lt;/a&gt; .  I invented what is -- essentially -- a similar core structure.  I didn't carry it to the same level of completion.  From what little research I've done, my invention predates Beautiful Soup.&lt;/p&gt;
+&lt;p&gt;It's one of those &amp;quot;collective unconscious&amp;quot; or &amp;quot;synchronicity&amp;quot; things -- good ideas floating around, captured by people with different abilities.  I built a little thing that accomplished what I wanted.  At about the same time, someone else built something more complete and slightly cooler.&lt;/p&gt;
+&lt;p&gt;[If you try to read about &lt;a class="reference external" href="http://www.google.com/search?hl=en&amp;amp;client=firefox-a&amp;amp;rls=org.mozilla%3Aen-US%3Aofficial&amp;amp;hs=UBG&amp;amp;q=collective+unconscious&amp;amp;btnG=Search"&gt;collective unconscious&lt;/a&gt;  and synchronicity, you find one of my favorite poems, &amp;quot;The Second Coming&amp;quot; as the Wikipedia redirect for &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Spiritus_Mundi"&gt;Spiritus Mundi&lt;/a&gt; .  Proof, if any was needed, that smart people are uncomfortable with coincidence.  Many people feel compelled to explain coincidence; they either create a philosophy or a conspiracy theory.]&lt;/p&gt;
+&lt;p&gt;A client of mine is using &lt;a class="reference external" href="http://ibatis.apache.org/"&gt;iBatis&lt;/a&gt; , which was new to me.  Up until Monday, it had been little more than a name, on the mental shelf next to &lt;a class="reference external" href="http://www.hibernate.org/"&gt;Hibernate&lt;/a&gt; , &lt;a class="reference external" href="http://www.oracle.com/technology/products/ias/toplink/index.html"&gt;TopLink&lt;/a&gt; , &lt;a class="reference external" href="http://db.apache.org/jdo/"&gt;JDO&lt;/a&gt; , &lt;a class="reference external" href="http://db.apache.org/torque/"&gt;Torque&lt;/a&gt;  and &lt;a class="reference external" href="http://db.apache.org/ojb/"&gt;OJB&lt;/a&gt; .  After reading the introduction to the tutorial, I realized that I had  already invented this.  At about the same time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Arrrggh!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My version of iBatis didn't manage the JDBC connection, but it did everything else that the basic SQLMap portion of iBatis does.  I didn't have as cool a DAO implemetation, but I had all kinds of parameter substitution and type conversion.&lt;/p&gt;
+&lt;p&gt;Back in 1981, I invented the spreadsheet.  Well, it was a batch COBOL program that did ETL processing (in a way), had flexible calculations, and had a great financial-reporting algorithm for handling rounding correctly.  Okay, it didn't run on an Apple II, and didn't change the world like &lt;a class="reference external" href="http://www.bricklin.com/visicalc.htm"&gt;VisiCalc&lt;/a&gt;  did.&lt;/p&gt;
+&lt;p&gt;That does it.  Next good idea I have, I am going to open a &lt;a class="reference external" href="http://sourceforge.net/"&gt;SourceForce&lt;/a&gt;  project right away.  If there is a collective unconscious, I just need to tap into it first.  If it's a conspiracy, they were out to get me anyway.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>What I love about Python == what I hate about the word of open source</title><link href="https://slott56.github.io/2007_07_04-what_i_love_about_python_what_i_hate_about_the_word_of_open_source.html" rel="alternate"></link><published>2007-07-04T14:37:00-04:00</published><updated>2007-07-04T14:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-07-04:/2007_07_04-what_i_love_about_python_what_i_hate_about_the_word_of_open_source.html</id><summary type="html">&lt;p&gt;The problem with Python is the vastness of the Open Source community.  You may think you have something cool for &lt;a class="reference external" href="../C1597055042/E20070702200105/index.html"&gt;HTML parsing&lt;/a&gt; , but then someone tells you about &lt;a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/"&gt;Beautiful Soup&lt;/a&gt;  which already does it.&lt;/p&gt;
+&lt;p&gt;In my defense, I actually did a version of this HTML parsing back in '02.  Indeed …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The problem with Python is the vastness of the Open Source community.  You may think you have something cool for &lt;a class="reference external" href="../C1597055042/E20070702200105/index.html"&gt;HTML parsing&lt;/a&gt; , but then someone tells you about &lt;a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/"&gt;Beautiful Soup&lt;/a&gt;  which already does it.&lt;/p&gt;
+&lt;p&gt;In my defense, I actually did a version of this HTML parsing back in '02.  Indeed, I even debugged part of Python's original SGML parser because I was trying to unwind MS-Word HTML documents which had odd declarations that stumped the parser.  I even put a patch kit together.  I didn't follow-through very aggressively, since everyone else in Python development actually knows what they're doing, and I'm just a hack.&lt;/p&gt;
+&lt;p&gt;Recently, I had to resurrect the idea because I needed information encoded in inconsistent HTML.  I knew that my object model wasn't as cool as the xml.dom model.  So I pressed ahead with a rewrite to my original design, using xml.dom, without looking around at the available off-the-shelf, free-or-open-source solutions.&lt;/p&gt;
+&lt;p&gt;What's worse is that I'm constantly telling my clients that they have to get comfortable with searching for open source solutions rather than wasting their precious in-house programming talent reinventing the wheel.  The requirements for the wheel are well known, design specifications abound, and you have sample implementations available all over the place.  But some of my clients still ask me to help with the requirements gathering for a &amp;quot;device which reduces friction when moving heavy loads.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Beautiful Soup.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;findAll&lt;/tt&gt; method is almost a proper &lt;strong&gt;Visitor&lt;/strong&gt;.  It can apply a function to each node of a subtree.  The function's return value causes accumulation of values; so a function which returns None simply visits every node.&lt;/p&gt;
+&lt;p&gt;The only significant problem with findAll is that I really need it to use a stateful object, not a stateless function.  Yes, I could make a class which implements &lt;tt class="docutils literal"&gt;__call__&lt;/tt&gt; to be my &lt;strong&gt;Visitor&lt;/strong&gt;.  However, the mixture of tags and text all coming into a single anonymous method is a pain in the ass for some applications.&lt;/p&gt;
+&lt;p&gt;Also, the implementation of findAll uses the Tag.recursiveChildGenerator, which has explicit stack instead of simple recursion, but that's a personal preference of mine.  Recursion is often considerably faster.  Since there are some variations on how the Soup methods work, the lack of simple recursion may be essential.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Next Steps.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I can do a number of things.  Each of these is based on specific experiences I've had with customers.  These are lessons I've learned about big IT that I'm trying to apply to the open source community.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I could dogmatically insist that my crap is better/faster/cheaper.&lt;/li&gt;
+&lt;li&gt;I could claim that my crap is an &amp;quot;investment&amp;quot; and must be preserved.&lt;/li&gt;
+&lt;li&gt;I could wring my hands about &amp;quot;strategy&amp;quot; in HTML scraping and meticulously investigate the other packages that have sprung up over the 5 years between when I first did this, and now, when it seems like everyone's doing it.  Of course, the yardstick I would use is not something more-or-less objective like my requirements, since almost any package would meet those.  My yardstick must be political, and involve comparison against my solution, which isn't very complete, but does have the &lt;strong&gt;Visitor&lt;/strong&gt;  design pattern.&lt;/li&gt;
+&lt;li&gt;I could ask the vague and misleading question &amp;quot;Where's the ROI for HTML scraping?&amp;quot;  As if the error-prone and non-repeatable process makes more sense than having an HTML scraper that actually gets the actual data off the actual web site.  Further, ROI requires an upper bound on the investment part, which is stupid because software is the lynchpin of an endless business improvement cycle.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Conventional wisdom -- in the open source community -- suggests that I post a patch to Beautiful Soup to add the desired &lt;strong&gt;Visitor&lt;/strong&gt;.  That requires me to dig deeply enough into findAll to see how it really works.  I would have to learn something, and that will take a few weeks.&lt;/p&gt;
+&lt;p&gt;I prefer to take my cue from in-house IT departments where doing nothing is the preferred course of action.  Open source is too much work.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>What I love about Python == What I hate about the HTML mixed-content model</title><link href="https://slott56.github.io/2007_07_03-what_i_love_about_python_what_i_hate_about_the_html_mixed_content_model.html" rel="alternate"></link><published>2007-07-03T00:01:00-04:00</published><updated>2007-07-03T00:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-07-03:/2007_07_03-what_i_love_about_python_what_i_hate_about_the_html_mixed_content_model.html</id><summary type="html">&lt;p&gt;The &lt;a class="reference external" href="http://www.w3.org/TR/REC-xml/#sec-mixed-content"&gt;mixed content&lt;/a&gt;  model, defined succinctly in the XML standards, is pleasant enough for human communication, but leaves a lot to be desired.  For example, mapping a &lt;a class="reference external" href="http://www.xml.com/pub/a/2001/05/09/dtdtodbs.html?pagetarget="&gt;mixed content model to a relational database&lt;/a&gt;  is a hard problem.&lt;/p&gt;
+&lt;p&gt;The problem is made worse when the document is HTML.  HTML doesn't …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://www.w3.org/TR/REC-xml/#sec-mixed-content"&gt;mixed content&lt;/a&gt;  model, defined succinctly in the XML standards, is pleasant enough for human communication, but leaves a lot to be desired.  For example, mapping a &lt;a class="reference external" href="http://www.xml.com/pub/a/2001/05/09/dtdtodbs.html?pagetarget="&gt;mixed content model to a relational database&lt;/a&gt;  is a hard problem.&lt;/p&gt;
+&lt;p&gt;The problem is made worse when the document is HTML.  HTML doesn't have many constraints to begin with; it mixes structural and presentational markup; unless the content is prepared by a simple piece of software it may be wickedly inconsistent.&lt;/p&gt;
+&lt;p&gt;Python has the tools to make the problem solvable.  It also has a world-view that facilitates solving the kind of problem where there are wicked little inconsistencies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Enter Python.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The problem is to scrape the content of some web pages to make a regularly structured database out of the stuff floating around in HTML.  The &lt;strong&gt;Cut, Revise and Paste&lt;/strong&gt; ™ (CRAP) technology, while available, is  error-prone and hard to perform repeatably.&lt;/p&gt;
+&lt;p&gt;The information is mostly structured:  the interesting content on the page has a &amp;lt;blockquote&amp;gt;, &amp;lt;ul&amp;gt; and &amp;lt;li&amp;gt;'s and the data is easy to see in the &amp;lt;li&amp;gt;'s.  The uninteresting content is in separate &amp;lt;ul&amp;gt;'s and &amp;lt;p&amp;gt;'s making it easy to find.  Unfortunately, each list item appears to have a unique combination of inline tags like &amp;lt;font&amp;gt;, &amp;lt;b&amp;gt;, and &amp;lt;a&amp;gt;, but the underlying text is reasonably regular.&lt;/p&gt;
+&lt;p&gt;Python's HTMLParser module does a little of what we want.  Sadly, it's SAX-like, meaning that we'll have to heavily customize the parser, writing very complex handle_starttag methods.&lt;/p&gt;
+&lt;p&gt;Are there alternatives?&lt;/p&gt;
+&lt;p&gt;Actually, yes, we have some dynamite alternatives.  First, and most important, we can -- without too much effort -- create a proper &lt;a class="reference external" href="http://www.w3.org/DOM/"&gt;Document Object Model&lt;/a&gt;  from the HTML.  It's a bit of a stretch to apply XML's DOM to HTML (not XHTML, but plain-old &lt;a class="reference external" href="http://www.w3.org/TR/REC-html32"&gt;HTML 3.2&lt;/a&gt; ) but we can make it work.&lt;/p&gt;
+&lt;p&gt;Here's the essence of a handler which will assemble a reasonable DOM from HTML.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def top( self ):
+    return self.stack[-1]
+
+def buildNode( self, tag, attrs ):
+    n= self.document.createElement( tag, dict(attrs) )
+    return n
+
+def handle_starttag( self, tag, attrs):
+    t= self.top()
+    n= self.buildNode( tag, attrs )
+    # Can't tell if &amp;lt;p&amp;gt;'s or &amp;lt;li&amp;gt;'s are nested or adjacent :-(
+    # Need the doctype declaration to distinguish HTML and XHTML
+    t.appendChild( n )
+    # No content (also called empty) tags that HTML doesn't mark specially
+    if tag in ( &amp;quot;br&amp;quot;, &amp;quot;hr&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;link&amp;quot; ): return
+    self.stack.append( n )
+
+def handle_startendtag( self, tag, attrs):
+    t= self.top()
+    n= self.buildNode( tag, attrs )
+    t.appendChild( n )
+
+def handle_endtag(self,tag):
+    t= self.top()
+    while self.stack.pop(-1).tagName != tag:
+        pass
+
+def handle_data(self,data):
+    if self.stack: # Special case to handle leading text
+        t= self.top()
+    else:
+        return # Whitespace before the first tag :-(
+    if t.nodeType == xml.dom.Node.DOCUMENT_NODE: return
+    n= self.document.createTextNode( data )
+    t.appendChild( n )
+&lt;/pre&gt;
+&lt;p&gt;Note that we elided the &amp;lt;p&amp;gt; and &amp;lt;li&amp;gt; issue: these tags do not need to be closed.  For HTML we need to pop the matching predecessor tag off the stack to avoid nesting needlessly.  For XHTML strict, we don't need to do this.&lt;/p&gt;
+&lt;p&gt;Here's what's so cool.  In just a hundred lines of code, we've read the URL, parsed the HTML and captured the DOM for the content we need.  We can save the DOM structure, peer at it closely, and determine how best to decompose the content into the data we're looking for.&lt;/p&gt;
+&lt;p&gt;Here's the really cool part.  We can interact with the structure directly.  We can call methods of the DOM objects, find out how deeply the &amp;lt;ul&amp;gt;'s are nested, and create experimental functions to parse things.  We don't have to spend a lot of time sketching DTD's on the whiteboard, writing parsers, trying to get them to compile, only to find out that one of the &amp;lt;li&amp;gt;'s is inconsistent with the other, leading to a devastating change, rewrite, refactoring, and then a struggle to get it to recompile.&lt;/p&gt;
+&lt;p&gt;We can quickly knock out another hundred lines of code that expose the relevant data.  Of course, we can cut and paste our sample data fragments into docstrings, giving us a handy unit test capability.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Close but Not A Winner.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Our DOM-based approach is nice.  The DOM methods for getting elements by tag name and iterating through the child nodes are very pleasant.  However, there are several times when the SAX-based &amp;quot;visitor&amp;quot; approach would be handy.&lt;/p&gt;
+&lt;p&gt;Specifically, when we've dug down to the correct piece of structural markup, we want to elide the confusing and useless presentation markup.  We'd like to just visit each text node, losing the nesting of the presentation markup.  All the inline &amp;lt;font&amp;gt;, &amp;lt;b&amp;gt;, &amp;lt;i&amp;gt; tags don't convey any meaning; and they're inconsistently used in the content we're scraping.&lt;/p&gt;
+&lt;p&gt;Additionally, we'd like to get the list of &amp;lt;a&amp;gt; tags, but we don't want any part of the presentation tags in and around these anchors.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Visitor&lt;/strong&gt;  design pattern is the backbone of the SAX parser.  In principle, we could do everything from the various handler methods in the SAX-based HTMLParser class.  However, we often want nested visitors: when we've located the appropriate &amp;lt;li&amp;gt; tag, we'd like to switch to another visitor which focuses on the text, skipping all the rest of the inline markup until the matching &amp;lt;/li&amp;gt; tag.&lt;/p&gt;
+&lt;p&gt;We can do this with a stateful SAX parser, one that has a number of processing alternatives depending on the current tag context.  This grows to become complex as we blend in the &lt;strong&gt;State&lt;/strong&gt;  design pattern, especially when we're vague on what states are required.&lt;/p&gt;
+&lt;p&gt;One of the biggest stumbling blocks is the need to &amp;quot;look ahead&amp;quot; to determine what piece of content we're looking at.  Technically, a SAX-based parser can pass through a number of state transitions to determine if the &amp;lt;p&amp;gt; contains an &amp;lt;a&amp;gt;&amp;lt;img&amp;gt; or not.  However, it's simpler to look ahead and recognize the kind of content.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOM + Visitor.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The XML DOM design doesn't support the &lt;strong&gt;Visitor&lt;/strong&gt;  design pattern.  If we extend or replace the module with &lt;strong&gt;Visitor&lt;/strong&gt;  support, we can build a more functional parser and analyzer.  We can also add additional search and summary methods to this extended DOM.&lt;/p&gt;
+&lt;p&gt;Our application will have the following overview.  First, we create a DOM, doing as little as possible.  With almost no effort care, our __repr__ methods will effectively serialize the structure.  Then we use existing methods to get elements by tag name and locate the appropriate structural markup.  Finally, we use several nested visitor objects to examine the content, discarding inline presentation markup gracefully.&lt;/p&gt;
+&lt;p&gt;Python already has xml.dom and xml.dom.minidom implementations.  Can we extend one of these?  The interface requires us to create our own DOMImplementation and Document class as part of extending an existing implementation.  To make our &lt;strong&gt;Visitor&lt;/strong&gt;  design work, we'll need to extend Node, Element, and Text classes, also.&lt;/p&gt;
+&lt;p&gt;However, we're lazy, and it's not too difficult to create a new, unique, and skinny version of minidom that -- because of Python's &lt;a class="reference external" href="http://www.voidspace.org.uk/python/articles/duck_typing.shtml"&gt;duck typing&lt;/a&gt;  -- is compatible enough with minidom to get us started.&lt;/p&gt;
+&lt;p&gt;The necessary DOMImplementation class and associated getDOMImplementation function are obvious.  In Java, it's popular to register an implementation, but in Python, it's easier to provide a tidy replacement that can be brought in via import myDOM as theDOM.&lt;/p&gt;
+&lt;p&gt;The Node class has a number of attributes with obvious meanings.  The appendChild method maintains the invariant conditions around parentNode, childNodes, firstChild, lastChild, nextSibling and previousSibling.&lt;/p&gt;
+&lt;p&gt;The interesting addition is a walk method to apply a visitor to a Node and all of its children.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def walk( self, aVisitor ):
+    self.typeCallEnter( aVisitor )
+    if aVisitor.stopWalk:
+        aVisitor.stopWalk= False
+    else:
+        for c in self.childNodes:
+            c.walk( aVisitor )
+        self.typeCallExit( aVisitor )
+&lt;/pre&gt;
+&lt;p&gt;The other interesting additions are some summarizers.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def summary( self ):
+    return [ c.nodeName for c in self.childNodes ]
+
+def elementSummary( self ):
+    return [ c.nodeName for c in self.childNodes if c.nodeType == xml.dom.Node.ELEMENT_NODE ]
+&lt;/pre&gt;
+&lt;p&gt;Given this, we can now write a relatively simple analyzer.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gathering HTML Pages.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The first step is to gather the DOM we want to analyze.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def getDOM( url ):
+    source= urllib2.urlopen(url).read()
+    p= HTMLDOM()
+    p.feed( source )
+    p.close()
+    p.document.normalize()
+    return p.document
+
+def getDOMBody( url ):
+    d= getDOM( url )
+    topElt= d.documentElement
+    bodyList= topElt.getElementsByTagName(&amp;quot;body&amp;quot;)
+    assert len(bodyList) == 1
+    body= bodyList[0]
+    return body
+
+def DOMBody2File( sourceURL, destFile ):
+    body= getDOMBody( sourceURL )
+    dest= file( destFile, &amp;quot;w&amp;quot; )
+    print &amp;gt;&amp;gt;dest, repr( body )
+    dest.close()
+&lt;/pre&gt;
+&lt;p&gt;Once we have the DOM in a file, we can explore, tweaking our parser until we understand the inconsistencies and confusions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Analyzing the DOM.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We can easily write simple functions to get through the page structure.  In this case, for example, the page has a &amp;lt;ul&amp;gt; &amp;lt;blockquote&amp;gt; &amp;lt;ul&amp;gt; structure at the highest level.  Within the top-level &amp;lt;blockquote&amp;gt;, there are several nested &amp;lt;blockquote&amp;gt; before we get to our target content.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def parseBody( body ):
+    bq1= body.getElementsByTagName( &amp;quot;blockquote&amp;quot; )[0]
+    bq2= bq1.getElementsByTagName( &amp;quot;blockquote&amp;quot; )[0]
+    bq3= bq2.getElementsByTagName( &amp;quot;blockquote&amp;quot; )[0]
+    bq4= bq3.getElementsByTagName( &amp;quot;blockquote&amp;quot; )[0]
+    return bq4
+&lt;/pre&gt;
+&lt;p&gt;Once we have narrowed the focus to the correct part of the overall page, we can use a &lt;strong&gt;Visitor&lt;/strong&gt;  to examine each individual tag within this part of the page.  This visitor will accumulate the target data elements.  When the visitor has finished, it will have a sequence of objects, all ready for storage in an RDBMS using SQLAlchemy or something similar.&lt;/p&gt;
+&lt;p&gt;Here's the analyzer method.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def parseBQ4( bq4 ):
+    v= ListVisitor()
+    bq4.walk( v )
+    for m in v.finalList:
+        print m # or SQLAlchemy insert or CVS write
+&lt;/pre&gt;
+&lt;p&gt;Here's the top-level Visitor.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class ListVisitor( DOMVisitor ):
+    def __init__( self ):
+        DOMVisitor.__init__( self )
+        self.dim= None
+        self. finalList = []
+
+    def elementEnter( self, anElement ):
+        if anElement.tagName == &amp;quot;p&amp;quot;:
+            if anElement.elementSummary() == [ &amp;quot;a&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;b&amp;quot; ]:
+                pass
+            else:
+                tv= TextVisitor()
+                anElement.walk( tv )
+                self.dim= Dimension( tv.textNodes )
+                self.cut()
+        elif anElement.tagName == &amp;quot;ul&amp;quot;:
+            pass
+        elif anElement.tagName == &amp;quot;li&amp;quot;:
+            tv= TextVisitor()
+            anElement.walk( tv )
+            av= SearchVisitor( &amp;quot;a&amp;quot; )
+            anElement.walk( av )
+            new= TargetObject( self.dim, tv.textNodes, av.matches )
+            self.finalList.append( new )
+            self.cut()
+       else:
+            print &amp;quot;skipping&amp;quot;, anElement
+&lt;/pre&gt;
+&lt;p&gt;This uses the summary method to look ahead in a &amp;lt;p&amp;gt; tag.  Some &amp;lt;p&amp;gt; tags are useless indexing information.  Other &amp;lt;p&amp;gt; tags are interesting content which we need to parse.  We gracefully pass over the &amp;lt;ul&amp;gt;'s which introduce lists of relevant content.  We apply two other Visitors to the content within a &amp;lt;li&amp;gt;: One accumulates the text, the other accumulates the anchors.&lt;/p&gt;
+&lt;p&gt;We delegate some of the parsing to our Dimension and TargetObject methods.  The Dimension constructor will receive a simple list of strings.  The TargetObject constructor will get a list of strings and a list of Elements from which it can extract the details using simple Python string operations.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Two Other Visitors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Here's a Visitor that will pull out non-empty text nodes and ignore inline markup.  The resulting list of strings has a very regular structure, even though though the original HTML was interspersed with random inline markup and &amp;lt;br&amp;gt; tags.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class TextVisitor( DOMVisitor ):
+    def __init__( self ):
+        DOMVisitor.__init__( self )
+        self.textNodes= []
+    def text( self, aText ):
+        if aText.nodeValue.strip():
+            self.textNodes.append( aText.nodeValue.strip() )
+&lt;/pre&gt;
+&lt;p&gt;Here's a Visitor which does a deep search for a given tag.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class SearchVisitor( DOMVisitor ):
+    def __init__( self, target ):
+        DOMVisitor.__init__( self )
+        self.target= target
+        self.matches= []
+    def elementEnter( self, anElement ):
+        if anElement.nodeName == self.target:
+            self.matches.append( anElement )
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Conclusion.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The essence of scraping HTML involves a number of operations, and Python helps us a number of ways.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;To get the page Python provides several variations on urllib.&lt;/li&gt;
+&lt;li&gt;To parse the page, Python offers HTMLParse.  We can combine that with xml.dom and xml.dom.minidom to easily produce a data structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More importantly, however, Python helps us by facilitating exploration.  We can use Python interactively to peer at the resulting DOM structure.  Better yet, we can extend, rewrite or replace modules to add functionality.&lt;/p&gt;
+&lt;p&gt;In this case, we started out with the built-in xml.dom.minidom, validated some parts of our application in just a hundred lines of code and only a few hours of time.  We then replaced minidom with our own home-brewed microdom, confident that it would work because it was factored into a working application.  This is only a few hours of effort.&lt;/p&gt;
+&lt;p&gt;Once we had a working DOM structure with the Visitor capability, we could experiment with a number of Visitor alternatives in the space of a few more hours.  Without a significant investment in time, we have a working application.&lt;/p&gt;
+&lt;p&gt;I've omitted the epydoc comments and the unittest TestCase files.  The unit testing served to validate the essential algorithms, and support refactoring.  Since this was exploratory programming, everything was refactored heavily to arrive at a coherent, usable application.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>Django Project, Application and Database Naming</title><link href="https://slott56.github.io/2007_06_22-django_project_application_and_database_naming.html" rel="alternate"></link><published>2007-06-22T19:25:00-04:00</published><updated>2007-06-22T19:25:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-06-22:/2007_06_22-django_project_application_and_database_naming.html</id><summary type="html">&lt;p&gt;When you start fresh (as I sometimes do), you create a &lt;a class="reference external" href="http://www.djangoproject.com/"&gt;Django&lt;/a&gt;  project into which you create your first application.  You use django-admin.py to spin up a project directory, and from in side there, use manage.py to create an application boilerplate.&lt;/p&gt;
+&lt;p&gt;The Django folks are very clear on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When you start fresh (as I sometimes do), you create a &lt;a class="reference external" href="http://www.djangoproject.com/"&gt;Django&lt;/a&gt;  project into which you create your first application.  You use django-admin.py to spin up a project directory, and from in side there, use manage.py to create an application boilerplate.&lt;/p&gt;
+&lt;p&gt;The Django folks are very clear on their value proposition:  The admin interface is already there.  Just build the model, start loading data, and work on the presentation as your requirements solidify.  This is really outstandingly agile.  I can build a model, test, populate and clarify the core model issues quickly.&lt;/p&gt;
+&lt;p&gt;What's important is that I'm old (really old) and we used to spend a long time gathering requirements, designing things, and drafting a complex architecture before we coded anything.  When I started in this business, word processing was rare and expensive, often done in ALL CAPS.&lt;/p&gt;
+&lt;p&gt;So I have an urge to build really comprehensive sets of requirements and designs and models.  Which tends to break the basic value proposition of Django.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Small is Beautiful.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On consequence of the Django world view is to start small.  The suggestion is to pick a subject area, put the essential data elements together, and call that an &amp;quot;application&amp;quot;.  To this, you'd add applications as you add subject areas.&lt;/p&gt;
+&lt;p&gt;This seems to fit in with the Web Mart design pattern in &lt;a class="reference external" href="http://www.acm.org/cacm/"&gt;CACM&lt;/a&gt;  Vol 50 Issue 4 (&amp;quot;&lt;a class="reference external" href="http://portal.acm.org/citation.cfm?idtarget="&gt;Designing data-intensive web applications for content accessibility using web marts&lt;/a&gt; &amp;quot;).  You have a Core Concept, access dimensions and supporting detail dimensions as a single Django application.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Nomenclature.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Here's how it seems to work.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;top level&amp;quot; is the Project.  A Project contains one settings.py file.  This means that (generally) a Project has one database, one puddle of media files, a puddle of common template files, one top-level URL map, and &lt;em&gt;n&lt;/em&gt;  individual applications.  (Yes, this is not &lt;em&gt;fixed&lt;/em&gt; ; Django is flexible, to an extent.)&lt;/p&gt;
+&lt;p&gt;Within a project, each of the applications gets an application-specific data model, templates, views, and a localized URL map.&lt;/p&gt;
+&lt;p&gt;What's important is that the first application is not the only application.  In many cases, the first application will be the most superficial &amp;quot;index.html&amp;quot; kind of application for the available data.  It will often house the default pages for non-authorized, general public users.  Further, it will present the central-most of the Core Concepts in the data model.  As new applications are added, this may evolve in parallel to show overviews or or links to the data in the newer applications.&lt;/p&gt;
+&lt;p&gt;The problem that I have is that I often conflate the project with the first application that I'm building under the project.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bad Names.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It's clearly lame to create a project around some subject (&amp;quot;art portfolios&amp;quot;) and then create a single application that effectively duplicates the project's name (&amp;quot;portfolio&amp;quot;).  The first application is rarely the only application.  Too generic an application name is limiting.&lt;/p&gt;
+&lt;p&gt;Similarly, vague names like &amp;quot;main&amp;quot;, &amp;quot;core&amp;quot; and &amp;quot;default&amp;quot; are kind of silly, since they don't mean very much.  However, in some cases, your first application will be the one that gets the &amp;quot;all other&amp;quot; URLs.&lt;/p&gt;
+&lt;p&gt;For example, your top-level URL's may map '/admin' to the admin interface, '/feedback' to the feedback application, '/about' to a static &amp;quot;about&amp;quot; pages, and '/' to the main? core? default? application.  Grrr.  What to call this?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Better Names.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It seems that we have to find a way to characterize the first application's data model without having built the rest of the applications and their data models.  Since I'm old (and forgetful) I have the urge to design them all, then cut them up and give them intelligent names.  Since I'm learning to be Agile, I'm trying to avoid designing them all, but rather, sketch in the big picture, then detail one area while keeping a sense of &amp;quot;where this is all going.&amp;quot;&lt;/p&gt;
+&lt;p&gt;I think that there's a hidden feature of Django -- not called out in their documentation -- that helps resolve this.  I think that the Django &amp;quot;application&amp;quot; is really a use case, or a very small set of closely-related use cases.  I think that the Django application names should be aligned with use cases.  This leaves the overall Django project to be the overall system which contains those use cases.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let's say that the client claims they want just one little customer service thing.  Just a little database that allows a customer to determine their warranty coverage given a couple of pieces of information.  Of course, the template has to match the static content.&lt;/p&gt;
+&lt;p&gt;So, the project is Warranty Coverage.  What's the application?  Warranty coverage?  Ick.  That's what we're trying to avoid.&lt;/p&gt;
+&lt;p&gt;What's the use case?  It sounds like the application is &amp;quot;browseCoverageByDate&amp;quot; or something that parallels the use case name.  Another application might include &amp;quot;purchaseAdditionalCoverage&amp;quot; or similar use case name.&lt;/p&gt;
+&lt;p&gt;It's also possible that the project isn't named broadly enough.  This would happen in the unlikely circumstance that someone picked a verb-noun phrase for the overall project.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consequence.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For Proof-of-Concept, Django rules.  However, one can't rush headlong into project and application names.  The project needs to be broadly named, and the application focused on use cases.  The problem with Django as Proof-of-Concept, is that can be migrated into production very easily.&lt;/p&gt;
+&lt;p&gt;The overall project name, as a collection of Core Concepts, is some noun phrase that embodies the content of the (one) database and (one) puddle of media files.  To pick this name, we need a sense of the overall collection of applications.  If we can't nail that down, we should pick a broad enough project name that we won't be embarrassed by the name.  Too broad is easy to justify.  Too narrow requires explaining what the objective used to be when we chose that lame-assed name.&lt;/p&gt;
+&lt;p&gt;The application names are a little trickier because they are use cases that describe how users access the data in the database.  In some cases, we're writing our own transactions.  In this case use-case style &amp;quot;verb-noun&amp;quot; phrases make sense (&amp;quot;update address&amp;quot;, &amp;quot;cancel order&amp;quot;, etc.) In other cases, we're presenting data built with the admin interface.  In this case, the verb is always &amp;quot;browse&amp;quot; or &amp;quot;get&amp;quot;, so we can consider omitting it.  In this case we name the application around the core concepts.&lt;/p&gt;
+&lt;p&gt;Projects require thinking broadly.&lt;/p&gt;
+&lt;p&gt;Applications require use cases.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>PyCon 2007 (Revised)</title><link href="https://slott56.github.io/2007_02_26-pycon_2007_revised.html" rel="alternate"></link><published>2007-02-26T20:35:00-05:00</published><updated>2007-02-26T20:35:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-02-26:/2007_02_26-pycon_2007_revised.html</id><summary type="html">&lt;p&gt;Things I learned at &lt;a class="reference external" href="http://us.pycon.org/TX2007/HomePage"&gt;PyCon 2007&lt;/a&gt; .&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;In the Open Source community, men outnumber
+women 571 : 22.   I guess that's why I'm married to a sysadmin instead of a
+programmer.&lt;/li&gt;
+&lt;li&gt;While I already knew that programming was
+literature, I never really connected it with Rhetoric until hearing R0ml's
+keynote.  If programming …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Things I learned at &lt;a class="reference external" href="http://us.pycon.org/TX2007/HomePage"&gt;PyCon 2007&lt;/a&gt; .&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;In the Open Source community, men outnumber
+women 571 : 22.   I guess that's why I'm married to a sysadmin instead of a
+programmer.&lt;/li&gt;
+&lt;li&gt;While I already knew that programming was
+literature, I never really connected it with Rhetoric until hearing R0ml's
+keynote.  If programming is literature, what is the canon that everyone should
+study?  What software is the core that everyone must know?&lt;/li&gt;
+&lt;li&gt;WSGI will solve a client problem.  I hadn't
+fully gotten it until seeing Ian Bicking's talk on WSGI -- it's just pipes.
+It's rare to have an immediate technical take-away.  I spent much of the
+plane-ride prototyping.  I'm half done, and it may be useful, scalable
+production-ready code later this week.&lt;/li&gt;
+&lt;li&gt;Database testing is easier than I had thought.
+Kumar's &lt;a class="reference external" href="http://code.google.com/p/fixture/"&gt;fixture&lt;/a&gt;
+helps provide a stable database to drive
+testing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For my company, the open
+source opportunity space represents a new kind of business more than it
+represents the possibility of new business.  I'm polishing up my presentations
+to see if anything can come of this eye-opening
+experience.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Other Talks.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Advocacy&lt;/strong&gt; .  More needs to be done.  The
+comparison white papers sound like fun.  Python vs. C, and Python vs. COBOL are
+cool, since I know quite a bit about these languages.  Python vs. C++ I can look
+at.  Python vs. PL/SQL is another topic that needs to be covered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dabo&lt;/strong&gt; .  Interesting.  The justification -- many
+business applications are desktop applications -- doesn't work for me because
+many of my clients have &amp;quot;locked&amp;quot; desktops; installing a new desktop application
+would be essentially impossible.   I still see desktop applications as a
+maintenance nightmare, and a really good desktop development framework merely
+eases the pain that is cured by web applications.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Iron Python&lt;/strong&gt; .  Good to hear what works and what
+doesn't work.  There are serious licensing issues that Micro$oft has to wrestle
+with.  However the Iron Python Community Edition doesn't suffer from the same
+restrictions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Pit Mining&lt;/strong&gt; .  This was a wonderful parallel to my
+talk: business applications of Python.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source Lessons Learned&lt;/strong&gt; .  One important feature of a thriving
+OS community is strong technical leadership; but this is only mentioned in
+passing by Kaplan-Moss.  The passing mention of moving to Kansas to work with
+Holovaty is, I think, perhaps more important than some of the other points.
+Lesson 3, work with smart people, for instance, isn't quite the same thing.
+Point 7 in the &amp;quot;Maintaining and Open Source Project&amp;quot; section (&amp;quot;say no firmly&amp;quot;)
+touches on this also.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;soaplib&lt;/strong&gt; .  Use it, love it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SQLAlchemy&lt;/strong&gt; .  See the point, now.  I'd used
+&lt;a class="reference external" href="http://pyorq.sourceforge.net/"&gt;PyORQ&lt;/a&gt;
+for a while, and was satisfied.  I've gotten the hang of Django's model.  When I
+first looked at &lt;a class="reference external" href="../C465799452/E20060412223755.html"&gt;Python Object-Relational Mapping&lt;/a&gt; , I didn't like
+SQLAlchemy giving me a view of the underlying relational database.  However,
+SQLAlchemy's hybrid approach to ORM seems to be helpful because we can do pure
+objects, some SQL exposure, or just a wrapper around the SQL.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;State of Zope&lt;/strong&gt; .  Helpful to know.  There's opportunities
+for a company like mine to build and maintain ZOPE applications.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Teaching Programming using Python&lt;/strong&gt; .  This clued me in to the &lt;a class="reference external" href="http://www.python.org/cp4e/"&gt;CP4E&lt;/a&gt;  effort.
+I'll need to revise my approach in my &lt;a class="reference external" href="http://wwww.itmaybeahack.com/homepage/books/python.html"&gt;Building Skills&lt;/a&gt;  books to align with
+this.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Testing.&lt;/strong&gt;   Several presentations, all of which
+are run together for me because they were three tools to one common goal: &lt;a class="reference external" href="http://www.agiledata.org/essays/tdd.html"&gt;Test
+Driven Design&lt;/a&gt; .&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web Panel&lt;/strong&gt; .  Excellent approach to helping
+application programmers make choices.  They should do this everywhere that we
+have choices in the technology stack and tools.  This, BTW, tipped me toward
+CherryPy as being light-weight and WSGI-fied enough to work for infrastructure
+applications, and Django for anything user-facing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WSGI&lt;/strong&gt; .  An exposition of an elegant API for
+handling HTTP request and response.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ZOPE 3&lt;/strong&gt; .  Interesting on two levels.  In additional
+to showing how ZOPE3 is oriented, it also shows what happens when you try to
+advance the architecture and invalidate previous
+applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;My Talk.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My talk went reasonably well.
+It's a boring topic and my talk was a closet tutorial.  I'm not good at focusing
+down to 1/2 hour, so I had to rush through the Python
+part.&lt;/p&gt;
+&lt;p&gt;If you visit the &lt;a class="reference external" href="http://us.pycon.org/apps07/schedule/"&gt;PyCon
+Schedule&lt;/a&gt;  page and hover over my talk (Saturday 4:05 PM), you'll see a
+pop-up with a number of links:&lt;/p&gt;
+&lt;p&gt;There's a
+&lt;a class="reference external" href="http://us.pycon.org/zope/talks/2007/sat/track2/059/talkDetails2"&gt;Talk Audio and Materials&lt;/a&gt;  page which may
+eventually have an MP3 of the talk.  You'll also see links to &lt;a class="reference external" href="http://us.pycon.org/common/talkdata/PyCon2007/059/talk.zip"&gt;talk.zip&lt;/a&gt;  and &lt;a class="reference external" href="http://us.pycon.org/common/talkdata/PyCon2007/059/DimensionalModel.odp"&gt;DimensionalModel.odp&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;Here are the slides as a big web page:
+&lt;a class="reference external" href="https://slott56.github.io/media/talk.zip"&gt;DimensionalModel talk.zip&lt;/a&gt;&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry><entry><title>My open source projects</title><link href="https://slott56.github.io/2003_11_16-my_open_source_projects.html" rel="alternate"></link><published>2003-11-16T22:10:00-05:00</published><updated>2003-11-16T22:10:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2003-11-16:/2003_11_16-my_open_source_projects.html</id><summary type="html">&lt;p&gt;Why Python?  Stay tuned.  Why Zope?  More
+to come.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://old.zope.org/Members/slott/HTMLParseTree"&gt;HTML Parse
+Tree&lt;/a&gt;   and related material - needs a proper Python install
+script.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://old.zope.org/Members/slott/pyweb"&gt;PyWeb&lt;/a&gt;   - needs some
+updates and a proper install
+script.&lt;/p&gt;
+&lt;p&gt;Additional
+projects:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.mindspring.com/~slott1/steve/python/rngdoc.html"&gt;Random
+Number Test&lt;/a&gt;   Algorithms, plus an implementation of some higher-order
+math functions for developing chi-squared test values.  There …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Why Python?  Stay tuned.  Why Zope?  More
+to come.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://old.zope.org/Members/slott/HTMLParseTree"&gt;HTML Parse
+Tree&lt;/a&gt;   and related material - needs a proper Python install
+script.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://old.zope.org/Members/slott/pyweb"&gt;PyWeb&lt;/a&gt;   - needs some
+updates and a proper install
+script.&lt;/p&gt;
+&lt;p&gt;Additional
+projects:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.mindspring.com/~slott1/steve/python/rngdoc.html"&gt;Random
+Number Test&lt;/a&gt;   Algorithms, plus an implementation of some higher-order
+math functions for developing chi-squared test values.  There are many sources
+for this information, but it was fun to do the research and develop the
+algorithm.  I'm not a mathematician, but I could play one on daytime soap
+operas.&lt;/p&gt;
+&lt;p&gt;COBOL &lt;a class="reference external" href="http://www.mindspring.com/~slott1/steve/python/DDE.html"&gt;Data
+Definition Element&lt;/a&gt;   parsing and data
+processing.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.mindspring.com/~slott1/steve/python/transclose.html"&gt;Transitive
+Closure&lt;/a&gt;
+demonstration.&lt;/p&gt;
+&lt;p&gt;And I'm working
+on a web workload
+simulator.&lt;/p&gt;
+&lt;p&gt;Plus, for those of
+us with big disk drives and small media - a utility to make a bunch of Zip
+files, each no bigger than a specific media (say 250Mb for old Zip disks, or
+600Mb for CD burning).  Preliminary tests show that it is really horribly slow,
+but simple.&lt;/p&gt;
+</content><category term="FOSS"></category><category term="FOSS"></category><category term="open-source"></category></entry></feed>
