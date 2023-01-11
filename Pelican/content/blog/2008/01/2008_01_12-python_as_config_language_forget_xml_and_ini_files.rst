@@ -29,7 +29,8 @@ Some parameters, however, didn't fit the INI format well.  I'd almost completely
 
 
 
-:strong:`How Would I Do This In Python?`
+How Would I Do This In Python?
+------------------------------
 
 
 
@@ -65,7 +66,8 @@ Also, we don't have to dwell on the business rule translation from the old forma
 
 
 
-:strong:`Really Complex Configuration`
+Really Complex Configuration
+----------------------------
 
 
 
@@ -77,16 +79,14 @@ After an hour of poking around, I found a Perl program on CPAN to do `X12 parsin
 
 
 
-But they were in a home-brewed INI-like format.  A format that was just enough :emphasis:`UN` like INI files that ConfigParser choked on it.
+But they were in a home-brewed INI-like format.  A format that was just enough *UN* like INI files that ConfigParser choked on it.
 
 
 
-After spending a day on the problem, I slowly evolved a configuration that was palatable.  The X12 message descriptions look something like this.  (:emphasis:`Warning`: elision, syntax errors may sneak in.)
+After spending a day on the problem, I slowly evolved a configuration that was palatable.  The X12 message descriptions look something like this.  (*Warning*: elision, syntax errors may sneak in.)
 
 
 
-
-..  code:
 
 ::
 
@@ -120,7 +120,8 @@ In the outer realms of X12 messages, the Loops only have a single Segment.  The 
 
 
 
-:strong:`One Syntax`
+One Syntax
+-----------
 
 
 

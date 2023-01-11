@@ -126,19 +126,23 @@ S.Lott -- Software Architect            </a>
 <p>While it's true that Django does this elegantly, I'd been doing something more complex than Django's relatively clear and simple approach.  My example in <a class="reference external" href="https://slott56.github.io/2008_01_19-two_python_config_file_design_patterns.html">Two Python Config-File Design Patterns</a>  was a structural definition that was difficult to express in any other language.</p>
 <p>The structural configuration file was more like Django's Model definitions than a simple &quot;configuration&quot; file.  However, in a very real sense, it is the model which configures Django to have the data elements we want to display and persist.</p>
 <p>I've used the <strong>Structural Declaration</strong>  pattern a number of times.  I cribbed it from the packages like urllib2 where you build up a fairly complex object from component parts.</p>
-<p><strong>Malicious Code</strong></p>
+<div class="section" id="malicious-code">
+<h2>Malicious Code</h2>
 <p>&quot;It's a security vulnerability.&quot;  While technically true that you might get &quot;malicious&quot; configuration from a support forum, this is an easy vulnerability to prevent.  It's configuration.  It should be obvious what it is doing.</p>
 <p>If the configuration starts to look like code -- i.e., it is no longer a strictly declarative construction -- then an architectural design expectation has been violated.  Any doubt about the content of a configuration file is a red-alert, class 1, fatal defect.  Epic Fail.</p>
 <p>The Apache configuration, for example, has code-like pattern-matching and decision-making rules.  This is a compromise because Apache needs speed, and also needs flexibility.  For this kind of thing, I would prefer a Plain-Old Python extension as a proper subclass that extends the framework.  Subclasses and extensions can preserve the distinction between &quot;a few constants that are reused heavily and likely to change&quot; and &quot;more code to handle special cases.&quot;</p>
-<p><strong>Syntax Woes</strong></p>
+</div>
+<div class="section" id="syntax-woes">
+<h2>Syntax Woes</h2>
 <p>&quot;By using Python as your configuration syntax, you force your users to learn the idiosyncrasies of Python syntax when configuring.&quot;</p>
 <p>Interesting point.  I'll counter with the observation that XML syntax is opaque and .INI syntax is more obscure that Python syntax.</p>
 <p>The point of a configuration file is specifically not to write code.  The lowest level of configuration is a Django-style sequence of simple assignment statements (which is almost precisely the same syntax as an .INI file.)  The higher level is a more complex structural declaration that is more clear in Python than any .INI file.  (I know, I had to struggle with an .INI file that was a total mystery.)</p>
 <p>Also, &quot;Configuration files cease to work whenever Python changes.&quot;  I'm not sure how to interpret this.  Since the application is in Python, the whole house of cards collapses when Python changes.  The configuration is the least of my worries.  If I had a program in C that merely imported the Python interpreter to parse a configuration file, perhaps there's something to this consideration.</p>
-<p><strong>Diagnostics</strong></p>
+</div>
+<div class="section" id="diagnostics">
+<h2>Diagnostics</h2>
 <p>&quot;Errors in configuration files can be hard to diagnose for users, as it may not be clear whether the error arose from the configuration or the app itself.&quot;</p>
 <p>This is an interesting point.  There is a handy trick for this, however.</p>
-<!-- code: -->
 <pre class="literal-block">
 try:
     execfile('config.py')
@@ -147,17 +151,22 @@ except Exception, e:
     sys.exit(2)
 </pre>
 <p>We could, additionally, check for Python SyntaxError specifically.  We could also manipulate the traceback to produce more meaningful error messages.</p>
-<p><strong>Preventing Problems</strong></p>
+</div>
+<div class="section" id="preventing-problems">
+<h2>Preventing Problems</h2>
 <p>The &quot;malicious code injection&quot; problem is good way to talk about good design and bad design.  A reasonably careful design and a little bit of looking at the configuration file will prevent problems.</p>
 <p>[Additionally, if someone is in the habit of simply installing files they got from a support forum, then perhaps they should consider a different line of work.]</p>
 <p>This malice consideration says that we need a design that makes it trivial for anyone to vet a configuration file for malicious code.  This vet-ability (a kind of maintainability) is central to any good configuration file design, irrespective of syntax.</p>
 <p>The &quot;syntax&quot; consideration is one of the strengths of Python.  Python syntax (for assignment statements) is as simple as .INI files, and more flexible.  The idea that the core syntax of the assignment statement could change -- while remotely possible -- isn't on the horizon any time soon.  I'm perfectly confident.</p>
 <p>Finally, the diagnostics issue gives us another direction for good design.  Any configuration file can have serious problems with improper data.  I've seen very sophisticated modules to read, parse and report problems in .INI files.  Personally, I'd like to leave out the reading and parsing part and focus on the problem detection and reporting.</p>
-<p><strong>Rules</strong></p>
+</div>
+<div class="section" id="rules">
+<h2>Rules</h2>
 <p>I've found a few moderately complex problems where .INI files are too simple.  The amount of crapola that has to be done to describe the configuration exceeds the capabilities of .INI files.  That's when Python really pays out handsome rewards.</p>
 <p>First, make the application robust enough that the configuration file is simple and can be inspected by someone other than the application's author.  The meaning should be manifest.</p>
 <p>Second, make the configuration simple enough that it doesn't use too much Python syntax.</p>
 <p>Third, make is easy to diagnose syntax problems; leverage what Python already does for us.  We can then concentrate on the semantics of the configuration file.  It's all about the meaning.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -177,7 +186,10 @@ except Exception, e:
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

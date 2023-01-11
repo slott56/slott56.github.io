@@ -118,16 +118,21 @@ S.Lott -- Software Architect            </a>
                 <p>What I knew was this: I had a program, and I was supposed to make it work.  I went to a meeting, the responsibility was duly handed off to me.  &quot;Alex has it mostly done, you just need to pitch in and help finish this by Friday.&quot;</p>
 <p>Okay.</p>
 <p>I listened, patiently, hoping to get some sense of what it was supposed to do.  Eventually, it became clear that it was supposed to read a file, write a file and put stuff into a database.  It imported some fancy classes from elsewhere in the enterprise that created some new fields in the records of the file.</p>
-<p><strong>What Is The Result?</strong></p>
+<div class="section" id="what-is-the-result">
+<h2>What Is The Result?</h2>
 <p>I consider persistence to be more-or-less sacred.  You have to take it very, very seriously.  This program wrote a record <strong>and</strong>  inserted it into a database.  Was this just dumb belt-and-suspenders stuff?  Did they not trust the database?  Or, did was the file used by some other application, separate from the database?  Both ideas made me crazy.</p>
 <p>If it was belt-and-suspenders, they needed to think carefully about their database choices.  If you can't trust a database, why use it for mission-critical data?</p>
 <p>If the data went both to the database and to other applications that couldn't connect to the database, they needed to think carefully about their database choices.  If you can't use a database, why are we putting data into it?</p>
 <p>The program produced two outputs, which could -- under fairly ordinary circumstances -- be shown to be different.  All you have to do is a re-run and the database timestamps may not match the filesystem timestamps.  What does &quot;works&quot; mean when you can easily doubt the results?</p>
-<p><strong>Some Testing.</strong></p>
+</div>
+<div class="section" id="some-testing">
+<h2>Some Testing</h2>
 <p>The program was small, and a few of the classes had tests.  I've learned (in <a class="reference external" href="https://slott56.github.io/2006_08_04-tools_arent_the_answer.html">Tools Aren't the Answer</a> ) that even abstract superclasses and interfaces need test cases.  So, I'd have to add those to the test suite to be sure that things really &quot;worked&quot;.</p>
 <p>Interestingly, most of the program was piled into the class with public static void main in it.  This is typical clumsy design.  It makes a bunch of interesting parts of the program static, and forces them into one method, main, which is famously hard to reuse.  The main method has an interface that's often difficult to live with.  Who wants to make a properties file just to call the method named &quot;main&quot; of some other class.  Why not just call well-defined interface methods?</p>
 <p>Of course, this main program is a royal pain to write unit tests for.  Of course, there were none.</p>
-<p><strong>Documentation.</strong></p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation</h2>
 <p>The best part about this is the lack of usable documentation. There were no documented requirements, and no overall design.  There was word-of-mouth and code.</p>
 <p>I demanded a written specification.  The customer called a meeting.  I said that I didn't work well with oral requirements; I needed something written.  Their leadership called our Account Executive to cuss me out for requiring things in writing.</p>
 <p>The Account Executive told me that I was being even more of a jerk than usual by asking for written specifications.  I reminded the AE that verbal requirements are merely an opening for <a class="reference external" href="http://en.wikipedia.org/wiki/Plausible_deniability">plausible deniability</a> .  I could already hear the conversation.</p>
@@ -138,7 +143,9 @@ S.Lott -- Software Architect            </a>
 <p>Them:  &quot;But it doesn't.  It doesn't do [X]&quot;</p>
 <p>Us:  &quot;I don't recall that being discussed.&quot;</p>
 <p>That doesn't make for a good relationship with a client.</p>
-<p><strong>Preventing Disaster.</strong></p>
+</div>
+<div class="section" id="preventing-disaster">
+<h2>Preventing Disaster</h2>
 <p>I would prefer to prevent the whole debacle.  But how do you ask for reasonably clear specifications when they clearly refuse to write things down?</p>
 <p>Me: &quot;I need to know what it does.&quot;</p>
 <p>Them: &quot;We'll tell you during testing when it doesn't work.&quot;</p>
@@ -146,17 +153,28 @@ S.Lott -- Software Architect            </a>
 <p>Them: &quot;We can't.&quot;</p>
 <p>Me: &quot;Okay.  Imagine that it failed a test.  What is the most important test?  What would be the biggest mistake on my part.&quot;</p>
 <p>Them:  &quot;Not meeting the deadline date.&quot;</p>
-<p><strong>Structural Issues</strong> <strong>.</strong></p>
+</div>
+<div class="section" id="structural-issues">
+<h2>Structural Issues</h2>
 <p>No specifications.  A structure unsuited for unit testing.  Incomplete unit tests.  Both file and database outputs.</p>
 <p>And that's just the beginning.  The first week we were told that there's a central stored procedure call.  The procedure hasn't been written, doesn't have a defined API, but it is central.  We were also told the procedure had existed for a long time.  It either didn't exist or did; either way, no one could provide us an API.</p>
 <p>This week we found that the procedure returns a result set of multiple rows.  This is a devastating change to the cardinalities already written into the program.  The program assumed a kind of 1 row in-1 row out process.</p>
 <p>It turns out that it's more like the following:  A cluster of <em>n</em>  related rows come in; a common attribute is used to execute a stored procedure which returns a result set of <em>n</em>  related pieces of data.  Somehow the <em>n</em>  rows in the result set are correlated with the <em>n</em>  input rows.  What if the cardinalities differ?  Arrgh.</p>
-<p><strong>Can Anything Good Come Of This?</strong></p>
+</div>
+<div class="section" id="can-anything-good-come-of-this">
+<h2>Can Anything Good Come Of This?</h2>
 <p>Let's look at the outcomes.</p>
-<p><strong>We get something to &quot;work&quot; on time.</strong>  They hate us forever because we weren't up to the task, and only their constant nagging made the thing work.</p>
-<p><strong>We get something to &quot;work&quot; after the deadline.</strong>   They hate us forever because we didn't make the date.</p>
-<p><strong>We get something that almost &quot;works&quot; by the deadline.</strong>   They hate us forever because they have to think about what actually matters in this application.</p>
-<p><strong>We give up now.</strong>   They hate us forever for not even trying.</p>
+<dl class="docutils">
+<dt><strong>We get something to &quot;work&quot; on time.</strong></dt>
+<dd>They hate us forever because we weren't up to the task, and only their constant nagging made the thing work.</dd>
+<dt><strong>We get something to &quot;work&quot; after the deadline.</strong></dt>
+<dd>They hate us forever because we didn't make the date.</dd>
+<dt><strong>We get something that almost &quot;works&quot; by the deadline.</strong></dt>
+<dd>They hate us forever because they have to think about what actually matters in this application.</dd>
+<dt><strong>We give up now.</strong></dt>
+<dd>They hate us forever for not even trying.</dd>
+</dl>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -176,7 +194,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

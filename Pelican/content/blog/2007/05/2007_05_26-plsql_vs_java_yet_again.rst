@@ -13,7 +13,8 @@ PL/SQL vs. Java - Yet Again
 
 
 
-There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management's discomfort with the truth.
+There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth
+is a thought on management's discomfort with the truth.
 
 
 
@@ -21,7 +22,8 @@ There appear to be four responses.  Two were numbered, the third is a rambling t
 
 
 
-:strong:`Response 1 -- Denial.` 
+Response 1 -- Denial
+--------------------
 
 
 
@@ -61,7 +63,7 @@ My result shows that "specific env." doesn't matter.  I'm convinced that in all 
 
 
 
-The :strong:`benchmark`  is the critical issue here.  Dogmatic acceptance of the received truth of PL/SQL's performance is a mistake.  Benchmarking is essential when performance matters.
+The **benchmark**  is the critical issue here.  Dogmatic acceptance of the received truth of PL/SQL's performance is a mistake.  Benchmarking is essential when performance matters.
 
 
 
@@ -69,7 +71,8 @@ The :strong:`benchmark`  is the critical issue here.  Dogmatic acceptance of the
 
 
 
-:strong:`Response 2 -- Negotiation.` 
+Response 2 -- Negotiation
+--------------------------
 
 
 
@@ -101,7 +104,8 @@ Further -- and this is hard to grasp at first -- RDBMS indexes are slow compared
 
 
 
-:strong:`Response 3 -- Thoughts on Scalability.` 
+Response 3 -- Thoughts on Scalability
+-------------------------------------
 
 
 
@@ -125,7 +129,7 @@ This wasn't part of my point, but it's interesting none the less.
 
 
 
-"If :emphasis:`[you?]`  used Java and properly architected the system, just add another cheap PC or another cheap single board computer and you are done."
+"If *[you?]*  used Java and properly architected the system, just add another cheap PC or another cheap single board computer and you are done."
 
 
 
@@ -141,7 +145,8 @@ I suppose that's true.  If your Java application is too slow, you can throw more
 
 
 
-:strong:`Response 4 -- Anger.` 
+Response 4 -- Anger
+-------------------
 
 
 

@@ -25,11 +25,12 @@ Python has the tools to make the problem solvable.  It also has a world-view tha
 
 
 
-:strong:`Enter Python.` 
+Enter Python
+--------------
 
 
 
-The problem is to scrape the content of some web pages to make a regularly structured database out of the stuff floating around in HTML.  The :strong:`Cut, Revise and Paste` ™ (CRAP) technology, while available, is  error-prone and hard to perform repeatably.  
+The problem is to scrape the content of some web pages to make a regularly structured database out of the stuff floating around in HTML.  The **Cut, Revise and Paste** ™ (CRAP) technology, while available, is  error-prone and hard to perform repeatably.  
 
 
 
@@ -105,7 +106,8 @@ We can quickly knock out another hundred lines of code that expose the relevant 
 
 
 
-:strong:`Close but Not A Winner.` 
+Close but Not A Winner
+----------------------
 
 
 
@@ -121,11 +123,11 @@ Additionally, we'd like to get the list of <a> tags, but we don't want any part 
 
 
 
-The :strong:`Visitor`  design pattern is the backbone of the SAX parser.  In principle, we could do everything from the various handler methods in the SAX-based HTMLParser class.  However, we often want nested visitors: when we've located the appropriate <li> tag, we'd like to switch to another visitor which focuses on the text, skipping all the rest of the inline markup until the matching </li> tag.  
+The **Visitor**  design pattern is the backbone of the SAX parser.  In principle, we could do everything from the various handler methods in the SAX-based HTMLParser class.  However, we often want nested visitors: when we've located the appropriate <li> tag, we'd like to switch to another visitor which focuses on the text, skipping all the rest of the inline markup until the matching </li> tag.  
 
 
 
-We can do this with a stateful SAX parser, one that has a number of processing alternatives depending on the current tag context.  This grows to become complex as we blend in the :strong:`State`  design pattern, especially when we're vague on what states are required.
+We can do this with a stateful SAX parser, one that has a number of processing alternatives depending on the current tag context.  This grows to become complex as we blend in the **State**  design pattern, especially when we're vague on what states are required.
 
 
 
@@ -133,11 +135,12 @@ One of the biggest stumbling blocks is the need to "look ahead" to determine wha
 
 
 
-:strong:`DOM + Visitor.` 
+DOM + Visitor
+--------------
 
 
 
-The XML DOM design doesn't support the :strong:`Visitor`  design pattern.  If we extend or replace the module with :strong:`Visitor`  support, we can build a more functional parser and analyzer.  We can also add additional search and summary methods to this extended DOM.
+The XML DOM design doesn't support the **Visitor**  design pattern.  If we extend or replace the module with **Visitor**  support, we can build a more functional parser and analyzer.  We can also add additional search and summary methods to this extended DOM.
 
 
 
@@ -145,7 +148,7 @@ Our application will have the following overview.  First, we create a DOM, doing
 
 
 
-Python already has xml.dom and xml.dom.minidom implementations.  Can we extend one of these?  The interface requires us to create our own DOMImplementation and Document class as part of extending an existing implementation.  To make our :strong:`Visitor`  design work, we'll need to extend Node, Element, and Text classes, also.
+Python already has xml.dom and xml.dom.minidom implementations.  Can we extend one of these?  The interface requires us to create our own DOMImplementation and Document class as part of extending an existing implementation.  To make our **Visitor**  design work, we'll need to extend Node, Element, and Text classes, also.
 
 
 
@@ -192,7 +195,8 @@ Given this, we can now write a relatively simple analyzer.
 
 
 
-:strong:`Gathering HTML Pages.` 
+Gathering HTML Pages
+---------------------
 
 
 
@@ -227,7 +231,8 @@ Once we have the DOM in a file, we can explore, tweaking our parser until we und
 
 
 
-:strong:`Analyzing the DOM.` 
+Analyzing the DOM
+------------------
 
 
 
@@ -244,7 +249,7 @@ We can easily write simple functions to get through the page structure.  In this
 
 
 
-Once we have narrowed the focus to the correct part of the overall page, we can use a :strong:`Visitor`  to examine each individual tag within this part of the page.  This visitor will accumulate the target data elements.  When the visitor has finished, it will have a sequence of objects, all ready for storage in an RDBMS using SQLAlchemy or something similar.
+Once we have narrowed the focus to the correct part of the overall page, we can use a **Visitor**  to examine each individual tag within this part of the page.  This visitor will accumulate the target data elements.  When the visitor has finished, it will have a sequence of objects, all ready for storage in an RDBMS using SQLAlchemy or something similar.
 
 
 
@@ -302,7 +307,8 @@ We delegate some of the parsing to our Dimension and TargetObject methods.  The 
 
 
 
-:strong:`Two Other Visitors.` 
+Two Other Visitors
+------------------
 
 
 
@@ -335,7 +341,8 @@ Here's a Visitor which does a deep search for a given tag.
     
 
 
-:strong:`Conclusion.` 
+Conclusion
+----------
 
 
 

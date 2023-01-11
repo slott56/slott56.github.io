@@ -29,7 +29,8 @@ There are many ways to finely chop the responsibilities, leading to various MVP 
 
 
 
-:strong:`Web Interaction` 
+Web Interaction
+---------------
 
 
 
@@ -57,7 +58,8 @@ It also means that presentation changes are often split across two parts of the 
 
 
 
-:strong:`The AJAX Factor` 
+The AJAX Factor
+----------------
 
 
 
@@ -73,7 +75,8 @@ The essential feature is that Model elements of an AJAX MVC are accessed via a f
 
 
 
-:strong:`Care and Feeding` 
+Care and Feeding
+-----------------
 
 
 

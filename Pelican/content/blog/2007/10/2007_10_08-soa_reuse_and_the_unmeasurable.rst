@@ -37,7 +37,8 @@ So if it's not about reuse, what do we measure to be sure we're actually deliver
 
 
 
-:strong:`Customer Conversation`
+Customer Conversation
+---------------------
 
 
 
@@ -45,19 +46,20 @@ A recent customer conversation highlighted the reuse issue.  They were respondin
 
 
 
-"Of course you can measure reuse," they explained.  "You compare the actual project :emphasis:`vs.` how it could have been without the reuse."
+"Of course you can measure reuse," they explained.  "You compare the actual project *vs.* how it could have been without the reuse."
 
 
 
-I asked "How do you measure the things you didn't build?  You're talking about measuring the things that aren't there.  Who counts the things :emphasis:`not`  built?  What criteria do they use?"
+I asked "How do you measure the things you didn't build?  You're talking about measuring the things that aren't there.  Who counts the things *not*  built?  What criteria do they use?"
 
 
 
-:strong:`The Bentley Reuse Model`
+The Bentley Reuse Model
+-----------------------
 
 
 
-Here's my reuse model.  I call it the Bentley Reuse Model (:strong:`BRM`\ ™).
+Here's my reuse model.  I call it the Bentley Reuse Model (**BRM**\ ™).
 
 
 
@@ -65,7 +67,7 @@ I'll reuse my Subaru Impreza two-door coupe instead of having you buy me a new `
 
 
 
-If you like that, I have an even better reuse model.  It's the Team Bentley Reuse Model (:strong:`TBRM`\ ™). 
+If you like that, I have an even better reuse model.  It's the Team Bentley Reuse Model (**TBRM**\ ™). 
 
 
 
@@ -77,7 +79,8 @@ So, you give me the Bentley because I made everyone else reuse their transportat
 
 
 
-:strong:`Where's the New Functionality?`
+Where's the New Functionality?
+-------------------------------
 
 
 
@@ -101,7 +104,8 @@ How should we credit our project managers with the technological insight to use 
 
 
 
-:strong:`Measuring Things`
+Measuring Things
+----------------
 
 
 
@@ -125,11 +129,12 @@ If we use our SOA framework and tools to assemble a usable application out of se
 
 
 
-:strong:`Reuse Did Happen`
+Reuse Did Happen
+-----------------
 
 
 
-Yes, reuse of the services :emphasis:`did`  happen.  I never said it wouldn't.  But, we can't measure the ROI of that reuse.  Therefore, we're not going to try and leverage that reuse as the central value proposition for SOA.  
+Yes, reuse of the services *did*  happen.  I never said it wouldn't.  But, we can't measure the ROI of that reuse.  Therefore, we're not going to try and leverage that reuse as the central value proposition for SOA.
 
 
 

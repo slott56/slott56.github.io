@@ -129,7 +129,6 @@ S.Lott -- Software Architect            </a>
 <p>Then I looked closely at my example.</p>
 <p>It was a single object construction expression that covered over 1200 lines.  It created about 774 or so distinct objects.  It appears that a single expression of this scale is a bad idea.</p>
 <p>It looks like this (but is 1200 lines long).</p>
-<!-- code: -->
 <pre class="literal-block">
 parse278= Message( &quot;278&quot;, Properties(...),
     Loop( &quot;ISA_LOOP&quot;, Properties(...),
@@ -150,7 +149,6 @@ parse278= Message( &quot;278&quot;, Properties(...),
 <p>A single, 1200-line statement doesn't actually compile.  After I thought about it, I realized I was asking a lot.</p>
 <p>The good news is that changing this massive expression into a series of discrete assignment statements requires relatively little real work.  And the X12 message structure (based on nested Loops) encourages the definition of the overall message as a series of Loop objects.</p>
 <p>Now it looks like this.</p>
-<!-- code: -->
 <pre class="literal-block">
 ST_LOOP = Loop( ... )
 GS_LOOP = Loop( u'GS_LOOP', Properties(...),
@@ -171,11 +169,13 @@ ISA_LOOP = Loop( u'ISA_LOOP', Properties(...),
 x278_res = Message( u'278', Properties(...), ISA_LOOP
 )
 </pre>
-<p><strong>Persistence</strong></p>
+<div class="section" id="persistence">
+<h2>Persistence</h2>
 <p>Beyond marshalling and unmarshalling, we also need to look at persisting messages.  We can choose to store individual Segments (a bad idea) or the higher-level Loops of Segments (a slightly better idea).  The Loop-based structure of our parser configuration leads to creating a Loop-based data model.</p>
 <p>It's important that the SQL model and the Parser structure are completely isomorphic.  We need to take a block of text, unmarshal the message, map it to tables, and load it into a database.  And we need the whole to be driven by a Python configuration which comes from the Implementation Guides in an obvious way.</p>
 <p>In the long run, I need to transform an Implementation Guide into a Python configuration, confident that we can accept, parse, and persist X12 messages in spite of multiple business partners and evolution of the X12 model.</p>
 <p>Since X12 isn't an open standard, this isn't easy.  But Python's flexibility makes it work out well.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -195,7 +195,10 @@ x278_res = Message( u'278', Properties(...), ISA_LOOP
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

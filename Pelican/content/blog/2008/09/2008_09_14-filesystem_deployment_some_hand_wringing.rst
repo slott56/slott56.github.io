@@ -37,7 +37,8 @@ And -- relative to Django apps -- what is settings.py?  Technically, it's code. 
 
 
 
-:strong:`Registering Intent`
+Registering Intent
+-------------------
 
 
 
@@ -69,7 +70,8 @@ In my case, there are a few additional kinds of design decisions.
 
 
 
-:strong:`Strategy`
+Strategy
+---------
 
 
 
@@ -81,23 +83,27 @@ What's important seem to be the following.
 
 
 
-:strong:`Modularize Everything`.  The magic number is 7 ± 2 "concepts" in a module.  A few closely related classes go in a module.  More complex modules tend to be a problem.  When you're in a hurry and it isn't clear where the boundaries should fall, go for smaller.
+**Modularize Everything**.  
+    The magic number is 7 ± 2 "concepts" in a module.  A few closely related classes go in a module.  More complex modules tend to be a problem.  When you're in a hurry and it isn't clear where the boundaries should fall, go for smaller.
 
 
 
-:strong:`Think Packages`.  I'm starting to see that there's nothing wrong with a package that contains a single __init__.py file; this is a place-holder for future growth.  You can add to this structure easily.  I think this should be what you put down in the first sprint to get things started.  Later it can be refactored as the design matures.
+**Think Packages**.  
+    I'm starting to see that there's nothing wrong with a package that contains a single __init__.py file; this is a place-holder for future growth.  You can add to this structure easily.  I think this should be what you put down in the first sprint to get things started.  Later it can be refactored as the design matures.
 
 
 
-If, after a few months, the overall direction seems to have shifted, that package can be collapsed back into a module -- with no breakage.  I find it slightlly easier to refactor a single-module package into a module than to decompose a growing (and possibly bloated) module into a multi-file package.
+    If, after a few months, the overall direction seems to have shifted, that package can be collapsed back into a module -- with no breakage.  I find it slightlly easier to refactor a single-module package into a module than to decompose a growing (and possibly bloated) module into a multi-file package.
 
 
 
-:strong:`Written Justification`.  You need tidy, clear, documentation for your overall structure.  Be particularly focused on introducing newbies to your project.  It has to make compelling sense -- you have to know that your colleagues will do the right kind of design.  Few things are as challenging as the "you're right, it probably doesn't belong there" conversation surrounding some particularly egregious hand-waving.  It's most helpful with a n00b: they can see the irregularities more clearly than you can.
+**Written Justification**.  
+    You need tidy, clear, documentation for your overall structure.  Be particularly focused on introducing newbies to your project.  It has to make compelling sense -- you have to know that your colleagues will do the right kind of design.  Few things are as challenging as the "you're right, it probably doesn't belong there" conversation surrounding some particularly egregious hand-waving.  It's most helpful with a n00b: they can see the irregularities more clearly than you can.
 
 
 
-:strong:`Our Stuff`
+Our Stuff
+----------
 
 
 

@@ -29,7 +29,8 @@ Second, "Better" doesn't have a generic binding.  "Better" is only meaningful in
 
 
 
-:strong:`Answers`
+Answers
+--------
 
 
 
@@ -45,11 +46,12 @@ It appears that this was someone for whom "Science" doesn't apply; someone for w
 
 
 
-:strong:`Concurrency Modeling`
+Concurrency Modeling
+--------------------
 
 
 
-Let's try empiricism and see if that works.  Here's the simplest possible model -- no communication among the processes.  We'll have :emphasis:`n`  concurrent processes.  Let's keep it simple, and say :emphasis:`n` = 4.  Let's call the processes a, b, c and d.  
+Let's try empiricism and see if that works.  Here's the simplest possible model -- no communication among the processes.  We'll have *n*  concurrent processes.  Let's keep it simple, and say *n* = 4.  Let's call the processes a, b, c and d.
 
 
 
@@ -57,11 +59,13 @@ There are two ways to run these four processes.  Trivially expressed by the foll
 
 
 
-:strong:`Serial`.  a; b; c; d
+Serial.  
+    ``a; b; c; d``
 
 
 
-:strong:`Parallel`.  a &amp; b &amp; c &amp; d
+Parallel.  
+    ``a & b & c & d``
 
 
 
@@ -69,11 +73,13 @@ Let's examine the possible run-times.
 
 
 
-:strong:`Serial`: a.time + b.time + c.time + d.time
+Serial:
+    a.time + b.time + c.time + d.time
 
 
 
-:strong:`Parallel`:  max( a.time, b.time, c.time, d.time )
+Parallel:
+    max( a.time, b.time, c.time, d.time )
 
 
 
@@ -85,7 +91,7 @@ And that's pretty much all you need to know.
 
 
 
-Want details?  Write four shell scripts which consist of "sleep :emphasis:`n`" for different values of :emphasis:`n`.  Run the two versions.  Measure the time.  Write a loop to run each version 128 times and average the results.
+Want details?  Write four shell scripts which consist of "sleep *n*" for different values of *n*.  Run the two versions.  Measure the time.  Write a loop to run each version 128 times and average the results.
 
 
 
@@ -93,11 +99,12 @@ What did we do?  Theory, Prediction, Experiment.
 
 
 
-:strong:`Context Switching Fetish`
+Context Switching Fetish
+-------------------------
 
 
 
-The True Student of OS will cry foul at the above analysis.  The Student will claim that Parallel programs somehow involve more overhead than Serial programs because the OS must interleave the executions of multiple processes.  
+The **True Student of OS** will cry foul at the above analysis.  The Student will claim that Parallel programs somehow involve more overhead than Serial programs because the OS must interleave the executions of multiple processes.
 
 
 
@@ -105,11 +112,12 @@ This may have been true -- 20 years ago.  When I was a kid, serial meant the OS 
 
 
 
-:strong:`Equal-Sized Workloads`
+Equal-Sized Workloads
+----------------------
 
 
 
-Let's look Oracle's table partitioning.  This is the same as having different workloads for our :emphasis:`n` = 4 concurrent processes.  To make it easy on the brain, get a deck of playing cards (or Tarot cards, since we're looking at mysticism of parallelism).
+Let's look Oracle's table partitioning.  This is the same as having different workloads for our *n* = 4 concurrent processes.  To make it easy on the brain, get a deck of playing cards (or Tarot cards, since we're looking at mysticism of parallelism).
 
 
 
@@ -141,11 +149,12 @@ Want more details?  Do this a few dozen times, creating a spreadsheet with your 
 
 
 
-So, the best case is about 1/4 of the worst case.  :emphasis:`n` = 4.  Hmmm.   Pattern?  
+So, the best case is about 1/4 of the worst case.  *n* = 4.  Hmmm.   Pattern?
 
 
 
-:strong:`Unequal Workloads`
+Unequal Workloads
+------------------
 
 
 
@@ -157,7 +166,7 @@ Here's a great version of that question: "Oracle partitions are balanced when th
 
 
 
-:emphasis:`Three`  percent.  Question: Where did this number come from?  Answer: fetishizing.
+*Three*  percent.  Question: Where did this number come from?  Answer: fetishizing.
 
 
 
@@ -169,7 +178,8 @@ Blocks are harder to count than rows.  Indeed, Oracle's use of blocks is quite c
 
 
 
-:strong:`How Unequal Before We Notice?`
+How Unequal Before We Notice?
+------------------------------
 
 
 
@@ -177,15 +187,16 @@ Well, we're back to the business problem, at this point.  We need to know "how f
 
 
 
-Do they have to be equal-sized?  :strong:`No`.  The only requirement is that the largest partition's processing time fit within our time box.
+Do they have to be equal-sized?  **No**.  The only requirement is that the largest partition's processing time fit within our time box.
 
 
 
-Do we need "optimal" run time?  :strong:`No`.  We need to meet the requirements.  If we can partition equally, that's nice, but hardly worth any brain calories.
+Do we need "optimal" run time?  **No**.  We need to meet the requirements.  If we can partition equally, that's nice, but hardly worth any brain calories.
 
 
 
-:strong:`There's no "Best"`
+There's no "Best"
+-----------------
 
 
 
@@ -203,7 +214,7 @@ BTW, you can explore your data without doing too much work.  SELECT COUNT(*), x 
 
 
 
-You :emphasis:`never`  need "minimal", you only need "good enough to make people happy."  You can fetishize over endless partitioning keys.  Have fun. 
+You *never*  need "minimal", you only need "good enough to make people happy."  You can fetishize over endless partitioning keys.  Have fun.
 
 
 
@@ -215,7 +226,8 @@ If you have a required query run time, and you are looking for a partition that 
 
 
 
-:strong:`Hold The Phone`
+Hold The Phone
+---------------
 
 
 
@@ -223,7 +235,7 @@ The wise reader will say "This isn't that hard; I can just assign a surrogate pa
 
 
 
-Yep.  It's that simple.  A basic ``count % n`` will assign a number, :emphasis:`k`, :math:`0 \leq k < n` , that can be the partition number.  That is the bottom line: searching among natural keys and other attributes is a waste of time and money.  Just compute a partition number at load time and be done with it.  Or you can fetishize about it.
+Yep.  It's that simple.  A basic ``count % n`` will assign a number, *k*, :math:`0 \leq k < n` , that can be the partition number.  That is the bottom line: searching among natural keys and other attributes is a waste of time and money.  Just compute a partition number at load time and be done with it.  Or you can fetishize about it.
 
 
 

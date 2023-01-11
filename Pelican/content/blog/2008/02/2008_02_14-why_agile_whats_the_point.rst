@@ -25,24 +25,22 @@ The things that sold Agile methods to me are the following:
 
 
 
-1.  :strong:`Software is Knowledge`. This means that software development is knowledge capture.  The resulting knowledge has to be so thorough and complete that a lump of fused beach sand can perform the required functions. (If you don't think software development is knowledge capture, what else can you possibly describe it as?)
+1.  **Software is Knowledge**. This means that software development is knowledge capture.  The resulting knowledge has to be so thorough and complete that a lump of fused beach sand can perform the required functions. (If you don't think software development is knowledge capture, what else can you possibly describe it as?)
 
 
-#.  :strong:`Users Lie`.  (Okay, maybe they assume or make mistakes.)  You can either fight against it or leverage it.
+#.  **Users Lie**.  (Okay, maybe they assume or make mistakes.)  You can either fight against it or leverage it.
 
+    Knowledge is only revealed through an exploratory conversation.  People often make mistakes and assumptions without realizing the consequences.  You can document it, but that invests money in capturing the lie – which helps how?  This isn't a political debate where we're playing "spot the flip-flop."  You need to capture the knowledge as software in a variety of drafts and revisions to reveal the problems.  “It looks good on paper, but…”  It *always*  looks good on paper.
 
-    Knowledge is only revealed through an exploratory conversation.  People often make mistakes and assumptions without realizing the consequences.  You can document it, but that invests money in capturing the lie – which helps how?  This isn't a political debate where we're playing "spot the flip-flop."  You need to capture the knowledge as software in a variety of drafts and revisions to reveal the problems.  “It looks good on paper, but…”  It :emphasis:`always`  looks good on paper.
-
-#.  :strong:`Risk accrues`.  Either tackle it up front in small pieces, or suffer the consequences of being swamped by a large amount of risk later.  Again, you can try to think your way through all the risks, or you can think your way through the biggest risk first.  Which is a better investment: tackle one really hard problem and :strong:`solve`  it, or enumerate all possible problems without solving anything?  I think a solution in hand is worth two problems in the bush.
+#.  **Risk accrues**.  Either tackle it up front in small pieces, or suffer the consequences of being swamped by a large amount of risk later.  Again, you can try to think your way through all the risks, or you can think your way through the biggest risk first.  Which is a better investment: tackle one really hard problem and **solve**  it, or enumerate all possible problems without solving anything?  I think a solution in hand is worth two problems in the bush.
 
     Risk has two components.  There’s technical risk (do we really know the technology) and application risk (do we really know the application.)  You can control #1 with education; you cannot control #2 under any circumstances.  Why bother "controlling" it?  How about recognize it and manage it through an exploratory conversation and incremental tackling of risk?
 
 
-#.  :strong:`Scope Creep is Not Bad`.  It's reality (see #2, above).  You can either fight against it or leverage it.  To leverage it, make scope change possible.  In particular, make scope contraction possible.
+#.  **Scope Creep is Not Bad**.  It's reality (see #2, above).  You can either fight against it or leverage it.  To leverage it, make scope change possible.  In particular, make scope contraction possible.
 
 
-
-#.  :strong:`Tools Matter`.   Use the highest-level tools possible for this “knowledge capture” exercise.  C++ is not a civilized way to build application software.  A few performance-critical pieces, maybe; but whole applications?  Never.  You absolutely need Test-Driven Development and a toolset that supports it.  Java (and JUnit) are minimally acceptable.  Python (and unittest) rule. 
+#.  **Tools Matter**.   Use the highest-level tools possible for this “knowledge capture” exercise.  C++ is not a civilized way to build application software.  A few performance-critical pieces, maybe; but whole applications?  Never.  You absolutely need Test-Driven Development and a toolset that supports it.  Java (and JUnit) are minimally acceptable.  Python (and unittest) rule. 
 
 
 
@@ -50,7 +48,8 @@ There's a bunch of education involved in making this case to folks who are habit
 
 
 
-:strong:`Current Work`
+Current Work
+------------
 
 
 
@@ -65,7 +64,8 @@ I specifically told them that there's no "scope" that they (or we) can properly 
 We can't -- up front -- guarantee a finite, definite scope.  We do, however, promise to use all of the time they allocate to the project for customer reviews, priority settings and unit test development.  We can't work on this alone -- it requires deep end-user engagement.
 
 
-:strong:`Where's the Risk?`
+Where's the Risk?
+-----------------
 
 
 

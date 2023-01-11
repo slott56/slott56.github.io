@@ -37,13 +37,12 @@ I tried to introduce the middle ground, and was shot down.  Apparently, the RDBM
 
 
 
-:strong:`The Flat File Folly` 
+The Flat File Folly
+-------------------
 
 
 
 When confronted with serious performance issues in a database application, a good approach is often to eschew complex SQL.  Indeed, the lesson I learned a few years back working on a big data warehouse was the following:
-
-..  code:
 
 ::
 
@@ -61,7 +60,8 @@ I was told that this would clearly use too many I/O operations, making this desi
 
 
 
-:strong:`Optimization in a Vacuum` 
+Optimization in a Vacuum
+-------------------------
 
 
 
@@ -89,7 +89,8 @@ At first, this didn't seem like a false dichotomy.  Then I realized that I was b
 
 
 
-:strong:`Adding A Little Hibernate` 
+Adding A Little Hibernate
+--------------------------
 
 
 

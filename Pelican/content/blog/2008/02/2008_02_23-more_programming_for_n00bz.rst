@@ -27,8 +27,6 @@ Recently, I was heard of a cool programming exercise from a composer, `Xander Lo
 
 He was talking about a program that looked something like the following.
 
-..  code:
-
 ::
 
     import random
@@ -56,7 +54,8 @@ For performance modeling, I wind up writing data generators like the above progr
 
 
 
-:strong:`Fit with cSounds` 
+Fit with cSounds
+-----------------
 
 
 

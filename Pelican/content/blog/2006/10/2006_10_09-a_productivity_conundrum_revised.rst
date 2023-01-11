@@ -207,9 +207,8 @@ No
 sooner do I post this than I see a related note in a post in `Agile
 Testing <http://agiletesting.blogspot.com/>`_ , "`The 90-9-1 rule and building an open source
 community <http://agiletesting.blogspot.com/2006/10/90-9-1-rule-and-building-open-source.html>`_  ".  This note had a helpful-looking book title:
-..  code: `Fearless
-Change: Patterns for Introducing New
-Ideas <http://www.amazon.com/Fearless-Change-Patterns-Introducing-Ideas/dp/0201741571>`_ .  I found this to be a helpful
+
+`Fearless Change: Patterns for Introducing New Ideas <http://www.amazon.com/Fearless-Change-Patterns-Introducing-Ideas/dp/0201741571>`_ .  I found this to be a helpful
 coincidence.  Clearly, I need help introducing change.
 
 

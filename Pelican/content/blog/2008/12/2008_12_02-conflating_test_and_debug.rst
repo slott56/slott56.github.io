@@ -25,11 +25,12 @@ Apparently, a test which passes initially has no value.
 
 
 
-I think that they're complaining that it has no :emphasis:`debugging`  value.  If it passes, it absolutely has testing value.
+I think that they're complaining that it has no *debugging*  value.  If it passes, it absolutely has testing value.
 
 
 
-:strong:`Debugging and Testing`
+Debugging and Testing
+----------------------
 
 
 
@@ -57,11 +58,12 @@ And -- it appears from the conversation on StackOverflow -- no debugging is a ba
 
 
 
-:strong:`Good Test, Bad Test`
+Good Test, Bad Test
+--------------------
 
 
 
-Note that tests have only two conditions: pass and fail.
+Note that tests have only two outcomes: pass and fail.
 
 
 
@@ -73,11 +75,12 @@ If, on the other hand, you have to handle 40,000 transactions per hour, you have
 
 
 
-I've worked with consultants who claim that benchmarking is part of testing.  I agree that benchmarking might be part of a test :emphasis:`phase`  or test :emphasis:`activity`.  Unless it can fail (and you know the threshold that counts as failure) it isn't a test.  Running it until it breaks isn't "testing".  It's exploring or analyzing or learning or something.  But until there's a way to fail, it isn't testing.
+I've worked with consultants who claim that benchmarking is part of testing.  I agree that benchmarking might be part of a test *phase*  or test *activity*.  Unless it can fail (and you know the threshold that counts as failure) it isn't a test.  Running it until it breaks isn't "testing".  It's exploring or analyzing or learning or something.  But until there's a way to fail, it isn't testing.
 
 
 
-:strong:`Testing and Debugging`
+Testing and Debugging
+-----------------------
 
 
 

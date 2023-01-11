@@ -119,33 +119,45 @@ S.Lott -- Software Architect            </a>
 <p>The Django folks are very clear on their value proposition:  The admin interface is already there.  Just build the model, start loading data, and work on the presentation as your requirements solidify.  This is really outstandingly agile.  I can build a model, test, populate and clarify the core model issues quickly.</p>
 <p>What's important is that I'm old (really old) and we used to spend a long time gathering requirements, designing things, and drafting a complex architecture before we coded anything.  When I started in this business, word processing was rare and expensive, often done in ALL CAPS.</p>
 <p>So I have an urge to build really comprehensive sets of requirements and designs and models.  Which tends to break the basic value proposition of Django.</p>
-<p><strong>Small is Beautiful.</strong></p>
+<div class="section" id="small-is-beautiful">
+<h2>Small is Beautiful</h2>
 <p>On consequence of the Django world view is to start small.  The suggestion is to pick a subject area, put the essential data elements together, and call that an &quot;application&quot;.  To this, you'd add applications as you add subject areas.</p>
 <p>This seems to fit in with the Web Mart design pattern in <a class="reference external" href="http://www.acm.org/cacm/">CACM</a>  Vol 50 Issue 4 (&quot;<a class="reference external" href="http://portal.acm.org/citation.cfm?idtarget=">Designing data-intensive web applications for content accessibility using web marts</a> &quot;).  You have a Core Concept, access dimensions and supporting detail dimensions as a single Django application.</p>
-<p><strong>Nomenclature.</strong></p>
+</div>
+<div class="section" id="nomenclature">
+<h2>Nomenclature</h2>
 <p>Here's how it seems to work.</p>
 <p>The &quot;top level&quot; is the Project.  A Project contains one settings.py file.  This means that (generally) a Project has one database, one puddle of media files, a puddle of common template files, one top-level URL map, and <em>n</em>  individual applications.  (Yes, this is not <em>fixed</em> ; Django is flexible, to an extent.)</p>
 <p>Within a project, each of the applications gets an application-specific data model, templates, views, and a localized URL map.</p>
 <p>What's important is that the first application is not the only application.  In many cases, the first application will be the most superficial &quot;index.html&quot; kind of application for the available data.  It will often house the default pages for non-authorized, general public users.  Further, it will present the central-most of the Core Concepts in the data model.  As new applications are added, this may evolve in parallel to show overviews or or links to the data in the newer applications.</p>
 <p>The problem that I have is that I often conflate the project with the first application that I'm building under the project.</p>
-<p><strong>Bad Names.</strong></p>
+</div>
+<div class="section" id="bad-names">
+<h2>Bad Names</h2>
 <p>It's clearly lame to create a project around some subject (&quot;art portfolios&quot;) and then create a single application that effectively duplicates the project's name (&quot;portfolio&quot;).  The first application is rarely the only application.  Too generic an application name is limiting.</p>
 <p>Similarly, vague names like &quot;main&quot;, &quot;core&quot; and &quot;default&quot; are kind of silly, since they don't mean very much.  However, in some cases, your first application will be the one that gets the &quot;all other&quot; URLs.</p>
 <p>For example, your top-level URL's may map '/admin' to the admin interface, '/feedback' to the feedback application, '/about' to a static &quot;about&quot; pages, and '/' to the main? core? default? application.  Grrr.  What to call this?</p>
-<p><strong>Better Names.</strong></p>
+</div>
+<div class="section" id="better-names">
+<h2>Better Names</h2>
 <p>It seems that we have to find a way to characterize the first application's data model without having built the rest of the applications and their data models.  Since I'm old (and forgetful) I have the urge to design them all, then cut them up and give them intelligent names.  Since I'm learning to be Agile, I'm trying to avoid designing them all, but rather, sketch in the big picture, then detail one area while keeping a sense of &quot;where this is all going.&quot;</p>
 <p>I think that there's a hidden feature of Django -- not called out in their documentation -- that helps resolve this.  I think that the Django &quot;application&quot; is really a use case, or a very small set of closely-related use cases.  I think that the Django application names should be aligned with use cases.  This leaves the overall Django project to be the overall system which contains those use cases.</p>
-<p><strong>Example.</strong></p>
+</div>
+<div class="section" id="example">
+<h2>Example</h2>
 <p>Let's say that the client claims they want just one little customer service thing.  Just a little database that allows a customer to determine their warranty coverage given a couple of pieces of information.  Of course, the template has to match the static content.</p>
 <p>So, the project is Warranty Coverage.  What's the application?  Warranty coverage?  Ick.  That's what we're trying to avoid.</p>
 <p>What's the use case?  It sounds like the application is &quot;browseCoverageByDate&quot; or something that parallels the use case name.  Another application might include &quot;purchaseAdditionalCoverage&quot; or similar use case name.</p>
 <p>It's also possible that the project isn't named broadly enough.  This would happen in the unlikely circumstance that someone picked a verb-noun phrase for the overall project.</p>
-<p><strong>Consequence.</strong></p>
+</div>
+<div class="section" id="consequence">
+<h2>Consequence</h2>
 <p>For Proof-of-Concept, Django rules.  However, one can't rush headlong into project and application names.  The project needs to be broadly named, and the application focused on use cases.  The problem with Django as Proof-of-Concept, is that can be migrated into production very easily.</p>
 <p>The overall project name, as a collection of Core Concepts, is some noun phrase that embodies the content of the (one) database and (one) puddle of media files.  To pick this name, we need a sense of the overall collection of applications.  If we can't nail that down, we should pick a broad enough project name that we won't be embarrassed by the name.  Too broad is easy to justify.  Too narrow requires explaining what the objective used to be when we chose that lame-assed name.</p>
 <p>The application names are a little trickier because they are use cases that describe how users access the data in the database.  In some cases, we're writing our own transactions.  In this case use-case style &quot;verb-noun&quot; phrases make sense (&quot;update address&quot;, &quot;cancel order&quot;, etc.) In other cases, we're presenting data built with the admin interface.  In this case, the verb is always &quot;browse&quot; or &quot;get&quot;, so we can consider omitting it.  In this case we name the application around the core concepts.</p>
 <p>Projects require thinking broadly.</p>
 <p>Applications require use cases.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -165,7 +177,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

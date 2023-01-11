@@ -25,11 +25,12 @@ I expect that PHP will go the way of Cold Fusion before too long.  Why?  It's ef
 
 
 
-:strong:`The COBOL-ness Factor`
+The COBOL-ness Factor
+---------------------
 
 
 
-COBOL endures because your in-house IT people find that it works for :strong:`Big Old Batch`\ ™, something they revere as the eternal essence data processing.  They can make it work for interactive programming in CICS.  And they can implement CICS-based web services.  What's not to love about COBOL?
+COBOL endures because your in-house IT people find that it works for **Big Old Batch**\ ™, something they revere as the eternal essence data processing.  They can make it work for interactive programming in CICS.  And they can implement CICS-based web services.  What's not to love about COBOL?
 
 
 
@@ -45,7 +46,8 @@ They scratched their heads at batch Java.  They gave me the "Really?" look.  And
 
 
 
-:strong:`Futures`
+Futures
+-------
 
 
 
@@ -53,7 +55,7 @@ SD Times and Forrester have mentioned dynamic languages.  Now if ComputerWorld w
 
 
 
-Until it gets mentioned a little more, It will be difficult for me to dance around the :strong:`Elephant in the Saloon`\ ™.  When comparing Java and COBOL, I feel compelled to mention that Java -- while light-years ahead of COBOL -- is not the state of the art.  Java has an ecosystem of tools that makes a few marginally competent Java kiddies twice as productive as genius-level old-salt COBOL programmers.  But it's still not Python, which seems to give you another 50% intellectual leverage advantage over Java.
+Until it gets mentioned a little more, It will be difficult for me to dance around the **Elephant in the Saloon**\ ™.  When comparing Java and COBOL, I feel compelled to mention that Java -- while light-years ahead of COBOL -- is not the state of the art.  Java has an ecosystem of tools that makes a few marginally competent Java kiddies twice as productive as genius-level old-salt COBOL programmers.  But it's still not Python, which seems to give you another 50% intellectual leverage advantage over Java.
 
 
 

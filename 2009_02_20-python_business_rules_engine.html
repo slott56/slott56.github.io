@@ -121,17 +121,22 @@ S.Lott -- Software Architect            </a>
                 <p>On Stack Overflow I was captivated by &quot;<a class="reference external" href="http://stackoverflow.com/questions/532814/what-tools-would-you-used-to-write-a-modular-database-in-python">What tools would you used to write a modular database in Python?</a> &quot; and &quot;<a class="reference external" href="http://stackoverflow.com/questions/467738/implementing-a-rules-engine-in-python">Implementing a 'rules engine' in Python</a> &quot;.</p>
 <p>Both questions are quite amazing because they already have a modular, flexible rules engine (called &quot;python&quot;) but it's not good enough: they want to use Python to build something that's -- well -- more Python.</p>
 <p>It's weirder than <a class="reference external" href="http://codespeak.net/pypy/dist/pypy/doc/">PyPy</a> , which makes a certain amount of meta-level sense.</p>
-<p><strong>Business Rules</strong></p>
+<div class="section" id="business-rules">
+<h2>Business Rules</h2>
 <p>The rules engine question provides a tidy specification for three central features of Python: Regular expression matching, arithmetic comparisons, and Boolean operators.  Then they go on to provide a sample expression that's almost (but not quite) python code.  I'm not sure their tiny syntax change is worth the effort of writing a parser.</p>
 <p>In our application, we have a large number of fairly complex business rules.</p>
 <p>Worse, we don't have a tidy specification of what those rules <strong>really</strong>  are.  Instead, we have some kinds of flow charts, and some cultural norms, and folks who know a lot about the problem domain.  We could have spent nine months digging.  Instead, I elected to spend nine months programming in Python.</p>
 <p>When things change, the code is easy to change.  Good OO design principles allow us to capitalize in simple <strong>Strategy</strong>  pattern and <strong>Command</strong>  pattern to &quot;plug in&quot; different modules.  In some cases, we've found that we didn't foresee the need for a Strategy plug in and are forced to refactor some packages to reflect what we learned.</p>
 <p>Python is our business rules engine.</p>
-<p><strong>Modularity</strong></p>
+</div>
+<div class="section" id="modularity">
+<h2>Modularity</h2>
 <p>We have a nebulous offering.  Our business model is simple, and based around some smart people who offer a very clever consulting service.  The software packages some of the consulting results in a form that a customer can subscribe to.</p>
 <p>Clearly, each customer could be unique.  And our service offering <em>should</em>  expand as we get better and better at this.  So we'll have lots of plug-and-play modules for customer-specific features and expansions of the service.</p>
 <p>This is what Python does best.  I've already done significant on-the-fly refactoring as we find new opportunities.  Why use Python to build a super-meta &quot;modular&quot; database?  Python already is modular, and so is SQL.</p>
-<p><strong>Django's World View</strong></p>
+</div>
+<div class="section" id="django-s-world-view">
+<h2>Django's World View</h2>
 <p>One of the best parts of using Django is the &quot;build-the-model-first&quot; world view.  Confronted with requirements, my approach is this.</p>
 <ol class="arabic simple">
 <li>Build a model that works.</li>
@@ -141,6 +146,7 @@ S.Lott -- Software Architect            </a>
 <li>Piss around with templates until we're tired of responding to random tester/user/owner feedback.</li>
 </ol>
 <p>Flexible, Modular, Python.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -160,7 +166,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

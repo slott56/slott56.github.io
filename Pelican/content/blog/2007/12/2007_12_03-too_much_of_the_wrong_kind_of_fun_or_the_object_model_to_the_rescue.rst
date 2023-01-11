@@ -17,19 +17,20 @@ In `Lenses That Distort Our Software <{filename}/blog/2007/11/2007_11_03-lenses_
 
 
 
-I think I have some ways to test an implementation to see if it's the reasonably good, or it's the :strong:`Wrong Kind of Fun`\ ™.  An implementation is Fun when things fit together, and it seems to work.  It's the Wrong  Kind of Fun when you can't implement something, performance is abysmal, or you have maintainability or adaptability problems.
+I think I have some ways to test an implementation to see if it's the reasonably good, or it's the **Wrong Kind of Fun**\ ™.  An implementation is Fun when things fit together, and it seems to work.  It's the Wrong  Kind of Fun when you can't implement something, performance is abysmal, or you have maintainability or adaptability problems.
 
 
 
-One indicator, BTW, seems to be the Paralysis of Analysis.  If you have a lot of open issues, and have invest a lot of time in very detailed plans, you may be having the :strong:`Wrong Kind of Fun`.  Your technology choices don't fit your problem very well.
+One indicator, BTW, seems to be the Paralysis of Analysis.  If you have a lot of open issues, and have invest a lot of time in very detailed plans, you may be having the **Wrong Kind of Fun**.  Your technology choices don't fit your problem very well.
 
 
 
-I've been working with customers who are trying to renovate old applications and bring the technology up to date.  These are riddled with examples of the Wrong Kind of Fun.  The technology choices in the project planning are more examples of :strong:`WKoF`.  But they're boring.  Here's a much more colorful example.  And yes, it's a :strong:`Python To The Rescue`\ ™ story.
+I've been working with customers who are trying to renovate old applications and bring the technology up to date.  These are riddled with examples of the Wrong Kind of Fun.  The technology choices in the project planning are more examples of **WKoF**.  But they're boring.  Here's a much more colorful example.  And yes, it's a **Python To The Rescue**\ ™ story.
 
 
 
-:strong:`The RPG Example`
+The RPG Example
+---------------
 
 
 
@@ -53,11 +54,12 @@ Back in the olden days, we fourth-edition Hero players were left to our own devi
 
 
 
-:strong:`The Underlying Data Model`
+The Underlying Data Model
+-------------------------
 
 
 
-The Hero data model is full of ad-hoc special-cases.  It's a paper and pencil game, mediated by people, so ad-hoc rules aren't too intimidating.  Indeed, the appeal of P&amp;P RPG's is the human mediation.  This isn't :strong:`World of Warcraft`; it can be more subtle.  Of course, if your Game Master/Story Teller isn't very good, it's no better than WoW.  Indeed, some GM's are worse than playing WoW.
+The Hero data model is full of ad-hoc special-cases.  It's a paper and pencil game, mediated by people, so ad-hoc rules aren't too intimidating.  Indeed, the appeal of P&amp;P RPG's is the human mediation.  This isn't **World of Warcraft**; it can be more subtle.  Of course, if your Game Master/Story Teller isn't very good, it's no better than WoW.  Indeed, some GM's are worse than playing WoW.
 
 
 
@@ -73,7 +75,7 @@ The base Characteristics are relatively simple features: Strength for example is
 
 
 
-As an aside, it's the Skills, Talents and Perks that separate a P&amp;P RPG from Multiplayer On-Line Role Playing Game (MORPG).  These require intelligent mediation by the GM, and clever use by the players.  Nothing beats those :strong:`Clever Use of Skills`\ ™ moments in a well-played game.
+As an aside, it's the Skills, Talents and Perks that separate a P&amp;P RPG from Multiplayer On-Line Role Playing Game (MORPG).  These require intelligent mediation by the GM, and clever use by the players.  Nothing beats those **Clever Use of Skills**\ ™ moments in a well-played game.
 
 
 
@@ -81,7 +83,8 @@ A Power is a collection of more detailed features, generally including a large n
 
 
 
-:strong:`The Hypercard Implementation`
+The Hypercard Implementation
+----------------------------
 
 
 
@@ -93,15 +96,16 @@ Given this Card-Background model, each background could have controls that are g
 
 
 
-This doesn't work out well.  It's the :strong:`Wrong Kind of Fun`\ ™.  Yes, it has a handy built-in zero-pain, zero-cost GUI.  However, the object model is really flat.  You have background and card, and that's it.  Having a single background for Powers isn't good enough because standard Movement Powers are radically different from the ad-hoc heavy Special Powers.
+This doesn't work out well.  It's the **Wrong Kind of Fun**\ ™.  Yes, it has a handy built-in zero-pain, zero-cost GUI.  However, the object model is really flat.  You have background and card, and that's it.  Having a single background for Powers isn't good enough because standard Movement Powers are radically different from the ad-hoc heavy Special Powers.
 
 
 
-Ever since I wrote this -- back in the '90's -- I've been struggling with ways to make use of a proper object-oriented data model.  Okay, it's a very casual hobby, so I haven't spent a lot of time on it.  When I played RPG's with my kids, I revisited the problem with no real resolution.  I knew that Hypercard was the :strong:`Wrong Kind of Fun`, but I didn't have an alternative.
+Ever since I wrote this -- back in the '90's -- I've been struggling with ways to make use of a proper object-oriented data model.  Okay, it's a very casual hobby, so I haven't spent a lot of time on it.  When I played RPG's with my kids, I revisited the problem with no real resolution.  I knew that Hypercard was the **Wrong Kind of Fun**, but I didn't have an alternative.
 
 
 
-:strong:`Tool and Platform Bias`
+Tool and Platform Bias
+----------------------
 
 
 
@@ -121,7 +125,8 @@ Neither has a built-in GUI.  So, we're really looking at a whole platform, not j
 
 
 
-:strong:`Use Cases`
+Use Cases
+----------
 
 
 
@@ -149,7 +154,8 @@ I don't really need much of a GUI.  Take that off the table, and we're back to d
 
 
 
-:strong:`Python To The Rescue`
+Python To The Rescue
+--------------------
 
 
 
@@ -157,7 +163,7 @@ Here's two ways that Python helped me to tease my tools out of Hypercard, and cr
 
 
 
-First, the GUI problem was solved by a blinding inspiration: :strong:`Text Files Work`.  A character, gadget, spell, vehicle or base can be a first-class piece of Python code.  We can encode the Hero rules as a set of class definitions.   These classes need a few methods which produce a tidy report, and not too much more.  Each character or gadget is an instance of a class. 
+First, the GUI problem was solved by a blinding inspiration: **Text Files Work**.  A character, gadget, spell, vehicle or base can be a first-class piece of Python code.  We can encode the Hero rules as a set of class definitions.   These classes need a few methods which produce a tidy report, and not too much more.  Each character or gadget is an instance of a class. 
 
 
 
@@ -173,7 +179,8 @@ All of the ad-hoc special cases are simply subclass definitions, in the most nat
 
 
 
-:strong:`Duck Typing and the Development Cycle`
+Duck Typing and the Development Cycle
+-------------------------------------
 
 
 
@@ -185,15 +192,16 @@ But Python doesn't impose a sophisticated data model as a requirement.  We can d
 
 
 
-Further, a basic set of Test Cases, built with :strong:`unittest`, helps us to evaluate our implementation directly.  As soon as we finish defining a class for a Power, we can write a simple test case to be sure that we've got a working implementation.  We can implement the examples from the Hero Rules to be absolutely sure that we're producing correct results.
+Further, a basic set of Test Cases, built with **unittest**, helps us to evaluate our implementation directly.  As soon as we finish defining a class for a Power, we can write a simple test case to be sure that we've got a working implementation.  We can implement the examples from the Hero Rules to be absolutely sure that we're producing correct results.
 
 
 
-:strong:`What?  No Database?  Where's the Persistence?`
+What?  No Database?  Where's the Persistence?
+---------------------------------------------
 
 
 
-This is the principle that is sometimes lost on my clients.  :strong:`Persistence`  does not mean :strong:`Database`.  While SQL has it's advantages, it isn't the final word in persistence.  XML is also a good, standardized persistence mechanism.  A DSL may even be better, even if it isn't standardized.
+This is the principle that is sometimes lost on my clients.  **Persistence**  does not mean **Database**.  While SQL has it's advantages, it isn't the final word in persistence.  XML is also a good, standardized persistence mechanism.  A DSL may even be better, even if it isn't standardized.
 
 
 
@@ -209,7 +217,8 @@ Currently, the only capability I seem to be lacking is concurrent updates.  Wait
 
 
 
-:strong:`A Quick Example`
+A Quick Example
+---------------
 
 
 

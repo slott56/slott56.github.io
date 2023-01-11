@@ -29,7 +29,7 @@ A client of mine is using `iBatis <http://ibatis.apache.org/>`_ , which was new 
 
 
 
-:strong:`Arrrggh!` 
+**Arrrggh!**
 
 
 

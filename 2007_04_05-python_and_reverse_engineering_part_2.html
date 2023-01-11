@@ -141,7 +141,6 @@ the SQL statements easy to find.</p>
 some code for analyzing VB modules to try and locate some nuggets of useful
 information.  We'll start out with a simplistic lexical analyzer to cope with
 the _ statement continuation markers.</p>
-<!-- code: -->
 <pre class="literal-block">
 import re, string
 
@@ -191,7 +190,6 @@ statements.)</p>
 aggregator that iterates through all of the VB statements, handling
 continuations and multiple statements per line
 gracefully.</p>
-<!-- code: -->
 <pre class="literal-block">
 def vbstmt( text ):
     stmt= []
@@ -210,7 +208,6 @@ def vbstmt( text ):
 that demonstrates that we really can find SQL statements based on the variable
 to which a string is assigned.  The output from this function proves that this
 variable has only one purpose in the application.</p>
-<!-- code: -->
 <pre class="literal-block">
 def sqlStr( text ):
     for num, line in srcLine( text ):
@@ -221,7 +218,6 @@ def sqlStr( text ):
 <p>Here's a higher-level function that
 uses an analytical function as an &quot;analyzer&quot;, which it applies to the text of
 several source files.</p>
-<!-- code: -->
 <pre class="literal-block">
 def getSQL( analyzer=sqlStr ):
     import glob, os.path
@@ -240,7 +236,6 @@ metrics.  Here's a quick estimator that counts tokens in each source file.
 Given the frequency histogram of tokens, we can see which variables and
 statement types are used.  We can locate the variables, modules and functions,
 also.</p>
-<!-- code: -->
 <pre class="literal-block">
 def tokenCount( text ):
     total= 0
@@ -274,7 +269,6 @@ elements are inserted.</p>
 <p>This function
 evaluates the assignment statement, returning the assembled SQL text, and the
 variables which were inserted into the SQL text.</p>
-<!-- code: -->
 <pre class="literal-block">
 def qdEval( stmt ):
     &quot;&quot;&quot;Quick and dirty eval of a dynamic SQL statement.&quot;&quot;&quot;
@@ -316,7 +310,6 @@ statements, and uses
 qdEval to
 produce a summary of the overall SQL work done by a given
 module.</p>
-<!-- code: -->
 <pre class="literal-block">
 def sqlDetl( text ):
     def assignment( stmt ):
@@ -417,7 +410,10 @@ couldn't have accomplished what the customer demanded.</p>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

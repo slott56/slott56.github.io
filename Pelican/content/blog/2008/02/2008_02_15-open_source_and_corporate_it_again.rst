@@ -37,7 +37,8 @@ The "If it makes business sense" card is equally easy.  The burden of proof is d
 
 
 
-:strong:`Permission vs. Forgiveness` 
+Permission vs. Forgiveness
+--------------------------
 
 
 
@@ -55,7 +56,7 @@ In short, asking permission gets you nowhere.  I said as much.  I got this reply
 
 
 
-Sorry, but, here's what will happen:  Nothing.  You have to actually :strong:`Do`  something.  About the only thing that will turns heads is to build a proof-of-concept.  And you'll :emphasis:`never`  get permission to do that; you have to do it surreptitiously.  Once you've actually done something, the horse is out of the barn.  The bell cannot be un-rung.  Now the relationship is one of damage control and forgiveness -- battles where there is no clear Maginot line.
+Sorry, but, here's what will happen:  Nothing.  You have to actually **Do**  something.  About the only thing that will turns heads is to build a proof-of-concept.  And you'll *never*  get permission to do that; you have to do it surreptitiously.  Once you've actually done something, the horse is out of the barn.  The bell cannot be un-rung.  Now the relationship is one of damage control and forgiveness -- battles where there is no clear Maginot line.
 
 
 
@@ -67,7 +68,8 @@ It doesn't matter how good new technology is, it takes an epic problem to lead I
 
 
 
-:strong:`Course Corrections` 
+Course Corrections
+--------------------
 
 
 
@@ -81,7 +83,7 @@ If someone has decided to change course and is asking which new course they shou
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 
-Remember: :strong:`change is bad` . It's bad because it's disruptive and disruption is risky and risk == cost. (Note, risk does not actually == cost, risk is only "potential cost". Every manager on the planet will :strong:`act`   based on the claim that risk == actual cost.)
+Remember: **change is bad** . It's bad because it's disruptive and disruption is risky and risk == cost. (Note, risk does not actually == cost, risk is only "potential cost". Every manager on the planet will **act**   based on the claim that risk == actual cost.)
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 
@@ -101,7 +103,8 @@ That's why a POC is so powerful.  Once the horse is out of the barn, we're no lo
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 
-:strong:`Playing to Their Strong Suit` 
+Playing to Their Strong Suit
+----------------------------
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 
@@ -125,7 +128,8 @@ ROI is a lot of assumptions in a big report that gets you the inevitable "No."  
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 
-:strong:`You Competitors Don't Do This` 
+Your Competitors Don't Do This
+------------------------------
 
 I don't see how a "you should change course" suggestion can ever work.   (A) It begins "you should", which is like beginning with "you people":  listening stops almost immediately.  And, (B) it includes "change course" which is always unwelcome: it reflects badly on the previous course. 
 

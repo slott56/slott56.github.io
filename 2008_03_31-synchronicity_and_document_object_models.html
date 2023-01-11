@@ -125,35 +125,45 @@ S.Lott -- Software Architect            </a>
 <p>There are four use cases.  The first two use cases define the interface: marshall and unmarshall.  The third and fourth use cases are building and manipulating the internal objects, separate from any XML (or X12) considerations.</p>
 <p>The problem recently gave me brain cramps because I wanted something a bit more general than my last (ad-hoc) go-around.</p>
 <p>These Use Cases are written from the viewpoint of the Plain Old Python Objects (POPO) application.  While my inbound and outbound interface is XML (or X12), I don't want a program full of text manipulation.  I want to unmarshall the input text into a POPO, work with that POPO and marshall the output as text.</p>
-<p><strong>Use Case 1: Marshall</strong></p>
+<div class="section" id="use-case-1-marshall">
+<h2>Use Case 1: Marshall</h2>
 <p>The first use case is the easy one: Marshalling.  We want a POPO to marshall itself into an XML (or X12 message).</p>
-<p><strong>Use Case 2: Unmarshall (or parse)</strong></p>
+</div>
+<div class="section" id="unmarshall-or-parse">
+<h2>Unmarshall (or parse)</h2>
 <p>While this is solved by SAX, expat, xml.dom.minidom and xml.etree, there are some distinctions that are important.  The &quot;event-based&quot; parsing of SAX or expat is only part of the use case.  The more important part is the creation of a resulting document object that can be used for further processing.</p>
 <p>This document is easiest to work with if it's built of POPO's.  The &quot;manipulation&quot; use case, below, depends on simple, elegant Python syntax.</p>
-<p><strong>Use Case 3: Build</strong></p>
+</div>
+<div class="section" id="use-case-3-build">
+<h2>Use Case 3: Build</h2>
 <p>In additional to receiving XML documents that encode POPO objects, we also need to build POPO objects &quot;from scratch&quot; in Python programs.  The point of POPO's is to have ordinary Python constructors building a complex object that can be manipulated and marshalled as XML.</p>
-<p><strong>Use Case 4: POPO Manipulation</strong></p>
+</div>
+<div class="section" id="use-case-4-popo-manipulation">
+<h2>Use Case 4: POPO Manipulation</h2>
 <p>I want to be able to say things like</p>
 <p>:Apple-tab-span:`` msg.LOOP1.DTP.DTP02= &quot;20080330&quot;</p>
 <p>The Python &quot;.&quot; is much, much cleaner than the rather complex search references required by the xml.dom structures.</p>
 <p>However, this isn't the only construct I'd like.  Many XML (and X12) constructs can repeat, so we need to use the &quot;[]&quot; or insert a number in the &quot;.&quot; path.</p>
 <p>XPath is not particularly pleasant for this, since it is not very Pythonic.  [XPath is a useful model, however, because the navigation axes can serve as a template for method design.]</p>
-<p><strong>Solutions</strong></p>
+</div>
+<div class="section" id="solutions">
+<h2>Solutions</h2>
 <p>There are a number of solutions, most of them icky.</p>
 <ol class="arabic simple">
-<li>xml.dom.minidom.  I liked this, right up until yesterday, when I read` Python HTML Parser Performance &lt;<a class="reference external" href="http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/">http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/</a>&gt;`_ .  It wasn't the &quot;performance&quot; topic that caught my attention, it was the &quot;I do not recommend using minidom for anything&quot; quote that stopped me cold.</li>
+<li><tt class="docutils literal">xml.dom.minidom</tt>.  I liked this, right up until yesterday, when I read` Python HTML Parser Performance &lt;<a class="reference external" href="http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/">http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/</a>&gt;`_ .  It wasn't the &quot;performance&quot; topic that caught my attention, it was the &quot;I do not recommend using minidom for anything&quot; quote that stopped me cold.</li>
 <li>A kind of <strong>Bridge</strong>  to create usable POPO's which are a Bridge to the xml.dom model implemented in minidom.  This isn't a pure Bridge, but a kind of <a class="reference external" href="http://en.wikipedia.org/wiki/Bridge_pattern">Bridge</a> -meets-<a class="reference external" href="http://en.wikipedia.org/wiki/Fa%C3%A7ade_pattern">Facade</a> .</li>
 <li>Custom POPO's.  This requires parsing using a custom (but not too complex) SAX ContentHandler and a simple XML marshaller method of each POPO class.</li>
-<li>ElementTree.  This was new to me.</li>
+<li><tt class="docutils literal">ElementTree</tt>.  This was new to me.</li>
 </ol>
-<p>The minidom solution has two use cases nailed -- marshall and unmarshall fit nicely.  Building doesn't work out so well because the document.createElement construction is very clunky.  Manipulation is also a pain in the neck because the navigation capabilities are limited.</p>
-<p>The &quot;Bridge to A Footing&quot; is something I'd used recently.  In that case, the footing wasn't minidom, but was a low-level representation of X12 messages.  Extending it, however, showed some profound limitations in my original design.</p>
+<p>The <tt class="docutils literal">minidom</tt> solution has two use cases nailed -- marshall and unmarshall fit nicely.  Building doesn't work out so well because the <tt class="docutils literal">document.createElement</tt> construction is very clunky.  Manipulation is also a pain in the neck because the navigation capabilities are limited.</p>
+<p>The &quot;Bridge to A Footing&quot; is something I'd used recently.  In that case, the footing wasn't <tt class="docutils literal">minidom</tt>, but was a low-level representation of X12 messages.  Extending it, however, showed some profound limitations in my original design.</p>
 <p>The idea is that each attribute of a Bridge class is implemented as a Python descriptor.  The descriptor's  __get__ method implements the requisite search.  Marshall, Unmarshall and Manipulation are really quite nice.  Building, however, gets complicated.  Mostly because we still have to build the underlying minidom representation from Bridge objects that are heavily biased toward search.</p>
 <p>Custom POPO's work out moderately well.  The Python classes parallel the XSD's or DTD's or SEF's of the original message structure.  This isn't always ideal, however, since we have to define every single tag in a complex message structure.  For large X12 messages, this is a LOT of definitions of elements that simply pass through our application.  Its much nicer to have generic definitions (like minidom) that define the bulk of the data and a Bridge that applies to the useful parts.</p>
-<p><strong>The Element Tree Solution</strong></p>
+</div>
+<div class="section" id="the-element-tree-solution">
+<h2>The Element Tree Solution</h2>
 <p>Element Tree is new with Python 2.5 and corrects many problems with xml.dom.minidom.  Principally, ElementTree is Pythonic, not a rehash of a Java design.</p>
 <p>The Marshall and Unmarshall use cases work out reasonably well.  I have a beef with ElementTree.write, since that always creates a file.  But, I worked around it with:</p>
-<!-- code: -->
 <pre class="literal-block">
 def toXML( etree ):
     buffer= StringIO.StringIO()
@@ -167,8 +177,11 @@ def toXML( etree ):
 <p>Manipulating, similarly, isn't awful.  The (currently undocumented) ElementPath module provides a &quot;name/name&quot; XPath-like search functionality.  However, the way that the ElementPath (or _SimpleElementPath) plug into the overall structure of the find method shows how to build more sophisticated versions of ElementPath that handle more complex XPath search axes.  The nasty part of this is parsing the <a class="reference external" href="http://www.w3.org/TR/xpath">XPath notation</a>  itself.</p>
 <p>[Specifically, abbreviated notation, which limits searches to the child axis.  The &quot;[<em>n</em>]&quot; index construct and &quot;[&#64; <em>attr</em> = <em>value</em>]&quot; constructs are the most useful.]</p>
 <p>I'd like to write message.loop1.dtp, but I'm willing to settle for message.find(&quot;loop1/dtp&quot;).</p>
-<p><strong>Thanks</strong></p>
+</div>
+<div class="section" id="thanks">
+<h2>Thanks</h2>
 <p>No one knew I was having a problem with manipulating complex XML and X12 messages.  But the answer just sort of dropped into my lap by virtual of some cosmic synchronicity.  Or maybe chance favors the prepared mind.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -188,7 +201,10 @@ def toXML( etree ):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -25,7 +25,8 @@ Most IG's are a big table-like document, but aren't properly distributed as a ti
 
 
 
-:strong:`Open-Source X12 Parsers` 
+Open-Source X12 Parsers
+-----------------------
 
 
 
@@ -38,7 +39,8 @@ Then one of my co-workers asked if I'd seen the `Python X12 <http://pyx12.source
 
 
 
-:strong:`A More Useful Configuration` 
+A More Useful Configuration
+---------------------------
 
 
 
@@ -54,8 +56,6 @@ The structure is readily defined by a few Python classes.
 
 
 
-
-..  code:
 
 ::
 
@@ -82,12 +82,13 @@ With this structure, we can define messages in a relatively pleasant way.  Excep
 
 
 
-:strong:`The Structural Declaration Pattern` 
+The Structural Declaration Pattern
+-----------------------------------
 
 
 
 
-Here's the :strong:`Structural Declaration`  that I settled on.  This can be built from the Perl .CF files or the Python X12 XML files.  Then it can be customized to match the business partner's Implementation Guide.  [Ideally, it would be build directly from an IG; where the IG is based on a usable spreadsheet -- hopefully in `Open Office XML <http://xml.openoffice.org/>`_ .  Often, Micro$oft Office files can be saved in an open format.]
+Here's the **Structural Declaration**  that I settled on.  This can be built from the Perl .CF files or the Python X12 XML files.  Then it can be customized to match the business partner's Implementation Guide.  [Ideally, it would be build directly from an IG; where the IG is based on a usable spreadsheet -- hopefully in `Open Office XML <http://xml.openoffice.org/>`_ .  Often, Micro$oft Office files can be saved in an open format.]
 
 
 
@@ -96,8 +97,6 @@ This example only names the various Segments without providing the Element-by-El
 
 
 
-
-..  code:
 
 ::
 
@@ -135,12 +134,13 @@ Each of the loop2000x variables is a moderately complex Loop definition.  Ultima
 
 
 
-This is much more expressive than the .INI files.  It is also considerably easier to read and work with than the XML files.  As cool as it is, this isn't :emphasis:`precisely`  what I was looking for.
+This is much more expressive than the .INI files.  It is also considerably easier to read and work with than the XML files.  As cool as it is, this isn't *precisely*  what I was looking for.
 
 
 
 
-:strong:`Evolving of the API` 
+Evolving of the API
+-------------------
 
 
 
@@ -165,8 +165,6 @@ We have two opposing forces.  I want a simple declaration but I also want extens
 
 
 
-
-..  code:
 
 ::
 
@@ -217,7 +215,8 @@ I have a couple of choices.  First, I could bundle the structural elements into 
 
 
 
-:strong:`A Properties Bundle` 
+A Properties Bundle
+-------------------
 
 
 
@@ -227,7 +226,7 @@ The alternative is to bundle the descriptive parameters into some kind of Proper
 
 
 
-This leads us to change the style to something that could be called a :strong:`Bundled Properties`  design.  [Something I first saw in Django.]  This means that our constructor has just two positional parameters followed by an unlimited number of structural elements.  We can live with two positional parameters; it is unlikely to turn into a maintenance problem.
+This leads us to change the style to something that could be called a **Bundled Properties**  design.  [Something I first saw in Django.]  This means that our constructor has just two positional parameters followed by an unlimited number of structural elements.  We can live with two positional parameters; it is unlikely to turn into a maintenance problem.
 
 
 
@@ -250,8 +249,6 @@ Our Properties class can be as simple as the following.
 
 
 
-
-..  code:
 
 ::
 

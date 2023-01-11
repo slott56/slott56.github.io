@@ -21,11 +21,12 @@ RL sent me this link, and tried to create a "perpetual motion" metaphor for Joel
 
 
 
-This is essentially a "formal methods can't work -- it's logically impossible to use logic" argument.  In Joel's case, there are two points.  First, since you need to both know and prove everything about a program, the formal post-condition is so complex that it essentially :emphasis:`is`  the program.  His other argument is that the proof is just as likely to contain errors as the resulting program.  Compounding this, RL has an inappropriate metaphor.
+This is essentially a "formal methods can't work -- it's logically impossible to use logic" argument.  In Joel's case, there are two points.  First, since you need to both know and prove everything about a program, the formal post-condition is so complex that it essentially *is*  the program.  His other argument is that the proof is just as likely to contain errors as the resulting program.  Compounding this, RL has an inappropriate metaphor.
 
 
 
-:strong:`Complexity and Abstraction`
+Complexity and Abstraction
+---------------------------
 
 
 
@@ -49,11 +50,12 @@ Read Dijkstra (`A Discipline of Programming <http://www.amazon.com/Discipline-Pr
 
 
 
-There are some exercises which hit on the "prior results" issue as a subtext.  For example, one exercise in Gries asks you to prove that swapping two elements of an array leaves the rest of the array intact.  This is -- to an extent -- a duh proposition.  "Of course swapping two elements leaves the array intact," is the standard response.  However, what's the :emphasis:`proof`  of that glib assertion?  Once you have this, you don't ever need to prove it again.  Indeed, you can -- without too many problems -- omit this trivial detail from a post-condition.  In short, your prior results serve to abstract details away from the real problem.
+There are some exercises which hit on the "prior results" issue as a subtext.  For example, one exercise in Gries asks you to prove that swapping two elements of an array leaves the rest of the array intact.  This is -- to an extent -- a duh proposition.  "Of course swapping two elements leaves the array intact," is the standard response.  However, what's the *proof*  of that glib assertion?  Once you have this, you don't ever need to prove it again.  Indeed, you can -- without too many problems -- omit this trivial detail from a post-condition.  In short, your prior results serve to abstract details away from the real problem.
 
 
 
-:strong:`In The Real World`
+In The Real World
+-----------------
 
 
 
@@ -65,7 +67,7 @@ Proof techniques are appropriate for the complex nested loops of this applicatio
 
 
 
-The :strong:`O` (:emphasis:`n`\ ² ) comparison of documents within a batch of likely matches, similarly, has a relatively simple post-condition, and a moderate level of gnarl.  It's the insertion of all the special cases that becomes tedious.  Except, of course, for abstraction.  All the special cases are subclass of a common "Condition" or "DocCombo" superclass.  We have to prove that our abstract superclasses have the right properties.  Once we have that, we simply prove that each subclass satisfies the superclass assertions.
+The :math:`\textbf{O}(n^2)` comparison of documents within a batch of likely matches, similarly, has a relatively simple post-condition, and a moderate level of gnarl.  It's the insertion of all the special cases that becomes tedious.  Except, of course, for abstraction.  All the special cases are subclass of a common "Condition" or "DocCombo" superclass.  We have to prove that our abstract superclasses have the right properties.  Once we have that, we simply prove that each subclass satisfies the superclass assertions.
 
 
 
@@ -77,8 +79,8 @@ Okay, did we specify "everything at this level of abstraction?"  Again, no.  We 
 
 
 
-:strong:`Buggy Proofs Replace Buggy Programs`
-
+Buggy Proofs Replace Buggy Programs
+------------------------------------
 
 
 Yep.  Can't argue with the argument that a buggy proof is the same as a buggy program.
@@ -89,7 +91,7 @@ Here's the clincher.  You don't have tools for testing or validating your proof:
 
 
 
-[:emphasis:`Irony`] Yep.  That makes the whole technique completely worthless.  How stupid of me to be mislead by charlatans like Gries or Dijkstra. [:emphasis:`End Irony` ]
+    [*Irony*] Yep.  That makes the whole technique completely worthless.  How stupid of me to be mislead by charlatans like Gries or Dijkstra. [*End Irony* ]
 
 
 
@@ -109,12 +111,12 @@ Third, a proof requires that you work at a level of abstraction that makes the p
 
 
 
-[:emphasis:`Nothing -- nothing! -- is worse than programs which must be carefully reverse engineered into word processing documents.  Think what this means.  Software is a form of knowledge capture.  Yet, we have programs that are so opaque, confusing and dysfunctional that we must read the source to determine  what they might have meant.  When we reach this impasse, we also tend to find that the programs cannot be summarized.  They are a morass of exceptions and special cases, and there is rarely a way to accurately characterize what they` mean :emphasis:`.`]
+[*Nothing -- nothing! -- is worse than programs which must be carefully reverse engineered into word processing documents.  Think what this means.  Software is a form of knowledge capture.  Yet, we have programs that are so opaque, confusing and dysfunctional that we must read the source to determine  what they might have meant.  When we reach this impasse, we also tend to find that the programs cannot be summarized.  They are a morass of exceptions and special cases, and there is rarely a way to accurately characterize what they* mean *.*]
 
 
 
-:strong:`Perpetual Motion`
-
+Perpetual Motion
+----------------
 
 
 The perpetual motion metaphor for formal techniques has one further problem.  Programs and their proofs live in different worlds.  The proof system is a "higher order" logic, distinct from the logic system in which software is implemented.  Proof systems contain a number of concepts that aren't actually part of the software system.
@@ -133,11 +135,12 @@ Since our spec is in a "larger" language, we don't have a situation where we nee
 
 
 
-[:emphasis:`And no, the fact that you didn't provee verything doesn't indict the technique as worthless.  That wasn't the goal.  Formal methods are a tool that use with version control, automated testing, databases, operating systems, interpreters and IDE's.`]
+[*And no, the fact that you didn't prove verything doesn't indict the technique as worthless.  That wasn't the goal.  Formal methods are a tool that use with version control, automated testing, databases, operating systems, interpreters and IDE's.*]
 
 
 
-:strong:`The Process`
+The Process
+-----------
 
 
 
@@ -149,7 +152,7 @@ As a practical matter, we aren't stupid.  We have a sense of what works and what
 
 
 
-Then we develop the program, using the post-condition as a formal statement of the goal.  It's hard to emphasize that textbook formal methods demonstrate that we can do :emphasis:`anything`.  Practically, we have some pretty specific requirements that constrain the space in which we're working.  We're not going to flail at random; we're going to take the minimal number of steps to eke out our victory.
+Then we develop the program, using the post-condition as a formal statement of the goal.  It's hard to emphasize that textbook formal methods demonstrate that we can do *anything*.  Practically, we have some pretty specific requirements that constrain the space in which we're working.  We're not going to flail at random; we're going to take the minimal number of steps to eke out our victory.
 
 
 

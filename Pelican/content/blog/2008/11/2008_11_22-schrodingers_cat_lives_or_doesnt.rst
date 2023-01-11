@@ -19,8 +19,6 @@ See this question on `Python objects deleting themselves <http://stackoverflow.c
 
 Some additional material was posted in an answer (not in the question, where it belongs) making it a little hard to go from question to answers.  The original poster's non-answer had a great little block of code that's potentially funny.  [This is the real example; I tidied it up a little.]
 
-..  code:
-
 ::
 
     class Generic:
@@ -55,7 +53,8 @@ Some additional material was posted in an answer (not in the question, where it 
 
 
 
-:strong:`The Cat is Out of the Bag` 
+The Cat is Out of the Bag
+--------------------------
 
 
 
@@ -68,8 +67,6 @@ Really.  The example was about letting the cat out of the bag.
     
 
     Under no circumstances does any Python object ever need to get deleted. If an item is "destroyed", then it's not in a Being's bag. It's not in a location.
-
-    ..  code:
 
     ::
 

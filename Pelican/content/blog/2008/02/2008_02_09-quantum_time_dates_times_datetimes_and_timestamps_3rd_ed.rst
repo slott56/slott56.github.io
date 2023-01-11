@@ -17,7 +17,7 @@ Time is simple.  You can make it complicated with any one of a large number of d
 
 
 
-In the :strong:`Real World`\ ™, time may be a quantum field (read stuff by `'t Hooft <http://books.google.com/books?id=uPao7ThZEZAC>`_ ).  For that matter, space itself may have some quantum granularity.  Or, this could be a handy hack the physicists have devised because it makes the math work out more simply.
+In the **Real World**\ ™, time may be a quantum field (read stuff by `'t Hooft <http://books.google.com/books?id=uPao7ThZEZAC>`_ ).  For that matter, space itself may have some quantum granularity.  Or, this could be a handy hack the physicists have devised because it makes the math work out more simply.
 
 
 
@@ -39,7 +39,8 @@ The Gregorian calendar, on the other hand, has two sets of interlocking dimensio
 
 
 
-:strong:`Bad Old Days`
+Bad Old Days
+------------
 
 
 
@@ -47,7 +48,7 @@ The calendar can be made much more complicated by adhering to a 1970's view of d
 
 
 
-Further, we rarely had pleasant, easy-to-use calendrical calculation libraries.  The :emphasis:`idea`  of a book like `The Standard C Date/Time Library <http://www.amazon.com/Standard-Date-Time-Library-Programming/dp/0879304960>`_  didn't exist.  Rather than refer to great books like `Calendrical Calculations <http://emr.cs.uiuc.edu/home/reingold/calendar-book/index.shtml>`_ , we "rolled our own".  Often with profound bugs.
+Further, we rarely had pleasant, easy-to-use calendrical calculation libraries.  The *idea*  of a book like `The Standard C Date/Time Library <http://www.amazon.com/Standard-Date-Time-Library-Programming/dp/0879304960>`_  didn't exist.  Rather than refer to great books like `Calendrical Calculations <http://emr.cs.uiuc.edu/home/reingold/calendar-book/index.shtml>`_ , we "rolled our own".  Often with profound bugs.
 
 
 
@@ -59,19 +60,20 @@ It's the 21st century.  Using any home-brewed date or calendar library is at lea
 
 
 
-:strong:`Useless Data Types`
+Useless Data Types
+-------------------
 
 
 
-The :strong:`Bad Old Days`  lead folks to put some useless data types in the SQL standard.  By useless, I mean absolutely without value.  I consider their use a potential quality defect, and lift it up as a bug every time I encounter them.
+The **Bad Old Days**  lead folks to put some useless data types in the SQL standard.  By useless, I mean absolutely without value.  I consider their use a potential quality defect, and lift it up as a bug every time I encounter them.
 
 
 
-Winner of the :strong:`Useless`  category is Time as a distinct data type.  Time means "Time-of-Day", and is just the least-significant portion of a proper DateTime.  It is not atomic data except in one very specialized situation.  I'll get back to that.
+Winner of the **Useless**  category is Time as a distinct data type.  Time means "Time-of-Day", and is just the least-significant portion of a proper DateTime.  It is not atomic data except in one very specialized situation.  I'll get back to that.
 
 
 
-Runner-up in the :strong:`Useless`  category is Date as a distinct data type.  Date means "DateTime with time set to midnight" and is just a way of rounding a DateTime down to the nearest Date.  Sometimes, you can make the business case that time didn't matter.  In some instances you truly have a date with no relevant time (examples follow).  More often, you have users who only want to see the Date portion of a full DateTime; this is a matter of formatting, not a matter of intentionally dropping precision.
+Runner-up in the **Useless**  category is Date as a distinct data type.  Date means "DateTime with time set to midnight" and is just a way of rounding a DateTime down to the nearest Date.  Sometimes, you can make the business case that time didn't matter.  In some instances you truly have a date with no relevant time (examples follow).  More often, you have users who only want to see the Date portion of a full DateTime; this is a matter of formatting, not a matter of intentionally dropping precision.
 
 
 
@@ -83,7 +85,8 @@ Using any data type other than a full DateTime (or TimeStamp) requires some care
 
 
 
-:strong:`Waste of Storage`
+Waste of Storage
+----------------
 
 
 
@@ -98,8 +101,8 @@ I've been hearing the "waste of storage" malarkey for 30 years.  I'm tired of it
 The cost of storage is falling rapidly.  We can waste serious money analyzing and justifying each date.  Or we just buy storage and move on to more interesting questions.
 
 
-
-:strong:`Other Date Round-Offs`
+Other Date Round-Offs
+-----------------------
 
 
 
@@ -107,7 +110,7 @@ While we have built-in support for rounding off a DateTime to the nearest date, 
 
 
 
-No one could figure out how to work with a (:emphasis:`year`, :emphasis:`month` ) pair.  When I arrived on the scene numerous interactive pages and reports had been developed which simply did not work correctly except for a tiny test case that involved a single record.
+No one could figure out how to work with a (*year*, *month* ) pair.  When I arrived on the scene numerous interactive pages and reports had been developed which simply did not work correctly except for a tiny test case that involved a single record.
 
 
 
@@ -115,8 +118,6 @@ Particularly disturbing was their mishandling of the 18-month rolling report whi
 
 
 
-
-..  code:
 
 ::
 
@@ -135,7 +136,8 @@ There's nothing more complex than the above formulas to reduce their hideous, un
 
 
 
-:strong:`The Data Warehouse Round-Off`
+The Data Warehouse Round-Off
+----------------------------
 
 
 
@@ -165,7 +167,8 @@ If you're really strapped for storage, you might can try to separate the Date an
 
 
 
-:strong:`Date Range Comparisons`
+Date Range Comparisons
+------------------------
 
 
 
@@ -209,14 +212,14 @@ This is common, and very easy to query incorrectly.
 
 
 
-Specifically, look at the dates labeled :emphasis:`end A` and :emphasis:`start B`.  We have two choices for ways to encode these date relationships.  In both cases, we're comparing some query date, :emphasis:`d`, for membership in a date range; between the start time, :emphasis:`Ts` , and the end time, :emphasis:`Te` .
+Specifically, look at the dates labeled *end A* and *start B*.  We have two choices for ways to encode these date relationships.  In both cases, we're comparing some query date, *d*, for membership in a date range; between the start time, :math:`T_s`, and the end time, :math:`T_e`.
 
 
 
 
--   :strong:`Closed Interval`.  This is the case expressed by SQL BETWEEN: ``d BETWEEN Ts AND Te``.  Some math textbooks might write this :math:`[T_s, T_e]`.  We can also say :math:`T_s \leq d \leq T_e`.  Depending on the quantum resolution of time you're using, this can be pleasant or nasty.
+-   **Closed Interval**.  This is the case expressed by SQL BETWEEN: ``d BETWEEN T_s AND T_e``.  Some math textbooks might write this :math:`[T_s, T_e]`.  We can also say :math:`T_s \leq d \leq T_e`.  Depending on the quantum resolution of time you're using, this can be pleasant or nasty.
 
--   :strong:`Half-Open Interval`.  This is the case expressed by :math:`T_s \leq d < T_e`.  Some math textbooks might write this :math:`[T_s, T_e)`, to show that the interval doesn't include one end.  If you simply ban use of BETWEEN, this representation has several advantages.
+-   **Half-Open Interval**.  This is the case expressed by :math:`T_s \leq d < T_e`.  Some math textbooks might write this :math:`[T_s, T_e)`, to show that the interval doesn't include one end.  If you simply ban use of BETWEEN, this representation has several advantages.
 
 
 
@@ -226,12 +229,13 @@ We'll look at each more closely to provide reasons why Closed Intervals (and the
 
 
 
-:strong:`Closed Interval`
+Closed Interval
+----------------
 
 
 
 
-Using a Closed Interval requires that the dates marked :emphasis:`end A`  and :emphasis:`start B`  above are not equal.  If they were equal, then both records would be in the result set for that matching time.  There can, however, be no gap between these two times.  If we use Date data types, then they must differ by exactly one day.
+Using a Closed Interval requires that the dates marked *end A*  and *start B*  above are not equal.  If they were equal, then both records would be in the result set for that matching time.  There can, however, be no gap between these two times.  If we use Date data types, then they must differ by exactly one day.
 
 
 
@@ -251,7 +255,8 @@ In order to insert the next territory change, we need to do two things.  We have
 
 
 
-:strong:`Half-Open Interval`
+Half-Open Interval
+-------------------
 
 
 
@@ -271,7 +276,7 @@ I've been told this will be confusing to "other users" of the database.  For thi
 
 
 
-The knottiest problem is "What about end-user queries?"  I'm a-waffle on this.  I don't think end-users should be afflicted with SQL.  However, if we tie up all reporting in an inefficient IT department, end-users will immediately take active steps to write their own queries.  If we aim high and provide everyone a license to a reporting tool like Business Objects, then the date ranges are hidden in the BO universe definitions.  If we can't afford that... well, :strong:`Bad Things`  are pretty much inevitable. 
+The knottiest problem is "What about end-user queries?"  I'm a-waffle on this.  I don't think end-users should be afflicted with SQL.  However, if we tie up all reporting in an inefficient IT department, end-users will immediately take active steps to write their own queries.  If we aim high and provide everyone a license to a reporting tool like Business Objects, then the date ranges are hidden in the BO universe definitions.  If we can't afford that... well, **Bad Things**  are pretty much inevitable. 
 
 
 
@@ -281,7 +286,8 @@ Either get proper reporting tools or provide enough education so that end users 
 
 
 
-:strong:`Pure Dates`
+Pure Dates
+------------
 
 
 
@@ -291,7 +297,8 @@ Some business rules are based on a date, and the time isn't available.  These ru
 
 
 
-:strong:`Unbound Times`
+Unbound Times
+--------------
 
 
 
@@ -301,7 +308,8 @@ There's one potential use for Time, separated from DateTime.  That's when we're 
 
 
 
-:strong:`Summary`
+Summary
+---------
 
 
 

@@ -126,7 +126,8 @@ S.Lott -- Software Architect            </a>
 <p>There are two design patterns for the open-ended ranges.</p>
 <p>We can use the SQL Domain-Independent NULL.  In this case we'll have queries like :x BETWEEN tbl.start AND COALESCE( tbl.end, :x ).</p>
 <p>We can define a Domain-Specific NULL for the end dates.  A date in the far, far future works best.  In this case, we'll have queries like :x BETWEEN tbl.start AND tbl.end.</p>
-<p><strong>Opinions Vary</strong></p>
+<div class="section" id="opinions-vary">
+<h2>Opinions Vary</h2>
 <p>One manager was pretty sure that the NULL case would be faster.  I'm not sure why, but I need to ask when I'm out there next.  I think this was based on the observation that tables with lots of NULL columns process faster.  (For full table scans, this is true because the table is physically smaller.)</p>
 <p>I was darn sure that the NULL's would be measurably slower.  Why?  They can't be indexed.  Since they're not in the index, the RDBMS has to resort to full table scans and can't exploit the index.</p>
 <p>Boy was I wrong.</p>
@@ -134,18 +135,25 @@ S.Lott -- Software Architect            </a>
 <p>For these &quot;in a range&quot; queries, the RDBMS's I looked at don't appear to leverage the index in terribly clever ways.  They appear to use full table scans.  I'm not really terribly surprised.  Query optimization is hard enough, cleverly using an index for &quot;in a range&quot; would probably be too much thinking for a fairly rare kind of query.</p>
 <p>RDBMS performance measurement is hard.  Many things interfere with getting solid performance numbers.  The best approach is long-term averages under load.  So, some of my results may have a great deal of experimental bias built in.</p>
 <p>However, what I did see were microscopic differences between the two approaches to open-ended date ranges.  I saw colossal differences between table scans and joins with and without indexes.  I saw colossal differences with different kinds of indexes.  But the two end-date representations seemed equivalent.</p>
-<p><strong>My Trump Card</strong></p>
+</div>
+<div class="section" id="my-trump-card">
+<h2>My Trump Card</h2>
 <p>I got some follow-up comments on my &quot;non-null NULL&quot; approach.  I think they mean &quot;domain-specific&quot; nulls, that is, using a large date instead of a NULL.  That shows a bias where they're equating open-ended dates with NULLs.  As if the &quot;right&quot; implementation were NULLs and I'm proposing something radical and odd with my &quot;non-null NULL&quot;.</p>
 <p>They worry about documenting the domain-specific NULL.  How do we explain that this &quot;random date in the far future&quot; means &quot;till the end of time as we know it&quot;?  I think they're just hand-wringing because they don't want to change.</p>
 <p>They act like the established meaning for NULL is &quot;for the foreseeable future&quot;.  Sadly, that's not true; NULL can mean almost anything.  Sometimes it might mean &quot;don't know&quot;.  Sometimes it mean &quot;does not apply&quot;.  Sometimes it means &quot;the input was incomplete, and we'll update this later.&quot;  Sometimes it means, &quot;the input was incomplete, and this record is a place-holder to remind us to fix the error.&quot;</p>
 <p>I read a lot of other people's code.  While you may be pretty solid on your &quot;standard&quot; use of :x BETWEEN start and COALESCE ( end, :x ), you're in the minority on this.  What I observe about SQL idioms is that one programmer does it that way, and all the other programmers do it other ways.  The stored procedure hack will write define a whole library of procedures to &quot;make the problem go away.&quot;  At least one maintenance programmers won't get the idiom, and will write application program loops with IF statements.  Further, what I often have to analyze is the one mystery program with SQL so obscure that no one dares touch it.</p>
 <p>&quot;A COALESCE isn't obscure&quot; you say.  My response is, &quot;if that was the only problem, I'd agree.  But you've got so many other things going on, that it would be good to have just this date thing be simple and obvious.&quot;</p>
-<p><strong>Bottom Line</strong></p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>Performance-wise, I couldn't prove that NULLs or far future dates are better.  Reading-wise, I prefer to read simpler code.</p>
 <p>In my opinion, simple wins.</p>
-<p><strong>Technical Note</strong></p>
+</div>
+<div class="section" id="technical-note">
+<h2>Technical Note</h2>
 <p>Yes, I used Python to build the SQL and execute it with various kinds of data.  It was handy to collect the results in CSV file and pump it straight into the spreadsheet.</p>
 <p>Different RDBMS products have different syntax for these date things, so I had to do a bunch of relatively icky text manipulation.  I wanted to use SQLAlchemy to handle the vagaries of the database engines, but the client would have disputed the results.  Instead I had to build relatively simple Python to run plain-old-SQL in simple, obvious ways.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -165,7 +173,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

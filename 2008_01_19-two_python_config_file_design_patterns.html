@@ -124,15 +124,17 @@ S.Lott -- Software Architect            </a>
                 <p>I hate to complain, but there's a Python syntax rule that has slightly cramped my style.  The problem stems from a need to describe a really complex and extensible structure.</p>
 <p>We need to describe X12N messages, which have a rather complex structure, and the structure can be customized.  While the core syntax is pretty simple, you need your business partner's Implementation Guide (IG) to make sense of the data.</p>
 <p>Most IG's are a big table-like document, but aren't properly distributed as a tidy, easy-to-work with table.  [BTW, The documents are usually published as PDF files for two reasons.  One, lawyers understand a file that is hard to edit and don't understand an MD5 digest to show tampering.  Second, X12 parsing seems to be considered a proprietary feature of an application.]</p>
-<p><strong>Open-Source X12 Parsers</strong></p>
+<div class="section" id="open-source-x12-parsers">
+<h2>Open-Source X12 Parsers</h2>
 <p>In <a class="reference external" href="https://slott56.github.io/2008_01_12-python_as_config_language_forget_xml_and_ini_files.html">Python as Config Language -- Forget XML and INI Files</a>
 I mentioned my quest for X12 parsers.  The embarrassing part was that I totally missed one.   On my own, I found a Perl program on CPAN to do <a class="reference external" href="http://search.cpan.org/~prasad/X12-0.08/lib/X12/Parser.pm">X12 parsing</a> .  The program itself isn't useful, but the configuration files are basically a summary of an IG.  As INI files.</p>
 <p>Then one of my co-workers asked if I'd seen the <a class="reference external" href="http://pyx12.sourceforge.net/">Python X12</a>  parser.  I'm a Python bigot, and totally missed this.  [Thanks, Vinny.]  As with the Perl example, the parsing code isn't terribly useful, since it is too complex.  However, the configuration files are a very useful unwinding of an IG.  As XML files.</p>
-<p><strong>A More Useful Configuration</strong></p>
+</div>
+<div class="section" id="a-more-useful-configuration">
+<h2>A More Useful Configuration</h2>
 <p>The INI-file version of the IG makes some potentially invalid assumptions about message structure.  Specifically, each X12 Loop is defined as starting with a series of Segments and ending with a series of Loops.  Nesting -- in the form of header Segments, Loops and trailer Segments -- isn't tolerated.</p>
 <p>The XML-file version of the IG -- while more descriptive -- creates a needless level of indirection.  First, we have to build a usable Python structure from the XML.  Then, we use that Python structure to parse the messages.  Further, we have to do this two-pass parsing for each batch of messages we're going to process.</p>
 <p>The structure is readily defined by a few Python classes.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Parser( object ):
     &quot;&quot;&quot;Superclass for all parsing components.&quot;&quot;&quot;
@@ -148,10 +150,11 @@ class Message( Loop ):
     &quot;&quot;&quot;A collection of Loops.&quot;&quot;&quot;
 </pre>
 <p>With this structure, we can define messages in a relatively pleasant way.  Except for a Python syntax rule that leads to a small bit of ickyness.</p>
-<p><strong>The Structural Declaration Pattern</strong></p>
+</div>
+<div class="section" id="the-structural-declaration-pattern">
+<h2>The Structural Declaration Pattern</h2>
 <p>Here's the <strong>Structural Declaration</strong>  that I settled on.  This can be built from the Perl .CF files or the Python X12 XML files.  Then it can be customized to match the business partner's Implementation Guide.  [Ideally, it would be build directly from an IG; where the IG is based on a usable spreadsheet -- hopefully in <a class="reference external" href="http://xml.openoffice.org/">Open Office XML</a> .  Often, Micro$oft Office files can be saved in an open format.]</p>
 <p>This example only names the various Segments without providing the Element-by-Element definitions.  That gets rather long, and isn't always necessary.  Even so, the full 278 message is about 120 lines of code.</p>
-<!-- code: -->
 <pre class="literal-block">
 x278 = Message(
     &quot;278&quot;, &quot;Referral Request/Response&quot;,
@@ -179,12 +182,13 @@ x278 = Message(
 </pre>
 <p>Each of the loop2000x variables is a moderately complex Loop definition.  Ultimately, these will become database tables, but that's another complicated piece of design.</p>
 <p>This is much more expressive than the .INI files.  It is also considerably easier to read and work with than the XML files.  As cool as it is, this isn't <em>precisely</em>  what I was looking for.</p>
-<p><strong>Evolving of the API</strong></p>
+</div>
+<div class="section" id="evolving-of-the-api">
+<h2>Evolving of the API</h2>
 <p>When we look at the resulting parser description -- even for a Segment-level overview of a simple 278 message -- we have some obscurities that crop up.  In particular, we have some evolution management problems.</p>
 <p>First, each Loop and Segment has both descriptive information and a complex structure. This extra information include a description, required/situational flags, repeat limits, and any helpful information required to disentangle the Loop structure from a message that is just a flat sequence of Segments.</p>
 <p>Second, we can't easily evolve our meta-metadata model.  If we want to add parameters to Loop or Segment, we run the risk of invalidating all message parsers previously built and manually tweaked.</p>
 <p>We have two opposing forces.  I want a simple declaration but I also want extensibility.  The simplest declaration is a flat list of parameters.  It has the form:</p>
-<!-- code: -->
 <pre class="literal-block">
 def __init__( self, name, *loops ):
         &quot;&quot;&quot;Build a structure of sub-elements.
@@ -204,13 +208,14 @@ def __init__( self, name, *loops ):
 <p>Loop( &quot;2000A&quot;, desc=&quot;Some Desc&quot;, required=&quot;S&quot;, repeat=&quot;1&quot;, Segment(...), Segment(...), Loop(...), ... )</p>
 <p>But Python can't parse this, since the keywords are in front of the positional parameters.  Darn it.  I'm forced to think.</p>
 <p>I have a couple of choices.  First, I could bundle the structural elements into a sequence.  This would lead to an &quot;extra&quot; set of parenthesis or brackets.  Cconsidering that the matching ()'s will be separated by 100's of lines of code, we can't be expected to manage this without errors.</p>
-<p><strong>A Properties Bundle</strong></p>
+</div>
+<div class="section" id="a-properties-bundle">
+<h2>A Properties Bundle</h2>
 <p>The alternative is to bundle the descriptive parameters into some kind of Properties or Description object which simply carries the extra attributes in a tidy, easy-to-extend object.</p>
 <p>This leads us to change the style to something that could be called a <strong>Bundled Properties</strong>  design.  [Something I first saw in Django.]  This means that our constructor has just two positional parameters followed by an unlimited number of structural elements.  We can live with two positional parameters; it is unlikely to turn into a maintenance problem.</p>
 <p>Loop( &quot;2000A&quot;, Properties( desc=&quot;Some Desc&quot;, required=&quot;S&quot;, repeat=&quot;1&quot; ), Segment(...), Segment(...), Loop(...), ... )</p>
 <p>This is much more manageable.  But -- to an extent -- it feels like a workaround for a Python syntax rule.  Actually, it's a more extensible design, since it separates the structure from the non-structural properties of a construct.  We can now update the Properties class definition to add as many properties as we find are necessary to process X12 messages.</p>
 <p>Our Properties class can be as simple as the following.</p>
-<!-- code: -->
 <pre class="literal-block">
 &gt;&gt;&gt; class Properties( object ):
 ...     def __init__( self, **kw ):
@@ -223,6 +228,7 @@ def __init__( self, name, *loops ):
 22
 </pre>
 <p>This lets us refer to properties with simple names.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -242,7 +248,10 @@ def __init__( self, name, *loops ):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

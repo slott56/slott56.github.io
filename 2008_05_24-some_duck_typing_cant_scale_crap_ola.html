@@ -121,34 +121,44 @@ S.Lott -- Software Architect            </a>
                 <p>This put me over the edge.   Go deh! has a deep analysis of in &quot;<a class="reference external" href="http://paddy3118.blogspot.com/2008/05/duck-typing-done-right-is-wrong.html">Duck Typing Done Right is Wrong</a> &quot;.  It took a minute to parse, but the article is excellent.   (A less obscure title would quote the original posting properly: '&quot;Duck Typing Done Right&quot; is Wrong', but that's less catchy).  The original &quot;<a class="reference external" href="http://blogs.sun.com/bblfish/entry/duck_typing_done_right">Duck Typing Done Right</a> &quot; plays the paranoia card: you can't trust &quot;them&quot; to understand your semantics without resorting to some kind of &quot;context-free&quot; reference, implicitly backed with a complete ontology.</p>
 <p>It's a great new variation on the &quot;defensive programming&quot; position:  you can't trust anyone to follow your API.</p>
 <p>This -- it turns out -- has nothing to do with API's, duck typing or dynamic languages.  This is a much, much simpler problem.</p>
-<p><strong>Defensive Programming</strong></p>
+<div class="section" id="defensive-programming">
+<h2>Defensive Programming</h2>
 <p>A few years back, I was trying to read some Java code that included two things that are generally a waste of time and money.  First was endless declarations of things that were private.  Second was batches of if-statements that effectively confirmed that internally referenced methods passed the right arguments back and forth.</p>
 <p>I don't have much use for Java private in in-house IT projects.  If you're not selling the .class files, private isn't helping.  I asked what it was about; who are we keeping it private from?  The programmer told me, with a straight face, that he was worried about &quot;someone&quot; using the classes improperly -- calling the methods wrong, bypassing the public interfaces, etc.</p>
 <p>&quot;Who?&quot; I asked.</p>
 <p>&quot;You know&quot;, he replied, &quot;another programmer who didn't really 'get' the class API's.&quot;</p>
-<p><strong>Who, Specifically?</strong></p>
+</div>
+<div class="section" id="who-specifically">
+<h2>Who, Specifically?</h2>
 <p>I was alarmed at this weird paranoia.  First, it's in-house IT -- if you can't trust the folks in the next rack of cubes, who can you trust?  Second, it's a one-person project -- no one else was going to see the code in the foreseeable future.  Indeed, most in-house IT is maintained by the author and when the author leaves the code is replaced.</p>
 <p>I had to sit through the author's long story about an interface (written in PL/SQL, not Java) where an incoming file had the wrong format.  What?  What does that have to do with anything?</p>
 <p>To the programmer in question, it proved that &quot;defensive programming&quot; was essential to success.  To make this point, however, the programmer had to conflate &quot;bad interface implementation&quot; with &quot;I can't trust myself to remember my own API&quot;.  Which sounds schizophrenic to me; private wasn't likely to help.</p>
 <p>I asked, &quot;Who Specifically?&quot;; &quot;Who, specifically, will abuse the API?&quot;  The answer was the vague, hand-wringing &quot;other programmers&quot;.</p>
-<p>Similarly, in <a class="reference external" href="http://blogs.sun.com/bblfish/entry/duck_typing_done_right">Duck Typing done right</a> , there's the paranoid expression &quot;Extend the context somewhat &quot;.  As if someone, somewhere can't be trusted.  Who specifically, can't be trusted?</p>
-<p><strong>Asking for Names</strong></p>
+<p>Similarly, in <a class="reference external" href="http://blogs.sun.com/bblfish/entry/duck_typing_done_right">Duck Typing done right</a> , there's the paranoid expression &quot;Extend the context somewhat&quot;.  As if someone, somewhere can't be trusted.  Who specifically, can't be trusted?</p>
+</div>
+<div class="section" id="asking-for-names">
+<h2>Asking for Names</h2>
 <p>I ask for names in these cases.  If we can find the programmer who's likely to subvert the API, or mis-implement the interface, we can ask them to do quality assurance on the API or interface specification.  It isn't hard to get them to buy in on the design.  And if they don't buy in, it's easy to get specific objections.</p>
 <p>To subvert my approach toward clarity, people will raise up the &quot;What about 'future' programmers?&quot; question.  I'm baffled.  I ask, &quot;Who, the ones who haven't been hired yet?&quot;  What about the post-apocalyptic half-mutant flesh-eating apes?  Are they included in the 'future' programmers?</p>
 <p>The point is this: I can't see the value in hand-wring about &quot;others&quot; or some &quot;extended context&quot;.  I think it's essential identify these &quot;others&quot; or this &quot;foreign code&quot; which will break our design.</p>
 <p>If we don't have a specific list of &quot;others&quot; or specific &quot;foreign code&quot;, then... uh... we don't actually have a problem.  We have a potential problem.  A potential problem with a microscopic risk of occurring.</p>
-<p><strong>Real Problems</strong></p>
+</div>
+<div class="section" id="real-problems">
+<h2>Real Problems</h2>
 <p>While real problems can arise from programming changes, we have better techniques than an external ontology or lots of bogus defensive programming parameter-checking.  We have ordinary API documentation and ordinary unittest cases.  This is simple quality assurance.</p>
 <p>As &quot;<a class="reference external" href="http://paddy3118.blogspot.com/2008/05/duck-typing-done-right-is-wrong.html">Duck Typing Done Right is Wrong!</a> &quot; states, the ontology doesn't help.  A context-free name isn't understanding, it's just a name.  If you don't understand the meaning or intent behind a class structure,  names aren't really the root cause of the confusion; usually there are three root causes.</p>
-<ol class="arabic simple">
-<li><strong>Shoddy API documentation</strong>.  My policy is this: try to explain it to a manager, or Quentin the rabbit who lives in the back yard.  (They have the same attention span.)  If you can't get a pithy, tidy, no-diagrams explanation, you've got work to do.  Refactor and rewrite the doco until you can explain it without pictures.</li>
-<li><strong>An unwillingness to understand what's really going on in the API</strong>.   Some programmers don't read well, and start off assuming things about the API; their reading reduces to looking for confirmation of their assumptions.  When they don't find the hoped-for confirmation they may proceed anyway (with lots of EPIC FAIL) -- often deadline-obsessed managers will force this situation.  Other times programmers will replace an effort at understanding with a superficial but scholarly-looking analysis of the documentation.</li>
-</ol>
+<ol class="arabic">
+<li><p class="first"><strong>Shoddy API documentation</strong>.  My policy is this: try to explain it to a manager, or Quentin the rabbit who lives in the back yard.  (They have the same attention span.)  If you can't get a pithy, tidy, no-diagrams explanation, you've got work to do.  Refactor and rewrite the doco until you can explain it without pictures.</p>
+</li>
+<li><p class="first"><strong>An unwillingness to understand what's really going on in the API</strong>.   Some programmers don't read well, and start off assuming things about the API; their reading reduces to looking for confirmation of their assumptions.  When they don't find the hoped-for confirmation they may proceed anyway (with lots of EPIC FAIL) -- often deadline-obsessed managers will force this situation.  Other times programmers will replace an effort at understanding with a superficial but scholarly-looking analysis of the documentation.</p>
 <p>When programmers are unwilling to learn, this often surfaces at complaints about &quot;inconsistencies&quot; in the documents.  Sometimes these are simply shoddy documentation.  More often, however, the inconsistency is a conflict between the programmer's assumption and what the documentation actually says.</p>
-<ol class="arabic simple" start="3">
-<li><strong>No independent confirmation</strong>.  No unit test, no audit, nothing.  I can have an ontology that makes claims about my classes.  By without evidence (i.e., unit test cases) that context-free name is just as much a lie as my context-dependent name.</li>
+</li>
+<li><p class="first"><strong>No independent confirmation</strong>.  No unit test, no audit, nothing.  I can have an ontology that makes claims about my classes.  By without evidence (i.e., unit test cases) that context-free name is just as much a lie as my context-dependent name.</p>
+</li>
 </ol>
-<p><strong>Where Duck Typing Could Fail</strong></p>
+</div>
+<div class="section" id="where-duck-typing-could-fail">
+<h2>Where Duck Typing Could Fail</h2>
 <p>Here's the quote &quot;The main criticism of Duck Typing has been that what is gained in flexibility is lost in precision: it may be good for small projects, but it does not scale&quot;.  Here, the code-word scale stands for &quot;apply well when we introduce 'others'&quot;.  Why doesn't it apply when we introduce &quot;others&quot;?  Because, the &quot;others&quot; don't get the context:  &quot;The context in which the duck typing works is a hidden assumption&quot;.</p>
 <p>Generally, the context for duck typing is not hidden.  I suppose it could be, but you'd have to produce malicious documentation that concealed the purpose of a class with the intent to confuse programmers who want to reuse it.  In the presence of this level of shoddiness, who's going to make an effort to reuse the class in the first place?</p>
 <p>Or, there'd have to be no documentation at all.  Which, I find, is standard practice for in-house IT projects.</p>
@@ -161,6 +171,7 @@ S.Lott -- Software Architect            </a>
 </ol>
 <p>Wait.  This has nothing whatsoever to do with duck typing.  This is all just ordinary software quality assurance.   These are the ingredients for failure in every kind of software development technique.</p>
 <p>The rules are simple.  Document (an ontology may help, but it doesn't solve the problem); provide proof with unittests (merely compiling means nothing); seek to understand, not confirm (your assumptions are always wrong).</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -180,7 +191,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

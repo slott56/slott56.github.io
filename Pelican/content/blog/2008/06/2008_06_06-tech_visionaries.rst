@@ -21,7 +21,7 @@ I spent some quality time reading RFC's once upon a time.  It was the mid '90's 
 
 
 
-[:strong:`Note`.  It was the 90's.  Desktop computing seemed like a good idea.  In the long run, it is not a good idea.  Corporate information assets do not belong on a desktop.  Period.  People have asked me challenging questions like "Are you saying the PC/Desktop Computing revolution was a mistake?" I reply with "Yes, it was."]
+[**Note**.  It was the 90's.  Desktop computing seemed like a good idea.  In the long run, it is not a good idea.  Corporate information assets do not belong on a desktop.  Period.  People have asked me challenging questions like "Are you saying the PC/Desktop Computing revolution was a mistake?" I reply with "Yes, it was."]
 
 
 
@@ -29,7 +29,7 @@ The app didn't work reliably.  In order to work out a way to test it, I commande
 
 
 
-[This was a kind of `Test-Driven Reverse Engineering <C20071019092637.html>`_  exercise.  I just didn't know to call it that.]
+[This was a kind of **Test-Driven Reverse Engineering** exercise.  I just didn't know to call it that.]
 
 
 

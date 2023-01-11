@@ -17,7 +17,7 @@ Processing XML and X12 messages is a struggle.  You have a number of use cases (
 
 
 
-What spoils me is the Object Relational Mapping (ORM) in `SQLAlchemy <http://www.sqlalchemy.org/>`_  and the `Django <http://www.djangoproject.com/>`_  ORM layer (among others).  With SQLAlchemy I can create Mapper that bridges between a :strong:`Plain Old Python Object`  and a SQLAlchemy table definition.  The Table definition really SQL with :strong:`Good Old Python Syntax`.
+What spoils me is the Object Relational Mapping (ORM) in `SQLAlchemy <http://www.sqlalchemy.org/>`_  and the `Django <http://www.djangoproject.com/>`_  ORM layer (among others).  With SQLAlchemy I can create Mapper that bridges between a **Plain Old Python Object**  and a SQLAlchemy table definition.  The Table definition really SQL with **Good Old Python Syntax**.
 
 
 
@@ -29,7 +29,8 @@ When working with X12 and XML messages, I want similar coolness.  I thought I wa
 
 
 
-:strong:`POPO`
+POPO
+----
 
 
 
@@ -37,15 +38,15 @@ While using Plain Old Python Objects is a lofty ideal, it isn't always practical
 
 
 
-1.  :strong:`Lexical`.  This breaks the source text into tokens.  Either XML constructs like tags and text or X12 constructs like Segments and Elements.
+1.  **Lexical**.  This breaks the source text into tokens.  Either XML constructs like tags and text or X12 constructs like Segments and Elements.
 
 
 
-2.  :strong:`Syntactical`.  This assembles meaningful objects from the tokens.  This is either XML elements and attributes (properly nested) or X12 Loops, Segments, Composites and Elements (again, properly nested).
+2.  **Syntactical**.  This assembles meaningful objects from the tokens.  This is either XML elements and attributes (properly nested) or X12 Loops, Segments, Composites and Elements (again, properly nested).
 
 
 
-3.  :strong:`POPO`.  This builds the desired POPO objects out of the XML (or X12) structure, through a big-old structure-by-structure mapping.  When you work with tools like the `Java CAPS <http://www.sun.com/software/javaenterprisesystem/javacaps/index.jsp>`_  eDesigner (or `webMethods <http://www.softwareag.com/corporate/products/wm/default.asp>`_ ) you spend a fair amount of time dragging mapping lines from one structure to another structure.
+3.  **POPO**.  This builds the desired POPO objects out of the XML (or X12) structure, through a big-old structure-by-structure mapping.  When you work with tools like the `Java CAPS <http://www.sun.com/software/javaenterprisesystem/javacaps/index.jsp>`_  eDesigner (or `webMethods <http://www.softwareag.com/corporate/products/wm/default.asp>`_ ) you spend a fair amount of time dragging mapping lines from one structure to another structure.
 
 
 
@@ -57,7 +58,8 @@ This is a helpful insight, and it highlights the distinction between POPO and GO
 
 
 
-:strong:`GOPS`
+GOPS
+-----
 
 
 
@@ -85,7 +87,8 @@ However, when trying to cope with xml.dom.minidom, a Bridge or Facade makes sens
 
 
 
-:strong:`Aha`
+Aha
+----
 
 
 
@@ -115,8 +118,6 @@ Here's a way to parse a big block o' text and create a proper XML structure from
 
 The message is the top-level Element.  The description is simple indented block of text, for example
 
-..  code:
-
 ::
 
     someMsg= """
@@ -129,8 +130,6 @@ The message is the top-level Element.  The description is simple indented block 
     """
 
 
-
-..  code:
 
 ::
 

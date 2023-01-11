@@ -119,14 +119,18 @@ S.Lott -- Software Architect            </a>
 <p>I generally use the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/tools.html#rst2html-py">rst2html</a>  utility that comes with <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> .  It works fine for small things.</p>
 <p>I just read about the <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a>  documentation generator and I am totally hooked.</p>
 <p>I spent a productive day making a bunch of small revisions to a big library of documentation to move it from some home-brewed rst2html tooling into Sphinx.  I got to delete some boilerplate markup from a lot of files, delete some tools, and generally tidy up.</p>
-<p><strong>API Documentation</strong></p>
+<div class="section" id="api-documentation">
+<h2>API Documentation</h2>
 <p>Sphinx says that they don't produce API docs.  They're not <a class="reference external" href="http://epydoc.sourceforge.net/">epydoc</a> .</p>
 <p>Previously, all of my internal API documentation was done using <a class="reference external" href="http://epydoc.sourceforge.net/manual-epytext.html">epytext</a> , but not for a great reason.  Because Sphinx works in RST, I need to convert my internal documentation from epytext to RST.</p>
 <p>At first, this looked painful.  However, 90% of the changes are from &#64;param this: some text to :param this: some text.  The other 10% are some massaging of &#64;todo: and &#64;note:; partly to change <tt class="docutils literal">&#64;todo:</tt> to <tt class="docutils literal">:todo:</tt> but also to change the indentation to RST rules.</p>
-<p><strong>Organizational Issues</strong></p>
+</div>
+<div class="section" id="organizational-issues">
+<h2>Organizational Issues</h2>
 <p>My original home-brewed documentation had lots of complex cross-references.  However, I couldn't bear the idea of putting all of the documents into some rational directory structure because all the links would break.</p>
 <p>Sphinx tacks references across files, allowing me to define a name in one file and reference it in another.  Problem solved.  I can arrange and rearrange the components into an outline that actually makes sense for maintenance and management.</p>
 <p>And nothing beats semantically rich pure text markup of RST as implemented by Sphinx.  Documentation is fun when there are no barriers to entry.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -146,7 +150,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

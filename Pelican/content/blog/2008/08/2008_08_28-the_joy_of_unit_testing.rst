@@ -33,7 +33,7 @@ Run it.
 
 
 
-Step 3.  Originally, I had planned on step 3 being a day of debugging to either (a) find a super-subtle logic flaw or (b) find that this test case was so different from all others that :strong:`We Have To Talk`.  The (b) case is surprisingly common.  Lots of people imagine the scope of the application as being something it isn't.  Often they lift up something that's not a complex edge or corner case; they single out something that is way out in left field.
+Step 3.  Originally, I had planned on step 3 being a day of debugging to either (a) find a super-subtle logic flaw or (b) find that this test case was so different from all others that **We Have To Talk**.  The (b) case is surprisingly common.  Lots of people imagine the scope of the application as being something it isn't.  Often they lift up something that's not a complex edge or corner case; they single out something that is way out in left field.
 
 
 
@@ -53,7 +53,8 @@ I have a tool (800 lines of Python) to build Java JUnit TestCase classes from th
 
 
 
-:strong:`Bottom Line`
+Bottom Line
+------------
 
 
 

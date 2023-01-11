@@ -29,7 +29,8 @@ First, the confusion.  A couple of comments asked for code, offering to "fix" th
 
 
 
-:strong:`Sizing.`
+Sizing
+-------
 
 
 
@@ -41,7 +42,8 @@ It should be.  Indeed, they should have a data warehouse so that they aren't doi
 
 
 
-:strong:`Native Code.`
+Native Code
+-----------
 
 
 
@@ -61,11 +63,12 @@ However, if performance matters, I suppose this needs to to be put on the table.
 
 
 
-:strong:`In The Real World.`
+In The Real World
+-----------------
 
 
 
-[:emphasis:`Digression`.  One response included the disturbing magic words "in the real world".  Often I stop reading there, because it's an attempted trump card.  It is a kind of power play; the claim is that the "real world" situation deserves more credence than other situations.  It subverts a useful comparison of constraints and priorities.  Your "real world" is no more real than my "real world"; you have different priorities and different values.  Let's talk about those in detail rather than summarily dismissing my customer's real world as being less real than your real world.]
+[*Digression*\ .  One response included the disturbing magic words "in the real world".  Often I stop reading there, because it's an attempted trump card.  It is a kind of power play; the claim is that the "real world" situation deserves more credence than other situations.  It subverts a useful comparison of constraints and priorities.  Your "real world" is no more real than my "real world"; you have different priorities and different values.  Let's talk about those in detail rather than summarily dismissing my customer's real world as being less real than your real world.]
 
 
 
@@ -73,15 +76,16 @@ One response noted that time is lost transferring big chunks of data.  That was 
 
 
 
-I didn't make it clear that I'm running a specific benchmark, for which I provided code.  If, in your world, things behave differently, provide the code, post your results.  :strong:`Let's see this benchmark`.  
+I didn't make it clear that I'm running a specific benchmark, for which I provided code.  If, in your world, things behave differently, provide the code, post your results.  **Let's see this benchmark**.  
 
 
 
-:strong:`Wrong Algorithm.`
+Wrong Algorithm
+----------------
 
 
 
-One response hinted that I was using entirely the wrong algorithm.  That's an interesting notion.  The claim is that 6 SELECT statements would do the same thing as the two-part business rule I fabricated.  I'm dying to see the 6 SELECT statements.  :strong:`Let's see this benchmark`.
+One response hinted that I was using entirely the wrong algorithm.  That's an interesting notion.  The claim is that 6 SELECT statements would do the same thing as the two-part business rule I fabricated.  I'm dying to see the 6 SELECT statements.  **Let's see this benchmark**.
 
 
 
@@ -89,11 +93,12 @@ What I failed to make clear is that my benchmark is drawn from the situation whe
 
 
 
-With two rules, it's easy to work out the four conditions that apply.  For :emphasis:`n`  rules, there are 2:emphasis:`n`  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.  
+With two rules, it's easy to work out the four conditions that apply.  For *n*  rules, there are 2*n*  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.
 
 
 
-:strong:`Additional Processing.`
+Additional Processing
+---------------------
 
 
 
@@ -101,7 +106,8 @@ I raised the confusion level by leaving out the updates.  Since I only wanted to
 
 
 
-:strong:`Conclusion.`
+Conclusion
+----------
 
 
 

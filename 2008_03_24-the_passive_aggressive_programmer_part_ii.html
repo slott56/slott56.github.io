@@ -118,7 +118,8 @@ S.Lott -- Software Architect            </a>
                 <p>Here are a few more Passive-Aggressive argument techniques that can derail a project. Rather than provide an alternative or improvement, this passive kind of aggression raises things which are &quot;potential&quot; problems or issues.  Things which serve only to raise doubts.</p>
 <p>This approach plays into the hands of risk-averse management.  It works really well with managers who directly equate risks with actual costs.  If, for example, there's a small chance that some component or product might be too slow, a risk-ignorant manager will hear you saying the component doesn't work.  They'll hear the train-wreck of their career in shambles because of this one component.</p>
 <p>A passive-aggressive programmer or DBA can support a risk-ignorant manager by providing the kinds of technical opinions that the manager loves to hear.  It's important to spot these so that you aren't enmeshed in a valueless discussion -- you need to redirect the P/A programmer to fact-based reasoning, not an exchange of low-probability potential defects.</p>
-<p><strong>All or Nothing</strong></p>
+<div class="section" id="all-or-nothing">
+<h2>All or Nothing</h2>
 <p>The first argument technique is &quot;False Dichotomy&quot;.  It allows one to (passively) do very little to (aggressively) undermine all progress that doesn't fit with the DBA's agenda.</p>
 <p>An example of this came up while trying to walk through an Agile process.  Note that a passive-aggressive doesn't have a <em>stated</em>  agenda.  To me, it looks like the DBA's agenda is to begin with detailed design, preferrably focused on a confusing GUI feature like the tree display of a hierarchy.  When asked, however, they're just &quot;looking for help.&quot;</p>
 <p>Here's what they said (paraphrased):</p>
@@ -128,22 +129,29 @@ S.Lott -- Software Architect            </a>
 <li>There are ONLY two choices: full interrogation over every nuance (with and endless series of &quot;why should we do that?&quot; questions) or no questions of any kind.  Other questions (who? what? when? where? how?) don't seem to exist.  Of course, they can't exist for a true passive/aggressive because the intermediate level of understanding isn't passive enough.</li>
 <li>There are ONLY two levels of understand: ALL or NONE.  Merely having a short list of the means which lead to the desired ends isn't possible.  It isn't totally passive, it requires some effort to gain an overview of the process without all the details.</li>
 </ol>
-<p><strong>Getting Out of the Trap</strong></p>
+</div>
+<div class="section" id="getting-out-of-the-trap">
+<h2>Getting Out of the Trap</h2>
 <p>Confronted with questions on methodology, my first instinct was to explain and justify Agile techniques.  That didn't work because it got bogged down in the &quot;Why&quot; questions which amounted to &quot;Why not just do it my way?  Why not do Big Design Up Front?&quot; I couldn't see any use case, so it wasn't clear to me what -- if any -- point there was to all the coding.  Beginning at the beginning (with the users) appears to be anethema.  Of course, a true passive/aggressive won't say anything, they just won't do anything, either.</p>
 <p>My second attempt was to use a &quot;just try it&quot; (sometimes called the &quot;shut up and move forward&quot; approach).  That didn't work, either.  Consistent with the passivity, there is no sense of &quot;forward&quot;, apparently.  Each activity (define an actor, write a use case, prioritize, update the architecture, write test cases, etc.) appears as just another zero-value &quot;make-work&quot; step executed in a complete intellectual vacuum.  The passive/aggressive can't know everything, so they must know nothing [See?  There's no middle ground.]  How the activities fit together is, consequently, unknowable.</p>
 <p>The next attempt (sigh) is going to be Socratic Method -- what do you think you're doing?  why are you doing it? what's the value? what are the means? what are the ends? who's your audience?  That will likely turn into the endless series of &quot;Why's&quot; -- except this time from my side to try and illuminate the costs of a waterfall approach; worse, an approach that begins with detailed design.</p>
-<p><strong>If You Say So</strong></p>
+</div>
+<div class="section" id="if-you-say-so">
+<h2>If You Say So</h2>
 <p>Another popular argument technique is a kind of &quot;Appeal to Authority&quot; that absolves the P/A of responsibility.  Here's a recent quote from a DBA -- a DBA who knows Java, by the way.</p>
 <p>&quot;If you say that it can be done, I am sure that it can be done.  I don't know enough Java to be able to do this. I will assume that professional Java developers will know how to do this.&quot;</p>
 <p>In short, the DBA is declaring that there is risk of failure; the risk stems from a murky Java technique; the technique is so murky that &quot;ordinary&quot; software folks can't understand it; therefore, the risk is so certain that it is essentially a cost (not a probability of a cost, but a direct cost).  The DBA is absolutely sure that no one can do the required programming.  The DBA knows Java, that's not the question.</p>
-<p>What's the topic?  Logging changes from the <strong>set</strong>  methods of a class. This is the canonical example of the <strong>Memento</strong>  design pattern, implemented as a common aspect of the set methods.  It can be done, trivially, by adding a subclass to the java.util.logger that will write specialized log entries to a database table.  [The logging itself can be added as an aspect using an annotation.]  Indeed, this is summarized in <a class="reference external" href="http://static.springframework.org/spring/docs/2.0.x/reference/aop.html">Chapter 6</a>  of the Spring 2.0.x manual.  Also, <a class="reference external" href="http://www.scribd.com/doc/244373/Advanced-Spring-Framework">http://www.scribd.com/doc/244373/Advanced-Spring-Framework</a>  and many other places that describe the intimate relationship between Spring, Hibernate and Annotations.  Examples include <a class="reference external" href="http://www.devx.com/Java/Article/30799">http://www.devx.com/Java/Article/30799</a> .</p>
+<p>What's the topic?  Logging changes from the <strong>setter</strong>  methods of a class. This is the canonical example of the <strong>Memento</strong>  design pattern, implemented as a common aspect of the set methods.  It can be done, trivially, by adding a subclass to the java.util.logger that will write specialized log entries to a database table.  [The logging itself can be added as an aspect using an annotation.]  Indeed, this is summarized in <a class="reference external" href="http://static.springframework.org/spring/docs/2.0.x/reference/aop.html">Chapter 6</a>  of the Spring 2.0.x manual.  Also, <a class="reference external" href="http://www.scribd.com/doc/244373/Advanced-Spring-Framework">http://www.scribd.com/doc/244373/Advanced-Spring-Framework</a>  and many other places that describe the intimate relationship between Spring, Hibernate and Annotations.  Examples include <a class="reference external" href="http://www.devx.com/Java/Article/30799">http://www.devx.com/Java/Article/30799</a> .</p>
 <p>It appears that the specific technique of logging changes in a set method is being questioned.  Perhaps it's something else.  I can't say; primarily because I can't get more detailed objections defined.</p>
 <p>The alternative appears to be some kind of Interceptor in Hibernate which captures all changes and logs them.  See <a class="reference external" href="http://www.hibernate.org/195.html">http://www.hibernate.org/195.html</a>  for the code.  This interceptor, of course, would be part of Hibernate, divorced from the application; making it difficult to configure properly.  You rarely need audit logging of &quot;everything&quot;; it's usually focused on critical pieces of information.  Further, you need to know what the audit log &quot;means&quot;.  Simply logging all kinds of random DB changes never very meaningful.</p>
-<p><strong>Prevention</strong></p>
+</div>
+<div class="section" id="prevention">
+<h2>Prevention</h2>
 <p>It's hard to prevent False Dichotomy arguments.  Many non-technical types want things &quot;simplified&quot; and will demand enough simplification until they get to a false dichotomy.  If you provide additional information, it's deprecated as &quot;needless nuance&quot; or &quot;technical hand-wringing.&quot;</p>
 <p>The best you can do is keep using phrases like &quot;amongst other choices&quot; to emphasize that the dichotomy is a simplification, not the whole story.</p>
 <p>Appeals to Authority are even harder to prevent.  You cannot address these without working code.  Omit any part of the application from a Proof of Concept (or Technology Spike) and you may have opened the door for further &quot;if you say so, but we still don't believe it&quot; conversations.</p>
 <p>An alternative answer is to provide the supplemental education.  The reluctant DBA would have to actually learn a tiny bit more Java programming to see what a getter/setter is all about. And they don't have time for this; they prefer to assert that a common aspect across all setter methods is &quot;risky&quot; without defining the actual risks.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -163,7 +171,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

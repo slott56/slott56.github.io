@@ -119,29 +119,45 @@ S.Lott -- Software Architect            </a>
 <p>First, <a class="reference external" href="https://slott56.github.io/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html">PL/SQL is slow</a> .  Anecdotally, people claim that introducing PL/SQL made an app faster.  I submit that they restructured the application significantly to create small, focused transactions, and that's what created the improvement.  As a practical matter, you need to write focused, PL/SQL-like transaction methods in your Java programs.  While technically possible, you can't casually execute SQL statements willy-nilly.</p>
 <p>Second, it's hard to do configuration management on stored procedures.  Not impossible, but very hard.  The reasons are entirely organizational.</p>
 <p>Recently I received an email that was nearly opaque, but seemed to indicate that the organization couldn't clone production to create another test, and couldn't rationalize the versions of their various stored procedures.   I think they wanted a puff of <strong>Faerie Dust</strong>™ that would allow stored procedure X to determine if it was being used by package Y or package Z and behave differently in the different contexts.  The request makes no sense -- this is just a version control issue.  Clearly, there are two versions of X, but the emailer claimed there was one version of X and it had to determine it's behavior dynamically.</p>
-<p><strong>Conflation - The Organizational Root Cause</strong></p>
+<div class="section" id="conflation-the-organizational-root-cause">
+<h2>Conflation - The Organizational Root Cause</h2>
 <p>A stored procedure lives in the database.  Consequently, it's conflated with persistent data and schema definitions and assigned -- for no good reason -- to the DBA's.  These three things -- data, schema and processing -- have little to do with each other.  They emphatically do not belong together.   However, they're almost always conflated into a murky puddle of SQL.</p>
 <p>Let's break these things apart.</p>
-<p><strong>Data</strong>  is the organization's actual data.  Some (but not all) of the business records lives in managed databases.  Some live in desktop application documents (word processing, spreadsheets, unmanaged desktop databases, etc.)  Data is precious, perhaps the most precious thing in the organization.</p>
-<p><strong>Schema</strong>  (or metadata) is table, column, view and index definitions.  It's also physical stuff like tablespaces, files, instances, etc.  Some of this is important, some of it is subject to change without notice.  Tablespace configuration parameters rarely matter except as an implementation detail.</p>
-<p><strong>Processing</strong>  is triggers, stored procedures and all of the application programs that live outside the database.  Note that there is no crisp distinction between &quot;low-level&quot; and &quot;high-level&quot; processing.  Many DBA's have tried to explain to me that CRUD rules are &quot;low-level&quot;, but then they add some foreign-key relationships, after that they also need to add some many-to-many relationships and the intermediate bridge tables, then they start adding other things that are part of larger and more complex relationships.  Stop!  If you can't find a boundary easily, it doesn't really exist.</p>
-<p><strong>Version Control</strong></p>
+<dl class="docutils">
+<dt><strong>Data</strong></dt>
+<dd>is the organization's actual data.  Some (but not all) of the business records lives in managed databases.  Some live in desktop application documents (word processing, spreadsheets, unmanaged desktop databases, etc.)  Data is precious, perhaps the most precious thing in the organization.</dd>
+<dt><strong>Schema</strong></dt>
+<dd>(or metadata) is table, column, view and index definitions.  It's also physical stuff like tablespaces, files, instances, etc.  Some of this is important, some of it is subject to change without notice.  Tablespace configuration parameters rarely matter except as an implementation detail.</dd>
+<dt><strong>Processing</strong></dt>
+<dd>is triggers, stored procedures and all of the application programs that live outside the database.  Note that there is no crisp distinction between &quot;low-level&quot; and &quot;high-level&quot; processing.  Many DBA's have tried to explain to me that CRUD rules are &quot;low-level&quot;, but then they add some foreign-key relationships, after that they also need to add some many-to-many relationships and the intermediate bridge tables, then they start adding other things that are part of larger and more complex relationships.  Stop!  If you can't find a boundary easily, it doesn't really exist.</dd>
+</dl>
+</div>
+<div class="section" id="version-control">
+<h2>Version Control</h2>
 <p>Data -- typically -- has fairly loose version control.  The RDBMS often has secret sequence numbers (SCN's) that are used internally to manage cache and synchronize physical files.  These transaction sequence numbers are, effectively, a kind of version number for the data.</p>
 <p>Often, we'll have a &quot;last changed date&quot; in a database record.  This is a surrogate version number for the record.  It tells us when the data changed.  Most applications don't record a complete change log for the data, we simply update the change date.  A few applications do create detailed change logs.  In some cases, people try to leverage the database logging facilities to back into a formal change log for the data.</p>
 <p>Schema is rarely under any kind of version control.  Metadata is often the least disciplined part of the enterprise infrastructure.  It's easy (really easy) to have formal version control over metadata.  It's rarely done, however.  For some reason, DBA's don't seem to use version control software.</p>
 <p>Application software, typically, has the best version control.  Many organizations use some formal version control software (CVS, Subversion or some commercial product like MKS, VSS or PVCS.)  This can easily apply version control information to the source code (and even the resulting .class files.)</p>
 <p>[Some organizations can't even put their application software under version control.  This doesn't change the issue of conflating data, schema and application.]</p>
 <p>For no good reason stored procedures are the province of the DBA's (who don't use version control software.)  Consequently, the external application software (in Java, Python or whatever) may have version control information, but the stored procedures never have version control.</p>
-<p><strong>Schema Versions</strong></p>
+</div>
+<div class="section" id="schema-versions">
+<h2>Schema Versions</h2>
 <p>The database schema (the tables, columns, indexes, views and sequence generators) has a version number.  The version number for a schema -- like the version number for software -- defines &quot;compatibility&quot;.</p>
 <p>Schema version 2.1 and 2.2 are &quot;compatible&quot; in some sense.  Schema versions 3.5 and 4.1 are incompatible.</p>
 <p>What defines &quot;compatibility&quot;?  Clearly, &quot;compatible&quot; means &quot;compatible with SQL DML&quot;.  If you've done standard database ALTER statements (adding columns, expanding the sizes of columns) or changing indexes or adding views, you haven't broken any SQL DML.  The old SQL still works with the new schema.  This is a 2.2 to 2.3 kind of change.</p>
 <p>If you've dropped a column or table or view, or you've shortened a column, or changed the type of a column, then you've made a change which may break existing SQL.  When you've make this kind of change, you'll need to bump the major version number.</p>
 <p>You need two things:</p>
-<p><strong>Discipline</strong>.  This doesn't happen by default.</p>
-<p><strong>Some meta-meta-data</strong>.  A table that has schema names and version numbers is all you really need.  It's nice to fold in &quot;applicable dates&quot; and &quot;responsible person&quot;, etc., but not essential.   In some cases, you can use database comments for this.</p>
+<dl class="docutils">
+<dt><strong>Discipline</strong>.</dt>
+<dd>This doesn't happen by default.</dd>
+<dt><strong>Some meta-meta-data</strong>.</dt>
+<dd>A table that has schema names and version numbers is all you really need.  It's nice to fold in &quot;applicable dates&quot; and &quot;responsible person&quot;, etc., but not essential.   In some cases, you can use database comments for this.</dd>
+</dl>
 <p>When you make database changes, you must create a script that (a) makes the change and (b) updates the database schema version table.  That's about it.</p>
-<p><strong>What About Stored Procedures?</strong></p>
+</div>
+<div class="section" id="what-about-stored-procedures">
+<h2>What About Stored Procedures?</h2>
 <p>Why can't we annotate our stored procedures with version numbers and put them under version control like the rest of the database?</p>
 <p>The question is rhetorical.  Of course we can put stored procedures under version control.  It just requires some discipline.  And -- perhaps -- making stored procedures part of application software's responsibility, and not part of the DBA's job.</p>
 <p>If we take stored procedures away from the DBA's, we need a formal turnover procedure for putting a particular suite of stored procedures into a database.</p>
@@ -153,13 +169,16 @@ S.Lott -- Software Architect            </a>
 <li>You have explicit compatibility checks.  Version 2.x of schema and software are being used in production.  Version 3.x of schema and software is in some kind of parallel test prior to conversion.  Version 3.y of schema and software is in some early test; 3.z is in development.</li>
 <li>You can begin to wean yourself away from the nightmare of stored procedure management.  Once you take this out of the DBA's hands, you find that a consistent set of Python (or Java) packages that define the Model layer does everything that stored procedures and triggers do, only more simply and more maintainably.</li>
 </ol>
-<p><strong>What's So Hard?</strong></p>
+</div>
+<div class="section" id="what-s-so-hard">
+<h2>What's So Hard?</h2>
 <p>It's very easy to put stored procedures under explicit, clear version control.  With a little care, even a database schema can be put under version control.</p>
 <p>What's so hard is actually making the organizational change.  Ask around.  The DBA's will tell you that they are overworked, because they're &quot;forced&quot; to write all the stored procedures and triggers.  Forced?  By whom?</p>
 <p>Generally, the &quot;organization&quot; seems to mandate that everything SQL -- tables, columns, indexes, views, stored procedures and triggers -- pass through the DBA's.  The distinction between data and processing is somehow lost.  Splitting it up will often anger the manager of the DBA's, who'll make the case that no one else can be trusted to create stored procedures.</p>
 <p>When testing stops because of version control issues, when production fails, it seems like the problem should be addressed.  It's usually obvious that there are serious version control problems between the schema and stored procedures.</p>
 <p>I only know that there's a long-standing, steadfast refusal to split the database into data and processing elements.  The consequence of this is that stored procedures are unmaintainable, testing is nearly impossible, and production problems are rampant.</p>
 <p>Consequently, I suggest that stored procedures and triggers never be used.  Ever.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -179,7 +198,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

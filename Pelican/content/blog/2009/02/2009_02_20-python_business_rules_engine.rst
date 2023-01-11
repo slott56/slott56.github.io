@@ -25,7 +25,8 @@ It's weirder than `PyPy <http://codespeak.net/pypy/dist/pypy/doc/>`_ , which mak
 
 
 
-:strong:`Business Rules` 
+Business Rules
+--------------
 
 
 
@@ -37,11 +38,11 @@ In our application, we have a large number of fairly complex business rules.
 
 
 
-Worse, we don't have a tidy specification of what those rules :strong:`really`  are.  Instead, we have some kinds of flow charts, and some cultural norms, and folks who know a lot about the problem domain.  We could have spent nine months digging.  Instead, I elected to spend nine months programming in Python.  
+Worse, we don't have a tidy specification of what those rules **really**  are.  Instead, we have some kinds of flow charts, and some cultural norms, and folks who know a lot about the problem domain.  We could have spent nine months digging.  Instead, I elected to spend nine months programming in Python.  
 
 
 
-When things change, the code is easy to change.  Good OO design principles allow us to capitalize in simple :strong:`Strategy`  pattern and :strong:`Command`  pattern to "plug in" different modules.  In some cases, we've found that we didn't foresee the need for a Strategy plug in and are forced to refactor some packages to reflect what we learned.
+When things change, the code is easy to change.  Good OO design principles allow us to capitalize in simple **Strategy**  pattern and **Command**  pattern to "plug in" different modules.  In some cases, we've found that we didn't foresee the need for a Strategy plug in and are forced to refactor some packages to reflect what we learned.
 
 
 
@@ -49,7 +50,8 @@ Python is our business rules engine.
 
 
 
-:strong:`Modularity` 
+Modularity
+------------
 
 
 
@@ -57,7 +59,7 @@ We have a nebulous offering.  Our business model is simple, and based around som
 
 
 
-Clearly, each customer could be unique.  And our service offering :emphasis:`should`  expand as we get better and better at this.  So we'll have lots of plug-and-play modules for customer-specific features and expansions of the service.
+Clearly, each customer could be unique.  And our service offering *should*  expand as we get better and better at this.  So we'll have lots of plug-and-play modules for customer-specific features and expansions of the service.
 
 
 
@@ -65,7 +67,8 @@ This is what Python does best.  I've already done significant on-the-fly refacto
 
 
 
-:strong:`Django's World View` 
+Django's World View
+-------------------
 
 
 

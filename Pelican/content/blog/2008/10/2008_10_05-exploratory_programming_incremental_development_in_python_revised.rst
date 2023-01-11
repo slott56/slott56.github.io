@@ -27,8 +27,6 @@ There's a pattern that develops to this kind of exploration.  It uses basic inhe
 
 Let's look at the first class definition.  It isn't very interesting, but it shows the design pattern.
 
-..  code:
-
 ::
 
     class Operation( object ):
@@ -48,7 +46,6 @@ Essentially, the process method is the "entry point" and it applies some yet-to-
 
 Here's a subclass that provides that process.
 
-..  code:
 
 ::
 
@@ -70,7 +67,8 @@ We're essentially done with sprint 1.  We can use this to explore our files.  Tu
 
 
 
-:strong:`Exploring The Zip Members` 
+Exploring The Zip Members
+--------------------------
 
 
 
@@ -79,8 +77,6 @@ Here's sprint two of the application.  There are two significant changes.  First
 
 
 Here's the revised processFile.
-
-..  code:
 
 ::
 
@@ -103,7 +99,6 @@ Here's the next subclass.  It opens each zip archive member as a workbook, using
 
 
 
-..  code:
 
 ::
 
@@ -141,7 +136,8 @@ Now, we can subclass this -- yet again -- to build the next sprint and dump sele
 
 
 
-:strong:`Exploring the Workbook sheets` 
+Exploring the Workbook sheets
+------------------------------
 
 
 
@@ -150,8 +146,6 @@ Here's sprint three of the application.  This is yet another subclass.
 
 
 
-
-..  code:
 
 ::
 
@@ -181,7 +175,8 @@ Now we're ready to subclass this yet again and actually extract the relevant row
 
 
 
-:strong:`Incremental Extension` 
+Incremental Extension
+---------------------
 
 
 
@@ -190,8 +185,6 @@ This incremental extension is a big time-saver.  Rather than have several progra
 
 
 Here's a version of main.
-
-..  code:
 
 ::
 

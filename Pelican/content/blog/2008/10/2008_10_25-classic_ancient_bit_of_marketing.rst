@@ -13,7 +13,7 @@ Classic / Ancient Bit of Marketing
 
 
 
-Found this on a shelf in my office.  The :emphasis:`Apple 32 Developer's Handbook`.  It covers the Lisa 2, Lisa 2/5, Lisa 2/10 and the Macintosh.  Apple described this family of machines as the SuperMicros.
+Found this on a shelf in my office.  The *Apple 32 Developer's Handbook*.  It covers the Lisa 2, Lisa 2/5, Lisa 2/10 and the Macintosh.  Apple described this family of machines as the SuperMicros.
 
 
 

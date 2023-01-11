@@ -17,11 +17,11 @@ Back in the olden days (ca. 1981) Barry Boehm's Software Engineering Economics p
 
 
 
-The problem is that the model is circular.  Ideally, we want a model that's like the Function Point model: :strong:`Requirements In → Software Out` .  The function point folks evaluate five aspects of the requirements and from those aspects determine the effort, schedule and cost.  The FP aspects are Internal Logical Files, External Logical Files, External Inputs, External Outputs and External Inquiries.  Note the emphasis on externally visible features, and the emphasis on the essential ingredients of software.
+The problem is that the model is circular.  Ideally, we want a model that's like the Function Point model: **Requirements In → Software Out** .  The function point folks evaluate five aspects of the requirements and from those aspects determine the effort, schedule and cost.  The FP aspects are Internal Logical Files, External Logical Files, External Inputs, External Outputs and External Inquiries.  Note the emphasis on externally visible features, and the emphasis on the essential ingredients of software.
 
 
 
-COCOMO, unfortunately, gives us a model that is :strong:`Lines of Code In → Software Out` .  Wait, how can we know the lines of code going in?  We can't, but we can estimate the lines of code going in, and from that, deduce the effort, schedule and cost.
+COCOMO, unfortunately, gives us a model that is **Lines of Code In → Software Out** .  Wait, how can we know the lines of code going in?  We can't, but we can estimate the lines of code going in, and from that, deduce the effort, schedule and cost.
 
 
 
@@ -29,11 +29,12 @@ You could deprecate this by saying that we've merely replaced estimating everyth
 
 
 
-Joel's technique isn't really modeling software development, per se.  Joel's technique is to model the estimating process and show how well people adhere to their estimates.  In short,:strong:`Estimate In → Estimate Out` .  This is clearly indirect stuff, since we're modeling our ability to manage estimating, not the work itself.
+Joel's technique isn't really modeling software development, per se.  Joel's technique is to model the estimating process and show how well people adhere to their estimates.  In short,**Estimate In → Estimate Out** .  This is clearly indirect stuff, since we're modeling our ability to manage estimating, not the work itself.
 
 
 
-:strong:`Accuracy Issues` 
+Accuracy Issues
+---------------
 
 
 
@@ -53,7 +54,8 @@ With enough history, the estimates will tend to get very accurate.  As long as e
 
 
 
-:strong:`Into the Fog` 
+Into the Fog
+------------
 
 
 
@@ -73,7 +75,8 @@ While it's important to gather data, it's also important to recognize the limita
 
 
 
-:strong:`Design First` 
+Design First
+-------------
 
 
 
@@ -93,7 +96,8 @@ My colleague wanted the article to somehow help clarify the relationship between
 
 
 
-:strong:`The Unknowns Have It` 
+The Unknowns Have It
+--------------------
 
 
 

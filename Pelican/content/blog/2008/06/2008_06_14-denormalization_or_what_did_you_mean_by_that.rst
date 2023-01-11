@@ -33,11 +33,12 @@ The point I often have to make this:
 
 
 
-My habit is to describe the star-schema (or snowflake schema) as "denormalized".  This isn't really correct, but it does emphasize my point.  I have to make this point emphatically because we have to get past the Data Cartel's Standard Objection: :strong:`New Technology Won't Work`.  Most DBA's who are new to Data Warehousing and the star schema will exercise their veto authority over new technology, claim that the design is "inefficient" and stop (or delay) the project.
+My habit is to describe the star-schema (or snowflake schema) as "denormalized".  This isn't really correct, but it does emphasize my point.  I have to make this point emphatically because we have to get past the Data Cartel's Standard Objection: **New Technology Won't Work**.  Most DBA's who are new to Data Warehousing and the star schema will exercise their veto authority over new technology, claim that the design is "inefficient" and stop (or delay) the project.
 
 
 
-:strong:`DBA Objections`
+DBA Objections
+---------------
 
 
 
@@ -45,27 +46,27 @@ DBA's can object in `Passive-Aggressive <{filename}/blog/2007/11/2007_11_29-the_
 
 
 
-1.  :strong:`It isn't normalized`.  Which is a WTF? kind of point.  It isn't normalized for updates because there aren't any (to speak of).  It's normalized for SELECT SUM(*) GROUP BY, which is the canonical dimensional query.  I call this "denormalization" to make the point; perhaps I should call it star-schema normalization.
+1.  **It isn't normalized**.  Which is a WTF? kind of point.  It isn't normalized for updates because there aren't any (to speak of).  It's normalized for SELECT SUM(*) GROUP BY, which is the canonical dimensional query.  I call this "denormalization" to make the point; perhaps I should call it star-schema normalization.
 
 
 
-2.  :strong:`It doesn't use "natural keys" correctly`.  I'm pretty sure that natural keys don't actually exist.  Almost everything is either an attribute (which can change) or a surrogate key (which isn't very likely to change).  A changeable attribute isn't really a key, is it?
+2.  **It doesn't use "natural keys" correctly**.  I'm pretty sure that natural keys don't actually exist.  Almost everything is either an attribute (which can change) or a surrogate key (which isn't very likely to change).  A changeable attribute isn't really a key, is it?
 
 
 
-When writing ETL programs, we sometimes have a blurry edge when an external application assigns a truly permanent surrogate key.  In these cases, the external surrogate is often something that the organization uses heavily -- as if it was a natural key.  In other cases, they have a surrogate-like key that can (it turns out) change, making it just an attribute.  In the warehouse, it's usually best to simply assign warehouse surrogates and not burn up brain calories trying to make too many distinctions in the source applications.
+    When writing ETL programs, we sometimes have a blurry edge when an external application assigns a truly permanent surrogate key.  In these cases, the external surrogate is often something that the organization uses heavily -- as if it was a natural key.  In other cases, they have a surrogate-like key that can (it turns out) change, making it just an attribute.  In the warehouse, it's usually best to simply assign warehouse surrogates and not burn up brain calories trying to make too many distinctions in the source applications.
 
 
 
-3.  :strong:`All those joins are inefficient`.  This can -- in the extreme case -- lead to :strong:`The Uni-Table`.  This is the pre-joined ur-fact table that contains all dimensional attributes and all fact values.  It works, but it repeats all of the dimensional attributes and it doesn't track dimensional change at all.  Yes, I've seen it done.
+3.  **All those joins are inefficient**.  This can -- in the extreme case -- lead to **The Uni-Table**.  This is the pre-joined ur-fact table that contains all dimensional attributes and all fact values.  It works, but it repeats all of the dimensional attributes and it doesn't track dimensional change at all.  Yes, I've seen it done.
 
 
 
-4.  :strong:`It uses too much storage`.  This is just silly, but it comes up.  Once, I caught the sysadmins and DBA's in a meeting where they were quibbling about log sizes so that they could micro-manage storage at the 100Gb increment.  "There's four people in this meeting.  At your hourly cost, I could have bought 400Gb at Circuit City."  And the price of storage continues to plummet.  Nowadays, I think I could buy a terabyte.
+4.  **It uses too much storage**.  This is just silly, but it comes up.  Once, I caught the sysadmins and DBA's in a meeting where they were quibbling about log sizes so that they could micro-manage storage at the 100Gb increment.  "There's four people in this meeting.  At your hourly cost, I could have bought 400Gb at Circuit City."  And the price of storage continues to plummet.  Nowadays, I think I could buy a terabyte.
 
 
 
-5.  :strong:`Fact updates can be inefficient`.  This is crazy, because changing a fact's measurement value is a single row update; it's fine if you're correcting errors.  Changing a batch of fact's measurements is -- what? -- criminal mischief?  Who changes batches of facts?  Considerer deleting the incorrect ones and reloading correct ones.
+5.  **Fact updates can be inefficient**.  This is crazy, because changing a fact's measurement value is a single row update; it's fine if you're correcting errors.  Changing a batch of fact's measurements is -- what? -- criminal mischief?  Who changes batches of facts?  Considerer deleting the incorrect ones and reloading correct ones.
 
 
 
@@ -73,7 +74,8 @@ Changing the association between a batch of facts and a dimension is even spooki
 
 
 
-:strong:`Star Schema Normalization`
+Star Schema Normalization
+--------------------------
 
 
 
@@ -89,7 +91,8 @@ The basic 1NF and 2NF rules apply to the star schema normal form as well as tran
 
 
 
-:strong:`Derived Data?  What About Updates?`
+Derived Data?  What About Updates?
+----------------------------------
 
 
 
@@ -101,27 +104,33 @@ The "update" issue can't arise.  Let's look at some common dimensions.
 
 
 
-:strong:`Time`.  You don't change the day of the week for March 8, 1987.  It is, was, and always will be Sunday.
+**Time**.
+    You don't change the day of the week for March 8, 1987.  It is, was, and always will be Sunday.
 
 
 
-:strong:`Space`.  Geographical boundaries change.  However, this is the canonical Slowly Changing Dimension (SCD) problem that Kimball covers in detail.  [If you have what Kimball calls a "type 3" SCD, you have the most common example of an update in a data warehouse; the change of status from "current" to "previous".]
+**Space**.
+    Geographical boundaries change.  However, this is the canonical Slowly Changing Dimension (SCD) problem that Kimball covers in detail.  [If you have what Kimball calls a "type 3" SCD, you have the most common example of an update in a data warehouse; the change of status from "current" to "previous".]
 
 
 
-:strong:`Customer`.  Your customers (either individuals in huge collections or other businesses in small collections) have numerous changes.  However, they often have attributes which can't change as well as attributes which frequently change.  For example, demographics change very slowly (if at all).  Customers often requires more sophisticated "snowflake schema" techniques.  There still aren't any updates, but there are SCD techniques for handling this.
+**Customer**.
+    Your customers (either individuals in huge collections or other businesses in small collections) have numerous changes.  However, they often have attributes which can't change as well as attributes which frequently change.  For example, demographics change very slowly (if at all).  Customers often requires more sophisticated "snowflake schema" techniques.  There still aren't any updates, but there are SCD techniques for handling this.
 
 
 
-:strong:`Product`.  Your products, product lines, product families, product groupings, solutions, technologies, platforms, services, etc., are all grouped by marketing in the randomest ways.  These groupings and hierarchies and clusters and affinities are just ways that marketing tries to portray your company; and it changes with every whim and brain-fart.  This is also a basic SCD issue; you simply add the alternative hierarchies and groupings and do alternate joins on the facts.
+**Product**.
+    Your products, product lines, product families, product groupings, solutions, technologies, platforms, services, etc., are all grouped by marketing in the randomest ways.  These groupings and hierarchies and clusters and affinities are just ways that marketing tries to portray your company; and it changes with every whim and brain-fart.  This is also a basic SCD issue; you simply add the alternative hierarchies and groupings and do alternate joins on the facts.
 
 
 
-:strong:`Cost Centers`.  Your internal cost structure changes.  Sometimes frequently.  This is still SCD.  No updates, just inserts.
+**Cost Centers**.
+    Your internal cost structure changes.  Sometimes frequently.  This is still SCD.  No updates, just inserts.
 
 
 
-:strong:`Recent Example`
+Recent Example
+--------------
 
 
 
@@ -133,11 +142,11 @@ The "update" issue can't arise.  Let's look at some common dimensions.
 
 
 
-1.2.  Since we can't directly use the "denormalized" table in your blog posting, the idea of denormalization is broken, and we can never talk about it in any form whatsoever.  Temporary tables, materialized views and other techniques are off the table, :emphasis:`a priori`.  [I'm at fault for not providing the expected solution, which involved some kind of :strong:`Faerie Dust`\ ™ that would make a bad table process quickly.]
+1.2.  Since we can't directly use the "denormalized" table in your blog posting, the idea of denormalization is broken, and we can never talk about it in any form whatsoever.  Temporary tables, materialized views and other techniques are off the table, *a priori*.  [I'm at fault for not providing the expected solution, which involved some kind of **Faerie Dust**\ ™ that would make a bad table process quickly.]
 
 
 
-1.3.  The organization can't learn anything new.  Talking about "denormalization" would be new, and is therefore forbidden.  The idea of persistent derived values is off the table, :emphasis:`a priori`.  [The organization is at fault.]
+1.3.  The organization can't learn anything new.  Talking about "denormalization" would be new, and is therefore forbidden.  The idea of persistent derived values is off the table, *a priori*.  [The organization is at fault.]
 
 
 

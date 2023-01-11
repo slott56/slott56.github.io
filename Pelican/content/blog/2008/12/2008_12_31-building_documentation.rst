@@ -29,7 +29,8 @@ I spent a productive day making a bunch of small revisions to a big library of d
 
 
 
-:strong:`API Documentation`
+API Documentation
+-----------------
 
 
 
@@ -45,7 +46,8 @@ At first, this looked painful.  However, 90% of the changes are from @param this
 
 
 
-:strong:`Organizational Issues`
+Organizational Issues
+----------------------
 
 
 

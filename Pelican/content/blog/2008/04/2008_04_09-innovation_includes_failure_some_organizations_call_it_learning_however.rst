@@ -62,7 +62,8 @@ Second, A Q&amp;A with Bala Iyer, `Google 'stalker' Deconstructs the Secrets to 
 
 
 
-:strong:`Insight` 
+Insight
+--------
 
 
 The "Good ideas are Generative", "Generative means creating New Things" and "New things may include Errors" was a new set of connections for me.
@@ -100,19 +101,15 @@ I think this Generative Tools manifesto may capture the innovative strengths in 
 
 And it goes beyond developer generativity into the "user" realm.  Users are smart and sophisticated.  They will either work with corporate IT or they're work around it.  Corporate IT shouldn't be a barrier to innovation, they should enable it by passing on tools and best practices.
 
-1.  Transparency.  For Developers, open source gives us transparency.  So does simplicity, focus, and conceptual integrity.  A good set of tools does one thing well and simply.  For Users, transparency means direct access to data, with minimal interference by "application" software.
+1.  **Transparency**.  For Developers, open source gives us transparency.  So does simplicity, focus, and conceptual integrity.  A good set of tools does one thing well and simply.  For Users, transparency means direct access to data, with minimal interference by "application" software.
 
 
-2.  Adaptability.  For Developers, open standards allow us to build and rebuild in simple, obvious ways.  One big lesson learned is the way that Ant task definitions have a simple interface that permits endless composition without resorting to a shell script or non-Java tool.  Python's `top-level script environment <http://docs.python.org/lib/module-main.html>`_  encourages simple, obvious reuse techniques.  For Users, solutions must be scriptable with an easy-to-use language.
+2.  **Adaptability**.  For Developers, open standards allow us to build and rebuild in simple, obvious ways.  One big lesson learned is the way that Ant task definitions have a simple interface that permits endless composition without resorting to a shell script or non-Java tool.  Python's `top-level script environment <http://docs.python.org/lib/module-main.html>`_  encourages simple, obvious reuse techniques.  For Users, solutions must be scriptable with an easy-to-use language.
+
+    Python's easy-on-the-eyes syntax makes it the ideal substrate for building a useful Domain-Specific Language.  I've just finished studying `SCONS <http://www.scons.org/>`_ , and see how an elegant DSL can built on **Gold Old Python Syntax** .
 
 
-
-    Python's easy-on-the-eyes syntax makes it the ideal substrate for building a useful Domain-Specific Language.  I've just finished studying `SCONS <http://www.scons.org/>`_ , and see how an elegant DSL can built on :strong:`Gold Old Python Syntax` .
-
-
-3.  Cost.  The cost of doing things well should not be higher than stupid hacks.  Stupidity is a tax that is collected after the fact.  We can omit "expensive" configuration control now, but we'll pay for that later when we can't recover the last good release after ill-advised changes.
-
-
+3.  **Cost**.  The cost of doing things well should not be higher than stupid hacks.  Stupidity is a tax that is collected after the fact.  We can omit "expensive" configuration control now, but we'll pay for that later when we can't recover the last good release after ill-advised changes.
 
     Security, testability, configuration management, data management and the like should not involve tools any more complex than what appears to be a shared directory.  
 

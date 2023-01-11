@@ -29,7 +29,8 @@ There are several variations on "doesn't know what they want", each of which doo
 
 
 
-:strong:`Liars` 
+Liars
+------
 
 
 
@@ -53,7 +54,8 @@ If you muddle through, you wind up in Cringley's type "B" category of consultant
 
 
 
-:strong:`Problem-Free Problem Solving` 
+Problem-Free Problem Solving
+-----------------------------
 
 
 
@@ -65,7 +67,8 @@ This has a lot of FAIL in it.  If you deliver the technology, the problem isn't 
 
 
 
-:strong:`Helpless Flailing` 
+Helpless Flailing
+------------------
 
 
 
@@ -77,7 +80,7 @@ Some customers like to paint their situation as one in which they are helpless o
 
 
 
-To get to agreement, someone must be rewarded for doing the right thing.  Consultants rarely shape the cultural and financial reward systems.  The customer must elevate the value of cooperation, and must elevate the values of the right solution.  The consultant can only point the direction, the customer has to actually move.
+    To get to agreement, someone must be rewarded for doing the right thing.  Consultants rarely shape the cultural and financial reward systems.  The customer must elevate the value of cooperation, and must elevate the values of the right solution.  The consultant can only point the direction, the customer has to actually move.
 
 
 
@@ -85,11 +88,12 @@ To get to agreement, someone must be rewarded for doing the right thing.  Consul
 
 
 
-Again, to get to an agreement, you need some kind of reward for doing the right thing.  If we don't have a problem, and we can't reward people for solving the problem, all we have left is waffling.
+    Again, to get to an agreement, you need some kind of reward for doing the right thing.  If we don't have a problem, and we can't reward people for solving the problem, all we have left is waffling.
 
 
 
-:strong:`ROI` 
+ROI
+---
 
 
 
@@ -117,7 +121,8 @@ Cringley can complain about type "B" consultants.  But customers create the situ
 
 
 
-:strong:`The Fantasy Solution` 
+The Fantasy Solution
+---------------------
 
 
 
@@ -125,15 +130,15 @@ Cringely describes a common customer fantasy.  "The best consultants are the one
 
 
 
-1.  The client has either chosen the solution -- or is open to change -- and found a consultant who can implement it.  Good.  Unless, of course, we're in :strong:`Problem-Free Problem Solving`  mode.  In which case, a great implementation solves nothing.  It's still a FAIL.
+1.  The client has either chosen the solution -- or is open to change -- and found a consultant who can implement it.  Good.  Unless, of course, we're in **Problem-Free Problem Solving**  mode.  In which case, a great implementation solves nothing.  It's still a FAIL.
 
 
 
-2.  The client is a :strong:`Liar`  about being open to change.  Go ahead, install the solution AND solve the problem.  You can still be labeled a failure if there's no "uptake" of the solution.  It can stand out as an island of stuff that is repudiated because it's unique.  There is no reward for learning the new technology, so it has to be removed.  FAIL.
+2.  The client is a **Liar**  about being open to change.  Go ahead, install the solution AND solve the problem.  You can still be labeled a failure if there's no "uptake" of the solution.  It can stand out as an island of stuff that is repudiated because it's unique.  There is no reward for learning the new technology, so it has to be removed.  FAIL.
 
 
 
-3.  The client is engaged in :strong:`Helpless Flailing` , but isn't actually open to the technology or admitting to the business problem (or both).  Now you look like you're selling snake oil and making insane promises no technology can keep.  They may like you, and you may have identified the real problem for them.  But if your technology isn't what they want, that's a FAIL.
+3.  The client is engaged in **Helpless Flailing** , but isn't actually open to the technology or admitting to the business problem (or both).  Now you look like you're selling snake oil and making insane promises no technology can keep.  They may like you, and you may have identified the real problem for them.  But if your technology isn't what they want, that's a FAIL.
 
 
 

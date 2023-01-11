@@ -139,8 +139,6 @@ rules.
 Here's the PL/SQL package I
 used.
 
-..  code:
-
 ::
 
     create or replace package body "MATCHSQL" is

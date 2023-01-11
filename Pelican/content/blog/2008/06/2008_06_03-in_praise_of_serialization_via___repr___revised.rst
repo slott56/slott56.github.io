@@ -29,7 +29,7 @@ The issue is this: parsing one page all the way to the final spreadsheet will no
 
 
 
-[:strong:`HTML Note`.  Some HTML syntax errors aren't really errors, they're an artifact of the SGML legacy; that doesn't make them any easier to parse.  Worse, the presence of errors is compounded by :strong:`Rule One of the Browser`: All HTML Gets Rendered No Matter How Malformed.  Because of Rule One, HTML can be crap and the QA folks just nod and say "it displays OK".]
+[**HTML Note**.  Some HTML syntax errors aren't really errors, they're an artifact of the SGML legacy; that doesn't make them any easier to parse.  Worse, the presence of errors is compounded by **Rule One of the Browser**: All HTML Gets Rendered No Matter How Malformed.  Because of Rule One, HTML can be crap and the QA folks just nod and say "it displays OK".]
 
 
 
@@ -44,8 +44,8 @@ What do to?
 One solution is to try and use `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_  to get past the HTML errors.  While this is helpful, it doesn't get past the irregularities in the way HTML was used by the author.
 
 
-
-:strong:`The Pipeline`
+The Pipeline
+-------------
 
 
 
@@ -58,8 +58,6 @@ I'm picky, however, and I like to have first-class support for the `Visitor <htt
 
 
 And one additional feature: a nice __repr__ that will serialize the entire Document as a proper Python expression.   You wind up with a file that looks like this:
-
-..  code:
 
 ::
 
@@ -84,21 +82,19 @@ While bulky, this is a lot easier to work with than the output from `pickle <htt
 
 
 
-[:strong:`Scalability Note`.  There are limitations to this.  Truly huge expressions will break the Python parser.  Your mileage may vary.  You may need to break giant documents into logical pieces and assemble the pieces. You may have something like p1= ...; p2= ...; p :emphasis:`n` = ...; doc = [ p1, p2, ..., p :emphasis:`n`  ] to manage bigness.]
+[**Scalability Note**.  There are limitations to this.  Truly huge expressions will break the Python parser.  Your mileage may vary.  You may need to break giant documents into logical pieces and assemble the pieces. You may have something like p1= ...; p2= ...; p *n* = ...; doc = [ p1, p2, ..., p *n*  ] to manage bigness.]
 
 
 
 Once we've explored, we can write our stage two parser which actually works reliably and handles all of the special cases properly.
 
 
-
-:strong:`Stage Two`
+Stage Two
+----------
 
 
 
 The second stage of the pipeline can work from Python source.  Rather than write more parsing and loading functions, stage two starts with the following:
-
-..  code:
 
 ::
 
@@ -124,7 +120,8 @@ The domain model is the thing we wanted in the first place.  The two-stage parse
 
 
 
-:strong:`Dimensional Model`
+Dimensional Model
+-----------------
 
 
 
@@ -136,11 +133,13 @@ In many cases, the web content we're parsing is a dimensional (or `star schema <
 
 
 
-:strong:`Dimensional Entities`.  Dimensional entities are the "descriptions" of each dimension.  Dimensions include the obvious time and space (geography), but can also include demographic groupings, economic groups (SIC codes), etc.
+**Dimensional Entities**.
+    Dimensional entities are the "descriptions" of each dimension.  Dimensions include the obvious time and space (geography), but can also include demographic groupings, economic groups (SIC codes), etc.
 
 
 
-:strong:`Facts`.  Facts are measures (with units) that can be categorized  by the dimensions to which they belong. 
+**Facts**.
+    Facts are measures (with units) that can be categorized  by the dimensions to which they belong.
 
 
 
@@ -156,7 +155,8 @@ Stage two builds the dimensional model objects from the DOM objects.  (The DOM o
 
 
 
-:strong:`Stage Three`
+Stage Three
+------------
 
 
 
@@ -173,8 +173,6 @@ The facts are a simple sequence (list or tuple) of measures with references to t
 
 
 It's appealing to simply serialize the fact table with __repr__.  This isn't the best approach, however.  Generally, a large number of facts will have references to a common dimension value.  If we simply serialize the facts with something like the following, we'll have a lot of redundancy.
-
-..  code:
 
 ::
 
@@ -194,8 +192,6 @@ Our facts are represented in the stage three input as follows.  Rather than incl
 
 
 
-
-..  code:
 
 ::
 
@@ -222,8 +218,6 @@ The real power comes from using the `Inverted Index <http://en.wikipedia.org/wik
 
 
 
-..  code:
-
 ::
 
     class Fact( object ):
@@ -236,7 +230,7 @@ The real power comes from using the `Inverted Index <http://en.wikipedia.org/wik
 
 
 
-:strong:`Staging Our Analysis`
+Staging Our Analysis
 
 
 
@@ -253,8 +247,6 @@ Stage 3 merges the dimensional model values into a single datamart that we can t
 
 
 The remaining work is (usually) involves locating all facts with a particular dimension value and producing the expected reports.
-
-..  code:
 
 ::
 

@@ -119,52 +119,75 @@ S.Lott -- Software Architect            </a>
 <p>First, they have a Domain Name (pretend it's www.smallnfp.org). They have an associated organization which is hosting their web site.  Let's call them the Associated Org (www.assocd.org)  The site is big and complex with numerous sophisticated features.  Sadly, they're web 1.0 features, and are starting to show their age.</p>
 <p>Only... there are issues.  The Associated Org has at least two Domain Names pointed at their server.  The Associated Org are nice folks, but not web developers.  Their IIS configuration can only handle minimal distinction between the domain names; one significant consequence is that the web pages can't have a meaningful <tt class="docutils literal">&lt;title&gt;</tt> tags in the <tt class="docutils literal">&lt;head&gt;</tt>.  Really.  It says &quot;Default Page&quot;, and that can't easily be fixed.</p>
 <p>We'll call this application server -- with it's current set of problems -- the legacy web presence.</p>
-<p><strong>Web 1.0</strong></p>
+<div class="section" id="web-1-0">
+<h2>Web 1.0</h2>
 <p>The biggest issue is the Web 1.0 approach:  Provide a site where people can contribute.  &quot;Interactivity&quot; was the feature they wanted.</p>
 <p>The problem is that we're trying to target victims (and family and caregivers) of trauma.  We can't simply create a free-for-all wiki-wiki.  The postings must be moderated.</p>
 <p>So, our legacy web application is a rather complex application:  it has a posting workflow.  Everything has to be approved by a moderator.  The problem is that there are two web sites, a number of status settings, and things can easily vanish.  The workflow is too hard to manage.</p>
 <p>On conference calls with the Associates it became clear that the the Web 1.0 site wasn't working well.  It wasn't so much the bugs (hardly any) but the complexity of the thing.  There were many types of content; it wasn't at all clear where each type of posting showed up on the resulting web site.  It wasn't clear precisely which status codes lead to what behavior for postings.</p>
-<p><strong>The Newsletter</strong></p>
+</div>
+<div class="section" id="the-newsletter">
+<h2>The Newsletter</h2>
 <p>Nothing says &quot;pre-web&quot; more than a newsletter.  Knowledge sharing is important -- it's a big reason why some small not-for-profits exist -- but news in a monthly bundle is a hold-over from print media.</p>
 <p>The bastard child of print media and Web 1.0 is the PDF newsletter.  It can be flashy and eye-catching.  But it's multiple pages; I have to download it and open it to read it.  Bleah.</p>
 <p>A Web 1.1 compromise is the PDF newsletter with an email that summarizes the articles.  A little better -- I can judge if anything is interesting enough to justify downloading it.</p>
 <p>A Web 1.2 compromise is an email that summarizes the articles with links to the full articles and no PDF newsletter.  Better still, because follow-up is easy.</p>
-<p><strong>What Do We Need?</strong></p>
+</div>
+<div class="section" id="what-do-we-need">
+<h2>What Do We Need?</h2>
 <p>The Small NFP has a number of distinct audiences.  The actual users of the services (in this case, victims of certain kinds of trauma); these are people who -- for various reasons -- may not seek help or may be suspicious of offers of help.  There are the family and friends of a victim; people who might be able to steer the victim to seek help.  There are caregivers who need help and support.  There is the wider circle of associated organizations, non-governmental and even in the government.  Finally, there are potential sources of donations and grant money.</p>
 <p>We have a number of channels of communication:  email, print, a &quot;web presence&quot;.  But what is this &quot;web presence&quot;?  The (nearly) static content at www.smallnfp.com?  Or something more?</p>
 <p>We have a number of messages.  For each audience we have a distinct message.  Victims, families, caregivers, associated organizations and funding agencies all want to know different things.  There is some overlap, but there are also some distinctions.</p>
-<p><strong>The Web 2.0 Newsletter Is a Blog</strong></p>
+</div>
+<div class="section" id="the-web-2-0-newsletter-is-a-blog">
+<h2>The Web 2.0 Newsletter Is a Blog</h2>
 <p>First, let's dispose with the newsletter.  A newsletter isn't very targeted. (Indeed, a big question is &quot;who's on the current email and print mailing lists?&quot; and &quot;what message <em>should</em>  they be getting?&quot; and &quot;how can one document serve all those distinct needs?&quot;)</p>
 <p>A newsletter is a compendium of individual stories.  Each story has a byline, a dateline, and sometimes other information about the story.  A newsletter saves the stories until it fills enough pages to justify the cost of publication.</p>
 <p>A Blog is a compendium of individual stories.  The information about the story (byline, dateline, etc.) is still present.  However, the cost of publication is nearly zero (compared with the cost of gathering information, writing and editing), so stories can published when they're still newsworthy.  The cost of publication and the bundling of stories ceases to be relevant.</p>
 <p>An email notification can be sent with each story.  Additionally, there are syndication tools like RSS and ATOM that make email notification a little slow and old-fashioned.</p>
 <p>Additionally, a print newsletter can bundle a recent batch of stories for publication to folks who don't use computers much.</p>
-<p><strong>Web 2.0 Interactivity Is More Blogs</strong></p>
+</div>
+<div class="section" id="web-2-0-interactivity-is-more-blogs">
+<h2>Web 2.0 Interactivity Is More Blogs</h2>
 <p>One stumbling point in the current architecture is the &quot;interactivity&quot; wish.  It would be great to have victims (or families or caregivers) share their stories.</p>
 <p>It would be great.  Indeed, they probably are sharing their stories.  We know they're not posting on www.smallnfp.org's site.  What's left is that they're probably posting on their own blogs, and <a class="reference external" href="http://www.myspace.com">myspace</a> , <a class="reference external" href="pages.google.com">google</a>  or <a class="reference external" href="http://geocities.yahoo.com">geocities</a>  sites.</p>
 <p>In Web 1.0 world, no one could publish anything because publishing was still hard.  It required servers and programmers and knowledge of HTML, ASP and what-not.</p>
 <p>In Web 2.0 world, everyone can publish everything because publishing is free.  Much of it is supported by advertisers.  The rest is supported by very simple, easy-to-use services like <a class="reference external" href="http://www.mac.com">www.mac.com</a> , or the pay versions of geocities or google pages.</p>
-<p><strong>Email and Spamming</strong></p>
+</div>
+<div class="section" id="email-and-spamming">
+<h2>Email and Spamming</h2>
 <p>Currently, the Small NFP's email list is split among several servers: the Associated Org's server, a Gmail account and an AOL account.  Any basic web mail account can keep a master list of contacts and appropriate groups within that master list.   There are a large number of web-based mail processing applications.  See the Wikipedia list of <a class="reference external" href="http://en.wikipedia.org/wiki/Comparison_of_webmail_providers">webmail providers</a> .  Google mail and Yahoo! mail are popular web email solutions.</p>
 <p>However, a mail list is generally for distribution of reminders for web site or blog changes.  The RSS and ATOM syndication protocols (used directly by FireFox and Safari browsers) mean that email isn't required for change notification.  The Web Page and Blog tools provide the necessary feeds, mostly automatically.</p>
 <p>Additionally, mail lists are endlessly being partitioned based on interest, focus, background, status, geography, demographics, etc.  The problem is that web-based contact management solutions (e.g., <a class="reference external" href="http://www.salesforce.com">salesforce.com</a>  or <a class="reference external" href="http://www.clpsuite.com/">CLP Suite</a> ) are rather complex.  Also, it seems odd to use for-profit contact management for a not-for-profit organization.</p>
 <p>There are two approaches: a simple mail list or a full-up CRM solution.  The fees for single-user CRM solutions are quite low.  Using a full CRM solution is probably the best way to go.</p>
 <p>Small Not-For-Profit Web Strategy</p>
 <p>Here's a way to structure the web presence of a small not-for-profit.</p>
-<p><strong>Web Site</strong>.  Get a Yahoo! Geocities or Google Pages site.  Pay the fees to suppress advertisements and get enough email addresses to handle the current staff.  Use this for your basic contact information, mission statement, strategy, funding sources, and other relatively static information.  This isn't the easiest way to manage information.  However, it's essential to show that the organization is permanent, and serious.</p>
-<p><strong>Get Google Accounts</strong>.  Everyone should be using <a class="reference external" href="http://mail.google.com">Google Mail</a> , and <a class="reference external" href="http://docs.google.com">Google Documents</a> .  Stop emailing documents among the principals in the organization.</p>
-<p><strong>Start a blog</strong>.  The Wikipedia entry on Weblog software has a section on <a class="reference external" href="http://en.wikipedia.org/wiki/Weblog_software#Developer-hosted">developer-hosted blogs</a> .  These are all candidate pieces of easy-to-use blogging software.  Generally, you'll keep your blog and site separate.  You will have your blog reference your site and your site reference your blog.  Careful choice of names creates a single identity.</p>
+<dl class="docutils">
+<dt><strong>Web Site</strong>.</dt>
+<dd>Get a Yahoo! Geocities or Google Pages site.  Pay the fees to suppress advertisements and get enough email addresses to handle the current staff.  Use this for your basic contact information, mission statement, strategy, funding sources, and other relatively static information.  This isn't the easiest way to manage information.  However, it's essential to show that the organization is permanent, and serious.</dd>
+<dt><strong>Get Google Accounts</strong>.</dt>
+<dd>Everyone should be using <a class="reference external" href="http://mail.google.com">Google Mail</a> , and <a class="reference external" href="http://docs.google.com">Google Documents</a> .  Stop emailing documents among the principals in the organization.</dd>
+<dt><strong>Start a blog</strong>.</dt>
+<dd><p class="first">The Wikipedia entry on Weblog software has a section on <a class="reference external" href="http://en.wikipedia.org/wiki/Weblog_software#Developer-hosted">developer-hosted blogs</a> .  These are all candidate pieces of easy-to-use blogging software.  Generally, you'll keep your blog and site separate.  You will have your blog reference your site and your site reference your blog.  Careful choice of names creates a single identity.</p>
 <p>For example, <a class="reference external" href="http://www.blogger.com">Blogger</a>  is a Google product, but it isn't part of <a class="reference external" href="http://pages.google.com">Google Pages</a> .  You could use any of the more popular blog tools like <a class="reference external" href="http://www.livejournal.com/">LiveJournal</a> , <a class="reference external" href="http://www.typepad.com/">TypePad</a> , <a class="reference external" href="http://360.yahoo.com/">Yahoo 360</a>  or <a class="reference external" href="http://wordpress.org/">WordPress</a> .</p>
-<p>The hardest part of this is changing the current newsletter production cycle to get rid of the once-each-month schedule.  Instead, the newsletter becomes a continuous operation, with each new article turning into a blog posting.  The traditional print newsletter -- as summary of the Blog -- can still be issued, but the writing and editing is spread throughout the month, not jammed into a hectic rush with a deadline.</p>
-<p><strong>Start a Calendar</strong>.  The current web site offers an event list.  This can be replaced with <a class="reference external" href="http://www.google.com/calendar">Google Calendar</a>  or`30 Boxes. &lt;<a class="reference external" href="http://30boxes.com/welcome.php">http://30boxes.com/welcome.php</a>&gt;`_   Again, this calendar must link to the primary web site, and the primary web site must link to the calendar.</p>
-<p><strong>Start a Group or Two</strong>.   A few constituencies should have some additional features -- often provided by tools like <a class="reference external" href="http://groups.yahoo.com">Yahoo! Groups</a>  or <a class="reference external" href="http://groups.google.com">Google Groups</a> .  These tools keep web pages, calendars, documents, discussion forums and email lists.</p>
-<p>Generally, a narrow audience (e.g., the trustees) can all be members of a Google Group that provides meeting schedules, agendas, and shared documents.   In some cases, there are audiences with frequent, less-formal contacts.  A group can work well for this.</p>
-<p><strong>Pick a CRM Tool</strong>.  Move all of the existing mailing lists into the CRM tool.  Identify each individual with enough characteristics to permit meaningful communication.</p>
+<p class="last">The hardest part of this is changing the current newsletter production cycle to get rid of the once-each-month schedule.  Instead, the newsletter becomes a continuous operation, with each new article turning into a blog posting.  The traditional print newsletter -- as summary of the Blog -- can still be issued, but the writing and editing is spread throughout the month, not jammed into a hectic rush with a deadline.</p>
+</dd>
+<dt><strong>Start a Calendar</strong>.</dt>
+<dd>The current web site offers an event list.  This can be replaced with <a class="reference external" href="http://www.google.com/calendar">Google Calendar</a>  or`30 Boxes. &lt;<a class="reference external" href="http://30boxes.com/welcome.php">http://30boxes.com/welcome.php</a>&gt;`_   Again, this calendar must link to the primary web site, and the primary web site must link to the calendar.</dd>
+<dt><strong>Start a Group or Two</strong>.</dt>
+<dd><p class="first">A few constituencies should have some additional features -- often provided by tools like <a class="reference external" href="http://groups.yahoo.com">Yahoo! Groups</a>  or <a class="reference external" href="http://groups.google.com">Google Groups</a> .  These tools keep web pages, calendars, documents, discussion forums and email lists.</p>
+<p class="last">Generally, a narrow audience (e.g., the trustees) can all be members of a Google Group that provides meeting schedules, agendas, and shared documents.   In some cases, there are audiences with frequent, less-formal contacts.  A group can work well for this.</p>
+</dd>
+<dt><strong>Pick a CRM Tool</strong>.</dt>
+<dd>Move all of the existing mailing lists into the CRM tool.  Identify each individual with enough characteristics to permit meaningful communication.</dd>
+</dl>
 <p>At this point, the Small NFP has the relevant capabilities of their current web site.  Each component is easier to use and more sophisticated than in the legacy web site.  The parts (site, blog, calendar) are spread around, but each is focused on one part of the problem.  Using a single set of names, colors and mutual links means that this amalgamation appears reasonably consistent to visitors.</p>
 <p>The current administrative procedures will change.  Rather than interacting with multiple pages of the (hard-to-use) legacy site, the administrator will interact with multiple pages of multiple (easier-to-use) sites.</p>
 <p>In some cases, there will be several alternatives for communication -- the central calendar, a web page change, a blog posting or a group calendar entry that's only visible to the relevant group.   This requires some care to pick the best and most appropriate place to put the information.</p>
 <p><strong>Create a MySpace Page</strong>.  MySpace has Blog, Calendar and Address Book capabilities.  However, each feature is relatively primitive.  Further MySpace is just one way to attract and retain some (but not all) members of the various target audiences.</p>
-<p>Conversion</p>
+</div>
+<div class="section" id="conversion">
+<h2>Conversion</h2>
 <p>Here's how the Small NFP can move from their legacy web site to a Web 2.0 presence.  This is a multi-step operation.</p>
 <p>First, get the existing content into easy-to-use files.  This will require working with the Associated organization that is currently providing web services.  The extracted content could come in a number of forms.</p>
 <p>Second, post this content to the new blog and web pages.  Some blog tools have automated interfaces that make it possible to move large numbers of files with relatively little manual intervention.  A couple of quick Python programs can probably bulk load the blog postings and calendar events.</p>
@@ -172,6 +195,7 @@ S.Lott -- Software Architect            </a>
 <p>Fourth, drop all email accounts except the approved GMail accounts.  Stop using AOL.  Send email messages from all the legacy accounts announcing the new accounts.</p>
 <p>Fifth, merge all working email addresses into the chosen CRM solution.</p>
 <p>Announce the changes via blog postings, MySpace and email notification.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -191,7 +215,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

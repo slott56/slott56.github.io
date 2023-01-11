@@ -115,31 +115,45 @@ S.Lott -- Software Architect            </a>
                 <p>See Martin Fowler's essay on <a class="reference external" href="http://www.martinfowler.com/bliki/TechnicalDebt.html">Technical Debt</a> .  Also see Steve McConnell's thoughts &lt;<a class="reference external" href="http://blogs.construx.com/blogs/stevemcc/archive/2007/11/01/technical-debt-2.aspx">http://blogs.construx.com/blogs/stevemcc/archive/2007/11/01/technical-debt-2.aspx</a>.</p>
 <p>We can use Agile techniques to get things done ASAP and ACAP (As Soon As Possible and As Cheap As Possible).  However, we still need to make clear the volume of work we're likely to encounter before we have a usable product.  And we have to clarify the <strong>Cost of Cheap™</strong>  -- better known as Technical Debt.</p>
 <p>We inherited some software from a client that we're going to maintain and enhance.  Further, we're considering ways to distribute it to some other prospective customers  The Use Cases are spot on a big, clear business problem.  The opportunities for solving this problem are huge.</p>
-<p><strong>Aside</strong> :  [Every time my company and a client have this kind of &quot;support us, please; sell additional customers if it helps&quot; conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the &quot;who gets revenue from the sale&quot; question by adopting what we call the &quot;GPL Business Model&quot; (<a class="reference external" href="http://www.gnu.org/copyleft/gpl.html#section4">GPL V3 Section 4</a> ).  Source is free, support is where we make the money.</p>
+<dl class="docutils">
+<dt><strong>Aside</strong></dt>
+<dd>[Every time my company and a client have this kind of &quot;support us, please; sell additional customers if it helps&quot; conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the &quot;who gets revenue from the sale&quot; question by adopting what we call the &quot;GPL Business Model&quot; (<a class="reference external" href="http://www.gnu.org/copyleft/gpl.html#section4">GPL V3 Section 4</a> ).  Source is free, support is where we make the money.</dd>
+</dl>
 <p>Services are where the money is.  It's the 21st century, there will always be free software that does more-or-less the same thing.  You can't compete on price of the initial sale.  You can only compete on the thing which is not a commodity -- skills.]</p>
-<p><strong>Change to the Architecture</strong></p>
+<div class="section" id="change-to-the-architecture">
+<h2>Change to the Architecture</h2>
 <p>The problem we're going to have is the distribution and support of a VB app that was designed only for in-house deployment.  It isn't designed for debugging, support, configuration or even testing.  It doesn't have any unit test cases of any kind.  Indeed, there are bugs that can be spotted through simple inspection.</p>
-<p><strong>Another Aside</strong> : [A is not NULL AndAlso A != &quot; &quot; is the problem.  The inverse is A is NULL OrElse A = &quot; &quot;.  Any other variation on these two is a common logic error.  For example, A is not NULL OrElse A != &quot; &quot; doesn't do anything useful.]</p>
+<dl class="docutils">
+<dt><strong>Another Aside</strong>:</dt>
+<dd>[<tt class="docutils literal">A is not NULL AndAlso A != &quot; &quot;</tt> is the problem.  The inverse is <tt class="docutils literal">A is NULL OrElse A = &quot; &quot;</tt>.  Any other variation on these two is a common logic error.  For example, <tt class="docutils literal">A is not NULL OrElse A != &quot; &quot;</tt> doesn't do anything useful.]</dd>
+</dl>
 <p>I'd rather not mess around with remote desktop support for widely distributed communities of users.  It's really hard to do that, and it isn't a skill we have a lot of.  I'd rather provide this in a SaaS model.  We run a central sever farm, if you must have a desktop deployment, we build desktop apps that use our SaaS web services.</p>
 <p>One of the reasons the customer is handing it over to us is because they'd rather have a web-based deployment.  They can't easily convert it from desktop to web, so they're asking us to do that as part of our taking control of the application.  There's that technical debt piling up and preventing progress.</p>
 <p>However, almost every part of VB program is intimately tied to the VB desktop GUI processing.  Even the essential algorithms are full of bonus code to update the display or change the highlights on buttons or check boxes.</p>
-<p><strong>The Technical Debt Question</strong></p>
+</div>
+<div class="section" id="the-technical-debt-question">
+<h2>The Technical Debt Question</h2>
 <p>The software we inherited <em>can</em>  be deployed to another customer's desktop.  We have to rewrite significant pieces, however.</p>
 <p>&quot;What's the least we can do to generate a revenue stream?&quot; a manager asked.</p>
 <p>I can, of course, lie about it and say we can deploy it &quot;as-is&quot;.  It won't work, even a little bit, but it will be deployed.  Everything after that can be called &quot;configuration&quot; or &quot;tuning&quot;.  It will take months of this fooling around, but it will be deployed.  We can charge for the software; eventually, we'll have to give some of the revenue back because it won't be usable for months, but that's a management call, right?</p>
 <p>Management knows that the code has database and configuration dependencies that are tightly bound to the customer who's transferring the source to us.  We know about the missing pieces the customer haven't been able to transfer because &quot;someone else controls that.&quot;  These are things we really have to fix before trying to deploy this to another customer as if it's a ready-to-use product.  That's possibly what the manager wanted to know.  But it isn't the whole story.</p>
 <p>Once we start looking at the taking these configuration features apart, we're looking at creating regression tests for those changes.  And there are no test cases.  So, there's a hidden cost of making changes: we also need to develop tests for those changes.  And in the process of trying to define those tests, we find bugs, missing components, bad design, conflicting comments, all the usual detritus of years of doing support ACAP.  In short, we have to pay back the accumulated technical debt.</p>
 <p>If we deploy a minimally modified app, and fly people out to some new client to support and configure that software, what will our revenue stream be?  Probably a net loss, when you figure in the various costs we're going to endure.  And then, when we do offer SaaS, what do we do for those early adopters?</p>
-<p><strong>The Dollar Value Of Technical Debt</strong></p>
+</div>
+<div class="section" id="the-dollar-value-of-technical-debt">
+<h2>The Dollar Value Of Technical Debt</h2>
 <p>It's difficult to put a dollar value on the Technical Debt of this particular product.  It's difficult because it's hard to say how much of the original application software we're preserving.  Ideally, the technical debt is just the stuff we're fixing.  But, if we're fixing everything, what exactly was transferred to us?</p>
 <p>The architecture -- desktop VB -- goes.  The DB table structure -- with a set of FK's that the current developers say was a mistake imposed by an argumentative DBA -- will have to be discarded.  The VB code for the user interface has to be discarded.  The core algorithms are intimately tied to the GUI and have to be discarded and reimplemented disentangled from the GUI.  What's left are about eight lower-level class definitions that -- technically -- are the &quot;model&quot; of the MVC design pattern.  Even this has a lame X12 parser built into it -- a parser I'd like to discard in favor of something simpler.</p>
 <p>Since we're discarding almost everything but the use cases and some design elements, the current cost of the software is almost entirely of the &quot;debt servicing&quot; kind.  Indeed, the customer hates maintaining this program for that exact reason: all of the maintenance is debt servicing.  It's too expensive for them to try to add new features.</p>
-<p><strong>What To Do?</strong></p>
+</div>
+<div class="section" id="what-to-do">
+<h2>What To Do?</h2>
 <p>The debt has many different sources, each of which requires an investment to create something useful.  The architecture -- web -- requires that the whole UI is rebuilt from scratch.  The existing GUI and use cases can be used as the template, simplifying the effort for analysis and design.  Renovation is easy when you have a working application as a baseline: create test cases, and implement.</p>
 <p>The data model requires that most of the existing SQL implementation is rebuilt from scratch.  And, since we're moving to SaaS, we're going to expand and refine the data model.  This is almost new work. The existing model provides the conceptual framework for understanding the use cases.</p>
 <p>My approach is to apply Test Driven Reverse Engineering.  We'll concoct the missing unit tests and build an application that seems to do what the original application did.  It's easy to do this in Python.  Harder in Java.  Since we're discarding almost all of the VB, there's no compelling reason for messing with the .Net framework.</p>
 <p>Since Python is such a high-productivity environment, it's easiest to rewrite tis in Python.  Easier than it is to write specifications for Java programmers to work from.  The bulk of the reverse engineering time is spent writing and arguing over the unit test cases.  The actual application programming time is much less.</p>
 <p>Once we have something web-enabled, with a proper data model and a proper object model we can begin the maintenance cycle again.  Of course, future managers will make short-sighted, <strong>As Cheap As Possible™</strong>  (ACAP) decisions and we'll accrue technical debt until we are overwhelmed by the <strong>Cost of Cheap</strong> .</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -159,7 +173,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

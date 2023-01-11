@@ -198,7 +198,6 @@ collections (like dictionaries) with few
 problems.</p>
 <p>Here are a few tables from a
 sample dimensional model.</p>
-<!-- code: -->
 <pre class="literal-block">
 from django.db import models
 
@@ -240,7 +239,6 @@ class Student( models.Model ):
 </pre>
 <p>Here is a sample load script which
 shows how these dimensions can be populated.</p>
-<!-- code: -->
 <pre class="literal-block">
 from dimension.models import *
 from loadstar import *
@@ -305,7 +303,6 @@ database.</p>
 <p>Here's a sample fact table
 that we'd like to load.  This depends on the dimensions shown above, plus
 several others.</p>
-<!-- code: -->
 <pre class="literal-block">
 from django.db import models
 from dwdemo.dimension.models import *
@@ -330,7 +327,6 @@ class TestScore( models.Model ):
 </pre>
 <p>Here's a load procedure to populate
 facts based on the dimensional model in place.</p>
-<!-- code: -->
 <pre class="literal-block">
 import random
 
@@ -380,7 +376,6 @@ the Mock Applications are simple: they are the queries that comprise the
 warehouse.  Here's an example.  In this case, we bypass the ORM part of Django,
 and execute SQL directly to better reflect the final implementation via a
 SQL-centric reporting package.</p>
-<!-- code: -->
 <pre class="literal-block">
 from django.db import connection
 tests= connection.cursor()
@@ -447,7 +442,10 @@ implementation.</p>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -22,7 +22,7 @@ Here's the lead-off question: "What do you think of Scott Ambler's approach to u
 This is a reference to the 
 `Object-Relational Impedance Mismatch  <http://www.agiledata.org/essays/impedanceMismatch.html>`_
 article.  The question is a little out-of-phase because the article isn't about UML 
-:emphasis:`per se` .  It's about ORM, it just happens to use UML.  But, I guess the question is really "Is Ambler showing a good example of using UML for doing E-R design?" 
+*per se* .  It's about ORM, it just happens to use UML.  But, I guess the question is really "Is Ambler showing a good example of using UML for doing E-R design?"
 
 
 
@@ -41,7 +41,8 @@ and
 
 The question is unlikely to be this silly and trivial.  The answer is "Yes," but the follow up is "What did you really mean?" 
 
-:strong:`Richness of Notation` 
+Richness of Notation
+--------------------
 
 
 Using UML -- for anything -- presents two problems. 
@@ -59,7 +60,8 @@ A UML class diagram can show a lot of things.  Specifically, UML is biased towar
 
 In summary, rich notation gives you a way of visualizing the real problem.  The real world is complex and messy.  Rich notation is essential for describing the world as we find it.   
 
-:strong:`The Politics Question` 
+The Politics Question
+---------------------
 
 
 In many organizations, UML is unusable.  First, it's not the classic James Martin Crow's Feet Notation.  For some reason, this notation came out in the early days and has stuck.  Permanently.  ERWin, for example, uses this notation and everyone loves it.  Switching to UML requires leaving the crow's feet behind.  What's the ROI on that kind of change?
@@ -80,7 +82,8 @@ ERWin, as an incumbent, gives us one political viewpoint.  The introduction of n
 
 
 
-:strong:`Reality, Objects and Relations` 
+Reality, Objects and Relations
+------------------------------
 
 
 The biggest problem -- the one that Ambler was addressing -- was the mismatch between object classes and SQL tables.  The object model is very rich with numerous features for depicting the real world.  The SQL relational model, on the other hand, is rather poor.  A great deal of clever things can be done in the relational world.  In the object world, we don't have to be nearly so clever. 
@@ -104,7 +107,8 @@ By using UML, we can depict either model of reality with a great deal of useful 
 
 
 
-:strong:`The Real Question` 
+The Real Question
+-----------------
 
 
 A little digging lead to this follow-up question statement:  "Goal: Generate DDL (create table, create FK) from the UML model for various target databases."
@@ -128,7 +132,8 @@ Here's the follow up:
 "Bigger goal: Keep the UML, Java code, and DDL all in sync".
 
 
-:strong:`In Synch with What?` 
+In Synch with What?
+-------------------
 
 
 
@@ -183,7 +188,8 @@ I've got a huge conceptual gap between objects and SQL.  To bridge that gap, I h
 
 
 
-:strong:`The Irony` 
+The Irony
+---------
 
 
 So here's the irony in this long sad story.  The DBA reads Ambler's article about Object-Relational Impedance.  The DBA asks a tangential question about UML.  I press the DBA for details to find that they want some kind of automated maintenance that will eliminate Object-Relational Impedance.  Apparently, they didn't actually read the article that stimulated the question in the first place.  At the end was a reference to 

@@ -29,27 +29,27 @@ There are three hard parts to these kinds of problems:
 
 
 
-:strong:`The design of the database`.  DB design isn't always easy to deduce from the spreadsheets.  Other programs can (and often do) exacerbate the problem by claiming that a dimensionally normalized database isn't to helpful -- they just need persistent storage.  In the long run, that won't work out.
+**The design of the database**.
+    DB design isn't always easy to deduce from the spreadsheets.  Other programs can (and often do) exacerbate the problem by claiming that a dimensionally normalized database isn't to helpful -- they just need persistent storage.  In the long run, that won't work out.
 
 
 
-:strong:`Inconsistency of the spreadsheets`.  We can write rules, pass laws, build macros, rant and rave.  The spreadsheet is still a flexible desktop tool.  We can try to replace it with MS-Access, but the security model is still all-or-nothing.  If you have any access, you can add, change or delete anything you want to  touch.
+**Inconsistency of the spreadsheets**.
+    We can write rules, pass laws, build macros, rant and rave.  The spreadsheet is still a flexible desktop tool.  We can try to replace it with MS-Access, but the security model is still all-or-nothing.  If you have any access, you can add, change or delete anything you want to  touch.
 
 
 
-:strong:`Getting data out of an XLS file`.  There are many, many ways to approach this problem.  We might:
-
-
+**Getting data out of an XLS file**.
+    There are many, many ways to approach this problem.  We might:
 
 -   Save the file as CSV.  There are issues here; principally, who can you trust to save the various sheets consistently?  The "end users" aren't generally all that happy with this level of technical busy-work.  Save As... is so much harder than Save that the odds of success are nearly zero.
 
 -   Save the file as XML.  This is pleasant, but again, you have to trust someone to do this correctly, since it isn't the MS-Office default.  Worse, if you try to make it the default, everyone in IT worries about the increase in file size.
 
--   Stop using MS-Office, and use Open Office.  This has lots and lots of merit, but often suffers from goofy organizational road-blocks.  Primarily the endless list of open source "issues": who provides support? who do we sue? bugs?  malware? licenses?  I ranted about this in` The Cost (and Benefit) of Open Source <{filename}/blog/2006/04/2006_04_24-the_cost_and_benefit_of_open_source.rst>`_ .
+-   Stop using MS-Office, and use Open Office.  This has lots and lots of merit, but often suffers from goofy organizational road-blocks.  Primarily the endless list of open source "issues": who provides support? who do we sue? bugs?  malware? licenses?  I ranted about this in `The Cost (and Benefit) of Open Source <{filename}/blog/2006/04/2006_04_24-the_cost_and_benefit_of_open_source.rst>`_.
 
 -   Write VBA scripts to convert the XLS spreadsheet to XML or a sequence of CSV files.  This compounds a yucky problem with more yuckiness.
 
--
 
 
 
@@ -57,9 +57,8 @@ There are three hard parts to these kinds of problems:
 
 
 
-
-
-:strong:`Enter XLRD`
+Enter XLRD
+----------
 
 
 

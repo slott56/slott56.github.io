@@ -33,7 +33,8 @@ In "long live prepared statements" there's the implication that prepared stateme
 
 
 
-:strong:`Benchmark` 
+Benchmark
+---------
 
 
 
@@ -53,7 +54,8 @@ The second complaint -- it appears -- is unlikely to be true.  See "`Performance
 
 
 
-:strong:`Exceptions` 
+Exceptions
+----------
 
 
 
@@ -69,7 +71,8 @@ So Oracle's explain plan -- with bind variables -- is the worst-case scenario, a
 
 
 
-:strong:`Conclusions` 
+Conclusions
+-----------
 
 
 

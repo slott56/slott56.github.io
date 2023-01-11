@@ -117,7 +117,6 @@ S.Lott -- Software Architect            </a>
                 </div>
                 <p>The comment was eaten by Haloscan, but here's the text...</p>
 <p>You need to read Rozhenstein on characteristic functions.</p>
-<!-- code: -->
 <pre class="literal-block">
 select
 sum(case when a &lt; .5 then 1 else 0 end) 'A'
@@ -128,13 +127,13 @@ from foo
 group by bar
 </pre>
 <p>So, I googled it, and figured out what I'd been missing.</p>
-<p><strong>Skip the Math</strong></p>
+<div class="section" id="skip-the-math">
+<h2>Skip the Math</h2>
 <p>The Google page on characteristic functions is heavy going.  The issue here is to characterize the frequency distribution of some more-or-less random variable.  This is a real close fit with the formal definition of a characteristic function.</p>
 <p>When should we apply the characteristic function?  Load time or query time?  The comment showed it at query time.  However, we could also do it at load time.</p>
 <p>Here's the genius part.</p>
 <p>If we define it as a separate function, we can defer this decision based on which implementation meets our performance guidelines.</p>
 <p>We have this situation.</p>
-<!-- code: -->
 <pre class="literal-block">
 def c1( value ):
     a,b = divmod( int(value*100), 10 )
@@ -144,6 +143,7 @@ def c1( value ):
         return &quot;0.%d - 0.%d&quot; % ( a, a+1 )
 </pre>
 <p>We can then use this during load or we can use it in a fetch loop.  Quite cool.  Very elegantly separated from other parts of the processing.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -163,7 +163,10 @@ def c1( value ):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -41,7 +41,8 @@ Some of the five techniques are motherhood and apple-pie items.  Some are a litt
 
 
 
-:strong:`Making Changes`
+Making Changes
+--------------
 
 
 
@@ -53,7 +54,7 @@ Once you've recognized that the problem is the bloated process, you have to embr
 
 
 
-Ultimately, the most significant thing is to recognize that :strong:`LEARNING IS NOT FAILING`.  When a project is cancelled or change, it may not have failed.  If the project's first few deliverables where really useful and valuable, maybe someone learned that the remaining phases wouldn't be valuable enough.  Canceling the project doesn't mean the project failed to deliver :emphasis:`value`.  It just failed to deliver the whole boat-load of crap that was initially set out in the project charter.
+Ultimately, the most significant thing is to recognize that **LEARNING IS NOT FAILING**.  When a project is cancelled or change, it may not have failed.  If the project's first few deliverables where really useful and valuable, maybe someone learned that the remaining phases wouldn't be valuable enough.  Canceling the project doesn't mean the project failed to deliver *value*.  It just failed to deliver the whole boat-load of crap that was initially set out in the project charter.
 
 
 
@@ -65,7 +66,8 @@ After all, you can't plan for all the things the users will learn.  Since Big IT
 
 
 
-:strong:`Even Savings Are A Failure`
+Even Savings Are A Failure
+--------------------------
 
 
 
@@ -85,7 +87,8 @@ Learning and change should not be equated with failure.  Changes to scope are no
 
 
 
-:strong:`Foundations`
+Foundations
+------------
 
 
 

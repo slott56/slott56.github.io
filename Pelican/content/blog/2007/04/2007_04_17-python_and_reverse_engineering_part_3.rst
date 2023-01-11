@@ -120,8 +120,6 @@ clex.py.
 
 
 
-..  code:
-
 ::
 
     typedefs = [
@@ -208,8 +206,6 @@ repetitive.
 
 
 
-..  code:
-
 ::
 
     top_level_REs = (
@@ -281,8 +277,6 @@ things: the host language text and a list of the embedded SQL
 statements.
 
 
-
-..  code:
 
 ::
 
@@ -403,8 +397,6 @@ sequences of ( token-name, pattern-text ) tuples.
 
 
 
-..  code:
-
 ::
 
     cpp_REs = (
@@ -451,8 +443,6 @@ included in the output.  Here is our function for simulating the
 CPP.
 
 
-
-..  code:
 
 ::
 
@@ -547,8 +537,6 @@ SQL and CPP processing looks like.
 
 
 
-..  code:
-
 ::
 
     def demonstration():
@@ -593,8 +581,6 @@ The
 following to demonstrates how our lexer is used.
 
 
-
-..  code:
 
 ::
 

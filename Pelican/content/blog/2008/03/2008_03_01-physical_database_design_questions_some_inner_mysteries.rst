@@ -17,15 +17,16 @@ I have to say this first -- just because ERwin calls it "physical" that doesn't 
 
 
 
-ERwin doesn't do :emphasis:`physical`  modeling.  Not even a little bit.  The physical layer of a relational database occurs down at the file system level.  Codd's "Rule 8" (Physical Data Independence) says that the things we're designing in ERwin (and similar tools) are the things our application depends on; the things we're :strong:`not`  designing, therefore, must be physical.
+ERwin doesn't do *physical*  modeling.  Not even a little bit.  The physical layer of a relational database occurs down at the file system level.  Codd's "Rule 8" (Physical Data Independence) says that the things we're designing in ERwin (and similar tools) are the things our application depends on; the things we're **not**  designing, therefore, must be physical.
 
 
 
-The physical implementations underlying Oracle, Postgres, DB2, MySQL, SQL/Server (and even SQLite) are all different.  These physical models have :emphasis:`nothing`  to do with the SQL standard; that's the central tenet of Codd's Rule 8.  These implementations are so different as to defy a standardized modeling tool.  All you can ever use for physical modeling is a generic UML tool.
+The physical implementations underlying Oracle, Postgres, DB2, MySQL, SQL/Server (and even SQLite) are all different.  These physical models have *nothing*  to do with the SQL standard; that's the central tenet of Codd's Rule 8.  These implementations are so different as to defy a standardized modeling tool.  All you can ever use for physical modeling is a generic UML tool.
 
 
 
-:strong:`Compression` 
+Compression
+-----------
 
 
 
@@ -53,7 +54,8 @@ Administration aside, compression is simple.  For data warehouses, it helps a lo
 
 
 
-:strong:`Partitioning` 
+Partitioning
+------------
 
 
 
@@ -81,7 +83,8 @@ If the file system can't do this, we can have the RDBMS do it.  Having it done i
 
 
 
-:strong:`Tuning` 
+Tuning
+-------
 
 
 
@@ -101,7 +104,8 @@ This can become a burdensome load of hooey.  Use partitions that make sense.  Fo
 
 
 
-:strong:`VSAM Files` 
+VSAM Files
+----------
 
 
 
@@ -117,7 +121,8 @@ COBOL programs that process VSAM files rarely have a structure that involves an 
 
 
 
-:strong:`Unifying Theme` 
+Unifying Theme
+--------------
 
 
 

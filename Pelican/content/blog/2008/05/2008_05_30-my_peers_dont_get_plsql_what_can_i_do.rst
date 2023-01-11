@@ -54,7 +54,8 @@ Let's pretend we're aiming at "fixing" the organization minimally -- just get th
 
 
 
-:strong:`The Argument`
+The Argument
+-------------
 
 
 
@@ -86,7 +87,8 @@ What can our developer do in the face of these kinds of stonewalling arguments?
 
 
 
-:strong:`Techniques That Don't Work`
+Techniques That Don't Work
+--------------------------
 
 
 
@@ -122,11 +124,12 @@ Providing information (manual pages, blog postings, etc.) doesn't work.  Okay th
 
 
 
-:strong:`Actually Do The Work`
+Actually Do The Work
+--------------------
 
 
 
-One way to act as an agent of change is to :strong:`Actually Change Something`.  Not talk about change possibilities or inform people of better courses of action, but actually do something.  If you're constantly having to look at some crap code, you must be doing maintenance or enhancement.  
+One way to act as an agent of change is to **Actually Change Something**.  Not talk about change possibilities or inform people of better courses of action, but actually do something.  If you're constantly having to look at some crap code, you must be doing maintenance or enhancement.  
 
 
 
@@ -154,11 +157,12 @@ If you're reading the code with intent to change, think about the long-term cost
 
 
 
-[BTW, the 'we don't have time to fix legacy problems' is a false economy, but every IT manager I've ever met has said it emphatically.  I've been asked to scope and plan the replacement of 20- and 30-year old COBOL applications that are breaking the back of the organization.  The plans were, of course, shelved because reducing costs "doesn't create enough value for our end-users."  Got it, the customer insists that limping along with 60% of the organization supporting old crap :emphasis:`does`  create value.]
+[BTW, the 'we don't have time to fix legacy problems' is a false economy, but every IT manager I've ever met has said it emphatically.  I've been asked to scope and plan the replacement of 20- and 30-year old COBOL applications that are breaking the back of the organization.  The plans were, of course, shelved because reducing costs "doesn't create enough value for our end-users."  Got it, the customer insists that limping along with 60% of the organization supporting old crap *does*  create value.]
 
 
 
-:strong:`Suggestion`
+Suggestion
+-----------
 
 
 

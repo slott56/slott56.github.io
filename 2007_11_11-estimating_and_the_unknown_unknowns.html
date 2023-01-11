@@ -116,27 +116,35 @@ S.Lott -- Software Architect            </a>
 <p>The problem is that the model is circular.  Ideally, we want a model that's like the Function Point model: <strong>Requirements In → Software Out</strong> .  The function point folks evaluate five aspects of the requirements and from those aspects determine the effort, schedule and cost.  The FP aspects are Internal Logical Files, External Logical Files, External Inputs, External Outputs and External Inquiries.  Note the emphasis on externally visible features, and the emphasis on the essential ingredients of software.</p>
 <p>COCOMO, unfortunately, gives us a model that is <strong>Lines of Code In → Software Out</strong> .  Wait, how can we know the lines of code going in?  We can't, but we can estimate the lines of code going in, and from that, deduce the effort, schedule and cost.</p>
 <p>You could deprecate this by saying that we've merely replaced estimating everything with estimating lines of code.  The problem hasn't gone away, it's only shifted.  The good news is that we've replaced a vague estimation of everything, with a fact-based estimate of lines of code.  From that, the model gives us effort, schedule, staffing and cost.</p>
-<p>Joel's technique isn't really modeling software development, per se.  Joel's technique is to model the estimating process and show how well people adhere to their estimates.  In short,:strong:<cite>Estimate In → Estimate Out</cite> .  This is clearly indirect stuff, since we're modeling our ability to manage estimating, not the work itself.</p>
-<p><strong>Accuracy Issues</strong></p>
+<p>Joel's technique isn't really modeling software development, per se.  Joel's technique is to model the estimating process and show how well people adhere to their estimates.  In short,**Estimate In → Estimate Out** .  This is clearly indirect stuff, since we're modeling our ability to manage estimating, not the work itself.</p>
+<div class="section" id="accuracy-issues">
+<h2>Accuracy Issues</h2>
 <p>Of course, COCOMO (or Function Points) or even Joel's &quot;Evidence Based Scheduling&quot; have no basis in reality.  More precisely, they have no basis in the reality in which you are currently working.  Clearly, all of the COCOMO numbers are true; but only for those projects, that technology, those managers and customers.</p>
 <p>Joel suggests (just like Boehm before him) that it's all about repeatability.  He says that small steps, clear measurements (elapsed time in Joel's case, effort in Boehm's case), a model and active management are essential.  He also says what Boehm says in chapter 32: gather data to fine-tune your estimating.</p>
 <p>The modeling can't be emphasized enough.  The original idea was that duration (or effort) are defined by a function that varies with the scope of work.  Joel's indirect model refines this by saying that actual duration is defined by a function that varies with the person and their original estimate.</p>
 <p>With enough history, the estimates will tend to get very accurate.  As long as everything else is held constant.  Sadly, nothing else is ever held constant.</p>
-<p><strong>Into the Fog</strong></p>
+</div>
+<div class="section" id="into-the-fog">
+<h2>Into the Fog</h2>
 <p>If we're doing anything of value, it almost always involves some novelty.  As I said in &quot;<a class="reference external" href="https://slott56.github.io/2006_08_22-a_new_architecture_involves_ignorance.html">A New Architecture Involves Ignorance</a> ,&quot; we don't start software development unless there's something we don't know.  If the solution is perfectly well understood, we're very likely to be talking about something we can just download and use.  If the problem is well understood, it's likely that we already have some software in place, and we can measure that software.  Many times, the technology involves something new or untried.</p>
 <p>The alternative -- where everything is known -- is little more than a classroom exercise.  The only way to know everything is to have working software that we're essentially re-implementing.  What's the value in that?</p>
 <p>Once we're tackling a new problem, creating a new solution or using a new technology, our previous estimating history database is of limited value.  Our new technology projects can't be compared to our old technology.  My personal database of C programming measurements just don't apply to Java programming.</p>
 <p>While it's important to gather data, it's also important to recognize the limitations of gathering data when there are few constants.</p>
-<p><strong>Design First</strong></p>
+</div>
+<div class="section" id="design-first">
+<h2>Design First</h2>
 <p>A colleague pointed out Joel's article.  They said that this was a way to show that estimating requires a design first.  I think that the points from my colleague were the following:</p>
 <p>There's a management fantasy that initial estimates actually mean something.  We have limited knowledge, but managers ask for estimates anyway.</p>
 <p>Once we start designing, we're chided for changing the estimates.  As we gain knowledge, everything we learn is treated as a problem.  Trying to adjust scope is called &quot;scope creep&quot;.  Trying to adjust estimates upward is called &quot;out of control&quot;.  Trying to adjust estimates downward is called &quot;sandbagging&quot;.  We can't win.</p>
 <p>My colleague wanted the article to somehow help clarify the relationship between estimates and knowledge.  I don't think it can.</p>
-<p><strong>The Unknowns Have It</strong></p>
+</div>
+<div class="section" id="the-unknowns-have-it">
+<h2>The Unknowns Have It</h2>
 <p>I think that our human tendency to be deeply risk-averse makes it nearly impossible to produce an estimate of software development effort.  We have to guess about something (unless we're just doing a classroom exercise.)</p>
 <p>If we guess, we stand a chance of being wrong.  Each mistake -- each course correction -- is a potential failure.  Ask anyone who has budgetary responsibility for software development: change is magnified to include &quot;loss&quot;, &quot;devastation&quot;, &quot;waste&quot;, &quot;mistakes&quot;, &quot;errors&quot;, and every other kind of negative connotation.</p>
 <p>We all know that software developers are hobos, tramps and thieves.  We're not to be trusted.  We're lazy sandbaggers.  We estimate low so we can win the bid and then charge more through change control.  We estimate high so that can slack off.  We expand scope to build an empire.  We contract scope to make the project worthless.</p>
 <p>There's no good outcome.  Joel's advice might be helpful, but you're in a battle you can't win.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -156,7 +164,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

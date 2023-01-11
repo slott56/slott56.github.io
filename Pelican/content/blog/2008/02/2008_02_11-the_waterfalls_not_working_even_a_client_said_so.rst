@@ -33,7 +33,8 @@ If you want to iterate successfully, you have to start with the hardest part fir
 Sometimes this isn’t very satisfying because it’s still a series of fixed, unthinking waterfalls, in which a lesson learned isn’t an improvement, it’s scope creep.  When lessons learned are considered bad – because they knocked the Fixed out of Firm Fixed Price -- you can’t really be very successful, only marginally better at risk reduction.
 
 
-:strong:`Can We Iterate Without the Customer’s Buy-In?`
+Can We Iterate Without the Customer’s Buy-In?
+----------------------------------------------
 
 
 You can start doing iterative spiral development any time you want.  You don't need to involve the customer.  To do this, you must rank the business or technology problems from high risk to low risk and focus on the high risk first.  
@@ -55,37 +56,12 @@ It's really important to note that you haven’t added any risk dollars by itera
 This, however, doesn’t really help the customer much.  You’ve just optimized your side of the risk equation without giving them a chance to optimize their side.  Enter the Agile approach.  If you pass the savings on to them, you will probably do even better at this.
 
 
+Agility
+--------
 
 
 
-
-
-
-
-
-
-
-
-
-
-:strong:`Agility`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Your initial problem sounds like you’re describing the :strong:`Standard Relationship`: (1) define X, then (2) execute a plan which can only lead to X.  Some like to call this "risk reduction".  Any deviation from the plan is a "risk" of "slippage" or "scope creep".  Even meaningful lessons learned – if they alter the scope – are evil.
+Your initial problem sounds like you’re describing the **Standard Relationship**: (1) define X, then (2) execute a plan which can only lead to X.  Some like to call this "risk reduction".  Any deviation from the plan is a "risk" of "slippage" or "scope creep".  Even meaningful lessons learned – if they alter the scope – are evil.
 
 
 
@@ -204,7 +180,8 @@ If your customer really does expect/demand “Build X or Get Sued”, then Agili
 
 
 
-:strong:`Firm Fixed Price is specifically Anti-Agile`
+Firm Fixed Price is specifically Anti-Agile
+--------------------------------------------
 
 
 
@@ -367,7 +344,8 @@ The good news is that it was hugely valuable.  The bad news is that it did not a
 
 
 
-:strong:`Good News / Bad News`
+Good News / Bad News
+---------------------
 
 
 No one wants to be involved in this kind of good news/bad news project.  Bad News always Wins.  This is universally derided as a failure.  Cancellation.  Scope problems.  Poor requirements definition.  Fail.  Fail.  Epic Fail.
@@ -381,11 +359,12 @@ Agile, however, specifically demands that you look at this as delivery of value 
 To do this, however, you’re not building software with a firm fixed price and delivery schedule.
 
 
-:strong:`Paralyzed by the Procurement Process`
+Paralyzed by the Procurement Process
+-------------------------------------
 
 
 
-In many cases, the procurement process tends to gloss over the problem definition – the users merely think they know, and IT has to pretend that the users actually know.  IT's governance process requires that someone fabricate some financial projection (phrases like “ROI” and “payback period” are prominently featured in the projection.)  [It’s insane because there aren’t a lot of facts backing it up; often none.]  So, IT then writes a “requirements document” full of techno-mumbo-jumbo in which the :emphasis:`problem`  is not well characterized.  The solution, however, is described in glorious detail -- most of it non-functional quality attributes.
+In many cases, the procurement process tends to gloss over the problem definition – the users merely think they know, and IT has to pretend that the users actually know.  IT's governance process requires that someone fabricate some financial projection (phrases like “ROI” and “payback period” are prominently featured in the projection.)  [It’s insane because there aren’t a lot of facts backing it up; often none.]  So, IT then writes a “requirements document” full of techno-mumbo-jumbo in which the *problem*  is not well characterized.  The solution, however, is described in glorious detail -- most of it non-functional quality attributes.
 
 
 
@@ -399,7 +378,8 @@ If they want a firm, fixed price, you can’t really have Agile (or even Iterati
 
 
 
-:strong:`What to Do?`
+What to Do?
+------------
 
 
 
@@ -417,13 +397,13 @@ On the other hand, some customers are doing legitimate thinking, and just want t
 The only way to start the Agile conversation is to convince them of the following:
 
 
-:strong:`It will take a long time and a lot of money.`
+- **It will take a long time and a lot of money.**
 
 
-:strong:`You can fork it over now as a Firm-Fixed Price payment.`
+- **You can fork it over now as a Firm-Fixed Price payment.**
 
 
-:strong:`Or you can fork it over in pieces.`   We’ll commit the first piece, only.  After that, you can decide to fork over more, or declare the problem solved.  You only pay for the Next Thing; but you have to actively manage the selection of the Next Thing.
+- **Or you can fork it over in pieces.**   We’ll commit the first piece, only.  After that, you can decide to fork over more, or declare the problem solved.  You only pay for the Next Thing; but you have to actively manage the selection of the Next Thing.
 
 
 
@@ -439,7 +419,8 @@ Here’s the easy answer:  “What’s it costing you today?” Problem Y costs 
 Here’s the hard answer:  “How long will you be working on this?”  The team will cost $$$ per month.  Base the budget on that.  The team’s going to be in place for as long as it takes.  12*$$$ per year.  How many years?  Until the customer is satisfied.  Remember, they only budget on a yearly basis, so next year’s 12*$$$ budget is a decision they'll have to make then, not now.  Think of it this way: there are no multi-year projects, just a series of 8-week Agile deliveries. 
 
 
-:strong:`Recommendations`
+Recommendations
+---------------
 
 
 Read the `Agile Manifesto <http://agilemanifesto.org/>`_ .   Look closely at the Boehm Spiral Model, for instance in `Metrics and Models in Software Quality Engineering <http://safari.oreilly.com/0201729156>`_ .  Read up on `Scrum <http://www.controlchaos.com/>`_ .

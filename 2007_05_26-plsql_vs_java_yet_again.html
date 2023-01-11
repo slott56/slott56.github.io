@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="architecture,design,data structure,algorithm" />
-        <meta name="description" content="There appear to be four responses. Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management&#39;s discomfort with the truth. Response 1 -- Denial. &#34;1) How can using Java/... be faster ? You have to go up and down the architectural stack of …" />
+        <meta name="description" content="There appear to be four responses. Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management&#39;s discomfort with the truth. Response 1 -- Denial &#34;1) How can using Java/... be faster ? You have to go up and down the architectural stack of …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="PL/SQL vs. Java - Yet Again"/>
         <meta property="og:url" content="https://slott56.github.io/2007_05_26-plsql_vs_java_yet_again.html"/>
-        <meta property="og:description" content="There appear to be four responses. Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management&#39;s discomfort with the truth. Response 1 -- Denial. &#34;1) How can using Java/... be faster ? You have to go up and down the architectural stack of …"/>
+        <meta property="og:description" content="There appear to be four responses. Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management&#39;s discomfort with the truth. Response 1 -- Denial &#34;1) How can using Java/... be faster ? You have to go up and down the architectural stack of …"/>
         <meta property="article:published_time" content="2007-05-26" />
             <meta property="article:section" content="Architecture & Design" />
             <meta property="article:tag" content="architecture" />
@@ -121,26 +121,35 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth is a thought on management's discomfort with the truth.</p>
-<p><strong>Response 1 -- Denial.</strong></p>
+                <p>There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth
+is a thought on management's discomfort with the truth.</p>
+<div class="section" id="response-1-denial">
+<h2>Response 1 -- Denial</h2>
 <p>&quot;1) How can using Java/... be faster ? You have to go up and down the architectural stack of JDBC over and over and you have the network in between.&quot;</p>
 <p>Since the code is nearly identical, and the PL/SQL is slower, the &quot;you have to go up and down the architectural stack&quot; part must be false.  Indeed, that was the point of the posting in the first place.  This argument (PL/SQL has to be faster because it's &quot;closer&quot; to the RDBMS) is false.</p>
 <p>&quot;Suggested response: Well, as in any perf. activity, you have to actually benchmark it in your specific env.&quot;</p>
 <p>My result shows that &quot;specific env.&quot; doesn't matter.  I'm convinced that in all environments PL/SQL will be slower than Java for the same algorithm.  It's slower because (1) the &quot;closer to the RDBMS&quot; statement is false, and (2) the PL/SQL virtual machine can't do JIT optimization.</p>
 <p>The <strong>benchmark</strong>  is the critical issue here.  Dogmatic acceptance of the received truth of PL/SQL's performance is a mistake.  Benchmarking is essential when performance matters.</p>
-<p><strong>Response 2 -- Negotiation.</strong></p>
+</div>
+<div class="section" id="response-2-negotiation">
+<h2>Response 2 -- Negotiation</h2>
 <p>&quot;2) You did not properly take advantage of PL/SQL&quot;</p>
 <p>That was the point.  Some algorithms are basic, transactional Insert-Update-Delete, where PL/SQL is as good as anything else.  Other algorithms, however, involve IF-statements, and PL/SQL doesn't do this well.</p>
 <p>Further -- and this is hard to grasp at first -- RDBMS indexes are slow compared to in-memory Java collections.  Therefore, a Java program has all the advantages.  The RDBMS is good at persistence, transactional locking, and some kinds of ad-hoc query processing.  Focus on that, and put other kinds of large analytical and ETL processes outside the RDBMS.</p>
-<p><strong>Response 3 -- Thoughts on Scalability.</strong></p>
+</div>
+<div class="section" id="response-3-thoughts-on-scalability">
+<h2>Response 3 -- Thoughts on Scalability</h2>
 <p>This wasn't part of my point, but it's interesting none the less.</p>
 <p>&quot;DB's don't scale... What about RAC, what about multi-master replication ?... Each DB has one and only 1 area that does sorting. ...  just get a  bigger CPU and more and faster disks. ... &quot;</p>
 <p>&quot;If <em>[you?]</em>  used Java and properly architected the system, just add another cheap PC or another cheap single board computer and you are done.&quot;</p>
 <p>I suppose that's true.  If your Java application is too slow, you can throw more popcorn processors at the problem.  Indeed, the whole concurrency issue plays into this.  Modern Linux OS's will distribute processes among the processors and cores in multi-core processors, giving your Java applications wonderful levels of concurrent processing.</p>
-<p><strong>Response 4 -- Anger.</strong></p>
+</div>
+<div class="section" id="response-4-anger">
+<h2>Response 4 -- Anger</h2>
 <p>&quot;I don't have Java resources or budget to buy more hardware. However, I already paid for the DB and I have people that [know] PL/SQL.&quot;</p>
 <p>If IT management says (1) performance matters and (2) don't make use of the benchmark results, then you have a serious problem with schizophrenia.  If, on the other hand, IT management doesn't care about performance, then why were you benchmarking in the first place?</p>
 <p>If performance doesn't actually matter, PL/SQL is fine.  It's ugly and hard to maintain, but that's what management is all about.  Managers make the &quot;hard&quot; decisions.  For example, managers can elect to use a slow, complex language which is a maintenance nightmare.  But maintenance is paid for with <a class="reference external" href="https://slott56.github.io/2007_02_18-its_drive_to_self_destruction.html">Next Year's Dollars</a> , which don't matter.  It's a <a class="reference external" href="https://slott56.github.io/2005_09_15-essay_11_management_trump_cards.html">Management Trump Card</a> , and you can't beat it.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -160,7 +169,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

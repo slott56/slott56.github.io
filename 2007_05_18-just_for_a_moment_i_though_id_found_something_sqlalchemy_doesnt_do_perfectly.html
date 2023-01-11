@@ -118,8 +118,9 @@ S.Lott -- Software Architect            </a>
                 <p>After having written a number of application-specific object-relational mappers, I have been on the prowl for an elegant, enduring solution.  I had started to come to grips with <a class="reference external" href="http://www.djangoproject.com/">Django</a> , and like much of the approach.  Django has a tiny infrastructure feature (the settings.py file) which made it unpleasant to separate the ORM from the rest of the framework.  (Not impossible, just fleetingly unpleasant.)</p>
 <p>My first look at SQLAlchemy made it look over the top.  However, after the PyCon 2007 presentation, I realized that the layers were cleanly separated, and I could use the ORM without messing about in the SQL-in-Python-Notation layer.</p>
 <p>Then, I figured out (&quot;<a class="reference external" href="../C465799452/E20070322201220/index.html">PL/SQL vs. Java, Which One is Really Faster?</a> &quot;) that stored procedures were slow.  Given that PL/SQL is slow, what else in the RDBMS world is slow?  How much SQL is too much SQL, when speed matters?  That answer is forthcoming -- I'm still fussing around with experiments.</p>
-<p><strong>Problem Child.</strong></p>
-<p>The central issue started out as the all-too-common situation of <strong>Disjoint Subentities</strong>™.  This is where a single table has distinct classes of entities.  The usual symptoms of this are indicators or NULL columns.  Often, both are used.  Sometimes, the indicator is omitted, and the pattern of NULLs has to be used to discriminate among the entity classes.</p>
+<div class="section" id="problem-child">
+<h2>Problem Child</h2>
+<p>The central issue started out as the all-too-common situation of <strong>Disjoint Subentities</strong>.  This is where a single table has distinct classes of entities.  The usual symptoms of this are indicators or NULL columns.  Often, both are used.  Sometimes, the indicator is omitted, and the pattern of NULLs has to be used to discriminate among the entity classes.</p>
 <p>In this specific experiment, a single table has two subentities, each with different granularity.  One subentity has to be summed to match the grain of the other.  This gives us a union of two kinds of SQL queries: detailed and summary.</p>
 <p>The detailed query, in SQLAlchemy, looks like this:</p>
 <pre class="literal-block">
@@ -150,7 +151,9 @@ WHERE &quot;stuff&quot;.status = ? AND &quot;stuff&quot;.subtype = ?
 GROUP BY &quot;stuff&quot;.&quot;groupName&quot;
 </pre>
 <p>This is all very pleasant.  You can see that the literals (2, 'unmatched', 'multi') are bound in at run-time.  This technique often leads to a speed-up because the SQL statement can be reused by the RDBMS.  When coding by hand, this is easily overlooked.</p>
-<p><strong>Real World.</strong></p>
+</div>
+<div class="section" id="real-world">
+<h2>Real World</h2>
 <p>In the &quot;real world&quot;, that is, the world of my clients, this kind of query is distressingly common.  And doing simulations and architectural recommendations is often made complex by having to cope with these kind of table designs.</p>
 <p>To work with this table, I needed a union, and (for a brief time) SQLAlchemy couldn't generate the correct SQL.</p>
 <p>Here's my union in SQLAlchemy.</p>
@@ -168,6 +171,7 @@ WHERE &quot;stuff&quot;.status = ? AND &quot;stuff&quot;.subtype = ?
 </pre>
 <p>Very disappointing.  However, it's since been fixed.  And the amazing speed of that fix is more reason to love SQLAlchemy and the folks who support it.  Many thanks!</p>
 <p>Now we can continue investigating which is faster: &quot;Pure SQL&quot; (i.e., complex stored procedures) or some programming language which uses SQL as necessary for persistence.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -187,7 +191,10 @@ WHERE &quot;stuff&quot;.status = ? AND &quot;stuff&quot;.subtype = ?
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

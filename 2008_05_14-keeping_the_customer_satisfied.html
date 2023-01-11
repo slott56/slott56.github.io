@@ -114,43 +114,57 @@ S.Lott -- Software Architect            </a>
                 </div>
                 <p>Here's some reference information on the &quot;Cone of Uncertainty&quot;.  JB says that Steve McConnell popularized it.  There's an orphaned <a class="reference external" href="http://en.wikipedia.org/wiki/Cone_of_Uncertainty">wikipedia article</a> , a <a class="reference external" href="http://www.construx.com/Page.aspx?hid=1648">note</a>  on Construx.com's site, an <a class="reference external" href="http://csdl2.computer.org/persagen/DLAbsToc.jsp?resourcePath=/dl/mags/so/&amp;toc=comp/mags/so/2006/03/s3toc.xml&amp;DOI=10.1109/MS.2006.82">article</a>  in the IEEE Digital Library, and an <a class="reference external" href="http://www.microsoft.com/china/technet/images/itsolutions/techguide/innsol/images/msfpmd07.gif">image</a>  on Microsoft's china site.</p>
 <p>It's crap.  Why do we use it?  Because it makes our customers happy.</p>
-<p><strong>How Wrong Is It?</strong></p>
+<div class="section" id="how-wrong-is-it">
+<h2>How Wrong Is It?</h2>
 <p>It's crap for a number of reasons.  First, it's gloriously uncalibrated.  The horizontal axis appears like linear time, but it's just a bunch of project phases.  It isn't linear; indeed, it isn't smooth.  Estimates don't change smoothy, they change in jumps -- mostly when a manager asks you to jump.</p>
 <p>The vertical axis starts at .25x and 4x.  Random numbers, imbued with deep mystic significance, but no practical value at all.</p>
 <p>If I said it would cost anywhere from $25K to $400K I wouldn't finish the presentation.  That level of variability is unacceptable to all rational people.  The next phase (&quot;Vision Approval&quot;) suggests that I should have somehow reduced the &quot;uncertainty&quot;, and be pitching a plan that could cost anywhere from $50K to $200K.</p>
 <p>One, no one would sit still for that range.  As consultants, we're only allowed something in the neighborhood of ±33%.  From $66K to $133K.  Anything larger scares the client (and us).  &quot;Too Risky&quot;, everyone says.</p>
 <p>Two, who measured projects to determine these numbers?  Where's the raw data?</p>
-<p><strong>Non-Linearity</strong></p>
+</div>
+<div class="section" id="non-linearity">
+<h2>Non-Linearity</h2>
 <p>There is no smooth progression of growing &quot;certainty&quot;.  There are scope changes, and lots of them.  To reduce the cost, things are removed or replaced.  With a new scope, there's a new deliverable.  It isn't even sensible to call it the same project when the scope changes.</p>
 <p>Example.  I ask you to build a garage for my Bentley, you ask for $12.5 to $200K.  I don't say, &quot;get to work and during the next phase of planning, reduce the range.&quot;  I say &quot;what runs the price up so high?&quot;  You think about it and say that the heater and insulation run the price up.  I say &quot;Build a car port, not a garage.&quot;</p>
 <p>When I changed the scope, it didn't move you down the &quot;cone of uncertainty&quot;.  It started a new project, with new deliverables.  Yes, the client and the overall goal (&quot;protect the Bentley&quot;) remained the same.  But you can't compare the $200K for an insulated garage with $50K for a carport.  They're unrelated.</p>
-<p><strong>Retrospective</strong></p>
+</div>
+<div class="section" id="retrospective">
+<h2>Retrospective</h2>
 <p>The final issue is that the cone of uncertainty is entirely retrospective.  At no point in the life of the project do you <strong>ever</strong>  say &quot;the remaining costs will be 1.0 <em>x</em>.&quot;  Instead, you wrap the prediction in the &quot;barring further scope changes&quot; qualifier.</p>
 <p>As a practical matter, almost all software projects proceed until cancelled.  I don't think it's possible for there to be (a) a definite scope that is (b) totally achieved and (c) no one can think of a single enhancement.  Since most projects involve negotiation over scope, the project ends when &quot;enough&quot; software has been installed to solve &quot;enough&quot; (sometimes all) of the business problem, and the enhancements don't seem to create &quot;enough&quot; value.</p>
 <p>The 1.0x business happens <strong>after</strong>  the end.  After the project is over, and you've added up every line item, you know the final cost.  You'll be hard-pressed to find a definition of the final scope.  And no scope definition ever matches any of the initial scope statement(s).</p>
-<p><strong>What Become More Certain?</strong></p>
+</div>
+<div class="section" id="what-becomes-more-certain">
+<h2>What Becomes More Certain?</h2>
 <p>What becomes &quot;more certain&quot; as the project progresses?  Almost nothing.  The staff skills improve, and our understanding gets better.  But scope changes are always a toss of the dice.  Every end-user brain fart randomizes the scope, which causes complete discontinuities in the basis of our estimation.</p>
 <p>The essential variability doesn't reduce at all.  Random errors, mistakes, confusion is a permanent feature of human behavior.  Measure everything you want, you'll find that each variable has a gigantic standard deviation.  Productivity, quality, everything varies widely.</p>
 <p>What can change is the number of degrees of freedom.  For the short periods in which the scope is absolutely fixed, each design decision removes some potential variability.</p>
-<p><strong>The Decision-Tree of Uncertainty</strong></p>
+</div>
+<div class="section" id="the-decision-tree-of-uncertainty">
+<h2>The Decision-Tree of Uncertainty</h2>
 <p>What we really have isn't a misleading linear-like &quot;cone&quot; of uncertainty.  What we really have is a big decision-tree of uncertainty.</p>
 <p>Let's work backwards.  Ideally, the final decisions will have little overall impact.  These will be deployment decisions that are trivially handled by the software's configuration files: port numbers, host names, authorized users, etc.</p>
 <p>Before these decisions are &quot;simple&quot; programming decisions to make speed/memory tradeoff decisions; LinkedList vs. ArrayList, for example.  These decisions are largely independent of the final deployment decisions, by the way, leading to a complex parallel set of trees.</p>
 <p>In front of the &quot;simple&quot; programming decisions are design decisions for how to approach loops and decisions.  In front of that are responsibility allocation decisions for how to determine class attributes and operations.</p>
 <p>Before we can make the class design decisions, we have a number of deeply intertwingled architectural decisions.  At this point, a single architectural decision (e.g., REST vs. SOAP) has a profound impact on cost, schedule, and the ensuing tree of decisions.</p>
 <p>None of these involve &quot;uncertainty&quot;.  What they involve is an inability to work through all alternative moves in the game.  As with chess, we have openings and gambits, but we can't create a complete decision tree from beginning to end of a game.</p>
-<p><strong>It May Be A Hack, But Customers Like It</strong></p>
+</div>
+<div class="section" id="it-may-be-a-hack-but-customers-like-it">
+<h2>It May Be A Hack, But Customers Like It</h2>
 <p>Here's the scenario we run into.  The customer has a very poorly-defined problem.  It's hard to determine what the essential business problem really is because everyone's talking about a &quot;project&quot; and &quot;systems&quot; and &quot;applications&quot; and &quot;data mapping&quot; and &quot;conversion&quot; and &quot;loading&quot;.  Everyone's thrashing through the technical details, so our estimate is based on the technical unknowns.</p>
 <p>We provide a range.  The customer doesn't like the high end.  The presence of a low end focused them on the low end.  If you say $25K to $400K, everyone wants the $400K feature set at the $25K price.</p>
 <p>So we start negotiating.  The customer takes stuff off the table, we reduce the price.  Then, when there's no longer any business value left in the project, they start putting things back on, and complain every time we try to raise the price.</p>
 <p>At some point, they either fail to see what's going on and throw us out, or we pull out the Cone of Uncertainty picture.  This makes it look like there's a way to get $400K of features for $25K.  They're both within the &quot;cone of uncertainty&quot;.</p>
 <p>This is bad, but <strong>everyone</strong>  wants a Bentley at Hyundai prices.</p>
-<p><strong>Agility</strong></p>
+</div>
+<div class="section" id="agility">
+<h2>Agility</h2>
 <p>The solution is to take an Agile approach.  Rather than define a mystical cone, define a spend rate.  The team of 6 costs $500K per year.  They produce something 4 to 6 times each year -- about $100K per &quot;something&quot;.  Rather than plan it to death, do the following.</p>
 <p>Pick the one thing that will create some value.  Build and deploy that one thing.  Iterate.  It will cost an average of $100K per iteration.  At the end of the year, you'll have spend $500K.  Since each sprint is a stand-alone work effort, feel free to cancel the project at any time.</p>
 <p>Since the first thing delivered will be of value, you'll always be ahead of the game.</p>
 <p>&quot;But what's the total cost?&quot; some folks ask.  The question is stupid.  Look at legacy software.  It's been in production for decades.  A team of 2 or 3 has been supporting it for all those years.  What's the total cost of all that maintenance?  The same analysis holds true for new software -- after the first big spending sprints, you'll spend less, but never zero.</p>
 <p>There is no &quot;total&quot; cost until you retire the software from service.  And there's uncertainty involved in every change; the variability of human efforts never goes away.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -170,7 +184,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

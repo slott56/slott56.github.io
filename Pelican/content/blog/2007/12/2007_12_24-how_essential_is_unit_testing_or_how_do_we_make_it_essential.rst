@@ -33,7 +33,8 @@ These weren't practical "how to" questions.  They were rhetorical "that isn't po
 
 
 
-:strong:`It Hurts When I Do That` 
+It Hurts When I Do That
+------------------------
 
 
 
@@ -49,7 +50,8 @@ I maintained that "non-deliverable" is still "essential", so we must include it 
 
 
 
-:strong:`I Can't Cope With That` 
+I Can't Cope With That
+-----------------------
 
 
 
@@ -77,7 +79,8 @@ Above all, we can't trust programmers to create test cases.  Only end-users can 
 
 
 
-:strong:`The TDD Alternatives` 
+The TDD Alternatives
+---------------------
 
 
 
@@ -93,7 +96,8 @@ When we can't trust our programmers, we have a number of clever alternatives to 
 
 
 
-:strong:`The Disconnect` 
+The Disconnect
+---------------
 
 
 
@@ -117,7 +121,8 @@ It's hard to break testing free from "End-User Acceptance."  However, if we can 
 
 
 
-:strong:`Meta-Quality` 
+Meta-Quality
+------------
 
 
 

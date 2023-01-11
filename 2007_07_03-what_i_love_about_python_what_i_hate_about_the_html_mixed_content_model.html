@@ -118,7 +118,8 @@ S.Lott -- Software Architect            </a>
                 <p>The <a class="reference external" href="http://www.w3.org/TR/REC-xml/#sec-mixed-content">mixed content</a>  model, defined succinctly in the XML standards, is pleasant enough for human communication, but leaves a lot to be desired.  For example, mapping a <a class="reference external" href="http://www.xml.com/pub/a/2001/05/09/dtdtodbs.html?pagetarget=">mixed content model to a relational database</a>  is a hard problem.</p>
 <p>The problem is made worse when the document is HTML.  HTML doesn't have many constraints to begin with; it mixes structural and presentational markup; unless the content is prepared by a simple piece of software it may be wickedly inconsistent.</p>
 <p>Python has the tools to make the problem solvable.  It also has a world-view that facilitates solving the kind of problem where there are wicked little inconsistencies.</p>
-<p><strong>Enter Python.</strong></p>
+<div class="section" id="enter-python">
+<h2>Enter Python</h2>
 <p>The problem is to scrape the content of some web pages to make a regularly structured database out of the stuff floating around in HTML.  The <strong>Cut, Revise and Paste</strong> ™ (CRAP) technology, while available, is  error-prone and hard to perform repeatably.</p>
 <p>The information is mostly structured:  the interesting content on the page has a &lt;blockquote&gt;, &lt;ul&gt; and &lt;li&gt;'s and the data is easy to see in the &lt;li&gt;'s.  The uninteresting content is in separate &lt;ul&gt;'s and &lt;p&gt;'s making it easy to find.  Unfortunately, each list item appears to have a unique combination of inline tags like &lt;font&gt;, &lt;b&gt;, and &lt;a&gt;, but the underlying text is reasonably regular.</p>
 <p>Python's HTMLParser module does a little of what we want.  Sadly, it's SAX-like, meaning that we'll have to heavily customize the parser, writing very complex handle_starttag methods.</p>
@@ -166,14 +167,18 @@ def handle_data(self,data):
 <p>Here's what's so cool.  In just a hundred lines of code, we've read the URL, parsed the HTML and captured the DOM for the content we need.  We can save the DOM structure, peer at it closely, and determine how best to decompose the content into the data we're looking for.</p>
 <p>Here's the really cool part.  We can interact with the structure directly.  We can call methods of the DOM objects, find out how deeply the &lt;ul&gt;'s are nested, and create experimental functions to parse things.  We don't have to spend a lot of time sketching DTD's on the whiteboard, writing parsers, trying to get them to compile, only to find out that one of the &lt;li&gt;'s is inconsistent with the other, leading to a devastating change, rewrite, refactoring, and then a struggle to get it to recompile.</p>
 <p>We can quickly knock out another hundred lines of code that expose the relevant data.  Of course, we can cut and paste our sample data fragments into docstrings, giving us a handy unit test capability.</p>
-<p><strong>Close but Not A Winner.</strong></p>
+</div>
+<div class="section" id="close-but-not-a-winner">
+<h2>Close but Not A Winner</h2>
 <p>Our DOM-based approach is nice.  The DOM methods for getting elements by tag name and iterating through the child nodes are very pleasant.  However, there are several times when the SAX-based &quot;visitor&quot; approach would be handy.</p>
 <p>Specifically, when we've dug down to the correct piece of structural markup, we want to elide the confusing and useless presentation markup.  We'd like to just visit each text node, losing the nesting of the presentation markup.  All the inline &lt;font&gt;, &lt;b&gt;, &lt;i&gt; tags don't convey any meaning; and they're inconsistently used in the content we're scraping.</p>
 <p>Additionally, we'd like to get the list of &lt;a&gt; tags, but we don't want any part of the presentation tags in and around these anchors.</p>
 <p>The <strong>Visitor</strong>  design pattern is the backbone of the SAX parser.  In principle, we could do everything from the various handler methods in the SAX-based HTMLParser class.  However, we often want nested visitors: when we've located the appropriate &lt;li&gt; tag, we'd like to switch to another visitor which focuses on the text, skipping all the rest of the inline markup until the matching &lt;/li&gt; tag.</p>
 <p>We can do this with a stateful SAX parser, one that has a number of processing alternatives depending on the current tag context.  This grows to become complex as we blend in the <strong>State</strong>  design pattern, especially when we're vague on what states are required.</p>
 <p>One of the biggest stumbling blocks is the need to &quot;look ahead&quot; to determine what piece of content we're looking at.  Technically, a SAX-based parser can pass through a number of state transitions to determine if the &lt;p&gt; contains an &lt;a&gt;&lt;img&gt; or not.  However, it's simpler to look ahead and recognize the kind of content.</p>
-<p><strong>DOM + Visitor.</strong></p>
+</div>
+<div class="section" id="dom-visitor">
+<h2>DOM + Visitor</h2>
 <p>The XML DOM design doesn't support the <strong>Visitor</strong>  design pattern.  If we extend or replace the module with <strong>Visitor</strong>  support, we can build a more functional parser and analyzer.  We can also add additional search and summary methods to this extended DOM.</p>
 <p>Our application will have the following overview.  First, we create a DOM, doing as little as possible.  With almost no effort care, our __repr__ methods will effectively serialize the structure.  Then we use existing methods to get elements by tag name and locate the appropriate structural markup.  Finally, we use several nested visitor objects to examine the content, discarding inline presentation markup gracefully.</p>
 <p>Python already has xml.dom and xml.dom.minidom implementations.  Can we extend one of these?  The interface requires us to create our own DOMImplementation and Document class as part of extending an existing implementation.  To make our <strong>Visitor</strong>  design work, we'll need to extend Node, Element, and Text classes, also.</p>
@@ -200,7 +205,9 @@ def elementSummary( self ):
     return [ c.nodeName for c in self.childNodes if c.nodeType == xml.dom.Node.ELEMENT_NODE ]
 </pre>
 <p>Given this, we can now write a relatively simple analyzer.</p>
-<p><strong>Gathering HTML Pages.</strong></p>
+</div>
+<div class="section" id="gathering-html-pages">
+<h2>Gathering HTML Pages</h2>
 <p>The first step is to gather the DOM we want to analyze.</p>
 <pre class="literal-block">
 def getDOM( url ):
@@ -226,7 +233,9 @@ def DOMBody2File( sourceURL, destFile ):
     dest.close()
 </pre>
 <p>Once we have the DOM in a file, we can explore, tweaking our parser until we understand the inconsistencies and confusions.</p>
-<p><strong>Analyzing the DOM.</strong></p>
+</div>
+<div class="section" id="analyzing-the-dom">
+<h2>Analyzing the DOM</h2>
 <p>We can easily write simple functions to get through the page structure.  In this case, for example, the page has a &lt;ul&gt; &lt;blockquote&gt; &lt;ul&gt; structure at the highest level.  Within the top-level &lt;blockquote&gt;, there are several nested &lt;blockquote&gt; before we get to our target content.</p>
 <pre class="literal-block">
 def parseBody( body ):
@@ -277,7 +286,9 @@ class ListVisitor( DOMVisitor ):
 </pre>
 <p>This uses the summary method to look ahead in a &lt;p&gt; tag.  Some &lt;p&gt; tags are useless indexing information.  Other &lt;p&gt; tags are interesting content which we need to parse.  We gracefully pass over the &lt;ul&gt;'s which introduce lists of relevant content.  We apply two other Visitors to the content within a &lt;li&gt;: One accumulates the text, the other accumulates the anchors.</p>
 <p>We delegate some of the parsing to our Dimension and TargetObject methods.  The Dimension constructor will receive a simple list of strings.  The TargetObject constructor will get a list of strings and a list of Elements from which it can extract the details using simple Python string operations.</p>
-<p><strong>Two Other Visitors.</strong></p>
+</div>
+<div class="section" id="two-other-visitors">
+<h2>Two Other Visitors</h2>
 <p>Here's a Visitor that will pull out non-empty text nodes and ignore inline markup.  The resulting list of strings has a very regular structure, even though though the original HTML was interspersed with random inline markup and &lt;br&gt; tags.</p>
 <pre class="literal-block">
 class TextVisitor( DOMVisitor ):
@@ -299,7 +310,9 @@ class SearchVisitor( DOMVisitor ):
         if anElement.nodeName == self.target:
             self.matches.append( anElement )
 </pre>
-<p><strong>Conclusion.</strong></p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
 <p>The essence of scraping HTML involves a number of operations, and Python helps us a number of ways.</p>
 <ul class="simple">
 <li>To get the page Python provides several variations on urllib.</li>
@@ -309,6 +322,7 @@ class SearchVisitor( DOMVisitor ):
 <p>In this case, we started out with the built-in xml.dom.minidom, validated some parts of our application in just a hundred lines of code and only a few hours of time.  We then replaced minidom with our own home-brewed microdom, confident that it would work because it was factored into a working application.  This is only a few hours of effort.</p>
 <p>Once we had a working DOM structure with the Visitor capability, we could experiment with a number of Visitor alternatives in the space of a few more hours.  Without a significant investment in time, we have a working application.</p>
 <p>I've omitted the epydoc comments and the unittest TestCase files.  The unit testing served to validate the essential algorithms, and support refactoring.  Since this was exploratory programming, everything was refactored heavily to arrive at a coherent, usable application.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -328,7 +342,10 @@ class SearchVisitor( DOMVisitor ):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

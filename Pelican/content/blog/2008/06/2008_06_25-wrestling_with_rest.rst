@@ -57,7 +57,8 @@ Both of these help, but they seem incomplete.
 
 
 
-:strong:`Implementation Details` 
+Implementation Details
+-----------------------
 
 
 
@@ -73,7 +74,8 @@ Here's the problem.  We have two interfaces: a human interface and a WS API; the
 
 
 
-:strong:`Enumerating The Choices` 
+Enumerating The Choices
+------------------------
 
 
 
@@ -101,7 +103,8 @@ As an alternative, we can also use the HTTP headers to determine the intent behi
 
 
 
-:strong:`A Big Push` 
+A Big Push
+-----------
 
 
 
@@ -129,7 +132,8 @@ The `Django-REST Interface <http://code.google.com/p/django-rest-interface/>`_  
 
 
 
-:strong:`RPC Edge Case` 
+RPC Edge Case
+--------------
 
 
 
@@ -145,7 +149,8 @@ This, however, breaks us out of the Django-REST interface.  Our GET requests can
 
 
 
-:strong:`But Wait` 
+But Wait
+--------
 
 
 

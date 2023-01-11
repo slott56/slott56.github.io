@@ -134,9 +134,10 @@ if( a ) {
     }
 }
 </pre>
-<p>What about the other two conditions, (<em>a</em>  &amp;amp;&amp;amp; !:emphasis:<cite>b</cite>) as well as (<em>c</em>  &amp;amp;&amp;amp; !:emphasis:<cite>d</cite>)?</p>
+<p>What about the other two conditions, (<em>a</em>  &amp;amp;&amp;amp; !*b*) as well as (<em>c</em>  &amp;amp;&amp;amp; !*d*)?</p>
 <p>Second, the function had double negatives.  It had the famous if(a == FALSE) kind thing.</p>
-<p><strong>Unit Test Hell</strong></p>
+<div class="section" id="unit-test-hell">
+<h2>Unit Test Hell</h2>
 <p>Once I thought I had it, I wrote out the unit tests.  There are, with some analysis, 36 combinations of inputs.  The variable names, the context, the overall problem domain gave numerous hints as to what should happen.</p>
 <p>But it just didn't.  I couldn't get more than a few of the 36 cases to pass.</p>
 <p>So now I've got two problems:</p>
@@ -144,26 +145,32 @@ if( a ) {
 <li>I can't reason out what the program does.</li>
 <li>I'm not sure I even have the unit tests correct.</li>
 </ol>
-<p><strong>Reframing Techniques</strong></p>
+</div>
+<div class="section" id="reframing-techniques">
+<h2>Reframing Techniques</h2>
 <p>When my head starts getting a flat spot from beating it on the wall, there are a number of techniques I use for reframing the problem.  My favorite is <strong>Predicate Calculus</strong>.  In this case, however, the conditions got complex and drifted too far from the essential semantics of the function.  It became a kind of algebra exercise, not giving me any insight.</p>
 <p><strong>English Specification</strong>  isn't a bad way to reframe things.  However, in this case, the English didn't make any sense either.  The C was just too obscure.</p>
 <p><strong>Python</strong>, however, looked promising.  In a few minutes I had transliterated the C to Python, and had something that looked like it was producing meaningful results.  I revised the Python to write both a tidy .CSV summary as well as Java test case methods.  The CSV was a functional summary, the test case methods were cut and pasted into the Java TestCase.</p>
 <p>This is not a Python to the rescue story.  The Python unit test cases didn't look really right.</p>
-<p><strong>Reframing Through Extraction</strong></p>
+</div>
+<div class="section" id="reframing-through-extraction">
+<h2>Reframing Through Extraction</h2>
 <p>Once the user test cases arrived, it became painfully clear that my reverse engineering was not even close.  My glib and easy reframing techniques hadn't worked.</p>
 <p>With my back up against the wall, I pulled out the big gun in reverse engineering -- <strong>Extraction</strong>.  I extracted this function and began to put together enough stuff to get it to compile and run in isolation.  This is time consuming and doesn't readily resolve semantic problems.  Once you have something running, you are rarely any closer to knowing what it meant.</p>
 <p>Isolation, BTW, means complete isolation.  All dependencies (except for stdio.h) have to be resolved and the example has to fit in a single file.  There's nothing quite as clarifying as a one-file program.</p>
 <p>The process of doing <strong>Extraction</strong>  is insight-producing.  The trick is to trust nothing.  First you pull out the function from the source file.  Then, when it won't compile, you start pulling things out of the various .h files and pasting them into the extraction.  After 20 minutes of cut and paste, I finally found the following nugget of pure evil.</p>
-<!-- code: -->
 <pre class="literal-block">
 #define TRUE 0
 #define FALSE -1
 </pre>
-<p><strong>Are You Kidding?</strong></p>
+</div>
+<div class="section" id="are-you-kidding">
+<h2>Are You Kidding?</h2>
 <p>No, apparently they were not kidding.  This clarified many things.  It made the if(a == FALSE) more clear.  It also pointed out many places where TRUE and 0 were used interchangably.  Inconsistency helped make it more obscure than it already was.</p>
 <p>Making this substitution into the Python gave me test cases that made some sense.  This allowed me to rewrite the Java to at least work.  The resulting class includes a few &quot;XXX - Refactor&quot; comments.</p>
 <p>When I told the client what I'd learned, one of their programmers sent me the following link:  <a class="reference external" href="http://www.web-hits.org/txt/codingunmaintainable.html">How to Write Unmaintainable Code</a> .  Now that I'm past the most horrible part of the program, this is funny.  Down in the section titled &quot;Miscellaneous Techniques&quot;, item 11 is this exact technique.</p>
 <p>What's funnier (or scarier) is anyone allowing this through their QA procedures, putting it into production and using it for years.  Clearly, code inspections are not on anyone's to-do list.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -183,7 +190,10 @@ if( a ) {
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -118,93 +118,164 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Thanks to everyone who attended.  See <a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/">Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies</a>  for more information.  Also, check out Dr. Dobb's <a class="reference external" href="http://www.ddj.com/dept/webservices/">SOA, Web Services and XML</a>  department.</p>
-<p>Here's the Micro$oft PPT file:  <a class="reference external" href="Media/Web%20Services%208.ppt">Web Services 8.ppt</a></p>
-<p>Here's the Open-Office file:  <a class="reference external" href="Media/Web%20Services%208.odp">Web Services 8.odp</a></p>
+                <p>Thanks to everyone who attended.  See <a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/">Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies</a>  for more information.
+Also, check out Dr. Dobb's <a class="reference external" href="http://www.ddj.com/dept/webservices/">SOA, Web Services and XML</a>  department.</p>
+<p>Here's the Micro$oft PPT file:  <a class="reference external" href="https://slott56.github.io/media/Web Services 8.ppt">Web Services 8.ppt</a></p>
+<p>Here's the Open-Office file:  <a class="reference external" href="https://slott56.github.io/media/Web Services 8.odp">Web Services 8.odp</a></p>
 <p>Also, here's a more useful thing: the actual contents.</p>
-<p>Web Services</p>
+<hr class="docutils" />
+<div class="section" id="web-services">
+<h2>Web Services</h2>
 <p>8 – Architecture</p>
 <p>Steven F. Lott</p>
-<p>Agenda</p>
+</div>
+<div class="section" id="agenda">
+<h2>Agenda</h2>
 <p>Nuclei around which architecture crystallizes</p>
 <p>Architecture Design Patterns</p>
-<p>Decision Nucleus</p>
+</div>
+<div class="section" id="decision-nucleus">
+<h2>Decision Nucleus</h2>
 <p>Interface-Driven Decisions</p>
-<p>External Interactions are typically web services</p>
+<ul class="simple">
+<li>External Interactions are typically web services</li>
+</ul>
 <p>Several Implementations</p>
-<p>Heavyweight, SOAP document services</p>
-<p>Lightweight, RPC services</p>
-<p>Informal CGI and other HTTP services</p>
-<p>Decision Nucleus</p>
+<ul class="simple">
+<li>Heavyweight, SOAP document services</li>
+<li>Lightweight, RPC services</li>
+<li>Informal CGI and other HTTP services</li>
+</ul>
+</div>
+<div class="section" id="decision-nucleus-1">
+<h2>Decision Nucleus</h2>
 <p>Data Model- or Processing- Driven Decisions</p>
-<p>Complex or Core data</p>
-<p>Can be accessed directly (through JDBC)</p>
-<p>Or indirectly through a web service</p>
-<p>Complex Processing</p>
-<p>Can be accessed through a web service as needed</p>
-<p>Or built as a batch job and run periodically</p>
+<ul class="simple">
+<li>Complex or Core data<ul>
+<li>Can be accessed directly (through JDBC)</li>
+<li>Or indirectly through a web service</li>
+</ul>
+</li>
+<li>Complex Processing<ul>
+<li>Can be accessed through a web service as needed</li>
+<li>Or built as a batch job and run periodically</li>
+</ul>
+</li>
+</ul>
 <p>Business Focus is essential</p>
-<p>Decision Nucleus</p>
+</div>
+<div class="section" id="decision-nucleus-2">
+<h2>Decision Nucleus</h2>
 <p>Mutability-Driven Decisions</p>
-<p>If the implementation will change,</p>
-<p>wrap it in an interface that won't change.</p>
+<ul class="simple">
+<li>If the implementation will change,<ul>
+<li>wrap it in an interface that won't change.</li>
+</ul>
+</li>
+</ul>
 <p>Special cases are often mutable</p>
-<p>So wrap them in a web service</p>
+<ul class="simple">
+<li>So wrap them in a web service</li>
+</ul>
 <p>Interim Solutions</p>
-<p>Best to wrap them in a service</p>
-<p>Replace the interim implementation with the final</p>
-<p>Poor Choices for Web Services</p>
+<ul class="simple">
+<li>Best to wrap them in a service</li>
+<li>Replace the interim implementation with the final</li>
+</ul>
+</div>
+<div class="section" id="poor-choices-for-web-services">
+<h2>Poor Choices for Web Services</h2>
 <p>Individual Data Entity Access</p>
-<p>Entity-Level services are too fine-grained</p>
-<p>Each CRUD operation has to be exposed</p>
-<p>It basically wraps the SQL, adding overhead</p>
-<p>With no measurable value</p>
+<ul class="simple">
+<li>Entity-Level services are too fine-grained</li>
+<li>Each CRUD operation has to be exposed</li>
+<li>It basically wraps the SQL, adding overhead<ul>
+<li>With no measurable value</li>
+</ul>
+</li>
+</ul>
 <p>Technical Processes (ETL, for example)</p>
-<p>Moving &quot;Customer&quot; from system to system isn't what a service does</p>
-<p>No Business Focus – just data massaging</p>
+<ul class="simple">
+<li>Moving &quot;Customer&quot; from system to system isn't what a service does<ul>
+<li>No Business Focus – just data massaging</li>
+</ul>
+</li>
+</ul>
 <p>Service Design Questions</p>
-<p>Where's the system of record?  Who's the keeper of the master data?</p>
-<p>What do other systems need this system to DO for them?</p>
-<p>The system of record may publish useful services</p>
-<p>Data Movement/ETL</p>
+<ul class="simple">
+<li>Where's the system of record?  Who's the keeper of the master data?</li>
+<li>What do other systems need this system to DO for them?</li>
+<li>The system of record may publish useful services</li>
+</ul>
+</div>
+<div class="section" id="data-movement-etl">
+<h2>Data Movement/ETL</h2>
 <p>Single sources for Master Data?</p>
-<p>Then a single Service for this data</p>
+<ul class="simple">
+<li>Then a single Service for this data</li>
+</ul>
 <p>Duplicate sources – overlapping Master Data?</p>
-<p>System X source copied to System Y where extra attributes were added</p>
-<p>Coalesce into a single source, if possible</p>
-<p>Make multiple applications share a single, central service for the data – where possible</p>
+<ul class="simple">
+<li>System X source copied to System Y where extra attributes were added</li>
+<li>Coalesce into a single source, if possible</li>
+<li>Make multiple applications share a single, central service for the data – where possible</li>
+</ul>
 <p>Multiple sources – multiple parts to the Master Data?</p>
-<p>System X has some records, System Y has other records</p>
-<p>Union of these two systems is the master data</p>
-<p>Hard to coalesce, but a Single Service can wrap multiple sources for consistency</p>
-<p>The Java Blueprints Reference Application: Adventure Builder</p>
-<p>Adventure Builder</p>
+<ul class="simple">
+<li>System X has some records, System Y has other records<ul>
+<li>Union of these two systems is the master data</li>
+</ul>
+</li>
+<li>Hard to coalesce, but a Single Service can wrap multiple sources for consistency</li>
+</ul>
+</div>
+<div class="section" id="the-java-blueprints-reference-application-adventure-builder">
+<h2>The Java Blueprints Reference Application: Adventure Builder</h2>
+<p>See <a class="reference external" href="https://www.oracle.com/java/technologies/java-blueprints-guidelines.html">https://www.oracle.com/java/technologies/java-blueprints-guidelines.html</a></p>
+</div>
+<div class="section" id="adventure-builder">
+<h2>Adventure Builder</h2>
 <p>A J2EE application that presents an application to end-users</p>
 <p>Consumes Web Services for a number of Back-end Operations</p>
 <p>Suppliers and Finance are external interfaces</p>
 <p>CRM is a shared data structure</p>
 <p>Workflow is Process-driven</p>
 <p>Order Receiver is a mixed bag</p>
-<p>The Granularity Issue</p>
+</div>
+<div class="section" id="the-granularity-issue">
+<h2>The Granularity Issue</h2>
 <p>Services which are too small (&quot;chatty&quot;)</p>
-<p>Endless back-and-forth</p>
-<p>Too much SOAP overhead for the real value</p>
+<ul class="simple">
+<li>Endless back-and-forth</li>
+<li>Too much SOAP overhead for the real value</li>
+</ul>
 <p>Services which are too large</p>
-<p>Giant XML messages</p>
-<p>Long-running web services</p>
+<ul class="simple">
+<li>Giant XML messages</li>
+<li>Long-running web services</li>
+</ul>
 <p>In the middle is a balance</p>
-<p>This is more art than science</p>
+<ul class="simple">
+<li>This is more art than science</li>
+</ul>
 <p>Business focus is key</p>
-<p>Business Focus</p>
+</div>
+<div class="section" id="business-focus">
+<h2>Business Focus</h2>
 <p>It's all about Agility</p>
 <p>It's all about Master Data</p>
-<p>One source for the data</p>
-<p>One source for the processing</p>
-<p>It's all about <strong>Assignment of Responsibility</strong>™</p>
+<ul class="simple">
+<li>One source for the data</li>
+<li>One source for the processing</li>
+</ul>
+<p>It's all about <strong>Assignment of Responsibility</strong></p>
 <p>Important Questions:</p>
-<p>What is really happening?</p>
-<p>Is that business-related or is that a dumb technology work-around because of rubbish legacy software?</p>
-<p>MUCH of what passes for &quot;business analysis&quot; is really IT reverse engineering</p>
+<ul class="simple">
+<li>What is really happening?</li>
+<li>Is that business-related or is that a dumb technology work-around because of rubbish legacy software?</li>
+<li>MUCH of what passes for &quot;business analysis&quot; is really IT reverse engineering</li>
+</ul>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -224,7 +295,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -25,7 +25,8 @@ When dealing with legacy batch programs, there are a number of typical design pa
 
 
 
-:strong:`The Relational Lens` 
+The Relational Lens
+-------------------
 
 
 
@@ -41,7 +42,8 @@ A certain amount of processing follows a "group-by" (also known as a "Control Br
 
 
 
-:strong:`The Flat File Lens` 
+The Flat File Lens
+------------------
 
 
 
@@ -69,7 +71,8 @@ Ultimately, these problems are part of the flat-file implementation of the busin
 
 
 
-:strong:`Some Batch Design Patterns` 
+Some Batch Design Patterns
+--------------------------
 
 
 
@@ -81,7 +84,8 @@ A few tests to confirm that the functions had been migrated to methods seemed su
 
 
 
-:strong:`Not All Updates Are Created Equal` 
+Not All Updates Are Created Equal
+---------------------------------
 
 
 

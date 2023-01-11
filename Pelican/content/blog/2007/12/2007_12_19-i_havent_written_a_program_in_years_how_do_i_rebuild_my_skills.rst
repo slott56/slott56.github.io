@@ -45,7 +45,8 @@ And, I got the following question from a reader in Belgium "I'm a beginner, but 
 
 
 
-:strong:`Getting Started with Python` 
+Getting Started with Python
+----------------------------
 
 
 
@@ -69,7 +70,8 @@ What is your tool preference?  I've had people explain that the Visual Studio en
 
 
 
-:strong:`Some First Steps` 
+Some First Steps
+----------------
 
 
 
@@ -87,21 +89,20 @@ You're pretty much ready to roll at this point.
 
 
 
-:strong:`Your First Program` 
+Your First Program
+------------------
 
 
 
 Here's your hello world program.
-
-..  code:
 
 ::
 
     #!/usr/bin/env python
     """ My First Program """
     import sys
-    print sys.version
-    print "Hello World"
+    print(sys.version)
+    print("Hello, World!")
 
 
 
@@ -138,13 +139,11 @@ Here's what I got as output.
 
 
 
-..  code:
-
 ::
 
     2.5.1 (r251:54863, Oct  5 2007, 21:08:09)
     [GCC 4.0.1 (Apple Inc. build 5465)]
-    Hello World
+    Hello, World!
 
 
 
@@ -154,21 +153,20 @@ While the book is 2.4.1, I'm getting ready for the next round of revisions to ge
 
 
 
-:strong:`A CSV Read/Process Example` 
+A CSV Read/Process Example
+--------------------------
 
 
 
 Here's the skeleton of Jim's program to work with some spreadsheets of raw data.
-
-..  code:
 
 ::
 
     #!/usr/bin/env python
     import csv
     
-    srcFile= open( "some.csv", "r" )
-    srcCSV= csv.reader( srcFile )
+    srcFile = open("some.csv", "r")
+    srcCSV = csv.reader(srcFile)
     for row in srcCSV:
         if row[0] == "Col A Title":
             # A Title row
@@ -179,7 +177,7 @@ Here's the skeleton of Jim's program to work with some spreadsheets of raw data.
         else:
             # All the other rows
             pass # do some validation, some calculation, whatever...
-        print row
+        print(row)
     srcFile.close()
 
 
@@ -196,7 +194,7 @@ This illustrates a few key Pythonic concepts.
 
 #.  CSV parsing is layered onto basic file processing as simply as possible.  `Chapter 19 <http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch19.html>`_  is a bunch of file-handling modules, including details on CSV.    `Chapter 31 <http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch31.html>`_  is other file formats.
 
-#.  The :strong:`for`  statement processes anything "iterable".  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a `Chapter 7 <http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html>`_  item, the profound nature of "iterable" has to be revisited throughout part 2.
+#.  The ``for``  statement processes anything "iterable".  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a `Chapter 7 <http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html>`_  item, the profound nature of "iterable" has to be revisited throughout part 2.
 
 #.  The if/elif/else construct can have as many (or as few) conditions as you need.  Why add a "switch" or "case" statement and clutter up the syntax?  Chapter 7 covers this, too, because it's so elegantly simple.
 

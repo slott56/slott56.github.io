@@ -126,60 +126,27 @@ S.Lott -- Software Architect            </a>
 <p>I was involved with their first externally-facing application.   We were going through a &quot;risk-exposure&quot; analysis.</p>
 <p>One of their people was so uncomfortable that they balked at the very idea of a fixed list of risks.</p>
 <p>&quot;We don't know what we don't know,&quot; they pronounced.  Their claim was that security considerations included an unbounded list of vulnerabilities.</p>
-<p><strong>Vulnerability Lists</strong></p>
+<div class="section" id="vulnerability-lists">
+<h2>Vulnerability Lists</h2>
 <p>I make regular use of the <a class="reference external" href="http://www.owasp.org/">OWASP</a>  top 10 vulnerabilities and other resources.</p>
 <p>Today I learned about the SANS Institute's <a class="reference external" href="http://www.sans.org/top25errors/">top 25 coding errors</a> .  They provide three categories of errors.</p>
-<blockquote>
 <ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
+<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a></li>
+<li><a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a></li>
+<li><a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
 </ul>
-</blockquote>
 <p>And, there's the <a class="reference external" href="http://blogs.msdn.com/michael_howard/archive/2005/07/11/437875.aspx">19 Deadly Sins of Software Security</a>  list.  [Thanks!]</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
 <p>This is very, very handy stuff.  There's nothing better than a concrete checklist of errors to structure architecture, design, and coding.</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
-<p><strong>What We Don't Know</strong></p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
+</div>
+<div class="section" id="what-we-don-t-know">
+<h2>What We Don't Know</h2>
 <p>Yes, there are unknown, unlisted, yet-unexploited vulnerabilities.  Until those are discovered, we really <strong>do</strong>  know what to do.</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
 <ol class="arabic simple">
 <li>Don't waste a lot of time on a complex risk/cost analysis.  These are complex -- often subjective -- and very expensive.  A short list of exposure and cost is all you need.  And often, the short list includes something like &quot;<a class="reference external" href="http://www.noao.edu/cas/hr/faq/faq_hipaa.html#six">HIPAA PHI</a> &quot; and that's all you need to know.</li>
-</ol>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
-<ol class="arabic simple" start="2">
 <li>Use a straight-forward checklist of vulnerabilities built from these lists.  Numerous items appear on all three lists, that's the bare minimum of security considerations.  The union of all three lists isn't that big or complex.  Your framework or language may not even have some of these vulnerabilities.</li>
 </ol>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
 <p>It's probably cheaper to just plug these known holes than it is to decide which -- if any -- holes have &quot;enough&quot; expected value of a loss.</p>
-<blockquote>
-<ul class="simple">
-<li><a class="reference external" href="http://www.sans.org/top25errors/#cat1">Category: Insecure Interaction Between Components (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat2">Category: Risky Resource Management (9 errors)</a>  -   <a class="reference external" href="http://www.sans.org/top25errors/#cat3">Category: Porous Defenses (7 errors)</a></li>
-</ul>
-</blockquote>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -199,7 +166,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

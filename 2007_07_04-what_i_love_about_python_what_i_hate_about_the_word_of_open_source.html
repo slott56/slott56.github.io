@@ -119,11 +119,14 @@ S.Lott -- Software Architect            </a>
 <p>In my defense, I actually did a version of this HTML parsing back in '02.  Indeed, I even debugged part of Python's original SGML parser because I was trying to unwind MS-Word HTML documents which had odd declarations that stumped the parser.  I even put a patch kit together.  I didn't follow-through very aggressively, since everyone else in Python development actually knows what they're doing, and I'm just a hack.</p>
 <p>Recently, I had to resurrect the idea because I needed information encoded in inconsistent HTML.  I knew that my object model wasn't as cool as the xml.dom model.  So I pressed ahead with a rewrite to my original design, using xml.dom, without looking around at the available off-the-shelf, free-or-open-source solutions.</p>
 <p>What's worse is that I'm constantly telling my clients that they have to get comfortable with searching for open source solutions rather than wasting their precious in-house programming talent reinventing the wheel.  The requirements for the wheel are well known, design specifications abound, and you have sample implementations available all over the place.  But some of my clients still ask me to help with the requirements gathering for a &quot;device which reduces friction when moving heavy loads.&quot;</p>
-<p><strong>Beautiful Soup.</strong></p>
+<div class="section" id="beautiful-soup-1">
+<h2>Beautiful Soup</h2>
 <p>The <tt class="docutils literal">findAll</tt> method is almost a proper <strong>Visitor</strong>.  It can apply a function to each node of a subtree.  The function's return value causes accumulation of values; so a function which returns None simply visits every node.</p>
 <p>The only significant problem with findAll is that I really need it to use a stateful object, not a stateless function.  Yes, I could make a class which implements <tt class="docutils literal">__call__</tt> to be my <strong>Visitor</strong>.  However, the mixture of tags and text all coming into a single anonymous method is a pain in the ass for some applications.</p>
 <p>Also, the implementation of findAll uses the Tag.recursiveChildGenerator, which has explicit stack instead of simple recursion, but that's a personal preference of mine.  Recursion is often considerably faster.  Since there are some variations on how the Soup methods work, the lack of simple recursion may be essential.</p>
-<p><strong>Next Steps.</strong></p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps</h2>
 <p>I can do a number of things.  Each of these is based on specific experiences I've had with customers.  These are lessons I've learned about big IT that I'm trying to apply to the open source community.</p>
 <ul class="simple">
 <li>I could dogmatically insist that my crap is better/faster/cheaper.</li>
@@ -133,6 +136,7 @@ S.Lott -- Software Architect            </a>
 </ul>
 <p>Conventional wisdom -- in the open source community -- suggests that I post a patch to Beautiful Soup to add the desired <strong>Visitor</strong>.  That requires me to dig deeply enough into findAll to see how it really works.  I would have to learn something, and that will take a few weeks.</p>
 <p>I prefer to take my cue from in-house IT departments where doing nothing is the preferred course of action.  Open source is too much work.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -152,7 +156,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

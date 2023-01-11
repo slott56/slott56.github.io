@@ -21,11 +21,11 @@ This is a very cool restatement of some essential Agile principles.
 
 
 
-:emphasis:`Sure, we can train and plan -- and we should. But there are too many unknowns to train and plan for everything. A slow ramp-up lets us discover and kill problems as we go, reducing complexity at every step. Going slowly means fewer changes at once, fewer nasty surprises, fewer problems leaking out of the data center. It also means direct, desperately needed experience.`
+*Sure, we can train and plan -- and we should. But there are too many unknowns to train and plan for everything. A slow ramp-up lets us discover and kill problems as we go, reducing complexity at every step. Going slowly means fewer changes at once, fewer nasty surprises, fewer problems leaking out of the data center. It also means direct, desperately needed experience.*
 
 
 
-:emphasis:`But to go slowly, we have to move fast. We can't wait for an ROI analysis or a line item in the budget to start getting that experience. We can start right now, today, with a tiny pilot that gets us moving.`
+*But to go slowly, we have to move fast. We can't wait for an ROI analysis or a line item in the budget to start getting that experience. We can start right now, today, with a tiny pilot that gets us moving.*
 
 
 
@@ -33,7 +33,8 @@ Thank you Frank Hayes.
 
 
 
-:strong:`Planning Is Important`
+Planning Is Important
+---------------------
 
 
 
@@ -49,11 +50,12 @@ A realistic plan requires a realistic understanding of the technology.
 
 
 
-:strong:`A Case Study`
+A Case Study
+------------
 
 
 
-For example, let's talk about introducing some kind of configuration management for the DBA's.  (See `The Schema Evolution Problem <{filename}/blog/2008/08/2008_08_06-the_schema_evolution_problem.rst>`_.)  Doesn't that require a :strong:`BPFC` ?  How will we achieve "control" without a plan?
+For example, let's talk about introducing some kind of configuration management for the DBA's.  (See `The Schema Evolution Problem <{filename}/blog/2008/08/2008_08_06-the_schema_evolution_problem.rst>`_.)  Doesn't that require a **BPFC** ?  How will we achieve "control" without a plan?
 
 
 
@@ -77,7 +79,7 @@ Review the old saw about the ham and eggs breakfast.  The chicken is involved.  
 
 
 
-The point is :strong:`not`  to write specific, detailed scenarios.  We're just going to summarize their goals; summarize their interactions with some "system" that will manage change and control configurations.  We need guidance on tool use.  We don't need yet another set of "requirements" that allow someone to engage in lots more programming.  The point is to increase control and reduce cost, not write more stuff.
+The point is **not**  to write specific, detailed scenarios.  We're just going to summarize their goals; summarize their interactions with some "system" that will manage change and control configurations.  We need guidance on tool use.  We don't need yet another set of "requirements" that allow someone to engage in lots more programming.  The point is to increase control and reduce cost, not write more stuff.
 
 
 
@@ -85,7 +87,8 @@ The point is :strong:`not`  to write specific, detailed scenarios.  We're just g
 
 
 
-:strong:`Now Do We Plan?`
+Now Do We Plan?
+----------------
 
 
 
@@ -113,7 +116,8 @@ Project Managers will often try to control the configuration by issuing random o
 
 
 
-:strong:`You Say You're A Stakeholder`
+You Say You're A Stakeholder
+----------------------------
 
 
 
@@ -141,7 +145,8 @@ I think QA are the pigs in this ham-and-eggs breakfast.  Everyone else is just a
 
 
 
-:strong:`Okay, We've Resolved the Conflicts, Now Can We Plan?`
+Okay, We've Resolved the Conflicts, Now Can We Plan?
+-----------------------------------------------------
 
 
 
@@ -173,7 +178,8 @@ Live with this a while.  Get this under control.  Don't put a date or a delivera
 
 
 
-:strong:`Okay, We Finished The Pilot.  Now Can We Plan?`
+Okay, We Finished The Pilot.  Now Can We Plan?
+----------------------------------------------
 
 
 
@@ -181,7 +187,7 @@ Planning prematurely is a mistake.  One set of lessons learned doesn't reveal to
 
 
 
-So, find the :strong:`Next Big Thing`.  Start a "round 2 pilot".  Not a full implementation.  No concrete plan.  Nothing so serious as that.  Just pick something that's out of control.
+So, find the **Next Big Thing**.  Start a "round 2 pilot".  Not a full implementation.  No concrete plan.  Nothing so serious as that.  Just pick something that's out of control.
 
 
 
@@ -203,7 +209,8 @@ Live with this a while.  Get this under control.  Don't put a date or a delivera
 
 
 
-:strong:`Fine.  We've Done The Pilot Twice.  Now Can We Plan?`
+Fine.  We've Done The Pilot Twice.  Now Can We Plan?
+----------------------------------------------------
 
 
 
@@ -227,7 +234,8 @@ At that point, stuff will move into the repository with no plan, no powerpoint, 
 
 
 
-:strong:`Wait -- what?`
+Wait -- what?
+--------------
 
 
 

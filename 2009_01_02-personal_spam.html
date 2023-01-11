@@ -118,7 +118,8 @@ S.Lott -- Software Architect            </a>
                 <p>In previous years, I had several email lists: my Yahoo! list, my Google list, my desktop.  To figure out what to send, I had to merge the lists, which meant reading vCards, and CSV files.  This is totally the sweet-spot for Python.</p>
 <p>The Mac OS X <a class="reference external" href="http://www.apple.com/mobileme/">Mobile Me</a>  has a very nice sync capability that integrates Yahoo!, Google and my desktop (which includes my iPhone).</p>
 <p>Mobile Me eliminated my email merging.  Now, everything is in my desktop Address Book.  My holiday mailing list can be trivially exported to a big old .VCF file.</p>
-<p><strong>Spamming via VCF</strong></p>
+<div class="section" id="spamming-via-vcf">
+<h2>Spamming via VCF</h2>
 <p>There's a Python Personal Data Interchange project (<a class="reference external" href="http://savannah.nongnu.org/projects/python-pdi">http://savannah.nongnu.org/projects/python-pdi</a>), <a class="reference external" href="http://pdi.sourceforge.net/">http://pdi.sourceforge.net/</a>.  I, however, made no use of this.</p>
 <p>Instead, I rebuilt my old spamulator to simply email to a list of folks identified by vCard.  The application has three principle parts:</p>
 <ol class="arabic simple">
@@ -126,9 +127,10 @@ S.Lott -- Software Architect            </a>
 <li>The parsing of vCards.</li>
 <li>Sending the spam.</li>
 </ol>
-<p><strong>vCard Class Definitions</strong></p>
+</div>
+<div class="section" id="vcard-class-definitions">
+<h2>vCard Class Definitions</h2>
 <p>First, we have the core definitions of a vCard.  For information see <a class="reference external" href="http://tools.ietf.org/html/rfc2425http://tools.ietf.org/html/rfc2425">RFC 2425</a>  and <a class="reference external" href="http://tools.ietf.org/html/rfc2426">RFC 2426</a> .</p>
-<!-- code: -->
 <pre class="literal-block">
 from collections import defaultdict
 
@@ -196,10 +198,11 @@ class VCard( object ):
         return &quot;BEGIN:VCARD\n%s\nEND:VCARD&quot; % ( &quot;\n&quot;.join(map(str,propList)), )
 </pre>
 <p>The essential data structure is the VCard, which has any number of named properties.  A named property has parameters and a value.  Values can be a simple string, or a ;-delimited list of strings.  Very simple, really.</p>
-<p><strong>Parsing a VCF File</strong></p>
+</div>
+<div class="section" id="parsing-a-vcf-file">
+<h2>Parsing a VCF File</h2>
 <p>The trickiest part about parsing VCF is the escape rules.  The :, ; and , punctuation marks are sacred, but can be escaped to allow ;'s or :'s to appear in the value of a property.  The , is used to punctuate multiple values for a parameter, something that doesn't enter into email very often, so it can be ignored for now.</p>
 <p>Here's the parser, using some cool regex things I found.</p>
-<!-- code: -->
 <pre class="literal-block">
 import re
 
@@ -247,7 +250,6 @@ class VCFParser( object ):
         return ( c for c in self.parseCard(aFile) )
 </pre>
 <p>There are three cool regexes that look for unescaped :, = or ;.  I took a while to track these down in the documentation, but once I found them, my life was much simpler.  Here's the doctest string.</p>
-<!-- code: -->
 <pre class="literal-block">
 &gt;&gt;&gt; import re
 &gt;&gt;&gt; colon=  re.compile( r&quot;(.*)(?&lt;!\\):(.*)&quot; )
@@ -265,9 +267,10 @@ class VCFParser( object ):
 ['EMAIL', 'type=pref\\;special', 'type=work']
 </pre>
 <p>This also uses a series of generators to make it easy to unfold long lines and accumulate a mult-line card.  I'm a big fan of this &quot;generator cascade&quot; design pattern to break a fairly complex parsing job up unto manageable pieces.</p>
-<p><strong>SMTP Interface</strong></p>
+</div>
+<div class="section" id="smtp-interface">
+<h2>SMTP Interface</h2>
 <p>The final step is actually using SMTP to send the email.  Note that we need to put the destination name into the message itself.  While not hard, it does mean that the message isn't a static object: it has to be tweaked for each outgoing message.  I like to define a Message class to handle this business for me.</p>
-<!-- code: -->
 <pre class="literal-block">
 import smtplib
 class Message( object ):
@@ -300,13 +303,13 @@ def send( msg, toList ):
     s.quit()
 </pre>
 <p>This is pleasantly short and to the point.  Once the command-line parameters have been parsed, we're down to  parsing the options and then doing the following:</p>
-<!-- code: -->
 <pre class="literal-block">
 body= file( theMessageFile, &quot;rU&quot; ).read()
 msg= Message( &quot;s_lott&#64;mac.com&quot;, options.subject, body )
 send( msg, getVCFIter( theListFile ) )
 </pre>
 <p>I like Python.  I really like the subtle way in which all of the steps of processing a vCard are based on generators meaning that I don't read in a large pile of data, but actually read in just enough to process one card at a time.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -326,7 +329,10 @@ send( msg, getVCFIter( theListFile ) )
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

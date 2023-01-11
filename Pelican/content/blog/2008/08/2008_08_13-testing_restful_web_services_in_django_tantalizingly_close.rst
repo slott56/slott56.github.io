@@ -29,7 +29,8 @@ However, we're still not ready for deployment.
 
 
 
-:strong:`Authorization Differences` 
+Authorization Differences
+-------------------------
 
 
 
@@ -53,7 +54,8 @@ Sigh.  I thought we'd be done in `20 minutes <http://showmedo.com/videos/video?n
 
 
 
-:strong:`Adding MD5 Digests` 
+Adding MD5 Digests
+------------------
 
 
 
@@ -65,7 +67,8 @@ One consequence is that we now have two password digests, the default SHA1 in th
 
 
 
-:strong:`Testing Complications` 
+Testing Complications
+---------------------
 
 
 
@@ -78,8 +81,6 @@ For Python, it would be simplest to leverage the `urllib2 <http://docs.python.or
 
 
 Something like the following:
-
-..  code:
 
 ::
 
@@ -121,7 +122,7 @@ The problem is that the Django test client and the urllib2 packages are wildly i
 
 
 
-Okay, maybe not :emphasis:`wildly` , but seriously incompatible.
+Okay, maybe not *wildly* , but seriously incompatible.
 
 
 
@@ -133,7 +134,8 @@ Second, and more important, the Django Client's HttpResponse is a dictionary ful
 
 
 
-:strong:`Choices` 
+Choices
+--------
 
 
 

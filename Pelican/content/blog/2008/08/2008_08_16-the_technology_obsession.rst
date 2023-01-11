@@ -21,7 +21,7 @@ See `jbox.dk Quotations on Simplicity <http://www.jbox.dk/quotations.htm>`_ .  T
 
 
 
-Actually, it's easy.  Listen to fewer people.  See Steve Yegge's `Business Requirements are Bullshit <http://steve-yegge.blogspot.com/2008/08/business-requirements-are-bullshit.html>`_ .  The point is :emphasis:`not`  that requirements are crap.  The point is that the :emphasis:`process`  of "Gathering Business Requirements" usually leads to requirements that include a fair amount of crap.  Indeed, the more time and effort you spend in "gathering" the less value you actually gather.
+Actually, it's easy.  Listen to fewer people.  See Steve Yegge's `Business Requirements are Bullshit <http://steve-yegge.blogspot.com/2008/08/business-requirements-are-bullshit.html>`_ .  The point is *not*  that requirements are crap.  The point is that the *process*  of "Gathering Business Requirements" usually leads to requirements that include a fair amount of crap.  Indeed, the more time and effort you spend in "gathering" the less value you actually gather.
 
     
 
@@ -67,7 +67,8 @@ Written requirements documents are of nebulous value.  A backlog of features -- 
 
 
 
-:strong:`How do you create schedule and budget?` 
+How do you create schedule and budget?
+--------------------------------------
 
 
 
@@ -91,7 +92,8 @@ Schedule and budget are defined long before Gathering Business Requirements is f
 
 
 
-:strong:`What do we get for our money?` 
+What do we get for our money?
+------------------------------
 
 
 

@@ -29,7 +29,8 @@ Second, our initial version of the Wheel is intentionally naive and untestable. 
 
 
 
-:strong:`Agility` 
+Agility
+----------
 
 
 
@@ -37,11 +38,12 @@ There was a small change related to Agility.  This is something that is covered 
 
 
 
-Most things in this simulation life essentially forever.  However, Bets do have to get deleted when they're resolved.  Initially, deleting bets is ignored.  It certainly is possible to add a delete method to the first version of Table.  More fundamentally, there's no compelling reason to add too many features too early in the development cycle.
+Most things in this simulation live essentially forever.  However, Bets do have to get deleted when they're resolved.  Initially, deleting bets is ignored.  It certainly is possible to add a delete method to the first version of Table.  More fundamentally, there's no compelling reason to add too many features too early in the development cycle.
 
 
 
-:strong:`Frustration` 
+Frustration
+-------------
 
 
 

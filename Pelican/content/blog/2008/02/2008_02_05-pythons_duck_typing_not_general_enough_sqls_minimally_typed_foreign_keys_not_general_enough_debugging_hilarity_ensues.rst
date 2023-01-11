@@ -33,7 +33,8 @@ The standard SQL hack is to have a many-to-many association table that links eve
 
 
 
-:strong:`Wrong Way To The Next Level`
+Wrong Way To The Next Level
+----------------------------
 
 
 
@@ -45,7 +46,7 @@ Something that actually appears as a valid schedule entry has at least four inde
 
 
 
-If you start looking at this as a bunch of binary many-to-many relationships, you can easily get yourself into a :strong:`Rat-Warren of Design Details`\ ™.
+If you start looking at this as a bunch of binary many-to-many relationships, you can easily get yourself into a **Rat-Warren of Design Details**\ ™.
 
 
 
@@ -57,7 +58,8 @@ Once the architect had identified all of those binary relationships, they wanted
 
 
 
-:strong:`The Attractive Nuisance`
+The Attractive Nuisance
+-----------------------
 
 
 
@@ -81,7 +83,8 @@ Wait.  Wouldn't that base table identification be a kind of type declaration?  C
 
 
 
-:strong:`My Advice`
+My Advice
+----------
 
 
 

@@ -105,7 +105,8 @@ So, you must use iTunes and you can't use iTunes.  Okay.  This is going nowhere.
 
 
 
-:strong:`The Prototype` 
+The Prototype
+--------------
 
 
 
@@ -129,7 +130,8 @@ Every prototype proposal was unacceptable.  But we still had to create a prototy
 
 
 
-:strong:`Who and Why?` 
+Who and Why?
+-------------
 
 
 
@@ -149,7 +151,8 @@ Okay, they don't know what decision is being made.  They won't tell us who is ma
 
 
 
-:strong:`Scalable in What Dimension?` 
+Scalable in What Dimension?
+----------------------------
 
 
 
@@ -157,7 +160,7 @@ They said the word "scalable".  It's an application with a desktop component and
 
 
 
-None of those
+None of those.
 
 
 
@@ -225,7 +228,7 @@ Me:  "So, screen shots of the desktop?"
 
 
 
-NC:  "Screen :emphasis:`concepts` ."
+NC:  "Screen *concepts* ."
 
 
 

@@ -140,18 +140,23 @@ S.Lott -- Software Architect            </a>
 <li>Choose the best content type/format to represent your schemas</li>
 </ol>
 <p>Both of these help, but they seem incomplete.</p>
-<p><strong>Implementation Details</strong></p>
+<div class="section" id="implementation-details">
+<h2>Implementation Details</h2>
 <p>Since Django does a lot (ORM, URL mapping, free admin interface) it's my personal jumping-off point for web applications.  Django's essential design principles are RESTful from the beginning.  See the <a class="reference external" href="http://www.djangoproject.com/documentation/url_dispatch/">URL dispatcher</a>  documentation.  This references the <a class="reference external" href="http://www.w3.org/Provider/Style/URI">Cool URI's Don't Change</a>  document by Tim Berners-Lee.</p>
 <p>Further, Django encourages us to get the model right to begin with, then we can (easily) define RESTful access to that model.</p>
 <p>Here's the problem.  We have two interfaces: a human interface and a WS API; these are comingled.  Along with multiple interfaces, we've also got several applications that are part of the overall service offering.  With an interface dimension and a application dimension, how do we distinguish among the various URI's?</p>
-<p><strong>Enumerating The Choices</strong></p>
+</div>
+<div class="section" id="enumerating-the-choices">
+<h2>Enumerating The Choices</h2>
 <p>We've got the application dimension (also known as subject areas).  For example, there might be separate applications for Customer, Services Catalog, Order Pricing, etc.</p>
 <p>We've also got the &quot;interface&quot; dimension: human via HTML vs. WS API via JSON (or XML).</p>
 <p>With two independent dimensions we've got the kind of matrix design that gives people gas and makes them invent <a class="reference external" href="http://en.wikipedia.org/wiki/Aspect-oriented_programming">aspect-oriented programming</a> .  Matrix designs aren't a reason to invent a new paradigm, it just requires a little care with the paradigms we have.</p>
 <p>Our URI's are linear -- even though our design isn't -- and we have to group our URI's into tree-like paths.  We can put application first, or interface first.</p>
 <p>/customer/xml/ID vs /xml/customer/ID</p>
 <p>As an alternative, we can also use the HTTP headers to determine the intent behind a request.  It turns out that the HTTP Accept header provides us a handy hint.  We could make our WS API calls fill in a MIME type like &quot;application/json&quot;.  Our human interface would have whatever the browser typically fills in for the Accept header (usually a long string of alternatives starting with &quot;text/xhtml&quot;).</p>
-<p><strong>A Big Push</strong></p>
+</div>
+<div class="section" id="a-big-push">
+<h2>A Big Push</h2>
 <p>The <a class="reference external" href="http://code.google.com/p/django-rest-interface/">Django-REST Interface</a>  package makes the URI-based identification pleasantly simple.  This package makes a lot of design decisions for me.  The process looks like this.</p>
 <ol class="arabic simple">
 <li>Define the data schema.  Build it.  Unit test test it.  Use the admin interface to work with it.</li>
@@ -160,16 +165,21 @@ S.Lott -- Software Architect            </a>
 <li>Unit test all of this. Use the Django TestCase -- it provides a nice WS client.  See the Django-REST test cases for examples of how to curry in methods for put and delete methods.</li>
 <li>Rework the URI's and data model.  You'll never get it right the first time.  It's often hard to correctly model the business entities.  A lot of what passes for SQL design doesn't properly reflect real-world entities very well.  If you start from classes and implement them in SQL, you'll do a lot better than starting from SQL and trying to map SQL to objects.</li>
 </ol>
-<p><strong>RPC Edge Case</strong></p>
+</div>
+<div class="section" id="rpc-edge-case">
+<h2>RPC Edge Case</h2>
 <p>The most notorious edge case is the Remote Procedure Call (RPC); places where there doesn't seem to be a proper resource.  Sometimes, these are thought of in strictly RPC terms -- a POST request with a payload of argument values.  A result is calculated and returned as an appropriate document.</p>
 <p>I submit that in all cases, the RPC is in reality the creation of that result document.  The result document should -- trivially -- be made into a first-class persistent Django model.  The POST request to &quot;create&quot; the model may provide only a few attributes, the rest are then developed as part of handling the POST.  For all that it matters, they can be implemented in the save() method of the model!</p>
 <p>This, however, breaks us out of the Django-REST interface.  Our GET requests can still be handled by the Simple or Basic examples.  The POST request, however may break the mold, since the basic POST request isn't a good match for the resulting document.</p>
-<p><strong>But Wait</strong></p>
+</div>
+<div class="section" id="but-wait">
+<h2>But Wait</h2>
 <p>What we have is a POST request that isn't really a good match with the schema object.  Indeed, the point of an RFC-style request is that we have complex transformations (calculations, lookups, etc.) occurring somewhere in the POST processing.</p>
 <p>I looked closely at the <a class="reference external" href="http://django-rest-interface.googlecode.com/svn/trunk/django_restapi_tests/examples/generic_resource.py">Generic Resource</a>  example.  Very closely.  But it wasn't really helping too much, since the inputs were not very close to the final document.</p>
 <p>So, after spending hours of reading the Django-REST code, I finally realized what was going on.  Once we're out of the Django-REST sweet spot, we're just doing ordinary Django.  It's just a Django view.</p>
 <p>A special-purpose POST request can be an ordinary Django view.  This can do the elaborate RPC-like calculations.  It can persist the resulting document.  Then it can -- without much difficulty -- use a Django-REST responder to provide the expected HTTP response.</p>
 <p>Indeed, the underlying algorithm is shared between a number of closely-related views.  The JSON or XML view works one way.  The HTML view has a slightly different behavior (since it can display error messages to a person), but has the same underlying algorithm.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -189,7 +199,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

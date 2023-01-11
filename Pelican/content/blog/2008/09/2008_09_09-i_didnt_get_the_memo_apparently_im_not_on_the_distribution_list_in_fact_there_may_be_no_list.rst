@@ -21,7 +21,8 @@ Stuff moved.  And no one told me.
 
 
 
-:strong:`Long Anecdote.` 
+Long Anecdote
+--------------
 
 
 
@@ -37,11 +38,11 @@ I tried to elicit use cases.  Nothing came of that.  Eventually, they sent me th
 
 
 
-They were creating each paragraph as a separate file in a :strong:`massive`  hierarchy.  The hierarchy was so deeply nested that they had reached the maximum path length and weren't through putting sub-(sub-)x9-sub levels in.
+They were creating each paragraph as a separate file in a **massive**  hierarchy.  The hierarchy was so deeply nested that they had reached the maximum path length and weren't through putting sub-(sub-)x9-sub levels in.
 
 
 
-There is lots of craziness here; and more that I haven't mentioned.  MS-Word has an outlining mode.  They were shocked that such a thing existed.  Shocked.  But it was :strong:`Completely Useless`  -- it didn't allow more than 8 levels of indenting.
+There is lots of craziness here; and more that I haven't mentioned.  MS-Word has an outlining mode.  They were shocked that such a thing existed.  Shocked.  But it was **Completely Useless**  -- it didn't allow more than 8 levels of indenting.
 
 
 
@@ -61,7 +62,8 @@ They were amazed that this was well-understood undergrad computer science.  It d
 
 
 
-:strong:`End Long Anecdote.` 
+End Long Anecdote
+-----------------
 
 
 
@@ -73,7 +75,7 @@ Then, the following thought slowly began to trickle into my head.
 
 
 
-:strong:`"If it's too hard, you're doing it wrong."` 
+    **"If it's too hard, you're doing it wrong."** 
 
 
 

@@ -56,7 +56,8 @@ Sigh.  The Pakistan story is only “insecurity” in the broadest, vaguest sens
 
 
 
-:strong:`Politics` 
+Politics
+---------
 
 
 
@@ -175,7 +176,8 @@ See
 
 
 
-:strong:`Innovation` 
+Innovation
+-----------
 
 
 

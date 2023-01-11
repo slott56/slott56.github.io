@@ -120,33 +120,43 @@ S.Lott -- Software Architect            </a>
 <p>Here's the famous quote: &quot;Writing real applications in Python requires a discipline that unfortunately most people (including myself, at that time) are unwilling to adhere to, and this easily leads to buggy and hard to maintain programs. You have to be very diligent about unit tests and code coverage for every line of code, because you can’t rely on the compiler to catch errors for you.&quot;</p>
 <p>I didn't take careful notes at a client meeting where this came up, so I don't have good quotes.  The client balked at the very idea of Test Driven Development.  In a larger presentation on testing (technology, environments, process, etc.) I had lifted up TDD as a direction that would benefit the developers.  The response from the director of development was a series of &quot;how would you do that?&quot; questions.</p>
 <p>These weren't practical &quot;how to&quot; questions.  They were rhetorical &quot;that isn't possible&quot; statements, framed as questions.  In order to portray TDD as impossible the questions quickly devolved into how TDD interacts with requirements gathering and business analysis; I couldn't successfully bracket the questions as part of the fringe of TDD.  I think the disconnect was their certain knowledge that test cases come only from requirements and nowhere else.</p>
-<p><strong>It Hurts When I Do That</strong></p>
+<div class="section" id="it-hurts-when-i-do-that">
+<h2>It Hurts When I Do That</h2>
 <p>TDD is -- certainly -- a pain the neck.  I think I see two complaints.  First, it's a lot of &quot;extra&quot; code.  I'm guessing that there's a &quot;non-deliverable&quot; view of test cases that pervades some people's thinking.  I've been measuring the lines of code in both parts of a project, and the total volume of source is about 50% test cases and 50% operational.</p>
 <p>Many years ago, we made a distinction between &quot;deliverable&quot; and &quot;non-deliverable&quot; software.  We used to carefully segregate any non-deliverable software so that we could wring our hands over how to estimate the cost for it.  Since it wasn't &quot;deliverable,&quot; some managers felt we couldn't charge the customer for it; the logical conclusion was that we should exclude it from our project plans.</p>
 <p>I maintained that &quot;non-deliverable&quot; is still &quot;essential&quot;, so we must include it in our plans.  The &quot;compromise&quot; was to inflate the estimated size of the deliverable to include a pro-rated version of the non-deliverable code.  The claim was that non-deliverable software was half the cost of deliverable software.  It had less documentation and less testing or some such.</p>
-<p><strong>I Can't Cope With That</strong></p>
+</div>
+<div class="section" id="i-can-t-cope-with-that">
+<h2>I Can't Cope With That</h2>
 <p>The second complaint seems to be that programmers can't be trusted.  Because they can't be trusted, we must have full definitions of all deliverables, complete up-front design, rigorous schedules for code creation, and a fungible, compressible schedule for testing.</p>
 <p>We can't engage in an agile test-driven process for a number of reasons.  First, and foremost, programmers are the root cause of scope creep.  We all know that programmers will &quot;gold-plate&quot; the simplest thing; they'll spend years polishing and improving something of limited business value.  [Why did we let them get started on something of limited value?  Why aren't we willing to invest in making it work correctly every time?]</p>
 <p>We can't trust programmers to do just enough design because they are lazy slobs and won't ever get anything to work.  If we try to let them fire at half-cock, they'll never get anything useful accomplished. After all, we -- as managers -- have a vision of something trivially simple.  The programmers keep introducing some technology nuance that makes a simple thing horribly complex and difficult.  [Who -- specifically -- told us that introducing new technology will be simpler?  Or did we just make that part up?]</p>
 <p>We can't trust programmers to evolve code, design and test hand-in-hand.  If we did, there'd be scope creep and they'd just play with the technology.  Worse, of course, they'd miss the schedule.</p>
 <p>We certainly can't trust programmers and end-users to collaborate.  If we did, they would change the focus of the project, and the schedule might be missed.  As managers, we don't fully understand the business value proposition; we don't completely get the technology, but we do understand the schedule.  Since we really, truly, deeply understand the calendar, that is the one thing we can manage to.  [Why is schedule more important than delivered features?]</p>
 <p>Above all, we can't trust programmers to create test cases.  Only end-users can create tests, and those tests must be married to the requirements.  There's no reason to elaborate the tests to match the design, or elaborate the tests to match the details embodied in the code.  Tests based on design or programming amount to letting a programmer do their own tests; programmers are untrustworthy; therefore this can't work.</p>
-<p><strong>The TDD Alternatives</strong></p>
+</div>
+<div class="section" id="the-tdd-alternatives">
+<h2>The TDD Alternatives</h2>
 <p>I think there's just one disconnect underlying this.  This disconnect manifests itself as two alternatives to TDD.  The static language folks seem to like the idea that compiler type-checking is an alternative to testing.  I suppose -- to a limited extent -- this is true.  Rather than write a unit test to examine proper integration among classes or modules, we can trust the compiler.</p>
 <p>Everyone knows -- or should know -- that the compiler is easily fooled.  When using externally developed JAR files, we can easily compile against one version, and try to execute against a different version.  All the compile-time type-checking in the world can't cope with mis-configuration.  Eventually, we need Python-style dynamic testing.</p>
 <p>When we can't trust our programmers, we have a number of clever alternatives to TDD.  The primary approach is to define a process that imposes a waterfall approach to developing unit test cases in parallel with the code.  When asked &quot;How does TDD interact with requirements gathering?&quot; no answer I could give was acceptable.  What they wanted me to say was &quot;Oh crap, you're right, I'm such an idiot.  Test cases are only based on requirements, never design or programming.&quot;  They wanted me to agree that programmers can't be allowed write their own test cases.</p>
-<p><strong>The Disconnect</strong></p>
+</div>
+<div class="section" id="the-disconnect">
+<h2>The Disconnect</h2>
 <p>I think both viewpoints stem from looking at testing as &quot;final&quot;, &quot;end-user&quot; or &quot;acceptance&quot; testing.  If testing is only for acceptance, then we should have other ways to test that the programming is correct and the design really works.  The compiler should -- somehow -- validate our basic programming via static type analysis.  The design, similarly, should be checked via some static analysis.  That leaves testing to focus on the requirements and nothing else.</p>
 <p>Additionally, we can't trust one person to interpret the requirements as test cases and as code.  We must apply a second pair of eyeballs to the requirements to create the acceptance-oriented test cases.</p>
 <p>It appears to me that TDD is dismissed as worthless because people don't see a need to test their designs or programming.  Either they hope that static type analysis will do this, or they simply dismiss this testing as worthless.</p>
 <p>It's hard to create a value proposition for testing the design and programming.  It requires emphasizing a sense of distrust.  And the level of distrust is already fairly high.  After all, unit testing requires a level of discipline that programmers are unwilling to adhere to.  The idea of adding testing at the design and code level only gets into complex philosophical discussions about &quot;the role of requirements&quot;.</p>
 <p>It's hard to break testing free from &quot;End-User Acceptance.&quot;  However, if we can portray testing as essential, it then becomes deliverable.  Indeed, it becomes essential to establishing confidence in the software.  It also becomes part of the documentation, since each API is demonstrated by at least a test case (in some cases, a whole test suite.)</p>
-<p><strong>Meta-Quality</strong></p>
+</div>
+<div class="section" id="meta-quality">
+<h2>Meta-Quality</h2>
 <p>The logical conclusion is a set of meta-quality attributes.  Software quality attributes can be based on the SEI Quality Measures Taxonomy <a class="reference external" href="http://www.sei.cmu.edu/str/taxonomies/view_qm.html">http://www.sei.cmu.edu/str/taxonomies/view_qm.html</a>.  This taxonomy includes need satisfaction, resource use, maintainability, adaptability and cost factors.</p>
 <p>Meta-quality includes the quality attributes of the test cases.  There are probably a number of quality attributes regarding things like 'traceability to requirements&quot;, &quot;class coverage&quot; and &quot;method coverage&quot; that determine how useful and complete the test cases are.  Looking at &quot;traceability&quot;, we examine how the test cases apply to end-user acceptance.</p>
 <p>I look at &quot;class coverage&quot; as  a way to to look at the design.  This includes classical &quot;class-in-isolation&quot; unit tests, as well as module- (or &quot;component&quot; or &quot;package&quot;) -level unit tests that examine a collection of classes to be sure that they interact properly.  This makes limited use of mock objects, since this is looking at integration of classes and modules.</p>
 <p>The &quot;method coverage&quot; is how we look at the programming.  This includes appropriate test cases to exercise each method more-or-less in isolation.  This level of testing makes heavy use of mock objects to be sure that the code in each method is actually correct.</p>
 <p>I think that these meta-quality attributes of the test case code is as important as the quality attributes of the &quot;operational&quot; code.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -166,7 +176,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

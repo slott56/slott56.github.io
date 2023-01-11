@@ -121,7 +121,8 @@ S.Lott -- Software Architect            </a>
 <p>But, in the middle there's a lot of stuff.  What about sub-packages of an application?  How &quot;reusable&quot; do they have to be?  Finished or only potentially reusable?  What about multiple parts of an integrated system of applications?</p>
 <p>Further, what about Django web applications which have relatively static application parts, plus relatively dynamic database and file uploads in the &quot;media&quot; directory?  What about command-line data management applications for bulk loads and transfers?</p>
 <p>And -- relative to Django apps -- what is settings.py?  Technically, it's code.  But, practically, it's just configuration.  When you have multiple run-time environments (Training and Production) with the same code base, it's just the settings.py that discriminates between the two database instances.</p>
-<p><strong>Registering Intent</strong></p>
+<div class="section" id="registering-intent">
+<h2>Registering Intent</h2>
 <p>The decision of where to put things often devolves to a matter of intent.</p>
 <p>A package (or module) is an intellectual crutch.  We collocate class definitions in a module (or group modules into a package) to make a comprehensible intellectual chunks.</p>
 <p>The criteria for <a class="reference external" href="http://sunnyday.mit.edu/16.355/parnas-criteria.html&quot;">decomposing systems into modules</a>  is pretty clear.  The essential module design is oriented around design decisions which can change.  But there is a taxonomy of design decisions.  Parnas provides some examples (Data Structures, Algorithms, API's, Performance.)</p>
@@ -131,18 +132,29 @@ S.Lott -- Software Architect            </a>
 <li>&quot;Irrelevant&quot; data structures.  Many files and external interfaces impose data structures which are largely irrelevant to our application.  External XSD's, for example, are part of an interface, not part of our core application.  Also, interestingly, the endless complexity of spreadsheets that are used as data sources lead to irrelevant details.  We've used <a class="reference external" href="http://www.lexicon.net/sjmachin/xlrd.htm">XLRD</a>  and <a class="reference external" href="http://docs.python.org/lib/module-csv.html">csv</a> .  Further, we're using a SAX parser for XML spreadsheets.  We can collect a lot of this in a &quot;Workbook Library&quot;.  It isn't core to our application, it's a distraction.  But it isn't a package we'll polish up and put into an open-source repository.  But it isn't core, either.</li>
 <li>Tools.  For example, we generate Python classes from XSD's.  Clearly, this is separate.  But, just as clearly, it isn't very polished, and not usable as a stand-alone tool.  Do we leave this inside the main application directory under /opt/someApp?  Or do we register our intent to make it a stand-alone product and toss it into a separate /opt/someTool directory?</li>
 </ol>
-<p><strong>Strategy</strong></p>
+</div>
+<div class="section" id="strategy">
+<h2>Strategy</h2>
 <p>A web admin I respect said &quot;It doesn't matter what you choose, someone will hate your decision.&quot;  Helpful advice.  In other words, &quot;quit waffling -- it can't be perfect.&quot;  Indeed, what would &quot;perfect&quot; even mean?</p>
 <p>What's important seem to be the following.</p>
-<p><strong>Modularize Everything</strong>.  The magic number is 7 ± 2 &quot;concepts&quot; in a module.  A few closely related classes go in a module.  More complex modules tend to be a problem.  When you're in a hurry and it isn't clear where the boundaries should fall, go for smaller.</p>
-<p><strong>Think Packages</strong>.  I'm starting to see that there's nothing wrong with a package that contains a single __init__.py file; this is a place-holder for future growth.  You can add to this structure easily.  I think this should be what you put down in the first sprint to get things started.  Later it can be refactored as the design matures.</p>
-<p>If, after a few months, the overall direction seems to have shifted, that package can be collapsed back into a module -- with no breakage.  I find it slightlly easier to refactor a single-module package into a module than to decompose a growing (and possibly bloated) module into a multi-file package.</p>
-<p><strong>Written Justification</strong>.  You need tidy, clear, documentation for your overall structure.  Be particularly focused on introducing newbies to your project.  It has to make compelling sense -- you have to know that your colleagues will do the right kind of design.  Few things are as challenging as the &quot;you're right, it probably doesn't belong there&quot; conversation surrounding some particularly egregious hand-waving.  It's most helpful with a n00b: they can see the irregularities more clearly than you can.</p>
-<p><strong>Our Stuff</strong></p>
+<dl class="docutils">
+<dt><strong>Modularize Everything</strong>.</dt>
+<dd>The magic number is 7 ± 2 &quot;concepts&quot; in a module.  A few closely related classes go in a module.  More complex modules tend to be a problem.  When you're in a hurry and it isn't clear where the boundaries should fall, go for smaller.</dd>
+<dt><strong>Think Packages</strong>.</dt>
+<dd><p class="first">I'm starting to see that there's nothing wrong with a package that contains a single __init__.py file; this is a place-holder for future growth.  You can add to this structure easily.  I think this should be what you put down in the first sprint to get things started.  Later it can be refactored as the design matures.</p>
+<p class="last">If, after a few months, the overall direction seems to have shifted, that package can be collapsed back into a module -- with no breakage.  I find it slightlly easier to refactor a single-module package into a module than to decompose a growing (and possibly bloated) module into a multi-file package.</p>
+</dd>
+<dt><strong>Written Justification</strong>.</dt>
+<dd>You need tidy, clear, documentation for your overall structure.  Be particularly focused on introducing newbies to your project.  It has to make compelling sense -- you have to know that your colleagues will do the right kind of design.  Few things are as challenging as the &quot;you're right, it probably doesn't belong there&quot; conversation surrounding some particularly egregious hand-waving.  It's most helpful with a n00b: they can see the irregularities more clearly than you can.</dd>
+</dl>
+</div>
+<div class="section" id="our-stuff">
+<h2>Our Stuff</h2>
 <p>We've got a collection of /opt/this and /opt/that directories for the various &quot;top-level&quot; components.  Right now, we're using /opt/this/this-1.1 and /opt/that/that-2.1 kind of names.  These map to subversion tagged versions.  The idea is that we have version 1.1, 1.2 and 1.3 all side-by-side.  We try to avoid replacing a previous version so that we can fall-back -- if necessary -- during an attempted upgrade.</p>
 <p>For most of our &quot;big&quot; application systems we have /var/opt/this/prod and /var/opt/this/training for our &quot;working&quot; directory trees.  This allows us to more easily manage production, QA, training, staging and other parallel implementations of the same baseline application.</p>
 <p>Our small applications (and packages) have their own /opt directories.  Some don't have their own /var/opt working directories, since they're used by our big applications.  Many potentially reusable packages have setup.py scripts and are also installed into site-packages.</p>
 <p>We're making an intentional effort to be absolutely sure that nothing in /home is ever used anywhere.   When your application is big (hundreds of files) it's easy to overlook something.  Sadly, I've looked at a fair amount of software where a poorly-chosen path to a module was snuck in somewhere and there were file conflicts that occurred rarely and made the software &quot;flaky&quot;.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -162,7 +174,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

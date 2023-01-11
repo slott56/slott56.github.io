@@ -133,7 +133,8 @@ Request favor: Please consider blogging about using exception handling vs &quot;
 <p>Here's why the goal is confusing.  The email goes on to include a reference to Chapter 7 of the PL/SQL User's Guide and Reference, <a class="reference external" href="http://download-east.oracle.com/docs/cd/B10501_01/appdev.920/a96624/07_errs.htm#8858">Handling PL/SQL Errors</a> .  Since the information is already in the email, what more can I offer?  Nothing.</p>
 <p>Finally, the email ended with the following: &quot;However, it would be nice to have a discussion of &quot;IF status = 0&quot; vs exception handling discussed from an architectural perspective. After all Java has exception handling.&quot;  What?  From an architectural perspective, PL/SQL is a fundamental mistake.  It spreads application software around between application servers and the database server.  Yuck.</p>
 <p>Let's pretend we're aiming at &quot;fixing&quot; the organization minimally -- just get them to use exceptions.  The &quot;architectural perspective&quot; is ridiculous, since PL/SQL creates more problems than it solves.</p>
-<p><strong>The Argument</strong></p>
+<div class="section" id="the-argument">
+<h2>The Argument</h2>
 <p>Unless you make it a condition of employment, programmers have a number of reasons for NOT changing from many if-statements to exceptions.</p>
 <ol class="arabic simple">
 <li>It's &quot;costly&quot; to change.  The &quot;disruption&quot; adversely impacts quality or productivity or something.  [I put the terms in quotes because -- if you ask -- there's no detail supporting the disruption claim.  Mostly, it's all code for &quot;I don't want to learn something new right now.&quot;]</li>
@@ -142,7 +143,9 @@ Request favor: Please consider blogging about using exception handling vs &quot;
 <li>Exceptions don't capture some nuance of the algorithm.  [Clearly, the if-statements aren't working either -- or we wouldn't have this email in the first place!]</li>
 </ol>
 <p>What can our developer do in the face of these kinds of stonewalling arguments?</p>
-<p><strong>Techniques That Don't Work</strong></p>
+</div>
+<div class="section" id="techniques-that-don-t-work">
+<h2>Techniques That Don't Work</h2>
 <p>Technique one: provide the PL/SQL reference manual pages.  They did that.  Apparently, that just fueled the argument.</p>
 <p>Technique two: Appeal to Authority.  For example, referencing a blog posting.  This will lead people to do nothing.  Odds are good that no one will read a blog in the first place.  A blog posting is exactly as valuable as the Oracle PL/SQL User's Guide pages -- pages already provided.</p>
 <p>How does a blog posting change things?  Generally, it makes the argument shift slightly to include the blog author.</p>
@@ -153,7 +156,9 @@ Request favor: Please consider blogging about using exception handling vs &quot;
 <p>Technique Three: how about a few False Dichotomies?  Make up some all or nothing situation where if-statements after the SQL statement are bad.  How about &quot;You're not using all features of the language.  Therefore, you shouldn't use the language?&quot;  Use all of the PL/SQL features or drop the language and switch to Java.</p>
 <p>Good advice.  Wrong &quot;reason&quot;.  (If you can call a false dichotomy a reason.)</p>
 <p>Providing information (manual pages, blog postings, etc.) doesn't work.  Okay they're informed.  They still have 5 solid reasons for not changing (it's costly, it's confusing, it performs poorly, it misses some nuance, it doesn't fit our culture/tech stack).</p>
-<p><strong>Actually Do The Work</strong></p>
+</div>
+<div class="section" id="actually-do-the-work">
+<h2>Actually Do The Work</h2>
 <p>One way to act as an agent of change is to <strong>Actually Change Something</strong>.  Not talk about change possibilities or inform people of better courses of action, but actually do something.  If you're constantly having to look at some crap code, you must be doing maintenance or enhancement.</p>
 <p>If you're reading the code with intent to change, think about the long-term cost of having the next maintainer (or enhancer) read that code.  Save everyone a lot of money by doing two things.</p>
 <ol class="arabic simple">
@@ -164,12 +169,15 @@ Request favor: Please consider blogging about using exception handling vs &quot;
 <p>&quot;Can't,&quot; people say, &quot;I'm not authorized to rewrite it.&quot;  Got it.  You want change without actual sweaty labor.  Excellent.  Change without any work is about 4lbs of pixie dust at $1,000 per gram.  That'll change everyone without any work on your part.  And it'll buy me a Bentley.</p>
 <p>&quot;It's not 'politically correct' around here to make waves like that.&quot;  Okay.  I won't make waves.  I won't do anything, either.  Clearly, your job is not to add value by improving the enterprise's software asset.  Since you're not doing something so obviously valuable, you must be doing something more valuable.  Keep doing whatever it is that's more valuable than reducing the cost of the legacy code and quit complaining.</p>
 <p>[BTW, the 'we don't have time to fix legacy problems' is a false economy, but every IT manager I've ever met has said it emphatically.  I've been asked to scope and plan the replacement of 20- and 30-year old COBOL applications that are breaking the back of the organization.  The plans were, of course, shelved because reducing costs &quot;doesn't create enough value for our end-users.&quot;  Got it, the customer insists that limping along with 60% of the organization supporting old crap <em>does</em>  create value.]</p>
-<p><strong>Suggestion</strong></p>
+</div>
+<div class="section" id="suggestion">
+<h2>Suggestion</h2>
 <p>Actually Do Something.  Just fix the code.  &quot;How will I know it works?&quot; you ask.  That's why step one was to create unit tests.  Step two is to refactor the code.</p>
 <p>Read Larry O'Brien's <a class="reference external" href="http://www.sdtimes.com/content/article.aspx?ArticleID=32059">30K + 100K = success or failure?</a>  column.  Unit testing works.  And people complain about it.  [Example Complaint: &quot; time spent writing a test function is time that could be used on application code&quot; -- what?  That's insane because you can't distinguish between application and test: test is essential to making the application &quot;work&quot;.]</p>
 <p>Read <a class="reference external" href="http://www.dzone.com/links/testdriven_development_and_software_quality.html">Test-Driven Development and Software Quality</a>  in DZone (amongst other places.)  The point is that unit testing allows you to simplify.  Applications with unit tests are measurably simpler.  In this case, the exception handling folderol is a punishing kind of cycolmatic complexity that is reduced (but not eliminated) through exception handling.</p>
 <p>So:  Develop unit tests.  Refactor.</p>
 <p>Then, brag about the success to your peers.  Carping, complaining and nagging don't work.  Leading by example might work.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -189,7 +197,10 @@ Request favor: Please consider blogging about using exception handling vs &quot;
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -21,15 +21,15 @@ Here's some of the argument.
 
 
 
--   :strong:`Editing`.  Which is easier?  Which is more expressive?  Some say that Text (INI format especially) is easier -- but I don't see what.  Python is just as easy as INI, and has more expressive power.  Advantage Python.
+-   **Editing**.  Which is easier?  Which is more expressive?  Some say that Text (INI format especially) is easier -- but I don't see what.  Python is just as easy as INI, and has more expressive power.  Advantage Python.
 
--   :strong:`Reloading`.  It is easier to reload configuration options from a regular text file than a Python import.  I'm not sure what we're reloading or why, but I do depend on Apache reloading it's configuration.  However, I've never written a program that reloaded anything.
+-   **Reloading**.  It is easier to reload configuration options from a regular text file than a Python import.  I'm not sure what we're reloading or why, but I do depend on Apache reloading it's configuration.  However, I've never written a program that reloaded anything.
 
--   :strong:`Configuration Control`.  This statement makes approximately no sense: "Code files should be read only"  What distinguishes code in .INI format from code in .PY format?  Both are code; one is relatively stable "source" and the other is relatively "dymamic" configuration.  But they're both code, subject to slightly different rules of use.  This usage difference doesn't have anything to do with syntax.
+-   **Configuration Control**.  This statement makes approximately no sense: "Code files should be read only"  What distinguishes code in .INI format from code in .PY format?  Both are code; one is relatively stable "source" and the other is relatively "dymamic" configuration.  But they're both code, subject to slightly different rules of use.  This usage difference doesn't have anything to do with syntax.
 
--   :strong:`Debugging`.  Somehow, .INI errors are purported to be easier to debug.  I don't get this.  I suppose it's true if you don't use :strong:`try`  blocks.  If, on the other hand, you use ordinary :strong:`try`  blocks, you can produce easy-to-live-with error messages from importing a Python config module.
+-   **Debugging**.  Somehow, .INI errors are purported to be easier to debug.  I don't get this.  I suppose it's true if you don't use **try**  blocks.  If, on the other hand, you use ordinary **try**  blocks, you can produce easy-to-live-with error messages from importing a Python config module.
 
--   :strong:`"Security"`.  I put "security" in quotes because it's not at all clear what we're securing against.
+-   **"Security"**.  I put "security" in quotes because it's not at all clear what we're securing against.
 
 
 
@@ -37,7 +37,7 @@ So Python has better syntax, and non-Python is slightly easier to reload.  At th
 
 
 
-:strong:`The Security Specter`
+**The Security Specter**
 
 
 

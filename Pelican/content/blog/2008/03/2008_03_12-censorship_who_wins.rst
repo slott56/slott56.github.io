@@ -41,7 +41,8 @@ DMCA as a bullying technique is distressing.  See `EFF's Online Policy Group v. 
 
 
 
-:strong:`Copyright` 
+Copyright
+----------
 
 
 
@@ -53,11 +54,11 @@ One consequence of Disney's pursuit of insane copyright durations the DMCA and m
 
 
 
-And don't waste my time on the piracy stupidity.  Why buy a $3.00 badly executed cheap copy of a movie when I can spend $19 for the real deal? I want movie :strong:`and`  the bonus content in a case that doesn't have spelling mistakes.   When will the production companies finally recognize that DVD sales don't cannibalize the theatrical sales?  Probably never.
+And don't waste my time on the piracy stupidity.  Why buy a $3.00 badly executed cheap copy of a movie when I can spend $19 for the real deal? I want movie **and**  the bonus content in a case that doesn't have spelling mistakes.   When will the production companies finally recognize that DVD sales don't cannibalize the theatrical sales?  Probably never.
 
 
 
-There will always be people who brag about getting a knock-off at 1/10th the price that's "just as good". Those annoying people are loud, but they aren't the demographic who :strong:`buys`  a product.  They're the demographic who buys knock-offs of a product, complaining the whole time.  Focus on the demographic that spends money -- ramp up the quality, the bonus features, the frequent buyer points, the advance notices and other love and care that rewards purchasing rather than punishing it.
+There will always be people who brag about getting a knock-off at 1/10th the price that's "just as good". Those annoying people are loud, but they aren't the demographic who **buys**  a product.  They're the demographic who buys knock-offs of a product, complaining the whole time.  Focus on the demographic that spends money -- ramp up the quality, the bonus features, the frequent buyer points, the advance notices and other love and care that rewards purchasing rather than punishing it.
 
 
 

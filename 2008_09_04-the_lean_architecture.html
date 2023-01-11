@@ -123,16 +123,28 @@ S.Lott -- Software Architect            </a>
 <p>Now read <a class="reference external" href="Twistedradix:thisisarant">Twisted Radix: This is a Rant</a> .  Oh.  I get it.  The comments in the original article <em>are</em>  a riot. Bottom Line: there's no point in adding a layer like GreenSQL.  You don't need to &quot;check&quot; for SQL injection attacks, since it's easier to simply prevent them.</p>
 <p>Just use bind variables.</p>
 <p>Rather than layer on extra software, one should just read the <a class="reference external" href="http://www.owasp.org/index.php/Top_10_2007">OWASP Top 10 Vulnerabilities</a>  and address them systematically.</p>
-<p>A1 Cross Site Scripting.  Assume all user inputs include hidden javascript, and do appropriate HTML encoding.  <strong>Do HTML Encoding.</strong>   That's it.</p>
-<p>A2 Injection Flaws.  Never build strings of anything, particularly SQL.  Use bind variables, or similar techniques like HTML encoding.  That's all.  Don't layer in extra junk.  <strong>Use.  Bind.  Variables.</strong></p>
-<p>A3 Malicious File Execution.  Assume all user files are binaries that will cause problems.  Validate the contents and segregate them into &quot;media&quot; directories that can't be used for other purposes.  Django uses PIL to validate image files.  And Django never accepts a filename from the web -- it generates its own.  <strong>Always Generate Filenames</strong>.</p>
-<p>A4 Insecure Direct Object Reference.  This is subtle, since REST demands a direct object reference.  Providing a reference isn't a problem, as long as object dereferencing has appropriate authorization checks.</p>
-<p>A5 Cross Site Request Forgery.  This is complicated -- there are a lot of use cases for bookmarking and spoofing form data.  It's handled by Django in a pretty cool way -- a simple hidden field with a unique token that must come back as sent.  This is the &quot;nonce&quot; technique used in digest authentication.</p>
-<p>A6 Information Leakage and Improper Error Handling.  That's what logs are for.  HTML bletches are a big mistake.  When in doubt, show 500.html and keep quiet.  <strong>Don't Debug via End-User HTML</strong>.</p>
-<p>A7 Broken Authentication and Session Management.  Here's a tip: use a framework that does this -- <strong>Don't Roll Your Own</strong>™.</p>
-<p>A8 Insecure Cryptographic Storage.  Like A5, this is tough: everyone wants to use crypto, but no one knows how to do key management.  A hard-coded key is useless.  Encrypted databases are only as secure as the keys, and the keys never seem to get handled properly.  Also, you have keep the database behind a firewall so only the web server itself has access.  Never store passwords, only digests of passwords.</p>
-<p>A9 Insecure Communications.  SSL is easy.  Use it.</p>
-<p>A10 Failure to Restrict URL Access.  Obscurity is not Security.  You can't say &quot;no one will find the backdoor URL for debugging.&quot;  They will.  Plan on it.  Either secure it, or don't do it.</p>
+<dl class="docutils">
+<dt>A1 Cross Site Scripting.</dt>
+<dd>Assume all user inputs include hidden javascript, and do appropriate HTML encoding.  <strong>Do HTML Encoding.</strong>   That's it.</dd>
+<dt>A2 Injection Flaws.</dt>
+<dd>Never build strings of anything, particularly SQL.  Use bind variables, or similar techniques like HTML encoding.  That's all.  Don't layer in extra junk.  <strong>Use.  Bind.  Variables.</strong></dd>
+<dt>A3 Malicious File Execution.</dt>
+<dd>Assume all user files are binaries that will cause problems.  Validate the contents and segregate them into &quot;media&quot; directories that can't be used for other purposes.  Django uses PIL to validate image files.  And Django never accepts a filename from the web -- it generates its own.  <strong>Always Generate Filenames</strong>.</dd>
+<dt>A4 Insecure Direct Object Reference.</dt>
+<dd>This is subtle, since REST demands a direct object reference.  Providing a reference isn't a problem, as long as object dereferencing has appropriate authorization checks.</dd>
+<dt>A5 Cross Site Request Forgery.</dt>
+<dd>This is complicated -- there are a lot of use cases for bookmarking and spoofing form data.  It's handled by Django in a pretty cool way -- a simple hidden field with a unique token that must come back as sent.  This is the &quot;nonce&quot; technique used in digest authentication.</dd>
+<dt>A6 Information Leakage and Improper Error Handling.</dt>
+<dd>That's what logs are for.  HTML bletches are a big mistake.  When in doubt, show 500.html and keep quiet.  <strong>Don't Debug via End-User HTML</strong>.</dd>
+<dt>A7 Broken Authentication and Session Management.</dt>
+<dd>Here's a tip: use a framework that does this -- <strong>Don't Roll Your Own</strong>™.</dd>
+<dt>A8 Insecure Cryptographic Storage.</dt>
+<dd>Like A5, this is tough: everyone wants to use crypto, but no one knows how to do key management.  A hard-coded key is useless.  Encrypted databases are only as secure as the keys, and the keys never seem to get handled properly.  Also, you have keep the database behind a firewall so only the web server itself has access.  Never store passwords, only digests of passwords.</dd>
+<dt>A9 Insecure Communications.</dt>
+<dd>SSL is easy.  Use it.</dd>
+<dt>A10 Failure to Restrict URL Access.</dt>
+<dd>Obscurity is not Security.  You can't say &quot;no one will find the backdoor URL for debugging.&quot;  They will.  Plan on it.  Either secure it, or don't do it.</dd>
+</dl>
 <p>There's no room for after-the-fact glue like GreenSQL.  All of the OWASP vulnerabilities are solved in the basic design of the framework you chose and the application built on that framework.</p>
 <p>An application that assembles SQL on the fly is flawed to begin with, and no amount of patching will fix it.  It's an arms race between SQL injection tricks and software filtering.  Someone can always create SQL so confusingly complex that the tool is fooled.</p>
 <p>Further, everything you add can add bugs and vulnerabilities.  Less software is better; no software is best.  Keep it lean, simple and secure.</p>
@@ -155,7 +167,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

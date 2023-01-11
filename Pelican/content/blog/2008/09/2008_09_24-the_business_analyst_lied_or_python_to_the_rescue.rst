@@ -33,7 +33,8 @@ Got it.  Ready to code.
 
 
 
-:strong:`Not So Fast`
+Not So Fast
+-----------
 
 
 
@@ -45,7 +46,7 @@ The web services turned everyone's heads.  It was "novel" and "confusing" so it 
 
 
 
-[:strong:`Note`.  The business value is in the model.  But no one saw fit to document this.  And I'm not smart enough to ask.]
+[**Note**. The business value is in the model.  But no one saw fit to document this.  And I'm not smart enough to ask.]
 
 
 
@@ -61,7 +62,8 @@ Revised requirements:  our model is front and center.  The vendor information an
 
 
 
-:strong:`Still Not Right`
+Still Not Right
+---------------
 
 
 
@@ -69,7 +71,7 @@ After building a bunch of stuff, it turns out that I was still being lied to.
 
 
 
-Here's what :emphasis:`really`  happens.
+Here's what *really*  happens.
 
 
 
@@ -77,11 +79,11 @@ Part 1.  "The sales folks get our customer's entire catalog of offerings.  Our D
 
 
 
-Part 2.  "Our customer can ask for a recommendation regarding an offering.  Based on the description of the offering, we evaluate our four-part proprietary model.  Two parts of the model happen to require some scoring information from our vendors.  :emphasis:`Information we already have`.  We reply with the recommendation."
+Part 2.  "Our customer can ask for a recommendation regarding an offering.  Based on the description of the offering, we evaluate our four-part proprietary model.  Two parts of the model happen to require some scoring information from our vendors.  *Information we already have*.  We reply with the recommendation."
 
 
 
-So, first they give us all the possible offerings.  Then we get :strong:`all`  the vendor information.  Then we build our proprietary four-part model using the vendor information.
+So, first they give us all the possible offerings.  Then we get **all**  the vendor information.  Then we build our proprietary four-part model using the vendor information.
 
 
 
@@ -89,11 +91,12 @@ Ummm... Where are the web services?  Where's the "on-the-fly" query to the vendo
 
 
 
-[:strong:`Note`.  A big performance improvement will result from this realization.]
+[**Note**.  A big performance improvement will result from this realization.]
 
 
 
-:strong:`Chickens and Eggs`
+Chickens and Eggs
+------------------
 
 
 
@@ -121,7 +124,8 @@ It's not that we get a query and do calculations on the fly.  We already know wh
 
 
 
-:strong:`Python to the Rescue`
+Python to the Rescue
+--------------------
 
 
 
@@ -145,11 +149,12 @@ This Django model is in several parts.  In Django parlance we have many "applica
 
 
 
-That structure was fine until I figured out how our proprietary business model gets built in the first place.  Now we have to revise everything yet again to create a more sophisticated Django model that reflects how the business :emphasis:`actually`  operates.
+That structure was fine until I figured out how our proprietary business model gets built in the first place.  Now we have to revise everything yet again to create a more sophisticated Django model that reflects how the business *actually*  operates.
 
 
 
-:strong:`Refactoring`
+Refactoring
+-----------
 
 
 

@@ -185,7 +185,6 @@ xml.sax.ContentHandler
 does the minimal work required to create a DOM structure that contains our
 spreadsheet XML.  We'll have to do more to make sense of this DOM
 structure.</p>
-<!-- code: -->
 <pre class="literal-block">
 import xml.sax, xml.dom.minidom
 
@@ -222,7 +221,6 @@ we have to create a SAX parser and initiate
 parsing on an input source.  Note that this creates a generic DOM object, which
 we have to examine to locate the spreadsheet
 structure.</p>
-<!-- code: -->
 <pre class="literal-block">
 class XMLParser( FileParser ):
     &quot;&quot;&quot;SAX2 parsing of entire DOM.&quot;&quot;&quot;
@@ -289,7 +287,6 @@ Cell.</p>
 of SSOM objects via Python generators.  Here's a method that yields the
 top-level Worksheet instances.  It also assures that each Worksheet is properly
 contained in the parent Workbook.</p>
-<!-- code: -->
 <pre class="literal-block">
 def nextSheet( self ):
         &quot;&quot;&quot;Generator which yields the next, empty L{Worksheet}.&quot;&quot;&quot;
@@ -305,7 +302,6 @@ def nextSheet( self ):
 method something like the following.  This snippet looks for worksheets named
 &quot;Assumptions&quot;, and examines only those pages of a
 Workbook.</p>
-<!-- code: -->
 <pre class="literal-block">
 parse= ssDOM.XMLParser( file(aFile,'r') )
     doc= parse.getWorkbook()
@@ -320,7 +316,6 @@ individual Cell.  However, the essential processing is pretty straightforward.
 We need to collect all the Cells within a row, along with any style or comments
 associated with the Cell.  Then we bundle it into a SSDOM object that we can
 work with in our next level of parsing.</p>
-<!-- code: -->
 <pre class="literal-block">
 def nextRow( self ):
         &quot;&quot;&quot;Generator which yields a complete L{Row}.&quot;&quot;&quot;
@@ -359,7 +354,6 @@ an area.  The headings for an area have a style that involves a color plus a
 single underline.  Unlike parsing text, where we simply compare strings, here we
 have to compare one attribute of a cell's style to see if the cell has special
 meaning.</p>
-<!-- code: -->
 <pre class="literal-block">
 for ws in parse.nextSheet():
         if ws.name != &quot;Assumptions&quot;:
@@ -424,7 +418,10 @@ this model is the heart of what our spreadsheet parser is doing.</p>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

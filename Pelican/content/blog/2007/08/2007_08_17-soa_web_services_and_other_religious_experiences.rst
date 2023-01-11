@@ -34,7 +34,8 @@ TC writes:
 
 
 
-:strong:`What Sized Company?` 
+What Sized Company?
+--------------------
 
 
 
@@ -84,7 +85,8 @@ To achieve the required agility requires you to pare things down to their essenc
 
 
 
-:strong:`What Are You Trying to Sell?` 
+What Are You Trying to Sell?
+-----------------------------
 
 
 
@@ -154,7 +156,8 @@ the same, but the overall installation is MUCH smaller and simpler.
 to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.
 
 
-:strong:`Culture (a/k/a Governance)` 
+Culture (a/k/a Governance)
+---------------------------
 
 
 
@@ -232,7 +235,8 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 
 
 
-:strong:`Lost in the Google-lanche` 
+Lost in the Google-lanche
+---------------------------
 
 
 

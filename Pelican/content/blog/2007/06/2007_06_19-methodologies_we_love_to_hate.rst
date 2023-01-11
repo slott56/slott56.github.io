@@ -25,7 +25,8 @@ There happened to be seven kinds of dumb-ass complexities.  It isn't like the st
 
 
 
-:strong:`Cause and Effect.` 
+Cause and Effect
+----------------
 
 
 
@@ -57,7 +58,8 @@ GMPM (Get Me Promoted Methodology) is what we do when we have a deep-seated fear
 
 
 
-:strong:`Conclusion.` 
+Conclusion
+----------
 
 
 

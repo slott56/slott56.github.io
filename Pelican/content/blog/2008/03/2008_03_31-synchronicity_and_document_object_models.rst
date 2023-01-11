@@ -31,7 +31,8 @@ These Use Cases are written from the viewpoint of the Plain Old Python Objects (
 
 
 
-:strong:`Use Case 1: Marshall`
+Use Case 1: Marshall
+--------------------
 
 
 
@@ -39,7 +40,8 @@ The first use case is the easy one: Marshalling.  We want a POPO to marshall its
 
 
 
-:strong:`Use Case 2: Unmarshall (or parse)`
+Unmarshall (or parse)
+----------------------
 
 
 
@@ -51,7 +53,8 @@ This document is easiest to work with if it's built of POPO's.  The "manipulatio
 
 
 
-:strong:`Use Case 3: Build`
+Use Case 3: Build
+------------------
 
 
 
@@ -61,7 +64,8 @@ In additional to receiving XML documents that encode POPO objects, we also need 
 
 
 
-:strong:`Use Case 4: POPO Manipulation`
+Use Case 4: POPO Manipulation
+-----------------------------
 
 
 
@@ -85,7 +89,8 @@ XPath is not particularly pleasant for this, since it is not very Pythonic.  [XP
 
 
 
-:strong:`Solutions`
+Solutions
+----------
 
 
 
@@ -93,21 +98,21 @@ There are a number of solutions, most of them icky.
 
 
 
-1.  xml.dom.minidom.  I liked this, right up until yesterday, when I read` Python HTML Parser Performance <http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/>`_ .  It wasn't the "performance" topic that caught my attention, it was the "I do not recommend using minidom for anything" quote that stopped me cold.
+1.  ``xml.dom.minidom``.  I liked this, right up until yesterday, when I read` Python HTML Parser Performance <http://blog.ianbicking.org/2008/03/30/python-html-parser-performance/>`_ .  It wasn't the "performance" topic that caught my attention, it was the "I do not recommend using minidom for anything" quote that stopped me cold.
 
-#.  A kind of :strong:`Bridge`  to create usable POPO's which are a Bridge to the xml.dom model implemented in minidom.  This isn't a pure Bridge, but a kind of `Bridge <http://en.wikipedia.org/wiki/Bridge_pattern>`_ -meets-`Facade <http://en.wikipedia.org/wiki/Fa%C3%A7ade_pattern>`_ .
+#.  A kind of **Bridge**  to create usable POPO's which are a Bridge to the xml.dom model implemented in minidom.  This isn't a pure Bridge, but a kind of `Bridge <http://en.wikipedia.org/wiki/Bridge_pattern>`_ -meets-`Facade <http://en.wikipedia.org/wiki/Fa%C3%A7ade_pattern>`_ .
 
 #.  Custom POPO's.  This requires parsing using a custom (but not too complex) SAX ContentHandler and a simple XML marshaller method of each POPO class.
 
-#.  ElementTree.  This was new to me.
+#.  ``ElementTree``.  This was new to me.
 
 
 
-The minidom solution has two use cases nailed -- marshall and unmarshall fit nicely.  Building doesn't work out so well because the document.createElement construction is very clunky.  Manipulation is also a pain in the neck because the navigation capabilities are limited.
+The ``minidom`` solution has two use cases nailed -- marshall and unmarshall fit nicely.  Building doesn't work out so well because the ``document.createElement`` construction is very clunky.  Manipulation is also a pain in the neck because the navigation capabilities are limited.
 
 
 
-The "Bridge to A Footing" is something I'd used recently.  In that case, the footing wasn't minidom, but was a low-level representation of X12 messages.  Extending it, however, showed some profound limitations in my original design.  
+The "Bridge to A Footing" is something I'd used recently.  In that case, the footing wasn't ``minidom``, but was a low-level representation of X12 messages.  Extending it, however, showed some profound limitations in my original design.
 
 
 
@@ -119,7 +124,8 @@ Custom POPO's work out moderately well.  The Python classes parallel the XSD's o
 
 
 
-:strong:`The Element Tree Solution`
+The Element Tree Solution
+--------------------------
 
 
 
@@ -128,8 +134,6 @@ Element Tree is new with Python 2.5 and corrects many problems with xml.dom.mini
 
 
 The Marshall and Unmarshall use cases work out reasonably well.  I have a beef with ElementTree.write, since that always creates a file.  But, I worked around it with:
-
-..  code:
 
 ::
 
@@ -156,7 +160,7 @@ Manipulating, similarly, isn't awful.  The (currently undocumented) ElementPath 
 
 
 
-[Specifically, abbreviated notation, which limits searches to the child axis.  The "[:emphasis:`n`]" index construct and "[@ :emphasis:`attr` = :emphasis:`value`]" constructs are the most useful.]
+[Specifically, abbreviated notation, which limits searches to the child axis.  The "[*n*]" index construct and "[@ *attr* = *value*]" constructs are the most useful.]
 
 
 
@@ -164,7 +168,8 @@ I'd like to write message.loop1.dtp, but I'm willing to settle for message.find(
 
 
 
-:strong:`Thanks`
+Thanks
+--------
 
 
 

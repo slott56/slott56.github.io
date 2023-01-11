@@ -29,7 +29,8 @@ Use Case 2.  Customer marketing person sits down at their workstation, decides t
 
 
 
-:strong:`Demo Problems` 
+Demo Problems
+-------------
 
 
 
@@ -45,7 +46,8 @@ We can't demo the marketing process very well because (a) it's overnight and (b)
 
 
 
-:strong:`Pilot Instead of Demo` 
+Pilot Instead of Demo
+----------------------
 
 
 

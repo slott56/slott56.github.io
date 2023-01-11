@@ -29,7 +29,8 @@ But reading the articles in Sticky Minds helped me rethink what was really going
 
 
 
-:strong:`Design Still Happens` 
+Design Still Happens
+--------------------
 
 
 
@@ -53,7 +54,8 @@ The architecture and design is colored by experience and culture.  Left to their
 
 
 
-:strong:`Now I Feel Better` 
+Now I Feel Better
+-----------------
 
 
 

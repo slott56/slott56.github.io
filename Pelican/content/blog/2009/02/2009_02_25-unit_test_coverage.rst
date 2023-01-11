@@ -25,7 +25,8 @@ If you're struggling with quality issues, and you just want things fixed, you ca
 
 
 
-:strong:`Pragmatic Testing` 
+Pragmatic Testing
+------------------
 
 
 
@@ -53,7 +54,8 @@ The 100% coverage doesn't correlate with anything else I can measure.  50% test 
 
 
 
-:strong:`Gut Check` 
+Gut Check
+----------
 
 
 

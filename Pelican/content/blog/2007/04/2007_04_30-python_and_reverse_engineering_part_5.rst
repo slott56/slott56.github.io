@@ -146,8 +146,6 @@ sample dimensional model.
 
 
 
-..  code:
-
 ::
 
     from django.db import models
@@ -196,8 +194,6 @@ Here is a sample load script which
 shows how these dimensions can be populated.
 
 
-
-..  code:
 
 ::
 
@@ -287,8 +283,6 @@ several others.
 
 
 
-..  code:
-
 ::
 
     from django.db import models
@@ -320,8 +314,6 @@ Here's a load procedure to populate
 facts based on the dimensional model in place.
 
 
-
-..  code:
 
 ::
 
@@ -385,8 +377,6 @@ and execute SQL directly to better reflect the final implementation via a
 SQL-centric reporting package.
 
 
-
-..  code:
 
 ::
 

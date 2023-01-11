@@ -17,11 +17,11 @@ iBlog2 fixes a number of serious problems in iBlog1.  I'm happy so far.
 
 
 
-Most of the glitches I've seen are appear to be documented in the Lifli `support forums <http://www.lifli.com/Support/index.html>`_ .  I do have a huge beef, however, which isn't a "bug," :emphasis:`per se`.  The Theme Builder is a bit rugged.  Rulers and paragraph spacing (the ``<b>`` vs. ``<p>`` issue) need to be resolved.
+Most of the glitches I've seen are appear to be documented in the Lifli `support forums <http://www.lifli.com/Support/index.html>`_ .  I do have a huge beef, however, which isn't a "bug," *per se*.  The Theme Builder is a bit rugged.  Rulers and paragraph spacing (the ``<b>`` vs. ``<p>`` issue) need to be resolved.
 
 
 
-iBlog2 has too many features based on "right click," or as we Mac users know it, "control click".  All features based on right-click are nearly impossible to find.  I found the :emphasis:`Edit Link Settings`  mostly by luck, and only moments before giving up on iBlog entirely.  
+iBlog2 has too many features based on "right click," or as we Mac users know it, "control click".  All features based on right-click are nearly impossible to find.  I found the *Edit Link Settings*  mostly by luck, and only moments before giving up on iBlog entirely.
 
 
 

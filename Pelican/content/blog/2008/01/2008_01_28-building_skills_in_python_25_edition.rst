@@ -30,9 +30,9 @@ Changes include
 
 -   Some changes to the coverage of exceptions
 
--   Changes to the coverage of the  :strong:`yield`  statement
+-   Changes to the coverage of the  ``yield``  statement
 
--   A section on the new:strong:`with`  statement
+-   A section on the new ``with``  statement
 
 -   A complete rewrite of part IV to reflect the new Library Reference organization
 

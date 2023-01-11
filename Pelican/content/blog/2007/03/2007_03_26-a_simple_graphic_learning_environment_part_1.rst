@@ -65,8 +65,6 @@ provided.
 
 
 
-..  code:
-
 ::
 
     #!/usr/bin/env python
@@ -126,8 +124,6 @@ methods to extend this class into something more
 useful.
 
 
-
-..  code:
 
 ::
 
@@ -261,8 +257,6 @@ it narrows the final application down to providing a method that replaces
 drawImage.
 
 
-
-..  code:
 
 ::
 
@@ -467,8 +461,6 @@ is part of the application's main method.  I'm not a fan of having the main loop
 outside the application class definition.
 
 
-
-..  code:
 
 ::
 

@@ -30,7 +30,8 @@ A passive-aggressive programmer or DBA can support a risk-ignorant manager by pr
 
 
 
-:strong:`All or Nothing` 
+All or Nothing
+--------------
 
 
 
@@ -45,7 +46,7 @@ The first argument technique is "False Dichotomy".  It allows one to (passively)
 
 
 
-An example of this came up while trying to walk through an Agile process.  Note that a passive-aggressive doesn't have a :emphasis:`stated`  agenda.  To me, it looks like the DBA's agenda is to begin with detailed design, preferrably focused on a confusing GUI feature like the tree display of a hierarchy.  When asked, however, they're just "looking for help."
+An example of this came up while trying to walk through an Agile process.  Note that a passive-aggressive doesn't have a *stated*  agenda.  To me, it looks like the DBA's agenda is to begin with detailed design, preferrably focused on a confusing GUI feature like the tree display of a hierarchy.  When asked, however, they're just "looking for help."
 
 
 
@@ -113,7 +114,8 @@ I like the two false dichotomies in this argument.
 
 
 
-:strong:`Getting Out of the Trap` 
+Getting Out of the Trap
+-----------------------
 
 
 
@@ -174,7 +176,8 @@ The next attempt (sigh) is going to be Socratic Method -- what do you think you'
 
 
 
-:strong:`If You Say So` 
+If You Say So
+--------------
 
 
 
@@ -248,7 +251,7 @@ In short, the DBA is declaring that there is risk of failure; the risk stems fro
 
 
 
-What's the topic?  Logging changes from the :strong:`set`  methods of a class. This is the canonical example of the :strong:`Memento`  design pattern, implemented as a common aspect of the set methods.  It can be done, trivially, by adding a subclass to the java.util.logger that will write specialized log entries to a database table.  [The logging itself can be added as an aspect using an annotation.]  Indeed, this is summarized in `Chapter 6 <http://static.springframework.org/spring/docs/2.0.x/reference/aop.html>`_  of the Spring 2.0.x manual.  Also, `http://www.scribd.com/doc/244373/Advanced-Spring-Framework <http://www.scribd.com/doc/244373/Advanced-Spring-Framework>`_  and many other places that describe the intimate relationship between Spring, Hibernate and Annotations.  Examples include `http://www.devx.com/Java/Article/30799 <http://www.devx.com/Java/Article/30799>`_ .
+What's the topic?  Logging changes from the **setter**  methods of a class. This is the canonical example of the **Memento**  design pattern, implemented as a common aspect of the set methods.  It can be done, trivially, by adding a subclass to the java.util.logger that will write specialized log entries to a database table.  [The logging itself can be added as an aspect using an annotation.]  Indeed, this is summarized in `Chapter 6 <http://static.springframework.org/spring/docs/2.0.x/reference/aop.html>`_  of the Spring 2.0.x manual.  Also, `http://www.scribd.com/doc/244373/Advanced-Spring-Framework <http://www.scribd.com/doc/244373/Advanced-Spring-Framework>`_  and many other places that describe the intimate relationship between Spring, Hibernate and Annotations.  Examples include `http://www.devx.com/Java/Article/30799 <http://www.devx.com/Java/Article/30799>`_ .
 
 
 
@@ -311,7 +314,8 @@ The alternative appears to be some kind of Interceptor in Hibernate which captur
 
 
 
-:strong:`Prevention` 
+Prevention
+-----------
 
 
 

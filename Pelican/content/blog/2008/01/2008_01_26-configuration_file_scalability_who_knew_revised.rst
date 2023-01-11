@@ -25,7 +25,7 @@ Based on partner IG's and two sets of helpful examples of config files, I built 
 
 
 
-Here's the problem: it was too big.   Python died.  (Well... not :emphasis:`dead`, but it threw an exception that said that the Python parser had run out of memory.)
+Here's the problem: it was too big.   Python died.  (Well... not *dead*, but it threw an exception that said that the Python parser had run out of memory.)
 
 
 
@@ -44,9 +44,6 @@ It was a single object construction expression that covered over 1200 lines.  It
 It looks like this (but is 1200 lines long).
 
 
-
-
-..  code:
 
 ::
 
@@ -85,10 +82,6 @@ Now it looks like this.
 
 
 
-
-
-..  code:
-
 ::
 
     ST_LOOP = Loop( ... )
@@ -115,7 +108,8 @@ Now it looks like this.
 
 
 
-:strong:`Persistence`
+Persistence
+-----------
 
 
 

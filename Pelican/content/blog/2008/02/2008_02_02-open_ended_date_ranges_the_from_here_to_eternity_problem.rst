@@ -33,7 +33,8 @@ We can define a Domain-Specific NULL for the end dates.  A date in the far, far 
 
 
 
-:strong:`Opinions Vary` 
+Opinions Vary
+--------------
 
 
 
@@ -65,7 +66,8 @@ However, what I did see were microscopic differences between the two approaches 
 
 
 
-:strong:`My Trump Card` 
+My Trump Card
+--------------
 
 
 
@@ -89,7 +91,8 @@ I read a lot of other people's code.  While you may be pretty solid on your "sta
 
 
 
-:strong:`Bottom Line` 
+Bottom Line
+-----------
 
 
 
@@ -101,7 +104,8 @@ In my opinion, simple wins.
 
 
 
-:strong:`Technical Note` 
+Technical Note
+---------------
 
 
 

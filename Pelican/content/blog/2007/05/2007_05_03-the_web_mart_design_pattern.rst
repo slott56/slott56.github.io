@@ -238,8 +238,6 @@ Schedule.
 
 
 
-..  code:
-
 ::
 
     class CurrentCamp( models.Manager ):
@@ -374,8 +372,6 @@ to implement another access dimension.
 
 
 
-..  code:
-
 ::
 
     from django.conf.urls.defaults import *
@@ -405,8 +401,6 @@ expand on this view with either a list of Camps, based on one of the access
 dimensions, or a specific Camp.  
 
 
-
-..  code:
 
 ::
 

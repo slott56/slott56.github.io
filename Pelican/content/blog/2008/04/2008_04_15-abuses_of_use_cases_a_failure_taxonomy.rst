@@ -41,7 +41,8 @@ Consequence: someone has to guess at the underlying model.  That will work out g
 
 
 
-:strong:`Bunching` 
+Bunching
+--------
 
 
 
@@ -71,55 +72,33 @@ Here's my taxonomy of common use case mistakes.
 
 
 
-1.  Not Interactive 
+1.  Not Interactive
 
+    1.  Only Features and Technology - no actual interactions between actor and system
 
-
-1.1.  Just Features and Technology - no actual interactions between actor and system
-
-
-
-1.2.  Just Algorithms - no people - the use case is dominated by algorithms and processing details, actors are left out of the picture.
+    2.  Only Algorithms - no people - the use case is dominated by algorithms and processing details, actors are left out of the picture.
 
 
 
 2.  No Business Value
 
+    1.  Incomplete
 
+        2.1.1.  Focus on Sequential Operations - usually login and initial setup; some business operations omitted or summarized.
 
-2.1.  Incomplete
+        2.1.2.  Following the Precedent - rewriting previous business operations.
 
+        2.1.3.  Bunching - use cases are long sequences that could be decomposed into smaller, reusable, independent steps.
 
+    2.  Non-Specific
 
-2.1.1.  Focus on Sequential Operations - usually login and initial setup; some business operations omitted or summarized.
+        2.2.1.  Free-Running Imagination - conflating "possibly" vs. "required"
 
+    3.  Tech Specs
 
+        2.3.1.  The use cases are technical requirements - the solution technology is conflated with the business problem.
 
-2.1.2.  Following the Precedent - rewriting previous business operations. 
-
-
-
-2.1.3.  Bunching - use cases are long sequences that could be decomposed into smaller, reusable, independent steps. 
-
-
-
-2.2.  Non-Specific
-
-
-
-2.2.1.  Free-Running Imagination - conflating "possibly" vs. "required"
-
-
-
-2.3.  Tech Spec
-
-
-
-2.3.1.  The use cases are technical requirements - the technology is conflated with the business problem.
-
-
-
-2.3.2.  The use cases are detailed design - the business problem is never stated
+        2.3.2.  The use cases are detailed design - the business problem is never stated
 
 
 
@@ -127,7 +106,8 @@ Here's my taxonomy of common use case mistakes.
 
 
 
-:strong:`Use Cases for this Taxonomy` 
+Use Cases for this Taxonomy
+----------------------------
 
 
 

@@ -35,8 +35,6 @@ are the essential module overheads.
 
 
 
-..  code:
-
 ::
 
     #!/usr/bin/env python
@@ -64,8 +62,6 @@ drawing application class, it's a subclass of
 graphicApp.GraphicApplication.
 
 
-
-..  code:
 
 ::
 
@@ -123,8 +119,6 @@ method, which does the actual work of the
 application.
 
 
-
-..  code:
 
 ::
 
@@ -283,8 +277,6 @@ application.
 **Main program switch.** 
 
 
-
-..  code:
 
 ::
 

@@ -29,11 +29,12 @@ The reuse potential of an SOA is the core issue.  We wrestle with it constantly.
 
 
 
-I'm not sure how to tackle the SOA = Reuse problem, either.  Generally, we remind our customers that SOA isn't about reuse, :emphasis:`per se`.  Reuse can happen, which is good, but it requires a disruptive change in software development and IT governance.  Rather than tackle that, we'd just like to solve your business problems quickly and simply.
+I'm not sure how to tackle the SOA = Reuse problem, either.  Generally, we remind our customers that SOA isn't about reuse, *per se*.  Reuse can happen, which is good, but it requires a disruptive change in software development and IT governance.  Rather than tackle that, we'd just like to solve your business problems quickly and simply.
 
 
 
-:strong:`The Point of Services.`
+The Point of Services
+----------------------
 
 
 
@@ -41,7 +42,7 @@ We try to sell SOA services based on Agility.  Since an overall composite applic
 
 
 
-There is a big should, however.  If we aren't careful, we can embed business rules in the wrong piece of the architecture.  There's a central principle, here, that gets us to cheaper and simpler.  I call it :strong:`Allocation of Responsibility`.
+There is a big should, however.  If we aren't careful, we can embed business rules in the wrong piece of the architecture.  There's a central principle, here, that gets us to cheaper and simpler.  I call it **Allocation of Responsibility**.
 
 
 
@@ -53,7 +54,8 @@ Some things are local to a line of business, a product, customer, vendor or even
 
 
 
-:strong:`Services Aren't Mutable.`
+Services Aren't Mutable
+------------------------
 
 
 
@@ -69,7 +71,8 @@ Indeed, one of the causes of "scope creep" (in the negative sense) and subsequen
 
 
 
-:strong:`The Prevent Change Defense.`
+The Prevent Change Defense
+---------------------------
 
 
 
@@ -89,7 +92,8 @@ Ultimately, Project Growth = Bad.  Therefore, we put as many obstacles in place 
 
 
 
-:strong:`Responding to Change.`
+Responding to Change
+--------------------
 
 
 
@@ -117,11 +121,12 @@ Is it a significant change from what we have in place?  Does it lead to devastat
 
 
 
-:strong:`Resulting Architecture`
+Resulting Architecture
+----------------------
 
 
 
-The architecture that results from an SOA exercise will be simpler because we have the opportunity to practice :strong:`Allocation of Responsibility`.  The immutable features of the application are the core services.  We may write these or we may make use of our vendor's API's; either way, we have a base set of features that don't change much.
+The architecture that results from an SOA exercise will be simpler because we have the opportunity to practice **Allocation of Responsibility**.  The immutable features of the application are the core services.  We may write these or we may make use of our vendor's API's; either way, we have a base set of features that don't change much.
 
 
 
@@ -137,11 +142,12 @@ We want to value change, not revile it.  We want to measure our success in busin
 
 
 
-:strong:`Drop Reuse.  Pick up Cheap.`
+Drop Reuse.  Pick up Cheap
+--------------------------
 
 
 
-My position is this: use SOA to reduce the complexity of your software.  Rather than big programs, write small collaborations that implement special cases on top of the general-case services.  A good :strong:`Allocation of Responsibility`  will simplify your software. 
+My position is this: use SOA to reduce the complexity of your software.  Rather than big programs, write small collaborations that implement special cases on top of the general-case services.  A good **Allocation of Responsibility**  will simplify your software. 
 
 
 

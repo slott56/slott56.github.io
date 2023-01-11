@@ -124,27 +124,28 @@ S.Lott -- Software Architect            </a>
                 <p>The star schema represents data as a table of facts (measurable values) that are associated with the various dimensions of the fact.  Common dimensions include time, geography, organization, product and the like.  I'm working with some folks whose facts are a bunch of medical test results, and the dimensions are patient, date, and a facility in which the tests were performed.</p>
 <p>I got an email with the following situation: &quot;a client who is processing gigs of incoming fact data each day and they use a host of C/C++, Perl, mainframe and other tools for their incoming fact processing and I've seriously considered pushing Python in their organization.&quot;.</p>
 <p>Here are my thoughts on using Python for data warehousing when you've got Gb of data daily.</p>
-<p><strong>Small Dimensions</strong></p>
+<div class="section" id="small-dimensions">
+<h2>Small Dimensions</h2>
 <p>The pure Python approach only works when your dimension will comfortably fit into memory -- not a terribly big problem with <em>most</em>  dimensions.</p>
 <p>Specifically, it doesn't work well for those dimensions which are so huge that the dimensional model becomes a snowflake instead of a simple star.  When dealing with a large number of individuals (public utilities, banks, medical management, etc.) the &quot;customer&quot; (or &quot;patient&quot;) dimension gets too big to fit into memory.  Special bridge-table techniques must be used.  I don't think Python would be perfect for this, since this involves slogging through a lot of data one record at a time.</p>
 <p>However, Python is considerably faster than PL/SQL.  I don't know how it compares with Perl.  Any programming language will be faster than any SQL procedure, because there's no RDBMS overhead.</p>
 <p>For all small dimensions.  Load the dimension values from the RDBMS into a dict with a single query.  Read all source data records (ideally from a flat file); conform the dimension, tracking changes; write a result record with the dimension FK information to a flat file.</p>
 <p>Iterate through the dimension dictionary and persist the dimension changes.  The details vary with the Slowly Changing Dimension (SCD) rules you're using.</p>
 <p>The conformance algorithm is is essentially the following:</p>
-<!-- code: -->
 <pre class="literal-block">
 row= Dimension(...)
 ident= ( row.field, row.field, row.field, ... )
 dimension.setdefault( ident, row )
 </pre>
 <p>In some cases (like the Django ORM) this is called the get-or-create query.</p>
-<p><strong>The Dimension Bus</strong></p>
+</div>
+<div class="section" id="the-dimension-bus">
+<h2>The Dimension Bus</h2>
 <p>For BIG dimensions, I think you still have to implement the &quot;dimension bus&quot; outlined in The Data Warehouse Toolkit.  To do this in Python, you should probably design things to look something like the following.</p>
-<p><strong>For any big dimensions</strong>.  Use an external sort-merge utility.  Seriously.  They're way fast for data sets too large to fit into memory.  Use CSV format files and the resulting program is very tidy.   The outline is as follows:</p>
+<p>For any big dimensions, use an external sort-merge utility.  Seriously.  They're way fast for data sets too large to fit into memory.  Use CSV format files and the resulting program is very tidy.   The outline is as follows:</p>
 <p>First, sort the source data file into order by the identifying fields of the big dimension (customer number, patient number, whatever).</p>
 <p>Second, query the big dimension into a data file and sort it into the same order as the source file.  (Using the SQL ORDER BY may be slower than an external sort; only measurements can tell which is faster.)</p>
 <p>Third, do a &quot;match merge&quot; to locate the differences between the dimension and the source.  Don't use a utility like diff, it's too slow.  This is a simple key matching between two files.  The match-merge loop looks something like this.</p>
-<!-- code: -->
 <pre class="literal-block">
 src= sourceFile.next()
 dim= dimensionFile.next()
@@ -169,16 +170,20 @@ except StopIteration, e:
         update_dimension( src )
 </pre>
 <p>At the end of this pass, you'll accumulate a file of customer dimension adds and changes, which is then persisted into the actual customer dimension in the database.  This pass will also write new source records with the customer FK.  You can also handle demographic or bridge tables at this time, too.</p>
-<p><strong>Fact Loading</strong></p>
+</div>
+<div class="section" id="fact-loading">
+<h2>Fact Loading</h2>
 <p>The first step in DW loading is dimensional conformance.  With a little cleverness the above processing can all be done in parallel, hogging a lot of CPU time.  To do this in parallel, each conformance algorithm forms part of a large OS-level pipeline.  The source file must be reformatted to leave empty columns for each dimension's FK reference.  Each conformance process reads in the source file and writes out the same format file with one dimension FK filled in.  If all of these conformance algorithms form a simple OS pipe, they all run in parallel.  It looks something like this.</p>
-<!-- code: -->
 <pre class="literal-block">
 src2cvs source | conform1 | conform2 | conform3 | load
 </pre>
 <p>At the end, you use the RDBMS's bulk loader (or write your own in Python, it's easy) to pick the actual fact values and the dimension FK's out of the source records that are fully populated with all dimension FK's and load these into the fact table.</p>
 <p>I've written conformance processing in Java (which is faster than Python) and had to give up on SQL-based conformance for large dimensions.  Instead, we did the above flat-file algorithm to merge large dimensions.  The killer isn't the language speed, it's the RDBMS overheads.  Once you're out of the database, things blaze.  Indeed, products like the <a class="reference external" href="http://www.syncsort.com/">syncsort</a>  data sort can do portions of the dimension conformance at amazing speeds for large datasets.</p>
-<p><strong>Hand Wringing</strong></p>
+</div>
+<div class="section" id="hand-wringing">
+<h2>Hand Wringing</h2>
 <p>&quot;But,&quot; the hand-wringers say, &quot;aren't you defeating the value of the RDBMS by working outside it?&quot;   The answer is NO.  We're not doing incremental, transactional processing here.  There aren't multiple update transactions in a warehouse.  There are queries and there are bulk loads.  Doing the prep-work for a bulk load outside the database is simply more efficient.  We don't need locks, rollback segments, memory management, threading, concurrency, ACID rules or anything.  We just need to match-merge the large dimension and the incoming facts.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -198,7 +203,10 @@ src2cvs source | conform1 | conform2 | conform3 | load
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

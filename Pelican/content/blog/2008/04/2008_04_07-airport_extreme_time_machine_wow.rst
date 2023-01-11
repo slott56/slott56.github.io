@@ -13,7 +13,8 @@ Airport Extreme + Time Machine.  Wow!
 
 
 
-:strong:`Attempt 1 - Plug in the disk.  Create users.  Fail.` 
+Attempt 1 - Plug in the disk.  Create users.  Fail.
+----------------------------------------------------
 
 
 
@@ -29,7 +30,8 @@ Then I got the software update for Airport Admin and decided to do a little more
 
 
 
-:strong:`Attempt 2 - Plug in the disk.  Fail.` 
+Attempt 2 - Plug in the disk.  Fail.
+-------------------------------------
 
 
 
@@ -49,7 +51,8 @@ Rather than individual user access, grant overall disk access.  And choose that 
 
 
 
-:strong:`Attempt 3 - Change to Disk Passwords.  Victory!` 
+Attempt 3 - Change to Disk Passwords.  Victory!
+-----------------------------------------------
 
 
 
@@ -57,7 +60,8 @@ Time Capsule is happily backing up through an airport-mounted disk.
 
 
 
-:strong:`Security` 
+Security
+--------
 
 
 

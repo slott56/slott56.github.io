@@ -17,7 +17,7 @@ Centuries ago -- it seems -- Jim Coplien facilitated a session for us at `CiliPL
 
 
 
-In this month's CACM, the article on "`Involving Top Management In IT Projects <http://portal.acm.org/citation.cfm?id=1278201.1278206&coll=portal&dl=ACM&idx=1278201&part=periodical&WantType=periodical&title=Communications%20of%20the%20ACM&CFID=26238735&CFTOKEN=67485512>`_ " describes a technique called :emphasis:`Problem Mapping`.  Wow!  I think this is the other side of the pattern coin.  The article's a tough read -- it requires careful study because it makes a rigorous philosophical argument about the nature of truth in requirements analysis.
+In this month's CACM, the article on "`Involving Top Management In IT Projects <http://portal.acm.org/citation.cfm?id=1278201.1278206&coll=portal&dl=ACM&idx=1278201&part=periodical&WantType=periodical&title=Communications%20of%20the%20ACM&CFID=26238735&CFTOKEN=67485512>`_ " describes a technique called *Problem Mapping*.  Wow!  I think this is the other side of the pattern coin.  The article's a tough read -- it requires careful study because it makes a rigorous philosophical argument about the nature of truth in requirements analysis.
 
 
 
@@ -29,7 +29,8 @@ This Problem Mapping thing may be just what's required to stop the blind leap in
 
 
 
-:strong:`Three Step Process.`
+Three Step Process
+-------------------
 
 
 
@@ -41,17 +42,18 @@ During the organizing phase, the real magic happens.  Your findings are partitio
 
 
 
--   :strong:`Problems and Needs.`   These are the going-in problems or organizational needs.  Things don't work, or don't work well.  Things are complex, expensive, risky, error-prone.
+-   **Problems and Needs.**   These are the going-in problems or organizational needs.  Things don't work, or don't work well.  Things are complex, expensive, risky, error-prone.
 
--   :strong:`Causes.`  These are the answers to "Why does this problem exist?"  This is critical, and often under-documented.  There's a chain of root-cause analysis that leads to things like "That's just the way it is" or "Darned if I know why".  The whole root-cause analysis isn't as important as separating problems from causes.
+-   **Causes.**  These are the answers to "Why does this problem exist?"  This is critical, and often under-documented.  There's a chain of root-cause analysis that leads to things like "That's just the way it is" or "Darned if I know why".  The whole root-cause analysis isn't as important as separating problems from causes.
 
--   :strong:`Consequences.`   These are the consequences of the problem.  If something's complex, expensive, risky or error-prone, what's wrong with that?  What's the consequence to the enterprise of something being complex?  Complexity -- in and of itself -- isn't a problem; but it can have consequences that include cost, risk, time, pain.
+-   **Consequences.**   These are the consequences of the problem.  If something's complex, expensive, risky or error-prone, what's wrong with that?  What's the consequence to the enterprise of something being complex?  Complexity -- in and of itself -- isn't a problem; but it can have consequences that include cost, risk, time, pain.
 
--   :strong:`Suggested Solutions.`   This is the part that can now be set aside.  Without this four-part map, the solutions get muddied in with everything else.  With this problem map, they can be neatly set aside for what they're worth.
+-   **Suggested Solutions.**   This is the part that can now be set aside.  Without this four-part map, the solutions get muddied in with everything else.  With this problem map, they can be neatly set aside for what they're worth.
 
 
 
-:strong:`Calling the Baby Ugly.`
+Calling the Baby Ugly
+---------------------
 
 
 
@@ -67,7 +69,8 @@ Most importantly, this technique coaches everyone in the essential logic of caus
 
 
 
-:strong:`Follow-Up.`
+Follow-Up
+---------
 
 
 

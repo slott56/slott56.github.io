@@ -119,7 +119,6 @@ S.Lott -- Software Architect            </a>
 <p>Step one is to look inside the zip archives and see what we have.  Clearly, we can do this any of several ways.  Looking manually doesn't get us any software, so we may as well write  a Python program to explore.</p>
 <p>There's a pattern that develops to this kind of exploration.  It uses basic inheritance to extend and extend and extend simple file processing.  Further, it uses inheritance to extend instead of rewrite.</p>
 <p>Let's look at the first class definition.  It isn't very interesting, but it shows the design pattern.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Operation( object ):
     def process( self, files ):
@@ -130,7 +129,6 @@ class Operation( object ):
 </pre>
 <p>Essentially, the process method is the &quot;entry point&quot; and it applies some yet-to-be defined process to each file.</p>
 <p>Here's a subclass that provides that process.</p>
-<!-- code: -->
 <pre class="literal-block">
 class ZipContent( Operation ):
     def processFile( self, fileName ):
@@ -140,10 +138,10 @@ class ZipContent( Operation ):
 </pre>
 <p>This implements processFile with a simple exploration of the zip files we were sent.</p>
 <p>We're essentially done with sprint 1.  We can use this to explore our files.  Turns out that each zip file contains a single XLS document.  Consistency is pleasant.  On to Sprint 2.</p>
-<p><strong>Exploring The Zip Members</strong></p>
+<div class="section" id="exploring-the-zip-members">
+<h2>Exploring The Zip Members</h2>
 <p>Here's sprint two of the application.  There are two significant changes.  First, we make a small incremental change to the previous ZipContent class.  Then we add a subclass.</p>
 <p>Here's the revised processFile.</p>
-<!-- code: -->
 <pre class="literal-block">
 def processFile( self, fileName ):
         zip= zipfile.ZipFile( fileName )
@@ -153,7 +151,6 @@ def processFile( self, fileName ):
 </pre>
 <p>The change is to add a &quot;next level of detail&quot; processing step: examineMember.  We merely provide a stub definition that does nothing.</p>
 <p>Here's the next subclass.  It opens each zip archive member as a workbook, using the <a class="reference external" href="http://www.lexicon.net/sjmachin/xlrd.htm">xlrd</a>  module.</p>
-<!-- code: -->
 <pre class="literal-block">
 class WBZipContent( ZipContent ):
     def examineMember( self, zipFile, member ):
@@ -168,9 +165,10 @@ class WBZipContent( ZipContent ):
 <p>We haven't replaced any previous piece of code.  We've added some procedure calls to previous version, but we focused on extension, not revision.</p>
 <p>We're done with sprint 2.  We can use this to explore our files.  We find that each zip archive has an XLS file.  We find that each XLS file has a consistently-named set of sheets -- just what we think we should have received.</p>
 <p>Now, we can subclass this -- yet again -- to build the next sprint and dump selected rows from each book.</p>
-<p><strong>Exploring the Workbook sheets</strong></p>
+</div>
+<div class="section" id="exploring-the-workbook-sheets">
+<h2>Exploring the Workbook sheets</h2>
 <p>Here's sprint three of the application.  This is yet another subclass.</p>
-<!-- code: -->
 <pre class="literal-block">
 class TopRowsWBZipContent( WBZipContent ):
     def __init__( self, topnRows=5 ):
@@ -188,10 +186,11 @@ class TopRowsWBZipContent( WBZipContent ):
 </pre>
 <p>We can use the sprint 3 version to confirm that each sheet of each book of each ZIP archive has the expected format.</p>
 <p>Now we're ready to subclass this yet again and actually extract the relevant rows and columns.</p>
-<p><strong>Incremental Extension</strong></p>
+</div>
+<div class="section" id="incremental-extension">
+<h2>Incremental Extension</h2>
 <p>This incremental extension is a big time-saver.  Rather than have several programs, or several complex options, our main program now does several things.  Which specific thing is does is simply a choice of which class it instantiates.</p>
 <p>Here's a version of main.</p>
-<!-- code: -->
 <pre class="literal-block">
 def manual():
     &quot;&quot;&quot;Change the options manually.&quot;&quot;&quot;
@@ -204,6 +203,7 @@ def manual():
 <p>If we instantiate ZipContent, we get the sprint 1 version -- the one that explores the zip archives.</p>
 <p>If we instantiate TopRowsWBZipContent, we get the the sprint 2 version that shows the top few rows.</p>
 <p>This incremental feature set is very handy and stems directly from two things: incremental development and two extending the inheritance hierarchy.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -223,7 +223,10 @@ def manual():
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

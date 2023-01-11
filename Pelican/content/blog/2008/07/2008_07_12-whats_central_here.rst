@@ -23,8 +23,6 @@ This looks like a relatively clean, RESTful kind of service -- our customers sen
 
 It looks like the classic Web Services Proxy design pattern.  We define a nice Python class that's a proxy for the external services (and their goofy protocols).  We can then define a simple WSGI application to use those services and do our value-add processing.
 
-..  code:
-
 ::
 
     class SomeService( object ):
@@ -35,8 +33,6 @@ It looks like the classic Web Services Proxy design pattern.  We define a nice P
             Parse XML response
 
 
-
-..  code:
 
 ::
 
@@ -63,7 +59,8 @@ Ideally, the project plan is to debug the service proxy and write the applicatio
 
 
 
-:strong:`Focus on Value` 
+Focus on Value
+---------------
 
 
 
@@ -79,7 +76,8 @@ But for our "value add", I had nothing.  I had bupkes.  It was a "calculation" o
 
 
 
-:strong:`Invertability` 
+Invertability
+-------------
 
 
 
@@ -103,13 +101,12 @@ Which view is right?  The Vendor-centric sequence?  A sequence focused on our va
 
 
 
-:strong:`The Command Design Pattern` 
+The Command Design Pattern
+---------------------------
 
 
 
 This works out well if each step follows the GoF `Command <http://en.wikipedia.org/wiki/Command_pattern>`_  design pattern.  A sequence of steps is also a Command; this permits me to reswizzle this with every rise and fall in the slowly-solidifying requirements.
-
-..  code:
 
 ::
 
@@ -162,7 +159,8 @@ Now, we can use any of the steps in any order.  And we can recombine them, exten
 
 
 
-:strong:`All That Overhead` 
+All That Overhead
+-----------------
 
 
 

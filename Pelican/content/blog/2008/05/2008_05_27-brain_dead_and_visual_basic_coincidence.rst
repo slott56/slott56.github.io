@@ -39,8 +39,6 @@ Almost everyone is copying off everyone else's paper, and propagating the same l
 
 There's no earthly reason for programs of the form:
 
-..  code:
-
 ::
 
     cs = some initial value
@@ -70,7 +68,8 @@ It doesn't seem that complex.  Yet, the VB examples make it look scary.
 
 
 
-:strong:`My Reference Implementation` 
+My Reference Implementation
+----------------------------
 
 
 
@@ -78,9 +77,6 @@ It doesn't seem that complex.  Yet, the VB examples make it look scary.
 In Python, we have something simple like the following.  Encapsulated messages (like !AIVDM and !AIVDO) are a bit more complex because they have their own unique Base64 algorithm in addition to their unique NMEA checksum.
 
 
-
-
-..  code:
 
 ::
 
@@ -104,7 +100,7 @@ The points are the following:
 
 
 
-1.  There are usually string functions for finding the right-most "*".  They're always more efficient than your explicit loops.  Use the string library.  In my case, the rpartition method was not easy to find in the library reference manual.  It is, however, :emphasis:`precisely`  what is called for.
+1.  There are usually string functions for finding the right-most "*".  They're always more efficient than your explicit loops.  Use the string library.  In my case, the rpartition method was not easy to find in the library reference manual.  It is, however, *precisely*  what is called for.
 
 
 
@@ -124,7 +120,8 @@ There's an even shorter formulation in Python.  See /dev/random: `NMEA checksum 
 
 
 
-:strong:`Root Causes` 
+Root Causes
+-----------
 
 
 

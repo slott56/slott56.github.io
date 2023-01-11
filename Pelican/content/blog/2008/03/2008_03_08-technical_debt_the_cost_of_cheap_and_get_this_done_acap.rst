@@ -17,7 +17,7 @@ See Martin Fowler's essay on `Technical Debt <http://www.martinfowler.com/bliki/
 
 
 
-We can use Agile techniques to get things done ASAP and ACAP (As Soon As Possible and As Cheap As Possible).  However, we still need to make clear the volume of work we're likely to encounter before we have a usable product.  And we have to clarify the :strong:`Cost of Cheap™`  -- better known as Technical Debt.
+We can use Agile techniques to get things done ASAP and ACAP (As Soon As Possible and As Cheap As Possible).  However, we still need to make clear the volume of work we're likely to encounter before we have a usable product.  And we have to clarify the **Cost of Cheap™**  -- better known as Technical Debt.
 
 
 
@@ -25,7 +25,8 @@ We inherited some software from a client that we're going to maintain and enhanc
 
 
 
-:strong:`Aside` :  [Every time my company and a client have this kind of "support us, please; sell additional customers if it helps" conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the "who gets revenue from the sale" question by adopting what we call the "GPL Business Model" (`GPL V3 Section 4 <http://www.gnu.org/copyleft/gpl.html#section4>`_ ).  Source is free, support is where we make the money.
+**Aside**
+    [Every time my company and a client have this kind of "support us, please; sell additional customers if it helps" conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the "who gets revenue from the sale" question by adopting what we call the "GPL Business Model" (`GPL V3 Section 4 <http://www.gnu.org/copyleft/gpl.html#section4>`_ ).  Source is free, support is where we make the money.
 
 
 
@@ -33,7 +34,8 @@ Services are where the money is.  It's the 21st century, there will always be fr
 
 
 
-:strong:`Change to the Architecture` 
+Change to the Architecture
+--------------------------
 
 
 
@@ -41,7 +43,8 @@ The problem we're going to have is the distribution and support of a VB app that
 
 
 
-:strong:`Another Aside` : [A is not NULL AndAlso A != " " is the problem.  The inverse is A is NULL OrElse A = " ".  Any other variation on these two is a common logic error.  For example, A is not NULL OrElse A != " " doesn't do anything useful.]
+**Another Aside**: 
+    [``A is not NULL AndAlso A != " "`` is the problem.  The inverse is ``A is NULL OrElse A = " "``.  Any other variation on these two is a common logic error.  For example, ``A is not NULL OrElse A != " "`` doesn't do anything useful.]
 
 
 
@@ -57,11 +60,12 @@ However, almost every part of VB program is intimately tied to the VB desktop GU
 
 
 
-:strong:`The Technical Debt Question` 
+The Technical Debt Question
+----------------------------
 
 
 
-The software we inherited :emphasis:`can`  be deployed to another customer's desktop.  We have to rewrite significant pieces, however.  
+The software we inherited *can*  be deployed to another customer's desktop.  We have to rewrite significant pieces, however.
 
 
 
@@ -85,7 +89,8 @@ If we deploy a minimally modified app, and fly people out to some new client to 
 
 
 
-:strong:`The Dollar Value Of Technical Debt` 
+The Dollar Value Of Technical Debt
+-----------------------------------
 
 
 
@@ -101,7 +106,8 @@ Since we're discarding almost everything but the use cases and some design eleme
 
 
 
-:strong:`What To Do?` 
+What To Do?
+------------
 
 
 
@@ -121,7 +127,7 @@ Since Python is such a high-productivity environment, it's easiest to rewrite ti
 
 
 
-Once we have something web-enabled, with a proper data model and a proper object model we can begin the maintenance cycle again.  Of course, future managers will make short-sighted, :strong:`As Cheap As Possible™`  (ACAP) decisions and we'll accrue technical debt until we are overwhelmed by the :strong:`Cost of Cheap` .
+Once we have something web-enabled, with a proper data model and a proper object model we can begin the maintenance cycle again.  Of course, future managers will make short-sighted, **As Cheap As Possible™**  (ACAP) decisions and we'll accrue technical debt until we are overwhelmed by the **Cost of Cheap** .
 
 
 

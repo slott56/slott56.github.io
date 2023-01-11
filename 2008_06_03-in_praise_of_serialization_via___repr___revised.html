@@ -129,11 +129,11 @@ S.Lott -- Software Architect            </a>
 <p>Once we've figured out the content of the page, we can extract it, parse it and use it all we want.  In some cases, the data is historical, and one-time parsing as all we need.  In other cases, however, getting a page of HTML is -- currently -- the way some particular web service is implemented.  Some organizations offer some data in HTML only.</p>
 <p>What do to?</p>
 <p>One solution is to try and use <a class="reference external" href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>  to get past the HTML errors.  While this is helpful, it doesn't get past the irregularities in the way HTML was used by the author.</p>
-<p><strong>The Pipeline</strong></p>
+<div class="section" id="the-pipeline">
+<h2>The Pipeline</h2>
 <p>The trick is to do what compilers do: create a pipeline of intermediate representations.  Stage one is a transformation from HTML to DOM objects (Document, Element and Attribute).  This is (relatively) easy, and any of the available parsers can do this nicely.</p>
 <p>I'm picky, however, and I like to have first-class support for the <a class="reference external" href="http://exciton.cs.rice.edu/javaresources/DesignPatterns/VisitorPattern.htm">Visitor</a>  design pattern.  The built-in Python <a class="reference external" href="http://www.python.org/doc/current/lib/module-xml.dom.html">xml.com</a>  library doesn't have this.  So, I built my own version of <a class="reference external" href="http://www.python.org/doc/current/lib/module-xml.dom.minidom.html">xml.dom.minidom</a>  with proper Visitor support.</p>
 <p>And one additional feature: a nice __repr__ that will serialize the entire Document as a proper Python expression.   You wind up with a file that looks like this:</p>
-<!-- code: -->
 <pre class="literal-block">
 Element( 'body', {'alink': '#000080', 'text': '#000000', 'bgcolor': '#FFFFFF', 'link': '#0080C0', 'background': 'sitebck7.gif', 'vlink': '#808080'}, *[Text( '\r\n\r\n' )
 , Element( 'ul', {}, *[Text( '\r\n' )
@@ -151,9 +151,10 @@ etc.
 <p>While bulky, this is a lot easier to work with than the output from <a class="reference external" href="http://docs.python.org/lib/module-pickle.html">pickle</a> .  And it's first-class Python, allowing us to explore with it.</p>
 <p>[<strong>Scalability Note</strong>.  There are limitations to this.  Truly huge expressions will break the Python parser.  Your mileage may vary.  You may need to break giant documents into logical pieces and assemble the pieces. You may have something like p1= ...; p2= ...; p <em>n</em> = ...; doc = [ p1, p2, ..., p <em>n</em>  ] to manage bigness.]</p>
 <p>Once we've explored, we can write our stage two parser which actually works reliably and handles all of the special cases properly.</p>
-<p><strong>Stage Two</strong></p>
+</div>
+<div class="section" id="stage-two">
+<h2>Stage Two</h2>
 <p>The second stage of the pipeline can work from Python source.  Rather than write more parsing and loading functions, stage two starts with the following:</p>
-<!-- code: -->
 <pre class="literal-block">
 dom1= eval( file(&quot;stage1.out&quot;,&quot;r&quot;).read() )
 </pre>
@@ -161,20 +162,27 @@ dom1= eval( file(&quot;stage1.out&quot;,&quot;r&quot;).read() )
 <p>Turns out, this is very, very handy for &quot;exploring&quot; the data structure.  We can also import the structure into interactive Python and play around with it at the command prompt.</p>
 <p>This stage can focus on filtering and building up the next representation, one that is less like a document and more like objects in the problem domain.  We have to be a little cautious how we create those problem domain objects, however.</p>
 <p>The domain model is the thing we wanted in the first place.  The two-stage parser was how we could get to this point.</p>
-<p><strong>Dimensional Model</strong></p>
+</div>
+<div class="section" id="dimensional-model">
+<h2>Dimensional Model</h2>
 <p>While the problem domain objects are (usually) pretty obvious from the organization of the content in the HTML pages, the issue is to avoid naively assembling objects without thinking about the organization of the inputs.</p>
 <p>In many cases, the web content we're parsing is a dimensional (or <a class="reference external" href="http://en.wikipedia.org/wiki/Star_schema">star schema</a> ) view of the data.  You'll be building several kinds of objects:</p>
-<p><strong>Dimensional Entities</strong>.  Dimensional entities are the &quot;descriptions&quot; of each dimension.  Dimensions include the obvious time and space (geography), but can also include demographic groupings, economic groups (SIC codes), etc.</p>
-<p><strong>Facts</strong>.  Facts are measures (with units) that can be categorized  by the dimensions to which they belong.</p>
+<dl class="docutils">
+<dt><strong>Dimensional Entities</strong>.</dt>
+<dd>Dimensional entities are the &quot;descriptions&quot; of each dimension.  Dimensions include the obvious time and space (geography), but can also include demographic groupings, economic groups (SIC codes), etc.</dd>
+<dt><strong>Facts</strong>.</dt>
+<dd>Facts are measures (with units) that can be categorized  by the dimensions to which they belong.</dd>
+</dl>
 <p>When you look at displayed information, you'll often see titles or headings that define specific dimensional entities.  &quot;Northeast Region&quot;, &quot;January 2006&quot;, &quot;Hourly Employees&quot;, &quot;Retail&quot;, and the like are examples of dimensional entities.  These are objects in one of the (many) dimension classes.</p>
 <p>Each measurable fact object will be associated with one or more dimensional objects.</p>
 <p>Stage two builds the dimensional model objects from the DOM objects.  (The DOM objects were built from HTML.)</p>
-<p><strong>Stage Three</strong></p>
+</div>
+<div class="section" id="stage-three">
+<h2>Stage Three</h2>
 <p>The final bit of processing is to unify the HTML pages into a single star-schema model for analysis and reporting.  Generally, the Stage 2 outputs will be a bunch of collections.  Most of the collections will be dimension definitions, the remaining collection is a sequence of facts.</p>
 <p>Each dimension is collected into a mapping from the unique identifier for a dimension entity to the other attributes we know about the entity.  For instance, &quot;January 2006&quot; might be the identifier, but we know several other attributes of this entity:  the year is 2006, the month is January, it's in the first quarter.</p>
 <p>The facts are a simple sequence (list or tuple) of measures with references to the dimension entities.</p>
 <p>It's appealing to simply serialize the fact table with __repr__.  This isn't the best approach, however.  Generally, a large number of facts will have references to a common dimension value.  If we simply serialize the facts with something like the following, we'll have a lot of redundancy.</p>
-<!-- code: -->
 <pre class="literal-block">
 def __repr__( self ):
         return &quot;Fact( %r, %r, %r, %f, %d)&quot; % (
@@ -182,7 +190,6 @@ def __repr__( self ):
 </pre>
 <p>It's slightly smoother to provide just the unique object ID's for each dimensional entity, and rebuild the required structure at eval time.</p>
 <p>Our facts are represented in the stage three input as follows.  Rather than include the entire dimension object, we include a dictionary lookup to locate a reference to the dimension entity.</p>
-<!-- code: -->
 <pre class="literal-block">
 time = { 'January 2006': Time( &quot;January 2006&quot;, 2006, 1, 1 ), ... }
 space = { 'Northeast': Geography( &quot;Northeast&quot;, &quot;US&quot;, &quot;EN&quot; ), ... }
@@ -194,7 +201,6 @@ facts = [
 </pre>
 <p>These files are quite easy to unify.  We can import each file and merge the dimensions to develop the complete set of entities in each dimension.  Once the dimensions are unified, we can do a simple append of all the facts.  This model can be used to write reports or populate a datamart or whatever our goal was when we started down this road.</p>
 <p>The real power comes from using the <a class="reference external" href="http://en.wikipedia.org/wiki/Inverted_index">Inverted Index</a>  technique of having each dimension entity reference the set of facts associated with that entity.  This is done by having the __init__ of a Fact register itself with the various dimensions.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Fact( object ):
     def __init__( self, time, space, demo, m1, m2 ):
@@ -202,12 +208,11 @@ class Fact( object ):
         self.time.addFact( self )
         etc.
 </pre>
-<p><strong>Staging Our Analysis</strong></p>
+<p>Staging Our Analysis</p>
 <p>Stage 1 transforms HTML to a Python model of the document. This is very, very cool, and supports easy exploration of the Python version of the document to find algorithms for parsing the structure.</p>
 <p>Stage 2 transforms the Python document model into a Python dimensional model, emitting a mapping for each dimension and a sequence for the facts.</p>
 <p>Stage 3 merges the dimensional model values into a single datamart that we can then use for analysis.  The resulting datamart is the same dimensional model from Stage 2.</p>
 <p>The remaining work is (usually) involves locating all facts with a particular dimension value and producing the expected reports.</p>
-<!-- code: -->
 <pre class="literal-block">
 q1Total= 0
 for q in [ t for t in time.values() where t.quarter == 1 ]:
@@ -216,6 +221,7 @@ for q in [ t for t in time.values() where t.quarter == 1 ]:
 </pre>
 <p>This dimensional model gives us all of the analytical capabilities we might want.</p>
 <p>The best part is that each step uses Python notation, making it easy to visualize and easy to experiment with the data looking for the unifying patterns.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -235,7 +241,10 @@ for q in [ t for t in time.values() where t.quarter == 1 ]:
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

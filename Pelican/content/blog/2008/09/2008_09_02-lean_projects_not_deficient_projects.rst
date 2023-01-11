@@ -21,7 +21,8 @@ Good point.  Let's look at these in a little bit of depth.  We'll cover the thre
 
 
 
-:strong:`Budgeting`
+Budgeting
+---------
 
 
 
@@ -33,7 +34,7 @@ In "`Why Agile? What's the Point? <{filename}/blog/2008/02/2008_02_14-why_agile_
 
 
 
-But what about overall cost?  What's the "total cost to do [X]?"  Well...  First, we have to define [X] so we can define the total cost.  In order to define [X], we have to throw Agile out the window and create a :strong:`Big Plan Up Front`.  Oops.  That didn't work, did it?
+But what about overall cost?  What's the "total cost to do [X]?"  Well...  First, we have to define [X] so we can define the total cost.  In order to define [X], we have to throw Agile out the window and create a **Big Plan Up Front**.  Oops.  That didn't work, did it?
 
 
 
@@ -41,7 +42,8 @@ So, what do we do about total cost?  The question has to be reframed.  There's a
 
 
 
-:strong:`We Can't Know What "Done" Means`
+We Can't Know What "Done" Means
+--------------------------------
 
 
 
@@ -61,7 +63,8 @@ At some point, the stakeholders will run out of high-priority, high-value things
 
 
 
-:strong:`The Real Questions`
+The Real Questions
+-------------------
 
 
 
@@ -97,7 +100,8 @@ Bottom Line -- budget is easy.  It requires an honest assessment of multi-year p
 
 
 
-:strong:`Metrics`
+Metrics
+-------
 
 
 
@@ -121,7 +125,7 @@ They say "you are what you measure".  Consequently, the most important thing to 
 
 
 
-They say "you can't control what you can't measure".  What's important, however, is that "you may :emphasis:`not`  be able to control the things you can measure".  You can measure the height of the tide, but you can't change it.  Be sure you understand cause and effect in the things you're measuring.  Don't measure stuff where you don't know or can't control the cause.
+They say "you can't control what you can't measure".  What's important, however, is that "you may *not*  be able to control the things you can measure".  You can measure the height of the tide, but you can't change it.  Be sure you understand cause and effect in the things you're measuring.  Don't measure stuff where you don't know or can't control the cause.
 
 
 
@@ -137,7 +141,7 @@ First, I don't have much to say here that hasn't already been said.  Start by re
 
 
 
-I'm not sure that staffing is a proper project cost, :emphasis:`per se.`   I think it's an organizational cost.  I don't think a specific project should be hiring and training people.  You need to apportion those costs across all projects.  Maybe renting contractors, but not hiring permanent staff.
+I'm not sure that staffing is a proper project cost, *per se.*   I think it's an organizational cost.  I don't think a specific project should be hiring and training people.  You need to apportion those costs across all projects.  Maybe renting contractors, but not hiring permanent staff.
 
 
 
@@ -165,7 +169,8 @@ I think that powerful documentation tools are essential.  And MS-Word (or Open O
 
 
 
-:strong:`Summary`
+Summary
+-------
 
 
 

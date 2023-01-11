@@ -4,7 +4,7 @@
 :date: 2007-05-23 17:31
 :tags: management
 :slug: 2007_05_23-as_the_software_industry_shifts_away_from_selling_shrink_wrapped_software
-:category: Management
+:category: News
 :status: published
 
 
@@ -33,7 +33,8 @@ However, I don't see how this is a zero-sum game.  There's no evidence that SaaS
 
 
 
-:strong:`The Fourth Scenario` :strong:`.` 
+The Fourth Scenario
+--------------------
 
 
 
@@ -41,7 +42,7 @@ The premise, "...industry shifts away from selling shrink-wrapped software..." h
 
 
 
-Specifically, Babcock uses the industry shift to conclude that Microsoft might eventually compete fairly and interoperate with open-source software.  Since the industry shift isn't an exclusive choice, it's possible that Microsoft could see enough revenue growth that they tolerate competition grudgingly, essentially maintaining the :emphasis:`status quo`  of legal threats and posturing.  
+Specifically, Babcock uses the industry shift to conclude that Microsoft might eventually compete fairly and interoperate with open-source software.  Since the industry shift isn't an exclusive choice, it's possible that Microsoft could see enough revenue growth that they tolerate competition grudgingly, essentially maintaining the *status quo*  of legal threats and posturing.
 
 
 

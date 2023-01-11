@@ -37,7 +37,8 @@ The first problem, however, is tougher.
 
 
 
-:strong:`To GUI to Not to GUI` 
+To GUI to Not to GUI
+--------------------
 
 
 
@@ -53,7 +54,8 @@ And what about restores?  If we write a fat-client GUI, we can easily have two o
 
 
 
-:strong:`Simplify` 
+Simplify
+--------
 
 
 

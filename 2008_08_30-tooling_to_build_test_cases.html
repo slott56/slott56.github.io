@@ -122,17 +122,22 @@ S.Lott -- Software Architect            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>Here's a recipe for transforming a pile of similarly-formatted source spreadsheets into a suite of unittest test cases.</p>
-<p><strong>Some Use Cases</strong></p>
+<div class="section" id="some-use-cases">
+<h2>Some Use Cases</h2>
 <ol class="arabic simple">
 <li>The subject matter experts will tinker with the spreadsheets.  They'll invent new cases, revise old cases, retract cases.  You'll be regenerating the test suite constantly.</li>
 <li>The subject matter experts cannot reliably produce spreadsheets in a consistent format.  Get over it.  You'll be endlessly adjusting the conversion from spreadsheet to test suite.</li>
 <li>You'll be evolving the test cases as your application evolves.  You'll need to regenerate the whole test suite as you refactor your API's.</li>
 </ol>
-<p><strong>Components</strong></p>
+</div>
+<div class="section" id="components">
+<h2>Components</h2>
 <p>To read spreadsheets, download <a class="reference external" href="http://www.lexicon.net/sjmachin/xlrd.htm">xlrd</a> .</p>
 <p>To write the JUnit framework TestCase code, download <a class="reference external" href="http://www.makotemplates.org/">Mako</a> .  There are many template engines (<a class="reference external" href="http://www.cheetahtemplate.org/">Cheetah</a> , <a class="reference external" href="http://www.djangoproject.com/">Django</a> , <a class="reference external" href="http://www.myghty.org/">Myghty</a> , <a class="reference external" href="http://genshi.edgewall.org/">Genshi</a>  and <a class="reference external" href="http://www.kid-templating.org/">Kid</a> ).</p>
 <p>[I chose Mako because it is relatively lightweight and works well as a stand-alone component.  Cheetah, for instance, is hard to control for small, specialized jobs -- it seems to prefer having the ability to create relatively complex intermediate files.  Django's template can be separated from the rest of Django, but why download all that when you just want something simple.]</p>
-<p><strong>Pattern</strong></p>
+</div>
+<div class="section" id="patterns">
+<h2>Patterns</h2>
 <p>The overall design pattern for this is a <strong>Translator</strong>.  This has three elements: the <strong>Deep Structure</strong>  -- the actual meaning -- plus a <strong>Reader</strong>  and a <strong>Writer</strong>.  The Reader builds a Deep Structure from external data in one representation.  The Writer emits the Deep Structure in another representation.</p>
 <p>It's important to keep these three things disentangled.  You are likely to have several source spreadsheet formats, all of which lead to the same essential test case.  Similarly, you will have several test case formats that you are emitting.</p>
 <p>Here's a piece of the spreadsheet we're starting with.  This has a Source section that defines three attributes (&quot;Name&quot;, &quot;Batch&quot; and &quot;Count&quot;) and two entities.  It has a Result section that defines one entity with the same three attributes.</p>
@@ -178,10 +183,11 @@ S.Lott -- Software Architect            </a>
 </tbody>
 </table>
 <p>[Let's pretend this is sample data for some kind of complicated matching algorithm that uses names, batch id numbers and counts to determine how things match.]</p>
-<p><strong>Deep Structure</strong></p>
+</div>
+<div class="section" id="deep-structure">
+<h2>Deep Structure</h2>
 <p>Each test case generator will have a unique deep structure.  For the purposes of showing this recipe, we need to pick some kind of data model.  One common feature is that your test cases will be based on data entities.  The entities are more-or-less explicitly defined by row in the spreadsheet.  The overall test case, however, is usually implied by a series of rows with -- perhaps -- headers or notes or trailers or something to provide context.</p>
 <p>Your actual situation will obviously vary so widely that it's dangerous even providing a sample data model.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Entity( dict ):
     name= property( lambda self: self['name'] )
@@ -204,9 +210,10 @@ class Case( object ):
 <p>This shows the Entity and the Case classes.  Yes, Entity is essentially a dict.  It's handy to conceive of the data coming from a spreadsheet as a dict.  Think of the csv package DictReader as the &quot;standard&quot; API.  Then develop a method for using xlrd to produce dict structures.</p>
 <p>The properties allow us to say entity.name instead of entity['name'].  We could write a more generic version of __getattr__, but that generally leads to more complexity in handling overrides and exceptions.  Most business Entities will have rather complex definitions with many attributes and methods.</p>
 <p>The test Case, in this example, has some identifying information, some source Entities from the spreadsheet and a result Entity.</p>
-<p><strong>The Reader</strong></p>
+</div>
+<div class="section" id="the-reader">
+<h2>The Reader</h2>
 <p>You'll have a Reader.  (Sometimes you'll have a class hierarchy with multiple readers, depending on how well your SME's can produce sample data.)  The Reader's job is to parse the spreadsheet and yield Cases.  It does as little as possible to build the Case.  Most data conversion or calculation is part of the Case or the Writer.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Reader( object ):
     def __init__( self, aFileName ):
@@ -258,16 +265,16 @@ class Reader( object ):
         yield case
 </pre>
 <p>This shows the typical structure for a Reader.  You use it with the following kind of loop.</p>
-<!-- code: -->
 <pre class="literal-block">
 r= Reader( fileName )
     for c in r.getCases(&quot;Sheet1&quot;,&quot;Summary&quot;,&quot;Exception&quot;):
         print c
 </pre>
 <p>Why list the sheets explicitly?  Depends on the structure of <strong>your</strong>  source files.  You may be able to simply iterate through the sheets.  Or you may have sheets that have to be skipped.</p>
-<p><strong>Utility Functions</strong></p>
+</div>
+<div class="section" id="utility-functions">
+<h2>Utility Functions</h2>
 <p>Here are the three utility functions the Reader uses.</p>
-<!-- code: -->
 <pre class="literal-block">
 def is_empty( aCell ):
     return aCell.ctype == xlrd.XL_CELL_EMPTY
@@ -276,9 +283,10 @@ def is_string( aCell ):
 def is_blank( aRow ):
     return all( [ is_empty(c) or is_string(c) and len(c.value) == 0 for c in aRow ] )
 </pre>
-<p><strong>The Template-Based Writer</strong></p>
+</div>
+<div class="section" id="the-template-based-writer">
+<h2>The Template-Based Writer</h2>
 <p>Ideally, you'll have one standard writer that covers all of the test cases.  Of course, there may be exceptions or alternatives or other complexities.  Here's a Writer that uses Mako Templates to generate a Java JUnit TestCase.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Writer( object ):
     def __init__( self ):
@@ -328,9 +336,10 @@ class Test_${case.sheetName} extends TestCase {
 <p>This shows a single, simple template.  Note that most of the code is the giant string with the Java code in it.  Mako reads files nicely, in case this inline string becomes uncomfortably long and complex.</p>
 <p>Note that we do some processing in the Writer, some of which might be better defined in the Entity or the Case.</p>
 <p>Generally, you'll have to mix and match Mako processing with your Writer class hierarchy and processing you do in your Entity and Case class definitions.  You want to minimize the processing in Mako, just because it's a bit obscure inside the template.  On the other hand, you don't want to push everything into the business Entity or test Case classes, since they're the <strong>Essential Meaning</strong>  that is represented either as a spreadsheet or a JUnit unit test.</p>
-<p><strong>The Main Program</strong></p>
+</div>
+<div class="section" id="the-main-program">
+<h2>The Main Program</h2>
 <p>The main program is just a wrapper that binds an instance of Reader and Writer to create some test cases from source files.</p>
-<!-- code: -->
 <pre class="literal-block">
 def main( fileName, *sheets ):
     log= logging.getLogger( &quot;main&quot; )
@@ -347,10 +356,13 @@ if __name__ == &quot;__main__&quot;:
 </pre>
 <p>This is the small script version of the main program.  This could be expanded to do complex parameter-parsing.  However, in these cases, it's sometimes just as simple to have an explicit list of which files and which sheets are being processed for the current release.</p>
 <p>Also, the &quot;print&quot;-based solution isn't really the best.  One might prefer to open appropriate files and write the rendered template to them.  However, there are change-control issues with overwriting previous tests; you do need to confirm that the new tests compile, for example, before replacing the old tests.</p>
-<p><strong>Use Case Review</strong></p>
+</div>
+<div class="section" id="use-case-review">
+<h2>Use Case Review</h2>
 <p>When the test cases change, it's easiest to simply slap the XLS files into subversion.  Then, subversion's youngest version number identifies the suite of test cases.  We can simply regenerate the JUnit source with our generator tool.  We have to run a quick &quot;do the tests work?&quot; sanity check and see what has changed.  If the changes are understood, this becomes the new suite of tests.</p>
 <p>Since the spreadsheets will have inconsistencies, the &quot;simply regenerate&quot; never works out very well.  Each release of the source may require adjusting the generator to cope with someone's inability to copy and paste consistent column names.  Sigh.  We have split our design so that our Reader can evolve and change without breaking the deep structure or the test case Writer.</p>
 <p>When the application changes, the template will change.  We can simply regenerate the JUnit source.  After our quick &quot;do the tests work?&quot; we have made wholesale changes to the test cases.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -370,7 +382,10 @@ if __name__ == &quot;__main__&quot;:
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

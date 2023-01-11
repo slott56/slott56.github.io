@@ -29,11 +29,12 @@ The structural configuration file was more like Django's Model definitions than 
 
 
 
-I've used the :strong:`Structural Declaration`  pattern a number of times.  I cribbed it from the packages like urllib2 where you build up a fairly complex object from component parts.
+I've used the **Structural Declaration**  pattern a number of times.  I cribbed it from the packages like urllib2 where you build up a fairly complex object from component parts.
 
 
 
-:strong:`Malicious Code` 
+Malicious Code
+--------------
 
 
 
@@ -49,7 +50,8 @@ The Apache configuration, for example, has code-like pattern-matching and decisi
 
 
 
-:strong:`Syntax Woes` 
+Syntax Woes
+-----------
 
 
 
@@ -69,7 +71,8 @@ Also, "Configuration files cease to work whenever Python changes."  I'm not sure
 
 
 
-:strong:`Diagnostics` 
+Diagnostics
+------------
 
 
 
@@ -78,8 +81,6 @@ Also, "Configuration files cease to work whenever Python changes."  I'm not sure
 
 
 This is an interesting point.  There is a handy trick for this, however.  
-
-..  code:
 
 ::
 
@@ -99,7 +100,8 @@ We could, additionally, check for Python SyntaxError specifically.  We could als
 
 
 
-:strong:`Preventing Problems` 
+Preventing Problems
+-------------------
 
 
 
@@ -129,7 +131,8 @@ Finally, the diagnostics issue gives us another direction for good design.  Any 
 
 
 
-:strong:`Rules` 
+Rules
+-----
 
 
 

@@ -118,16 +118,24 @@ S.Lott -- Software Architect            </a>
                 <p>I'm not a fan of XML as the one true language.  I've griped before about the attractive nuisance of XML.</p>
 <p>Recently, I saw Sean McGrath's <a class="reference external" href="http://seanmcgrath.blogspot.com/2008/04/new-realities.html">New Realities</a> , which lead me to <a class="reference external" href="http://www.projectzero.org/">Project Zero</a> , a RESTful/JSONic SOA architecture.  Their blog includes postings like <a class="reference external" href="http://www.projectzero.org/wiki/bin/view/Community/JerrysBlog/BlogEntry5">A run-time for &quot;the New Reality</a> .</p>
 <p>I find that I'm totally in sync with many of the key points.</p>
-<p><strong>Scripting</strong>.  Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the &gt;&gt;&gt; prompt in Python.</p>
-<p><strong>ORM</strong>.  The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.</p>
-<p><strong>REST</strong>.  The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.</p>
-<p><strong>JSON</strong>.  XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.</p>
-<p><strong>WSGI</strong>.  The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The &quot;put something into the environment&quot; is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.</p>
-<p>Agile.  Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.</p>
-<p>TDD.  An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.</p>
+<dl class="docutils">
+<dt><strong>Scripting</strong>.</dt>
+<dd>Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the &gt;&gt;&gt; prompt in Python.</dd>
+<dt><strong>ORM</strong>.</dt>
+<dd>The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.</dd>
+<dt><strong>REST</strong>.</dt>
+<dd>The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.</dd>
+<dt><strong>JSON</strong>.</dt>
+<dd>XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.</dd>
+<dt><strong>WSGI</strong>.</dt>
+<dd>The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The &quot;put something into the environment&quot; is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.</dd>
+<dt><strong>Agile</strong>.</dt>
+<dd>Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.</dd>
+<dt><strong>TDD</strong>.</dt>
+<dd>An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.</dd>
+</dl>
 <p>Here's what I don't have: a really good REST client library.  urllib2, with an extension to the Request class, works, but it seems clunky somehow.  With all the attention REST has, I'd like to think that someone has a cool REST client.</p>
 <p>Here's the code I'm using.</p>
-<!-- code: -->
 <pre class="literal-block">
 class RESTRequest( urllib2.Request ):
     def __init__(self, method, url, data=None, headers={} ):
@@ -164,7 +172,6 @@ class Client2( object ):
 <p>While compact and clear, it still doesn't look quite right.</p>
 <p>One improvement might be to create subclasses of Basic and Digest handler which quietly handle the short list of REST status codes as return values instead of raising exceptions.  It would eliminate the try: block, but would create Yet More Subclasses to maintain.</p>
 <p>Here's what an application does.</p>
-<!-- code: -->
 <pre class="literal-block">
 srvr= Client2( &quot;localhost&quot;, 18000, &quot;slott&quot;, &quot;slott&quot; )
     newData= { 'name':&quot;US Test Company  898&quot;, 'state':&quot;PA&quot; }
@@ -193,7 +200,10 @@ srvr= Client2( &quot;localhost&quot;, 18000, &quot;slott&quot;, &quot;slott&quot
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

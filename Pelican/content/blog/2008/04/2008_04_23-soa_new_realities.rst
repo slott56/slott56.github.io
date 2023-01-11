@@ -25,33 +25,40 @@ I find that I'm totally in sync with many of the key points.
 
 
 
-:strong:`Scripting`.  Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the >>> prompt in Python.
+**Scripting**.
+    Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the >>> prompt in Python.
 
 
 
-:strong:`ORM`.  The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.
+**ORM**.
+    The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.
 
 
 
-:strong:`REST`.  The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.
+**REST**.
+    The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.
 
 
 
-:strong:`JSON`.  XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.
+**JSON**.
+    XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.
 
 
 
-:strong:`WSGI`.  The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The "put something into the environment" is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.
+**WSGI**.
+    The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The "put something into the environment" is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.
 
 
 
 
 
-Agile.  Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.
+**Agile**.
+    Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.
 
 
 
-TDD.  An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.
+**TDD**.
+    An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.
 
 
 
@@ -60,8 +67,6 @@ Here's what I don't have: a really good REST client library.  urllib2, with an e
 
 
 Here's the code I'm using.
-
-..  code:
 
 ::
 
@@ -110,8 +115,6 @@ One improvement might be to create subclasses of Basic and Digest handler which 
 
 
 Here's what an application does.
-
-..  code:
 
 ::
 

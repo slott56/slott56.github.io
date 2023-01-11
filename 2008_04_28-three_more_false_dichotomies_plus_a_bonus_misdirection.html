@@ -121,26 +121,31 @@ S.Lott -- Software Architect            </a>
 <p>All I wanted to do was cut down on triggers and stored procedures.  But a true master of the false dichotomy turns that suggestion into a choice between dumb storage and the whole RDBMS bloatware that includes numerous inefficient processing choices.</p>
 <p>I tried to lift up a middle-of-the-road feature set.  Above dumb storage, but lacking the endless problems of triggers and stored procedures.  I got a bitter response: &quot;How did we get on to indexes, acid and the like?&quot;</p>
 <p>I tried to introduce the middle ground, and was shot down.  Apparently, the RDBMS is an all-or-nothing proposition.  Since we're already holding the hammer, we might as well treat all problems as nails.</p>
-<p><strong>The Flat File Folly</strong></p>
+<div class="section" id="the-flat-file-folly">
+<h2>The Flat File Folly</h2>
 <p>When confronted with serious performance issues in a database application, a good approach is often to eschew complex SQL.  Indeed, the lesson I learned a few years back working on a big data warehouse was the following:</p>
-<!-- code: -->
 <pre class="literal-block">
 SELECT * FROM SOURCE TABLE into a file.
 Do all processing in Java, creating a resulting file.
 Use SQL*Loader to reload the resulting file
 </pre>
 <p>I was told that this would clearly use too many I/O operations, making this design pattern unacceptable.  Processing must be done either entirely in SQL or entirely in memory as Java objects.  Since there were too many objects, in-memory wouldn't work, which left no choice but database processing.  There is no middle ground.</p>
-<p><strong>Optimization in a Vacuum</strong></p>
+</div>
+<div class="section" id="optimization-in-a-vacuum">
+<h2>Optimization in a Vacuum</h2>
 <p>Given: some long-winded stored procedure with ill-defined semantics and no data model.  Goal: fix it.  What does &quot;fix&quot; mean?  Here's the deal: it's a stored procedure, but no one wants to produce the data model for the tables involved.</p>
 <p>I asked, several times, for the context.  I was shot down.    I was told &quot;I thought that I could address the programming issue of nested if's and long lists of if - elseif - elseif w/out taking into account the context/data model.&quot;.</p>
 <p>I'm filled with awe at the idea of optimization without making fundamental changes to the algorithm or data structures.  It's remotely possible that the code is so brain dead as to be trivial to optimize.</p>
 <p>At first, this didn't seem like a false dichotomy.  Then I realized that I was being asked to separate data structure from algorithm.  Since that can't be done, it's a kind of false dichotomy.</p>
-<p><strong>Adding A Little Hibernate</strong></p>
+</div>
+<div class="section" id="adding-a-little-hibernate">
+<h2>Adding A Little Hibernate</h2>
 <p>I tried to explain that ORM's aren't an &quot;incremental&quot; change.  It fundamentally rearranges how you design and implement algorithms.  Which, in a way, is a kind of dichotomy.  But I don't think it's a false dichotomy.  I think that the ORM world-view is fundamentally different from one where you write long, complex stored procedures and triggers.</p>
 <p>I was told that &quot;One guy during the meeting said that if we needed to we could use PL/SQL.&quot;</p>
 <p>Which, I suppose is true.  But it is the best way to subvert simple, clear, high-performance ORM.</p>
 <p>False dichotomy is a technique for rejecting change by going far beyond the proposed change, setting up a false dichotomy and bundling the real change in with the overstatement.</p>
 <p>In my case I had laid out a dichotomy as part of making a change.  This was characterized as a false dichotomy.  Sadly, no one seems to have any examples of any actual best-practice programs using Hibernate, so it stands as a false dichotomy.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -160,7 +165,10 @@ Use SQL*Loader to reload the resulting file
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

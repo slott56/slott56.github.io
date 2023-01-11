@@ -59,8 +59,6 @@ the _ statement continuation markers.
 
 
 
-..  code:
-
 ::
 
     import re, string
@@ -121,8 +119,6 @@ gracefully.
 
 
 
-..  code:
-
 ::
 
     def vbstmt( text ):
@@ -152,8 +148,6 @@ variable has only one purpose in the application.
 
 
 
-..  code:
-
 ::
 
     def sqlStr( text ):
@@ -171,8 +165,6 @@ uses an analytical function as an "analyzer", which it applies to the text of
 several source files.
 
 
-
-..  code:
 
 ::
 
@@ -202,8 +194,6 @@ statement types are used.  We can locate the variables, modules and functions,
 also.
 
 
-
-..  code:
 
 ::
 
@@ -251,8 +241,6 @@ evaluates the assignment statement, returning the assembled SQL text, and the
 variables which were inserted into the SQL text.
 
 
-
-..  code:
 
 ::
 
@@ -302,8 +290,6 @@ produce a summary of the overall SQL work done by a given
 module.
 
 
-
-..  code:
 
 ::
 

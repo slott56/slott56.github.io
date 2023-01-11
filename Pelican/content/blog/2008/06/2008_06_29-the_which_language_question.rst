@@ -75,7 +75,7 @@ There are numerous good on-line and off-line books on Python.  I like mine, but 
 
 -   `Building Skills in Object-Oriented Design <http://www.itmaybeahack.com/homepage/books/oodesign.html>`_ .  This is a more advanced book for Java or Python programmers.  It builds a rather complex real-world application, class by class.
 
-There are numerous other introductions to Python.  Most of them are really good.  I like mine because I have a gentle progression from simple to complex topics that I based (loosely) on the approach taken by [Holt78] R. C. Holt, G. S. Graham, E. D. Lazowska, and M. A. Scott. Copyright © 1978. 0201029375. Addison-Wesley. :emphasis:`Structured Concurrent Programming with Operating Systems Applications` .
+There are numerous other introductions to Python.  Most of them are really good.  I like mine because I have a gentle progression from simple to complex topics that I based (loosely) on the approach taken by [Holt78] R. C. Holt, G. S. Graham, E. D. Lazowska, and M. A. Scott. Copyright © 1978. 0201029375. Addison-Wesley. *Structured Concurrent Programming with Operating Systems Applications* .
 
 
 

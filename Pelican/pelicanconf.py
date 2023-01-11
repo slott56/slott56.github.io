@@ -34,11 +34,11 @@ LINKS = (
 SOCIAL = (
     ('Mastodon', 'https://fosstodon.org/@slott56'),
     ('Github', 'https://github.com/slott56'),
-    ('stackoverflow', 'https://stackoverflow.com/users/10661/s-lott')
-    # LinkedIn
+    ('StackOverflow', 'https://stackoverflow.com/users/10661/s-lott'),
+    ('LinkedIn', 'https://www.linkedin.com/in/steven-lott-029835/'),
     # Packt
-    # O'Reilly
-    # Amazon
+    ("O'Reilly", 'https://www.oreilly.com/pub/au/6277'),
+    ("Amazon", 'https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK'),
 )
 
 DEFAULT_PAGINATION = 10

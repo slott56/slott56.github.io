@@ -63,8 +63,6 @@ was something on the order of
 
 
 
-..  code:
-
 ::
 
     fq= {}

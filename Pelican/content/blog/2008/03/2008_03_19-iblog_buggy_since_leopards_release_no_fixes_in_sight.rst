@@ -46,7 +46,7 @@ On the one hand, I'd like to continue to publish via my homepage.mac.com account
 
 
 
-On the other hand ... well ... there doesn't seem to be any good reason to change hosting for my blog.  Specifically, a move to free hosting (i.e., Google's blogger) leads to the possibility of two sets of ads (theirs plus mine).  Blogger :emphasis:`may`  be smart enough to handle this properly.  
+On the other hand ... well ... there doesn't seem to be any good reason to change hosting for my blog.  Specifically, a move to free hosting (i.e., Google's blogger) leads to the possibility of two sets of ads (theirs plus mine).  Blogger *may*  be smart enough to handle this properly.
 
 
 

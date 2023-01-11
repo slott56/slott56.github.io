@@ -29,7 +29,8 @@ The more common question is the Python vs. PHP vs. Ruby vs. some other language 
 
 
 
-:strong:`Community Support` 
+Community Support
+-----------------
 
 
 
@@ -49,7 +50,8 @@ Python has the Benevolent Dictator for Life to guide the language evolution.  I 
 
 
 
-:strong:`Also See` 
+Also See
+--------
 
 
 

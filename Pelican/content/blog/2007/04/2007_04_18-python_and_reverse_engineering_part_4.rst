@@ -74,8 +74,6 @@ for missing or optional elements of the language.
 
 
 
-..  code:
-
 ::
 
     class Declaration( object ):
@@ -126,8 +124,6 @@ t.
 
 
 
-..  code:
-
 ::
 
     import language as C
@@ -152,8 +148,6 @@ additional details, like a body, and some analysis
 methods.
 
 
-
-..  code:
 
 ::
 
@@ -204,8 +198,6 @@ t.
 
 
 
-..  code:
-
 ::
 
     import language as C
@@ -230,8 +222,6 @@ Expression class to support analysis of expressions in
 C.
 
 
-
-..  code:
 
 ::
 
@@ -286,8 +276,6 @@ the following definition.
 
 
 
-..  code:
-
 ::
 
     class Statement( object ):
@@ -315,8 +303,6 @@ and we can then define the needed Statement
 subclass.
 
 
-
-..  code:
 
 ::
 
@@ -368,8 +354,6 @@ instance.
 
 
 
-..  code:
-
 ::
 
     # iteration_statement:
@@ -398,8 +382,6 @@ expression_statement
 syntax categories.
 
 
-
-..  code:
 
 ::
 
@@ -477,8 +459,6 @@ function examines each declaration looking for function definitions and function
 calls.
 
 
-
-..  code:
 
 ::
 

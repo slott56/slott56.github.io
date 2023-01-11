@@ -33,7 +33,8 @@ Currently, this is the way all failed projects are characterized.  I think it's 
 
 
 
-:strong:`The Standard Scapegoat` 
+The Standard Scapegoat
+----------------------
 
 
 
@@ -45,7 +46,8 @@ If IT ever gets out in front, then it's "disruptive" and a "failure".
 
 
 
-:strong:`The Same Old Story` 
+The Same Old Story
+------------------
 
 
 
@@ -57,7 +59,8 @@ The retrospective on the project failure says that if only we'd put the Business
 
 
 
-:strong:`Technology Push` 
+Technology Push
+---------------
 
 
 
@@ -73,7 +76,8 @@ What has recently occurred to me is the idea that technology can lead the busine
 
 
 
-:strong:`Push Back` .  If the business utterly rejects the technology, responding with strong, negative criticism, then there are fairly serious organizational issues.  Lessons learned from the music business:  executives are trying to preserve a business model they don't really understand.
+**Push Back**.  
+    If the business utterly rejects the technology, responding with strong, negative criticism, then there are fairly serious organizational issues.  Lessons learned from the music business:  executives are trying to preserve a business model they don't really understand.
 
 
 
@@ -85,11 +89,12 @@ How do you apply this lesson learned?  Get out before the ship sinks while you'r
 
 
 
-:strong:`Drag Feet` .  I encounter this fairly often in big IT projects.  Everyone wants some fancy data warehousing or some fancy SOA solution.  The first project opens the door, but no one else wants to pursue the second or third project.
+**Drag Feet**.  
+    I encounter this fairly often in big IT projects.  Everyone wants some fancy data warehousing or some fancy SOA solution.  The first project opens the door, but no one else wants to pursue the second or third project.
 
 
 
-The Execute :strong:`Attention Deficit Disorder`  kicks in; usually midway through the next calendar year.  Once the first project is in production, we wallow in the false assumptions and lies told at the beginning and decide that the technology "is overrated".  [Love the passive voice construction.  No one says "I overrated the technology"; they say "it's overrated".]
+The Executive **Attention Deficit Disorder**  kicks in; usually midway through the next calendar year.  Once the first project is in production, we wallow in the false assumptions and lies told at the beginning and decide that the technology "is overrated".  [Love the passive voice construction.  No one says "I overrated the technology"; they say "it's overrated".]
 
 
 
@@ -101,7 +106,7 @@ It's not that the technology is bad.  It's not that it won't work.  It's just th
 
 
 
-:strong:`IT Investment` 
+IT Investment 
 
 
 

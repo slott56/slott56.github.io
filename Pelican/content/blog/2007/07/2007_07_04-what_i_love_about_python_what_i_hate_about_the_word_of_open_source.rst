@@ -29,15 +29,16 @@ What's worse is that I'm constantly telling my clients that they have to get com
 
 
 
-:strong:`Beautiful Soup.`
+Beautiful Soup
+---------------
 
 
 
-The ``findAll`` method is almost a proper :strong:`Visitor`.  It can apply a function to each node of a subtree.  The function's return value causes accumulation of values; so a function which returns None simply visits every node.
+The ``findAll`` method is almost a proper **Visitor**.  It can apply a function to each node of a subtree.  The function's return value causes accumulation of values; so a function which returns None simply visits every node.
 
 
 
-The only significant problem with findAll is that I really need it to use a stateful object, not a stateless function.  Yes, I could make a class which implements ``__call__`` to be my :strong:`Visitor`.  However, the mixture of tags and text all coming into a single anonymous method is a pain in the ass for some applications. 
+The only significant problem with findAll is that I really need it to use a stateful object, not a stateless function.  Yes, I could make a class which implements ``__call__`` to be my **Visitor**.  However, the mixture of tags and text all coming into a single anonymous method is a pain in the ass for some applications. 
 
 
 
@@ -45,7 +46,8 @@ Also, the implementation of findAll uses the Tag.recursiveChildGenerator, which 
 
 
 
-:strong:`Next Steps.`
+Next Steps
+----------
 
 
 
@@ -57,13 +59,13 @@ I can do a number of things.  Each of these is based on specific experiences I'v
 
 -   I could claim that my crap is an "investment" and must be preserved.
 
--   I could wring my hands about "strategy" in HTML scraping and meticulously investigate the other packages that have sprung up over the 5 years between when I first did this, and now, when it seems like everyone's doing it.  Of course, the yardstick I would use is not something more-or-less objective like my requirements, since almost any package would meet those.  My yardstick must be political, and involve comparison against my solution, which isn't very complete, but does have the :strong:`Visitor`  design pattern.
+-   I could wring my hands about "strategy" in HTML scraping and meticulously investigate the other packages that have sprung up over the 5 years between when I first did this, and now, when it seems like everyone's doing it.  Of course, the yardstick I would use is not something more-or-less objective like my requirements, since almost any package would meet those.  My yardstick must be political, and involve comparison against my solution, which isn't very complete, but does have the **Visitor**  design pattern.
 
 -   I could ask the vague and misleading question "Where's the ROI for HTML scraping?"  As if the error-prone and non-repeatable process makes more sense than having an HTML scraper that actually gets the actual data off the actual web site.  Further, ROI requires an upper bound on the investment part, which is stupid because software is the lynchpin of an endless business improvement cycle.
 
 
 
-Conventional wisdom -- in the open source community -- suggests that I post a patch to Beautiful Soup to add the desired :strong:`Visitor`.  That requires me to dig deeply enough into findAll to see how it really works.  I would have to learn something, and that will take a few weeks.
+Conventional wisdom -- in the open source community -- suggests that I post a patch to Beautiful Soup to add the desired **Visitor**.  That requires me to dig deeply enough into findAll to see how it really works.  I would have to learn something, and that will take a few weeks.
 
 
 

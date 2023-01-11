@@ -41,7 +41,8 @@ Programming is knowledge capture.  "Productivity" -- lines of code per day -- is
 
 
 
-:strong:`Some Claims` 
+Some Claims
+-----------
 
 
 
@@ -81,7 +82,8 @@ We'll look at each of these from a narrow Java vs. Python perspective.  I can't 
 
 
 
-:strong:`Dynamic Typing Increases Development Speed` 
+Dynamic Typing Increases Development Speed
+------------------------------------------
 
 
 
@@ -93,8 +95,6 @@ This is manifestly true.  Claims are exaggerated (and the exaggeration should be
 
 
 
-
-..  code:
 
 ::
 
@@ -114,8 +114,6 @@ In Python, this isn't interesting enough to justify all the static typing declar
 
 
 
-..  code:
-
 ::
 
     class Something: 
@@ -130,7 +128,8 @@ A map's key can be a simple Python tuple; I don't need to create a unique class 
 
 
 
-:strong:`Interpretation Increases Development Speed` 
+Interpretation Increases Development Speed
+------------------------------------------
 
 
 
@@ -146,11 +145,12 @@ In exploring a new part of the libraries in Python, I can just type stuff intera
 
 
 
-This is worth hours of development time.  New development :emphasis:`always`  means a technical unknown.  We don't write new software unless some part of the problem domain or technology chosen as the solution is a complete unknown.  Discovery is part of the knowledge capture process.  Interpreted languages facilitate exploration and discovery.
+This is worth hours of development time.  New development *always*  means a technical unknown.  We don't write new software unless some part of the problem domain or technology chosen as the solution is a complete unknown.  Discovery is part of the knowledge capture process.  Interpreted languages facilitate exploration and discovery.
 
 
 
-:strong:`Reduced Code Volume Increases Development Speed` 
+Reduced Code Volume Increases Development Speed
+------------------------------------------------
 
 
 
@@ -158,11 +158,12 @@ Of course.  It also reduces the maintenance cost.  And it reduces the intellectu
 
 
 
-Common statements (expression and assignment) are generally the same size.  However, compound statements like :strong:`for`  and :strong:`if`  statements, function and class definitions are wordy in Java.  The :strong:`for`  statement, in particular, can be irritatingly wordy in Java.  Most Python collection classes have proper iterators that are usable by the :strong:`for`  statement; in Java I have to explicitly create and manage the Iterator.
+Common statements (expression and assignment) are generally the same size.  However, compound statements like ``for``  and ``if``  statements, function and class definitions are wordy in Java.  The ``for``  statement, in particular, can be irritatingly wordy in Java.  Most Python collection classes have proper iterators that are usable by the ``for``  statement; in Java I have to explicitly create and manage the Iterator.
 
 
 
-:strong:`Support From Major Companies Legitimizes DL's` 
+Support From Major Companies Legitimizes DL's
+----------------------------------------------
 
 
 
@@ -174,7 +175,8 @@ This doesn't impact my productivity.
 
 
 
-:strong:`As The Problems Change, People Use New Languages` 
+As The Problems Change, People Use New Languages
+------------------------------------------------
 
 
 
@@ -182,7 +184,8 @@ This is an interesting point, but not really part of the dynamic-static debate. 
 
 
 
-:strong:`You Can Assess Productivity By Feel` 
+You Can Assess Productivity By Feel
+-----------------------------------
 
 
 
@@ -202,7 +205,8 @@ Lacking a theory of software development, and associated observations, we still 
 
 
 
-:strong:`Syntax Can Be Natural` 
+Syntax Can Be Natural
+----------------------
 
 
 
@@ -222,7 +226,8 @@ Java was created to be familiar to C programmers.
 
 
 
-:strong:`A Strength Of My Language Is Its Community` 
+A Strength Of My Language Is Its Community
+-------------------------------------------
 
 
 
@@ -238,7 +243,8 @@ I can do drafts, experiments, tools and utilities in Python.  I just can't easil
 
 
 
-:strong:`No Harm, No Foul` 
+No Harm, No Foul
+-----------------
 
 
 
@@ -259,7 +265,8 @@ This is often a final milksop apology for hyperbole.  My preference for Python o
 
 
 
-:strong:`Some Additional Resources` 
+Some Additional Resources
+--------------------------
 
 
 

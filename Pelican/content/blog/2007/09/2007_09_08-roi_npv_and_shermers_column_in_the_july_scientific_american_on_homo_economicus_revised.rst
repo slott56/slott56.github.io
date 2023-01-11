@@ -27,12 +27,12 @@ perspective.
 
  
 
-Also, see Jena McGregor's article in the June 15, 2007, :emphasis:`Business Week` , "`Clayton Christensen's Innovation Brain <http://www.businessweek.com/innovate/content/jun2007/id20070615_198176.htm>`_ ".   "...the mathematics have an implicit assumption within them that if we don't do this innovation, the way things are today will maintain themselves in the future."  In short, we assume we won't lose anything; which biases the analysis based on our biggest fear: loss.
+Also, see Jena McGregor's article in the June 15, 2007, *Business Week* , "`Clayton Christensen's Innovation Brain <http://www.businessweek.com/innovate/content/jun2007/id20070615_198176.htm>`_ ".   "...the mathematics have an implicit assumption within them that if we don't do this innovation, the way things are today will maintain themselves in the future."  In short, we assume we won't lose anything; which biases the analysis based on our biggest fear: loss.
 
  
 
 
-Here's :strong:`The Big Issue` ™: We can't compare wins against losses. Our
+Here's **The Big Issue** ™: We can't compare wins against losses. Our
 brain is wired for "Prevent Loss Decision-Making". We magnify losses (and
 potential losses) by a factor of 2.
 
@@ -54,7 +54,8 @@ we?
  
  
 
-:strong:`The ROI Trap.` 
+The ROI Trap
+------------
 
  
  
@@ -77,7 +78,8 @@ the current data model?  We can't know.  So we shouldn't try.
  
  
 
-:strong:`CYA.` 
+CYA
+---
 
  
  
@@ -112,13 +114,14 @@ which is unacceptable.
  
   
 
-:strong:`Making Progress.` 
+Making Progress
+---------------
 
  
   
 
 The deal seems to be
-the following:  :strong:`Don't Mix Wins and Losses.` 
+the following:  **Don't Mix Wins and Losses.** 
 
  
   
@@ -142,7 +145,8 @@ another thing -- treat it as if it had different units.
  
   
 
-:strong:`Further Notions.` 
+Further Notions
+----------------
 
  
   
@@ -158,7 +162,7 @@ replaced.
 
 This means there's no price.  At least, there's no final, single,
 big, ugly number.  Software acquisition is about the rate of expenditure over
-future years.  $1M this year, $900K next year, $150K per year after that, :emphasis:`until the end of time` .  
+future years.  $1M this year, $900K next year, $150K per year after that, *until the end of time* .
 
  
   
@@ -171,7 +175,8 @@ price.
  
   
 
-:strong:`How It Might Play Out.` 
+How It Might Play Out
+---------------------
 
  
   
@@ -205,7 +210,7 @@ allow.
   
 
 Note the discarding of "some" old software.  In many cases, you will
-discard :emphasis:`all` 
+discard *all*
 old software.  However, because of our hard-wired economic bias, discarding old
 software is a loss, and we cannot tolerate loss.  Generally, when you are
 reworking old software, you will preserve the data, and many of the concepts. 
@@ -228,7 +233,8 @@ database.
  
   
 
-:strong:`Conclusion.` 
+Conclusion
+-----------
 
  
   

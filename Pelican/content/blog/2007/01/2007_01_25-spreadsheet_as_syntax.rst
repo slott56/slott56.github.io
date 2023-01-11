@@ -107,8 +107,6 @@ structure.
 
 
 
-..  code:
-
 ::
 
     import xml.sax, xml.dom.minidom
@@ -152,8 +150,6 @@ we have to examine to locate the spreadsheet
 structure.
 
 
-
-..  code:
 
 ::
 
@@ -252,8 +248,6 @@ contained in the parent Workbook.
 
 
 
-..  code:
-
 ::
 
     def nextSheet( self ):
@@ -277,8 +271,6 @@ Workbook.
 
 
 
-..  code:
-
 ::
 
     parse= ssDOM.XMLParser( file(aFile,'r') )
@@ -300,8 +292,6 @@ associated with the Cell.  Then we bundle it into a SSDOM object that we can
 work with in our next level of parsing.
 
 
-
-..  code:
 
 ::
 
@@ -357,8 +347,6 @@ have to compare one attribute of a cell's style to see if the cell has special
 meaning.
 
 
-
-..  code:
 
 ::
 

@@ -129,7 +129,6 @@ S.Lott -- Software Architect            </a>
 </ul>
 <p>Almost everyone is copying off everyone else's paper, and propagating the same lame mistake.</p>
 <p>There's no earthly reason for programs of the form:</p>
-<!-- code: -->
 <pre class="literal-block">
 cs = some initial value
 for ....:
@@ -141,9 +140,9 @@ for ....:
 <p>This structure is one of those &quot;you're kidding, right?&quot; kind of structures.</p>
 <p>NMEA sentences have a relatively simple structure.  They're all on one line.  They start with a &quot;$&quot; or &quot;!&quot;.  The may end with &quot;*&quot; and some hex digits for a checksum.  The characters in the middle are used to compute the checksum; they are a sequence of comma-separated values.</p>
 <p>It doesn't seem that complex.  Yet, the VB examples make it look scary.</p>
-<p><strong>My Reference Implementation</strong></p>
+<div class="section" id="my-reference-implementation">
+<h2>My Reference Implementation</h2>
 <p>In Python, we have something simple like the following.  Encapsulated messages (like !AIVDM and !AIVDO) are a bit more complex because they have their own unique Base64 algorithm in addition to their unique NMEA checksum.</p>
-<!-- code: -->
 <pre class="literal-block">
 def validate(aLine):
     sentence, star, checksum = aLine.rpartition('*')
@@ -162,12 +161,15 @@ def validate(aLine):
 <li>Skipping the first character of the sentence (the &quot;$&quot; or &quot;!&quot;) isn't an extra if-statement inside the loop; it's part of the range of values for the loop structure itself.</li>
 </ol>
 <p>There's an even shorter formulation in Python.  See /dev/random: <a class="reference external" href="http://blog.lucanatali.it/2006/12/nmea-checksum-in-python.html">NMEA checksum in Python</a>  for a very short version.  This version, however, doesn't help clarify the perfectly awful VB programs.</p>
-<p><strong>Root Causes</strong></p>
+</div>
+<div class="section" id="root-causes">
+<h2>Root Causes</h2>
 <p>Why are the VB examples so wrong?  And why are the wrong examples the first things coughed up by Google?</p>
 <p>Are these examples widely referenced?  Do they have some authority?</p>
 <p>It can't be that VB programmers -- themselves -- are brain dead.  I've met smart people who know and use VB.  For some reason, they're on sites that have some weight with Google, even though these specific snippets of code are not very good.</p>
 <p>What's left is that these examples are all unthinking reimplementations of some initially flawed algorithm.</p>
 <p>Which tells me that VB programmers are habituated to copy-and-paste reuse.  Rather than define, share and reference a library, they copy and paste code freely.  I've seen many other examples of copy-and-paste programming in VB.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -187,7 +189,10 @@ def validate(aLine):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

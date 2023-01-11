@@ -33,7 +33,8 @@ Someone wants a weekly summary (about 90,000 rows) binned into 10 ranges 0.0 to 
 
 
 
-:strong:`What's the Issue?`
+What's the Issue?
+-------------------
 
 
 
@@ -53,7 +54,8 @@ I'm assuming that the volume has increased or something, and the old query isn't
 
 
 
-:strong:`Fetishize a Feature`
+Fetishize a Feature
+-------------------
 
 
 
@@ -61,15 +63,16 @@ Someone has an Oracle Bulk Bind fetish.  I've listened to this tripe before.  Th
 
 
 
-The sent me a copy of solution one: a big pile of PL/SQL including some BULK COLLECT stuff.  PL/SQL they couldn't get it to work.  I'm not sure what's going on here, but it's clearly the first dumb-as-a-post SQL programming technique:  :strong:`Fetishize a Feature`.  You pick something and stick with it.  
+The sent me a copy of solution one: a big pile of PL/SQL including some BULK COLLECT stuff.  PL/SQL they couldn't get it to work.  I'm not sure what's going on here, but it's clearly the first dumb-as-a-post SQL programming technique:  **Fetishize a Feature**.  You pick something and stick with it.  
 
 
 
-:strong:`Drown it in Documentation`
+Drown it in Documentation
+--------------------------
 
 
 
-Here's the best part of solution one.  It didn't work.  And they provided me with extensive documentation -- on the feature they couldn't get to work.  I like that.  So technique two is to quote a lot of documentation -- as if :strong:`Drowning It In Documentation`  somehow make the feature start working.
+Here's the best part of solution one.  It didn't work.  And they provided me with extensive documentation -- on the feature they couldn't get to work.  I like that.  So technique two is to quote a lot of documentation -- as if **Drowning It In Documentation**  somehow make the feature start working.
 
 
 
@@ -77,7 +80,8 @@ I suppose I could try and debug it, but I really don't have the patience.  There
 
 
 
-:strong:`Write More Code`
+Write More Code
+----------------
 
 
 
@@ -89,11 +93,12 @@ In this case, the PL/SQL solution is a huge amount of code for something that is
 
 
 
-Rather than summarize and simplify, they :strong:`Wrote More Code`.
+Rather than summarize and simplify, they **Wrote More Code**.
 
 
 
-:strong:`Don't Do The Obvious`
+Don't Do The Obvious
+---------------------
 
 
 
@@ -101,11 +106,12 @@ Another generally dumb technique is to avoid writing the obvious SQL because -- 
 
 
 
-The basic SELECT COUNT(*) GROUP BY produces a number of rows, each of which has a key and a count.  This can be rotated into a horizontal configuration by a reporting program.  For some reason, we're locked into a single form for the report, making it so we can't :strong:`Do The Obvious`.  
+The basic SELECT COUNT(*) GROUP BY produces a number of rows, each of which has a key and a count.  This can be rotated into a horizontal configuration by a reporting program.  For some reason, we're locked into a single form for the report, making it so we can't **Do The Obvious**.  
 
 
 
-:strong:`Refuse to Change the Structure`
+Refuse to Change the Structure
+-------------------------------
 
 
 
@@ -119,8 +125,6 @@ About a year ago, I had told a member of data cartel to read Ralph Kimball's Dat
 
 In this case, the floating point numbers had to be split up into bins.  The calculation must be done at load time, and must be a permanent part of the table.
 
-..  code:
-
 ::
 
     TABLE data(
@@ -132,8 +136,6 @@ In this case, the floating point numbers had to be split up into bins.  The calc
 
 
 This isn't really sufficient for reporting.  You need something more like the following:
-
-..  code:
 
 ::
 
@@ -153,7 +155,8 @@ The various derived values are all trivial to calculate at load time.  Once they
 
 
 
-:strong:`The Hubris of Time Calculations`
+The Hubris of Time Calculations
+--------------------------------
 
 
 
@@ -162,8 +165,6 @@ There's more that's wrong in the various examples I was sent.   Specifically, th
 
 
 Here's their code.
-
-..  code:
 
 ::
 
@@ -179,8 +180,6 @@ It can't -- in general -- work.
 
 
 There's a 1-second gap between the two times.  You have use half-open intervals to avoid losing a row that happens to have a timestamp in the gap.  [Don't waste time adding .999's, either, because the decimal value doesn't provide down-to-the-last bit way to encode the internal binary values.]
-
-..  code:
 
 ::
 
@@ -199,7 +198,8 @@ However, this still isn't very good.  As shown in the table definitions above, y
 
 
 
-:strong:`Real Speed`
+Real Speed
+-----------
 
 
 
@@ -225,7 +225,6 @@ The real SELECT COUNT(*) GROUP BY, with denormalized data, is fast.  On my littl
 
 That's about as fast as this little drip of code.
 
-..  code:
 
 ::
 
@@ -245,7 +244,7 @@ In SQLite, for 100,000 rows, this is the same speed as SQL.  Why?  Because we're
 
 
 
-Interestingly, in Oracle, the SELECT COUNT(*) GROUP BY is much, much faster.  Why?  Because Oracle queries involve a context switch, where SQLite does not.  A simple fetch loop in Oracle is relatively slow without using some kind of buffering.
+Interestingly, in Oracle, the ``SELECT COUNT(*) GROUP BY`` is much, much faster.  Why?  Because Oracle queries involve a context switch, where SQLite does not.  A simple fetch loop in Oracle is relatively slow without using some kind of buffering.
 
 
 
@@ -253,7 +252,8 @@ The database fetch time still dominates what we're doing.  A table design change
 
 
 
-:strong:`How Many Bad Things Can We Do?`
+How Many Bad Things Can We Do?
+-------------------------------
 
 
 
@@ -261,23 +261,23 @@ Let's enumerate them:
 
 
 
-:strong:`Fetishize a Feature`
+- **Fetishize a Feature**
 
 
 
-:strong:`Drown It In Documentation`
+- **Drown It In Documentation**
 
 
 
-:strong:`Write More Code`
+- **Write More Code**
 
 
 
-:strong:`Refuse to Change the Structure`
+- **Refuse to Change the Structure**
 
 
 
-:strong:`The Hubris of Time Calculation`
+- **The Hubris of Time Calculation**
 
 
 

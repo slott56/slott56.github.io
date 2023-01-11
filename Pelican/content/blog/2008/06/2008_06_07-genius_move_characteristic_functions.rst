@@ -23,9 +23,6 @@ You need to read Rozhenstein on characteristic functions.
 
 
 
-
-..  code:
-
 ::
 
     select
@@ -46,7 +43,8 @@ So, I googled it, and figured out what I'd been missing.
 
 
 
-:strong:`Skip the Math` 
+Skip the Math
+--------------
 
 
 
@@ -75,8 +73,6 @@ We have this situation.
 
 
 
-
-..  code:
 
 ::
 

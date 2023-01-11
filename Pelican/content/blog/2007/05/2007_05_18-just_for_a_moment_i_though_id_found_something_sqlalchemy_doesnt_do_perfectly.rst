@@ -25,11 +25,12 @@ Then, I figured out ("`PL/SQL vs. Java, Which One is Really Faster? <../C4657994
 
 
 
-:strong:`Problem Child.`
+Problem Child
+-------------
 
 
 
-The central issue started out as the all-too-common situation of :strong:`Disjoint Subentities`\ ™.  This is where a single table has distinct classes of entities.  The usual symptoms of this are indicators or NULL columns.  Often, both are used.  Sometimes, the indicator is omitted, and the pattern of NULLs has to be used to discriminate among the entity classes.
+The central issue started out as the all-too-common situation of **Disjoint Subentities**.  This is where a single table has distinct classes of entities.  The usual symptoms of this are indicators or NULL columns.  Often, both are used.  Sometimes, the indicator is omitted, and the pattern of NULLs has to be used to discriminate among the entity classes.
 
 
 
@@ -85,7 +86,8 @@ This is all very pleasant.  You can see that the literals (2, 'unmatched', 'mult
 
 
 
-:strong:`Real World.`
+Real World
+----------
 
 
 

@@ -44,7 +44,8 @@ I wasn't -- technically -- rickrolled.  But since it's the same tune, I think I 
 
 
 
-:strong:`Explain That` 
+Explain That
+-------------
 
 
 
@@ -64,7 +65,8 @@ Which -- apparently -- finally clicked with my father what it meant to be Rickro
 
 
 
-:strong:`Too Much Thinking` 
+Too Much Thinking
+------------------
 
 
 

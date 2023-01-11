@@ -25,11 +25,12 @@ Second, it's hard to do configuration management on stored procedures.  Not impo
 
 
 
-Recently I received an email that was nearly opaque, but seemed to indicate that the organization couldn't clone production to create another test, and couldn't rationalize the versions of their various stored procedures.   I think they wanted a puff of :strong:`Faerie Dust`\ ™ that would allow stored procedure X to determine if it was being used by package Y or package Z and behave differently in the different contexts.  The request makes no sense -- this is just a version control issue.  Clearly, there are two versions of X, but the emailer claimed there was one version of X and it had to determine it's behavior dynamically.
+Recently I received an email that was nearly opaque, but seemed to indicate that the organization couldn't clone production to create another test, and couldn't rationalize the versions of their various stored procedures.   I think they wanted a puff of **Faerie Dust**\ ™ that would allow stored procedure X to determine if it was being used by package Y or package Z and behave differently in the different contexts.  The request makes no sense -- this is just a version control issue.  Clearly, there are two versions of X, but the emailer claimed there was one version of X and it had to determine it's behavior dynamically.
 
 
 
-:strong:`Conflation - The Organizational Root Cause`
+Conflation - The Organizational Root Cause
+-------------------------------------------
 
 
 
@@ -41,19 +42,23 @@ Let's break these things apart.
 
 
 
-:strong:`Data`  is the organization's actual data.  Some (but not all) of the business records lives in managed databases.  Some live in desktop application documents (word processing, spreadsheets, unmanaged desktop databases, etc.)  Data is precious, perhaps the most precious thing in the organization.
+**Data**  
+    is the organization's actual data.  Some (but not all) of the business records lives in managed databases.  Some live in desktop application documents (word processing, spreadsheets, unmanaged desktop databases, etc.)  Data is precious, perhaps the most precious thing in the organization.
 
 
 
-:strong:`Schema`  (or metadata) is table, column, view and index definitions.  It's also physical stuff like tablespaces, files, instances, etc.  Some of this is important, some of it is subject to change without notice.  Tablespace configuration parameters rarely matter except as an implementation detail.
+**Schema**  
+    (or metadata) is table, column, view and index definitions.  It's also physical stuff like tablespaces, files, instances, etc.  Some of this is important, some of it is subject to change without notice.  Tablespace configuration parameters rarely matter except as an implementation detail.
 
 
 
-:strong:`Processing`  is triggers, stored procedures and all of the application programs that live outside the database.  Note that there is no crisp distinction between "low-level" and "high-level" processing.  Many DBA's have tried to explain to me that CRUD rules are "low-level", but then they add some foreign-key relationships, after that they also need to add some many-to-many relationships and the intermediate bridge tables, then they start adding other things that are part of larger and more complex relationships.  Stop!  If you can't find a boundary easily, it doesn't really exist. 
+**Processing**  
+    is triggers, stored procedures and all of the application programs that live outside the database.  Note that there is no crisp distinction between "low-level" and "high-level" processing.  Many DBA's have tried to explain to me that CRUD rules are "low-level", but then they add some foreign-key relationships, after that they also need to add some many-to-many relationships and the intermediate bridge tables, then they start adding other things that are part of larger and more complex relationships.  Stop!  If you can't find a boundary easily, it doesn't really exist. 
 
 
 
-:strong:`Version Control`
+Version Control
+---------------
 
 
 
@@ -81,7 +86,8 @@ For no good reason stored procedures are the province of the DBA's (who don't us
 
 
 
-:strong:`Schema Versions`
+Schema Versions
+---------------
 
 
 
@@ -105,11 +111,13 @@ You need two things:
 
 
 
-:strong:`Discipline`.  This doesn't happen by default.
+**Discipline**.
+    This doesn't happen by default.
 
 
 
-:strong:`Some meta-meta-data`.  A table that has schema names and version numbers is all you really need.  It's nice to fold in "applicable dates" and "responsible person", etc., but not essential.   In some cases, you can use database comments for this.
+**Some meta-meta-data**.  
+    A table that has schema names and version numbers is all you really need.  It's nice to fold in "applicable dates" and "responsible person", etc., but not essential.   In some cases, you can use database comments for this.
 
 
 
@@ -117,7 +125,8 @@ When you make database changes, you must create a script that (a) makes the chan
 
 
 
-:strong:`What About Stored Procedures?`
+What About Stored Procedures?
+------------------------------
 
 
 
@@ -157,7 +166,8 @@ Separating the stored procedures from the schema via a formal turnover has some 
 
 
 
-:strong:`What's So Hard?`
+What's So Hard?
+---------------
 
 
 

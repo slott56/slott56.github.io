@@ -31,7 +31,8 @@ However, clubs and churches are member supported.  For them, member management m
 
 
 
-:strong:`Web-Based Member Management`
+Web-Based Member Management
+----------------------------
 
 
 
@@ -47,7 +48,8 @@ The second problem is that you have to choose between Customer Relationship Mana
 
 
 
-:strong:`Synchronicity`
+Synchronicity
+--------------
 
 
 
@@ -71,11 +73,12 @@ You can't be synchronizing between member mailing lists.  You must chose one and
 
 
 
-:strong:`Connectivity and Spamulation`
+Connectivity and Spamulation
+-----------------------------
 
 
 
-The RSS/ATOM issue is important.  When I talk about this with Small NFP's, I call all bulk email :emphasis:`spam`.  Even the "good" opt-in email that people sign up for is still -- in a way -- spam.
+The RSS/ATOM issue is important.  When I talk about this with Small NFP's, I call all bulk email *spam*.  Even the "good" opt-in email that people sign up for is still -- in a way -- spam.
 
 
 
@@ -83,7 +86,7 @@ Small NFP's bristle when I call their email spam.  First, it's opt-in email.  Pe
 
 
 
-But more importantly, some of the folks have the need to be :strong:`sure`  (really :emphasis:`sure`) that their message is getting out.  Here's my bad news: you can't be sure anyone's reading your email newsletter.  If it doesn't get spam-filtered, it can still get ignored.  You just never know.
+But more importantly, some of the folks have the need to be **sure**  (really *sure*) that their message is getting out.  Here's my bad news: you can't be sure anyone's reading your email newsletter.  If it doesn't get spam-filtered, it can still get ignored.  You just never know.
 
 
 
@@ -91,7 +94,8 @@ With RSS/ATOM, they asked and they checked for updates.  This is much, much more
 
 
 
-:strong:`Member Management Solutions`
+Member Management Solutions
+---------------------------
 
 
 

@@ -29,7 +29,8 @@ We'll call this application server -- with it's current set of problems -- the l
 
 
 
-:strong:`Web 1.0`
+Web 1.0
+--------
 
 
 
@@ -49,7 +50,8 @@ On conference calls with the Associates it became clear that the the Web 1.0 sit
 
 
 
-:strong:`The Newsletter`
+The Newsletter
+---------------
 
 
 
@@ -69,7 +71,8 @@ A Web 1.2 compromise is an email that summarizes the articles with links to the 
 
 
 
-:strong:`What Do We Need?`
+What Do We Need?
+-----------------
 
 
 
@@ -85,11 +88,12 @@ We have a number of messages.  For each audience we have a distinct message.  Vi
 
 
 
-:strong:`The Web 2.0 Newsletter Is a Blog`
+The Web 2.0 Newsletter Is a Blog
+--------------------------------
 
 
 
-First, let's dispose with the newsletter.  A newsletter isn't very targeted. (Indeed, a big question is "who's on the current email and print mailing lists?" and "what message :emphasis:`should`  they be getting?" and "how can one document serve all those distinct needs?")
+First, let's dispose with the newsletter.  A newsletter isn't very targeted. (Indeed, a big question is "who's on the current email and print mailing lists?" and "what message *should*  they be getting?" and "how can one document serve all those distinct needs?")
 
 
 
@@ -109,7 +113,8 @@ Additionally, a print newsletter can bundle a recent batch of stories for public
 
 
 
-:strong:`Web 2.0 Interactivity Is More Blogs`
+Web 2.0 Interactivity Is More Blogs
+------------------------------------
 
 
 
@@ -129,7 +134,8 @@ In Web 2.0 world, everyone can publish everything because publishing is free.  M
 
 
 
-:strong:`Email and Spamming`
+Email and Spamming
+-------------------
 
 
 
@@ -159,39 +165,45 @@ Here's a way to structure the web presence of a small not-for-profit.
 
 
 
-:strong:`Web Site`.  Get a Yahoo! Geocities or Google Pages site.  Pay the fees to suppress advertisements and get enough email addresses to handle the current staff.  Use this for your basic contact information, mission statement, strategy, funding sources, and other relatively static information.  This isn't the easiest way to manage information.  However, it's essential to show that the organization is permanent, and serious. 
+**Web Site**.  
+    Get a Yahoo! Geocities or Google Pages site.  Pay the fees to suppress advertisements and get enough email addresses to handle the current staff.  Use this for your basic contact information, mission statement, strategy, funding sources, and other relatively static information.  This isn't the easiest way to manage information.  However, it's essential to show that the organization is permanent, and serious. 
 
 
 
-:strong:`Get Google Accounts`.  Everyone should be using `Google Mail <http://mail.google.com>`_ , and `Google Documents <http://docs.google.com>`_ .  Stop emailing documents among the principals in the organization.
+**Get Google Accounts**.  
+    Everyone should be using `Google Mail <http://mail.google.com>`_ , and `Google Documents <http://docs.google.com>`_ .  Stop emailing documents among the principals in the organization.
 
 
 
-:strong:`Start a blog`.  The Wikipedia entry on Weblog software has a section on `developer-hosted blogs <http://en.wikipedia.org/wiki/Weblog_software#Developer-hosted>`_ .  These are all candidate pieces of easy-to-use blogging software.  Generally, you'll keep your blog and site separate.  You will have your blog reference your site and your site reference your blog.  Careful choice of names creates a single identity.
+**Start a blog**.  
+    The Wikipedia entry on Weblog software has a section on `developer-hosted blogs <http://en.wikipedia.org/wiki/Weblog_software#Developer-hosted>`_ .  These are all candidate pieces of easy-to-use blogging software.  Generally, you'll keep your blog and site separate.  You will have your blog reference your site and your site reference your blog.  Careful choice of names creates a single identity.
 
 
 
-For example, `Blogger <http://www.blogger.com>`_  is a Google product, but it isn't part of `Google Pages <http://pages.google.com>`_ .  You could use any of the more popular blog tools like `LiveJournal <http://www.livejournal.com/>`_ , `TypePad <http://www.typepad.com/>`_ , `Yahoo 360 <http://360.yahoo.com/>`_  or `WordPress <http://wordpress.org/>`_ .
+    For example, `Blogger <http://www.blogger.com>`_  is a Google product, but it isn't part of `Google Pages <http://pages.google.com>`_ .  You could use any of the more popular blog tools like `LiveJournal <http://www.livejournal.com/>`_ , `TypePad <http://www.typepad.com/>`_ , `Yahoo 360 <http://360.yahoo.com/>`_  or `WordPress <http://wordpress.org/>`_ .
 
 
 
-The hardest part of this is changing the current newsletter production cycle to get rid of the once-each-month schedule.  Instead, the newsletter becomes a continuous operation, with each new article turning into a blog posting.  The traditional print newsletter -- as summary of the Blog -- can still be issued, but the writing and editing is spread throughout the month, not jammed into a hectic rush with a deadline.
+    The hardest part of this is changing the current newsletter production cycle to get rid of the once-each-month schedule.  Instead, the newsletter becomes a continuous operation, with each new article turning into a blog posting.  The traditional print newsletter -- as summary of the Blog -- can still be issued, but the writing and editing is spread throughout the month, not jammed into a hectic rush with a deadline.
 
 
 
-:strong:`Start a Calendar`.  The current web site offers an event list.  This can be replaced with `Google Calendar <http://www.google.com/calendar>`_  or`30 Boxes. <http://30boxes.com/welcome.php>`_   Again, this calendar must link to the primary web site, and the primary web site must link to the calendar.
+**Start a Calendar**.  
+    The current web site offers an event list.  This can be replaced with `Google Calendar <http://www.google.com/calendar>`_  or`30 Boxes. <http://30boxes.com/welcome.php>`_   Again, this calendar must link to the primary web site, and the primary web site must link to the calendar.
 
 
 
-:strong:`Start a Group or Two`.   A few constituencies should have some additional features -- often provided by tools like `Yahoo! Groups <http://groups.yahoo.com>`_  or `Google Groups <http://groups.google.com>`_ .  These tools keep web pages, calendars, documents, discussion forums and email lists.
+**Start a Group or Two**.   
+    A few constituencies should have some additional features -- often provided by tools like `Yahoo! Groups <http://groups.yahoo.com>`_  or `Google Groups <http://groups.google.com>`_ .  These tools keep web pages, calendars, documents, discussion forums and email lists.
 
 
 
-Generally, a narrow audience (e.g., the trustees) can all be members of a Google Group that provides meeting schedules, agendas, and shared documents.   In some cases, there are audiences with frequent, less-formal contacts.  A group can work well for this.
+    Generally, a narrow audience (e.g., the trustees) can all be members of a Google Group that provides meeting schedules, agendas, and shared documents.   In some cases, there are audiences with frequent, less-formal contacts.  A group can work well for this.
 
 
 
-:strong:`Pick a CRM Tool`.  Move all of the existing mailing lists into the CRM tool.  Identify each individual with enough characteristics to permit meaningful communication.
+**Pick a CRM Tool**.  
+    Move all of the existing mailing lists into the CRM tool.  Identify each individual with enough characteristics to permit meaningful communication.
 
 
 
@@ -211,11 +223,12 @@ In some cases, there will be several alternatives for communication -- the centr
 
 
 
-:strong:`Create a MySpace Page`.  MySpace has Blog, Calendar and Address Book capabilities.  However, each feature is relatively primitive.  Further MySpace is just one way to attract and retain some (but not all) members of the various target audiences.
+**Create a MySpace Page**.  MySpace has Blog, Calendar and Address Book capabilities.  However, each feature is relatively primitive.  Further MySpace is just one way to attract and retain some (but not all) members of the various target audiences.
 
 
 
 Conversion
+----------
 
 
 

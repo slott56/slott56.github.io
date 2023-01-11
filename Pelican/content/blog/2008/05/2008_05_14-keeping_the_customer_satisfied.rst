@@ -21,7 +21,8 @@ It's crap.  Why do we use it?  Because it makes our customers happy.
 
 
 
-:strong:`How Wrong Is It?`
+How Wrong Is It?
+-----------------
 
 
 
@@ -45,7 +46,8 @@ Two, who measured projects to determine these numbers?  Where's the raw data?
 
 
 
-:strong:`Non-Linearity`
+Non-Linearity
+---------------
 
 
 
@@ -61,11 +63,12 @@ When I changed the scope, it didn't move you down the "cone of uncertainty".  It
 
 
 
-:strong:`Retrospective`
+Retrospective
+--------------
 
 
 
-The final issue is that the cone of uncertainty is entirely retrospective.  At no point in the life of the project do you :strong:`ever`  say "the remaining costs will be 1.0 :emphasis:`x`."  Instead, you wrap the prediction in the "barring further scope changes" qualifier.  
+The final issue is that the cone of uncertainty is entirely retrospective.  At no point in the life of the project do you **ever**  say "the remaining costs will be 1.0 *x*."  Instead, you wrap the prediction in the "barring further scope changes" qualifier.
 
 
 
@@ -73,11 +76,12 @@ As a practical matter, almost all software projects proceed until cancelled.  I 
 
 
 
-The 1.0x business happens :strong:`after`  the end.  After the project is over, and you've added up every line item, you know the final cost.  You'll be hard-pressed to find a definition of the final scope.  And no scope definition ever matches any of the initial scope statement(s).
+The 1.0x business happens **after**  the end.  After the project is over, and you've added up every line item, you know the final cost.  You'll be hard-pressed to find a definition of the final scope.  And no scope definition ever matches any of the initial scope statement(s).
 
 
 
-:strong:`What Become More Certain?`
+What Becomes More Certain?
+--------------------------
 
 
 
@@ -93,7 +97,8 @@ What can change is the number of degrees of freedom.  For the short periods in w
 
 
 
-:strong:`The Decision-Tree of Uncertainty`
+The Decision-Tree of Uncertainty
+---------------------------------
 
 
 
@@ -121,7 +126,8 @@ None of these involve "uncertainty".  What they involve is an inability to work 
 
 
 
-:strong:`It May Be A Hack, But Customers Like It`
+It May Be A Hack, But Customers Like It
+---------------------------------------
 
 
 
@@ -141,11 +147,12 @@ At some point, they either fail to see what's going on and throw us out, or we p
 
 
 
-This is bad, but :strong:`everyone`  wants a Bentley at Hyundai prices.
+This is bad, but **everyone**  wants a Bentley at Hyundai prices.
 
 
 
-:strong:`Agility`
+Agility
+--------
 
 
 

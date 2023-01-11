@@ -193,8 +193,6 @@ numeric fields.
 
 
 
-..  code:
-
 ::
 
     class FieldValue:
@@ -233,8 +231,6 @@ analyzers.
 
 
 
-..  code:
-
 ::
 
     class RecordAnalyzer:
@@ -265,8 +261,6 @@ domain.  The final report will show the selected fields, the unique values, and
 the number of occurrences.
 
 
-
-..  code:
 
 ::
 

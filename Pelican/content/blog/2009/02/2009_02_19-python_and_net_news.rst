@@ -25,7 +25,8 @@ It picks out a few specific areas of IronPython application, which is good and b
 
 
 
-:strong:`Negativity` 
+Negativity
+----------
 
 
 
@@ -41,7 +42,8 @@ While a focused article can be taken negatively, I think, on balance, that O'Bri
 
 
 
-:strong:`Futures` 
+Futures
+--------
 
 
 

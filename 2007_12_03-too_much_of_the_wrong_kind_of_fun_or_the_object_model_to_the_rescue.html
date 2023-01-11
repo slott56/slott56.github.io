@@ -125,52 +125,69 @@ S.Lott -- Software Architect            </a>
 <p>I think I have some ways to test an implementation to see if it's the reasonably good, or it's the <strong>Wrong Kind of Fun</strong>™.  An implementation is Fun when things fit together, and it seems to work.  It's the Wrong  Kind of Fun when you can't implement something, performance is abysmal, or you have maintainability or adaptability problems.</p>
 <p>One indicator, BTW, seems to be the Paralysis of Analysis.  If you have a lot of open issues, and have invest a lot of time in very detailed plans, you may be having the <strong>Wrong Kind of Fun</strong>.  Your technology choices don't fit your problem very well.</p>
 <p>I've been working with customers who are trying to renovate old applications and bring the technology up to date.  These are riddled with examples of the Wrong Kind of Fun.  The technology choices in the project planning are more examples of <strong>WKoF</strong>.  But they're boring.  Here's a much more colorful example.  And yes, it's a <strong>Python To The Rescue</strong>™ story.</p>
-<p><strong>The RPG Example</strong></p>
+<div class="section" id="the-rpg-example">
+<h2>The RPG Example</h2>
 <p>Recently, I started a big time-waster.  As part of moving away from my old PPC-based Mac, I've got to release myself from two Hypercard applications that I still actually use once in a while.  One is my resume (a database, not a document), which I update constantly.  The other is -- well -- harder to explain.</p>
 <p>For those of you old enough to remember Paper and Pencil Role-Playing Games, one of those RPG's is the <a class="reference external" href="http://www.herogames.com/home.htm">Hero Game System</a> .  I found it to be a pile of fun.  My Fourth Edition Champions book is falling apart from the use.  I haven't actually played in years, but my little nephews have heard about this thing that old people did, called P&amp;amp;P RPG's.  From my sister's prodding, I've been dusting things off.</p>
 <p>Hero uses an elegant accounting system for describing characters.  Very elegant.  The fifth edition rules, indeed, are supported by a handy piece of software, Hero Designer, that appears to run everywhere and handle this accounting very nicely.  Very tempting.</p>
 <p>While elegant, it does require some care and a calculator.  Indeed, the math for some of this accounting can be baffling.  For basic features, it isn't so bad.  For Powers, however, the advantages, limitations and active points require a bunch of number crunching.</p>
 <p>Back in the olden days, we fourth-edition Hero players were left to our own devices for doing the number crunching.  And in my case, my own device was a Hypercard stack that helped me concoct Hero characters, powers, spells, gadgets, devices and what-not with relative ease.</p>
-<p><strong>The Underlying Data Model</strong></p>
+</div>
+<div class="section" id="the-underlying-data-model">
+<h2>The Underlying Data Model</h2>
 <p>The Hero data model is full of ad-hoc special-cases.  It's a paper and pencil game, mediated by people, so ad-hoc rules aren't too intimidating.  Indeed, the appeal of P&amp;amp;P RPG's is the human mediation.  This isn't <strong>World of Warcraft</strong>; it can be more subtle.  Of course, if your Game Master/Story Teller isn't very good, it's no better than WoW.  Indeed, some GM's are worse than playing WoW.</p>
 <p>The Hero rules started out with the express goal of being relatively simple.  There were several kinds of generalization-specialization relationships that were plainly in the minds of the original writers.</p>
 <p>I don't want to specify the whole game, but I do need to note that there are both deep symmetries and casual ad-hoceries that break those symmetries.  Everything in Hero has a collection of features.  For characters, these features include a complete set of Characteristics, plus instances of all the various kinds of &quot;Powers&quot;: Skills, Talents, Perks and proper Powers.  Gadgets, Bases, Vehicles and what-not are generally just containers for Powers, but may also have a few Characterstics of their own.</p>
 <p>The base Characteristics are relatively simple features: Strength for example is something you buy for your character.  A Character's Skills, Talents and Perks are slightly more complex features with more complex costs and effects.  The whole text of each effect is the content in the rule books; it doesn't really belong in a database.  What belongs in the database is the bewildering cost and effect calculations.</p>
 <p>As an aside, it's the Skills, Talents and Perks that separate a P&amp;amp;P RPG from Multiplayer On-Line Role Playing Game (MORPG).  These require intelligent mediation by the GM, and clever use by the players.  Nothing beats those <strong>Clever Use of Skills</strong>™ moments in a well-played game.</p>
 <p>A Power is a collection of more detailed features, generally including a large number of Advantage and Limitation modifiers.  Here's where the math kicks into overdrive.  The power has a basic cost.  Folding in the advantages leads to an &quot;active cost&quot; -- how effective the power really is.  Folding in the limitations derives the final cost.  There are endless special cases and exceptions.</p>
-<p><strong>The Hypercard Implementation</strong></p>
+</div>
+<div class="section" id="the-hypercard-implementation">
+<h2>The Hypercard Implementation</h2>
 <p>My old Hypercard implementation viewed this data model through the Hypercard lens.  In Hypercard, your application is a database built from a collection of Cards.  Each card has active controls, including data fields and unique blocks of code.  Additionally, each Card belongs to a Background that includes data fields and blocks of code.  The presentation is a union of the background controls (a type or classifier for cards) and instance controls on the card itself.</p>
 <p>Given this Card-Background model, each background could have controls that are generic to Powers or Skills, and a card would have controls that are unique to a specific Power or that Skill.  Each card is effectively a class definition; the data filled into the fields create the instance.  Each background, then, becomes a kind of superclass.</p>
 <p>This doesn't work out well.  It's the <strong>Wrong Kind of Fun</strong>™.  Yes, it has a handy built-in zero-pain, zero-cost GUI.  However, the object model is really flat.  You have background and card, and that's it.  Having a single background for Powers isn't good enough because standard Movement Powers are radically different from the ad-hoc heavy Special Powers.</p>
 <p>Ever since I wrote this -- back in the '90's -- I've been struggling with ways to make use of a proper object-oriented data model.  Okay, it's a very casual hobby, so I haven't spent a lot of time on it.  When I played RPG's with my kids, I revisited the problem with no real resolution.  I knew that Hypercard was the <strong>Wrong Kind of Fun</strong>, but I didn't have an alternative.</p>
-<p><strong>Tool and Platform Bias</strong></p>
+</div>
+<div class="section" id="tool-and-platform-bias">
+<h2>Tool and Platform Bias</h2>
 <p>Given a gnarly, complex data model, what do you do?  The data model seems pretty easy to normalize, until you start considering the exceptions.  Compounding the data modeling problem are the presentation and use case issues.</p>
 <p>On the one hand, a relational database tugs at the corners of my mind.  A tidy table-row-column data model, a few simple SQL scripts, and we have the rules in neat buckets.  Then, another tidy data model for characters and gadgets, and we can do simple joins between the character and the base data and -- voila -- character sheets and GM notes.  Sadly, it can't be this simple.  The number of ad-hoc special cases is almost unlimited.  While it's possible to create a generic cost function, it would be simpler to have variant cost functions for each special case.</p>
 <p>On the other hand, an OO database tugs in the other direction.  A tidy class model defines all of the features of a character or gadget.  An instance of the class model is the specific character or gadget.  Further, characters and gadgets can be treated as features, allowing recursive build-up of complex characters that make us of the Multiform power or even more complex Power Framework rules.</p>
 <p>Neither has a built-in GUI.  So, we're really looking at a whole platform, not just a data model.  Further, the C++ and Java toolsets that I've had at my disposal in the past weren't ideal for this.  Java would require an object model, a persistence framework, a GUI framework, and lead to a mountain of programming.</p>
-<p><strong>Use Cases</strong></p>
+</div>
+<div class="section" id="use-cases">
+<h2>Use Cases</h2>
 <p>What are the use cases?  There are a few, but they all amount to the following.  I create a character, gadget, vehicle, base, magical spell, artifact, whatever.  I want a standardized description, in the style of the Hero Rules.  I want correct cost and effect calculations done automatically.</p>
 <p>Do I need drag-and-drop?  Checkboxes?  Radio buttons?  Sure, they'd be nice.  But there are some features which are more central than a flashy GUI presentation.</p>
 <p>First, I want persistence.  A simple directory of stuff in easy-to-edit flat files will do nicely.  In short, the standard XML or Domain Specific Language (DSL) use case applies here.  I want structured content in a human-readable form.  I want some schema validation, and I have some transformations.</p>
 <p>Second, I want composition.  I want to be able to have standard libraries of things from which I can compose more complex stuff.  A magical spell, for example, is a kind of Gadget: it is a combination of Powers, Advantages and Limitations, with a name and some effects.  A collection of these spell definitions helps me  build characters quickly and simply.</p>
 <p>Third, I want standardized reports.  The Hero Rules have a long form and short form.  I want these two results as the result of a transformation.  Part of this will include the overall cost, allowing me to fine-tune a definition or a composite character to keep balance in the game.</p>
 <p>I don't really need much of a GUI.  Take that off the table, and we're back to data model and processing tools.</p>
-<p><strong>Python To The Rescue</strong></p>
+</div>
+<div class="section" id="python-to-the-rescue">
+<h2>Python To The Rescue</h2>
 <p>Here's two ways that Python helped me to tease my tools out of Hypercard, and create some significant improvements.</p>
 <p>First, the GUI problem was solved by a blinding inspiration: <strong>Text Files Work</strong>.  A character, gadget, spell, vehicle or base can be a first-class piece of Python code.  We can encode the Hero rules as a set of class definitions.   These classes need a few methods which produce a tidy report, and not too much more.  Each character or gadget is an instance of a class.</p>
 <p>Python becomes a Domain Specific Language for describing Hero characters and gadgets.</p>
 <p>What about the validation rules?  In some cases, a Power has options which are exclusive, or there are minima or maxima.  We can throw exceptions when attempting to construct an invalid object.  The use case is quite simple: we edit some text, execute the text, and read the messages.  The IDLE editor becomes our GUI.</p>
 <p>All of the ad-hoc special cases are simply subclass definitions, in the most natural and obvious ways.  We don't need to force-fit our complex data into the relational mold.  Instead, we define the obvious attributes and the methods we're interested in.</p>
-<p><strong>Duck Typing and the Development Cycle</strong></p>
+</div>
+<div class="section" id="duck-typing-and-the-development-cycle">
+<h2>Duck Typing and the Development Cycle</h2>
 <p>The usual hard part is coming up with a suitably general framework for Characteristics, Skills, Talents, Perks and Powers.  And we need the necessary collection framework for Characters, Gadgets, Vehicles and Bases. These have a pleasant recursive relationship: a Character can contain Characters as well as Gadgets, Vehicles and Bases.</p>
 <p>But Python doesn't impose a sophisticated data model as a requirement.  We can develop in relative ignorance, adding features as necessary.  At some point, we need to refactor.  We can easily refactor without extensive breakage.  In particular, changing an attribute to a property (with the property built-in function) helps us evolve from a relatively simple model to a more sophisticated model.</p>
 <p>Further, a basic set of Test Cases, built with <strong>unittest</strong>, helps us to evaluate our implementation directly.  As soon as we finish defining a class for a Power, we can write a simple test case to be sure that we've got a working implementation.  We can implement the examples from the Hero Rules to be absolutely sure that we're producing correct results.</p>
-<p><strong>What?  No Database?  Where's the Persistence?</strong></p>
+</div>
+<div class="section" id="what-no-database-where-s-the-persistence">
+<h2>What?  No Database?  Where's the Persistence?</h2>
 <p>This is the principle that is sometimes lost on my clients.  <strong>Persistence</strong>  does not mean <strong>Database</strong>.  While SQL has it's advantages, it isn't the final word in persistence.  XML is also a good, standardized persistence mechanism.  A DSL may even be better, even if it isn't standardized.</p>
 <p>In this case, we have Python as object data base.  A file of Python source is the object model.  It is an executable persistent object.</p>
 <p>We can, for instance, import the Python object definition, and query it, process it and report on it.  We change the data object &quot;manually&quot;.  So it seems like we could &quot;break the rules&quot; or make changes that somehow bypass the &quot;business rules&quot; or &quot;data validation rules&quot;.  However, since our constructors embody these validation rules, we can't execute (&quot;instantiate&quot;) the model without the rules being satisfied.</p>
 <p>Currently, the only capability I seem to be lacking is concurrent updates.  Wait, isn't that what Subversion does?</p>
-<p><strong>A Quick Example</strong></p>
+</div>
+<div class="section" id="a-quick-example">
+<h2>A Quick Example</h2>
 <p>Here's an example Gadget definition.  There's a lot of potential cleanup.  For now, I have long-winded names for the classes.  Since the DSL is Python code, classes can have aliases, giving us an easy way to provide better-looking names.</p>
 <pre class="literal-block">
 import hero
@@ -195,6 +212,7 @@ darkArmor= hero.Gadget(
 )
 darkArmor.longReport()
 </pre>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -214,7 +232,10 @@ darkArmor.longReport()
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

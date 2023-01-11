@@ -124,7 +124,6 @@ S.Lott -- Software Architect            </a>
                 <p>The requirements are a sequence diagram showing a complex back-and-forth with the vendor's web service.  Each request and reply is detailed, but there's no overview or summary stated.  It's implied, and all of the business folks can articulate it, but no one wrote any of it down.</p>
 <p>This looks like a relatively clean, RESTful kind of service -- our customers send us requests, we gather information from vendors, do our value-add processing, and send a response.</p>
 <p>It looks like the classic Web Services Proxy design pattern.  We define a nice Python class that's a proxy for the external services (and their goofy protocols).  We can then define a simple WSGI application to use those services and do our value-add processing.</p>
-<!-- code: -->
 <pre class="literal-block">
 class SomeService( object ):
     def someMethod( self, **args ):
@@ -133,7 +132,6 @@ class SomeService( object ):
         urllib2.open( )
         Parse XML response
 </pre>
-<!-- code: -->
 <pre class="literal-block">
 class OurApplication( object ):
     def __init__( self, service ):
@@ -151,11 +149,14 @@ class OurApplication( object ):
          some processing that we're going to charge for
 </pre>
 <p>Ideally, the project plan is to debug the service proxy and write the application.  Using Python and the widely available WSGI tools, this isn't a lot of programming.  We should be up and running inside of a month.  Right?  Wrong.</p>
-<p><strong>Focus on Value</strong></p>
+<div class="section" id="focus-on-value">
+<h2>Focus on Value</h2>
 <p>Everyone's focus was on the &quot;rocket science&quot; part of this: using an external vendor for information.  This is where the business owners had spent a lot of time.  The value add was so obvious, it didn't need to be written down.  But the negotiations with the vendors -- the service level agreements, the contracts, the terms and conditions, the commercial considerations -- had soaked up a lot of brain calories.</p>
 <p>I had a long list of vendor contacts.  I had examples, documents, URL's, all kinds of supporting material for the vendor data gathering.</p>
 <p>But for our &quot;value add&quot;, I had nothing.  I had bupkes.  It was a &quot;calculation&quot; or a &quot;lookup&quot; or something.  I didn't even have the name of the internal folks who knew this.  I had a spreadsheet, and it wasn't consistent enough to make sense of.</p>
-<p><strong>Invertability</strong></p>
+</div>
+<div class="section" id="invertability">
+<h2>Invertability</h2>
 <p>After some digging, the question arose as to what the essential processing scenario should be.  It sure looks like the main processing has the following outline.</p>
 <ol class="arabic simple">
 <li>Some internal value-add steps.</li>
@@ -163,9 +164,10 @@ class OurApplication( object ):
 <li>A final internal value-add step to combine everything.</li>
 </ol>
 <p>Which view is right?  The Vendor-centric sequence?  A sequence focused on our value-add?  More importantly, how can we make it irrelevant?  The answer is an &quot;invertable&quot; design.  Each step is a separate object, the overall service merely combines the various steps in some useful order.</p>
-<p><strong>The Command Design Pattern</strong></p>
+</div>
+<div class="section" id="the-command-design-pattern">
+<h2>The Command Design Pattern</h2>
 <p>This works out well if each step follows the GoF <a class="reference external" href="http://en.wikipedia.org/wiki/Command_pattern">Command</a>  design pattern.  A sequence of steps is also a Command; this permits me to reswizzle this with every rise and fall in the slowly-solidifying requirements.</p>
-<!-- code: -->
 <pre class="literal-block">
 class Command( object ):
     def __init__( self, service ):
@@ -209,10 +211,13 @@ class OurValueAdd( Command ):
             step( state )
 </pre>
 <p>Now, we can use any of the steps in any order.  And we can recombine them, extend them, replace them, contract them.</p>
-<p><strong>All That Overhead</strong></p>
+</div>
+<div class="section" id="all-that-overhead">
+<h2>All That Overhead</h2>
 <p>It appears like we've micro-managed a simple thing.  We took a simple piece of procedural programming, turned each step into an object, and added a lot of overheads.</p>
 <p>However, the &quot;simple&quot; piece of programming isn't fully defined.  Any one of the &quot;steps&quot; could expand, contract or get replaced.  Our impact is controlled.</p>
 <p>There's one big change, however, may be pervasive.  Additional service definitions will change the constructor.  We'd have to switch to a dictionary, <tt class="docutils literal">**services</tt>, and each class would have to pick a specific member in the collection of services.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -232,7 +237,10 @@ class OurValueAdd( Command ):
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

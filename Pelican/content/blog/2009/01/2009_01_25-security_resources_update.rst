@@ -33,7 +33,8 @@ One of their people was so uncomfortable that they balked at the very idea of a 
 
 
 
-:strong:`Vulnerability Lists` 
+Vulnerability Lists
+--------------------
 
 
 
@@ -43,35 +44,26 @@ I make regular use of the `OWASP <http://www.owasp.org/>`_  top 10 vulnerabiliti
 
 Today I learned about the SANS Institute's `top 25 coding errors <http://www.sans.org/top25errors/>`_ .  They provide three categories of errors.
 
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
+-   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_
+
+-   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_
+
+-   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
 
 And, there's the `19 Deadly Sins of Software Security <http://blogs.msdn.com/michael_howard/archive/2005/07/11/437875.aspx>`_  list.  [Thanks!]
 
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
-
 This is very, very handy stuff.  There's nothing better than a concrete checklist of errors to structure architecture, design, and coding.
 
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
+What We Don't Know
+-------------------
 
-:strong:`What We Don't Know` 
-
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
-
-Yes, there are unknown, unlisted, yet-unexploited vulnerabilities.  Until those are discovered, we really :strong:`do`  know what to do.
-
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
+Yes, there are unknown, unlisted, yet-unexploited vulnerabilities.  Until those are discovered, we really **do**  know what to do.
 
 1.  Don't waste a lot of time on a complex risk/cost analysis.  These are complex -- often subjective -- and very expensive.  A short list of exposure and cost is all you need.  And often, the short list includes something like "`HIPAA PHI <http://www.noao.edu/cas/hr/faq/faq_hipaa.html#six>`_ " and that's all you need to know.
 
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
-
 2.  Use a straight-forward checklist of vulnerabilities built from these lists.  Numerous items appear on all three lists, that's the bare minimum of security considerations.  The union of all three lists isn't that big or complex.  Your framework or language may not even have some of these vulnerabilities.
 
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
-
 It's probably cheaper to just plug these known holes than it is to decide which -- if any -- holes have "enough" expected value of a loss.
-
- -   `Category: Insecure Interaction Between Components (9 errors) <http://www.sans.org/top25errors/#cat1>`_  -   `Category: Risky Resource Management (9 errors) <http://www.sans.org/top25errors/#cat2>`_  -   `Category: Porous Defenses (7 errors) <http://www.sans.org/top25errors/#cat3>`_
 
 
 

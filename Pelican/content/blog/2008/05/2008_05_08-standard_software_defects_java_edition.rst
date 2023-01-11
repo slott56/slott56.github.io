@@ -13,17 +13,15 @@ Standard Software Defects - Java Edition
 
 
 
-:strong:`NUT`.  No Unit Test Cases.  Need I say more?  If there are not unit tests, this isn't real programming. 
+**NUT**.  No Unit Test Cases.  Need I say more?  If there are not unit tests, this isn't real programming. 
 
 
 
-:strong:`MCF`  and :strong:`NCF`.  Minimal/No Use of Collections Framework.  The :strong:`MCF`  defect occurs when someone uses only the Array or Vector classes.  The :strong:`NCF`  defect occurs when someone uses only primitive arrays, often with fixed sizes.
+**MCF**  and **NCF**.  Minimal/No Use of Collections Framework.  The **MCF**  defect occurs when someone uses only the Array or Vector classes.  The **NCF**  defect occurs when someone uses only primitive arrays, often with fixed sizes.
 
 
 
-:strong:`MCF`  defects also occur when someone creates a linked list, but insists on traversing it with the horrifying:
-
-..  code:
+**NCF** defects also occur when someone creates a linked list, but insists on traversing it with the horrifying:
 
 ::
 
@@ -39,7 +37,7 @@ I find the above deeply disturbing because of the intentionally incomplete under
 
 
 
-:strong:`Deprecated Feature`.  This is a big, big warning.  Anyone who insists on using deprecated features needs to find a new job in which learning is not valued.  Deprecated features must be removed from application programs.  There's no room for the moronic "it isn't actually broken yet."
+**Deprecated Feature**.  This is a big, big warning.  Anyone who insists on using deprecated features needs to find a new job in which learning is not valued.  Deprecated features must be removed from application programs.  There's no room for the moronic "it isn't actually broken yet."
 
 
 
@@ -55,11 +53,11 @@ This seems simple enough to me: Enumeration is not something you should use.  Ye
 
 
 
-:strong:`EIM`  - :strong:`BOD`.  :strong:`EIM`  is the Everything In Main defect.  Generally, this is accompanied by the :strong:`BOD` (Bad Object Design) defect.  These are closely related, and both stem from a failure to grasp OO design, and a failure to allocate responsibility through the class structure.  Instead of doing some kind of class responsibility assignments, a massive method was written to do all the work.  Often this method is public static void main( string[] args ).
+**EIM**  - **BOD**.  **EIM**  is the Everything In Main defect.  Generally, this is accompanied by the **BOD** (Bad Object Design) defect.  These are closely related, and both stem from a failure to grasp OO design, and a failure to allocate responsibility through the class structure.  Instead of doing some kind of class responsibility assignments, a massive method was written to do all the work.  Often this method is public static void main( string[] args ).
 
 
 
-The Everything In Main defect occurs depressingly often.  There are several good reasons why :strong:`EIM`  programs are defective.  :emphasis:`Adaptability and Reusability`: the public main method is the operating system's interface to our application, and is quite hard to repackage and reuse.  :emphasis:`Testability`.  It's also very difficult to construct a meaningful unit test for an :strong:`EIM`  program.  :emphasis:`Maintainability`.  Making simple, controlled changes can be hard:  an :strong:`EIM`  program is often a house of cards.  Plus, :emphasis:`auditability`  and :emphasis:`understandability`  suffer.
+The Everything In Main defect occurs depressingly often.  There are several good reasons why **EIM**  programs are defective.  *Adaptability and Reusability*: the public main method is the operating system's interface to our application, and is quite hard to repackage and reuse.  *Testability*.  It's also very difficult to construct a meaningful unit test for an **EIM**  program.  *Maintainability*.  Making simple, controlled changes can be hard:  an **EIM**  program is often a house of cards.  Plus, *auditability*  and *understandability*  suffer.
 
 
 
@@ -79,27 +77,28 @@ Remediation
 
 
 
-Remediation of these standard defects is hard.   If you have the :strong:`NUT`  case, you have to write test cases.  Since you're writing them after the fact, they'll be incomplete.  Warning: Hard Work Required.
+Remediation of these standard defects is hard.   If you have the **NUT**  case, you have to write test cases.  Since you're writing them after the fact, they'll be incomplete.  Warning: Hard Work Required.
 
 
 
-If you have :strong:`MCF`  programs you can sometimes rewrite them incrementally to replace dumb old Arrays and Vectors with more efficient Linked Lists, Sets and Maps.  Sometimes.  
+If you have **MCF**  programs you can sometimes rewrite them incrementally to replace dumb old Arrays and Vectors with more efficient Linked Lists, Sets and Maps.  Sometimes.  
 
 
 
-If you have :strong:`NCF`  programs, you often have to throw them away and begin again from the beginning to write something that leverages the collection framework.  Further, you have a large education problem to solve.  Warning: Coaching and Training Required.
+If you have **NCF**  programs, you often have to throw them away and begin again from the beginning to write something that leverages the collection framework.  Further, you have a large education problem to solve.  Warning: Coaching and Training Required.
 
 
 
-When you have :strong:`BOD`  programs, you have an even larger object-design education problem.  Folks who come to OO programming from non-OO environments (VB, particularly) are often baffled by the basic concept of responsibility allocation and emergent behavior from object interaction.  
+When you have **BOD**  programs, you have an even larger object-design education problem.  Folks who come to OO programming from non-OO environments (VB, particularly) are often baffled by the basic concept of responsibility allocation and emergent behavior from object interaction.  
 
 
 
-It turns out that :strong:`EIM`  programs are often a good way to learn better object design.
+It turns out that **EIM**  programs are often a good way to learn better object design.
 
 
 
-:strong:`Remediating EIM`
+Remediating EIM
+---------------
 
 
 
@@ -115,15 +114,16 @@ Every "step" in a program can be defined as some kind of Task. Each Task has som
 
 
 
-EIM programs have to be recast using the :strong:`Command`  design pattern.  See (`Command Design Pattern <http://exciton.cs.rice.edu/javaresources/DesignPatterns/command.htm>`_  for details.)  You can define a simple abstract superclass for all of the various kinds of Tasks.  You can also define a simple Macro Task that contains a List of subtasks.
+EIM programs have to be recast using the **Command**  design pattern.  See (`Command Design Pattern <http://exciton.cs.rice.edu/javaresources/DesignPatterns/command.htm>`_  for details.)  You can define a simple abstract superclass for all of the various kinds of Tasks.  You can also define a simple Macro Task that contains a List of subtasks.
 
 
 
-Do not go insane and define :strong:`Commands`  to reflect every shell-script construct (loop, conditions, switches, etc.)  Java already has all the looping and condition testing statements you'll ever need.  Feel free to invent Commands that include sensible, easy-to-summarize ordinary Java programming.
+Do not go insane and define **Commands**  to reflect every shell-script construct (loop, conditions, switches, etc.)  Java already has all the looping and condition testing statements you'll ever need.  Feel free to invent Commands that include sensible, easy-to-summarize ordinary Java programming.
 
 
 
-:strong:`Atomicity`
+Atomicity
+---------
 
 
 
@@ -147,7 +147,8 @@ Each concrete Task has an execute method which is pulled directly from the origi
 
 
 
-:strong:`Replacing Main`
+Replacing Main
+--------------
 
 
 
@@ -159,7 +160,8 @@ Now the overall main method is a simple constructor for a Macro Task and an exec
 
 
 
-:strong:`State Change and Shared State`
+State Change and Shared State
+------------------------------
 
 
 
@@ -167,7 +169,7 @@ As our sequence of tasks execute, the output from one task is input to the next.
 
 
 
-Failure to identify the objects which undergo state changes is the leading cause of :strong:`EIM`.  It's also one of the root causes of :strong:`BOD`.
+Failure to identify the objects which undergo state changes is the leading cause of **EIM**.  It's also one of the root causes of **BOD**.
 
 
 
@@ -175,7 +177,8 @@ Often, this shared state must be persisted in some form.  (Other times, it is a 
 
 
 
-:strong:`Configuration and Global Properties`
+Configuration and Global Properties
+-----------------------------------
 
 
 
@@ -196,8 +199,6 @@ Example
 
 
 Your goal is to get to something like the following.
-
-..  code:
 
 ::
 
@@ -225,11 +226,11 @@ Note that we're creating MainTaskV3.  When we move to version 4, we can add the 
 
 
 
-:strong:`Mutability Analysis`
+Mutability Analysis
+--------------------
 
 
-
-What if we want to add a task?  In an :strong:`EIM`  program, this is hard -- sometimes impossible.  In a Task-based program, we're adding a Task definition, and adding an initialization into some Macro Task.
+What if we want to add a task?  In an **EIM**  program, this is hard -- sometimes impossible.  In a Task-based program, we're adding a Task definition, and adding an initialization into some Macro Task.
 
 
 
@@ -249,7 +250,8 @@ What if we want to dramatically restructure two formerly distinct programs and c
 
 
 
-:strong:`Solutions`
+Solutions
+---------
 
 
 

@@ -257,7 +257,6 @@ queries, making the views and templates much simpler.</p>
 <p>Here's something that looks like it
 might be a reasonable model.  This has only a single access dimension,
 Schedule.</p>
-<!-- code: -->
 <pre class="literal-block">
 class CurrentCamp( models.Manager ):
     &quot;&quot;&quot;Manager for currently scheduled camps only.&quot;&quot;&quot;
@@ -371,7 +370,6 @@ change access dimensions without breaking an application.</p>
 definitions.  Note that we use a <tt class="docutils literal">/camp/byDate/11
 URL to use the schedule access dimension.&nbsp; We can then add <span class="pre">``/camp/byAgeGroup/</span></tt>
 to implement another access dimension.</p>
-<!-- code: -->
 <pre class="literal-block">
 from django.conf.urls.defaults import *
 
@@ -394,7 +392,6 @@ that provides the common information used by all Core Concept views.  The
 <tt class="docutils literal">campByDate</tt> and <tt class="docutils literal">camp</tt> views
 expand on this view with either a list of Camps, based on one of the access
 dimensions, or a specific Camp.</p>
-<!-- code: -->
 <pre class="literal-block">
 def indexView( request, stmt_page, title=None ):
     &quot;&quot;&quot; Get Statements, Images and Profiles to fill this page.
@@ -454,7 +451,10 @@ that we are unlikely to have a single access dimension for a
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

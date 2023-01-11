@@ -187,7 +187,6 @@ Dimensional Map, because that's a better clue as to how it
 works.</p>
 <p>Let's look at the data we have
 in the ASPN example:</p>
-<!-- code: -->
 <pre class="literal-block">
 records = [(&quot;branch1&quot;,  &quot;sales1&quot;, 100),
            (&quot;branch1&quot;,  &quot;sales1&quot;, 50),
@@ -206,7 +205,6 @@ work. have totals in the header as well as the footer.  I'll leave that as an
 exercise.</p>
 <p>It works like
 this:</p>
-<!-- code: -->
 <pre class="literal-block">
 branchMap= {}
 for branch, person, dollars in records:
@@ -273,7 +271,6 @@ people.  We'll need to create additional collections to hold the data.  We'll do
 this by cloning the object definition.  There's a better way to do this by
 separating the metadata from the actual detailed numeric data, but that is a
 more complex solution, not a simple recipe.</p>
-<!-- code: -->
 <pre class="literal-block">
 import copy
 
@@ -326,7 +323,6 @@ pleasantly simple.  We define the nested structure of our Dimensions and the
 Fact which they contain.  This same recursive structure can then be used to
 break up each record into a key and the data associated with that
 key.</p>
-<!-- code: -->
 <pre class="literal-block">
 analysis= Dimension( &quot;branch&quot;, Dimension( &quot;person&quot;, Fact( &quot;dollars&quot; ) ) )
 
@@ -336,7 +332,6 @@ for row in records:
 <p>Reporting, similarly, relies on the
 recursive structure of Dimension objects nested within Dimension
 objects.</p>
-<!-- code: -->
 <pre class="literal-block">
 analysis.report()
 print analysis.total
@@ -378,7 +373,10 @@ solution.</p>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

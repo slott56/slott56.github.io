@@ -124,34 +124,44 @@ S.Lott -- Software Architect            </a>
                 <p>I have to say this first -- just because ERwin calls it &quot;physical&quot; that doesn't mean anything.  ERwin uses &quot;physical&quot; model to mean &quot;product-specific logical&quot; model.  They use &quot;logical&quot; to mean &quot;product-independent logical&quot; model.</p>
 <p>ERwin doesn't do <em>physical</em>  modeling.  Not even a little bit.  The physical layer of a relational database occurs down at the file system level.  Codd's &quot;Rule 8&quot; (Physical Data Independence) says that the things we're designing in ERwin (and similar tools) are the things our application depends on; the things we're <strong>not</strong>  designing, therefore, must be physical.</p>
 <p>The physical implementations underlying Oracle, Postgres, DB2, MySQL, SQL/Server (and even SQLite) are all different.  These physical models have <em>nothing</em>  to do with the SQL standard; that's the central tenet of Codd's Rule 8.  These implementations are so different as to defy a standardized modeling tool.  All you can ever use for physical modeling is a generic UML tool.</p>
-<p><strong>Compression</strong></p>
+<div class="section" id="compression">
+<h2>Compression</h2>
 <p>I was asked about the value of compression.  Years ago, we depended on the clever compression schemes of <a class="reference external" href="http://www.oracle.com/technology/products/rdb/index.html">Oracle RDB</a> .  Oracle 10g has table compression.  DB2 has tablespace compression.</p>
 <p>This is a physical design technique.  It's invisible to the SQL application programmer.  It can speed up certain types of queries.</p>
 <p>The final trade-offs can only be determined empirically.  You have to process real data through a reasonably complete application to get a benchmark.  Then you rework your database to compress things and see if it runs faster where you need it to run faster, and hasn't gotten any worse elsewhere.</p>
 <p>I was shocked that someone would ask about the value of compression.  Anything that involves a table scan will be faster with compressed data.  Fewer physical reads means faster.  It's that simple.  (Yes, there's a CPU cost, the impact depends on the actual mix of updates, inserts and selects.)</p>
 <p>I tried to probe the DBA to see precisely what the confusion was, but didn't get much of an answer.  As near as I can tell, there are some restrictions imposed by Oracle on how one can alter a compressed table; this had somehow confounded things.  As a practical matter, the restrictions imposed by the RDBMS don't matter much.  Many database structural changes are the kind of thing that can't be done with ALTER; you have to clone the old table, drop and rebuild it, and then reload the new table(s) from the clone.</p>
 <p>Administration aside, compression is simple.  For data warehouses, it helps a lot.  You have to measure the impact across all use cases.</p>
-<p><strong>Partitioning</strong></p>
+</div>
+<div class="section" id="partitioning">
+<h2>Partitioning</h2>
 <p>I was asked about partitioning.   Oracle has some performance tuning guidelines which were bothersome or confusing or both.</p>
 <p>Note that there are several dimensions to partitioning.  One can do &quot;vertical&quot; partitioning where a table is split into two portions that have a mandatory 1:1 relationship.  This can be done to separate data elements, potentially improving concurrency.  This is a logical design technique, since an application programmer will have to know which partition has the appropriate columns.</p>
 <p>A &quot;horizontal&quot; partition splits a table into sections that can be allocated to multiple physical tablespaces.  This is a physical design technique, since it's invisible to the SQL programmer.  Partitions can be defined around some key or can be more-or-less arbitrary.</p>
 <p>The idea is to spread the I/O load around among multiple devices, improving concurrency.  This isn't like compression, where we do fewer reads.  However, doing the reads concurrently can improve the elapsed time to query data.</p>
 <p>Note that storage arrays often do this for us, seamlessly, silently and outside the database.  If we define the right kind of striped logical volume, then the file system itself will spread the file blocks across multiple physical locations.  The kind of sequential read that implements a table scan will work with multiple, concurrent physical reads.</p>
 <p>If the file system can't do this, we can have the RDBMS do it.  Having it done in both tiers of the architecture is actually bad because one tier can undo the other tier's performance optimizations.</p>
-<p><strong>Tuning</strong></p>
+</div>
+<div class="section" id="tuning">
+<h2>Tuning</h2>
 <p>Oracle says that -- if you can -- keep your partition sizes approximately equal.  This is silly advice, since it can be very hard to implement.  Your data has the distribution it has.  Further, the equal-sized partition rule is only to get &quot;optimal&quot; performance.  If all partitions are about the same size, they can all be scanned in about the same amount of time.</p>
 <p>If one partition is bigger, it will be slower.  This may be sub-optimal, but it still beats the performance of an unpartitioned table.</p>
 <p>This &quot;balancing&quot; issue becomes a kind of fetish for DBA's.  They start to do sophisticated statistical summaries and analysis of the various keys trying to locate a way to even out the partition sizes consistent with the application design and architecture.</p>
 <p>This can become a burdensome load of hooey.  Use partitions that make sense.  For those rare, ultra-high-performance applications, use a hash partition and be happy knowing it's faster than unpartitioned data.  Don't fetishize about keeping the partitions equal.</p>
-<p><strong>VSAM Files</strong></p>
+</div>
+<div class="section" id="vsam-files">
+<h2>VSAM Files</h2>
 <p>Yes, <a class="reference external" href="http://publib.boulder.ibm.com/infocenter/pdthelp/v1r1/index.jsp?topic=/com.ibm.entcobol4.doc/cpvsm04.htm">VSAM</a>  flat-files are still in use.  All VSAM I/O (in spite of the V meaning &quot;Virtual&quot;) is essentially physical I/O.  VSAM files can be read, written, and searched using ultra-complex algorithms.  Algorithms that aren't remotely compatible with SQL's simplified view of the world.  I know, I wrote some.</p>
 <p>Recently, we've spent a lot of time talking about replacing some VSAM files with a proper relational database.  The fantasy is that we can neatly excise this physical I/O and replace it with SQL statements, leaving the rest of the program more-or-less intact.  Clearly, they haven't spent enough time trying to reverse engineer COBOL programs.</p>
 <p>COBOL programs that process VSAM files rarely have a structure that involves an algorithm like a simple cursor fetch loop or SQL update statement.  Instead, these programs have obscure structures that depend on numerous details of the file organization.</p>
-<p><strong>Unifying Theme</strong></p>
+</div>
+<div class="section" id="unifying-theme">
+<h2>Unifying Theme</h2>
 <p>Here's the unifying theme: a few programmers have gotten so used to SQL that they think it's low-level I/O.  They've forgotten the underlying physical implementation.</p>
 <p>They've lost sight of the physical reads and how reducing the physical reads makes table scans go faster.</p>
 <p>They've fetishized subtle load-balancing issues, forgetting that any parallel I/O is better than no parallel I/O.</p>
 <p>They think that all programs have elegant SQL-like fetch loops, updates or inserts.  Legacy COBOL programs can be peculiarly obscure.  It is often simpler to dispose of the old VSAM program rather than rewrite it to use SQL.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -171,7 +181,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

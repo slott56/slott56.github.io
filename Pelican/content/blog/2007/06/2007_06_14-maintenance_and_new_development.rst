@@ -37,7 +37,8 @@ An unproductive day is where we find blockages that we didn't anticipate and can
 
 
 
-:strong:`Spectrum.` 
+Spectrum
+---------
 
 
 
@@ -61,7 +62,8 @@ Soul-Crushing Evil.  Boundaries are announced dynamically and change with the po
 
 
 
-:strong:`Consequences` :strong:`.` 
+Consequences
+------------
 
 
 
@@ -81,7 +83,8 @@ If we're in soul-crushing evil, we have to prevent dead-ends from appearing out 
 
 
 
-:strong:`The Value of Maintenance.` 
+The Value of Maintenance
+------------------------
 
 
 
@@ -109,7 +112,8 @@ Clearly, there's a enhance-vs.-replace decision to be made.  Just as clearly, ma
 
 
 
-:strong:`Why Not Replace?` 
+Why Not Replace?
+----------------
 
 
 

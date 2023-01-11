@@ -131,19 +131,25 @@ S.Lott -- Software Architect            </a>
 <p>This is important because the terminology gets borrowed and adulterated sometimes.  When we look at <a class="reference external" href="http://struts.apache.org/">Struts</a> , we see one interpretation of the pattern.  Sun provides a lot of useful detail in their Developing Enterprise Applications with the J2EE Platform book, specifically, the <a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_enterprise_applications_2e/web-tier/web-tier5.html">Web-Tier Application Framework Design</a>  section.  When we look at <a class="reference external" href="http://www.djangoproject.com/">Django</a> , we see another implementation of MVC.</p>
 <p>In the world of fat-client SWING applications, control is a pretty big deal.  In many cases, the GUI is stateful: GUI controls are enabled and disabled to guide the user through a complex set of actions.  Handling input and reflecting this in the state of the controls are important responsibilities of the control elements of the design pattern.</p>
 <p>There are many ways to finely chop the responsibilities, leading to various MVP variations on the basic theme.</p>
-<p><strong>Web Interaction</strong></p>
+<div class="section" id="web-interaction">
+<h2>Web Interaction</h2>
 <p>In the &quot;pure&quot; HTTP world, where the GUI is somewhat simpler, there's less event-by-event processing, just big POST and GET actions.  This is where Struts and Django provide different versions of MVC.  Struts -- consistent with other Java-isms -- rubs your nose in the control element.  I must admit that I find the web.xml specification of interactions to be a largely tedious exercise in repeating myself.</p>
 <p>There's a theoretical use case for maintenance and adaptation where someone rearranges the web transaction by updating the definitions in the web.xml file.  However, I've never actually seen this exercised.  Indeed, I've never seen a design that would tolerate this kind of change.  [And yes, I realize I'm throwing down the gauntlet for a good example of using this &quot;flexibility&quot;.]</p>
 <p>There seem to be two kinds of transactions: a few obvious pages (form for search, list of many objects, form for a single object, confirmation) or a multi-step transaction where each step is a piece of a complex object, and the sequence of operations is essentially hard-wired by a binding between business process and information needs.  Neither seems to benefit very much from the overhead of the web.xml configuration for a struts application.</p>
 <p>Django seems to skin this cat with reasonable elegance.  Learning Django after learning Struts can be confusing at first.  Clearly, the model is the Django DB API.  They call it that -- you can't miss the implementation.  However, it isn't as clear that control is the parsing of the request and the mapping from URL to &quot;view&quot; function.  When you start looking at JSP as the view, it is odd to think of the Django templates as being just another part of the view element.</p>
 <p>Any flexibility required from a multi-step transaction can be put into the URL mapping with relative ease, since that's the entire control element of the pattern.  If you want a Struts-style parameter for the &quot;do-this-next&quot; URL, you can easily provide this in the URL mapping, passing it as an argument to the view function.  With a little care you can make all of the view functions independent of any specific URL.</p>
 <p>It also means that presentation changes are often split across two parts of the view layer.  This is more manageable than it appears, since the template language of Django is (intentionally) limited to simple iteration and decision.  The Python objects used by the template have to be pretty simple; this helps steer the allocation of responsibility between these sub-layers.</p>
-<p><strong>The AJAX Factor</strong></p>
+</div>
+<div class="section" id="the-ajax-factor">
+<h2>The AJAX Factor</h2>
 <p>When you throw AJAX into this mix, the boundaries seem blurry.  Since AJAX happens in the browser, it's part of the view implementation.  But it's also another MVC.  The Model is some XML document and it's Javascript objects, the View is the browser's world, and the Control is all that Javascript making things happen.</p>
 <p>The net is that you have this two-part architecture with the HTTP MVC and the AJAX MVC.  You can, in principle, have a single conceptual model with Java, Javascript, XML and ORM implementations.  It sounds to be an icky level of complexity; if we use tools to create the mappings (e.g. JAXB) we can probably keep it all straight.  Or, if use just one compact, expressive language (Python/<a class="reference external" href="http://www.json.org/">JSON</a> ) we could manage this nicely.</p>
 <p>The essential feature is that Model elements of an AJAX MVC are accessed via a formal, secure public web-service API.  See <a class="reference external" href="http://www.theserverside.com/news/thread.tss?thread_id=42722">JSON for Ajax Web Services</a> .  [As an aside, this API seems to be the weakest part of AJAX implementations.  Some developers don't design the AJAX-related services with the kind of respect that ordinary web services are given.]</p>
-<p><strong>Care and Feeding</strong></p>
+</div>
+<div class="section" id="care-and-feeding">
+<h2>Care and Feeding</h2>
 <p>While Ctrl-Shift-B's posting dwells on Smalltalk, it's still useful.  It shows how an architecture can be documented.  It shows a clear, thoughtful presentation on how the architecture implements common design patterns.  It has some compare-and-contrast elements that can help developers (and maintainers) understand the general design principles and the strategy for allocating responsibility.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -163,7 +169,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

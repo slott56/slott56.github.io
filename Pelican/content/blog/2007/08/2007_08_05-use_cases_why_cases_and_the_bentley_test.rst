@@ -37,7 +37,8 @@ Exacerbating this hierarchy problem is more fundamental confusion on techniques 
 
 
 
-:strong:`Point of View`
+Point of View
+-------------
 
 
 
@@ -53,7 +54,8 @@ The customer's project manager made the claim that he thought that use cases wer
 
 
 
-:strong:`"Technical" Requirements`
+"Technical" Requirements
+------------------------
 
 
 
@@ -77,7 +79,8 @@ At every level of the organization, you'll hear the following: "I'm not technica
 
 
 
-:strong:`The Why Cases.`
+The Why Cases
+-------------
 
 
 
@@ -90,16 +93,17 @@ I find that we have the following kinds of requirements.  These aren't presented
 
 
 
--   :strong:`What the user sees.`   These are the use cases.  The wisdom here is that we can use the definition ("A user interacts with a system to create business value") to locate users, interactions, the system and value.  Absent these elements, we don't have a use case, and can set it aside as a solution design.  One of the acid-tests is to see if the use case addresses the "for whom?" question.  If this isn't someone's job, it isn't a use case.
+-   **What the user sees.**   These are the use cases.  The wisdom here is that we can use the definition ("A user interacts with a system to create business value") to locate users, interactions, the system and value.  Absent these elements, we don't have a use case, and can set it aside as a solution design.  One of the acid-tests is to see if the use case addresses the "for whom?" question.  If this isn't someone's job, it isn't a use case.
 
--   :strong:`Why the user's even doing this.`   These are the :strong:`Why Cases`\ ™ that bracket the Use Cases.  We can ask "why?" and locate the overall business requirements that create the use cases in the first place.  Generally, the use cases are a solution to a business problem; in some cases, they're a bad solution.  Asking "why?" periodically helps to focus people on the rational behind the use cases.  It helps us recognize that we're only building software to make someone happier and more productive. 
+-   **Why the user's even doing this.**   These are the **Why Cases**\ ™ that bracket the Use Cases.  We can ask "why?" and locate the overall business requirements that create the use cases in the first place.  Generally, the use cases are a solution to a business problem; in some cases, they're a bad solution.  Asking "why?" periodically helps to focus people on the rational behind the use cases.  It helps us recognize that we're only building software to make someone happier and more productive. 
 
--   :strong:`How we'll support the user.`   This is a high-level design for the solution.  We can't call it functional requirements because few people know what the non-functional requirements are.  We can't call them "technical requirements" because this also leads to more confusion than it prevents.  We need to call it design.
-
-
+-   **How we'll support the user.**   This is a high-level design for the solution.  We can't call it functional requirements because few people know what the non-functional requirements are.  We can't call them "technical requirements" because this also leads to more confusion than it prevents.  We need to call it design.
 
 
-:strong:`Passive Voice Reporting.`
+
+
+Passive Voice Reporting
+-----------------------
 
 
 
@@ -109,17 +113,18 @@ One of the best indicators of confusion seems to be the passive voice constructs
 
 
 
-:strong:`For whom?` This question will let us locate the proper use case.  Generating an exception report doesn't involve any interaction.  Someone looks at the exceptions, makes a decision, and takes action.  Who does this?  What are they supposed to do?
+**For whom?** This question will let us locate the proper use case.  Generating an exception report doesn't involve any interaction.  Someone looks at the exceptions, makes a decision, and takes action.  Who does this?  What are they supposed to do?
 
 
 
 
-:strong:`Why?`   This question will let us locate the driving business requirement.  For example, we may have a contractual obligation for a particular service level.  Someone must investigate each exception, determine a root cause, and take action to correct problems that are internal and finish processing the exceptional transaction.
+**Why?**   This question will let us locate the driving business requirement.  For example, we may have a contractual obligation for a particular service level.  Someone must investigate each exception, determine a root cause, and take action to correct problems that are internal and finish processing the exceptional transaction.
 
 
 
 
-:strong:`Customer Guidance.`
+Customer Guidance
+-----------------
 
 
 
@@ -144,7 +149,8 @@ Hopefully, we can achieve a fundamental rethinking of the specifications to impr
 
 
 
-:strong:`The Architect Gets a Bentley.`
+The Architect Gets a Bentley
+----------------------------
 
 
 
@@ -154,7 +160,7 @@ Defining who does the job gets us away from writing software that seems necessar
 
 
 
-Including the business requirements can simplify or focus the use cases.  If we can't articulate the business need, then we have the :strong:`I Get A Bentley`\ ™ requirements.
+Including the business requirements can simplify or focus the use cases.  If we can't articulate the business need, then we have the **I Get A Bentley**\ ™ requirements.
 
 
 
@@ -174,12 +180,13 @@ If 24x7 availability is a requirement, then "Architect gets a Bentley" is also a
 
 
 
-:strong:`The Bentley Test.`
+The Bentley Test
+-----------------
 
 
 
 
-If the answer to "why?" is isomorphic to "because I'm the customer," then you've located a place to apply :strong:`The Bentley Test`\ ™.  If you get feature [:strong:`X` ] because you're the customer, then I get a Bentley because I'm the architect.  It sounds fair to me.  Prove that it isn't.
+If the answer to "why?" is isomorphic to "because I'm the customer," then you've located a place to apply **The Bentley Test**\ ™.  If you get feature [**X** ] because you're the customer, then I get a Bentley because I'm the architect.  It sounds fair to me.  Prove that it isn't.
 
 
 
@@ -190,7 +197,7 @@ Phrases like "you must have known we wanted this when you wrote the proposal" or
 
 
 
--   "Don't bother trying to save us money with Linux, we're an all-[:strong:`Y`] shop."  
+-   "Don't bother trying to save us money with Linux, we're an all-[**Y**] shop."  
 
 -   "We absolutely have to have all of our purchased applications share a single common database -- without any of that schema mumbo-jumbo."  
 

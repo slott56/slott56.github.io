@@ -21,7 +21,8 @@ Before talking about databases, we need to look closely at our objective: knowle
 
 
 
-:strong:`Modeling`
+Modeling
+--------
 
 
 
@@ -41,7 +42,8 @@ Clearly, when we're doing software development we need to get to an object-orien
 
 
 
-:strong:`The RDBMS Bias`
+The RDBMS Bias
+--------------
 
 
 
@@ -49,15 +51,16 @@ Many well-meaning folks get all tangled up with the data-only model.  For some r
 
 
 
-Data :emphasis:`is`  more important than process; that much is clear.  We preserve data when converting among various kinds of application software.  We change processes frequently and freely.  Data, however, we preserve as the foundation for new processes.
+Data *is*  more important than process; that much is clear.  We preserve data when converting among various kinds of application software.  We change processes frequently and freely.  Data, however, we preserve as the foundation for new processes.
 
 
 
-However, we have to avoid conflating data with database.  And we further have to avoid conflating database with a particular vendor's implementation.  Oracle is not the same as database; database is not the same as data.  But you hear people talk about Oracle as if it :strong:`is`  the enterprise information.
+However, we have to avoid conflating data with database.  And we further have to avoid conflating database with a particular vendor's implementation.  Oracle is not the same as database; database is not the same as data.  But you hear people talk about Oracle as if it **is**  the enterprise information.
 
 
 
-:strong:`What Goes In The Database?`
+What Goes In The Database?
+--------------------------
 
 
 
@@ -81,7 +84,8 @@ An approach where everything is a blob, and the relational database is just stor
 
 
 
-:strong:`The ORM-Friendly Model`
+The ORM-Friendly Model
+-----------------------
 
 
 
@@ -93,7 +97,8 @@ We can then develop a relational database design which carries the objects as "c
 
 
 
-:strong:`What's in an Object-Relational Model?`
+What's in an Object-Relational Model?
+-------------------------------------
 
 
 
@@ -125,7 +130,8 @@ For performance reasons, you might want to add indexes on non-key fields.  More 
 
 
 
-:strong:`What's Missing?`
+What's Missing?
+----------------
 
 
 
@@ -133,23 +139,24 @@ There are a number of things which are explicitly not present.
 
 
 
-1.  :strong:`Triggers`.  While some argue for triggers, I haven't had a good experience with a mature application.  Maintenance of triggers seems to get exponentially more expensive.  Since we have object class definitions, it isn't clear why we need triggers.
+1.  **Triggers**.  While some argue for triggers, I haven't had a good experience with a mature application.  Maintenance of triggers seems to get exponentially more expensive.  Since we have object class definitions, it isn't clear why we need triggers.
 
 
 
-2.  :strong:`Stored Procedures`.  Please don't put code in the DB.  It is a configuration management nightmare.  Further, I can't figure out what the allure is. ` PL/SQL is slow <{filename}/blog/2007/05/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.rst>`_ .  While some people try to tell me that PL/SQL improves performance, I can't find much tangible evidence; no customer has benchmarks, and I can't see the basis for the claim.
+2.  **Stored Procedures**.  Please don't put code in the DB.  It is a configuration management nightmare.  Further, I can't figure out what the allure is. ` PL/SQL is slow <{filename}/blog/2007/05/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.rst>`_ .  While some people try to tell me that PL/SQL improves performance, I can't find much tangible evidence; no customer has benchmarks, and I can't see the basis for the claim.
 
 
 
-3.  :strong:`Cascade Delete Rules`.  These seem cool, but they aren't exercised much, and the few places where people can delete things, the application handles it nicely.  "What about transient data?"  Transient data doesn't belong in a database: use files or queues.
+3.  **Cascade Delete Rules**.  These seem cool, but they aren't exercised much, and the few places where people can delete things, the application handles it nicely.  "What about transient data?"  Transient data doesn't belong in a database: use files or queues.
 
 
 
-4.  :strong:`Other Random Constraints`.  The SQL Check Constraint is one of those things where there's a blurry distinction between "essential" features of the entity and special cases, exceptions and situational policies.  The check constraints are rarely universally true, so why try to embed them in the database?  There are few enduring, essential, universal constraints, outside mandatory foreign key and not-null relationships.  Just about everything else will evolve with the use cases.
+4.  **Other Random Constraints**.  The SQL Check Constraint is one of those things where there's a blurry distinction between "essential" features of the entity and special cases, exceptions and situational policies.  The check constraints are rarely universally true, so why try to embed them in the database?  There are few enduring, essential, universal constraints, outside mandatory foreign key and not-null relationships.  Just about everything else will evolve with the use cases.
 
 
 
-:strong:`What About ...?`
+What About ...?
+----------------
 
 
 
@@ -169,15 +176,16 @@ What about "CRUD-Level Stored Procedures?"  Create Retrieve Update Delete (CRUD)
 
 
 
-:strong:`It's Already Here™ and We're Holding A Hammer™ Arguments`
+It's Already Here™ and We're Holding A Hammer™ Arguments
+---------------------------------------------------------
 
 
 
-The :strong:`It's Already Here`\ ™ argument goes like this.  Since the RDBMS is already here, we may as well use it.  We paid for all these features.
+The **It's Already Here**\ ™ argument goes like this.  Since the RDBMS is already here, we may as well use it.  We paid for all these features.
 
 
 
-The :strong:`We're Holding A Hammer`\ ™ argument is the traditional view that holding a hammer means we treat each problem like a nail.  
+The **We're Holding A Hammer**\ ™ argument is the traditional view that holding a hammer means we treat each problem like a nail.  
 
 
 
@@ -185,7 +193,8 @@ Neither are very compelling.  Just because it's here, doesn't mean it solves our
 
 
 
-:strong:`My Peers are Jerks`
+My Peers are Jerks
+-------------------
 
 
 
@@ -205,7 +214,8 @@ This one took the cake.  Here's the email subject line: "What belong in data mod
 
 
 
-:strong:`Babies and Bathwater`
+Babies and Bathwater
+---------------------
 
 
 
@@ -229,7 +239,8 @@ So, now our DBA is feeling half-way down the slippery slope of damnation.  Clear
 
 
 
-:strong:`I Was Told To Do The Wrong Thing.`
+I Was Told To Do The Wrong Thing
+--------------------------------
 
 
 

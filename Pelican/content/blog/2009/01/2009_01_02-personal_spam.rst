@@ -25,7 +25,8 @@ Mobile Me eliminated my email merging.  Now, everything is in my desktop Address
 
 
 
-:strong:`Spamming via VCF` 
+Spamming via VCF
+----------------
 
 
 
@@ -49,14 +50,13 @@ Instead, I rebuilt my old spamulator to simply email to a list of folks identifi
 
 
 
-:strong:`vCard Class Definitions` 
+vCard Class Definitions
+------------------------
 
 
 
 First, we have the core definitions of a vCard.  For information see `RFC 2425 <http://tools.ietf.org/html/rfc2425
 http://tools.ietf.org/html/rfc2425>`_  and `RFC 2426 <http://tools.ietf.org/html/rfc2426>`_ .
-
-..  code:
 
 ::
 
@@ -133,7 +133,8 @@ The essential data structure is the VCard, which has any number of named propert
 
 
 
-:strong:`Parsing a VCF File` 
+Parsing a VCF File
+-------------------
 
 
 
@@ -142,8 +143,6 @@ The trickiest part about parsing VCF is the escape rules.  The :, ; and , punctu
 
 
 Here's the parser, using some cool regex things I found.
-
-..  code:
 
 ::
 
@@ -198,8 +197,6 @@ Here's the parser, using some cool regex things I found.
 
 There are three cool regexes that look for unescaped :, = or ;.  I took a while to track these down in the documentation, but once I found them, my life was much simpler.  Here's the doctest string.
 
-..  code:
-
 ::
 
     >>> import re
@@ -225,13 +222,12 @@ This also uses a series of generators to make it easy to unfold long lines and a
 
 
 
-:strong:`SMTP Interface` 
+SMTP Interface
+--------------
 
 
 
 The final step is actually using SMTP to send the email.  Note that we need to put the destination name into the message itself.  While not hard, it does mean that the message isn't a static object: it has to be tweaked for each outgoing message.  I like to define a Message class to handle this business for me.
-
-..  code:
 
 ::
 
@@ -270,8 +266,6 @@ The final step is actually using SMTP to send the email.  Note that we need to p
 
 
 This is pleasantly short and to the point.  Once the command-line parameters have been parsed, we're down to  parsing the options and then doing the following:
-
-..  code:
 
 ::
 

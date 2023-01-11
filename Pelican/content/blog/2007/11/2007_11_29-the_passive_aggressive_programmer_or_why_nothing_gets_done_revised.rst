@@ -73,7 +73,7 @@ And yes, there was a "specific" complaint.  It was actually several use cases ro
 
 
 
-:strong:`Doomed To Failure`
+Doomed To Failure
 
 
 
@@ -85,11 +85,12 @@ My question in this case was, "Why won't we apply your kind of good decision-mak
 
 
 
-In short, it was really "this process won't work."  Or perhaps "process, in general, doesn't solve problems, I solve problems."  Since it isn't their process, it's :strong:`Doomed to Failure`\ ™.  This kind of evasion is closely allied with the next, and I lump them both into the category of having a private agenda.
+In short, it was really "this process won't work."  Or perhaps "process, in general, doesn't solve problems, I solve problems."  Since it isn't their process, it's **Doomed to Failure**\ ™.  This kind of evasion is closely allied with the next, and I lump them both into the category of having a private agenda.
 
 
 
-:strong:`The Real Answer`
+The Real Answer
+---------------
 
 
 
@@ -117,7 +118,8 @@ While there's a real answer, and it has some merit, the PAP seems to have two co
 
 
 
-:strong:`The Wall Of Fog`
+The Wall Of Fog
+---------------
 
 
 
@@ -185,7 +187,8 @@ But, since we can't identify all the requirements, we can't talk about alternati
 
 
 
-:strong:`The Political Shield`
+The Political Shield
+--------------------
 
 
 
@@ -225,11 +228,12 @@ Me:  "How about we extract some important lessons from Y, and apply them to impr
 
 
 
-PAP:  "It would still be unacceptable, since Y is tainted by ... "  The reasons amount to nothing more than "It's not X", or more accurately, "It's not my original idea, therefore, it is :strong:`Doomed To Failure`.
+PAP:  "It would still be unacceptable, since Y is tainted by ... "  The reasons amount to nothing more than "It's not X", or more accurately, "It's not my original idea, therefore, it is **Doomed To Failure**.
 
 
 
-:strong:`Unshakable Beliefs`
+Unshakable Beliefs
+------------------
 
 
 
@@ -249,11 +253,12 @@ I'm partial to the "someone else must have had this problem; in all of your comp
 
 
 
-:strong:`Patterns of Non-Performance`
+Patterns of Non-Performance
+---------------------------
 
 
 
-I've seen the :strong:`Secret Plan`  folks.  They don't provide input, and they don't actually help, either.  I've seen the :strong:`Wall of Fog`  folks who seem to flip-flop between the paralysis of analysis and pitching a non-solution because it's the only idea they've got.  I've also seen the :strong:`Political Shield`  folks who have such a profound (and unshakable) trust in organizational politics that rationality can't seem to enter the conversation.
+I've seen the **Secret Plan**  folks.  They don't provide input, and they don't actually help, either.  I've seen the **Wall of Fog**  folks who seem to flip-flop between the paralysis of analysis and pitching a non-solution because it's the only idea they've got.  I've also seen the **Political Shield**  folks who have such a profound (and unshakable) trust in organizational politics that rationality can't seem to enter the conversation.
 
 
 
@@ -261,15 +266,18 @@ What to do?  Listening is important, even if they're not talking.  Secret Plan f
 
 
 
-:strong:`Lesson 1`.  Never go to meetings alone.  Have a quiet colleague, someone who takes notes, and can be confided in.  Often, that's my job.  Recently, I've had to bring people along to do that.
+**Lesson 1**.
+    Never go to meetings alone.  Have a quiet colleague, someone who takes notes, and can be confided in.  Often, that's my job.  Recently, I've had to bring people along to do that.
 
 
 
-:strong:`Lesson 2`.  Cut off the worrying.  Analysis of problems and enumeration of alternatives is fun for a while, but has a diminishing value.  At some point the problem statement is good enough.  Faced with this, you have to design a good solution, since requirements will erupt forever from a professional "yeah-but"-er.
+**Lesson 2**.
+    Cut off the worrying.  Analysis of problems and enumeration of alternatives is fun for a while, but has a diminishing value.  At some point the problem statement is good enough.  Faced with this, you have to design a good solution, since requirements will erupt forever from a professional "yeah-but"-er.
 
 
 
-:strong:`Lesson 3`.  Transcending politics is just hard.  Looking at a "hypothetical" solution that is free from political constraints is often impossible.  The Political Animals seem to be the best at having a Secret Plan, and erecting a Wall of Fog.  I think that the Political Shield is really a way to defend one of the other strategies.
+**Lesson 3**.
+    Transcending politics is just hard.  Looking at a "hypothetical" solution that is free from political constraints is often impossible.  The Political Animals seem to be the best at having a Secret Plan, and erecting a Wall of Fog.  I think that the Political Shield is really a way to defend one of the other strategies.
 
 
 

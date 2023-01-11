@@ -127,26 +127,38 @@ S.Lott -- Software Architect            </a>
 <li><a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_additional_information.html">PL/SQL vs. Java - Additional Information</a></li>
 <li><a class="reference external" href="https://slott56.github.io/2007_05_26-plsql_vs_java_yet_again.html">PL/SQL vs. Java - Yet Again</a></li>
 </ol>
-<p><strong>Sizing.</strong></p>
+<div class="section" id="sizing">
+<h2>Sizing</h2>
 <p>Someone asked how a real-world problem can have so few (only a few thousand) invoices.  The answer is that the customer has a giant table of business records, from which they extract the business records to be processed.  That extraction isn't on the table as part of the overall performance problem.</p>
 <p>It should be.  Indeed, they should have a data warehouse so that they aren't doing extracts of live data from history.  To them, in their real world, that's another problem.</p>
-<p><strong>Native Code.</strong></p>
+</div>
+<div class="section" id="native-code">
+<h2>Native Code</h2>
 <p>One interesting response lifted up Oracle's PL/SQL Native Compilation technique.  I think they're talking about Oracle® Database PL/SQL User's Guide and Reference, chapter 11, <a class="reference external" href="http://download-east.oracle.com/docs/cd/B19306_01/appdev.102/b14261/tuning.htm">Tuning PL/SQL Applications for Performance</a> .</p>
 <p>While an interesting approach, my customers are unlikely to agree to this as a solution to slowness.  They use PL/SQL precisely because it's flexible.  They like it for the same reasons people like Python -- it's (in effect) a scripting language.  The development overhead of native compilation is daunting.</p>
 <p>Java doesn't have the level of complexity (i.e., C compilers, shared libraries, etc.) that this native compilation of PL/SQL has.  That doesn't eliminate the native compilation, it makes it undesirable as a solution.</p>
 <p>However, if performance matters, I suppose this needs to to be put on the table.  It is complex -- far more complex than Java -- but it could be considered as a solution.  To run a comparison will take me some time to configure and install this under Fedora Core 6.  I'm not sure I want to go through the agony, when Java is already a solution in hand.</p>
-<p><strong>In The Real World.</strong></p>
+</div>
+<div class="section" id="in-the-real-world">
+<h2>In The Real World</h2>
 <p>[<em>Digression</em>.  One response included the disturbing magic words &quot;in the real world&quot;.  Often I stop reading there, because it's an attempted trump card.  It is a kind of power play; the claim is that the &quot;real world&quot; situation deserves more credence than other situations.  It subverts a useful comparison of constraints and priorities.  Your &quot;real world&quot; is no more real than my &quot;real world&quot;; you have different priorities and different values.  Let's talk about those in detail rather than summarily dismissing my customer's real world as being less real than your real world.]</p>
 <p>One response noted that time is lost transferring big chunks of data.  That was specifically what I was trying to avoid in my benchmark.   The client code I was basing this on did not involve big chunks of data.  If the queries did involve big chunks of data, the application might work better in PL/SQL.  The issue centered on queries with small chunks of data; this doesn't work better in PL/SQL.</p>
 <p>I didn't make it clear that I'm running a specific benchmark, for which I provided code.  If, in your world, things behave differently, provide the code, post your results.  <strong>Let's see this benchmark</strong>.</p>
-<p><strong>Wrong Algorithm.</strong></p>
+</div>
+<div class="section" id="wrong-algorithm">
+<h2>Wrong Algorithm</h2>
 <p>One response hinted that I was using entirely the wrong algorithm.  That's an interesting notion.  The claim is that 6 SELECT statements would do the same thing as the two-part business rule I fabricated.  I'm dying to see the 6 SELECT statements.  <strong>Let's see this benchmark</strong>.</p>
 <p>What I failed to make clear is that my benchmark is drawn from the situation where the business has a large number of business rules.  Consequently, they a large number of if-statements.  Worse, the if-statements interact with each other, so that you need to (effectively) union all of the rules together and determine the composite predicate for each rule.</p>
-<p>With two rules, it's easy to work out the four conditions that apply.  For <em>n</em>  rules, there are 2:emphasis:<cite>n</cite>  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.</p>
-<p><strong>Additional Processing.</strong></p>
+<p>With two rules, it's easy to work out the four conditions that apply.  For <em>n</em>  rules, there are 2*n*  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.</p>
+</div>
+<div class="section" id="additional-processing">
+<h2>Additional Processing</h2>
 <p>I raised the confusion level by leaving out the updates.  Since I only wanted to illustrate the basic business rules, I took out the update which is an essential operation for each kind of match (and non-match).  This makes the issue more that simple SELECT statements.</p>
-<p><strong>Conclusion.</strong></p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
 <p>Thanks for the thoughtful comments.  Please post your competing benchmarks so I can see what can be improved in my situation.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -166,7 +178,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

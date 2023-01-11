@@ -29,7 +29,8 @@ If the business model has all the value, why protect the software?  They can rev
 
 
 
-:strong:`What do we do?` 
+What do we do?
+---------------
 
 
 

@@ -21,7 +21,8 @@ Here's the complexity.  The testers are pretty focused on manual point-and-click
 
 
 
-:strong:`What's simpler than HttpUnit?` 
+What's simpler than HttpUnit?
+------------------------------
 
 
 
@@ -37,11 +38,12 @@ My next answer was to look at `Twill <http://twill.idyll.org/>`_ .  Articles lik
 
 
 
-It turns out, though, the real problem isn't "complexity" :emphasis:`per se` .  The real problem is that the testers aren't interested in writing sophisticated test scripts.  They know the application, they know what they want to see, and they don't feel that programming is the best use of their time.
+It turns out, though, the real problem isn't "complexity" *per se* .  The real problem is that the testers aren't interested in writing sophisticated test scripts.  They know the application, they know what they want to see, and they don't feel that programming is the best use of their time.
 
 
 
-:strong:`Unit Testing 101` 
+Unit Testing 101
+-----------------
 
 
 

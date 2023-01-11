@@ -33,7 +33,8 @@ It takes several minutes to run through the test sequence.
 
 
 
-:strong:`REST Integration Tests` 
+REST Integration Tests
+----------------------
 
 
 
@@ -53,7 +54,8 @@ This week, it became the long pole in the tent, and I dug into it.  Part of the 
 
 
 
-:strong:`Consistently Intermittent` 
+Consistently Intermittent
+-------------------------
 
 
 
@@ -69,7 +71,8 @@ On VMWare, however, it was -- mostly -- reproducible.  On Windows, it never happ
 
 
 
-:strong:`Which Side?` 
+Which Side?
+-----------
 
 
 
@@ -89,7 +92,8 @@ I've upgraded our client to retry the transaction.  Generally, a half-dozen retr
 
 
 
-:strong:`The Global Interpreter Lock` 
+The Global Interpreter Lock
+----------------------------
 
 
 
@@ -113,7 +117,8 @@ So, now what?
 
 
 
-:strong:`Does It Matter?` 
+Does It Matter?
+---------------
 
 
 

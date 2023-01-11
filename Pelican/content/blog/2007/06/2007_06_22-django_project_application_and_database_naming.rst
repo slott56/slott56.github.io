@@ -29,7 +29,8 @@ So I have an urge to build really comprehensive sets of requirements and designs
 
 
 
-:strong:`Small is Beautiful.` 
+Small is Beautiful
+------------------
 
 
 
@@ -41,7 +42,8 @@ This seems to fit in with the Web Mart design pattern in `CACM <http://www.acm.o
 
 
 
-:strong:`Nomenclature.` 
+Nomenclature
+------------
 
 
 
@@ -49,7 +51,7 @@ Here's how it seems to work.
 
 
 
-The "top level" is the Project.  A Project contains one settings.py file.  This means that (generally) a Project has one database, one puddle of media files, a puddle of common template files, one top-level URL map, and :emphasis:`n`  individual applications.  (Yes, this is not :emphasis:`fixed` ; Django is flexible, to an extent.)  
+The "top level" is the Project.  A Project contains one settings.py file.  This means that (generally) a Project has one database, one puddle of media files, a puddle of common template files, one top-level URL map, and *n*  individual applications.  (Yes, this is not *fixed* ; Django is flexible, to an extent.)
 
 
 
@@ -65,7 +67,8 @@ The problem that I have is that I often conflate the project with the first appl
 
 
 
-:strong:`Bad Names.` 
+Bad Names
+---------
 
 
 
@@ -81,7 +84,8 @@ For example, your top-level URL's may map '/admin' to the admin interface, '/fee
 
 
 
-:strong:`Better Names.` 
+Better Names
+------------
 
 
 
@@ -93,7 +97,8 @@ I think that there's a hidden feature of Django -- not called out in their docum
 
 
 
-:strong:`Example.` 
+Example
+-------
 
 
 
@@ -113,7 +118,8 @@ It's also possible that the project isn't named broadly enough.  This would happ
 
 
 
-:strong:`Consequence.` 
+Consequence
+------------
 
 
 

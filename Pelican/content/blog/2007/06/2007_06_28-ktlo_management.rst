@@ -17,15 +17,18 @@ We wind up in this situation from time to time.
 
 
 
-:strong:`Customer` :  [X] is broken, what will it cost to fix it?
+**Customer**:
+    [X] is broken, what will it cost to fix it?
 
 
 
-:strong:`Us` : Depends, but put $$$ in your budget.
+**Us**:
+    Depends, but put $$$ in your budget.
 
 
 
-:strong:`Customer` : I can't afford $$$, I can barely afford to Keep The Lights On™!
+**Customer**:
+    I can't afford $$$, I can barely afford to Keep The Lights On™!
 
 
 
@@ -33,7 +36,8 @@ At this point, the conversation is usually over.  There is more to talk about, m
 
 
 
-:strong:`Us` : What do you need to know about the cost?  Software projects can grow without limit, so there's no practical upper bound.  Even with a tiny scope, you can polish and gold-plate that scope until it's too costly to consider.  Do you have some budget already in mind and want to know if I agree with it?  For any amount (even a silly amount like a week's revenue) something positive can be accomplished.
+**Us**:
+    What do you need to know about the cost?  Software projects can grow without limit, so there's no practical upper bound.  Even with a tiny scope, you can polish and gold-plate that scope until it's too costly to consider.  Do you have some budget already in mind and want to know if I agree with it?  For any amount (even a silly amount like a week's revenue) something positive can be accomplished.
 
 
 
@@ -45,7 +49,8 @@ Where does this come from?  Why is it so paralyzing?
 
 
 
-:strong:`The Situation` 
+The Situation
+-------------
 
 
 
@@ -57,7 +62,8 @@ When I get called in, it's because the drill press isn't doing everything people
 
 
 
-:strong:`The Remedy.` 
+The Remedy
+----------
 
 
 
@@ -69,7 +75,8 @@ The sensible thing to do is to replace the fuse panel with higher-rated fuses.  
 
 
 
-:strong:`The Choke.` 
+The Choke
+----------
 
 
 
@@ -81,7 +88,8 @@ A simple fuse upgrade turns into task to replace the fuses with circuit breakers
 
 
 
-:strong:`The Choke After the Choke.` 
+The Choke After the Choke
+-------------------------
 
 
 
@@ -101,7 +109,8 @@ It's this crazy double-choke that raises the cost of KTLO, and makes progress im
 
 
 
-:strong:`Conclusion.` 
+Conclusion
+----------
 
 
 

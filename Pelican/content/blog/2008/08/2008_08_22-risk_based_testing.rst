@@ -25,7 +25,7 @@ Risk management shouldn’t be confused with random Roulette/Craps/Blackjack kin
 
 
 
-The odds of failure aren't what matters -- it's always 1.0.  It's the :emphasis:`cost`  of failure that matters.  And even that is just the overall importance of the feature.
+The odds of failure aren't what matters -- it's always 1.0.  It's the *cost*  of failure that matters.  And even that is just the overall importance of the feature.
 
 
 
@@ -37,7 +37,7 @@ Risk as Bad Management
 
 
 
-Risks aren't vague, blurry, random casino events.  There aren't odds.  Most risks are things which :strong:`will`  happen unless we take steps to prevent them.
+Risks aren't vague, blurry, random casino events.  There aren't odds.  Most risks are things which **will**  happen unless we take steps to prevent them.
 
 
 
@@ -53,7 +53,8 @@ Most bad management leads to rework.   You can't control everything, but the thi
 
 
 
-:strong:`Knowledge and Ignorance`
+Knowledge and Ignorance
+-----------------------
 
 
 
@@ -69,15 +70,16 @@ You might say that there’s a "risk" that we guessed wrong in our initial assum
 
 
 
-This is simply a budget change.  If the number of users is 100 instead of 12, then we have to refigure the budget with the new information.  Unless you're saddled with "All Scope Change is Bad" mind-set, that's just a change.  Change based on stuff that was learned.  This isn't :strong:`rework`; this is learning.  You say "What if this assumption is wrong?  It will cost us $50K to get out of that mess." A specific rework plan.  
+This is simply a budget change.  If the number of users is 100 instead of 12, then we have to refigure the budget with the new information.  Unless you're saddled with "All Scope Change is Bad" mind-set, that's just a change.  Change based on stuff that was learned.  This isn't **rework**; this is learning.  You say "What if this assumption is wrong?  It will cost us $50K to get out of that mess." A specific rework plan.  
 
 
 
-:strong:`Specific Contingency Plans`
+Specific Contingency Plans
+--------------------------
 
 
 
-Bottom-line: It’s all about contingency planning.  For each thing we don't know, we make up a number (an "assumption") and a :emphasis:`x` $ multiplier to turn that number into a project cost.  When we finally get the real number, we apply the :emphasis:`x` $ multiplier and get the new project cost.  This is how change management happens -- each new thing we learn revises the budget.  Each mistake we make has to be corrected.
+Bottom-line: It’s all about contingency planning.  For each thing we don't know, we make up a number (an "assumption") and a *x* $ multiplier to turn that number into a project cost.  When we finally get the real number, we apply the *x* $ multiplier and get the new project cost.  This is how change management happens -- each new thing we learn revises the budget.  Each mistake we make has to be corrected.
 
 
 
@@ -89,7 +91,8 @@ Management risks aren’t random.  They’re not like casino gambling or insuran
 
 
 
-:strong:`Risk-Based Testing`
+Risk-Based Testing
+-------------------
 
 
 

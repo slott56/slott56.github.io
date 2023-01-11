@@ -37,7 +37,8 @@ Can we start from object identification and then determine state?  Or do we have
 
 
 
-:strong:`Procedure`
+Procedure
+---------
 
 
 
@@ -53,37 +54,23 @@ State definition can be tackled for a given noun using something like the follow
 
 
 
-#.  :strong:`Find examples.`  
+#.  **Find examples**. To prevent fruitless hypothetical and counterfactual discussions it helps to have tangible examples of an object in each state.  For business documents, get print-outs.  For other kinds of objects, use notecards or sticky notes, or `Koosh Balls <http://www.kooshball.com/>`_ ; use something tangible.
 
-#.  To prevent fruitless hypothetical and counterfactual discussions it helps to have tangible examples of an object in each state.  For business documents, get print-outs.  For other kinds of objects, use notecards or sticky notes, or `Koosh Balls <http://www.kooshball.com/>`_ ; use something tangible.
+#.  **Characterize Each State**. For each example of a given state, highlight (or circle or underline or write down) the attributes which define the state.  States are defined by the attributes; they are not "implied" or "obvious".  Expert judgement isn't part of this.  If things are implied, obvious or require judgement, you'll need to add attributes.  The best case is adding attributes to make the implied state into a manifest state.  A bad case is adding attributes that are going to be set by having an expert (i.e., a person) look at the other attributes and make their oracular pronouncement.  The worst case is where you cannot establish a finite, definite list of attributes that characterize the states.
 
-#.  :strong:`Characterize Each State.`
+#.  **Confirm**. At this point, you may have learned many things.  You may have, for example, found that your "object" was really a composite and you have multiple, parallel sets of states.  You may have found, for example, that your object has several associations, each of which has it's own set of states.  You may have found that some states are indistinguishable and other states have substates.  This is all good.  In some cases, you'll have to rework your object model, bounce around among categories, associations, attributes, operations, and begin this process again with a new object model.
 
-#.  For each example of a given state, highlight (or circle or underline or write down) the attributes which define the state.  States are defined by the attributes; they are not "implied" or "obvious".  Expert judgement isn't part of this.  If things are implied, obvious or require judgement, you'll need to add attributes.  The best case is adding attributes to make the implied state into a manifest state.  A bad case is adding attributes that are going to be set by having an expert (i.e., a person) look at the other attributes and make their oracular pronouncement.  The worst case is where you cannot establish a finite, definite list of attributes that characterize the states.
+#.  **Determine Transitions**.  We're not fully specifying things; we're only discovering.  It's important to set aside details for the moment, since many kinds of details only serve to muddy the waters.  In particular, processing details -- which are stateful -- can often confuse the identification of states.  To make it possible to see what's going on, the magic words "processing happens" have to be used when defining the transitions.
 
-#.  :strong:`Confirm.`
+    Examine each state, saying the words "processing happens" and determine what update will move the object to the next state.  The point is to avoid the details of the processing and focus on the net effect of the processing.  Some processing is an object's internal response to arriving in a state; other processing is initiated from outside the object to force it to a particular state.  "Processing Happens" and now the object is in a new state; capture this relationship first, provide details later.
 
-#.  At this point, you may have learned many things.  You may have, for example, found that your "object" was really a composite and you have multiple, parallel sets of states.  You may have found, for example, that your object has several associations, each of which has it's own set of states.  You may have found that some states are indistinguishable and other states have substates.  This is all good.  In some cases, you'll have to rework your object model, bounce around among categories, associations, attributes, operations, and begin this process again with a new object model.
+#.  **Elaborate**. You've learned a great deal, and can add a few details at this point.  First, check for orphan states.  If you've got an object state (you have an example, right?) but you don't have any transitions to or from this state, you've got more work to do.  You may be missing some transitions, but you may also be missing some states; states which are intermediate between states you've identified and this orphan state.  An orphan state can also be caused by examining a composite object; this may be a state of one component of the composite object.
 
-#.  :strong:`Determine Transitions.`
+    You should have identified inital and final states, also.  Objects begin their existence in initial states.  Some kind of objects will reach a final state, from which no more state transitions are possible.
 
-#.  We're not fully specifying things; we're only discovering.  It's important to set aside details for the moment, since many kinds of details only serve to muddy the waters.  In particular, processing details -- which are stateful -- can often confuse the identification of states.  To make it possible to see what's going on, the magic words "processing happens" have to be used when defining the transitions.
+#.  **Reconcile**.  You can now march an object through the various state transitions beginning from one of the initial states.  Generally, each "path" or sequence of transitions is a scenario for a potential life of this object.  It is essential that the tangible examples be compared against this model to be sure that all states are part of a scenario and all the scenarios make sense when compared with use cases or other source documentation.  If necessary, rework other elements of the model based on what has been learned so far.
 
-#.  Examine each state, saying the words "processing happens" and determine what update will move the object to the next state.  The point is to avoid the details of the processing and focus on the net effect of the processing.  Some processing is an object's internal response to arriving in a state; other processing is initiated from outside the object to force it to a particular state.  "Processing Happens" and now the object is in a new state; capture this relationship first, provide details later.
-
-#.  :strong:`Elaborate.`
-
-#.  You've learned a great deal, and can add a few details at this point.  First, check for orphan states.  If you've got an object state (you have an example, right?) but you don't have any transitions to or from this state, you've got more work to do.  You may be missing some transitions, but you may also be missing some states; states which are intermediate between states you've identified and this orphan state.  An orphan state can also be caused by examining a composite object; this may be a state of one component of the composite object.  
-
-#.  You should have identified inital and final states, also.  Objects begin their existence in initial states.  Some kind of objects will reach a final state, from which no more state transitions are possible.   
-
-#.  :strong:`Reconcile.`
-
-#.  You can now march an object through the various state transitions beginning from one of the initial states.  Generally, each "path" or sequence of transitions is a scenario for a potential life of this object.  It is essential that the tangible examples be compared against this model to be sure that all states are part of a scenario and all the scenarios make sense when compared with use cases or other source documentation.  If necessary, rework other elements of the model based on what has been learned so far.
-
-#.  :strong:`Elaborate.`
-
-#.  Now, at long last, you can write detailed specifications.  The reason details are left for last is because people often confuse state ("static", "status") with processing.  It's inevitable to think of the sequence of steps in an object's processing, not the stages along that lifeline.  At this time, you can finally write state entry and exit processing; this is processing which sets attributes, but doesn't change the overall state being modeled.  Each transition can be annotated with events, guard conditions and processing.
+#.  **Elaborate**.  Now, at long last, you can write detailed specifications.  The reason details are left for last is because people often confuse state ("static", "status") with processing.  It's inevitable to think of the sequence of steps in an object's processing, not the stages along that lifeline.  At this time, you can finally write state entry and exit processing; this is processing which sets attributes, but doesn't change the overall state being modeled.  Each transition can be annotated with events, guard conditions and processing.
 
 
 

@@ -25,7 +25,7 @@ Here's my list.
 
 
 
-:strong:`High Scool - Early 70's` 
+**High Scool - Early 70's** 
 
 -   IBM 1620 Assembler
 
@@ -39,7 +39,7 @@ Here's my list.
 
 -   Univac 1108 Assembler
 
-:strong:`College - Late 70's` 
+**College - Late 70's** 
 
 -   LISP
 
@@ -52,7 +52,7 @@ Here's my list.
 -   APL
 
 
-:strong:`Work - Early 80's` 
+**Work - Early 80's** 
 
 -   COBOL
 
@@ -70,7 +70,7 @@ Here's my list.
 
 Used Fortran, PL/I, and Basic, also
 
-:strong:`Late 80's` 
+**Late 80's** 
 
 -   C
 
@@ -82,7 +82,7 @@ Used Fortran, PL/I, and Basic, also
 
 -   VAX/VMS DCL
 
-:strong:`Early 90's` 
+**Early 90's** 
 
 -   C++
 
@@ -92,11 +92,11 @@ Used Fortran, PL/I, and Basic, also
 
 -   Unix Shell Languages
 
-:strong:`Late 90's` 
+**Late 90's** 
 
 -   Java
 
-:strong:`Early 00's` 
+**Early 00's** 
 
 -   Python
 

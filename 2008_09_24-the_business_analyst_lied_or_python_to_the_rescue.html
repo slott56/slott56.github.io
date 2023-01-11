@@ -123,14 +123,17 @@ S.Lott -- Software Architect            </a>
 <p>&quot;Our customer asks for a recommendation regarding an offering.  Based on the description of the offering, we use web services to get some scoring information from our vendors.  We combine that with our own proprietary models.  We reply with the recommendation.&quot;</p>
 <p>There's a UML collaboration diagram that shows the vendor scoring web service requests front and center.</p>
 <p>Got it.  Ready to code.</p>
-<p><strong>Not So Fast</strong></p>
+<div class="section" id="not-so-fast">
+<h2>Not So Fast</h2>
 <p>Turns out, that this &quot;get the vendor data&quot; isn't actually what's going on.  It turns out that there are four parts to the recommendation.  Two of those parts involve vendor data and two of our proprietary models.  The other two parts involve two more proprietary models.</p>
 <p>The web services turned everyone's heads.  It was &quot;novel&quot; and &quot;confusing&quot; so it got a lot of press.  The actual proprietary models were -- umm -- business as usual and hardly worth a page of documentation.</p>
-<p>[<strong>Note</strong>.  The business value is in the model.  But no one saw fit to document this.  And I'm not smart enough to ask.]</p>
+<p>[<strong>Note</strong>. The business value is in the model.  But no one saw fit to document this.  And I'm not smart enough to ask.]</p>
 <p>Okay.  So, the process is really this:</p>
 <p>&quot;Our customer asks for a recommendation regarding an offering.  Based on the description of the offering, we evaluate our four-part proprietary model.  Two parts of the model happen to require some scoring information from our vendors; we use web services to get this.  We reply with the recommendation.&quot;</p>
 <p>Revised requirements:  our model is front and center.  The vendor information and associated web service requests support part of our model.  Got it.</p>
-<p><strong>Still Not Right</strong></p>
+</div>
+<div class="section" id="still-not-right">
+<h2>Still Not Right</h2>
 <p>After building a bunch of stuff, it turns out that I was still being lied to.</p>
 <p>Here's what <em>really</em>  happens.</p>
 <p>Part 1.  &quot;The sales folks get our customer's entire catalog of offerings.  Our Deep Thinkers then get scoring information from our vendors on all of the offerings, and develop a four-part model.&quot;</p>
@@ -138,24 +141,31 @@ S.Lott -- Software Architect            </a>
 <p>So, first they give us all the possible offerings.  Then we get <strong>all</strong>  the vendor information.  Then we build our proprietary four-part model using the vendor information.</p>
 <p>Ummm... Where are the web services?  Where's the &quot;on-the-fly&quot; query to the vendor to get scoring information?  It turns out that we already have all of the necessary vendor information.  We had to have the all the vendor information in the first place so that could build the model!  Why would we go back to the vendor on a recommendation-by-recommendation basis when we already have all the data?</p>
 <p>[<strong>Note</strong>.  A big performance improvement will result from this realization.]</p>
-<p><strong>Chickens and Eggs</strong></p>
+</div>
+<div class="section" id="chickens-and-eggs">
+<h2>Chickens and Eggs</h2>
 <p>The first draft made it look like there was no model -- only vendor data acquired through Web Services.  At the last instant.  All dynamic and state of the art.</p>
 <p>Then it sounded like the model was central, supported by some vendor data acquired through Web Services.  Still pretty dynamic and state of the art.</p>
 <p>But where did the model come from?</p>
 <p>Oh That.  The model was built from giant sets of data.  It involved simple batch transfers from customer to us, us to our vendors, and our vendors back to us.  We load the database with customer data, vendor data and our model.  Not dynamic.  No web services.</p>
 <p>The business value is in our proprietary model, and the folks that have experience, insight and skills to build that.  It's not in the fancy Web Services.</p>
 <p>It's not that we get a query and do calculations on the fly.  We already know what we'll be asked.  We've already thought this through.  There's almost no 'on-the-fly' to this business.</p>
-<p><strong>Python to the Rescue</strong></p>
+</div>
+<div class="section" id="python-to-the-rescue">
+<h2>Python to the Rescue</h2>
 <p>Here's why I love Python.  I learned all this while building a working application in Django.</p>
 <p>My summary of the Django world view is &quot;Model first; default admin; evolve the presentation.&quot;</p>
 <p>So, we started out with a data model, some web services, default admin, and a skinny little presentation of the working application.  That original model, BTW, remains largely unchanged.  The most significant changes to that have stemmed from the Django 0.97 to 1.0 evolution.</p>
 <p>That was fine until I figured out that the our proprietary business model was central.  So, we rebuilt the data model to reflect the business.  The web services didn't change much.  The default admin is still fine.  The presentation had to expand to cover the additional parts of the model.</p>
 <p>This Django model is in several parts.  In Django parlance we have many &quot;applications&quot;.  Each application is a subset of the overall model with a specific subject-area focus.</p>
 <p>That structure was fine until I figured out how our proprietary business model gets built in the first place.  Now we have to revise everything yet again to create a more sophisticated Django model that reflects how the business <em>actually</em>  operates.</p>
-<p><strong>Refactoring</strong></p>
+</div>
+<div class="section" id="refactoring">
+<h2>Refactoring</h2>
 <p>It's all just Python, so the refactoring is very, very low cost.  If this was Java, we'd be paralyzed by the cost of rework.  For Java folks, redoing the database and the ORM layers would be a hellish cost that would lead to terrible workarounds.</p>
 <p>In Django and Python, however, we fix the model, and the SQL takes care of itself.  The admin takes care of itself (for now).  We will have to rework the presentation, but that's only a few dozen template files that have to be adjusted to handle the new relationships.</p>
 <p>The hardest part will be reworking the various view functions.  But, because of the way Django works, there are only a few places to look for changes there.  The Django ORM layer allows us to ignore many of the model changes.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -175,7 +185,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -125,7 +125,8 @@ S.Lott -- Software Architect            </a>
 <p>A programming language has all the advantages as a language for encoding parameters.  I see why it's rare -- too many programmers have spent too much time with MS's abominable INI files and think it's &quot;normal&quot;.</p>
 <p>Recently, I started working on reverse engineering an venerable C program that relied on a set of INI-like files.  It isn't cost-effective to write (or even download) an INI-file parser for Java.  Instead, most of the configuration parameters could be simply moved into a garden-variety Java properties file.</p>
 <p>Some parameters, however, didn't fit the INI format well.  I'd almost completely eliminated any need for the INI file parser until these additional, complex parameters surfaced.  It was a head-scratcher until I reframed the problem.</p>
-<p><strong>How Would I Do This In Python?</strong></p>
+<div class="section" id="how-would-i-do-this-in-python">
+<h2>How Would I Do This In Python?</h2>
 <p>In Python, I could -- trivially -- declare the relationships as a bunch of class constructors.  The simple elegance of the Python constructors lead me to a version in Java that was -- while not as nice -- a lot better than writing Yet Another Parameter File Parser.</p>
 <p>The INI syntax was -- to an extent -- close enough to a Python (or Java) class constructor that I could transliterate the original INI file into application source.</p>
 <p>The business rules in the config file looked like this:</p>
@@ -134,12 +135,13 @@ S.Lott -- Software Architect            </a>
 <p>new Rule_AP( 2, AP, DCO, EXACT, FULL, PAIR, OPENHELD, ALLOW ),</p>
 <p>I transformed an ad-hoc INI syntax into first-class Java syntax.  This eliminates a thousand or so lines of useless code.  It also reduces the complexity of the required documentation.  Rather than explain the syntax rules for the INI construct, we simply have to explain what this class does and what the constants mean.</p>
 <p>Also, we don't have to dwell on the business rule translation from the old format to the new format.  They're essential the same.  The look nearly identical.</p>
-<p><strong>Really Complex Configuration</strong></p>
+</div>
+<div class="section" id="really-complex-configuration">
+<h2>Really Complex Configuration</h2>
 <p>Earlier today I was looking at the problem of parsing <a class="reference external" href="http://publib.boulder.ibm.com/infocenter/wmbhelp/v6r0m0/index.jsp?topic=/com.ibm.etools.mft.doc/ad09580_.htm">X12 messages</a> .  It's a pain in the neck because you need a ton of ancillary information to make sense of the X12 segments and the X12 Loops.</p>
 <p>After an hour of poking around, I found a Perl program on CPAN to do <a class="reference external" href="http://search.cpan.org/~prasad/X12-0.08/lib/X12/Parser.pm">X12 parsing</a> .  The perl code is of no value.  However, the configuration files -- which describe some of the X12 messages I need to work with -- were very handy.</p>
 <p>But they were in a home-brewed INI-like format.  A format that was just enough <em>UN</em> like INI files that ConfigParser choked on it.</p>
 <p>After spending a day on the problem, I slowly evolved a configuration that was palatable.  The X12 message descriptions look something like this.  (<em>Warning</em>: elision, syntax errors may sneak in.)</p>
-<!-- code: -->
 <pre class="literal-block">
 isa= Loop( &quot;ISA&quot;,
     Segment(&quot;ISA&quot;),
@@ -161,9 +163,12 @@ x278 = Message( isa, iea )
 </pre>
 <p>The configuration constructors actually build a recognizer that attempts to match the received message structure with the various parts of the configuration.  It wasn't easy, but when I was done, I could translate the configurations provided in the CPAN X12 package into proper Python object constructors.</p>
 <p>In the outer realms of X12 messages, the Loops only have a single Segment.  The inner portions of the message (all of the Loop2000's, for example) have a much interesting structure.</p>
-<p><strong>One Syntax</strong></p>
+</div>
+<div class="section" id="one-syntax">
+<h2>One Syntax</h2>
 <p>Rather than cob up a syntax that is based on INI file syntax, I prefer to just use Python.  And rather than parse XML, I prefer to execute the Python directly.</p>
 <p>I'll post a more complete example in the not-too-distant future.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -183,7 +188,10 @@ x278 = Message( isa, iea )
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

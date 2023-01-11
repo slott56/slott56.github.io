@@ -125,55 +125,62 @@ S.Lott -- Software Architect            </a>
 <p>However, the interesting thing is the value of pipelining in the first place.  Often, folks get confused and start insisting on multiple threads, more memory or some other non-solution.</p>
 <p>Worse, I sometimes hear confusion about how pipelining even helps.  I've had too many questions about how to avoid bottlenecks in a pipeline, as if having a single slow step negates the value of the concurrent processing.</p>
 <p>The point here is that we can achieve concurrency fairly simply.  It doesn't have to involve complex API's.  We can use a domain specific language (e.g. a shell) or we can use XML Pipeline Language (XPL).</p>
-<p><strong>Oracle Pipelining</strong></p>
+<div class="section" id="oracle-pipelining">
+<h2>Oracle Pipelining</h2>
 <p>Oracle, for example, has -- for a while now -- offered a pipelining feature so that parts of a program don't have to wait for the entire query to finish before processing rows from the query.  These pipeline functions yield objects that are -- in effect -- table rows one at a time.</p>
 <p>The big benefit is that we won't wait for the entire cursor to fetch all the rows.  Instead, we can apply a function to each row and yield that row to the calling application program.</p>
-<p>This is, effectively, what the Python <strong>yield</strong>  construct does.</p>
+<p>This is, effectively, what the Python <tt class="docutils literal">yield</tt>  construct does.</p>
 <p>We can do this without suffering through the complexities of Oracle or PL/SQL.  I want to emphasize the suffering and complexities here.  First, there isn't a lot of inherent parallelism in PL/SQL; this mechanism gives us a tiny bit of parallelism between parts of our application and the rows being built in the database.  Parallelism among non-database operations isn't possible.</p>
-<p><strong>Shell Pipelining</strong></p>
+</div>
+<div class="section" id="shell-pipelining">
+<h2>Shell Pipelining</h2>
 <p>Every POSIX-compliant operating system (that is to say, everything but Windows and IBM's Z/OS) has trivial access to a standardized set of API's for creating pleasant pipelines.  Best, of course, is that all of the variants on the Shell do this for us.</p>
 <p>The shell offers a wonderfully sophisticated math-like language of operators for connecting processes (and files) into tidy process composition expressions.</p>
 <p>There are several math-like operators:</p>
-<ul>
-<li><p class="first">; (also written as newline, n)</p>
-</li>
-<li><p class="first">&amp;amp;</p>
-</li>
-<li><div class="first line-block">
-<div class="line"><br /></div>
-</div>
-</li>
-<li><p class="first">&amp;amp;&amp;amp;</p>
-</li>
-<li><p class="first">||</p>
-</li>
+<ul class="simple">
+<li><tt class="docutils literal">;</tt> (also written as newline, <tt class="docutils literal">\n</tt>)</li>
+<li><tt class="docutils literal">&amp;</tt></li>
+<li><tt class="docutils literal">|</tt></li>
+<li><tt class="docutils literal">&amp;&amp;</tt></li>
+<li><tt class="docutils literal">||</tt></li>
 </ul>
 <p>Along with ()'s for grouping.  However, this isn't often-enough seen as the tidy little language that it really is.</p>
-<p><strong>Process Composition</strong></p>
+</div>
+<div class="section" id="process-composition">
+<h2>Process Composition</h2>
 <p>The operators have to be thought of as &quot;composition&quot;, as in &quot;process X is composed of process Y and Z&quot;.</p>
 <p>Each operator defines a radically different kind of composition.</p>
 <p>The most commonly used operator is newline or ;.  This operator effectively creates a new process composed of two processes executed sequentially.</p>
 <p>The shell may optimize this by simply executing processes sequentially.  However, when we introduce ()'s, we force the shell to actually create this new process in the form of a subshell.</p>
 <p>The | operator creates a new process composed of two processes which execute concurrently, and have stdout of one process connected to stdin of the subsequent process.  This is fairly easy to understand, but is often treated as an &quot;advanced&quot; topic in books on Linux or the shell.  I'm not sure why this is treated as advanced, since it's so simple and so effective for improving performance of complex processes.</p>
-<p><strong>A Confusing Special Case</strong></p>
-<p>The &amp;amp; operator, because it can be used in a special unary context, seems to create the most confusion.  For some reason, a construct like Y &amp;amp; Z isn't seen as two concurrent processes, but as Y running in some obscure nohup-like mode, and Z is part of ordinary sequential composition.</p>
-<p>A unary &amp;amp; operator (at the end of a single line) is the most common use for &amp;amp;, but it has to be seen as a special case.  When we do something like &quot;python idle.py &amp;amp;&quot; it isn't an example of process composition in an obvious way.</p>
-<p>The binary &amp;amp; operator (between programs) is fairly rare.  Why run two programs concurrently when there's no obvious connection?  In many data warehouse contexts, we have a number of preconditions for a given load.  So we may have something like (A &amp;amp; B &amp;amp; C); D.  In this case, we have three preconditions which all must finish before D can start.</p>
-<p><strong>Conditional Composition</strong></p>
-<p>The &amp;amp;&amp;amp; and || operators for composition are elegant ways to specify a kind of composition which is dependent on a condition.  In the &amp;amp;&amp;amp; case, the left-hand process must finish normally.  In the || case, the left-hand process must not finish normally.</p>
+</div>
+<div class="section" id="a-confusing-special-case">
+<h2>A Confusing Special Case</h2>
+<p>The <tt class="docutils literal">&amp;</tt> operator, because it can be used in a special unary context, seems to create the most confusion.  For some reason, a construct like <tt class="docutils literal">Y &amp; Z</tt> isn't seen as two concurrent processes, but as Y running in some obscure nohup-like mode, and Z is part of ordinary sequential composition.</p>
+<p>A unary <tt class="docutils literal">&amp;</tt> operator (at the end of a single line) is the most common use for <tt class="docutils literal">&amp;</tt>, but it has to be seen as a special case.  When we do something like <tt class="docutils literal">python idle.py &amp;</tt> it isn't an example of process composition in an obvious way.</p>
+<p>The binary <tt class="docutils literal">&amp;</tt> operator (between programs) is fairly rare.  Why run two programs concurrently when there's no obvious connection?  In many data warehouse contexts, we have a number of preconditions for a given load.  So we may have something like <tt class="docutils literal">(A &amp; B &amp; C); D</tt>.  In this case, we have three preconditions which all must finish before D can start.</p>
+</div>
+<div class="section" id="conditional-composition">
+<h2>Conditional Composition</h2>
+<p>The <tt class="docutils literal">&amp;&amp;</tt> and <tt class="docutils literal">||</tt> operators for composition are elegant ways to specify a kind of composition which is dependent on a condition.  In the <tt class="docutils literal">&amp;&amp;</tt> case, the left-hand process must finish normally.  In the || case, the left-hand process must not finish normally.</p>
 <p>This conditional composition was borrowed by perl, and used wisely, it can make a program somewhat easier to read.</p>
-<p><strong>Alternate Notations</strong></p>
+</div>
+<div class="section" id="alternate-notations">
+<h2>Alternate Notations</h2>
 <p>It turns out that the XML folks have concocted several alternate notation for this, including Apache <a class="reference external" href="http://commons.apache.org/jelly/">Jelly</a>  and <a class="reference external" href="http://www.w3.org/Submission/xpl/">XPL</a> .  XPL doesn't seem to have a lot of implementations floating around.  <a class="reference external" href="http://www.orbeon.com/">Orbeon</a>  seems to be it; however, the Wikipedia page lists some other implementations including Oracle and <a class="reference external" href="https://smallx.dev.java.net/">smallx</a> .</p>
 <p>XPL adds a lot of detail (and a lot of syntax.)  In this case, I'm not sure the extra syntax provides any extra value.  The shell's syntax, which could be called a domain-specific language (DSL) solves the problem nicely.</p>
 <p>The <a class="reference external" href="https://slott56.github.io/2006_12_23-xml_one_ring_to_rule_them_all.html">Lure of XML</a>  is strong.  The shell's language seems easy to parse and unambiguous.  Why add syntax?  How much less ambiguous can we make it?</p>
 <p>[Incidentally, XPL is a heavily overloaded name.  See <a class="reference external" href="http://wiki.xplproject.org.uk/index.php/XPL_News">http://wiki.xplproject.org.uk/index.php/XPL_News</a>, <a class="reference external" href="http://www.cs.toronto.edu/XPL/">http://www.cs.toronto.edu/XPL/</a>  and <a class="reference external" href="http://csdl2.computer.org/persagen/DLAbsToc.jsp?resourcePath=/dl/proceedings/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml&amp;DOI=10.1109/ICIS.2007.197">http://csdl2.computer.org/persagen/DLAbsToc.jsp?resourcePath=/dl/proceedings/&amp;toc=comp/proceedings/icis/2007/2841/00/2841toc.xml&amp;DOI=10.1109/ICIS.2007.197</a>  for other meanings.]</p>
-<p><strong>Using Concurrency</strong></p>
+</div>
+<div class="section" id="using-concurrency">
+<h2>Using Concurrency</h2>
 <p>It can be challenging to reduce a big, complex algorithm down into smaller, pipelined steps.  However, doing this has a number of advantages, even if a pipelined shell script is never used.</p>
 <p>First, breaking a big algorithm down into small algorithms is always helpful.</p>
 <p>Additionally, the data structures which are passed from step to step can be done as in-memory structures or they can be explicitly written to a pipeline.</p>
 <p>In Java, we have a Pipe class that we can use to pass serialized objects among Java threads or processes.   And we can use commodity shell constructs to compose fast, parallel processing applications rather than Java or Oracle constructs.</p>
 <p>Since we have such a rich set of shell script operators for concurrency, we don't really need to deeply understand a lot of Java or Oracle to make this work.  We can decompose our algorithm, and use a few key serialized objects to move data among parallel processes.</p>
 <p>If we have an XPL implementation, we could use that instead of the shell.  The point is to leverage concurrent processing in a portable, flexible way.  We can avoid the details of API calls (and PL/SQL) while improving throughput in an application.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -193,7 +200,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

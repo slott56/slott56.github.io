@@ -21,7 +21,7 @@ So what's interesting?
 
 
 
-What's interesting is a vague outline of :strong:`How to Deconstruct C`.  Further, it's a story of :strong:`Python to the Rescue`, even though the goal is to write Java.
+What's interesting is a vague outline of **How to Deconstruct C**.  Further, it's a story of **Python to the Rescue**, even though the goal is to write Java.
 
 
 
@@ -41,11 +41,12 @@ The really hard part is locating the record types in a procedural program.
 
 
 
-:strong:`Finding the Central Loop.`
+Finding the Central Loop
+------------------------
 
 
 
-In this case, the program had a very complex outline.  There was an "essential" loop, however, that was buried under the complexity.  I found it helpful to ask :strong:`"What's The Business Value?"`  when confronted with another hideous C function.
+In this case, the program had a very complex outline.  There was an "essential" loop, however, that was buried under the complexity.  I found it helpful to ask **"What's The Business Value?"**  when confronted with another hideous C function.
 
 
 
@@ -57,15 +58,16 @@ Eventually it became clear that there was a loop that did the relevant processin
 
 
 
-:strong:`Order N-Squared.`
+Order N-Squared
+----------------
 
 
 
-It turned out that the central loop was actually two nested loops, created an O(n²) kind of process.  Yes, there was a sort, but each row was compared to each row after it in the collection.  So row 1 was compared to all rows 2 through :emphasis:`n`.
+It turned out that the central loop was actually two nested loops, created an O(n²) kind of process.  Yes, there was a sort, but each row was compared to each row after it in the collection.  So row 1 was compared to all rows 2 through *n*.
 
 
 
-In the long run, this can't be optimal.  I suspect that what this program really does can be transformed into an order :emphasis:`n`  log(:emphasis:`n`) operation that uses two passes.  The first pass builds a few useful hashmaps, the second pass then does the final, interesting algorithm.  However, at this point, it's hard to prove that. 
+In the long run, this can't be optimal.  I suspect that what this program really does can be transformed into an order *n*  log(*n*) operation that uses two passes.  The first pass builds a few useful hashmaps, the second pass then does the final, interesting algorithm.  However, at this point, it's hard to prove that.
 
 
 
@@ -73,7 +75,8 @@ Once we'd uncovered the two inner loops, we had a picture of the overall structu
 
 
 
-:strong:`Cryptic` :strong:`Class Definitions: Parallel Arrays`
+Cryptic Class Definitions: Parallel Arrays
+------------------------------------------
 
 
 
@@ -93,7 +96,8 @@ At this point, we could put our first unit tests together.  That's real progress
 
 
 
-:strong:`Python To The Rescue`
+Python To The Rescue
+---------------------
 
 
 
@@ -105,7 +109,8 @@ So I spent a pleasant half-hour typing up a version of the DDL.  Rather than sim
 
 
 
-:strong:`Business Rules`
+Business Rules
+---------------
 
 
 
@@ -125,7 +130,7 @@ The rules had first-class C type definitions.  The attributes of the class could
 
 
 
-Business rules are -- universally -- examples of the :strong:`Strategy`  design pattern.  That means that each rule embodies some unique processing.  While each rule in the C program was a simple structure with a half-dozen fields, it also had some method buried inside it.
+Business rules are -- universally -- examples of the **Strategy**  design pattern.  That means that each rule embodies some unique processing.  While each rule in the C program was a simple structure with a half-dozen fields, it also had some method buried inside it.
 
 
 
@@ -137,7 +142,7 @@ A little grepping of the source turned up a series of functions with similar nam
     someFuncB( ruleFieldB *arg, other args )
 
 
-This clarified things considerably.  It told us that a rule was merely a :strong:`Façade`  or :strong:`Container`  for a set of individual Strategy objects.  Each "field" of the original rule definition was really a :strong:`Strategy`  object, and the rule was just a container.
+This clarified things considerably.  It told us that a rule was merely a **Façade**  or **Container**  for a set of individual Strategy objects.  Each "field" of the original rule definition was really a **Strategy**  object, and the rule was just a container.
 
 
 
@@ -145,7 +150,8 @@ This unveiled dozens of strategy class definitions which were knit together in t
 
 
 
-:strong:`Pythonic Initialization`
+Pythonic Initialization
+-----------------------
 
 
 
@@ -165,7 +171,8 @@ Thanks, Pythonistas, for inventing such a cool declaratory style of Python progr
 
 
 
-:strong:`More Unit Testing`
+More Unit Testing
+------------------
 
 
 
@@ -173,15 +180,16 @@ Once we decoded the rules as a bunch of largely static initialization, we could 
 
 
 
-At this point, we were nearing the heart of what was going on in this program.  There were about half a dozen of these rule-specific methods that had to be unwound into a forest of :strong:`Strategy`  class hierarchies.  Each :strong:`Strategy`  class hierarchy needed a proper set of unit tests to validate the precise business rule that it implemented.
+At this point, we were nearing the heart of what was going on in this program.  There were about half a dozen of these rule-specific methods that had to be unwound into a forest of **Strategy**  class hierarchies.  Each **Strategy**  class hierarchy needed a proper set of unit tests to validate the precise business rule that it implemented.
 
 
 
-:strong:`Flags and Classes`
+Flags and Classes
+------------------
 
 
 
-Flag settings have lots of interpretations.  They might be dynamic :strong:`States`  or they might be static :strong:`Strategies`.  Either way, a flag -- even a boolean flag -- is often a class definition; it is rarely a simple boolean value.  A flag with enumerated values usually identifies a family of related subclasses.
+Flag settings have lots of interpretations.  They might be dynamic **States**  or they might be static **Strategies**.  Either way, a flag -- even a boolean flag -- is often a class definition; it is rarely a simple boolean value.  A flag with enumerated values usually identifies a family of related subclasses.
 
 
 
@@ -189,15 +197,16 @@ If-statements to test flags have to be looked at as potentially polymorphic meth
 
 
 
-Often we get to do :strong:`If-Statement Hoisting`.  Once we've elected to transform a flag into a class, we'll find if-statements which are now needless class membership tests.  For example, down deep within someFuncA will be an if-statement that asks if the rule has the ruleFlavorA flag set.  Once we make the rule flavors into classes, each class has a unique implementation of someFunc, and a test for class membership go away.
+Often we get to do **If-Statement Hoisting**.  Once we've elected to transform a flag into a class, we'll find if-statements which are now needless class membership tests.  For example, down deep within someFuncA will be an if-statement that asks if the rule has the ruleFlavorA flag set.  Once we make the rule flavors into classes, each class has a unique implementation of someFunc, and a test for class membership go away.
 
 
 
-In effect, the if statement is hoisted out of the function and moved forward in the algorithm.  The test becomes part of initial rule object construction.  This is an optimization that is very elegant.  Rather than execute the if statement for every one of the :emphasis:`n`\ ² record processing steps, we execute the if statement one during initialization.
+In effect, the if statement is hoisted out of the function and moved forward in the algorithm.  The test becomes part of initial rule object construction.  This is an optimization that is very elegant.  Rather than execute the if statement for every one of the *n*\ ² record processing steps, we execute the if statement one during initialization.
 
 
 
-:strong:`Globals and Integration`
+Globals and Integration
+------------------------
 
 
 
@@ -205,7 +214,7 @@ One of the biggest problems with converting C programs is the reliance on global
 
 
 
-The parameters and properties, clearly, need to be global.  Often, a static class can be used to implement a kind of :strong:`Singleton`  for this.  In other cases, we can provide the parameter object to various objects within the program, eliminating the little bit of semantic confusion that purely static classes can raise.
+The parameters and properties, clearly, need to be global.  Often, a static class can be used to implement a kind of **Singleton**  for this.  In other cases, we can provide the parameter object to various objects within the program, eliminating the little bit of semantic confusion that purely static classes can raise.
 
 
 
@@ -213,7 +222,7 @@ However, we uncovered one bothersome situation where a deeply-buried business ru
 
 
 
-An open issue is whether this context was an attribute of the object, or a parameter to the business rule's method.  This is almost a matter of preference.  Method function parameters can always be turned into object properties.  However, there's usually some semantic behind the attributes.  We have to return to our initial question, :strong:`"What's the Business Value?"` for guidance in the parameter vs. attribute question.
+An open issue is whether this context was an attribute of the object, or a parameter to the business rule's method.  This is almost a matter of preference.  Method function parameters can always be turned into object properties.  However, there's usually some semantic behind the attributes.  We have to return to our initial question, **"What's the Business Value?"** for guidance in the parameter vs. attribute question.
 
 
 
@@ -221,7 +230,8 @@ It didn't take too much refactoring to provide the necessary context to the rule
 
 
 
-:strong:`Allocating Responsibility`
+Allocating Responsibility
+--------------------------
 
 
 
@@ -245,7 +255,7 @@ In some cases, it is clear that a function is a method of a class because it upd
 
 
 
-One indicator is the parameters to the function.  For example, a function which uses one of our :strong:`Strategy`  classes as an argument is probably a method of that strategy class.  Similarly, when we deconstructed dynamic flags into a :strong:`State`  design pattern, all of the functions with if-statements based on the state settings are likely methods of the state subclasses.
+One indicator is the parameters to the function.  For example, a function which uses one of our **Strategy**  classes as an argument is probably a method of that strategy class.  Similarly, when we deconstructed dynamic flags into a **State**  design pattern, all of the functions with if-statements based on the state settings are likely methods of the state subclasses.
 
 
 
@@ -253,11 +263,12 @@ In many cases, a strategy method will imply methods in one of the "passive" bean
 
 
 
-:strong:`Things to Look For`
+Things to Look For
+------------------
 
 
 
-Here's the start of :strong:`Finding The Objects`  (FTO™) in C Programs.
+Here's the start of **Finding The Objects**  (FTO™) in C Programs.
 
 
 
@@ -277,7 +288,8 @@ Here's the start of :strong:`Finding The Objects`  (FTO™) in C Programs.
 -   State changes -- assignment statements -- provide some hint on where responsibility belongs.  In many cases, a C function will do too much and must be decomposed into methods of distinct classes.
 
 
-:strong:`Conclusion`
+Conclusion
+-----------
 
 
 

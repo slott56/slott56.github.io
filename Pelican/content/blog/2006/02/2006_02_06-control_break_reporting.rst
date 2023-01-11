@@ -126,8 +126,6 @@ in the ASPN example:
 
 
 
-..  code:
-
 ::
 
     records = [("branch1",  "sales1", 100),
@@ -156,8 +154,6 @@ It works like
 this:
 
 
-
-..  code:
 
 ::
 
@@ -252,8 +248,6 @@ more complex solution, not a simple recipe.
 
 
 
-..  code:
-
 ::
 
     import copy
@@ -314,8 +308,6 @@ key.
 
 
 
-..  code:
-
 ::
 
     analysis= Dimension( "branch", Dimension( "person", Fact( "dollars" ) ) )
@@ -332,8 +324,6 @@ recursive structure of Dimension objects nested within Dimension
 objects.
 
 
-
-..  code:
 
 ::
 

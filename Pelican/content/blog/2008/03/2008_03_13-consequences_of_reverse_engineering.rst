@@ -29,7 +29,8 @@ So, what test cases are we inserting to show we reverse engineered this correctl
 
 
 
-:strong:`Craposity`
+Craposity
+----------
 
 
 
@@ -37,7 +38,7 @@ All I can do is gripe about the level of craposity that accretes around VB.  A c
 
 
 
-I noted that it seems to be all I ever see -- really spankingly shoddy VB code. Indeed, I got a brain cramp of the first magnitude yesterday looking at the example shown above; code that -- merely by inspection -- could be shown to do nothing useful.  And, of course, most VB products as a whole was built with COPY-Relocate-and-PASTE (:strong:`CRAP`\ ™) reuse.
+I noted that it seems to be all I ever see -- really spankingly shoddy VB code. Indeed, I got a brain cramp of the first magnitude yesterday looking at the example shown above; code that -- merely by inspection -- could be shown to do nothing useful.  And, of course, most VB products as a whole was built with COPY-Relocate-and-PASTE (**CRAP**\ ™) reuse.
 
 
 
@@ -45,7 +46,8 @@ I have to agree that it probably isn't the toolset.  That leads me to deduce tha
 
 
 
-:strong:`But It Solves A Problem`
+But It Solves A Problem
+------------------------
 
 
 
@@ -61,7 +63,8 @@ Or, is all that management oversight the cause of the idiocy, not a failure to s
 
 
 
-:strong:`Magic Management`
+Magic Management
+-----------------
 
 
 

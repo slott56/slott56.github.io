@@ -25,11 +25,12 @@ Organizationally, we need the discipline to track every single schema change and
 
 
 
-:strong:`What is a Schema?`
+What is a Schema?
+------------------
 
 
 
-First, a schema isn't the :emphasis:`entire`  set of metadata in a single database instance.  Even if your data is organized in one massive, flat schema with thousands of tables, you still have many smaller "schema" within that single SQL schema owned by "PROD" or "OPS" or "DBA" or "SYS" or whoever owns your production tables.
+First, a schema isn't the *entire*  set of metadata in a single database instance.  Even if your data is organized in one massive, flat schema with thousands of tables, you still have many smaller "schema" within that single SQL schema owned by "PROD" or "OPS" or "DBA" or "SYS" or whoever owns your production tables.
 
 
 
@@ -49,7 +50,8 @@ Here's the bottom-line suggestion. Use SQL schema.  Don't use table prefixes.
 
 
 
-:strong:`What About the Applications?`
+What About the Applications?
+-----------------------------
 
 
 
@@ -69,7 +71,8 @@ Should the application and schema version numbers track?  Should the application
 
 
 
-:strong:`How To Make This Work`
+How To Make This Work
+----------------------
 
 
 
@@ -89,19 +92,20 @@ Second, don't simply create a "timeless" XYZ schema, use the major release numbe
 
 
 
-When you move to version 3.1, create a new XYZ_3 schema.  :strong:`New`.  Migrate the data from the XYZ_2 schema.  Then, rename XYZ_2 to XYZ_2_OLD, so that any program that improperly uses the old schema will throw an exception and die.  When you need to recover the space, you can drop the XYZ_2_OLD schema, knowing that no program is expected to use it; any program that does use it, needs a fix.
+When you move to version 3.1, create a new XYZ_3 schema.  **New**.  Migrate the data from the XYZ_2 schema.  Then, rename XYZ_2 to XYZ_2_OLD, so that any program that improperly uses the old schema will throw an exception and die.  When you need to recover the space, you can drop the XYZ_2_OLD schema, knowing that no program is expected to use it; any program that does use it, needs a fix.
 
 
 
-Wait!  That's potentially a lot of code to touch.  Or, if your a mainframer, that's a lot of programs that need to be rebound to the new SQL.  Yep.  It is.  It's a trivial administrative task.  If you can't recompile or rebind your programs, you have serious quality issues that you :strong:`must`  fix.
+Wait!  That's potentially a lot of code to touch.  Or, if your a mainframer, that's a lot of programs that need to be rebound to the new SQL.  Yep.  It is.  It's a trivial administrative task.  If you can't recompile or rebind your programs, you have serious quality issues that you **must**  fix.
 
 
 
-If you can't make simple SQL changes, you have serious flaws in your application software and your overall IT processes.  You :strong:`must`  fix these application design flaws and organizational process flaws.  I'm sorry for pointing this out.
+If you can't make simple SQL changes, you have serious flaws in your application software and your overall IT processes.  You **must**  fix these application design flaws and organizational process flaws.  I'm sorry for pointing this out.
 
 
 
-:strong:`Implementation Steps`
+Implementation Steps
+---------------------
 
 
 
@@ -121,11 +125,12 @@ If you're creating Python/Django applications, consider including the schema ver
 
 
 
-:strong:`Change Management`
+Change Management
+------------------
 
 
 
-Rather than mess with an complex, risky in-place conversion, you are :emphasis:`adding`  to the database.  You can write a simple batch application to create the someapp_2 data objects from the someapp_1 objects.  Once the data is migrated, you can switch the settings.py and the urls.py files to use someapp_2 instead of someapp_1.  You can easily dry-run this conversion process in an integration test or staging instance of your web site.  If it works there, you can do it again in production.
+Rather than mess with an complex, risky in-place conversion, you are *adding*  to the database.  You can write a simple batch application to create the someapp_2 data objects from the someapp_1 objects.  Once the data is migrated, you can switch the settings.py and the urls.py files to use someapp_2 instead of someapp_1.  You can easily dry-run this conversion process in an integration test or staging instance of your web site.  If it works there, you can do it again in production.
 
 
 

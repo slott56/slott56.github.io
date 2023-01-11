@@ -17,7 +17,8 @@ Here's a recipe for transforming a pile of similarly-formatted source spreadshee
 
 
 
-:strong:`Some Use Cases`
+Some Use Cases
+--------------
 
 
 
@@ -33,7 +34,8 @@ Here's a recipe for transforming a pile of similarly-formatted source spreadshee
 
 
 
-:strong:`Components`
+Components
+------------
 
 
 
@@ -49,11 +51,12 @@ To write the JUnit framework TestCase code, download `Mako <http://www.makotempl
 
 
 
-:strong:`Pattern`
+Patterns
+----------
 
 
 
-The overall design pattern for this is a :strong:`Translator`.  This has three elements: the :strong:`Deep Structure`  -- the actual meaning -- plus a :strong:`Reader`  and a :strong:`Writer`.  The Reader builds a Deep Structure from external data in one representation.  The Writer emits the Deep Structure in another representation.
+The overall design pattern for this is a **Translator**.  This has three elements: the **Deep Structure**  -- the actual meaning -- plus a **Reader**  and a **Writer**.  The Reader builds a Deep Structure from external data in one representation.  The Writer emits the Deep Structure in another representation.
 
 
 
@@ -67,12 +70,12 @@ Here's a piece of the spreadsheet we're starting with.  This has a Source sectio
 
 ..  csv-table::
 
-    ":strong:`Source` ","",""
+    "**Source**","",""
     "Name","Batch","Count"
     "SomeLongName","1","1"
     "some_long_name","2","2"
 
-    ":strong:`Result` ","",""
+    "**Result**","",""
     "Name","Batch","Count"
     "SomeLongName","1","3"
 
@@ -100,7 +103,8 @@ Here's a piece of the spreadsheet we're starting with.  This has a Source sectio
 
 
 
-:strong:`Deep Structure`
+Deep Structure
+---------------
 
 
 
@@ -117,8 +121,6 @@ Your actual situation will obviously vary so widely that it's dangerous even pro
 
 
 
-
-..  code:
 
 ::
 
@@ -156,13 +158,13 @@ The test Case, in this example, has some identifying information, some source En
 
 
 
-:strong:`The Reader`
+The Reader
+-----------
 
 
 
 You'll have a Reader.  (Sometimes you'll have a class hierarchy with multiple readers, depending on how well your SME's can produce sample data.)  The Reader's job is to parse the spreadsheet and yield Cases.  It does as little as possible to build the Case.  Most data conversion or calculation is part of the Case or the Writer.
 
-..  code:
 
 ::
 
@@ -221,7 +223,6 @@ You'll have a Reader.  (Sometimes you'll have a class hierarchy with multiple re
 
 This shows the typical structure for a Reader.  You use it with the following kind of loop.
 
-..  code:
 
 ::
 
@@ -233,17 +234,17 @@ This shows the typical structure for a Reader.  You use it with the following ki
 
 
 
-Why list the sheets explicitly?  Depends on the structure of :strong:`your`  source files.  You may be able to simply iterate through the sheets.  Or you may have sheets that have to be skipped.
+Why list the sheets explicitly?  Depends on the structure of **your**  source files.  You may be able to simply iterate through the sheets.  Or you may have sheets that have to be skipped.
 
 
 
-:strong:`Utility Functions`
+Utility Functions
+-----------------
 
 
 
 Here are the three utility functions the Reader uses.
 
-..  code:
 
 ::
 
@@ -258,13 +259,12 @@ Here are the three utility functions the Reader uses.
 
 
 
-:strong:`The Template-Based Writer`
-
+The Template-Based Writer
+--------------------------
 
 
 Ideally, you'll have one standard writer that covers all of the test cases.  Of course, there may be exceptions or alternatives or other complexities.  Here's a Writer that uses Mako Templates to generate a Java JUnit TestCase.
 
-..  code:
 
 ::
 
@@ -325,17 +325,17 @@ Note that we do some processing in the Writer, some of which might be better def
 
 
 
-Generally, you'll have to mix and match Mako processing with your Writer class hierarchy and processing you do in your Entity and Case class definitions.  You want to minimize the processing in Mako, just because it's a bit obscure inside the template.  On the other hand, you don't want to push everything into the business Entity or test Case classes, since they're the :strong:`Essential Meaning`  that is represented either as a spreadsheet or a JUnit unit test.
+Generally, you'll have to mix and match Mako processing with your Writer class hierarchy and processing you do in your Entity and Case class definitions.  You want to minimize the processing in Mako, just because it's a bit obscure inside the template.  On the other hand, you don't want to push everything into the business Entity or test Case classes, since they're the **Essential Meaning**  that is represented either as a spreadsheet or a JUnit unit test.
 
 
 
-:strong:`The Main Program`
+The Main Program
+----------------
 
 
 
 The main program is just a wrapper that binds an instance of Reader and Writer to create some test cases from source files.
 
-..  code:
 
 ::
 
@@ -364,7 +364,8 @@ Also, the "print"-based solution isn't really the best.  One might prefer to ope
 
 
 
-:strong:`Use Case Review`
+Use Case Review
+----------------
 
 
 

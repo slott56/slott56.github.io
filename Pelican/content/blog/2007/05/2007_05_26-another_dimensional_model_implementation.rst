@@ -17,7 +17,7 @@ The `Cubulus <http://sourceforge.net/projects/cubulus/>`_  project and `Alexandr
 
 
 
-The cited research dates from 1999 (V. Markl, F. Ramsak, R. Bayer, "Improving OLAP Performance by Multidimensional Hierarchical Clustering", :emphasis:`Proceedings of the Intl. Database Engineering and Applications Symposium` , pp. 165-177, 1999.)  I'm suspicious that it predates the "bit-mapped index".  
+The cited research dates from 1999 (V. Markl, F. Ramsak, R. Bayer, "Improving OLAP Performance by Multidimensional Hierarchical Clustering", *Proceedings of the Intl. Database Engineering and Applications Symposium* , pp. 165-177, 1999.)  I'm suspicious that it predates the "bit-mapped index".
 
 
 

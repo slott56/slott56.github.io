@@ -120,36 +120,45 @@ S.Lott -- Software Architect            </a>
 <p>The table appears to have 2 columns, a date and a floating-point value in the range 0.0 to 1.0.  Rows arrive at the rate of 500 an hour.</p>
 <p>Someone wants a weekly summary (about 90,000 rows) binned into 10 ranges 0.0 to 0.1, 0.1 to 0.2, 0.2 to 0.3, etc.  The algorithm might be slightly more complex (to separate <span class="formula"><i>n</i> = 0.1</span> from <span class="formula">0.1 &lt; <i>n</i> ≤ 0.2</span>.)</p>
 <p>[Again, the DBA steadfastly refuses to provide the use cases, so I'm doing a lot of this with minimal information.  However, I did get a spreadsheet showing an Excel version of the algorithm.  Not PL/SQL, not pure SQL, not Java, but Excel.]</p>
-<p><strong>What's the Issue?</strong></p>
+<div class="section" id="what-s-the-issue">
+<h2>What's the Issue?</h2>
 <p>The issue is that some programmers can't be trusted to find their ass groping with both hands.  I was sent three versions of the obvious SQL query, each more contrived and senseless than the last.</p>
 <p>I was asked -- really -- &quot;What is a more scalable approach to the problem ?&quot;.  &quot;Scalable&quot;? WTF?  Scalable with respect to what?  Rows?  Physical I/O's?  Elapsed Time?  CPU use?  User queries?  Web page hits?  Shots of Tequila?  If I look at the <a class="reference external" href="http://www.zifa.com/">Zachman Framework</a>  or the <a class="reference external" href="http://www.sei.cmu.edu/str/taxonomies/view_qm_body.html">SEI Quality Measures Taxonomy</a> , I can come up with at least a half-dozen more dimensions of potential &quot;scalability&quot;.</p>
 <p>[Yes, I asked.  No, I didn't get an answer.  &quot;Scalability&quot; appears to mean the same thing as &quot;Better&quot;.]</p>
 <p>I'm assuming that the volume has increased or something, and the old query isn't fast enough.  Or something.  There's a claim that some query is run 83 million times each week; that's 138 times per second, a number I just don't believe.</p>
-<p><strong>Fetishize a Feature</strong></p>
+</div>
+<div class="section" id="fetishize-a-feature">
+<h2>Fetishize a Feature</h2>
 <p>Someone has an Oracle Bulk Bind fetish.  I've listened to this tripe before.  There are probably places where it helps.  I haven't seen any, but I haven't really made a study of the feature.   Apparently, they couldn't get it to work for the required 80,000 rows.  It gets what they call &quot;the standard ORA-04030 error.&quot;</p>
 <p>The sent me a copy of solution one: a big pile of PL/SQL including some BULK COLLECT stuff.  PL/SQL they couldn't get it to work.  I'm not sure what's going on here, but it's clearly the first dumb-as-a-post SQL programming technique:  <strong>Fetishize a Feature</strong>.  You pick something and stick with it.</p>
-<p><strong>Drown it in Documentation</strong></p>
+</div>
+<div class="section" id="drown-it-in-documentation">
+<h2>Drown it in Documentation</h2>
 <p>Here's the best part of solution one.  It didn't work.  And they provided me with extensive documentation -- on the feature they couldn't get to work.  I like that.  So technique two is to quote a lot of documentation -- as if <strong>Drowning It In Documentation</strong>  somehow make the feature start working.</p>
 <p>I suppose I could try and debug it, but I really don't have the patience.  There are simpler, provably faster techniques.  Why debug something that is highly Oracle-specific, and doesn't seem to work very well?</p>
-<p><strong>Write More Code</strong></p>
+</div>
+<div class="section" id="write-more-code">
+<h2>Write More Code</h2>
 <p>Solution two was to purge the bulk-bind syntax from solution one and see if a big pile of PL/SQL will work.  PL/SQL is a demonstrably slow platform.  There are some anecdotal stories of applications that were made faster by replacing external application programs with PL/SQL.  I believe that those stories involve comparing the performance of a Bentley with an Etap 37S.  One's a car, the other's a boat.  PL/SQL is faster when you change your application design to make better use of PL/SQL features.</p>
 <p>In this case, the PL/SQL solution is a huge amount of code for something that is -- as far as I can tell -- a SELECT COUNT(*) GROUP BY operation.  It's hard to be completely sure, since the code is bad, and obscures the intent.</p>
 <p>Rather than summarize and simplify, they <strong>Wrote More Code</strong>.</p>
-<p><strong>Don't Do The Obvious</strong></p>
+</div>
+<div class="section" id="don-t-do-the-obvious">
+<h2>Don't Do The Obvious</h2>
 <p>Another generally dumb technique is to avoid writing the obvious SQL because -- well -- I don't know why.  I don't have the actual requirements.  However, each example strives to produce one line of output with the frequency table spread out horizontally.  This is fairly hard to do in SQL, and requires lots of copy and paste programming to repeat the CASE expressions over and over again.</p>
 <p>The basic SELECT COUNT(*) GROUP BY produces a number of rows, each of which has a key and a count.  This can be rotated into a horizontal configuration by a reporting program.  For some reason, we're locked into a single form for the report, making it so we can't <strong>Do The Obvious</strong>.</p>
-<p><strong>Refuse to Change the Structure</strong></p>
+</div>
+<div class="section" id="refuse-to-change-the-structure">
+<h2>Refuse to Change the Structure</h2>
 <p>Data structures and algorithms are two complementary sides of the same coin.  You can't fix the algorithm without fixing the data structure, and vice versa.  In this case, the table design was bad, but no one seemed prepared to fix it.</p>
 <p>About a year ago, I had told a member of data cartel to read Ralph Kimball's Data Warehouse Toolkit.  They claimed they read it.  Since they got nothing out of it, I'm not sure what they meant by &quot;read&quot;.  Data warehouse folks know that you have to denormalize for reporting.  A relentless focus on &quot;normalization&quot; -- when dealing with non-updatable reporting-only data -- is simply wrong.</p>
 <p>In this case, the floating point numbers had to be split up into bins.  The calculation must be done at load time, and must be a permanent part of the table.</p>
-<!-- code: -->
 <pre class="literal-block">
 TABLE data(
 time DATETIME,
 value FLOAT );
 </pre>
 <p>This isn't really sufficient for reporting.  You need something more like the following:</p>
-<!-- code: -->
 <pre class="literal-block">
 TABLE data(
 time DATETIME,
@@ -160,31 +169,32 @@ value FLOAT,
 bin INTEGER );
 </pre>
 <p>The various derived values are all trivial to calculate at load time.  Once they're calculated, your query reduces to a trivial SELECT bin, COUNT(*) FROM DATA GROUP BY bin.  It isn't the absolutely fastest way to process the data, but it's a far, far sight faster than on-the-fly CASE expressions or PL/SQL loops.</p>
-<p><strong>The Hubris of Time Calculations</strong></p>
+</div>
+<div class="section" id="the-hubris-of-time-calculations">
+<h2>The Hubris of Time Calculations</h2>
 <p>There's more that's wrong in the various examples I was sent.   Specifically, they use &quot;closed-ended date ranges&quot;.  A serious mistake that is caused by simple hubris.  Time is subtle and complex and easy to get wrong.</p>
 <p>Here's their code.</p>
-<!-- code: -->
 <pre class="literal-block">
 time &gt;= TO_DATE( '05/01/2008 00:00:00', 'MM/DD/YYYY HH24:MI:SS') AND
 time &lt;= TO_DATE( '05/08/2008 23:59:59', 'MM/DD/YYYY HH24:MI:SS');
 </pre>
 <p>It can't -- in general -- work.</p>
 <p>There's a 1-second gap between the two times.  You have use half-open intervals to avoid losing a row that happens to have a timestamp in the gap.  [Don't waste time adding .999's, either, because the decimal value doesn't provide down-to-the-last bit way to encode the internal binary values.]</p>
-<!-- code: -->
 <pre class="literal-block">
 time &gt;= TO_DATE('05/01/2008','MM/DD/YYYY')
 AND time &lt; TO_DATE('05/08/2008','MM/DD/YY' )
 </pre>
 <p>This has NO gap.</p>
 <p>However, this still isn't very good.  As shown in the table definitions above, you need to denormalize the time-stamp into the buckets you actually want to use for selection and grouping.</p>
-<p><strong>Real Speed</strong></p>
+</div>
+<div class="section" id="real-speed">
+<h2>Real Speed</h2>
 <p>I don't have the table or sample data, so I can't compare my results with their performance numbers.  However, their numbers are sad.</p>
 <p>First, they couldn't get the bulk bind to work, but sent me the code, as if it mattered.</p>
 <p>Second, their massive PL/SQL loop ran for an hour.  Apparently, this is unacceptable, but they sent me the code, as if it mattered.  Which is sad.</p>
 <p>Third, their SQL GROUP-BY with all the CASE expressions ran in 12 minutes.  I don't know if that's too long or uses too much memory or takes too many tequila shots.</p>
 <p>The real SELECT COUNT(*) GROUP BY, with denormalized data, is fast.  On my little 1Gb RAM, 1.7Ghz Dell, running Fedora Core 8 and using SQLite, a basic SELECT COUNT(*) processes 100,000 records in about 3 seconds.</p>
 <p>That's about as fast as this little drip of code.</p>
-<!-- code: -->
 <pre class="literal-block">
 import collections
     count= collections.defaultdict(lambda:0)
@@ -195,16 +205,21 @@ import collections
     print count
 </pre>
 <p>In SQLite, for 100,000 rows, this is the same speed as SQL.  Why?  Because we're not asking the database to do anything much more than fetch rows.</p>
-<p>Interestingly, in Oracle, the SELECT COUNT(*) GROUP BY is much, much faster.  Why?  Because Oracle queries involve a context switch, where SQLite does not.  A simple fetch loop in Oracle is relatively slow without using some kind of buffering.</p>
+<p>Interestingly, in Oracle, the <tt class="docutils literal">SELECT <span class="pre">COUNT(*)</span> GROUP BY</tt> is much, much faster.  Why?  Because Oracle queries involve a context switch, where SQLite does not.  A simple fetch loop in Oracle is relatively slow without using some kind of buffering.</p>
 <p>The database fetch time still dominates what we're doing.  A table design change, and doing all processing at load time will minimizes the query time.</p>
-<p><strong>How Many Bad Things Can We Do?</strong></p>
+</div>
+<div class="section" id="how-many-bad-things-can-we-do">
+<h2>How Many Bad Things Can We Do?</h2>
 <p>Let's enumerate them:</p>
-<p><strong>Fetishize a Feature</strong></p>
-<p><strong>Drown It In Documentation</strong></p>
-<p><strong>Write More Code</strong></p>
-<p><strong>Refuse to Change the Structure</strong></p>
-<p><strong>The Hubris of Time Calculation</strong></p>
+<ul class="simple">
+<li><strong>Fetishize a Feature</strong></li>
+<li><strong>Drown It In Documentation</strong></li>
+<li><strong>Write More Code</strong></li>
+<li><strong>Refuse to Change the Structure</strong></li>
+<li><strong>The Hubris of Time Calculation</strong></li>
+</ul>
 <p>All of these habits get in the way of a simple denormalization that makes the obvious query work at amazing speeds.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -224,7 +239,10 @@ import collections
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

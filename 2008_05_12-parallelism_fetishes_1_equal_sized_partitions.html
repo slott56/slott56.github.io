@@ -125,26 +125,41 @@ S.Lott -- Software Architect            </a>
 <p>I got an email asking about Oracle's Partitioned Table structure.  The email used unbound terms like &quot;Good&quot;, &quot;Better&quot; and &quot;Advantageous&quot;.  This kind of question is unanswerable, making it difficult to be helpful.  Indeed, these questions have a mysticism about them that I can't cope with.</p>
 <p>First (and foremost) architecture solves problems.  Without a specific, tangible problem, there is no architecture and there is no architectural recommendation.  That's absolute and final.  You can't ask about parallelism in a vacuum with no specific application.  In general, technology -- by itself -- is boring.  If you aren't applying it to a problem, it's just ideas.  The idea of 13 being a non-prime number, for example, is just an idea.  A partitioned table, similarly, is just an idea.  So what?  The question is &quot;What are you trying to accomplish?&quot;</p>
 <p>Second, &quot;Better&quot; doesn't have a generic binding.  &quot;Better&quot; is only meaningful in the specific context of a quality dimension to optimize.  Most of the time, &quot;Better&quot; means &quot;Less&quot;: &quot;Less Cost&quot;, &quot;Less Time&quot;, &quot;Less Memory&quot;, &quot;Less I/O&quot;.  Sometimes &quot;Better&quot; means &quot;More&quot;: &quot;More Adaptable&quot;, &quot;More Maintainable&quot;, &quot;More Auditable&quot;, &quot;More Secure&quot;, etc.  Lacking any specific optimization criteria, the idea of a partitioned table is fine.  Or too much work.  Or essential to success.  I can't tell from words like &quot;Better&quot;.</p>
-<p><strong>Answers</strong></p>
+<div class="section" id="answers">
+<h2>Answers</h2>
 <p>To focus the conversation, I asked, specifically, which &quot;Less&quot; they were interested in.  &quot;Less Time&quot;, &quot;Less Memory&quot;, or &quot;Less I/O&quot;.  I specifically said &quot;Pick One&quot;.  Here's the answer I got: &quot;Thanks for explicitly listing them.&quot;.  Seriously.  No answer of any kind.  Sigh.</p>
 <p>Failing that, I tried to lift up the ideas of &quot;empiricism&quot; and the &quot;scientific method&quot;:  do some research, form a conjecture, make a prediction, run some experiments.  This is covered nicely in Wikipedia's entry on <a class="reference external" href="http://en.wikipedia.org/wiki/Scientific_method">Scientific Method</a> , and this article on <a class="reference external" href="http://webspace.ship.edu/cgboer/epist.html">Epistemology</a> .  Here's the answer I got: &quot;So, I picked an approach. I will take finger to keyboard and see what I get.&quot;.  Seriously.  No theory, no prediction, no comparison, just coding one partitioning approach.  Sigh.</p>
 <p>It appears that this was someone for whom &quot;Science&quot; doesn't apply; someone for whom mysticism is better than empiricism.  It appears that I can't really help much there.  I don't have a strong enough background in mysticism.</p>
-<p><strong>Concurrency Modeling</strong></p>
+</div>
+<div class="section" id="concurrency-modeling">
+<h2>Concurrency Modeling</h2>
 <p>Let's try empiricism and see if that works.  Here's the simplest possible model -- no communication among the processes.  We'll have <em>n</em>  concurrent processes.  Let's keep it simple, and say <em>n</em> = 4.  Let's call the processes a, b, c and d.</p>
 <p>There are two ways to run these four processes.  Trivially expressed by the following two shell scripts, called Serial and Parallel.</p>
-<p><strong>Serial</strong>.  a; b; c; d</p>
-<p><strong>Parallel</strong>.  a &amp;amp; b &amp;amp; c &amp;amp; d</p>
+<dl class="docutils">
+<dt>Serial.</dt>
+<dd><tt class="docutils literal">a; b; c; d</tt></dd>
+<dt>Parallel.</dt>
+<dd><tt class="docutils literal">a &amp; b &amp; c &amp; d</tt></dd>
+</dl>
 <p>Let's examine the possible run-times.</p>
-<p><strong>Serial</strong>: a.time + b.time + c.time + d.time</p>
-<p><strong>Parallel</strong>:  max( a.time, b.time, c.time, d.time )</p>
+<dl class="docutils">
+<dt>Serial:</dt>
+<dd>a.time + b.time + c.time + d.time</dd>
+<dt>Parallel:</dt>
+<dd>max( a.time, b.time, c.time, d.time )</dd>
+</dl>
 <p>Which is less?  By definition, parallel must run in less time than serial.  Conclusion?  Parallel always results in less run time.  Unless of course, 3 of the 4 processes are degenerate cases and run in zero time.  Then serial == parallel.</p>
 <p>And that's pretty much all you need to know.</p>
 <p>Want details?  Write four shell scripts which consist of &quot;sleep <em>n</em>&quot; for different values of <em>n</em>.  Run the two versions.  Measure the time.  Write a loop to run each version 128 times and average the results.</p>
 <p>What did we do?  Theory, Prediction, Experiment.</p>
-<p><strong>Context Switching Fetish</strong></p>
-<p>The True Student of OS will cry foul at the above analysis.  The Student will claim that Parallel programs somehow involve more overhead than Serial programs because the OS must interleave the executions of multiple processes.</p>
+</div>
+<div class="section" id="context-switching-fetish">
+<h2>Context Switching Fetish</h2>
+<p>The <strong>True Student of OS</strong> will cry foul at the above analysis.  The Student will claim that Parallel programs somehow involve more overhead than Serial programs because the OS must interleave the executions of multiple processes.</p>
 <p>This may have been true -- 20 years ago.  When I was a kid, serial meant the OS was otherwise doing NOTHING.  Parallel meant interleaved concurrent execution -- and concurrency was some kind of special case.  Today, all OS's are doing hundreds of things concurrently even when they're just idling.  The context-switch overheads are essentially fixed.  The only way you can even notice the overheads is to introduce boat-loads of new processes.  Right now, I've got 60 processes running, and I'm just writing.  Running one more process or four more processes is not a measurable change in the number of context switches being managed.</p>
-<p><strong>Equal-Sized Workloads</strong></p>
+</div>
+<div class="section" id="equal-sized-workloads">
+<h2>Equal-Sized Workloads</h2>
 <p>Let's look Oracle's table partitioning.  This is the same as having different workloads for our <em>n</em> = 4 concurrent processes.  To make it easy on the brain, get a deck of playing cards (or Tarot cards, since we're looking at mysticism of parallelism).</p>
 <p>Cut the deck into four piles.  Make no effort at equality.  Just cut and allocate into four piles: a, b, c and d.</p>
 <p>Now, to simulate Oracle's physical I/O operations, deal batches of 3 cards into the middle of the table.  Pick 3 cards off a, 3 cards off b, 3 cards of c, 3 cards off d.  That's one quantum of time.  Repeat, counting one quanta of time for each 3-card deal.</p>
@@ -153,26 +168,35 @@ S.Lott -- Software Architect            </a>
 <p>Hint: For Tarot cards the minimum is 20 quanta.  The maximum is 78 quanta.</p>
 <p>Want more details?  Do this a few dozen times, creating a spreadsheet with your results.  From your randomization experiments, get the average, standard deviation, best and worst cases.  These will be clustered around the middle of the theoretical extremes.</p>
 <p>So, the best case is about 1/4 of the worst case.  <em>n</em> = 4.  Hmmm.   Pattern?</p>
-<p><strong>Unequal Workloads</strong></p>
+</div>
+<div class="section" id="unequal-workloads">
+<h2>Unequal Workloads</h2>
 <p>Here's were the fetish kicks into high gear.  If equal workloads leads to minimal time, what's the impact of unequal workloads?  How much fetishizing can we do to keep the workloads equal?</p>
 <p>Here's a great version of that question: &quot;Oracle partitions are balanced when they have approximately the same number of rows. For the sake of argument lets quantify &quot;approximately&quot; as plus/minus 3 percent.&quot;.</p>
 <p><em>Three</em>  percent.  Question: Where did this number come from?  Answer: fetishizing.</p>
 <p>Let's think.  Time depends on physical I/O's.  So, we really care about blocks, not rows.  How may rows per block determines how close &quot;approximately&quot; means.  If the rows are small (e.g., 0.5K bytes) and the blocks big (e.g., 32K bytes), then ±64 rows is still precisely the same-sized partition.  As a percentage, 64 rows could be 100% or nearly 0%.</p>
 <p>Blocks are harder to count than rows.  Indeed, Oracle's use of blocks is quite confusing, so their documentation suggests using number of rows; for large tables it's as misleading as anything else.  For small tables, why are we bothering?</p>
-<p><strong>How Unequal Before We Notice?</strong></p>
+</div>
+<div class="section" id="how-unequal-before-we-notice">
+<h2>How Unequal Before We Notice?</h2>
 <p>Well, we're back to the business problem, at this point.  We need to know &quot;how fast is fast enough?&quot;  If one partition is too slow, then four partitions, even if radically different in size will be faster.  It will be as fast as the largest partition.</p>
 <p>Do they have to be equal-sized?  <strong>No</strong>.  The only requirement is that the largest partition's processing time fit within our time box.</p>
 <p>Do we need &quot;optimal&quot; run time?  <strong>No</strong>.  We need to meet the requirements.  If we can partition equally, that's nice, but hardly worth any brain calories.</p>
-<p><strong>There's no &quot;Best&quot;</strong></p>
+</div>
+<div class="section" id="there-s-no-best">
+<h2>There's no &quot;Best&quot;</h2>
 <p>&quot;Yes, but,&quot; some folks say; they want a &quot;best&quot; answer.</p>
 <p>Equal-sized partitions will minimize run time.  At the cost of figuring out which combination of keys splits rows equally.  You will add complexity elsewhere to determine how to precisely equalize the partitions.  Ask yourself if the cost-benefits are there.</p>
 <p>BTW, you can explore your data without doing too much work.  SELECT COUNT(*), x FROM t GROUP BY x; is all you need to do to locate combinations of keys and their relative partition sizes.</p>
 <p>You <em>never</em>  need &quot;minimal&quot;, you only need &quot;good enough to make people happy.&quot;  You can fetishize over endless partitioning keys.  Have fun.</p>
 <p>If you don't have a required query run time, you're just wasting time and money playing Oracle.  You can &quot;put finger to keyboard&quot; if it makes you happy.  Hopefully, you're just doing a few COUNT(*) GROUP BY's to get some answers.  If your employer enjoys it enough, you can squander a lot of time on hand-wringing followed by pointless POC's that show one approach with no theoretical framework to act as a basis for comparison.</p>
 <p>If you have a required query run time, and you are looking for a partition that meets it, you're solving problems.</p>
-<p><strong>Hold The Phone</strong></p>
+</div>
+<div class="section" id="hold-the-phone">
+<h2>Hold The Phone</h2>
 <p>The wise reader will say &quot;This isn't that hard; I can just assign a surrogate partition number to each row, and guarantee equality.&quot;</p>
 <p>Yep.  It's that simple.  A basic <tt class="docutils literal">count % n</tt> will assign a number, <em>k</em>, <span class="formula">0 ≤ <i>k</i> &lt; <i>n</i></span> , that can be the partition number.  That is the bottom line: searching among natural keys and other attributes is a waste of time and money.  Just compute a partition number at load time and be done with it.  Or you can fetishize about it.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -192,7 +216,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

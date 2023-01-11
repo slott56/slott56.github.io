@@ -21,7 +21,8 @@ There are a few things to watch out for, however.  Top on the list is trying to 
 
 
 
-:strong:`The Dark Ages`
+The Dark Ages
+-------------
 
 
 
@@ -33,15 +34,16 @@ In the case of assembler, where there are no real rules imposed by the language,
 
 
 
-This is a translation from a semantically rich language to a poor language.  You could say :emphasis:`anything`  in assembler.  In COBOL, you only had a limited subset of available language constructs.
+This is a translation from a semantically rich language to a poor language.  You could say *anything*  in assembler.  In COBOL, you only had a limited subset of available language constructs.
 
 
 
-The strategy of choice was :strong:`Semantic Transformation`.  Get a grip on the program's purpose and means, describe that in clear English, and then write that in COBOL.
+The strategy of choice was **Semantic Transformation**.  Get a grip on the program's purpose and means, describe that in clear English, and then write that in COBOL.
 
 
 
-:strong:`RPG and APL`
+RPG and APL
+------------
 
 
 
@@ -49,15 +51,16 @@ For languages like RPG or APL, the language itself implies some powerful, but im
 
 
 
-In some cases, there were opportunities for :strong:`Syntactic Transformation`.  RPG programs (especially old RPG and RPG II) could be rewritten into a COBOL-like syntax.  A great deal of fixed program structure had to be wired in around this transliterated RPG and it never covered all the cases well, but it got you started. 
+In some cases, there were opportunities for **Syntactic Transformation**.  RPG programs (especially old RPG and RPG II) could be rewritten into a COBOL-like syntax.  A great deal of fixed program structure had to be wired in around this transliterated RPG and it never covered all the cases well, but it got you started. 
 
 
 
-In the case of APL, it was purely a :strong:`Semantic Transformation`  exercise.  The APL had to be read (and understood) in order to reason out what the COBOL was supposed to do.  Sadly, APL is a WORN (write-once-read-never) language, so this reverse engineering effort (had we won the bid) would have been epic.
+In the case of APL, it was purely a **Semantic Transformation**  exercise.  The APL had to be read (and understood) in order to reason out what the COBOL was supposed to do.  Sadly, APL is a WORN (write-once-read-never) language, so this reverse engineering effort (had we won the bid) would have been epic.
 
 
 
-:strong:`From C to Shining Java`
+From C to Shining Java
+----------------------
 
 
 
@@ -73,7 +76,8 @@ In order to construct proper Java objects, we need to pull out the relevant bits
 
 
 
-:strong:`Driven By Testing?`
+Driven By Testing?
+------------------
 
 
 
@@ -93,7 +97,8 @@ However, the process is driven by the need for testing.  Further, test driven de
 
 
 
-:strong:`Test Driven isn't Test First`
+Test Driven isn't Test First
+----------------------------
 
 
 

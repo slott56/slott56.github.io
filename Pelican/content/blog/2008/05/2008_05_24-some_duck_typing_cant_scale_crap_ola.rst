@@ -25,7 +25,8 @@ This -- it turns out -- has nothing to do with API's, duck typing or dynamic lan
 
 
 
-:strong:`Defensive Programming`
+Defensive Programming
+----------------------
 
 
 
@@ -45,7 +46,8 @@ I don't have much use for Java private in in-house IT projects.  If you're not s
 
 
 
-:strong:`Who, Specifically?`
+Who, Specifically?
+-------------------
 
 
 
@@ -65,11 +67,12 @@ I asked, "Who Specifically?"; "Who, specifically, will abuse the API?"  The answ
 
 
 
-Similarly, in `Duck Typing done right <http://blogs.sun.com/bblfish/entry/duck_typing_done_right>`_ , there's the paranoid expression "Extend the context somewhat ".  As if someone, somewhere can't be trusted.  Who specifically, can't be trusted?
+Similarly, in `Duck Typing done right <http://blogs.sun.com/bblfish/entry/duck_typing_done_right>`_ , there's the paranoid expression "Extend the context somewhat".  As if someone, somewhere can't be trusted.  Who specifically, can't be trusted?
 
 
 
-:strong:`Asking for Names`
+Asking for Names
+----------------
 
 
 
@@ -89,7 +92,8 @@ If we don't have a specific list of "others" or specific "foreign code", then...
 
 
 
-:strong:`Real Problems`
+Real Problems
+--------------
 
 
 
@@ -101,23 +105,24 @@ As "`Duck Typing Done Right is Wrong! <http://paddy3118.blogspot.com/2008/05/duc
 
 
 
-1.  :strong:`Shoddy API documentation`.  My policy is this: try to explain it to a manager, or Quentin the rabbit who lives in the back yard.  (They have the same attention span.)  If you can't get a pithy, tidy, no-diagrams explanation, you've got work to do.  Refactor and rewrite the doco until you can explain it without pictures.
+1.  **Shoddy API documentation**.  My policy is this: try to explain it to a manager, or Quentin the rabbit who lives in the back yard.  (They have the same attention span.)  If you can't get a pithy, tidy, no-diagrams explanation, you've got work to do.  Refactor and rewrite the doco until you can explain it without pictures.
 
 
 
-2.  :strong:`An unwillingness to understand what's really going on in the API`.   Some programmers don't read well, and start off assuming things about the API; their reading reduces to looking for confirmation of their assumptions.  When they don't find the hoped-for confirmation they may proceed anyway (with lots of EPIC FAIL) -- often deadline-obsessed managers will force this situation.  Other times programmers will replace an effort at understanding with a superficial but scholarly-looking analysis of the documentation.  
+2.  **An unwillingness to understand what's really going on in the API**.   Some programmers don't read well, and start off assuming things about the API; their reading reduces to looking for confirmation of their assumptions.  When they don't find the hoped-for confirmation they may proceed anyway (with lots of EPIC FAIL) -- often deadline-obsessed managers will force this situation.  Other times programmers will replace an effort at understanding with a superficial but scholarly-looking analysis of the documentation.  
 
 
 
-When programmers are unwilling to learn, this often surfaces at complaints about "inconsistencies" in the documents.  Sometimes these are simply shoddy documentation.  More often, however, the inconsistency is a conflict between the programmer's assumption and what the documentation actually says.
+    When programmers are unwilling to learn, this often surfaces at complaints about "inconsistencies" in the documents.  Sometimes these are simply shoddy documentation.  More often, however, the inconsistency is a conflict between the programmer's assumption and what the documentation actually says.
 
 
 
-3.  :strong:`No independent confirmation`.  No unit test, no audit, nothing.  I can have an ontology that makes claims about my classes.  By without evidence (i.e., unit test cases) that context-free name is just as much a lie as my context-dependent name.
+3.  **No independent confirmation**.  No unit test, no audit, nothing.  I can have an ontology that makes claims about my classes.  By without evidence (i.e., unit test cases) that context-free name is just as much a lie as my context-dependent name.
 
 
 
-:strong:`Where Duck Typing Could Fail`
+Where Duck Typing Could Fail
+-----------------------------
 
 
 

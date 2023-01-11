@@ -21,11 +21,11 @@ However, not everything that's covered in ordinary Computer Science books is a c
 
 
 
-For example, you can spend some quality time wrapping your brain around call-by-name and call-by-value semantics.  In C, and C++, this is :strong:`A Big Deal`\ ™.  In Java, it's a subtlety that helps show the slight differences between primitive types and reference types [`Types, Values and Variables <http://java.sun.com/docs/books/jls/second_edition/html/typesValues.doc.html>`_ ].  In Python, it can be taught as a simple feature of objects: some are mutable, some are not.
+For example, you can spend some quality time wrapping your brain around call-by-name and call-by-value semantics.  In C, and C++, this is **A Big Deal**\ ™.  In Java, it's a subtlety that helps show the slight differences between primitive types and reference types [`Types, Values and Variables <http://java.sun.com/docs/books/jls/second_edition/html/typesValues.doc.html>`_ ].  In Python, it can be taught as a simple feature of objects: some are mutable, some are not.
 
 
 
-Some design patterns are important in Java, but moot in Python.  Since Python has multiple inheritance and Duck typing, the use of :strong:`Strategy`  and other kinds of mixins isn't as important as it is in Java.  Similarly, Python has many different flavors of :strong:`Singleton`, each with a distinct purpose.  
+Some design patterns are important in Java, but moot in Python.  Since Python has multiple inheritance and Duck typing, the use of **Strategy**  and other kinds of mixins isn't as important as it is in Java.  Similarly, Python has many different flavors of **Singleton**, each with a distinct purpose.
 
 
 

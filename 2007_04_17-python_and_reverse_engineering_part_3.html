@@ -184,7 +184,6 @@ the revision to the
 t_ID function
 in
 clex.py.</p>
-<!-- code: -->
 <pre class="literal-block">
 typedefs = [
     'va_list', 'time_t', 'sem_t', 'FILE', 'size_t', 'ushort', # Standard C type names
@@ -238,7 +237,6 @@ PLY, we flatten this list of tuples into a single composite regular expression.
 The list of tuples has pleasant, easy-to-read syntax.  The resulting RE isn't
 too difficult to read, but is long-winded and
 repetitive.</p>
-<!-- code: -->
 <pre class="literal-block">
 top_level_REs = (
     ( 'p_comment', r'/\*(.|\n)*?\*/' ),
@@ -290,7 +288,6 @@ patterns.</p>
 which simulate a few features of the SQL Precompiler.  This will return two
 things: the host language text and a list of the embedded SQL
 statements.</p>
-<!-- code: -->
 <pre class="literal-block">
 def quoteC( aString ):
     return aString.replace( '&quot;', r'\&quot;' ).replace( '\n', '' )
@@ -378,7 +375,6 @@ recognize just enough of the
 to get past some rather complex macro definitions.</p>
 <p>Note that we define the patterns as
 sequences of ( token-name, pattern-text ) tuples.</p>
-<!-- code: -->
 <pre class="literal-block">
 cpp_REs = (
     ( 'ifdef', r'\#ifdef[ \t]+(?P\w+)\n' ),
@@ -412,7 +408,6 @@ simple:  if all of the conditions are true, then the host language code segment
 is present in the output; if any condition is false, the code segment is not
 included in the output.  Here is our function for simulating the
 CPP.</p>
-<!-- code: -->
 <pre class="literal-block">
 def allTrue( context ):
     x= True
@@ -486,7 +481,6 @@ this detail.</p>
 <p><strong>Preprocessing Pipeline.</strong></p>
 <p>Here's what the two-part
 SQL and CPP processing looks like.</p>
-<!-- code: -->
 <pre class="literal-block">
 def demonstration():
     text= file(r&quot;legacySource\x\y.c&quot;,'r').read()
@@ -515,7 +509,6 @@ outlined above.   Once we have that module, we can call those functions to
 prepare input to the lexer.</p>
 <p>The
 following to demonstrates how our lexer is used.</p>
-<!-- code: -->
 <pre class="literal-block">
 lexer = lex.lex()
 
@@ -564,7 +557,10 @@ and where they are used in the program.</p>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

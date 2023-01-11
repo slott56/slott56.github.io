@@ -25,7 +25,8 @@ At first, all I could recall was this.  When I first heard about Java, I collect
 
 
 
-:strong:`The Script-Based Challenge` 
+The Script-Based Challenge
+--------------------------
 
 
 
@@ -41,7 +42,8 @@ After 7 or more years of flawless, crash-free service [Bragging!], I recommended
 
 
 
-:strong:`C++, OS API's and Python` 
+C++, OS API's and Python
+-------------------------
 
 
 

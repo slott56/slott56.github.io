@@ -270,8 +270,6 @@ same piece of code.
 
 
 
-..  code:
-
 ::
 
     def pureSQL():
@@ -321,8 +319,6 @@ same piece of code.
 
 Here's the One Dictionary algorithm,
 in Python.  The only change is on lines 25 and 26.
-
-..  code:
 
 ::
 

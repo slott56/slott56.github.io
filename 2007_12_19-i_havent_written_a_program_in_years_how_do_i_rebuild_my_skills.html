@@ -126,28 +126,32 @@ S.Lott -- Software Architect            </a>
 <p>Jim: &quot;Maybe.  I was a pretty good Fortran programmer, many years ago.&quot;</p>
 <p>Me: &quot;This won't be so brain-crampingly hard.  I'll post some stuff on the CSV package.  You'll like it.&quot;</p>
 <p>And, I got the following question from a reader in Belgium &quot;I'm a beginner, but I like python. I heard about it from the people that develop Gramps, a genealogy program. So maybe I should choose your python book? However, your 'programming' book is much more recent. Is it better?&quot;.</p>
-<p><strong>Getting Started with Python</strong></p>
+<div class="section" id="getting-started-with-python">
+<h2>Getting Started with Python</h2>
 <p>First, do a little bit of self-reflection.</p>
 <p>How are your computer skills?  Have you programmed before?  If so, look at <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python.html">Building Skills in Python</a> .  This book assumes you know how to do some programming.   If you have no background in programming at all, you'll need to look at <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprogrammer.html">Building Skills in Programming</a>  -- it's for the non-programmer; the n00b, as they are affectionately known.</p>
 <p>How is your bias?  Are you looking for the perfect language?  The one that is so far superior to others that it is the final word in programming?  If so, stop now.  There is no such thing.  If you are going to do side-by-side comparison between Python and {your language here}, you'll find enough gaps, overlaps, and differences that you can easily label Python as incomplete, fat with features or more of the same.</p>
 <p>What is your environment?  In a corporate, for-profit, &quot;who-do-we-sue?&quot; world, you'll find that Python has the taint of open source.  Sure, you use Apache and Java, but they are different.  I don't see how, but your CIO approves of those open source packages, but won't approve of Python.  Use Java.  It is free from taint.</p>
 <p>What is your tool preference?  I've had people explain that the Visual Studio environment is so productive that it makes up for the problems in Visual Basic.  Since the actual code is what endures (not the tool used to produce the code), I'm confused by using Visual Studio as the justification for VB.  Some people claim that all that &quot;text&quot; in a conventional programming language is confusing and unsuitable for human beings -- glyphs and icons are better.  I've had people lecture me on the evils of using whitespace to properly format a program.</p>
-<p><strong>Some First Steps</strong></p>
+</div>
+<div class="section" id="some-first-steps">
+<h2>Some First Steps</h2>
 <p>Here's the short version of <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch02.html">chapter 2</a> :</p>
 <ol class="arabic simple">
 <li>Download a Python installer from <a class="reference external" href="http://www.python.org">Python.org</a> .</li>
 <li>You may want a good editor.  Currently, I'm a fan of <a class="reference external" href="http://www.activestate.com/Products/komodo_edit/">Komodo Edit</a> .  Download and install it, too.  (This isn't in the book -- yet.)  It requires some configuring to locate your Python installation and run Python programs neatly; we'll get to that in a moment.</li>
 </ol>
 <p>You're pretty much ready to roll at this point.</p>
-<p><strong>Your First Program</strong></p>
+</div>
+<div class="section" id="your-first-program">
+<h2>Your First Program</h2>
 <p>Here's your hello world program.</p>
-<!-- code: -->
 <pre class="literal-block">
 #!/usr/bin/env python
 &quot;&quot;&quot; My First Program &quot;&quot;&quot;
 import sys
-print sys.version
-print &quot;Hello World&quot;
+print(sys.version)
+print(&quot;Hello, World!&quot;)
 </pre>
 <p>To make this run neatly and cleanly, there's some Komodo setup you should do.</p>
 <ol class="arabic simple">
@@ -157,22 +161,22 @@ print &quot;Hello World&quot;
 </ol>
 <p>Now you can simply double-click the Komodo command to run your program.  You can also map this to a key, like F5, by opening the command and looking at the Key Binding tab.</p>
 <p>Here's what I got as output.</p>
-<!-- code: -->
 <pre class="literal-block">
 2.5.1 (r251:54863, Oct  5 2007, 21:08:09)
 [GCC 4.0.1 (Apple Inc. build 5465)]
-Hello World
+Hello, World!
 </pre>
 <p>While the book is 2.4.1, I'm getting ready for the next round of revisions to get to 2.5.  After that will be a major rewrite for 3.0.</p>
-<p><strong>A CSV Read/Process Example</strong></p>
+</div>
+<div class="section" id="a-csv-read-process-example">
+<h2>A CSV Read/Process Example</h2>
 <p>Here's the skeleton of Jim's program to work with some spreadsheets of raw data.</p>
-<!-- code: -->
 <pre class="literal-block">
 #!/usr/bin/env python
 import csv
 
-srcFile= open( &quot;some.csv&quot;, &quot;r&quot; )
-srcCSV= csv.reader( srcFile )
+srcFile = open(&quot;some.csv&quot;, &quot;r&quot;)
+srcCSV = csv.reader(srcFile)
 for row in srcCSV:
     if row[0] == &quot;Col A Title&quot;:
         # A Title row
@@ -183,7 +187,7 @@ for row in srcCSV:
     else:
         # All the other rows
         pass # do some validation, some calculation, whatever...
-    print row
+    print(row)
 srcFile.close()
 </pre>
 <p>This illustrates a few key Pythonic concepts.</p>
@@ -191,11 +195,12 @@ srcFile.close()
 <li>Everything interesting is in the library, not the language.  The Python book only has <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt01.html">part 1</a>  focused on the language.  <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt02.html">Part 2</a> , <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt03.html">part 3</a>  and <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt04.html">part 4</a>  are on data structures, objects and the library.</li>
 <li>File processing is easy.  It's all the related stuff that's hard.  <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch18.html">Chapter 18</a>  is basic files.</li>
 <li>CSV parsing is layered onto basic file processing as simply as possible.  <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch19.html">Chapter 19</a>  is a bunch of file-handling modules, including details on CSV.    <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch31.html">Chapter 31</a>  is other file formats.</li>
-<li>The <strong>for</strong>  statement processes anything &quot;iterable&quot;.  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html">Chapter 7</a>  item, the profound nature of &quot;iterable&quot; has to be revisited throughout part 2.</li>
+<li>The <tt class="docutils literal">for</tt>  statement processes anything &quot;iterable&quot;.  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a <a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html">Chapter 7</a>  item, the profound nature of &quot;iterable&quot; has to be revisited throughout part 2.</li>
 <li>The if/elif/else construct can have as many (or as few) conditions as you need.  Why add a &quot;switch&quot; or &quot;case&quot; statement and clutter up the syntax?  Chapter 7 covers this, too, because it's so elegantly simple.</li>
 </ol>
 <p>I can't say enough about the value of having a language that makes simple things so easy to accomplish.  I almost feel guilty writing things in Python -- to get them to work -- and then rewriting them into Java because customers prefer Java.</p>
 <p>That's why I recommend Python to anyone retooling their skills.  It's productive and usable right out of the box.  It's a toy that comes with batteries included.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -215,7 +220,10 @@ srcFile.close()
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

@@ -746,11 +746,14 @@ to do some podcasts.&lt;/p&gt;
 &lt;p&gt;At first, all I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I can't find the exact question -- it was something along the lines of &amp;quot;Why did you start with Python?&amp;quot; or &amp;quot;How did you choose Python?&amp;quot;   It was probably one tagged with &lt;a class="reference external" href="http://stackoverflow.com/questions/tagged/programming-languages"&gt;programming-languages&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;For several days, I couldn't recall why or how I started looking at Python.&lt;/p&gt;
 &lt;p&gt;At first, all I could recall was this.  When I first heard about Java, I collected a list of OO languages (C++, Java, Python, Smalltalk) and made an effort to get a grip on a few of them.  I knew C++.  I learned a little Smalltalk; this was a hard thing to do in the late 80's with just a clunky old Mac Plus at home.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Script-Based Challenge&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="the-script-based-challenge"&gt;
+&lt;h2&gt;The Script-Based Challenge&lt;/h2&gt;
 &lt;p&gt;I think that sometime in the '99 to '01 neighborhood I looked at a piece of software I'd written back in '92.  It was an application server that ran 24x7, and was written entirely as a massive shell script.  Really.  Several thousand lines of shell script to service requests.  The queue was a database table with inbound requests; the results were left in a directory to be downloaded.  It worked great, but was kind of slow.&lt;/p&gt;
 &lt;p&gt;[I did have to make a Y2K change -- I had, foolishly, used last two years of the date as part of a file name, and the files would get out of order if I kept using that naming scheme.  My only Y2K design mistake.]&lt;/p&gt;
 &lt;p&gt;After 7 or more years of flawless, crash-free service [Bragging!], I recommended that they retire this and replace it with something a little smarter and smaller, written in C++.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;C++, OS API's and Python&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="c-os-api-s-and-python"&gt;
+&lt;h2&gt;C++, OS API's and Python&lt;/h2&gt;
 &lt;p&gt;The legacy code -- being a shell script -- was packed full of the OS API calls that are made available to the shell through the various commands.  For a while, I waffled between recommending C++ and Java.  Java had lots of appeal.  C++, however, had ready access to the necessary API's.&lt;/p&gt;
 &lt;p&gt;Priorities changed.  The project was tabled because of larger data warehouse implementation changes.&lt;/p&gt;
 &lt;p&gt;At some point, it began to dawn on me that what I wanted was&lt;/p&gt;
@@ -761,6 +764,7 @@ to do some podcasts.&lt;/p&gt;
 &lt;li&gt;OS API's of C (and C++).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That's when I started to look into Python.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Too much of the wrong kind of fun.</title><link href="https://slott56.github.io/2008_09_23-too_much_of_the_wrong_kind_of_fun.html" rel="alternate"></link><published>2008-09-23T00:08:00-04:00</published><updated>2008-09-23T00:08:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-09-23:/2008_09_23-too_much_of_the_wrong_kind_of_fun.html</id><summary type="html">&lt;p&gt;The point, from the FAQ is to answer programming questions with people who a trusted by their peers.&lt;/p&gt;
 &lt;p&gt;Go to the &lt;a class="reference external" href="http://stackoverflow.com/questions/tagged/python"&gt;Python&lt;/a&gt;  tag to join that conversation.&lt;/p&gt;
 &lt;p&gt;Your reputation is your overall score.  Every time your question (or answer) is voted up, you get 10 reputation points.  Each time you're …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The point, from the FAQ is to answer programming questions with people who a trusted by their peers.&lt;/p&gt;
@@ -827,14 +831,18 @@ to do some podcasts.&lt;/p&gt;
 &lt;p&gt;There were two small updates regarding testability.&lt;/p&gt;
 &lt;p&gt;First, creating Outcome instances — for testing purposes — does involve an ugly hack of repeating the payout odds.  Since we're developing stand-alone unit tests, this isn't a bad thing.  Later, we'll get Outcomes from the Game, using keys to a mapping of some kind.&lt;/p&gt;
 &lt;p&gt;Second, our initial version of the Wheel is intentionally naive and untestable.  When we rework it, we really do delete the old code.  And this is an important thing.  Testability isn't always obvious at first, and rework to improve testability is an essential skill.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Agility&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="agility"&gt;
+&lt;h2&gt;Agility&lt;/h2&gt;
 &lt;p&gt;There was a small change related to Agility.  This is something that is covered implicitly, and perhaps ought to be brought out more explicitly.&lt;/p&gt;
-&lt;p&gt;Most things in this simulation life essentially forever.  However, Bets do have to get deleted when they're resolved.  Initially, deleting bets is ignored.  It certainly is possible to add a delete method to the first version of Table.  More fundamentally, there's no compelling reason to add too many features too early in the development cycle.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Frustration&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Most things in this simulation live essentially forever.  However, Bets do have to get deleted when they're resolved.  Initially, deleting bets is ignored.  It certainly is possible to add a delete method to the first version of Table.  More fundamentally, there's no compelling reason to add too many features too early in the development cycle.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="frustration"&gt;
+&lt;h2&gt;Frustration&lt;/h2&gt;
 &lt;p&gt;Some folks noted frustration regarding rework.  This is expected, and I have a few soapboxes and sidebars on the subject of rework.&lt;/p&gt;
 &lt;p&gt;The bottom line is that there really is considerable rework in some classes.  For example, the first release of Wheel uses a really poor design, and later rework to make it more testable really does chuck out the initial code.&lt;/p&gt;
 &lt;p&gt;Rework is essential to the Agile, incremental development approach.  There isn't an easy way to prevent rework.  If I present a &amp;quot;more finalized&amp;quot; design, you don't get to participate fully in the design decisions and their consequences.&lt;/p&gt;
 &lt;p&gt;In most cases, the rework involved implementation changes, not interface changes.  This is an essential object-oriented design exercise.  You should always be ready, willing and able to change the implementation of a method.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Brain Dead and Visual Basic: Coincidence?</title><link href="https://slott56.github.io/2008_05_27-brain_dead_and_visual_basic_coincidence.html" rel="alternate"></link><published>2008-05-27T23:04:00-04:00</published><updated>2008-05-27T23:04:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-05-27:/2008_05_27-brain_dead_and_visual_basic_coincidence.html</id><summary type="html">&lt;p&gt;Don't ask why.  I can't explain it without violating a Non-Disclosure Agreement.&lt;/p&gt;
 &lt;p&gt;However, check this out.  Search for NMEA Checksum VB.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -851,7 +859,6 @@ to do some podcasts.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Almost everyone is copying off everyone else's paper, and propagating the same lame mistake.&lt;/p&gt;
 &lt;p&gt;There's no earthly reason for programs of the form:&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 cs = some initial value
 for ....:
@@ -863,9 +870,9 @@ for ....:
 &lt;p&gt;This structure is one of those &amp;quot;you're kidding, right?&amp;quot; kind of structures.&lt;/p&gt;
 &lt;p&gt;NMEA sentences have a relatively simple structure.  They're all on one line.  They start with a &amp;quot;$&amp;quot; or &amp;quot;!&amp;quot;.  The may end with &amp;quot;*&amp;quot; and some hex digits for a checksum.  The characters in the middle are used to compute the checksum; they are a sequence of comma-separated values.&lt;/p&gt;
 &lt;p&gt;It doesn't seem that complex.  Yet, the VB examples make it look scary.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My Reference Implementation&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="my-reference-implementation"&gt;
+&lt;h2&gt;My Reference Implementation&lt;/h2&gt;
 &lt;p&gt;In Python, we have something simple like the following.  Encapsulated messages (like !AIVDM and !AIVDO) are a bit more complex because they have their own unique Base64 algorithm in addition to their unique NMEA checksum.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 def validate(aLine):
     sentence, star, checksum = aLine.rpartition('*')
@@ -884,14 +891,15 @@ def validate(aLine):
 &lt;li&gt;Skipping the first character of the sentence (the &amp;quot;$&amp;quot; or &amp;quot;!&amp;quot;) isn't an extra if-statement inside the loop; it's part of the range of values for the loop structure itself.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;There's an even shorter formulation in Python.  See /dev/random: &lt;a class="reference external" href="http://blog.lucanatali.it/2006/12/nmea-checksum-in-python.html"&gt;NMEA checksum in Python&lt;/a&gt;  for a very short version.  This version, however, doesn't help clarify the perfectly awful VB programs.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Root Causes&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="root-causes"&gt;
+&lt;h2&gt;Root Causes&lt;/h2&gt;
 &lt;p&gt;Why are the VB examples so wrong?  And why are the wrong examples the first things coughed up by Google?&lt;/p&gt;
 &lt;p&gt;Are these examples widely referenced?  Do they have some authority?&lt;/p&gt;
 &lt;p&gt;It can't be that VB programmers -- themselves -- are brain dead.  I've met smart people who know and use VB.  For some reason, they're on sites that have some weight with Google, even though these specific snippets of code are not very good.&lt;/p&gt;
 &lt;p&gt;What's left is that these examples are all unthinking reimplementations of some initially flawed algorithm.&lt;/p&gt;
 &lt;p&gt;Which tells me that VB programmers are habituated to copy-and-paste reuse.  Rather than define, share and reference a library, they copy and paste code freely.  I've seen many other examples of copy-and-paste programming in VB.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>XKCD summarizes Python nicely</title><link href="https://slott56.github.io/2008_04_13-xkcd_summarizes_python_nicely.html" rel="alternate"></link><published>2008-04-13T02:30:00-04:00</published><updated>2008-04-13T02:30:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-04-13:/2008_04_13-xkcd_summarizes_python_nicely.html</id><content type="html">&lt;p&gt;See the &lt;a class="reference external" href="http://xkcd.com/409/"&gt;Electric Skateboard&lt;/a&gt;  in XKCD.  &amp;quot;You don't realize how much time you were spending on the boring parts until you don't have to do them anymore.&amp;quot;&lt;/p&gt;
-&lt;p&gt;A helpful answer to &amp;quot;Why is Python so cool?&amp;quot;  &lt;strong&gt;Fewer Boring Parts&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Building Skills Updates</title><link href="https://slott56.github.io/2008_04_08-building_skills_updates.html" rel="alternate"></link><published>2008-04-08T13:45:00-04:00</published><updated>2008-04-08T13:45:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-04-08:/2008_04_08-building_skills_updates.html</id><content type="html">&lt;p&gt;Many, many thanks to readers who sent in comments, questions, suggestions and corrections.&lt;/p&gt;
 &lt;p&gt;I've updated &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python.html"&gt;Building Skills in Python&lt;/a&gt;  to correct the errors found so far.&lt;/p&gt;
 &lt;p&gt;Also, in the process, I've revised chapter 36 a bit.&lt;/p&gt;
@@ -900,7 +908,6 @@ def validate(aLine):
 &lt;p&gt;And (bonus to me) it helps me to update &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprog/htmlchunks/ch39.html"&gt;Chapter 39&lt;/a&gt;  of &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprogrammer.html"&gt;Programming for Non-Programmers&lt;/a&gt;  with a real-world example.  Also, it validates the examples in &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python.html"&gt;Building Skills in Python&lt;/a&gt; , &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch34s02.html"&gt;chapter 34&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Recently, I was heard of a cool programming exercise from a composer, &lt;a class="reference external" href="http://www.myspace.com/xanderlott"&gt;Xander Lott&lt;/a&gt;  (disclosure: my son; full disclosure: alcohol was involved).  He had a concept for a piece that involved selection of random elements from a small palette of alternatives.  Being a musician, not a programmer, he was using a deck of cards for the random element selection.&lt;/p&gt;
 &lt;p&gt;He was talking about a program that looked something like the following.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 import random
 
@@ -918,10 +925,12 @@ for n in range(48):
     print octave, note, technique, beat
 &lt;/pre&gt;
 &lt;p&gt;For performance modeling, I wind up writing data generators like the above program.  Here, four specific dimensions are identified, and a sequence of random points are generated in this space.  Xander says that a number of details are unspecified -- the details the composer fills in to transform this from noise to something that has a musical texture even though parts of the musical structure are random.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Fit with cSounds&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="fit-with-csounds"&gt;
+&lt;h2&gt;Fit with cSounds&lt;/h2&gt;
 &lt;p&gt;I think that there may be a fit with the Python interface of &lt;a class="reference external" href="http://www.csounds.com/"&gt;cSounds&lt;/a&gt; .  I haven't explored this -- it would be too much of the wrong kind of fun.  But I expect that he may be able to define the cSounds instruments and use this kind of rule-based generator to create the &amp;quot;score&amp;quot;.&lt;/p&gt;
 &lt;p&gt;The issue is that real music involves a fairly large number of rather complex rules.  Perhaps more complex rules than a newbie can encode in simple Python programs -- some rules are tough to articulate and amount to vague things like &amp;quot;it sounds better&amp;quot; or &amp;quot;I needed the piece to have some direction&amp;quot;.  Xander was using the random generation for certain elements, but he planned to fold in other elements based on his own artistic tastes.&lt;/p&gt;
 &lt;p&gt;But for an n00b example that is (a) real world and (b) can be used to build skills in programming, it has a lot of appeal.  Thanks, Xander.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Building Skills In Python - 2.5 Edition</title><link href="https://slott56.github.io/2008_01_28-building_skills_in_python_25_edition.html" rel="alternate"></link><published>2008-01-28T11:24:00-05:00</published><updated>2008-01-28T11:24:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-01-28:/2008_01_28-building_skills_in_python_25_edition.html</id><summary type="html">&lt;p&gt;I've upgraded my
 &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python.html"&gt;Building Skills in Python&lt;/a&gt;
 to cover the 2.5 release.  It didn't take as long as I'd anticipated.&lt;/p&gt;
@@ -936,8 +945,8 @@ to cover the 2.5 release.  It didn't take as long as I'd anticipated.&lt;/p&gt;
 &lt;li&gt;The any() and all() functions&lt;/li&gt;
 &lt;li&gt;The string partition() method, as well as changes to startswith() and endswith()&lt;/li&gt;
 &lt;li&gt;Some changes to the coverage of exceptions&lt;/li&gt;
-&lt;li&gt;Changes to the coverage of the  &lt;strong&gt;yield&lt;/strong&gt;  statement&lt;/li&gt;
-&lt;li&gt;A section on the new:strong:&lt;cite&gt;with&lt;/cite&gt;  statement&lt;/li&gt;
+&lt;li&gt;Changes to the coverage of the  &lt;tt class="docutils literal"&gt;yield&lt;/tt&gt;  statement&lt;/li&gt;
+&lt;li&gt;A section on the new &lt;tt class="docutils literal"&gt;with&lt;/tt&gt;  statement&lt;/li&gt;
 &lt;li&gt;A complete rewrite of part IV to reflect the new Library Reference organization&lt;/li&gt;
 &lt;li&gt;Changes to the coverage of datetime and csv modules.&lt;/li&gt;
 &lt;li&gt;Additional material on the Python command-line.&lt;/li&gt;
@@ -953,28 +962,32 @@ to cover the 2.5 release.  It didn't take as long as I'd anticipated.&lt;/p&gt;
 &lt;p&gt;Jim: &amp;quot;Maybe.  I was a pretty good Fortran programmer, many years ago.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Me: &amp;quot;This won't be so brain-crampingly hard.  I'll post some stuff on the CSV package.  You'll like it.&amp;quot;&lt;/p&gt;
 &lt;p&gt;And, I got the following question from a reader in Belgium &amp;quot;I'm a beginner, but I like python. I heard about it from the people that develop Gramps, a genealogy program. So maybe I should choose your python book? However, your 'programming' book is much more recent. Is it better?&amp;quot;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Getting Started with Python&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="getting-started-with-python"&gt;
+&lt;h2&gt;Getting Started with Python&lt;/h2&gt;
 &lt;p&gt;First, do a little bit of self-reflection.&lt;/p&gt;
 &lt;p&gt;How are your computer skills?  Have you programmed before?  If so, look at &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python.html"&gt;Building Skills in Python&lt;/a&gt; .  This book assumes you know how to do some programming.   If you have no background in programming at all, you'll need to look at &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprogrammer.html"&gt;Building Skills in Programming&lt;/a&gt;  -- it's for the non-programmer; the n00b, as they are affectionately known.&lt;/p&gt;
 &lt;p&gt;How is your bias?  Are you looking for the perfect language?  The one that is so far superior to others that it is the final word in programming?  If so, stop now.  There is no such thing.  If you are going to do side-by-side comparison between Python and {your language here}, you'll find enough gaps, overlaps, and differences that you can easily label Python as incomplete, fat with features or more of the same.&lt;/p&gt;
 &lt;p&gt;What is your environment?  In a corporate, for-profit, &amp;quot;who-do-we-sue?&amp;quot; world, you'll find that Python has the taint of open source.  Sure, you use Apache and Java, but they are different.  I don't see how, but your CIO approves of those open source packages, but won't approve of Python.  Use Java.  It is free from taint.&lt;/p&gt;
 &lt;p&gt;What is your tool preference?  I've had people explain that the Visual Studio environment is so productive that it makes up for the problems in Visual Basic.  Since the actual code is what endures (not the tool used to produce the code), I'm confused by using Visual Studio as the justification for VB.  Some people claim that all that &amp;quot;text&amp;quot; in a conventional programming language is confusing and unsuitable for human beings -- glyphs and icons are better.  I've had people lecture me on the evils of using whitespace to properly format a program.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Some First Steps&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="some-first-steps"&gt;
+&lt;h2&gt;Some First Steps&lt;/h2&gt;
 &lt;p&gt;Here's the short version of &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch02.html"&gt;chapter 2&lt;/a&gt; :&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Download a Python installer from &lt;a class="reference external" href="http://www.python.org"&gt;Python.org&lt;/a&gt; .&lt;/li&gt;
 &lt;li&gt;You may want a good editor.  Currently, I'm a fan of &lt;a class="reference external" href="http://www.activestate.com/Products/komodo_edit/"&gt;Komodo Edit&lt;/a&gt; .  Download and install it, too.  (This isn't in the book -- yet.)  It requires some configuring to locate your Python installation and run Python programs neatly; we'll get to that in a moment.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You're pretty much ready to roll at this point.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Your First Program&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="your-first-program"&gt;
+&lt;h2&gt;Your First Program&lt;/h2&gt;
 &lt;p&gt;Here's your hello world program.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 #!/usr/bin/env python
 &amp;quot;&amp;quot;&amp;quot; My First Program &amp;quot;&amp;quot;&amp;quot;
 import sys
-print sys.version
-print &amp;quot;Hello World&amp;quot;
+print(sys.version)
+print(&amp;quot;Hello, World!&amp;quot;)
 &lt;/pre&gt;
 &lt;p&gt;To make this run neatly and cleanly, there's some Komodo setup you should do.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -984,22 +997,22 @@ print &amp;quot;Hello World&amp;quot;
 &lt;/ol&gt;
 &lt;p&gt;Now you can simply double-click the Komodo command to run your program.  You can also map this to a key, like F5, by opening the command and looking at the Key Binding tab.&lt;/p&gt;
 &lt;p&gt;Here's what I got as output.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 2.5.1 (r251:54863, Oct  5 2007, 21:08:09)
 [GCC 4.0.1 (Apple Inc. build 5465)]
-Hello World
+Hello, World!
 &lt;/pre&gt;
 &lt;p&gt;While the book is 2.4.1, I'm getting ready for the next round of revisions to get to 2.5.  After that will be a major rewrite for 3.0.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A CSV Read/Process Example&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-csv-read-process-example"&gt;
+&lt;h2&gt;A CSV Read/Process Example&lt;/h2&gt;
 &lt;p&gt;Here's the skeleton of Jim's program to work with some spreadsheets of raw data.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 #!/usr/bin/env python
 import csv
 
-srcFile= open( &amp;quot;some.csv&amp;quot;, &amp;quot;r&amp;quot; )
-srcCSV= csv.reader( srcFile )
+srcFile = open(&amp;quot;some.csv&amp;quot;, &amp;quot;r&amp;quot;)
+srcCSV = csv.reader(srcFile)
 for row in srcCSV:
     if row[0] == &amp;quot;Col A Title&amp;quot;:
         # A Title row
@@ -1010,7 +1023,7 @@ for row in srcCSV:
     else:
         # All the other rows
         pass # do some validation, some calculation, whatever...
-    print row
+    print(row)
 srcFile.close()
 &lt;/pre&gt;
 &lt;p&gt;This illustrates a few key Pythonic concepts.&lt;/p&gt;
@@ -1018,11 +1031,12 @@ srcFile.close()
 &lt;li&gt;Everything interesting is in the library, not the language.  The Python book only has &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt01.html"&gt;part 1&lt;/a&gt;  focused on the language.  &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt02.html"&gt;Part 2&lt;/a&gt; , &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt03.html"&gt;part 3&lt;/a&gt;  and &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/pt04.html"&gt;part 4&lt;/a&gt;  are on data structures, objects and the library.&lt;/li&gt;
 &lt;li&gt;File processing is easy.  It's all the related stuff that's hard.  &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch18.html"&gt;Chapter 18&lt;/a&gt;  is basic files.&lt;/li&gt;
 &lt;li&gt;CSV parsing is layered onto basic file processing as simply as possible.  &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch19.html"&gt;Chapter 19&lt;/a&gt;  is a bunch of file-handling modules, including details on CSV.    &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch31.html"&gt;Chapter 31&lt;/a&gt;  is other file formats.&lt;/li&gt;
-&lt;li&gt;The &lt;strong&gt;for&lt;/strong&gt;  statement processes anything &amp;quot;iterable&amp;quot;.  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html"&gt;Chapter 7&lt;/a&gt;  item, the profound nature of &amp;quot;iterable&amp;quot; has to be revisited throughout part 2.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;for&lt;/tt&gt;  statement processes anything &amp;quot;iterable&amp;quot;.  This includes files.  Cleverly, the CSV reader is also iterable.  There's no bookkeeping, overhead, logic testing, or anything else required for basic sequential processing of most kinds of data.  While the basic syntax is a &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/python/htmlchunks/ch07.html"&gt;Chapter 7&lt;/a&gt;  item, the profound nature of &amp;quot;iterable&amp;quot; has to be revisited throughout part 2.&lt;/li&gt;
 &lt;li&gt;The if/elif/else construct can have as many (or as few) conditions as you need.  Why add a &amp;quot;switch&amp;quot; or &amp;quot;case&amp;quot; statement and clutter up the syntax?  Chapter 7 covers this, too, because it's so elegantly simple.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;I can't say enough about the value of having a language that makes simple things so easy to accomplish.  I almost feel guilty writing things in Python -- to get them to work -- and then rewriting them into Java because customers prefer Java.&lt;/p&gt;
 &lt;p&gt;That's why I recommend Python to anyone retooling their skills.  It's productive and usable right out of the box.  It's a toy that comes with batteries included.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Building Skills in Python</title><link href="https://slott56.github.io/2007_12_17-building_skills_in_python.html" rel="alternate"></link><published>2007-12-17T15:38:00-05:00</published><updated>2007-12-17T15:38:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-12-17:/2007_12_17-building_skills_in_python.html</id><summary type="html">&lt;p&gt;Since I spend a lot of time on skill upgrades for my clients, my books are oriented around that theme.  It's something that I learned from &lt;a class="reference external" href="http://www.dorsethouse.com/authors/bullock.html"&gt;Jim Bullock&lt;/a&gt; : there's a &lt;strong&gt;Clue Absorption Rate&lt;/strong&gt;, and you can't exceed that rate.  These books are about building skills incrementally.&lt;/p&gt;
 &lt;p&gt;I've got three Python-related …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Since I spend a lot of time on skill upgrades for my clients, my books are oriented around that theme.  It's something that I learned from &lt;a class="reference external" href="http://www.dorsethouse.com/authors/bullock.html"&gt;Jim Bullock&lt;/a&gt; : there's a &lt;strong&gt;Clue Absorption Rate&lt;/strong&gt;, and you can't exceed that rate.  These books are about building skills incrementally.&lt;/p&gt;
 &lt;p&gt;I've got three Python-related titles.  [Links are on the right, under &amp;quot;Publications&amp;quot;.]&lt;/p&gt;
@@ -1033,11 +1047,13 @@ srcFile.close()
 &lt;/ol&gt;
 &lt;p&gt;These are provided with a &lt;a class="reference external" href="http://creativecommons.org/licenses/by-nc-nd/2.0/"&gt;Creative Commons by-nc-nd&lt;/a&gt;  license.  Feel free to download and use the text.  You must give me credit, you can't create a commercial offering, nor can you create a derivative work.  However, if you want to create courseware, contact me, I have a lot of material, we can work something out.&lt;/p&gt;
 &lt;p&gt;If you want to comment or correct this, please do; I'm open to suggestions.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Plans&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="plans"&gt;
+&lt;h2&gt;Plans&lt;/h2&gt;
 &lt;p&gt;I've got to upgrade both Python books to Python 2.5.&lt;/p&gt;
 &lt;p&gt;Start on database design, since that's a skill that I coach fairly often.&lt;/p&gt;
 &lt;p&gt;Resolve the FOP embedded font problem.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Java-related skills - response to a question</title><link href="https://slott56.github.io/2007_06_20-java_related_skills_response_to_a_question.html" rel="alternate"></link><published>2007-06-20T18:59:00-04:00</published><updated>2007-06-20T18:59:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-06-20:/2007_06_20-java_related_skills_response_to_a_question.html</id><summary type="html">&lt;p&gt;I think that learning Java is challenging.  You've got to learn the language, object-oriented programming, the libraries and the endless Java Technologies.  The Java landscape is crowded with J:emphasis:&lt;cite&gt;tx&lt;/cite&gt;  and &lt;em&gt;tx&lt;/em&gt; J add-ons, where &lt;em&gt;tx&lt;/em&gt;  is some technology abbreviation; for example, JAXWS, JAXB, SAAJ, JMS, JFC, JCE, JAAS …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I think that learning Java is challenging.  You've got to learn the language, object-oriented programming, the libraries and the endless Java Technologies.  The Java landscape is crowded with J:emphasis:&lt;cite&gt;tx&lt;/cite&gt;  and &lt;em&gt;tx&lt;/em&gt; J add-ons, where &lt;em&gt;tx&lt;/em&gt;  is some technology abbreviation; for example, JAXWS, JAXB, SAAJ, JMS, JFC, JCE, JAAS, etc.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Java-related skills - response to a question</title><link href="https://slott56.github.io/2007_06_20-java_related_skills_response_to_a_question.html" rel="alternate"></link><published>2007-06-20T18:59:00-04:00</published><updated>2007-06-20T18:59:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-06-20:/2007_06_20-java_related_skills_response_to_a_question.html</id><summary type="html">&lt;p&gt;I think that learning Java is challenging.  You've got to learn the language, object-oriented programming, the libraries and the endless Java Technologies.  The Java landscape is crowded with J*tx*  and &lt;em&gt;tx&lt;/em&gt; J add-ons, where &lt;em&gt;tx&lt;/em&gt;  is some technology abbreviation; for example, JAXWS, JAXB, SAAJ, JMS, JFC, JCE, JAAS, etc …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I think that learning Java is challenging.  You've got to learn the language, object-oriented programming, the libraries and the endless Java Technologies.  The Java landscape is crowded with J*tx*  and &lt;em&gt;tx&lt;/em&gt; J add-ons, where &lt;em&gt;tx&lt;/em&gt;  is some technology abbreviation; for example, JAXWS, JAXB, SAAJ, JMS, JFC, JCE, JAAS, etc.&lt;/p&gt;
 &lt;p&gt;The skills generally form layers.  The layers are often tangled, and sometimes there isn't a clear progression from &amp;quot;simple&amp;quot; to &amp;quot;complex&amp;quot;.  That can make it all complex.  However, there's a great approach in an old book on &lt;a class="reference external" href="http://www.amazon.com/Structured-Concurrent-Programming-Applications-Addison-Wesley/dp/0201029375"&gt;Structured Concurrent Programming&lt;/a&gt;  by Holt, Lazowska, Graham and Scott.  They have a sequence of layers that begin with simple expressions and output (the absolute minimum) and then folds in new features in a discrete series of steps.  With Java (and Python) you need this kind of guidance to work through these steps and build up your skills in an orderly progression.&lt;/p&gt;
 &lt;p&gt;On the language front, you've got to tackle the following.  I think this is the right order.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -1062,95 +1078,167 @@ srcFile.close()
 &lt;p&gt;Somewhere, there's a Platonic Ideal programming language, and it has mappings into each existing language.  Each language, additionally, has some unique features that supplement this ideal language.  Some of those features are junk, but most are extensions that help solve problems in a particular domain.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprogrammer.html"&gt;Programming for Non-Programmers&lt;/a&gt;  is my attempt at covering the core programming skills with a mapping of those skills into Python.&lt;/p&gt;
 &lt;p&gt;The book is available with a Creative Commons Attribution-Noncommercial-No Derivative Works (&lt;a class="reference external" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"&gt;by-nc-nd&lt;/a&gt; ) license.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Web Services and Architecture</title><link href="https://slott56.github.io/2007_05_22-web_services_and_architecture.html" rel="alternate"></link><published>2007-05-22T23:11:00-04:00</published><updated>2007-05-22T23:11:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-22:/2007_05_22-web_services_and_architecture.html</id><summary type="html">&lt;p&gt;Thanks to everyone who attended.  See &lt;a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/"&gt;Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies&lt;/a&gt;  for more information.  Also, check out Dr. Dobb's &lt;a class="reference external" href="http://www.ddj.com/dept/webservices/"&gt;SOA, Web Services and XML&lt;/a&gt;  department.&lt;/p&gt;
-&lt;p&gt;Here's the Micro$oft PPT file:  &lt;a class="reference external" href="Media/Web%20Services%208.ppt"&gt;Web Services 8.ppt&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Here's the Open-Office file:  &lt;a class="reference external" href="Media/Web%20Services%208.odp"&gt;Web …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Thanks to everyone who attended.  See &lt;a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/"&gt;Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies&lt;/a&gt;  for more information.  Also, check out Dr. Dobb's &lt;a class="reference external" href="http://www.ddj.com/dept/webservices/"&gt;SOA, Web Services and XML&lt;/a&gt;  department.&lt;/p&gt;
-&lt;p&gt;Here's the Micro$oft PPT file:  &lt;a class="reference external" href="Media/Web%20Services%208.ppt"&gt;Web Services 8.ppt&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Here's the Open-Office file:  &lt;a class="reference external" href="Media/Web%20Services%208.odp"&gt;Web Services 8.odp&lt;/a&gt;&lt;/p&gt;
+</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Web Services and Architecture</title><link href="https://slott56.github.io/2007_05_22-web_services_and_architecture.html" rel="alternate"></link><published>2007-05-22T23:11:00-04:00</published><updated>2007-05-22T23:11:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-22:/2007_05_22-web_services_and_architecture.html</id><summary type="html">&lt;p&gt;Thanks to everyone who attended.  See &lt;a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/"&gt;Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies&lt;/a&gt;  for more information.
+Also, check out Dr. Dobb's &lt;a class="reference external" href="http://www.ddj.com/dept/webservices/"&gt;SOA, Web Services and XML&lt;/a&gt;  department.&lt;/p&gt;
+&lt;p&gt;Here's the Micro$oft PPT file:  &lt;a class="reference external" href="https://slott56.github.io/media/Web Services 8.ppt"&gt;Web Services 8.ppt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here's the Open-Office file:  &lt;a class="reference external" href="https://slott56.github.io/media/Web Services 8.odp"&gt;Web …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Thanks to everyone who attended.  See &lt;a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/"&gt;Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies&lt;/a&gt;  for more information.
+Also, check out Dr. Dobb's &lt;a class="reference external" href="http://www.ddj.com/dept/webservices/"&gt;SOA, Web Services and XML&lt;/a&gt;  department.&lt;/p&gt;
+&lt;p&gt;Here's the Micro$oft PPT file:  &lt;a class="reference external" href="https://slott56.github.io/media/Web Services 8.ppt"&gt;Web Services 8.ppt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here's the Open-Office file:  &lt;a class="reference external" href="https://slott56.github.io/media/Web Services 8.odp"&gt;Web Services 8.odp&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Also, here's a more useful thing: the actual contents.&lt;/p&gt;
-&lt;p&gt;Web Services&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="section" id="web-services"&gt;
+&lt;h2&gt;Web Services&lt;/h2&gt;
 &lt;p&gt;8 – Architecture&lt;/p&gt;
 &lt;p&gt;Steven F. Lott&lt;/p&gt;
-&lt;p&gt;Agenda&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="agenda"&gt;
+&lt;h2&gt;Agenda&lt;/h2&gt;
 &lt;p&gt;Nuclei around which architecture crystallizes&lt;/p&gt;
 &lt;p&gt;Architecture Design Patterns&lt;/p&gt;
-&lt;p&gt;Decision Nucleus&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="decision-nucleus"&gt;
+&lt;h2&gt;Decision Nucleus&lt;/h2&gt;
 &lt;p&gt;Interface-Driven Decisions&lt;/p&gt;
-&lt;p&gt;External Interactions are typically web services&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;External Interactions are typically web services&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Several Implementations&lt;/p&gt;
-&lt;p&gt;Heavyweight, SOAP document services&lt;/p&gt;
-&lt;p&gt;Lightweight, RPC services&lt;/p&gt;
-&lt;p&gt;Informal CGI and other HTTP services&lt;/p&gt;
-&lt;p&gt;Decision Nucleus&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Heavyweight, SOAP document services&lt;/li&gt;
+&lt;li&gt;Lightweight, RPC services&lt;/li&gt;
+&lt;li&gt;Informal CGI and other HTTP services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="decision-nucleus-1"&gt;
+&lt;h2&gt;Decision Nucleus&lt;/h2&gt;
 &lt;p&gt;Data Model- or Processing- Driven Decisions&lt;/p&gt;
-&lt;p&gt;Complex or Core data&lt;/p&gt;
-&lt;p&gt;Can be accessed directly (through JDBC)&lt;/p&gt;
-&lt;p&gt;Or indirectly through a web service&lt;/p&gt;
-&lt;p&gt;Complex Processing&lt;/p&gt;
-&lt;p&gt;Can be accessed through a web service as needed&lt;/p&gt;
-&lt;p&gt;Or built as a batch job and run periodically&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Complex or Core data&lt;ul&gt;
+&lt;li&gt;Can be accessed directly (through JDBC)&lt;/li&gt;
+&lt;li&gt;Or indirectly through a web service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Complex Processing&lt;ul&gt;
+&lt;li&gt;Can be accessed through a web service as needed&lt;/li&gt;
+&lt;li&gt;Or built as a batch job and run periodically&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Business Focus is essential&lt;/p&gt;
-&lt;p&gt;Decision Nucleus&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="decision-nucleus-2"&gt;
+&lt;h2&gt;Decision Nucleus&lt;/h2&gt;
 &lt;p&gt;Mutability-Driven Decisions&lt;/p&gt;
-&lt;p&gt;If the implementation will change,&lt;/p&gt;
-&lt;p&gt;wrap it in an interface that won't change.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;If the implementation will change,&lt;ul&gt;
+&lt;li&gt;wrap it in an interface that won't change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Special cases are often mutable&lt;/p&gt;
-&lt;p&gt;So wrap them in a web service&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;So wrap them in a web service&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Interim Solutions&lt;/p&gt;
-&lt;p&gt;Best to wrap them in a service&lt;/p&gt;
-&lt;p&gt;Replace the interim implementation with the final&lt;/p&gt;
-&lt;p&gt;Poor Choices for Web Services&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Best to wrap them in a service&lt;/li&gt;
+&lt;li&gt;Replace the interim implementation with the final&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="poor-choices-for-web-services"&gt;
+&lt;h2&gt;Poor Choices for Web Services&lt;/h2&gt;
 &lt;p&gt;Individual Data Entity Access&lt;/p&gt;
-&lt;p&gt;Entity-Level services are too fine-grained&lt;/p&gt;
-&lt;p&gt;Each CRUD operation has to be exposed&lt;/p&gt;
-&lt;p&gt;It basically wraps the SQL, adding overhead&lt;/p&gt;
-&lt;p&gt;With no measurable value&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Entity-Level services are too fine-grained&lt;/li&gt;
+&lt;li&gt;Each CRUD operation has to be exposed&lt;/li&gt;
+&lt;li&gt;It basically wraps the SQL, adding overhead&lt;ul&gt;
+&lt;li&gt;With no measurable value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Technical Processes (ETL, for example)&lt;/p&gt;
-&lt;p&gt;Moving &amp;quot;Customer&amp;quot; from system to system isn't what a service does&lt;/p&gt;
-&lt;p&gt;No Business Focus – just data massaging&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Moving &amp;quot;Customer&amp;quot; from system to system isn't what a service does&lt;ul&gt;
+&lt;li&gt;No Business Focus – just data massaging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Service Design Questions&lt;/p&gt;
-&lt;p&gt;Where's the system of record?  Who's the keeper of the master data?&lt;/p&gt;
-&lt;p&gt;What do other systems need this system to DO for them?&lt;/p&gt;
-&lt;p&gt;The system of record may publish useful services&lt;/p&gt;
-&lt;p&gt;Data Movement/ETL&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Where's the system of record?  Who's the keeper of the master data?&lt;/li&gt;
+&lt;li&gt;What do other systems need this system to DO for them?&lt;/li&gt;
+&lt;li&gt;The system of record may publish useful services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-movement-etl"&gt;
+&lt;h2&gt;Data Movement/ETL&lt;/h2&gt;
 &lt;p&gt;Single sources for Master Data?&lt;/p&gt;
-&lt;p&gt;Then a single Service for this data&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Then a single Service for this data&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Duplicate sources – overlapping Master Data?&lt;/p&gt;
-&lt;p&gt;System X source copied to System Y where extra attributes were added&lt;/p&gt;
-&lt;p&gt;Coalesce into a single source, if possible&lt;/p&gt;
-&lt;p&gt;Make multiple applications share a single, central service for the data – where possible&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;System X source copied to System Y where extra attributes were added&lt;/li&gt;
+&lt;li&gt;Coalesce into a single source, if possible&lt;/li&gt;
+&lt;li&gt;Make multiple applications share a single, central service for the data – where possible&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Multiple sources – multiple parts to the Master Data?&lt;/p&gt;
-&lt;p&gt;System X has some records, System Y has other records&lt;/p&gt;
-&lt;p&gt;Union of these two systems is the master data&lt;/p&gt;
-&lt;p&gt;Hard to coalesce, but a Single Service can wrap multiple sources for consistency&lt;/p&gt;
-&lt;p&gt;The Java Blueprints Reference Application: Adventure Builder&lt;/p&gt;
-&lt;p&gt;Adventure Builder&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;System X has some records, System Y has other records&lt;ul&gt;
+&lt;li&gt;Union of these two systems is the master data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Hard to coalesce, but a Single Service can wrap multiple sources for consistency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-java-blueprints-reference-application-adventure-builder"&gt;
+&lt;h2&gt;The Java Blueprints Reference Application: Adventure Builder&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://www.oracle.com/java/technologies/java-blueprints-guidelines.html"&gt;https://www.oracle.com/java/technologies/java-blueprints-guidelines.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adventure-builder"&gt;
+&lt;h2&gt;Adventure Builder&lt;/h2&gt;
 &lt;p&gt;A J2EE application that presents an application to end-users&lt;/p&gt;
 &lt;p&gt;Consumes Web Services for a number of Back-end Operations&lt;/p&gt;
 &lt;p&gt;Suppliers and Finance are external interfaces&lt;/p&gt;
 &lt;p&gt;CRM is a shared data structure&lt;/p&gt;
 &lt;p&gt;Workflow is Process-driven&lt;/p&gt;
 &lt;p&gt;Order Receiver is a mixed bag&lt;/p&gt;
-&lt;p&gt;The Granularity Issue&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-granularity-issue"&gt;
+&lt;h2&gt;The Granularity Issue&lt;/h2&gt;
 &lt;p&gt;Services which are too small (&amp;quot;chatty&amp;quot;)&lt;/p&gt;
-&lt;p&gt;Endless back-and-forth&lt;/p&gt;
-&lt;p&gt;Too much SOAP overhead for the real value&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Endless back-and-forth&lt;/li&gt;
+&lt;li&gt;Too much SOAP overhead for the real value&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Services which are too large&lt;/p&gt;
-&lt;p&gt;Giant XML messages&lt;/p&gt;
-&lt;p&gt;Long-running web services&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Giant XML messages&lt;/li&gt;
+&lt;li&gt;Long-running web services&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;In the middle is a balance&lt;/p&gt;
-&lt;p&gt;This is more art than science&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;This is more art than science&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Business focus is key&lt;/p&gt;
-&lt;p&gt;Business Focus&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="business-focus"&gt;
+&lt;h2&gt;Business Focus&lt;/h2&gt;
 &lt;p&gt;It's all about Agility&lt;/p&gt;
 &lt;p&gt;It's all about Master Data&lt;/p&gt;
-&lt;p&gt;One source for the data&lt;/p&gt;
-&lt;p&gt;One source for the processing&lt;/p&gt;
-&lt;p&gt;It's all about &lt;strong&gt;Assignment of Responsibility&lt;/strong&gt;™&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;One source for the data&lt;/li&gt;
+&lt;li&gt;One source for the processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's all about &lt;strong&gt;Assignment of Responsibility&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Important Questions:&lt;/p&gt;
-&lt;p&gt;What is really happening?&lt;/p&gt;
-&lt;p&gt;Is that business-related or is that a dumb technology work-around because of rubbish legacy software?&lt;/p&gt;
-&lt;p&gt;MUCH of what passes for &amp;quot;business analysis&amp;quot; is really IT reverse engineering&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;What is really happening?&lt;/li&gt;
+&lt;li&gt;Is that business-related or is that a dumb technology work-around because of rubbish legacy software?&lt;/li&gt;
+&lt;li&gt;MUCH of what passes for &amp;quot;business analysis&amp;quot; is really IT reverse engineering&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Ouch!</title><link href="https://slott56.github.io/2007_05_01-ouch.html" rel="alternate"></link><published>2007-05-01T10:51:00-04:00</published><updated>2007-05-01T10:51:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-01:/2007_05_01-ouch.html</id><content type="html">&lt;p&gt;Here's the shocking
 result.&lt;/p&gt;
 &lt;img alt="You are Visual Basic. You have little respect for common sense.  You are immature, but have recently begun to grow up.  Which Programming Language are You?" src="http://www.bbspot.com/Images/News_Features/2006/08/language/visual_basic.jpg" /&gt;
@@ -1623,10 +1711,8 @@ to give up on the old ways before offering them something new.&lt;/p&gt;
 &lt;p&gt;No
 sooner do I post this than I see a related note in a post in &lt;a class="reference external" href="http://agiletesting.blogspot.com/"&gt;Agile
 Testing&lt;/a&gt; , &amp;quot;&lt;a class="reference external" href="http://agiletesting.blogspot.com/2006/10/90-9-1-rule-and-building-open-source.html"&gt;The 90-9-1 rule and building an open source
-community&lt;/a&gt;  &amp;quot;.  This note had a helpful-looking book title:
-..  code: &lt;a class="reference external" href="http://www.amazon.com/Fearless-Change-Patterns-Introducing-Ideas/dp/0201741571"&gt;Fearless
-Change: Patterns for Introducing New
-Ideas&lt;/a&gt; .  I found this to be a helpful
+community&lt;/a&gt;  &amp;quot;.  This note had a helpful-looking book title:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.amazon.com/Fearless-Change-Patterns-Introducing-Ideas/dp/0201741571"&gt;Fearless Change: Patterns for Introducing New Ideas&lt;/a&gt; .  I found this to be a helpful
 coincidence.  Clearly, I need help introducing change.&lt;/p&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Ways in which learning can be A Bad Thing™</title><link href="https://slott56.github.io/2006_08_31-ways_in_which_learning_can_be_a_bad_thingtm.html" rel="alternate"></link><published>2006-08-31T17:54:00-04:00</published><updated>2006-08-31T17:54:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-31:/2006_08_31-ways_in_which_learning_can_be_a_bad_thingtm.html</id><summary type="html">&lt;p&gt;Once I learned C++, all my C programming became
 poor-man's OO.&lt;/p&gt;
@@ -1683,7 +1769,6 @@ way, and I'm always right.&amp;quot; people, so nothing was gained by pursuing
 it.&lt;/p&gt;
 &lt;p&gt;Here's the
 practice.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 def myFunction( someArgs ):
    &amp;quot;&amp;quot;&amp;quot;Synopsis...
@@ -1865,7 +1950,6 @@ Dimensional Map, because that's a better clue as to how it
 works.&lt;/p&gt;
 &lt;p&gt;Let's look at the data we have
 in the ASPN example:&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 records = [(&amp;quot;branch1&amp;quot;,  &amp;quot;sales1&amp;quot;, 100),
            (&amp;quot;branch1&amp;quot;,  &amp;quot;sales1&amp;quot;, 50),
@@ -1884,7 +1968,6 @@ work. have totals in the header as well as the footer.  I'll leave that as an
 exercise.&lt;/p&gt;
 &lt;p&gt;It works like
 this:&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 branchMap= {}
 for branch, person, dollars in records:
@@ -1951,7 +2034,6 @@ people.  We'll need to create additional collections to hold the data.  We'll do
 this by cloning the object definition.  There's a better way to do this by
 separating the metadata from the actual detailed numeric data, but that is a
 more complex solution, not a simple recipe.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 import copy
 
@@ -2004,7 +2086,6 @@ pleasantly simple.  We define the nested structure of our Dimensions and the
 Fact which they contain.  This same recursive structure can then be used to
 break up each record into a key and the data associated with that
 key.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 analysis= Dimension( &amp;quot;branch&amp;quot;, Dimension( &amp;quot;person&amp;quot;, Fact( &amp;quot;dollars&amp;quot; ) ) )
 
@@ -2014,7 +2095,6 @@ for row in records:
 &lt;p&gt;Reporting, similarly, relies on the
 recursive structure of Dimension objects nested within Dimension
 objects.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 analysis.report()
 print analysis.total
@@ -2173,7 +2253,6 @@ fairly complex piece of Java code just to do simple frequency
 histograms.&lt;/p&gt;
 &lt;p&gt;The Python program we used
 was something on the order of&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 fq= {}
 for line in file( 'sample.csv', 'r'):

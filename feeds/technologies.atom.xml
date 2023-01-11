@@ -53659,7 +53659,8 @@ upon, reddit, del.icio.us, and yahoo buzz buttons on each post.&lt;/p&gt;
 &lt;p&gt;The Mac OS X &lt;a class="reference external" href="http://www.apple.com/mobileme/"&gt;Mobile Me&lt;/a&gt;  has a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In previous years, I had several email lists: my Yahoo! list, my Google list, my desktop.  To figure out what to send, I had to merge the lists, which meant reading vCards, and CSV files.  This is totally the sweet-spot for Python.&lt;/p&gt;
 &lt;p&gt;The Mac OS X &lt;a class="reference external" href="http://www.apple.com/mobileme/"&gt;Mobile Me&lt;/a&gt;  has a very nice sync capability that integrates Yahoo!, Google and my desktop (which includes my iPhone).&lt;/p&gt;
 &lt;p&gt;Mobile Me eliminated my email merging.  Now, everything is in my desktop Address Book.  My holiday mailing list can be trivially exported to a big old .VCF file.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Spamming via VCF&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="spamming-via-vcf"&gt;
+&lt;h2&gt;Spamming via VCF&lt;/h2&gt;
 &lt;p&gt;There's a Python Personal Data Interchange project (&lt;a class="reference external" href="http://savannah.nongnu.org/projects/python-pdi"&gt;http://savannah.nongnu.org/projects/python-pdi&lt;/a&gt;), &lt;a class="reference external" href="http://pdi.sourceforge.net/"&gt;http://pdi.sourceforge.net/&lt;/a&gt;.  I, however, made no use of this.&lt;/p&gt;
 &lt;p&gt;Instead, I rebuilt my old spamulator to simply email to a list of folks identified by vCard.  The application has three principle parts:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -53667,9 +53668,10 @@ upon, reddit, del.icio.us, and yahoo buzz buttons on each post.&lt;/p&gt;
 &lt;li&gt;The parsing of vCards.&lt;/li&gt;
 &lt;li&gt;Sending the spam.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;vCard Class Definitions&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vcard-class-definitions"&gt;
+&lt;h2&gt;vCard Class Definitions&lt;/h2&gt;
 &lt;p&gt;First, we have the core definitions of a vCard.  For information see &lt;a class="reference external" href="http://tools.ietf.org/html/rfc2425http://tools.ietf.org/html/rfc2425"&gt;RFC 2425&lt;/a&gt;  and &lt;a class="reference external" href="http://tools.ietf.org/html/rfc2426"&gt;RFC 2426&lt;/a&gt; .&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 from collections import defaultdict
 
@@ -53737,10 +53739,11 @@ class VCard( object ):
         return &amp;quot;BEGIN:VCARD\n%s\nEND:VCARD&amp;quot; % ( &amp;quot;\n&amp;quot;.join(map(str,propList)), )
 &lt;/pre&gt;
 &lt;p&gt;The essential data structure is the VCard, which has any number of named properties.  A named property has parameters and a value.  Values can be a simple string, or a ;-delimited list of strings.  Very simple, really.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Parsing a VCF File&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parsing-a-vcf-file"&gt;
+&lt;h2&gt;Parsing a VCF File&lt;/h2&gt;
 &lt;p&gt;The trickiest part about parsing VCF is the escape rules.  The :, ; and , punctuation marks are sacred, but can be escaped to allow ;'s or :'s to appear in the value of a property.  The , is used to punctuate multiple values for a parameter, something that doesn't enter into email very often, so it can be ignored for now.&lt;/p&gt;
 &lt;p&gt;Here's the parser, using some cool regex things I found.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 import re
 
@@ -53788,7 +53791,6 @@ class VCFParser( object ):
         return ( c for c in self.parseCard(aFile) )
 &lt;/pre&gt;
 &lt;p&gt;There are three cool regexes that look for unescaped :, = or ;.  I took a while to track these down in the documentation, but once I found them, my life was much simpler.  Here's the doctest string.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 &amp;gt;&amp;gt;&amp;gt; import re
 &amp;gt;&amp;gt;&amp;gt; colon=  re.compile( r&amp;quot;(.*)(?&amp;lt;!\\):(.*)&amp;quot; )
@@ -53806,9 +53808,10 @@ class VCFParser( object ):
 ['EMAIL', 'type=pref\\;special', 'type=work']
 &lt;/pre&gt;
 &lt;p&gt;This also uses a series of generators to make it easy to unfold long lines and accumulate a mult-line card.  I'm a big fan of this &amp;quot;generator cascade&amp;quot; design pattern to break a fairly complex parsing job up unto manageable pieces.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;SMTP Interface&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="smtp-interface"&gt;
+&lt;h2&gt;SMTP Interface&lt;/h2&gt;
 &lt;p&gt;The final step is actually using SMTP to send the email.  Note that we need to put the destination name into the message itself.  While not hard, it does mean that the message isn't a static object: it has to be tweaked for each outgoing message.  I like to define a Message class to handle this business for me.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 import smtplib
 class Message( object ):
@@ -53841,13 +53844,13 @@ def send( msg, toList ):
     s.quit()
 &lt;/pre&gt;
 &lt;p&gt;This is pleasantly short and to the point.  Once the command-line parameters have been parsed, we're down to  parsing the options and then doing the following:&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 body= file( theMessageFile, &amp;quot;rU&amp;quot; ).read()
 msg= Message( &amp;quot;s_lott&amp;#64;mac.com&amp;quot;, options.subject, body )
 send( msg, getVCFIter( theListFile ) )
 &lt;/pre&gt;
 &lt;p&gt;I like Python.  I really like the subtle way in which all of the steps of processing a vCard are based on generators meaning that I don't read in a large pile of data, but actually read in just enough to process one card at a time.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="web"></category></entry><entry><title>Blogging and Technical Writing</title><link href="https://slott56.github.io/2008_12_22-blogging_and_technical_writing.html" rel="alternate"></link><published>2008-12-22T00:21:00-05:00</published><updated>2008-12-22T00:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-12-22:/2008_12_22-blogging_and_technical_writing.html</id><content type="html">&lt;p&gt;Check out Carol Johnson's book &lt;a class="reference external" href="http://www.baywood.com/books/previewbook.asp?id=978-0-89503-384-0"&gt;The Language of Work: Technical Communication at Lukens Steel, 1810 to 1925&lt;/a&gt; .  It puts technical writing in a bigger perspective.&lt;/p&gt;
 &lt;p&gt;The cool thing is dragging meaning out of a corpus of documents.&lt;/p&gt;
 </content><category term="Technologies"></category><category term="books"></category><category term="docbook"></category><category term="xml"></category></entry><entry><title>Rickrolling Trifecta</title><link href="https://slott56.github.io/2008_11_29-rickrolling_trifecta.html" rel="alternate"></link><published>2008-11-29T20:50:00-05:00</published><updated>2008-11-29T20:50:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-11-29:/2008_11_29-rickrolling_trifecta.html</id><summary type="html">&lt;p&gt;No one wants to be Rickrolled.  I suppose it could have been funny, once, for about 15 minutes.  I didn't think it was all that funny to begin with, but there it is -- a part of the lexicon.  However, it remains obscure, and sometimes hard to explain to non-technical folks …&lt;/p&gt;</summary><content type="html">&lt;p&gt;No one wants to be Rickrolled.  I suppose it could have been funny, once, for about 15 minutes.  I didn't think it was all that funny to begin with, but there it is -- a part of the lexicon.  However, it remains obscure, and sometimes hard to explain to non-technical folks.  Why should rickrolling be hard to explain?  Here's my tale.&lt;/p&gt;
@@ -53857,30 +53860,42 @@ send( msg, getVCFIter( theListFile ) )
 &lt;p&gt;So she sends me &lt;a class="reference external" href="http://www.youtube.com/watch?v=TswTenrEwwM"&gt;Never Gonna Give You Up - Barry Manilow&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;I about fell out of my chair.  My son is in a video of the Barry Manilow cover of the canonical rickrolling tune.&lt;/p&gt;
 &lt;p&gt;I wasn't -- technically -- rickrolled.  But since it's the same tune, I think I was meta-rickrolled.  Now that's kind of funny.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Explain That&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="explain-that"&gt;
+&lt;h2&gt;Explain That&lt;/h2&gt;
 &lt;p&gt;So we forward the link throughout the family.  Including the oh-so-nerdy footnote that this is the rickrolling tune.  But since it isn't Rick Astley, it isn't a proper rickrolling.&lt;/p&gt;
 &lt;p&gt;A totally non-technical friend asks for an example of rickrolling.   So I have to reply to everyone with the standard &lt;a class="reference external" href="http://www.youtube.com/watch?v=oHg5SJYRHA0"&gt;The Grand Theft Auto IV trailer&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;Which -- apparently -- finally clicked with my father what it meant to be Rickrolled, and why his grandson being in a video version of that tune was -- in a household of high-tech nerds -- rather funny.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Too Much Thinking&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="too-much-thinking"&gt;
+&lt;h2&gt;Too Much Thinking&lt;/h2&gt;
 &lt;p&gt;There was some residual email traffic trying to figure out what -- exactly -- the prank was.   There was speculation that perhaps my son had doctored some Barry Manilow video to punch in his face over some other musician.&lt;/p&gt;
 &lt;p&gt;&amp;quot;No,&amp;quot; I had to explain.  &amp;quot;It's not that sophisticated.  It's simply a link which says one thing, but actually links to Rick Astley.&amp;quot;  Don't think deeply about it; it's a simple prank.  It wasn't really that complex, or funny.&lt;/p&gt;
 &lt;p&gt;No sooner do I get it sorted out, than the Macy's Thanksgiving Day parade has actual Rick Astley actually doing Never Gonna Give You Up, Rickrolling the world.  That lead to a flurry of text and email among the family members.&lt;/p&gt;
 &lt;p&gt;Now, it's starting to get funny.  I'm tangentially related to the rickrolling trifecta: &lt;a class="reference external" href="http://www.youtube.com/watch?v=f2b1D5w82yU"&gt;Rick Astley&lt;/a&gt; , &lt;a class="reference external" href="http://www.youtube.com/watch?v=TswTenrEwwM"&gt;Barry Manilow&lt;/a&gt;  covering it innocently, and &lt;a class="reference external" href="http://www.youtube.com/watch?v=y4hqv6USkoU"&gt;Rick Astley, again&lt;/a&gt;  covering it ironically.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="web"></category></entry><entry><title>SOA New Realities</title><link href="https://slott56.github.io/2008_04_23-soa_new_realities.html" rel="alternate"></link><published>2008-04-23T10:16:00-04:00</published><updated>2008-04-23T10:16:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-04-23:/2008_04_23-soa_new_realities.html</id><summary type="html">&lt;p&gt;I'm not a fan of XML as the one true language.  I've griped before about the attractive nuisance of XML.&lt;/p&gt;
 &lt;p&gt;Recently, I saw Sean McGrath's &lt;a class="reference external" href="http://seanmcgrath.blogspot.com/2008/04/new-realities.html"&gt;New Realities&lt;/a&gt; , which lead me to &lt;a class="reference external" href="http://www.projectzero.org/"&gt;Project Zero&lt;/a&gt; , a RESTful/JSONic SOA architecture.  Their blog includes postings like &lt;a class="reference external" href="http://www.projectzero.org/wiki/bin/view/Community/JerrysBlog/BlogEntry5"&gt;A run-time for &amp;quot;the New Reality&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm not a fan of XML as the one true language.  I've griped before about the attractive nuisance of XML.&lt;/p&gt;
 &lt;p&gt;Recently, I saw Sean McGrath's &lt;a class="reference external" href="http://seanmcgrath.blogspot.com/2008/04/new-realities.html"&gt;New Realities&lt;/a&gt; , which lead me to &lt;a class="reference external" href="http://www.projectzero.org/"&gt;Project Zero&lt;/a&gt; , a RESTful/JSONic SOA architecture.  Their blog includes postings like &lt;a class="reference external" href="http://www.projectzero.org/wiki/bin/view/Community/JerrysBlog/BlogEntry5"&gt;A run-time for &amp;quot;the New Reality&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;I find that I'm totally in sync with many of the key points.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Scripting&lt;/strong&gt;.  Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the &amp;gt;&amp;gt;&amp;gt; prompt in Python.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ORM&lt;/strong&gt;.  The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;REST&lt;/strong&gt;.  The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;JSON&lt;/strong&gt;.  XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;WSGI&lt;/strong&gt;.  The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The &amp;quot;put something into the environment&amp;quot; is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.&lt;/p&gt;
-&lt;p&gt;Agile.  Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.&lt;/p&gt;
-&lt;p&gt;TDD.  An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Scripting&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;Compiling, building and deploying Java is just tedious busy-work.  Python is amazingly productive.  When I look at doctest comments, I realize that good programming is programming that looks simple.  The best programming is stuff you can type interactively at the &amp;gt;&amp;gt;&amp;gt; prompt in Python.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;ORM&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;The RDBMS is only useful as persistent storage for objects, and ORM is the way to do this.  Triggers, stored procedures and complex SQL have costs that outweigh their value.  SQLAlchemy and the Django ORM simplify things a great deal.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;REST&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;The use of HTTP's methods and URI's to accomplish useful work is simple, elegant, extensible, scales well.  SOAP and WSDL is just overhead that helps the statically compiled Java application cope with change.  I'm a big fan of the way REST GETs can be tested with a browser.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;JSON&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;XML and the associated XSD's are wordy and complex.  JSON, especially in Python, is a first-class data structure that requires minimal almost no programming.  It's a little weird making your Python objects all subclasses of dict, but you get over that quickly.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;WSGI&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;The WSGI architecture is a tremendous simplification.  Each piece of the application is part of the WSGI pipeline that has the following consistent design pattern:  (1) validate, (2) put something into the environment, (3) pass it on or declare the processing complete.  The &amp;quot;put something into the environment&amp;quot; is such a huge simplification because it allows arbitrary steps to be added, removed or changed without fundamentally breaking anything.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Agile&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;Big Design Up Front (BDUF) isn't helpful because you don't know the consequences of each design decision.  With simple REST, ORM and scripting tools, however, you can reverse a design decision in an afternoon.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;TDD&lt;/strong&gt;.&lt;/dt&gt;
+&lt;dd&gt;An essential part of Agility is being able to refactor and make changes.  You can't do this without a robust set of unit tests.&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;p&gt;Here's what I don't have: a really good REST client library.  urllib2, with an extension to the Request class, works, but it seems clunky somehow.  With all the attention REST has, I'd like to think that someone has a cool REST client.&lt;/p&gt;
 &lt;p&gt;Here's the code I'm using.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 class RESTRequest( urllib2.Request ):
     def __init__(self, method, url, data=None, headers={} ):
@@ -53917,7 +53932,6 @@ class Client2( object ):
 &lt;p&gt;While compact and clear, it still doesn't look quite right.&lt;/p&gt;
 &lt;p&gt;One improvement might be to create subclasses of Basic and Digest handler which quietly handle the short list of REST status codes as return values instead of raising exceptions.  It would eliminate the try: block, but would create Yet More Subclasses to maintain.&lt;/p&gt;
 &lt;p&gt;Here's what an application does.&lt;/p&gt;
-&lt;!-- code: --&gt;
 &lt;pre class="literal-block"&gt;
 srvr= Client2( &amp;quot;localhost&amp;quot;, 18000, &amp;quot;slott&amp;quot;, &amp;quot;slott&amp;quot; )
     newData= { 'name':&amp;quot;US Test Company  898&amp;quot;, 'state':&amp;quot;PA&amp;quot; }
@@ -53927,23 +53941,32 @@ srvr= Client2( &amp;quot;localhost&amp;quot;, 18000, &amp;quot;slott&amp;quot;, 
     print eval( response.read() ) # JSON reply will be a dict object
 &lt;/pre&gt;
 &lt;p&gt;This is a nice-enough API.  The URI's, BTW, have a realm (prod, test, QA, etc.) a schema object (with version number), and the PK for that object as a &amp;quot;typical&amp;quot; REST URI.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="technologies"></category><category term="xml"></category></entry><entry><title>Airport Extreme + Time Machine. Wow!</title><link href="https://slott56.github.io/2008_04_07-airport_extreme_time_machine_wow.html" rel="alternate"></link><published>2008-04-07T13:55:00-04:00</published><updated>2008-04-07T13:55:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-04-07:/2008_04_07-airport_extreme_time_machine_wow.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Attempt 1 - Plug in the disk.  Create users.  Fail.&lt;/strong&gt;&lt;/p&gt;
+</content><category term="Technologies"></category><category term="technologies"></category><category term="xml"></category></entry><entry><title>Airport Extreme + Time Machine. Wow!</title><link href="https://slott56.github.io/2008_04_07-airport_extreme_time_machine_wow.html" rel="alternate"></link><published>2008-04-07T13:55:00-04:00</published><updated>2008-04-07T13:55:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-04-07:/2008_04_07-airport_extreme_time_machine_wow.html</id><summary type="html">&lt;div class="section" id="attempt-1-plug-in-the-disk-create-users-fail"&gt;
+&lt;h2&gt;Attempt 1 - Plug in the disk.  Create users.  Fail.&lt;/h2&gt;
 &lt;p&gt;Time Machine won't use a networked disk.  The &lt;a class="reference external" href="http://www.apple.com/macosx/features/timemachine.html"&gt;advertising&lt;/a&gt;  and documentation is pretty clear that Time Machine wants USB or FireWire storage.&lt;/p&gt;
-&lt;p&gt;And this is Apple, it either works seamlessly, silently or automatically, or I've got the wrong use case.  So …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Attempt 1 - Plug in the disk.  Create users.  Fail.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;And this is Apple, it either works seamlessly, silently or automatically, or I've got the wrong use case.  So …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="attempt-1-plug-in-the-disk-create-users-fail"&gt;
+&lt;h2&gt;Attempt 1 - Plug in the disk.  Create users.  Fail.&lt;/h2&gt;
 &lt;p&gt;Time Machine won't use a networked disk.  The &lt;a class="reference external" href="http://www.apple.com/macosx/features/timemachine.html"&gt;advertising&lt;/a&gt;  and documentation is pretty clear that Time Machine wants USB or FireWire storage.&lt;/p&gt;
 &lt;p&gt;And this is Apple, it either works seamlessly, silently or automatically, or I've got the wrong use case.  So, I took the path of least resistance and took the USB hard drive off the Airport and put it on my desk.&lt;/p&gt;
 &lt;p&gt;Then I got the software update for Airport Admin and decided to do a little more reading.  I found this note on MacNN: &lt;a class="reference external" href="http://www.macnn.com/articles/08/03/22/airport.extreme.backup/"&gt;Airport Extreme supports Time Machine backup&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Attempt 2 - Plug in the disk.  Fail.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="attempt-2-plug-in-the-disk-fail"&gt;
+&lt;h2&gt;Attempt 2 - Plug in the disk.  Fail.&lt;/h2&gt;
 &lt;p&gt;Darn it!&lt;/p&gt;
 &lt;p&gt;However, the Airport Extreme utility has some additional file share options.  Did it have these before?  No idea.  But it has them now.&lt;/p&gt;
 &lt;p&gt;Disk Password.  That's the secret.&lt;/p&gt;
 &lt;p&gt;Rather than individual user access, grant overall disk access.  And choose that password wisely.  This is the case where a pass-phrase is a smart move.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Attempt 3 - Change to Disk Passwords.  Victory!&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="attempt-3-change-to-disk-passwords-victory"&gt;
+&lt;h2&gt;Attempt 3 - Change to Disk Passwords.  Victory!&lt;/h2&gt;
 &lt;p&gt;Time Capsule is happily backing up through an airport-mounted disk.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="security"&gt;
+&lt;h2&gt;Security&lt;/h2&gt;
 &lt;p&gt;You can describe this as a security nightmare.  I'm broadcasting all of my personal files to everyone within 50m of my Airport Extreme base station.&lt;/p&gt;
 &lt;p&gt;On the other hand, who has the patience to intercept every byte, separate the various concurrent sockets of activity, and piece together my backup upload.  And when they're done, what kind of evil blackmailing plot will they hatch?&lt;/p&gt;
 &lt;p&gt;When I read about &amp;quot;security&amp;quot; breaches at places like the Veteran's Administration or TJX, I see that loss of the storage device and illegal access to software are the problems.  When I look at the &lt;a class="reference external" href="http://www.privacyrights.org/ar/ChrondataBreaches.htm"&gt;Data Breach Chronology&lt;/a&gt; , I see one wireless sniffing, and there are so many security problems that I hesitate to credit sniffing with being the actual exploited vulnerability.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="web"></category></entry><entry><title>iBlog Buggy... Since Leopard's release... No fixes in sight.</title><link href="https://slott56.github.io/2008_03_19-iblog_buggy_since_leopards_release_no_fixes_in_sight.html" rel="alternate"></link><published>2008-03-19T15:59:00-04:00</published><updated>2008-03-19T15:59:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-03-19:/2008_03_19-iblog_buggy_since_leopards_release_no_fixes_in_sight.html</id><summary type="html">&lt;p&gt;This is a kind of &amp;quot;case study&amp;quot; post.  It happens -- frequently -- that I wind up in a situation similar to this one.  Usually it involves large, complex pieces of software and lots of people with strongly-held opinions.  I'm usually brought in toward the end, and have to discover the parts …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a kind of &amp;quot;case study&amp;quot; post.  It happens -- frequently -- that I wind up in a situation similar to this one.  Usually it involves large, complex pieces of software and lots of people with strongly-held opinions.  I'm usually brought in toward the end, and have to discover the parts I missed.&lt;/p&gt;
 &lt;p&gt;What I'm sometimes asked is to help plan the product/tool selection.  This is a bad policy, since the previous parts of the conversation either never happened or never got documented.  Either way, they aren't provided as input to the stuff I'm supposed to do.  When things go well, I get to participate from the beginning.&lt;/p&gt;
 &lt;p&gt;This is a detailed, specific case study showing how to structure the &amp;quot;what tool do we use?&amp;quot; decision-making process.  It's something everyone does.  Indeed, carefully logging the information, and creating a structured narrative is a good way to apply discipline to the process and make the political considerations visible and explicit.&lt;/p&gt;

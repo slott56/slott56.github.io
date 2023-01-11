@@ -29,7 +29,8 @@ The point here is that we can achieve concurrency fairly simply.  It doesn't hav
 
 
 
-:strong:`Oracle Pipelining` 
+Oracle Pipelining
+-----------------
 
 
 
@@ -41,7 +42,7 @@ The big benefit is that we won't wait for the entire cursor to fetch all the row
 
 
 
-This is, effectively, what the Python :strong:`yield`  construct does.
+This is, effectively, what the Python ``yield``  construct does.
 
 
 
@@ -49,7 +50,8 @@ We can do this without suffering through the complexities of Oracle or PL/SQL.  
 
 
 
-:strong:`Shell Pipelining` 
+Shell Pipelining
+----------------
 
 
 
@@ -65,15 +67,15 @@ There are several math-like operators:
 
 
 
--   ; (also written as newline, \n)
+-   ``;`` (also written as newline, ``\n``)
 
--   &amp;
+-   ``&``
 
--   |
+-   ``|``
 
--   &amp;&amp;
+-   ``&&``
 
--   ||
+-   ``||``
 
 
 
@@ -81,7 +83,8 @@ Along with ()'s for grouping.  However, this isn't often-enough seen as the tidy
 
 
 
-:strong:`Process Composition` 
+Process Composition
+--------------------
 
 
 
@@ -105,27 +108,29 @@ The | operator creates a new process composed of two processes which execute con
 
 
 
-:strong:`A Confusing Special Case` 
+A Confusing Special Case
+-------------------------
 
 
 
-The &amp; operator, because it can be used in a special unary context, seems to create the most confusion.  For some reason, a construct like Y &amp; Z isn't seen as two concurrent processes, but as Y running in some obscure nohup-like mode, and Z is part of ordinary sequential composition.
+The ``&`` operator, because it can be used in a special unary context, seems to create the most confusion.  For some reason, a construct like ``Y & Z`` isn't seen as two concurrent processes, but as Y running in some obscure nohup-like mode, and Z is part of ordinary sequential composition.
 
 
 
-A unary &amp; operator (at the end of a single line) is the most common use for &amp;, but it has to be seen as a special case.  When we do something like "python idle.py &amp;" it isn't an example of process composition in an obvious way.
+A unary ``&`` operator (at the end of a single line) is the most common use for ``&``, but it has to be seen as a special case.  When we do something like ``python idle.py &`` it isn't an example of process composition in an obvious way.
 
 
 
-The binary &amp; operator (between programs) is fairly rare.  Why run two programs concurrently when there's no obvious connection?  In many data warehouse contexts, we have a number of preconditions for a given load.  So we may have something like (A &amp; B &amp; C); D.  In this case, we have three preconditions which all must finish before D can start.
+The binary ``&`` operator (between programs) is fairly rare.  Why run two programs concurrently when there's no obvious connection?  In many data warehouse contexts, we have a number of preconditions for a given load.  So we may have something like ``(A & B & C); D``.  In this case, we have three preconditions which all must finish before D can start.
 
 
 
-:strong:`Conditional Composition` 
+Conditional Composition
+-----------------------
 
 
 
-The &amp;&amp; and || operators for composition are elegant ways to specify a kind of composition which is dependent on a condition.  In the &amp;&amp; case, the left-hand process must finish normally.  In the || case, the left-hand process must not finish normally.
+The ``&&`` and ``||`` operators for composition are elegant ways to specify a kind of composition which is dependent on a condition.  In the ``&&`` case, the left-hand process must finish normally.  In the || case, the left-hand process must not finish normally.
 
 
 
@@ -133,7 +138,8 @@ This conditional composition was borrowed by perl, and used wisely, it can make 
 
 
 
-:strong:`Alternate Notations` 
+Alternate Notations
+-------------------
 
 
 
@@ -153,7 +159,8 @@ The `Lure of XML <{filename}/blog/2006/12/2006_12_23-xml_one_ring_to_rule_them_a
 
 
 
-:strong:`Using Concurrency` 
+Using Concurrency
+-----------------
 
 
 

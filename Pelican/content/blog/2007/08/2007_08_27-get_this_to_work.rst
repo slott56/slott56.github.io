@@ -25,11 +25,12 @@ I listened, patiently, hoping to get some sense of what it was supposed to do.  
 
 
 
-:strong:`What Is The Result?` 
+What Is The Result?
+--------------------
 
 
 
-I consider persistence to be more-or-less sacred.  You have to take it very, very seriously.  This program wrote a record :strong:`and`  inserted it into a database.  Was this just dumb belt-and-suspenders stuff?  Did they not trust the database?  Or, did was the file used by some other application, separate from the database?  Both ideas made me crazy.
+I consider persistence to be more-or-less sacred.  You have to take it very, very seriously.  This program wrote a record **and**  inserted it into a database.  Was this just dumb belt-and-suspenders stuff?  Did they not trust the database?  Or, did was the file used by some other application, separate from the database?  Both ideas made me crazy.
 
 
 
@@ -45,7 +46,8 @@ The program produced two outputs, which could -- under fairly ordinary circumsta
 
 
 
-:strong:`Some Testing.` 
+Some Testing
+------------
 
 
 
@@ -61,7 +63,8 @@ Of course, this main program is a royal pain to write unit tests for.  Of course
 
 
 
-:strong:`Documentation.` 
+Documentation
+-------------
 
 
 
@@ -105,7 +108,8 @@ That doesn't make for a good relationship with a client.
 
 
 
-:strong:`Preventing Disaster.` 
+Preventing Disaster
+-------------------
 
 
 
@@ -137,7 +141,8 @@ Them:  "Not meeting the deadline date."
 
 
 
-:strong:`Structural Issues` :strong:`.` 
+Structural Issues
+------------------
 
 
 
@@ -153,11 +158,12 @@ This week we found that the procedure returns a result set of multiple rows.  Th
 
 
 
-It turns out that it's more like the following:  A cluster of :emphasis:`n`  related rows come in; a common attribute is used to execute a stored procedure which returns a result set of :emphasis:`n`  related pieces of data.  Somehow the :emphasis:`n`  rows in the result set are correlated with the :emphasis:`n`  input rows.  What if the cardinalities differ?  Arrgh.  
+It turns out that it's more like the following:  A cluster of *n*  related rows come in; a common attribute is used to execute a stored procedure which returns a result set of *n*  related pieces of data.  Somehow the *n*  rows in the result set are correlated with the *n*  input rows.  What if the cardinalities differ?  Arrgh.
 
 
 
-:strong:`Can Anything Good Come Of This?` 
+Can Anything Good Come Of This?
+--------------------------------
 
 
 
@@ -165,19 +171,23 @@ Let's look at the outcomes.
 
 
 
-:strong:`We get something to "work" on time.`  They hate us forever because we weren't up to the task, and only their constant nagging made the thing work.
+**We get something to "work" on time.**
+    They hate us forever because we weren't up to the task, and only their constant nagging made the thing work.
 
 
 
-:strong:`We get something to "work" after the deadline.`   They hate us forever because we didn't make the date.
+**We get something to "work" after the deadline.**
+    They hate us forever because we didn't make the date.
 
 
 
-:strong:`We get something that almost "works" by the deadline.`   They hate us forever because they have to think about what actually matters in this application.
+**We get something that almost "works" by the deadline.**
+    They hate us forever because they have to think about what actually matters in this application.
 
 
 
-:strong:`We give up now.`   They hate us forever for not even trying.
+**We give up now.**
+    They hate us forever for not even trying.
 
 
 

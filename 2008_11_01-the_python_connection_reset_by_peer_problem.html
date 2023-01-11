@@ -123,28 +123,38 @@ S.Lott -- Software Architect            </a>
 <li>Integration Tests (built on unittest.TestCase, but somewhat more complex)</li>
 </ul>
 <p>It takes several minutes to run through the test sequence.</p>
-<p><strong>REST Integration Tests</strong></p>
+<div class="section" id="rest-integration-tests">
+<h2>REST Integration Tests</h2>
 <p>Some of our tests are pretty big REST tests.  We launch the Django &quot;testserver&quot; version of the server (with a known set of fixtures) and use a REST client to execute sequences of transactions.</p>
 <p>Sometimes we would get a urllib2 IOError which contained a socket.error (10054 on Windows, 104 in Linux).  Sometimes.</p>
 <p>The text was &quot;Connection Reset by Peer&quot;.  First, it was intermittent.  Second, we had bigger fish to fry.</p>
 <p>This week, it became the long pole in the tent, and I dug into it.  Part of the reason is the count-down to deployment, and the resulting turnover to sysadmins.  But another part of the reason was that we have very stable software (finally) and we're starting to expand the unit tests to cover more obscure edge cases.</p>
-<p><strong>Consistently Intermittent</strong></p>
+</div>
+<div class="section" id="consistently-intermittent">
+<h2>Consistently Intermittent</h2>
 <p>The most maddening thing about Connection Reset by Peer is the pattern of getting it.  And not getting it.</p>
 <p>For a while, it appeared randomly.  Then we stopped getting it in development.  Problem fixed, right?</p>
 <p>On VMWare, however, it was -- mostly -- reproducible.  On Windows, it never happened.  And yes, they're both Python 2.5.2.</p>
-<p><strong>Which Side?</strong></p>
+</div>
+<div class="section" id="which-side">
+<h2>Which Side?</h2>
 <p>We're debugging REST transactions.  Since we see it solidly under VMWare, let's dig in.  Which side?  From the logs, it  becomes clear that it's on the client side.  The Django server looks to be rock-solid.  When Django's WSGI server logs the status code and size of the response, this is followed immediately by flush and close.  No opportunity for something bad to happen to the socket.</p>
 <p>So we're focused at our client, based on urllib2.  Sometimes we get it the error, sometimes we don't.  When we get it, however, it's in exactly the same point in the test sequence.   And under VMWare, we're getting it consistently enough that we can work with it.</p>
 <p>Interestingly, as we move code around, the &quot;Connection Reset By Peer&quot; moves around.  When it occurs, it occurs in a consistent location in the test sequence.</p>
 <p>I've upgraded our client to retry the transaction.  Generally, a half-dozen retries (or fewer) and the transaction completes normally.</p>
-<p><strong>The Global Interpreter Lock</strong></p>
+</div>
+<div class="section" id="the-global-interpreter-lock">
+<h2>The Global Interpreter Lock</h2>
 <p>At this point, I'm convinced I've found something in Python itself.  Since we're running client, server, and MySQL database all under VMWare, I think we're looking at some small bug within urllib2.  I think it's threading.</p>
 <p>I read up on the GIL.  The article by Aahz in PyZine, <a class="reference external" href="http://www.pyzine.com/Issue001/Section_Articles/article_ThreadingGlobalInterpreter.html">Threading the Global Interpreter Lock</a>  has some notes on the way that time.sleep() changes thread scheduling.</p>
 <p>When I changed the positions of time.sleep() calls in our client library or unittest sequence, the &quot;Connection Reset by Peer&quot; error moved, also.  It looks like we're suffering from some kind of interlock that's interfering with the client side of the socket.</p>
 <p>The GIL is switched every 100 Python byte-code instructions.  That leads to very consistent behavior.  That's why it can be the same test in the test sequence or not at all.</p>
 <p>So, now what?</p>
-<p><strong>Does It Matter?</strong></p>
+</div>
+<div class="section" id="does-it-matter">
+<h2>Does It Matter?</h2>
 <p>Actually, I think it doesn't matter.  The all-on-one box testing is contrived.  With the retry loop, we can get to 100% success, it just takes a passel of retries.  For now, the log of connection reset retries is a side-light.  As we move toward scalability testing across multiple, independent boxes, we'll see if the problem persists.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -164,7 +174,10 @@ S.Lott -- Software Architect            </a>
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->

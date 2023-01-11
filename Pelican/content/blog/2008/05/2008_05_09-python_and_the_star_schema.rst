@@ -25,11 +25,12 @@ Here are my thoughts on using Python for data warehousing when you've got Gb of 
 
 
 
-:strong:`Small Dimensions`
+Small Dimensions
+----------------
 
 
 
-The pure Python approach only works when your dimension will comfortably fit into memory -- not a terribly big problem with :emphasis:`most`  dimensions.
+The pure Python approach only works when your dimension will comfortably fit into memory -- not a terribly big problem with *most*  dimensions.
 
 
 
@@ -62,8 +63,6 @@ The conformance algorithm is is essentially the following:
 
 
 
-..  code:
-
 ::
 
     row= Dimension(...)
@@ -80,7 +79,8 @@ In some cases (like the Django ORM) this is called the get-or-create query.
 
 
 
-:strong:`The Dimension Bus`
+The Dimension Bus
+------------------
 
 
 
@@ -91,7 +91,7 @@ For BIG dimensions, I think you still have to implement the "dimension bus" outl
 
 
 
-:strong:`For any big dimensions`.  Use an external sort-merge utility.  Seriously.  They're way fast for data sets too large to fit into memory.  Use CSV format files and the resulting program is very tidy.   The outline is as follows:
+For any big dimensions, use an external sort-merge utility.  Seriously.  They're way fast for data sets too large to fit into memory.  Use CSV format files and the resulting program is very tidy.   The outline is as follows:
 
 
 
@@ -115,8 +115,6 @@ Third, do a "match merge" to locate the differences between the dimension and th
 
 
 
-
-..  code:
 
 ::
 
@@ -152,7 +150,8 @@ At the end of this pass, you'll accumulate a file of customer dimension adds and
 
 
 
-:strong:`Fact Loading`
+Fact Loading
+------------
 
 
 
@@ -163,8 +162,6 @@ The first step in DW loading is dimensional conformance.  With a little cleverne
 
 
 
-
-..  code:
 
 ::
 
@@ -187,7 +184,8 @@ I've written conformance processing in Java (which is faster than Python) and ha
 
 
 
-:strong:`Hand Wringing`
+Hand Wringing
+--------------
 
 
 

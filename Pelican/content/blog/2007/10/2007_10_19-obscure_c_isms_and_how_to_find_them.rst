@@ -13,7 +13,7 @@ Obscure C-isms and How To Find Them
 
 
 
-This is not a Python to the rescue story.  This is a true, deeply horrible situation.  I was rescued by a reframing technique I'll call :strong:`Extraction`.
+This is not a Python to the rescue story.  This is a true, deeply horrible situation.  I was rescued by a reframing technique I'll call **Extraction**.
 
 
 
@@ -39,7 +39,7 @@ First, the function had nested if's without enough else's -- the kind of thing t
 
 
 
-What about the other two conditions, (:emphasis:`a`  &amp;&amp; !:emphasis:`b`) as well as (:emphasis:`c`  &amp;&amp; !:emphasis:`d`)?
+What about the other two conditions, (*a*  &amp;&amp; !*b*) as well as (*c*  &amp;&amp; !*d*)?
 
 
 
@@ -47,7 +47,8 @@ Second, the function had double negatives.  It had the famous if(a == FALSE) kin
 
 
 
-:strong:`Unit Test Hell`
+Unit Test Hell
+---------------
 
 
 
@@ -69,19 +70,20 @@ So now I've got two problems:
 
 
 
-:strong:`Reframing Techniques`
+Reframing Techniques
+--------------------
 
 
 
-When my head starts getting a flat spot from beating it on the wall, there are a number of techniques I use for reframing the problem.  My favorite is :strong:`Predicate Calculus`.  In this case, however, the conditions got complex and drifted too far from the essential semantics of the function.  It became a kind of algebra exercise, not giving me any insight.
+When my head starts getting a flat spot from beating it on the wall, there are a number of techniques I use for reframing the problem.  My favorite is **Predicate Calculus**.  In this case, however, the conditions got complex and drifted too far from the essential semantics of the function.  It became a kind of algebra exercise, not giving me any insight.
 
 
 
-:strong:`English Specification`  isn't a bad way to reframe things.  However, in this case, the English didn't make any sense either.  The C was just too obscure.
+**English Specification**  isn't a bad way to reframe things.  However, in this case, the English didn't make any sense either.  The C was just too obscure.
 
 
 
-:strong:`Python`, however, looked promising.  In a few minutes I had transliterated the C to Python, and had something that looked like it was producing meaningful results.  I revised the Python to write both a tidy .CSV summary as well as Java test case methods.  The CSV was a functional summary, the test case methods were cut and pasted into the Java TestCase.
+**Python**, however, looked promising.  In a few minutes I had transliterated the C to Python, and had something that looked like it was producing meaningful results.  I revised the Python to write both a tidy .CSV summary as well as Java test case methods.  The CSV was a functional summary, the test case methods were cut and pasted into the Java TestCase.
 
 
 
@@ -89,7 +91,8 @@ This is not a Python to the rescue story.  The Python unit test cases didn't loo
 
 
 
-:strong:`Reframing Through Extraction`
+Reframing Through Extraction
+-----------------------------
 
 
 
@@ -97,7 +100,7 @@ Once the user test cases arrived, it became painfully clear that my reverse engi
 
 
 
-With my back up against the wall, I pulled out the big gun in reverse engineering -- :strong:`Extraction`.  I extracted this function and began to put together enough stuff to get it to compile and run in isolation.  This is time consuming and doesn't readily resolve semantic problems.  Once you have something running, you are rarely any closer to knowing what it meant.
+With my back up against the wall, I pulled out the big gun in reverse engineering -- **Extraction**.  I extracted this function and began to put together enough stuff to get it to compile and run in isolation.  This is time consuming and doesn't readily resolve semantic problems.  Once you have something running, you are rarely any closer to knowing what it meant.
 
 
 
@@ -105,9 +108,7 @@ Isolation, BTW, means complete isolation.  All dependencies (except for stdio.h)
 
 
 
-The process of doing :strong:`Extraction`  is insight-producing.  The trick is to trust nothing.  First you pull out the function from the source file.  Then, when it won't compile, you start pulling things out of the various .h files and pasting them into the extraction.  After 20 minutes of cut and paste, I finally found the following nugget of pure evil.
-
-..  code:
+The process of doing **Extraction**  is insight-producing.  The trick is to trust nothing.  First you pull out the function from the source file.  Then, when it won't compile, you start pulling things out of the various .h files and pasting them into the extraction.  After 20 minutes of cut and paste, I finally found the following nugget of pure evil.
 
 ::
 
@@ -118,7 +119,8 @@ The process of doing :strong:`Extraction`  is insight-producing.  The trick is t
 
 
 
-:strong:`Are You Kidding?`
+Are You Kidding?
+-----------------
 
 
 

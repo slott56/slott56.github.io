@@ -123,8 +123,7 @@ S.Lott -- Software Architect            </a>
                 </div>
                 <p><strong>NUT</strong>.  No Unit Test Cases.  Need I say more?  If there are not unit tests, this isn't real programming.</p>
 <p><strong>MCF</strong>  and <strong>NCF</strong>.  Minimal/No Use of Collections Framework.  The <strong>MCF</strong>  defect occurs when someone uses only the Array or Vector classes.  The <strong>NCF</strong>  defect occurs when someone uses only primitive arrays, often with fixed sizes.</p>
-<p><strong>MCF</strong>  defects also occur when someone creates a linked list, but insists on traversing it with the horrifying:</p>
-<!-- code: -->
+<p><strong>NCF</strong> defects also occur when someone creates a linked list, but insists on traversing it with the horrifying:</p>
 <pre class="literal-block">
 for( int i=0; i != aList.size(); ++i ) {
     SomeClass x= (SomeClass)aList.get(i);
@@ -149,32 +148,40 @@ NOTE: The functionality of this interface is duplicated by the Iterator interfac
 <p>If you have <strong>NCF</strong>  programs, you often have to throw them away and begin again from the beginning to write something that leverages the collection framework.  Further, you have a large education problem to solve.  Warning: Coaching and Training Required.</p>
 <p>When you have <strong>BOD</strong>  programs, you have an even larger object-design education problem.  Folks who come to OO programming from non-OO environments (VB, particularly) are often baffled by the basic concept of responsibility allocation and emergent behavior from object interaction.</p>
 <p>It turns out that <strong>EIM</strong>  programs are often a good way to learn better object design.</p>
-<p><strong>Remediating EIM</strong></p>
+<div class="section" id="remediating-eim">
+<h2>Remediating EIM</h2>
 <p>EIM programs involve a big procedure full of details that could have been summarized into other class definitions.  They also involve the obscurity of the OS's interface to a &quot;program&quot; and force us to write some of our application's functionality in the shell script language, diluting the value of Java.</p>
 <p>It's important to draw some lessons from the design of Ant's Task class or Maven's MOJO interface. We'll use the Ant Task definition, it's simpler.</p>
 <p>Every &quot;step&quot; in a program can be defined as some kind of Task. Each Task has some configurable properties: you set those and cut the task lose to do it's job. When a Task finishes, it may have some resulting properties that you can check.</p>
 <p>EIM programs have to be recast using the <strong>Command</strong>  design pattern.  See (<a class="reference external" href="http://exciton.cs.rice.edu/javaresources/DesignPatterns/command.htm">Command Design Pattern</a>  for details.)  You can define a simple abstract superclass for all of the various kinds of Tasks.  You can also define a simple Macro Task that contains a List of subtasks.</p>
 <p>Do not go insane and define <strong>Commands</strong>  to reflect every shell-script construct (loop, conditions, switches, etc.)  Java already has all the looping and condition testing statements you'll ever need.  Feel free to invent Commands that include sensible, easy-to-summarize ordinary Java programming.</p>
-<p><strong>Atomicity</strong></p>
+</div>
+<div class="section" id="atomicity">
+<h2>Atomicity</h2>
 <p>Ideally, you can break main into a series of atomic &quot;steps&quot;.  These are the big picture, summary-level small-brain steps.  If, for some reason, you can't break a 150-line pile of gibberish into some kind of summarized set of steps, find a job in a different industry.  Seriously.  If you can't summarize, you shouldn't be programming.</p>
 <p>Arriving at a summary isn't easy.  The brain's limit on comprehensibility is the <a class="reference external" href="http://www.musanim.com/miller1956/">Magical Number Seven Plus or Minus Two</a> .  You have to get the overall plan down to 7±2 high-level steps.  Some of those steps can have sub-steps.  Nesting is a good thing -- just keep everything into sensible, meaningful, easy-to-describe chunks.</p>
 <p>Each step will be largely independent.  There will be some small amount of information passed from step to step; there will also be a certain amount of shared configuration information.  Each candidate step has global properties, input from previous steps, and output to subsequent steps.  Given a 150-line morass, it may be hard to distinguish the global inputs, local inputs and outputs of each &quot;step&quot;.  We'll return to some specific issues below.</p>
 <p>Define a subclass of Task for each step.  Some will be concrete classes -- with detailed implementations.  Some will be Macro Tasks which have constructors to create a List of subtasks.</p>
 <p>Each concrete Task has an execute method which is pulled directly from the original, long main method.  Each Task will also have a number of properties -- the variables required to execute the step and the results of the step.</p>
-<p><strong>Replacing Main</strong></p>
+</div>
+<div class="section" id="replacing-main">
+<h2>Replacing Main</h2>
 <p>Once main has been broken into Tasks, a new overall &quot;What Was Formerly Main&quot; Macro Task can be defined.  This will construct the 7±2 tasks that comprise the revised main sequence of steps, set their properties, and then use the ordinary Macro execute method to step through the sequence of Tasks.</p>
 <p>Now the overall main method is a simple constructor for a Macro Task and an execute of that Macro Task.  Ideally, two lines of code, based on a highly reusable Task/Macro Task structure.</p>
-<p><strong>State Change and Shared State</strong></p>
+</div>
+<div class="section" id="state-change-and-shared-state">
+<h2>State Change and Shared State</h2>
 <p>As our sequence of tasks execute, the output from one task is input to the next.  Universally, state change means that an object's setter methods were used.  Sometimes, an object which gets updated (or created) must be shared by two or more Tasks.  A shared object is usually the responsibility of the overall Macro Task, and that object is a property of each subtask which shares the object.</p>
 <p>Failure to identify the objects which undergo state changes is the leading cause of <strong>EIM</strong>.  It's also one of the root causes of <strong>BOD</strong>.</p>
 <p>Often, this shared state must be persisted in some form.  (Other times, it is a report that written to some output stream.)  When we're dealing with persistent shared state, we might be using a database directly.  More often, we're using Hibernate or iBatis, and we may need to configure iBatis or Hibernate and potentially fetch some initial objects from the database.</p>
-<p><strong>Configuration and Global Properties</strong></p>
+</div>
+<div class="section" id="configuration-and-global-properties">
+<h2>Configuration and Global Properties</h2>
 <p>The public static void main method has three responsibilities.  The third and final is to create and initiate the overall Task.  The first is to gather the overall configuration as a complete set of Properties.  The java.lang.System has a base set of properties which come from Java defaults and command-line parameters.  In the middle is the management of any global objects.</p>
 <p>Your application should create it's own Properties object.  Use application-wide or system-wide properties files for default values.  Merge in properties from System and any property files named on the command-line.  This complete set of properties can then be given to the overall Task to support any needed configuration.</p>
 <p>In some cases, you may want to create shared objects outside the Task (in main), and assign these objects to specific Tasks.</p>
 <p>Example</p>
 <p>Your goal is to get to something like the following.</p>
-<!-- code: -->
 <pre class="literal-block">
 Logger theLog= Logger.getLogger( &quot;com.xyzzy.division.app.Main&quot; );
 Properties p= mergeAllProperties();
@@ -190,14 +197,19 @@ theLog.info( &quot;Finished&quot; )
 </pre>
 <p>Now, my main program is purely the administrative overhead of gathering property values, creating the shared state object(s), and executing the task that updates that object's state.</p>
 <p>Note that we're creating MainTaskV3.  When we move to version 4, we can add the new class definition and update main to use the new class definition.  This simplifies change management to be mostly adding new class definitions and changing relatively little established, tested code.</p>
-<p><strong>Mutability Analysis</strong></p>
+</div>
+<div class="section" id="mutability-analysis">
+<h2>Mutability Analysis</h2>
 <p>What if we want to add a task?  In an <strong>EIM</strong>  program, this is hard -- sometimes impossible.  In a Task-based program, we're adding a Task definition, and adding an initialization into some Macro Task.</p>
 <p>Note that this is inherently testable.  We can easily test the new task in complete isolation.  Further, we can easily back the change out by removing a single constructor from a Macro Task.  (We don't need to remove the unused class definition.)</p>
 <p>What if we want to remove a Task?  Again, this is often hard in an EIM program because the various task dependencies are murky or non-existent.  In a Task-based program, we're simply removing a single constructor from a Macro Task.</p>
 <p>What if we want to reorder the Tasks?  We're just changing the order of SubTask construction within a Macro Task's initialization.</p>
 <p>What if we want to dramatically restructure two formerly distinct programs and combine them into one new program?  What if we want to split a long program into two shorter programs?  Both cases are simply a re-organization of the MacroTasks to adjust the mix of tasks the create in their initialization.</p>
-<p><strong>Solutions</strong></p>
+</div>
+<div class="section" id="solutions">
+<h2>Solutions</h2>
 <p>Standard defects lead to standard solutions.  Each program is not a unique, special snowflake.  Each program just one of many, and should be evaluated using a standardized set of defects.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -217,7 +229,10 @@ theLog.info( &quot;Finished&quot; )
   <ul class="list-group" id="social">
     <li class="list-group-item"><a href="https://fosstodon.org/@slott56"><i class="fa fa-mastodon-square fa-lg"></i> Mastodon</a></li>
     <li class="list-group-item"><a href="https://github.com/slott56"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> stackoverflow</a></li>
+    <li class="list-group-item"><a href="https://stackoverflow.com/users/10661/s-lott"><i class="fa fa-stackoverflow-square fa-lg"></i> StackOverflow</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/steven-lott-029835/"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://www.oreilly.com/pub/au/6277"><i class="fa fa-o'reilly-square fa-lg"></i> O'Reilly</a></li>
+    <li class="list-group-item"><a href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"><i class="fa fa-amazon-square fa-lg"></i> Amazon</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
