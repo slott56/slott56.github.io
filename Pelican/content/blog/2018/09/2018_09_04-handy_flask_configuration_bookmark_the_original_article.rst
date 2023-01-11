@@ -7,14 +7,16 @@ Handy Flask Configuration -- Bookmark the original article
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/429285908953579520/InZKng9-_normal.jpeg
-    :alt: Twitter Avater
+Tweet:
 
-**Pycoders Weekly(**\ `@pycoders <https://twitter.com/pycoders?s=11>`__\ **)**
+    .. image:: https://pbs.twimg.com/profile_images/429285908953579520/InZKng9-_normal.jpeg
+        :alt: Twitter Avater
 
-`8/16/18, 12:06 PM <https://twitter.com/pycoders/status/1030123521983348736?s=11>`__
+    **Pycoders Weekly(**\ `@pycoders <https://twitter.com/pycoders?s=11>`__\ **)**
 
-Configure Python 3, Flask andGunicorn on Ubuntu 18.04 LTS –`bit.ly/2vRZYQR <https://t.co/1oB0nJXeeG>`__
+    `8/16/18, 12:06 PM <https://twitter.com/pycoders/status/1030123521983348736?s=11>`__
+
+    Configure Python 3, Flask andGunicorn on Ubuntu 18.04 LTS –`bit.ly/2vRZYQR <https://t.co/1oB0nJXeeG>`__
 
 
 We worked through this about a year ago, **without** the help of this

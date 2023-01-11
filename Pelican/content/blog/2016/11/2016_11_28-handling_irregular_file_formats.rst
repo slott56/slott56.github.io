@@ -26,7 +26,7 @@ filtered out.
 
 The first "solution" pitched to me could be summarized with this:
 
-**Move "Expired" on a line by itself to the previous line**
+    **Move "Expired" on a line by itself to the previous line**
 
 That was part of the email subject line. The body of the email was
 some whining about regular expressions. Which I mostly ignored.

@@ -31,7 +31,7 @@ I've been asked about Python IDEs -- more than once -- and my answer
 remains the same:
 
 
-**The IDE Doesn't Matter.**
+    **The IDE Doesn't Matter.**
 
 
 One of the more shocking tech decisions I've seen is the development

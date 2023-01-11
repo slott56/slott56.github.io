@@ -42,7 +42,7 @@ essential here is the NCE Fortran used 4-digit integers.
 I'll repeat that for those skimming, and wondering what the Python
 connection is.
 
-**Four. Digit. Integers.**
+    **Four. Digit. Integers.**
 
 That's four decimal digits. Decimal digits required at least 4
 hardware bits. IBM 1620 digits also had flags and signs, so, there

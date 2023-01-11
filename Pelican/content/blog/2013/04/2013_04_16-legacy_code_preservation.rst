@@ -7,10 +7,11 @@ Legacy Code Preservation
 :category: Technologies
 :status: published
 
+This is important:
 
-**Rule One: Writing Software is Capturing Knowledge.**
+    **Rule One: Writing Software is Capturing Knowledge.**
 
-**Consequence: Converting Software is Preserving Knowledge.**
+    **Consequence: Converting Software is Preserving Knowledge.**
 
 When software is revised for a new framework or operating system or
 database or when an algorithm is converted to a new language, then

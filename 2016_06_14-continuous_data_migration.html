@@ -218,7 +218,8 @@ long-term coexistence strategy. Preserve the data; upgrade the
 software.</li>
 </ol>
 <p>Here's the central data migration requirement:</p>
-<p><strong>Be able to migrate to the new schema as many times as needed.</strong></p>
+<blockquote>
+<strong>Be able to migrate to the new schema as many times as needed.</strong></blockquote>
 <p>I'll repeat that. As. Many. Times. As. Needed.</p>
 <p>Migration is <strong>not</strong> a one-time thing. You do it all the time.</p>
 <ol class="arabic simple">
@@ -253,7 +254,8 @@ through the migration mill.</p>
 <div class="section" id="software-and-schema-design-consequences">
 <h2>Software and Schema Design Consequences</h2>
 <p>This has an important consequence.</p>
-<p><strong>Your software must be explicitly bound to a specific schema by major version number.</strong></p>
+<blockquote>
+<strong>Your software must be explicitly bound to a specific schema by major version number.</strong></blockquote>
 <p>Explicitly bound. In a SQL context, you can use the &quot;schema&quot;
 construct an include the version number in the schema name.
 &quot;myapp_v3&quot; vs. &quot;myapp_v4&quot;. This becomes a ubiquitous qualifier on all

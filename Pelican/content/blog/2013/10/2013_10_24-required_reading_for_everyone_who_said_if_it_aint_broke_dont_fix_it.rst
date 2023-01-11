@@ -9,7 +9,9 @@ Required Reading for everyone who said "If it ain't broke, don't fix it."
 
 http://pythonsweetness.tumblr.com/post/64740079543/how-to-lose-172-222-a-second-for-45-minutes
 Here an important lesson.
-**Code Rot is Real.  It Leads to Subtle and Expensive Bugs.**
+
+    **Code Rot is Real.  It Leads to Subtle and Expensive Bugs.**
+
 Claiming that code cleanup is just pointless "gold plating" is the kind
 of thing that can drive a company out of business.
 

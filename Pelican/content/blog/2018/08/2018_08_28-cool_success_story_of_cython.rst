@@ -7,14 +7,16 @@ Cool success story of Cython
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/952818577719091200/rBCQPkA9_normal.jpg
-    :alt: Twitter Avater
+Tweet:
 
-**Real Python(**\ `@realpython <https://twitter.com/realpython?s=11>`__\ **)**
+    .. image:: https://pbs.twimg.com/profile_images/952818577719091200/rBCQPkA9_normal.jpg
+        :alt: Twitter Avater
 
-`7/31/18, 9:51PM <https://twitter.com/realpython/status/1024472543237992449?s=11>`__
+    **Real Python(**\ `@realpython <https://twitter.com/realpython?s=11>`__\ **)**
 
-A multi-core Python HTTPserver (much) faster than Go(spoiler: Cython)`nexedi.com/NXD-Blog.Multi… <https://t.co/mlRqTMwmxu>`__
+    `7/31/18, 9:51PM <https://twitter.com/realpython/status/1024472543237992449?s=11>`__
+
+    A multi-core Python HTTPserver (much) faster than Go(spoiler: Cython)`nexedi.com/NXD-Blog.Multi… <https://t.co/mlRqTMwmxu>`__
 
 
 https://www.nexedi.com/NXD-Blog.Multicore.Python.HTTP.Server

@@ -31,7 +31,7 @@ actively making choices.)
 I have to say that being able to get a Windows machine in free tier of
 AWS is a wonderful resource.
 
-**I can screen capture the installation on Windows.**
+    **I can screen capture the installation on Windows.**
 
 I can narrate the sequence of choices I made. I'm hoping this prevents
 TWP from side-tracking a person who's struggling with Windows.

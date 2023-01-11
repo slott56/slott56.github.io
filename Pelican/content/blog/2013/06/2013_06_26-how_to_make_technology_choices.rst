@@ -19,13 +19,13 @@ Sometimes the questions are about choosing a "tech stack" or an
 All the questions, however, are very similar. They amount to either
 this
 
-**"What's the one, perfect and final technology choice we need to make?"**
+    **"What's the one, perfect and final technology choice we need to make?"**
 
 
 or this
 
 
-**"We're considering [X, Y and Z] can you validate this choice?"**
+    **"We're considering [X, Y and Z] can you validate this choice?"**
 
 
 Notice that the emphasis is on making **One** **Perfect** **Final** **Decision**.

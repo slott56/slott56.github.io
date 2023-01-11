@@ -183,11 +183,14 @@ I am a fan of presenting the idea for discussion.
    :width: 48px
    :height: 48px
    :target: https://twitter.com/prasoonpratham?s=11
+
 .. |image2| image:: https://ea.twimg.com/email/self_serve/media/spacer.png
    :width: 8px
+
 .. |image3| image:: https://ea.twimg.com/email/self_serve/media/logo_twitter-1497383721365.png
    :width: 24px
    :height: 20px
+
 .. |image4| image:: https://ea.twimg.com/self_serve/media/spacer_464x1-1582829598167.png
    :width: 464px
    :height: 1px

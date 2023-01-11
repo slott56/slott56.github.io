@@ -82,7 +82,7 @@ It might look something like this:
 
 
 
-**Use meaningful exceptions instead of sys.exit().**
+    **Use meaningful exceptions instead of sys.exit().**
 
 This permits reuse of everything without a mysterious SystemExit
 causing confusion.

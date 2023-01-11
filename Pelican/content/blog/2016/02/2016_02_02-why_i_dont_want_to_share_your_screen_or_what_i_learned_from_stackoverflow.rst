@@ -29,7 +29,7 @@ window.
 
 From a pedagogical perspective, there's this point:
 
-**I think that it's very important to learn how to focus on the details that matter.**
+    **I think that it's very important to learn how to focus on the details that matter.**
 
 This breaks down into several related skills:
 

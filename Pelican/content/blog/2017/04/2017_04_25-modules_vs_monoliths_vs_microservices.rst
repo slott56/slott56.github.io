@@ -7,12 +7,14 @@ Modules vs. Monoliths vs. Microservices:
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/779041781413507072/TaqJsdzS_normal.jpg
-    :alt: Twitter Avater
+Tweet:
 
-**Dan Bader(**\ `@dbader_org <https://twitter.com/dbader_org?refsrc=email&s=11>`__\ **)**
+    .. image:: https://pbs.twimg.com/profile_images/779041781413507072/TaqJsdzS_normal.jpg
+        :alt: Twitter Avater
 
-`4/21/17, 7:35 PM <https://twitter.com/dbader_org/status/855565565485887488?refsrc=email&s=11>`__
+    **Dan Bader(**\ `@dbader_org <https://twitter.com/dbader_org?refsrc=email&s=11>`__\ **)**
+
+    `4/21/17, 7:35 PM <https://twitter.com/dbader_org/status/855565565485887488?refsrc=email&s=11>`__
 
 
 Worth a read: "Modules vs. Microservices" (and how to find a middle ground)

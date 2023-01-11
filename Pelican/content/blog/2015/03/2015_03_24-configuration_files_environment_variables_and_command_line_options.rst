@@ -148,6 +148,7 @@ available choices in this file? We have several ways.
     in the long run.
 
 **Command-line args to select a specific configuration**
+
 To select a configuration using command-line arguments, we must
 decompose configuration into two parts. The configuration
 alternatives shown above are placed in a config_params.py module. The

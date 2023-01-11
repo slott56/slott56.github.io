@@ -9,14 +9,14 @@ Yet Another Python Problem List
 
 This was a cool thing to see in my Twitter feed:
 
-.. image:: https://pbs.twimg.com/profile_images/779041781413507072/TaqJsdzS_normal.jpg
-    :alt: Twitter Avater
+    .. image:: https://pbs.twimg.com/profile_images/779041781413507072/TaqJsdzS_normal.jpg
+        :alt: Twitter Avater
 
-**Dan Bader(**\ `@dbader_org <https://twitter.com/dbader_org?refsrc=email&s=11>`__\ **)**
+    **Dan Bader(**\ `@dbader_org <https://twitter.com/dbader_org?refsrc=email&s=11>`__\ **)**
 
-`6/19/17, 10:47PM <https://twitter.com/dbader_org/status/876994766227075072?refsrc=email&s=11>`__
+    `6/19/17, 10:47PM <https://twitter.com/dbader_org/status/876994766227075072?refsrc=email&s=11>`__
 
-"Why Python Is Not My FavoriteLanguage"`zenhack.net/2016/12/25/why… <https://t.co/Nq4p3zZr6s>`__
+    "Why Python Is Not My FavoriteLanguage"`zenhack.net/2016/12/25/why… <https://t.co/Nq4p3zZr6s>`__
 
 
 More Problems with Python. Here's the short list.

@@ -7,12 +7,14 @@ Seven Performance Tips
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/896029760576512001/-aQIRO0R_normal.jpg
-    :alt: Twitter Avater
+Tweet:
 
-**Packt(**\ `@PacktPub <https://twitter.com/packtpub?refsrc=email&s=11>`__\ **)** |
+    .. image:: https://pbs.twimg.com/profile_images/896029760576512001/-aQIRO0R_normal.jpg
+        :alt: Twitter Avater
 
-`9/4/17, 6:00 AM <https://twitter.com/packtpub/status/904645223942422528?refsrc=email&s=11>`__
+    **Packt(**\ `@PacktPub <https://twitter.com/packtpub?refsrc=email&s=11>`__\ **)**
+
+    `9/4/17, 6:00 AM <https://twitter.com/packtpub/status/904645223942422528?refsrc=email&s=11>`__
 
 Want to improve your `#Python <https://twitter.com/search?q=%23Python&src=hash>`__
 performance? We've got 7 great tips for you: `bit.ly/28YiGeE <https://t.co/I0dwFX5jmV>`__

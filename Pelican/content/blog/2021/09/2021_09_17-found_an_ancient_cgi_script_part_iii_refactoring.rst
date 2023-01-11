@@ -293,7 +293,7 @@ When we start to define the classes to properly model the persistent
 objects and their state, we'll see that there are zero lines of legacy
 code that we can keep.
 
-**Zero lines of legacy code have enduring value.**
+    **Zero lines of legacy code have enduring value.**
 
 This is not unusual. Indeed, I think it's remarkably common.
 

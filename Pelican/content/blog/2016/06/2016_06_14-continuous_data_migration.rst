@@ -129,7 +129,7 @@ The ideas behind continuous migration are these.
 
 Here's the central data migration requirement:
 
-**Be able to migrate to the new schema as many times as needed.**
+    **Be able to migrate to the new schema as many times as needed.**
 
 
 I'll repeat that. As. Many. Times. As. Needed.
@@ -182,7 +182,7 @@ Software and Schema Design Consequences
 This has an important consequence.
 
 
-**Your software must be explicitly bound to a specific schema by major version number.**
+    **Your software must be explicitly bound to a specific schema by major version number.**
 
 
 Explicitly bound. In a SQL context, you can use the "schema"

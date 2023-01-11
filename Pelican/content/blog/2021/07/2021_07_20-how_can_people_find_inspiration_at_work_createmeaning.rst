@@ -124,7 +124,7 @@ programmers?
 
 I think there's a first step that many people can take. It's this:
 
-**We can disentangle our self-worth from the work-place imposed sense of worth.**
+    **We can disentangle our self-worth from the work-place imposed sense of worth.**
 
 This may be overly glib. But. I think the things rewarded in the
 workplace aren't a good reflection of who we are and what we're capable
@@ -174,7 +174,7 @@ What about the bad manager or unhelpful group of colleagues? In this
 cases, we're forced to make the best of an awkward situation. I think we
 can do this:
 
-**We can search for inspiration at the margins of our work life.**
+    **We can search for inspiration at the margins of our work life.**
 
 Can we find some side-bar aspect of the work that leads to some helpful
 insights? Perhaps there is a chronic problem we can take notes on and --

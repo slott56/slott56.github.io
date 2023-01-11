@@ -141,7 +141,7 @@ help clarify API design issues.
 
 The rule is this:
 
-**If the API doesn't make sense at the >>> prompt, it's incomprehensible**
+    **If the API doesn't make sense at the >>> prompt, it's incomprehensible**
 
 
 Sadly, Java doesn't have this kind of boundary. Java programming can

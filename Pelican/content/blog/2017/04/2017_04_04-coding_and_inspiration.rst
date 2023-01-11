@@ -7,12 +7,14 @@ Coding and "Inspiration"
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/437332968768425984/hy1HDtPo_normal.jpeg
-    :alt: Twitter Avater
+Tweet:
 
-**Data Science Renee(**\ `@BecomingDataSci <https://twitter.com/becomingdatasci?refsrc=email&s=11>`__\ **)**
+    .. image:: https://pbs.twimg.com/profile_images/437332968768425984/hy1HDtPo_normal.jpeg
+        :alt: Twitter Avater
 
-`4/1/17, 3:53 PM <https://twitter.com/becomingdatasci/status/848262128050073601?refsrc=email&s=11>`__
+    **Data Science Renee(**\ `@BecomingDataSci <https://twitter.com/becomingdatasci?refsrc=email&s=11>`__\ **)**
+
+    `4/1/17, 3:53 PM <https://twitter.com/becomingdatasci/status/848262128050073601?refsrc=email&s=11>`__
 
 Thread. Coding is inherently  frustrating. Expect that. But 
 with puzzle-solving healthy  attitude, keep going. Don't give up on yourself!

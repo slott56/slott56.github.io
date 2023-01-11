@@ -27,7 +27,7 @@ also design software that actually works reliably and predictably.
 
 By the time I got my first job, the great lie had surfaced.
 
-**There are Designers who are distinct from Programmers.**
+    **There are Designers who are distinct from Programmers.**
 
 The idea was to insert a few smart people into the vast sea of
 mediocre people. This is manifestly false. But, it's a handy lie to

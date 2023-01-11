@@ -128,7 +128,7 @@ The style sheet may render this in bold (or not, maybe in :text-danger:`red`.)
 
 Here's the problem:
 
-**WYSIWYG editors conceal the semantics, and only reveal the markup.**
+    **WYSIWYG editors conceal the semantics, and only reveal the markup.**
 
 While it's not impossible to check semantics, it's hard.
 

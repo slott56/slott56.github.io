@@ -16,7 +16,7 @@ Stupidity. To do that, let's look at Obstinate Stupidity.
 
 The theme?
 
-**We did something wrong, and we don't want to fix it.**
+    **We did something wrong, and we don't want to fix it.**
 
 I emphasize this because it takes many forms. Another common variant is
 "We can't afford to continue the way we are, but we can't afford the

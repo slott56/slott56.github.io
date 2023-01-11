@@ -7,14 +7,16 @@ Python 3.8 features
 :category: Technologies
 :status: published
 
-.. image:: https://pbs.twimg.com/profile_images/952818577719091200/rBCQPkA9_normal.jpg
-    :alt: Twitter Avatar
+Tweet:
 
-**Real Python(**\ `@realpython <https://twitter.com/realpython?s=11>`__\ **)**
+    .. image:: https://pbs.twimg.com/profile_images/952818577719091200/rBCQPkA9_normal.jpg
+        :alt: Twitter Avatar
 
-`11/5/19, 6:14AM <https://twitter.com/realpython/status/1191720517910376449?s=11>`__
+    **Real Python(**\ `@realpython <https://twitter.com/realpython?s=11>`__\ **)**
 
-📺🐍 Cool New Features in Python 3.8 `realpython.com/courses/cool-n… <https://t.co/1sv8l2Vgyr>`__
+    `11/5/19, 6:14AM <https://twitter.com/realpython/status/1191720517910376449?s=11>`__
+
+    📺🐍 Cool New Features in Python 3.8 `realpython.com/courses/cool-n… <https://t.co/1sv8l2Vgyr>`__
 
 
 The `Cool New Features in Python

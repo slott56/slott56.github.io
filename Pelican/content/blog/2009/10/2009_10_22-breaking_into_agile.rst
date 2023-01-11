@@ -168,7 +168,7 @@ create software: the problem domain and the solution domain.
 
 The issue is this:
 
-**We don't start out with complete knowledge of problem and solution.**
+    **We don't start out with complete knowledge of problem and solution.**
 
 At the start of the project -- when we're asked to
 predict the future -- we can *never* know the whole
@@ -177,7 +177,7 @@ about to try and build.
 
 What we need is this:
 
-**Put Problem Domain and Solution Domain knowledge into one person's head.**
+    **Put Problem Domain and Solution Domain knowledge into one person's head.**
 
 The question then becomes "Who's head?"
 
