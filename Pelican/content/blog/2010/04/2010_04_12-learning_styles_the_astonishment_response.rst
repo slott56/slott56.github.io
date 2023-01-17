@@ -122,7 +122,8 @@ Architect: "Contradict? Perhaps you mean it's redundant." Programmer:
 unit tests. You demanded unit tests, that means that assertions are a
 contradiction."
 
-**Summary**
+Summary
+-------
 
 Other than patience, it's hard to provide any other advice on how to
 work through these things. Mostly, these are fact-free positions. In

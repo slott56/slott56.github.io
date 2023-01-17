@@ -33,7 +33,8 @@ services on the phone and the folks delivering the service have some
 smarter way of coping with the inevitable differences of
 understanding?
 
-**Reality**
+Reality
+-------
 
 The trick to avoiding 482 words of drama (using code names!) to
 describe sales and delivery is simple. Get Out Of Fantasy Land.

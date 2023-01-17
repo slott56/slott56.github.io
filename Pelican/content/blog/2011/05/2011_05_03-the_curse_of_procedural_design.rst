@@ -52,7 +52,8 @@ code—without a lot of adult supervision—never seems to encapsulate
 state change with the the same in-your-face clarity that OO programs
 do.
 
-**I Could Go On**
+I Could Go On
+-------------
 
 The point is this. While procedural programming *could* be done well,
 there appear to be a lot of obstacles inherent in the paradigm.

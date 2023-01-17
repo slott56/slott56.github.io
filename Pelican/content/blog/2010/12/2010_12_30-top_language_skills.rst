@@ -49,7 +49,8 @@ After this, they list Objective-C as number 11. This language is tied
 to Apple's iOS and MacOS platforms, so it's popularity (like C# and
 VB) is driven in part by platform popularity.
 
-**Third Tier**
+Third Tier
+----------
 
 Once we get past the top 10 Java/C/C++/C#/Objective C and
 PHP/Python/Perl/Ruby/Javascript tier, we get into a third realm of

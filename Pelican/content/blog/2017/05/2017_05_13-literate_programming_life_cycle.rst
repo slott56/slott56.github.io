@@ -34,7 +34,8 @@ Here's most of the original question.
   development cycle."
 
 
-**Some Background**
+Some Background
+---------------
 
 http://www.tug.org/TUGboat/Articles/tb13-3/childs.pdf
 
@@ -69,8 +70,8 @@ Based on my recent experience, I have some advice on "Full
 Life-Cycle Literate Programming".
 
 
-**A Life Cycle**
-
+A Life Cycle
+------------
 
 In order to identify the barriers, we need to look at the
 deliverables and the software development life cycle that produces
@@ -96,8 +97,8 @@ easier than maintenance or adaptation. How do we work with an
 established Literate Program?
 
 
-**New Development**
-
+New Development
+---------------
 
 New Development of a program is always a delicate subject. We have
 an explicit goal of creating some deliverable. We'll look at the
@@ -132,8 +133,8 @@ requirements. Software that doesn't work well can be very cheap to
 create.
 
 
-**Forward vs. Reverse Literate Programming**
-
+Forward vs. Reverse Literate Programming
+----------------------------------------
 
 As a digression, we'll note that some folks recognize two broad
 approaches to literate programming (LP). This isn't the whole
@@ -158,8 +159,8 @@ We can assign the retronym "Forward Literate Programming" to
 ordinary LP to distinguish it from Reverse LP.
 
 
-**Code-First Literate Programming**
-
+Code-First Literate Programming
+-------------------------------
 
 There's an apparent distinction between two variations on the
 Forward LP theme: Document-First and Code-First LP. In
@@ -199,8 +200,8 @@ entire source and (b) stands as piece of well-written description,
 then the literate programming mandate has been satisfied.
 
 
-**Center of Balance**
-
+Center of Balance
+-----------------
 
 Literate Programming strikes a balance among the various
 development forces. It emphasizes working software with abundant
@@ -223,9 +224,9 @@ satisfying in some respects, most folks find -- in the long run --
 that this is unworkable. They often diverge.
 
 
-**When the code and the comments disagree, probably both are
-wrong.**
-
+When the code and the comments disagree, probably both are
+wrong.
+-----------------------------------------------------------------
 
 The goal of LP is to prevent this.
 
@@ -236,8 +237,8 @@ work. Almost any approach that seems to create software "quickly"
 doesn't create any enduring value. Why not?
 
 
-**The Deliverables**
-
+The Deliverables
+----------------
 
 The point of **all** software development is to create a two-part
 deliverable.
@@ -276,9 +277,9 @@ supporting documentation that actually matches the software.
 I'll emphasize that.
 
 
-**Literate Programming seeks to minimize the effort required to
-create software with supporting documentation**
-
+Literate Programming seeks to minimize the effort required to
+create software with supporting documentation
+-----------------------------------------------------------------------------------------------------------
 
 If we have to produce software, tests and explanations, clearly
 it is simpler to have a single source file which emits all of
@@ -286,8 +287,8 @@ that stuff in a coherent, easy-to-follow format. While it's
 clearly simpler, there are some barriers to be overcome.
 
 
-**If It's So Much Easier... ?**
-
+If It's So Much Easier... ?
+---------------------------
 
 The Jon Bentley issue with LP is that it doesn't feel easier to
 write a coherent document because we aren't all good writers.
@@ -317,8 +318,8 @@ working in multiple languages in a single document. Finally, it
 takes some experience to get settled into an LP mode.
 
 
-**The Tool Barrier**
-
+The Tool Barrier
+----------------
 
 The first of the barriers to effective literate programming is
 the tool pipeline. The complaint is that "having to ‘compile’
@@ -350,8 +351,8 @@ detail. Console hacking is helpful, but it isn't literate and
 it's barely programming.
 
 
-**The Language Barrier**
-
+The Language Barrier
+--------------------
 
 In addition the tool barrier, we also have a language barrier.
 When we're doing literate programming we're working in at least
@@ -384,8 +385,8 @@ program source, making the LP document tree far, far easier to
 work with.
 
 
-**The Mental Barrier**
-
+The Mental Barrier
+------------------
 
 The final barrier is entirely mental. This is really one of
 experience and expectation.
@@ -419,8 +420,8 @@ it's weight in gold. A one line fix may actually be a
 liability, not an asset.
 
 
-**Solid Approach**
-
+Solid Approach
+--------------
 
 I think the approach has to be the following.
 
@@ -491,8 +492,8 @@ We have a complex welter of languages. And we have bad
 habits to break and transform into new habits.
 
 
-**Some Links**
-
+Some Links
+----------
 
 http://www-cs-faculty.stanford.edu/~uno/programs.html
 
@@ -525,8 +526,8 @@ a real wiki or forum site.
 http://www.squidoo.com/literateprogramming
 
 
-**Some Tools**
-
+Some Tools
+----------
 
 http://en.literateprograms.org/LiteratePrograms:Welcome
 

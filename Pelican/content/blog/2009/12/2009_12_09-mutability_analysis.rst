@@ -71,7 +71,8 @@ steps required to either expose or conceal special cases. Once in a
 while these become actual limitations on the domain of allowed data
 values.
 
-**Considerations.**
+Considerations.
+---------------
 
 After considering changes to the problem in each of these tiers, we
 can then consider changes to the solution. The mutation of the
@@ -94,7 +95,8 @@ As we move to the lower and less constrained tiers, scripted
 solutions using tools like Python are most appropriate. These support
 flexible adaptation of business processes.
 
-**Data Model.**
+Data Model.
+-----------
 
 Data lasts forever, therefore, the data model mutations fall into two
 deeper categories: **structural** and **non-structural**.
@@ -122,7 +124,8 @@ requirements (the problem) as well as the data and processing aspects
 of the solution. With some care, this will direct the selection of
 solutions.
 
-**Focus.**
+Focus.
+------
 
 It's important to keep mutability analysis in focus. Some folks are
 members of the **Hand-Wringers School of Design**, and consider every
@@ -143,7 +146,8 @@ vulnerabilities <http://www.owasp.org/index.php/Main_Page>`__. Yes,
 some new threat may show up. No, we don't need to derail work to
 counter threats that do not yet exist.
 
-**Progress.**
+Progress.
+---------
 
 The trick with mutability analysis is to do the following.
 
@@ -168,7 +172,8 @@ The trick with mutability analysis is to do the following.
     you can't name names, you don't really have a change scenario, you
     have hand-wringing. Stop worry. Get something to work.
 
-**But What If I Do Something Wrong?**
+But What If I Do Something Wrong?
+---------------------------------
 
 What? Is it correct? Is it designed to make optimal use of resources?
 Can you prove it's correct, or do you have unit tests to demonstrate

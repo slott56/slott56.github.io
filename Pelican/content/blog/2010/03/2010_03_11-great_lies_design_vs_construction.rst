@@ -34,7 +34,8 @@ mediocre people. This is manifestly false. But, it's a handy lie to
 allow managers to *attempt* to build large, complex pieces of
 software using a a larger but lower-skilled workforce.
 
-**Reasoning By Analogy**
+Reasoning By Analogy
+--------------------
 
 The reasoning probably goes like this. In the building trades there
 are architects, engineers and construction crews. In manufacturing,
@@ -51,7 +52,8 @@ The analogy is fatally flawed because there is no "construction" in
 the creation of software. Software only has design. Writing code is
 -- essentially -- design work.
 
-**Architecture and Software Architecture**
+Architecture and Software Architecture
+--------------------------------------
 
 Spend time with architects and you realize that a good architect can
 (and often does) create a design that includes construction details:
@@ -99,7 +101,8 @@ have to
 Wouldn't it be simpler to just let me code it? It would certainly
 take less time.
 
-**Detailed Design Flaws**
+Detailed Design Flaws
+---------------------
 
 First, let me simplify things by mashing "Detailed Design" and
 "Specification" together, since they seem to be the same thing. A
@@ -150,7 +153,8 @@ My Point is This.
 Indeed, the designer probably should simply have written the
 code.
 
-**Architecture Isn't Like That**
+Architecture Isn't Like That
+----------------------------
 
 Let's say we have a software design that's detailed enough to
 code from, and is completely free from egregious mistakes in

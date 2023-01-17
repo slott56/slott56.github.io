@@ -23,7 +23,8 @@ incomprehensible for a long time. I had to reread EWD800 to realize
 that someone was relying on some sort of vague intuition; it appears
 that they were desperate to map Java (or C++) concepts on Python.
 
-**Casting**
+Casting
+-------
 
 In my Python 2.6 book, I use the word "cast" exactly twice. In the
 same paragraph. Here they are.
@@ -47,7 +48,8 @@ or clearly. I hate to devolve into blow-by-blow comparison between
 languages because there are concepts that don't map. I'll work on
 being more forceful on casting.
 
-**Coercion**
+Coercion
+--------
 
 The words coercion (and coerce) occur more often, since they're
 sensible Python concepts. After all, Python 2 has formal type
@@ -76,7 +78,8 @@ example to hit the point home" doesn't fit well with something that
 -- in the long run -- is going to be removed. Maybe I'm wrong, but
 omitting examples entirely seemed to hit the point home.
 
-**Conversion**
+Conversion
+----------
 
 Conversion gets it's own section, since it's sensible in a Python
 context. I kind of thought that a whole section on conversion would

@@ -25,7 +25,8 @@ code.
 
 However, leaving things at this simplistic level isn't appropriate.
 
-**Code Quality**
+Code Quality
+------------
 
 Most folks describe TDD as a 3-step process. I like to call this
 "red-green-gold" (The Lithuanian Flag version of TDD.)
@@ -43,7 +44,8 @@ it more readable or more reusable without breaking it.
 
 Even this isn't quite right.
 
-**Test Quality**
+Test Quality
+------------
 
 The issue with a too-simplistic view TDD is that we walk a fine line.
 
@@ -71,7 +73,8 @@ TDD is really a 3+1 step process.
 
 The operating word here is "appropriate".
 
-**Costs and Benefits**
+Costs and Benefits
+------------------
 
 Some modules -- because of risk or complexity or visibility --
 require extensive testing. Some modules don't require this.

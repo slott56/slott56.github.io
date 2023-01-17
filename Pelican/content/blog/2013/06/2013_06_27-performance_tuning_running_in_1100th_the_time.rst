@@ -21,7 +21,8 @@ It was described as horribly slow. Since it was only 400 lines of
 code, it was a great subject for review in a Python meetup.  I would
 be able to show some tweaks and performance tips.
 
-**Hypothetical Step 1:  Profile**
+Hypothetical Step 1:  Profile
+-----------------------------
 
 My first thought was to run the profiler and see what popped up as a
 possible root cause of slowness.
@@ -59,8 +60,8 @@ Thankfully, they provided some typical input files.  For example,
 gathered teams and scores.
 
 
-**It Didn't Run**
-
+It Didn't Run
+-------------
 
 When we tried to run it with the profiler, we found that we had a
 bug.  Tracking down the bug, revealed the essential performance
@@ -105,8 +106,8 @@ What we have here is "wrong data structure".  Replacing a list with a
 dict will have earth-shattering impact on performance.
 
 
-**The Bug**
-
+The Bug
+-------
 
 The bug, BTW, was a lookup loop which had the additional requirement
 of adding missing teams.  It tried to use the **for-else** structure.
@@ -129,8 +130,8 @@ However, it's also unique to Python, and the kind of thing that can
 lead to confusion.  I discourage it's use.
 
 
-**Test-Driven Reverse Engineering**
-
+Test-Driven Reverse Engineering
+-------------------------------
 
 We're doing TDRE on a little piece of recreational programming.  This
 means that we need to fabricate unit tests for code that is purported
@@ -158,8 +159,8 @@ refactor a program of over 6,000 lines of code.  It took several
 weeks.
 
 
-**Real Step 1: Fix The Data Structure**
-
+Real Step 1: Fix The Data Structure
+-----------------------------------
 
 Before profiling (but after running to capture some output) we have
 to fix the essential data structure.  Repeated scanning of a list is
@@ -179,7 +180,8 @@ algorithm itself, which is already :math:`\textbf{O}(n^2)`, is dragged
 down by using the linear search for the opposing team four more
 times, making it :math:`\textbf{O}(n^3)`.
 
-**Cyclomatic Complexity**
+Cyclomatic Complexity
+---------------------
 
 One of the big "issues" is the use of **if** statements throughout
 the scoring algorithm.  An **if** statement creates `Cyclomatic
@@ -208,7 +210,8 @@ program where an instance of the sports normalization object is
 created.  This object's methods are then used by the Elo algorithm to
 normalize scores.
 
-**Icing on the Cake**
+Icing on the Cake
+-----------------
 
 Once we've fixed the bug and replaced a list with a dict, everything
 else is merely icing.
@@ -253,8 +256,8 @@ creation rather than update.  I didn't make this change, since it
 required real work and we were out of time.
 
 
-**Bottom Line**
-
+Bottom Line
+-----------
 
 The more times I do TDRE to improve performance, the more I
 realize that it's all about bugs and data structures.

@@ -15,7 +15,8 @@ cases. But it took hours and hours.
 
 Bonus: this was the third go-round on these exact use cases.
 
-**Requirements Gathering**
+Requirements Gathering
+----------------------
 
 The first go-round of requirements gathering was a conference call.
 We produced some nice notes. Very good stuff.
@@ -35,7 +36,8 @@ new host, and an unrelated project threw down trump cards. Second --
 and more important -- the principal users simply could not find time
 or interest to review the preliminary stuff.
 
-**Trying Again**
+Trying Again
+------------
 
 For no sensible reason, we had a second go-round of requirements
 gathering. The core problem is that the users simply won't take the
@@ -53,7 +55,8 @@ In short, it was impossible for them to even set down a coherent idea
 on paper. All they could do was talk about it. There was no
 alternative to a conversation.
 
-**Round Three**
+Round Three
+-----------
 
 In order to make some progress, our Adobe FLEX developers were
 brought in to create something a little snappier than the simplistic
@@ -71,7 +74,8 @@ again. Data that's never been available was still spoken of as
 "required". The conversation on why the data cannot possibly exist
 had to be rehashed.
 
-**Derailing**
+Derailing
+---------
 
 What's derailing the process is simple. The sales folks cannot work
 independently. Each interaction must be a hands-on, guided tour of
@@ -90,7 +94,8 @@ can be troublesome because they're job is influence, not simply
 provide a simplified "ok/not ok" feedback on specific features of the
 implementation of their use case.
 
-**Broad Not Deep**
+Broad Not Deep
+--------------
 
 Additionally, we have folks that keep trying to define the
 requirements in broad, sweeping terms. They're uncomfortable with an

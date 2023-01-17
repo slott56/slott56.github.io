@@ -58,7 +58,8 @@ waterfall method and **must** use Agile methods.
 Organizational fit is not a limitation of Agile.  It's just a fact
 about people.
 
-**"3. Small team...Assuming that large projects tend to require large teams, this restriction naturally extends to project size."**
+"3. Small team...Assuming that large projects tend to require large teams, this restriction naturally extends to project size."
+-------------------------------------------------------------------------------------------------------------------------------
 
 The assumption simply contradicts Agile principles.  It's not a
 "limitation" at all.  Large projects (with large numbers of people)
@@ -121,7 +122,8 @@ organization, however, is taking active steps to subvert it.
 Agile isn't a religion.  It doesn't suffer from hidden or ignored
 "limitations".
 
-**"But did we question the assumption that Agile was indeed superior to traditional methodologies?"**
+"But did we question the assumption that Agile was indeed superior to traditional methodologies?"
+-------------------------------------------------------------------------------------------------
 
 The answer is "yes".  A thousand times yes.  The whole reason for
 Agile approaches is specifically and entirely because of folks

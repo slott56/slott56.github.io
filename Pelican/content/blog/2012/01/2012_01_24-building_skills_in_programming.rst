@@ -27,7 +27,8 @@ The next step will be to add a PayPal donations button.
 And... If I can get the PDF into really good shape, I may post it on
 `Lulu <http://www.lulu.com/>`__ for folks who really want a hardcopy.
 
-**Traffic**
+Traffic
+-------
 
 For a random 2-day period, the usage looks like this:
 

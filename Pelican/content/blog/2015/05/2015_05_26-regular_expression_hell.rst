@@ -76,7 +76,8 @@ and they called it done.
 The email asked (sort of trivially) if it was true that the last pipe
 was extraneous. Um. Yes. But.
 
-**Follow-up**
+Follow-up
+---------
 
 The hard parts are (1) trying to figure out what the question really
 is. Why did they remove just the last pipe character? What were they
@@ -108,7 +109,8 @@ It's a misspelling. It can't be anything else. Ending the
 conversation by claiming otherwise is a strange and self-defeating
 approach to redesigning the software.
 
-**More Follow-up**
+More Follow-up
+--------------
 
 At this point, we seem to be narrowing the domain of discussion to
 

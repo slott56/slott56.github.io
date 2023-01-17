@@ -25,7 +25,8 @@ In Python, duck typing allows a mock to be defined quite trivially.
 A mock library isn't terribly helpful, since it doesn't reduce the
 code volume or complexity in any meaningful way.
 
-**Dependencies without Injection**
+Dependencies without Injection
+------------------------------
 
 The larger issue with trying to unit test in Python with mock objects
 is the impact of change.
@@ -58,7 +59,8 @@ create a mock of AnotherClass to test the AppFeature.
 In Python, this mock isn't a best practice.  It can be helpful.  But
 adding a mock can also be confusing and misleading.
 
-**Refactoring Scenario**
+Refactoring Scenario
+--------------------
 
 Consider the situation where we're refactoring and change the
 interface to AnotherClass.  We modify another_method to take an
@@ -74,7 +76,8 @@ complex cluster of objects with a simple **Facade** for testing
 purposes.  Now, we've got a mock that doesn't trivially replace the
 mocked class.
 
-**Alternative: Less Strict Mocking**
+Alternative: Less Strict Mocking
+--------------------------------
 
 In Python--and other duck typing languages--a less mock-heavy
 approach seems more productive.  The goal of testing **every** class

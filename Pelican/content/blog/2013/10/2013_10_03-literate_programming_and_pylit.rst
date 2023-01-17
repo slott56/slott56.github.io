@@ -59,8 +59,8 @@ Python as well as reshape Python into RST. Do your literate
 programming in either language and produce the other easily.
 
 
-**Enter Python 3**
-
+Enter Python 3
+--------------
 
 The problem with PyLit is that it's oriented to Python 2.4 through
 2.7. How can we use PyLit for Python 3?

@@ -46,7 +46,8 @@ a class where each method simply uses httplib (or http.client in Python
 3.2) to make a GET, POST, PUT or DELETE request.  In Java you can do
 this, also, it's just not delightfully simple.
 
-**TestCase Overview**
+TestCase Overview
+-----------------
 
 Testing a RESTful web service is a matter of starting an instance of the
 service, running a standard unit testing TestCase, and then shutting
@@ -67,7 +68,8 @@ can be life-savers because they're fast and flexible.
 What's important is that the client access to the RESTful web service is
 entirely under control of a unit testing framework.
 
-**Mocking The Server**
+Mocking The Server
+------------------
 
 A small, special-purpose server must be built that mocks the full
 application server without the endless overheads of a full web server.

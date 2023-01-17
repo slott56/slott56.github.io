@@ -116,7 +116,8 @@ everything in your chartplotter. It's cool. But complicated.
 The file formats are -- clearly -- way outside the box for a
 spreadsheet.
 
-**Python to the rescue.**
+Python to the rescue.
+---------------------
 
 Since I'm a Python hack (and have been since well before 2007) I've got
 all kinds of file conversion tools.

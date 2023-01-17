@@ -16,7 +16,8 @@ often rejecting ideas that challenge conventional wisdom."
 
 This is really only half the story.
 
-**First Things First**
+First Things First
+------------------
 
 Programming is hard -- really hard. Read `EWD 316, chapter
 2 <http://www.cs.utexas.edu/users/EWD/transcriptions/EWD03xx/EWD316.2.html>`__.
@@ -47,13 +48,15 @@ problem. Sadly, many business problems are workarounds to bad
 software. Leaving us with many alternative solutions that are all
 equally bad and don't address the root cause problem.
 
-**No-Value Features**
+No-Value Features
+-----------------
 
 Programmers will often pursue no-value features that are part of the
 language, tools, components or architecture. This drives up cost and
 risk for no value.
 
-**Business Short-Sightedness**
+Business Short-Sightedness
+--------------------------
 
 The compounding problem is a short-sighted business impetus toward
 delivering something that mostly works as quickly as possible. Often,
@@ -62,7 +65,8 @@ problem that we're supposed to be solving.
 
 Sigh.
 
-**The Result: Stifling**
+The Result: Stifling
+--------------------
 
 The result of (a) inherent complexity, (b) no-value features and (c)
 short-sighted buyers is that IT management finds ways to stifle all

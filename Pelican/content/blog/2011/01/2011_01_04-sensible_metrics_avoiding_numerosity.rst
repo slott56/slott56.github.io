@@ -25,7 +25,8 @@ Software Engineering Metrics (Cyclomatic Complexity, for example) are
 used for their predictive power. There's not point in using them for
 post-production analysis.
 
-**Metrics as Leading Indicators**
+Metrics as Leading Indicators
+-----------------------------
 
 Metrics are a handy filter as part of an overall QA process. The
 point is this: sometimes they're a leading indicator of code smells.
@@ -50,7 +51,8 @@ everything is between 5 and 15. What does that mean?
 
 Until you inspect all that code, 5 doesn't mean anything.
 
-**Inspect First, Measure Second**
+Inspect First, Measure Second
+-----------------------------
 
 If, on the other hand, you start inspecting every piece of code,
 you'll learn a lot.
@@ -86,7 +88,8 @@ just too complex. Stop arguing and rework it. Often, bull-headed
 nerds can find a way to agree to a metrics program more easily than
 they can agree to detailed coding standards.
 
-**Which Metric?**
+Which Metric?
+-------------
 
 That's the tough problem. In a vacuum, of course, it's an impossible
 question.

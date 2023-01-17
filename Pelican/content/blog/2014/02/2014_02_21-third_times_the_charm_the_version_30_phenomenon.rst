@@ -32,8 +32,8 @@ Not everything required three releases. Simpler components can merge
 better and best. Some components simply start out in really, really
 good shape.
 
-**Teaching Moment**
-
+Teaching Moment
+---------------
 
 What I've also noticed is that the explanation of the component --
 writing documentation, presenting to peers in a walkthrough -- leads

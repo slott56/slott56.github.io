@@ -36,7 +36,8 @@ put this on one bucket, the "problem recognized" bucket. We'll
 rename Bossavit's Type I to Type IV as Type R-I to R-IV because a
 problem was Recognized.
 
-**The Language of Denial**
+The Language of Denial
+----------------------
 
 What he misses are the process errors that "produce a questionable
 outcome". In this case, the outcome can be declared good by the
@@ -66,7 +67,8 @@ turns out, there is no example of anyone ever following the
 written process. But, we're expected (no required) to comply with
 a process that has a nebulous definition and no examples.
 
-**Some Questionable Outcome Errors**
+Some Questionable Outcome Errors
+--------------------------------
 
 I think there are four variations on the theme of process errors.
 We call this class "Q" errors because there was a questionable
@@ -98,7 +100,8 @@ result. Not a recognized problem but a shadow of a doubt.
     didn't follow it?" and "What was wrong with what we actually
     did?" (Note. I've never seen this happen. But that's just me.)
 
-**Marketing Past the Hubris**
+Marketing Past the Hubris
+--------------------------
 
 There's a Core Hubris in many software development organizations.
 It's a presumption that, since they have stuff in production, they
@@ -132,7 +135,8 @@ Paths 2 and 3 (the Low Road and the Blocked Road) are both
 places that need SPI. There are several marketing problems to
 overcome.
 
-**Getting Help**
+Getting Help
+------------
 
 First, will they acknowledge the problem? Probably not. If
 you've delivered anything -- no matter how bad -- you don't
@@ -165,7 +169,8 @@ around improvements. They both (a) demand improvement and
 simultaneously (b) demand that the improvements be subverted in
 order to deliver "on time".
 
-**What to Sell**
+What to Sell
+------------
 
 I think the marketing message for SPI has to be something along
 the following lines.

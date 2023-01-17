@@ -57,7 +57,8 @@ Some applications can be restarted, leading to re-reading the
 configuration files. We can change the configuration more easily than
 we can bind in new command-line arguments or environment variables.
 
-**Representation Issues**
+Representation Issues
+---------------------
 
 When we think about configuration files, we also have to consider the
 syntax we want to use to represent configurable parameters. We have
@@ -92,7 +93,8 @@ vulnerability by people who fail to realize that the Python source
 itself can be hacked. Why waste time injecting a bug into a
 configuration file? Why not just hack the source?
 
-**My Current Fave**
+My Current Fave
+---------------
 
 My current favorite way to handle configuration is by defining some
 kind of configuration class and using the class object throughout the
@@ -147,7 +149,8 @@ available choices in this file? We have several ways.
     complex than the above techniques, but it seems to work out nicely
     in the long run.
 
-**Command-line args to select a specific configuration**
+Command-line args to select a specific configuration
+----------------------------------------------------
 
 To select a configuration using command-line arguments, we must
 decompose configuration into two parts. The configuration

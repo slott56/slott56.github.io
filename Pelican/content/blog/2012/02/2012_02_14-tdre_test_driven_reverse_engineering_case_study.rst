@@ -9,8 +9,8 @@ TDRE - Test Driven Reverse Engineering Case Study
 
 
 
-**Background**
-
+Background
+----------
 
 Read up on compass variation or declination.  For example, this
 `NOAA <http://www.ngdc.noaa.gov/geomag/declination.shtml>`__ site
@@ -48,8 +48,8 @@ small Fortran program,
 Which leads us to reverse engineering this program into Python.
 
 
-**TDRE Approach**
-
+TDRE Approach
+-------------
 
 The TDRE approach requires having some test cases to drive the reverse
 engineering process toward some kind of useful results.
@@ -137,8 +137,8 @@ start with this.
 This lets us run the tests and find that we have work to do.
 
 
-**Reverse Engineering**
-
+Reverse Engineering
+-------------------
 
 The IGRF11.F fortran code contains this IGRF11SYN "subroutine" that
 does the work we want.  The geomag 7.0 package has a function called
@@ -220,7 +220,8 @@ it's relatively easy to hypothesize a dictionary by year that
 contains a pair of simple dictionaries, g[n,m] and h[n,m], for the
 coefficients.
 
-**Cleanup and Packaging**
+Cleanup and Packaging
+---------------------
 
 Once the tests pass, the package -- as a whole -- needs to be made
 reasonably Pythonic.   In this case, it means a number of additional

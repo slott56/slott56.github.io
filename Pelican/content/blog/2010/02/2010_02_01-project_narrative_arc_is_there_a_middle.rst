@@ -23,7 +23,8 @@ is a more useful reality. The project's official "beginning" is
 unrelated to the conversations and decisions in which it actually
 began.
 
-**Details Details**
+Details Details
+---------------
 
 The biggest issue with the imposed narrative arc is that it is a
 distortion of the real beginning of the project. See "`Aristotle's
@@ -41,7 +42,8 @@ misleading.
 The details matter, and imposing a phony narrative arc can elide or
 obscure the details.
 
-**Better Practice**
+Better Practice
+---------------
 
 Background and context leading up to a project are very, very
 important and shouldn't be elided. While *every* little detail in the
@@ -63,7 +65,8 @@ have a kick-off meeting, we already understand the project as a
 series of sprints to build some things. The "deliverables" are ranked
 from most valuable to least valuable.
 
-**Don't Create a Middle**
+Don't Create a Middle
+---------------------
 
 Honesty about the lack of a clear start allows us -- from the very
 beginning -- more latitude to rethink and re-prioritize. There is no

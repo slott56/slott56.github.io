@@ -22,7 +22,8 @@ those languages are so (a) hard to work with and (b) are perceived as
 "old school" where print resources are more prevalent than on-line
 resources. [Turns out the rankings are screwed up. Dang.]
 
-**Marketplace**
+Marketplace
+------------
 
 The langpop aggregate ranking is C, Java, C++, PHP, JavaScript, C#
 and Python. The TIOBE Community Index is Java, C, C++, PHP, VB, C#,

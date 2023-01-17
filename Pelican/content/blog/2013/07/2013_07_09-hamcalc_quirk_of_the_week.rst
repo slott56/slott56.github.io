@@ -92,8 +92,8 @@ lack of a formal "otherwise" case in the 1020-1040 block of code is
 just a weird little quirk.
 
 
-**Implementation**
-
+Implementation
+--------------
 
 Here are the relevant calculation
 bits: https://github.com/slott56/HamCalc-2.1/blob/master/python/hamcalc/construction/binhop/__init__.py

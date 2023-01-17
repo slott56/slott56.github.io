@@ -32,7 +32,8 @@ step and the invoice always matches the order in every particular.
 If this were *actually* true, either sales or delivery would be
 redundant and could be eliminated from the organization.
 
-**Fantastic Software**
+Fantastic Software
+------------------
 
 I'm guessing that someone fantasized about an order-to-invoice
 process and wrote software that didn't reflect any of the actual

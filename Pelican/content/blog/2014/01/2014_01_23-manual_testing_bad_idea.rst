@@ -67,8 +67,8 @@ new requirements, updating user stories, and putting work into the
 backlog.
 
 
-**Putting work into the backlog**
-
+Putting work into the backlog
+-----------------------------
 
 An exploratory "test" should not be allowed to gum up a release. To
 do that breaks the essential work cycle of picking a story with fixed
@@ -92,8 +92,8 @@ expand. The product owner should have increasing difficulty locating
 features which are untested.
 
 
-**Management Support**
-
+Management Support
+------------------
 
 What I've found is that some developers object to writing test
 scripts. One possible reason is because the test scripts don't seem
@@ -127,7 +127,8 @@ appears that some managers feel that reproducible, automated test
 take longer and cost more than having someone play with the release
 to see if it appears to work.
 
-**But What About...**
+But What About...
+-----------------
 
 The most common complaint about automated GUI testing isn't a proper
 pass-fail test issue at all.

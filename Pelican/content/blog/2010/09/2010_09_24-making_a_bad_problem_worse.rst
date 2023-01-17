@@ -37,7 +37,8 @@ this business, the fulfillment will diverge from the order; it
 makes more sense to create a mapping from invoice to order than to
 rewrite the order.
 
-**Not the Crazy Part**
+Not the Crazy Part
+------------------
 
 The hellish thing that I saw was the many-to-many association
 between order and beer type. A many-to-many isn't bad. What they
@@ -72,7 +73,8 @@ values and ten business rules to interpret those flag values to
 determine what the was ordered and what was fulfilled. Two columns of
 flags. Ten rules. But that's not the crazy part.
 
-**Bad Data**
+Bad Data
+--------
 
 A database that requires ten business rules and procedural processing
 to interpret the data is bad. It gets worse, however.
@@ -88,7 +90,8 @@ There's "bad data"? Keep going? I would think this would be a
 show-stopper. Whomever wrote the application that created the bad
 data needs career guidance (guidance as in, "you're fired".)
 
-**It's Broken, But...**
+It's Broken, But...
+-------------------
 
 Clearly, any database that requires ten procedural business rules is
 not much of a database. A SQL query cannot be used to produce either
@@ -108,7 +111,8 @@ database is broken.
 If you can't agree on the implementation, you've got big, big
 problems.
 
-**The Crazy Part**
+The Crazy Part
+--------------
 
 The pitch from one of the DBA's was to add yet more complexity. There
 are two flag columns and ten business rules to resolve nuances of
@@ -131,7 +135,8 @@ one DBA understands. This wraps a broken many-to-many table that
 
 None of this reflects the actual business model very well, does it?
 
-**Bottom Line**
+Bottom Line
+-----------
 
 If the database does not (1) reflect the actual business model and
 (2) work in simple SQL, it's broken. Adding technology to a broken

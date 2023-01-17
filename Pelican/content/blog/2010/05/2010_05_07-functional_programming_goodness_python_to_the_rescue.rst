@@ -16,7 +16,8 @@ much matter. The column *name* (in row 1) is what matters.
 I looked at three solutions. Two of which are merely OK. The third
 was some functional programming that was very cool.
 
-**Option 1 -- OS Sort/Merge**
+Option 1 -- OS Sort/Merge
+-------------------------
 
 To get the files into a consistent order, we need to sort. The Linux
 sort, however, is biased toward columns that are known positionally.
@@ -54,7 +55,8 @@ available.
 
 I didn't benchmark this, BTW.
 
-**Option 2 -- Big In-Memory Dict**
+Option 2 -- Big In-Memory Dict
+------------------------------
 
 Since the files aren't insanely big, they do fit in memory. This is
 pretty simple, also.
@@ -91,7 +93,8 @@ Elapsed time for the real files (which were zipped, adding processing
 that's not relevant to this posting) was 218 seconds on my little
 laptop.
 
-**Option 3 -- Functional Programming**
+Option 3 -- Functional Programming
+----------------------------------
 
 The functional programming approach is a bit more code than option 1.
 But it's way cool and very extensible. It offers more flexibility
@@ -117,7 +120,8 @@ Here's how it should look.
 We're doing merge( merge( s1, s2 ), s3 ) to compose a 3-file merge
 from 2 2-file merges. And yes, it *can* be just that simple.
 
-**Composable Sort**
+Composable Sort
+---------------
 
 To be "composable", we must write iterator functions which read and
 write data of the same type. In our case, since we're using a
@@ -138,7 +142,8 @@ sort.
 Yes, we need to pre-process the keys, they're not simple text;
 they're numbers.
 
-**Composable 2-File Merge**
+Composable 2-File Merge
+-----------------------
 
 The composable merge has a similar outline. It's a loop over the
 inputs and it yields outputs of the same type.

@@ -37,7 +37,8 @@ Python has an explicit "batteries included" philosophy.  You should have almost 
 
 
 
-**Other Contenders.**
+Other Contenders
+----------------
 
 
 
@@ -53,7 +54,8 @@ There are two contenders not mentioned in the email: PHP and Java.
 
 
 
-**Bottom Line**
+Bottom Line
+-----------
 
 
 

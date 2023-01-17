@@ -25,7 +25,8 @@ multi-threaded apps because—well—there are lots of reasons, split
 between ignorance and arrogance. All of which can be solved by
 throwing money after tools. Right?
 
-**Arrogance**
+Arrogance
+---------
 
 One thing that makes multi-threaded applications error-prone is
 simple arrogance. There are lots and lots of race conditions that can
@@ -42,7 +43,8 @@ Because we don't think much about reads, we fail to see the
 consequences of moving the read of a variable around as part of an
 optimization effort.
 
-**Ignorance**
+Ignorance
+---------
 
 The best kind of lock is not a mutex or a semaphore. It surely isn't
 an RDBMS (but God knows, numerous organizations have used an RDBMS as
@@ -67,7 +69,8 @@ thread-safe object. There's no weird race condition when passing a
 result on to the next step in a pipeline. It's dropped into the
 queue, where it's available to another thread.
 
-**Dining Philosophers**
+Dining Philosophers
+-------------------
 
 The `Dining Philosophers <http://en.wikipedia.org/wiki/Dining_philosophers_problem>`__
 Code Kata has a queue-based solution that's pretty cool.
@@ -87,7 +90,8 @@ A queue-based solution is delightfully simple. 200 or so lines of
 code including docstrings comments so that the documentation looked
 nice, too.
 
-**Additional Constraints**
+Additional Constraints
+----------------------
 
 The simplest solution uses a single queue of anonymous Forks. A
 common constraint is to insist that each Philosopher use only the two
@@ -97,7 +101,8 @@ adjacent forks. Philosopher *p* can use forks :math:`p+1 \mod 5` and
 This is pleasant to implement. The Philosopher simply dequeues a
 fork, checks the position, and re-enqueues it if it's a wrong fork.
 
-**FUD Factor**
+FUD Factor
+----------
 
 I think that the publicity around parallel programming and
 multithreaded applications is designed to create Fear, Uncertainty
@@ -124,7 +129,8 @@ Sigh. The answer isn't software tools, it's design. Break the
 problem down into independent parallel tasks and feed them from
 message queues. Collect the results in message queues.
 
-**Some Code**
+Some Code
+---------
 
 ::
 

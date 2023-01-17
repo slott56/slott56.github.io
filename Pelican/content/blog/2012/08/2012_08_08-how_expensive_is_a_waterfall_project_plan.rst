@@ -63,7 +63,8 @@ interesting that simply elaborating details.  Indeed, the missing
 stuff is often more important that the elements of the presentation
 than were provided.
 
-**The Standard Gaps**
+The Standard Gaps
+-----------------
 
 While a presentation can show some elements of UX, it's not
 **interactive**.  It cannot provide any useful depth on the UX.
@@ -125,8 +126,8 @@ for changing the project.  You can't increase the project deadline;
 that's death.  You can't decrease it, either: you get blamed for
 sand-bagging the estimates.
 
-**Arduino Technology Lessons Learned**
-
+Arduino Technology Lessons Learned
+----------------------------------
 
 After buying several 74HC595 shift registers from Sparkfun, I
 realized that my assumptions about the interfaces were utterly wrong.
@@ -155,7 +156,8 @@ need to explore carefully by addressing high-righ unknowns first"?
 Wouldn't it be better to both gather facts and build an early
 release of the software at the same time?]
 
-**Arduino User Story Assumptions**
+Arduino User Story Assumptions
+------------------------------
 
 After building a prototype that addressed two of the user stories, it
 slowly became clear that the third user story didn't actually exist.
@@ -184,7 +186,8 @@ The user story (written before a prototype existed) was based on a
 failure to fully understand the UX.  The only way to fully understand
 the UX is to build it.  Education costs money.
 
-**Arduino UX Learnings**
+Arduino UX Learnings
+--------------------
 
 Perhaps the most important issue here is UX.
 
@@ -209,8 +212,9 @@ for A/B testing purposes to see if there's room for improvement.
 
 I'll repeat that for folks who really like the waterfall.
 
-**It's now cheaper to actually build two than it is to write detailed
-requirements for one.**
+It's now cheaper to actually build two than it is to write detailed
+requirements for one.
+-----------------------------------------------------------------------------------------
 
 [In the "real world", this is deprecated as "wasting time playing
 with the UX".  As if written requirements based on nothing more than

@@ -32,7 +32,8 @@ properties left, right and center. We can tackle some pretty big
 problems with simple code changes. This, however, is no longer
 helping.
 
-**Straws and Camels**
+Straws and Camels
+-----------------
 
 When designing a database, we have to be cognizant of the nature
 and tempo of change. In highly-regulated, very settled business
@@ -66,7 +67,8 @@ disruptive, sudden, and surprising database changes.
 This is bales of hay through onto an unprepared camel. Backs can
 get broken.
 
-**Coping**
+Coping
+------
 
 One common coping strategy is SQL ALTER statements to fiddle with
 the logical model. This has to be coupled with CREATE TABLE AS
@@ -113,7 +115,8 @@ for Oracle, and numerous others attempt to support the schema
 evolution and change management problem. All of this is a clever
 way to cope with a problem inherent in our choice of technology.
 
-**Chaos Theory**
+Chaos Theory
+------------
 
 Rather than invent clever coping mechanisms, let's take a step
 back. If we're inventing technology to work around the fixed
@@ -152,7 +155,8 @@ databases. The official database content is out-of-date. The
 development database is a mixture of live production and test
 data. Sigh.
 
-**Rethinking Schema**
+Rethinking Schema
+-----------------
 
 If the schema is a problem, perhaps we can live without it. Enter
 NoSQL databases.
@@ -202,7 +206,8 @@ We think we can use Django's ORM and a relational database for
 User and Session. For everything else, we need to look closely and
 MongoDB.
 
-**Wins and Losses**
+Wins and Losses
+---------------
 
 The big win is the ability to handle disruptive change a little
 bit more gracefully.

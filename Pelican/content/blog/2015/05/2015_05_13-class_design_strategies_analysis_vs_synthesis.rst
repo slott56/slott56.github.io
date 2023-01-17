@@ -46,7 +46,8 @@ view.
 However. That doesn't mean that drawing on the white board is the only
 way to discover the domain.
 
-**Building Classes from Functions**
+Building Classes from Functions
+-------------------------------
 
 As a heretical alternative, allow me to suggest an alternative to the
 whiteboard.
@@ -108,7 +109,8 @@ proper things; they must be part of a class; and you can't agree on what
 the classes are; the Java stalemate. [*Yes, Java 8 introduces
 free-standing functions.*]
 
-**How This Works In Practice**
+How This Works In Practice
+--------------------------
 
 In many cases, it makes sense to punt on the "big picture." You're not
 really **sure** what you even have.  Yes, you know you have eight
@@ -157,7 +159,8 @@ nicely. No need for fancy database connections and no need to reason out
 join algorithms that don't tie up too much memory. You're not writing a
 database server. You're writing an application.
 
-**Look For Common Features**
+Look For Common Features
+------------------------
 
 The design issue for classes is locating common features: common
 attributes or common methods. We often start down the road of common
@@ -208,7 +211,8 @@ body that indicates success, vs. 200 OK with a body that indicates
 something more needs to be done, vs. warnings, vs. exceptions, vs. other
 nuanced results.
 
-**Summary -- tl;dr**
+Summary -- tl;dr
+----------------
 
 I think there's a place for code-first design. Build something to
 explore the space and learn about the problem domain. Refactor. Or

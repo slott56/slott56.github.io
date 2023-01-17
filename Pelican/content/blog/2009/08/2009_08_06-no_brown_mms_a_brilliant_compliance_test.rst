@@ -23,7 +23,8 @@ If you were not prepared for the technical requirements for the Van
 Halen show, you'd book them, skip reading the rider, hope it went off
 well, and -- generally -- fail to filter the M&M's.
 
-**Statements of Work**
+Statements of Work
+------------------
 
 We write a lot of Statements of Work (SOW's) with lots of
 "assumptions". A common assumption is that deliverables will be
@@ -39,7 +40,8 @@ behind the original schedule, and the customer will blame us for
 If we had a "No Brown M&M's" assumption, perhaps we'd have an earlier
 indication that things weren't going to work out well.
 
-**Use Cases**
+Use Cases
+---------
 
 I'm also wondering if there needs to be a "Brown M&M" use case.
 Something egregious, but small. Something that *should* lead to

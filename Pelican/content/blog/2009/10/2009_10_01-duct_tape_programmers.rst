@@ -25,7 +25,8 @@ a design meeting where we tried to do something the fancy way, and it
 broke in the middle of the development cycle, or testing, or even the
 builds, and always in the demos."
 
-**However**
+However
+-------
 
 There is one set of quotes that falls somewhere on the continuum of
 wrong, misleading and flamebait.
@@ -44,7 +45,8 @@ surest ways to make things actually work is to write unit tests.
 I suppose that genius-level programmers don't need to test. The rest
 of us, however, need to write unit tests.
 
-**Unit Testing Dogma**
+Unit Testing Dogma
+------------------
 
 On Stack Overflow there are some questions that illustrate the value
 of misinformation on unit testing. On one end, we have Zawinski (and
@@ -70,7 +72,8 @@ When there are no tests, the customer sees shoddy quality. When the
 process (or the schedule) trumps the feature-set being delivered, the
 customer sees incomplete or low-quality deliverables.
 
-**Conclusion**
+Conclusion
+----------
 
 The original blog post said -- clearly -- that gold-plated technology
 doesn't create any value.

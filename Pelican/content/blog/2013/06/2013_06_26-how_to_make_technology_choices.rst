@@ -52,8 +52,8 @@ other way around. If there's no income, then there's no point in
 making technology choices, is there?
 
 
-**Unreasonable Expectations**
-
+Unreasonable Expectations
+-------------------------
 
 What's disturbing are the expectations. We'll start with one
 expectation that is disturbing and then look at another.
@@ -115,8 +115,8 @@ can't create the demo without making a (potentially inappropriate)
 technology choice.
 
 
-**Demo To Product**
-
+Demo To Product
+---------------
 
 When I ask about the existence of any demo software, I get into
 trouble because some folks don't want to even start building a demo
@@ -140,8 +140,8 @@ these changes. The first developer to abandon a bad idea is the
 furthest ahead. The most adaptable solution wins.
 
 
-**Cutting the Gordian Knot: Making Choices**
-
+Cutting the Gordian Knot: Making Choices
+----------------------------------------
 
 Making a final, perfect technology choice for building the initial
 demo is not even helpful.
@@ -192,7 +192,8 @@ Most of the time, this will be a data structure or algorithm choice.
 Less often, this will be a larger architectural choice regarding
 parallelism or persistence.
 
-**Hand Wringing**
+Hand Wringing
+-------------
 
 "But what if," the professional hand-wringer asks, "What if my user
 stories are perfect, my demo is perfect, but I've made some
@@ -233,8 +234,8 @@ The answers are (A) Did you really think that any technology would
 last forever? (B) Why can't you learn something new?
 
 
-**Basic Rules**
-
+Basic Rules
+-----------
 
 The essential rules are these.
 

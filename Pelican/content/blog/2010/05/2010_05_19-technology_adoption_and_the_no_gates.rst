@@ -15,7 +15,8 @@ Or use of an ORM.
 You read up on it. You build a spike solution to show that it's more
 efficient.
 
-**The First No-Gate**
+The First No-Gate
+-----------------
 
 You make The Essential Pitch. You keep it simple and direct.
 
@@ -38,7 +39,8 @@ BTW, there's no point in trying to pre-empt the initial "No". It has
 to be there. You have to get specific objections, so you have to go
 through this "No" gate.
 
-**The Second No-Gate**
+The Second No-Gate
+------------------
 
 You make the Address-Your-Concerns Pitch. You elaborate with lots of
 what-ifs and alternatives and objections and solutions. Two
@@ -67,7 +69,8 @@ You work some more, you refine your pitch to address the
 cost-benefit issue and show that it does not actually increase
 cost, may reduce risk, and have have some tangible benefits.
 
-**The Third No-Gate**
+The Third No-Gate
+-----------------
 
 You make the Cost-Benefit pitch. You try to keep it factual.
 
@@ -89,7 +92,8 @@ a fax machine.
 
 So you iterate. Pitch, refine. Pitch, refine.
 
-**Compulsion**
+Compulsion
+----------
 
 At some point, you either implement your spike solution, which
 makes management's approval a *fait accompli*, or some force
@@ -110,7 +114,8 @@ At this point, there are a series of steps to go from "acceptable"
 to "required" to "standard" to "irreplaceable legacy". Those just
 as puzzling as the No-Gates.
 
-**Finesse**
+Finesse
+-------
 
 It isn't possible to finesse this and reduce the frustration. The
 organization *must* resist change until compelled to make the

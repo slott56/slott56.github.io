@@ -52,7 +52,8 @@ Here's the refactored **Iterating Visitor**:
 
 
 
-**Possible Objection**
+Possible Objection
+------------------
 
 The one possible objection is this: "What if our data structure is
 so hellishly complex that we can't reduce it to a simple iterator?"
@@ -62,7 +63,8 @@ hyper-complex data structure, no matter how hyper complex, can always
 be recast into a generator function which uses yield to iterate over
 the objects.
 
-**Better Design**
+Better Design
+-------------
 
 Once we start down this road, we can generally simplify processing
 into a kind of **Command** that looks something like this.

@@ -20,7 +20,8 @@ Skills <http://homepage.mac.com/s_lott/books/index.html>`__ books)
 that I've edited with a number of tools. As I've changed tools, I've
 come to really understand what semantic markup means.
 
-**Once Upon A Time**
+Once Upon A Time
+----------------
 
 When I started -- back in '00 or '01 -- I was taking notes on Python
 using BBEdit and other text-editor tools. That doesn't really count.
@@ -34,7 +35,8 @@ visual styles with meaningful names.
 
 Then I converted the whole thing to XML.
 
-**DocBook Semantic Markup**
+DocBook Semantic Markup
+-----------------------
 
 The DocBook XML-based markup seemed to be the best choice for what I
 was doing. It was reasonably technically focused, and provided a
@@ -58,7 +60,8 @@ which level of tag you wanted to talk about.
 The XML was "invisble" but the many-layered hierarchical structure
 was very much in my face.
 
-**RST Semantic Markup**
+RST Semantic Markup
+-------------------
 
 After becoming a heavy user of Sphinx, I realized that I might be
 able to simplify my life by switching from XML to
@@ -87,7 +90,8 @@ markup. I used nested markup to provide detailed
 think ``:code:`function(x)``` is just as meaningful when it comes to
 analyzing and manipulating the XML with automated tools.
 
-**The Complete Set of Roles**
+The Complete Set of Roles
+-------------------------
 
 I haven't finished the XML -> Sphinx transformation. However, I do
 have a list of roles that I'm working with.
@@ -154,7 +158,8 @@ roles for presentation.
 The next big step is to handle roles that are more than a simple
 style difference. My benchmark is the :trademark: role.
 
-**Adding A Role**
+Adding A Role
+-------------
 
 Here's what you do to add semantic markup role to your document
 processing tool stack.

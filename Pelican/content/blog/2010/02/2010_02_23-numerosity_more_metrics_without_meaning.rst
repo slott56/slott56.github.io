@@ -31,7 +31,8 @@ trying.
 How is this a path of low value? How can I say that proven metrics
 like cyclomatic complexity are of low value? How dare I?
 
-**Excessive Measurment**
+Excessive Measurment
+--------------------
 
 Here's why the question devolves into numerosity.
 
@@ -63,7 +64,8 @@ measure. When the brakes have already failed, you don't need to
 measure hydraulic pressure in the brake lines. They've failed. Fix
 them.
 
-**The Magical Number**
+The Magical Number
+------------------
 
 The best part is this. Here's a question that provides much
 insight in to the practical use of Cyclomatic Complexity.
@@ -89,7 +91,8 @@ don't need to start measuring hydraulic pressure in every car in
 the parking lot. You need to fix the brakes on the car that's
 already obviously in need of maintenance.
 
-**Management Initiative**
+Management Initiative
+---------------------
 
 Imagine this scenario. Someone decides that the CC threshold is
 10. That means they now have to run some metrics tool and gather
@@ -125,7 +128,8 @@ don't fix it."
 Failure to find and fix code smells is entirely a management
 problem. Metrics don't help.
 
-**Dream World**
+Dream World
+-----------
 
 The numerosity dream is that there's some function that maps
 cyclomatic complexity to maintenance cost. In dollars. Does that
@@ -171,7 +175,8 @@ science. It has lots of things you *can* measure. Sadly, the human
 behavior factors create an unlimited number of independent
 variables.
 
-**Relative Values**
+Relative Values
+---------------
 
 Here's a sensible approach: "`Code Review and Complexity <http://blogs.msdn.com/mswanson/articles/154460.aspx>`__".
 They used a relative jump in Cyclomatic Complexity to trigger an
@@ -182,7 +187,8 @@ Note that this happens at *development* time.
 Once it's in *production*, no matter how smelly, it's unfixable.
 After all, if it got to production, "it ain't broke".
 
-**Bottom Lines**
+Bottom Lines
+------------
 
 #.  You already know it's broken. The brakes failed. Stop measuring
     what you already know.

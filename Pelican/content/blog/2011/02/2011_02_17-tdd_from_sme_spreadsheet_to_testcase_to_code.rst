@@ -32,7 +32,8 @@ Latitude 1 Longitude 1 Latitude 2 Longitude 2 range   bearing
 Only it has a a few more rows with different examples. Equator
 Crossing. Prime Meridian Crossing. All the usual suspects.
 
-**TDD Means Making Test Cases**
+TDD Means Making Test Cases
+---------------------------
 
 Step one, then, is to parse the spreadsheet full of examples and
 create some domain-specific examples. Since it's far, far easier to
@@ -93,7 +94,8 @@ parsing and obscure special-case data handling may be necessary.
 This is long, but, it handles a lot of the formatting vagaries that
 users are prone to.
 
-**From Abstract to TestCase**
+From Abstract to TestCase
+-------------------------
 
 Once we have a generator to build test cases as abstraction examples,
 generating code for Java or Python or anything else is just a little

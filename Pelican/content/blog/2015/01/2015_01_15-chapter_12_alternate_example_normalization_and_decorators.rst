@@ -26,7 +26,8 @@ In this case, "better" might simply mean "less thorough."
 But, perhaps "better" means "less focused on cleansing and more
 focused on something else."
 
-**On Decoration**
+On Decoration
+-------------
 
 The essence of the chapter -- and the extensive example -- is that we
 can use decorators as higher-order functions to build composite

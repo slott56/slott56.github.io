@@ -33,7 +33,8 @@ You may also want to read `SOME NOTES ON CHRISTOPHER
 ALEXANDER <http://zeta.math.utsa.edu/~yxk833/Chris.text.html>`__
 by Nikos A. Salingaros.
 
-**Retronyms**
+Retronyms
+---------
 
 When the "electric guitar" was perfected, folks had to create a
 new word to replace "guitar". The word had become ambiguous, and

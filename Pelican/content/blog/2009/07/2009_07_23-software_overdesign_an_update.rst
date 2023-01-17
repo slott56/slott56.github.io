@@ -57,7 +57,8 @@ learn RST."
 
 --------------
 
-**Post Script**
+Post Script
+-----------
 
 Check out this reply:
 

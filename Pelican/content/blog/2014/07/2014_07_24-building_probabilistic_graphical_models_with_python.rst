@@ -13,7 +13,8 @@ I have to admit up front that this book is out of my league.
 The Python is sensible to me. The subject matter -- graph models,
 learning and inference -- is above my pay grade.
 
-**Asking About a Book**
+Asking About a Book
+-------------------
 
 Let me summarize before diving into details.
 
@@ -45,14 +46,16 @@ that can be featured in online reviews.
 
 Sadly, these are not questions I get asked.
 
-**Irrational Questions**
+Irrational Questions
+--------------------
 
 A colleague had some questions about the book named above. Some of
 which were irrational. I'll try to tackle the rational questions since
 emphasis my point on ways **not** to ask questions about books.
 
 
-**2.  Is the Python code good at solidifying the mathematical concepts?**
+2.  Is the Python code good at solidifying the mathematical concepts?
+---------------------------------------------------------------------
 
 This is a definite maybe situation. The concept of "solidifying" as
 expressed here bothers me a lot.
@@ -74,7 +77,8 @@ If the book reinvented the algorithms available in scipy, that would be
 reason for concern. The book doesn't reinvent that wheel: it uses scipy
 to solve problems.
 
-**4. Can the code be used to build prototypes?**
+4. Can the code be used to build prototypes?
+--------------------------------------------
 
 Um. What? What does the word prototype mean in that question? If we use
 the usual sense of software prototype, the answer is a trivial "Yes."
@@ -113,7 +117,8 @@ not possible this is what "prototype" means.
 Almost any semantics we assign to "prototype" lead to an answer of
 "yes". The book is suitable for helping someone build a lot of things.
 
-**Summary**
+Summary
+-------
 
 Those two were the **rational** questions. The irrational questions made
 even less sense.
@@ -140,7 +145,8 @@ book?"
 
 A: Still No.
 
-**Gaps In The Book**
+Gaps In The Book
+----------------
 
 Here's what I could say about the book.
 

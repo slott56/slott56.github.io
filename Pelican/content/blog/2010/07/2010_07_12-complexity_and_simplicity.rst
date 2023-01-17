@@ -35,7 +35,8 @@ The follow-on is interesting, also.
 Let's consider some of the complexities and simplicities that are
 present here.
 
-**Solution-Speak**
+Solution-Speak
+--------------
 
 First, and most important, this is written in solution-speak. It's an
 IT habit, and it's very hard to break. The input appears to be a
@@ -61,7 +62,8 @@ problems -- is trivial. Simply delete the new file, fix the data (or
 the software) and run things again. Backup and history are simpler
 when creating a new file, also.
 
-**Technology Choices**
+Technology Choices
+------------------
 
 Since it's written in solution speak, many technology choices have
 been made that might be inappropriate.
@@ -75,7 +77,8 @@ inconsistent, undisciplined and generally "out-of-control" data. It
 doesn't have to create a mess, but it's hard to constrain it to
 prevent creating a mess.
 
-**Alternatives**
+Alternatives
+------------
 
 This problem is ubiquitous and -- often -- trivial to solve if we cut
 Excel out of the picture.
@@ -120,7 +123,8 @@ debugged separately. Once they work, some kind of master script
 can sequence through all four steps. That master script should be
 under a dozen lines of code.
 
-**Design Patterns**
+Design Patterns
+---------------
 
 One important design pattern is to get out of "Office Product" mode
 as early as possible. Office Produces (like Excel) are fine for

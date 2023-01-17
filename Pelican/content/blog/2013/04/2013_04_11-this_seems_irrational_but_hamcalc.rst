@@ -36,7 +36,8 @@ useful format.
 See http://www.danvk.org/wp/gw-basic-program-decoder/  However, it
 wasn't terribly well written, and didn't prove completely useful.
 
-**GW Basic Bytes Codes**
+GW Basic Bytes Codes
+--------------------
 
 Look at http://www.chebucto.ns.ca/~af380/GW-BASIC-tokens.html for some
 basic rules on the file format.
@@ -49,7 +50,8 @@ cases.
 For simple bytes-to-text translation, this is pretty simple.  The next
 step -- interpreting GW Basic -- is a bit more complex.
 
-**Future**
+Future
+------
 
 The irrational thing is that I'm captivated by the idea of preserving
 this legacy gift from the authors in another, more useful language.

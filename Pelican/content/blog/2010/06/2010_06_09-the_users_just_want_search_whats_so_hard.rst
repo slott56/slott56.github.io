@@ -28,7 +28,8 @@ The complication is simple -- and harsh. Many enterprise databases
 are really bad. Really, really epically bad. So bad as to be
 incomprehensible to a search engine.
 
-**Explanations**
+Explanations
+------------
 
 How many spreadsheets or reports "stand alone" as tidy, complete,
 usable documents?
@@ -44,7 +45,8 @@ exact -- overheads are included.
 So a search engine might find your spreadsheet. If a person can't
 interpret the data, neither can a search engine.
 
-**Star Schema Nuance**
+Star Schema Nuance
+------------------
 
 You can build a clever star schema from source data. But what you
 find is that your sources have nuanced definitions. Each field isn't

@@ -34,7 +34,8 @@ tends to resist the disruption.
 The best stall tactic: "Security". If IT lifts up security as an
 issue, they can resist technology innovation effectively.
 
-**Other Disruptive Change**
+Other Disruptive Change
+-----------------------
 
 This happens everywhere. It isn't just the iPad. All disruptive,
 innovative change is met with serious resistance.

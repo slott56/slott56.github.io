@@ -30,7 +30,8 @@ Epic advice. And almost impossible to follow, hence the appeasement
 item. Permission to fail means -- well -- failures and money
 "wasted". Cost and schedule shot in an attempt to improve.
 
-**Juxtaposition**
+Juxtaposition
+-------------
 
 There's an interesting juxtaposition with another article in the same
 issue. "`When Good Projects Go

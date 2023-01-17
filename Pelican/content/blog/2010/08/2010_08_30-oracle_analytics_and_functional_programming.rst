@@ -32,7 +32,8 @@ Specific functions lifted up to me were RANK, FIRST, LAST, ROW_NUMBER
 and DENSE_RANK. All of these are relatively simple functional
 programming examples.
 
-**GROUP BY**
+GROUP BY
+--------
 
 First -- and foremost -- SQL GROUP-BY can be slow. No one ever wants
 to hear this. The true haterz will claim that it's supposed to be
@@ -62,7 +63,8 @@ groups is small enough to fit into memory. That assumption allows us
 to avoid a sort. The database can't make this assumption, and can't
 easily use this kind of data structure.
 
-**Functional Programming**
+Functional Programming
+----------------------
 
 The analytical functions are nice applications of a functional style
 of programming. The ROW_NUMBER is already part of Python: it's the
@@ -115,7 +117,8 @@ database. Python has the potential advantage of in-memory sorting.
 Oracle, however, is clever enough to use in-memory sorting on small
 sets of data, offsetting Python's advantage.
 
-**More Complex Functions**
+More Complex Functions
+----------------------
 
 The more complex functions of RANK and DENSE_RANK require two-phase
 processing of rows. If we assume that we can fit the rows in memory,
@@ -148,7 +151,8 @@ appropriate, and we need a key-aware enumeration.
                 current= row
             yield rank, row
 
-**Composition**
+Composition
+-----------
 
 One of the strong suits of SQL is that it allows us to define a
 functional-programming composition. Rather than write a lot of

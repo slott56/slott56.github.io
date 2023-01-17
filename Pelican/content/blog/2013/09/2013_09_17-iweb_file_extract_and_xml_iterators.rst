@@ -34,7 +34,8 @@ presentation.
 This is a note on how to read iWeb files to get at the content. And
 further, how to get at XML content in the form of a simple iterator.
 
-**Opening The Package**
+Opening The Package
+-------------------
 
 Here's how to overview the package.
 
@@ -64,7 +65,8 @@ This will reveal the files; we only really care about the
 
 This gets us the XML version of the blog.
 
-**Finding the Pages**
+Finding the Pages
+-----------------
 
 We can use the following to thread through the XML. We're looking for
 a particular "Domain", a "Site" and a particular blog page within that
@@ -126,7 +128,8 @@ Once we have access to the page XML document, we can extract the
 content. At this point, we could define a function which simply
 yielded the individual site_page tags.
 
-**Summary Iterable**
+Summary Iterable
+----------------
 
 The most useful form for the pages is an iterable that yields the
 date, title and content text. In this case, we're not going to
@@ -172,8 +175,8 @@ These becomes keys of the content_map mapping. The values are
 iterators over the text.
 
 
-**Processing The Text**
-
+Processing The Text
+-------------------
 
 Here's an iterator that makes use of the postings_iter() function
 shown above.
@@ -235,7 +238,8 @@ the following outline of the processing.
 This iterates through focused data structures that include the
 requested lat/lon points.
 
-**Final Application**
+Final Application
+-----------------
 
 The final application function that uses all of these iterators has
 the following kind of structure.

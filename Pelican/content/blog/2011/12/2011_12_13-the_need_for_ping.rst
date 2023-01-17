@@ -38,7 +38,8 @@ One optional behavior is to dump the interface details.
 Another optional behavior is to allow selection among a small number
 of simple interactions just to be sure things are working.
 
-**Unplanned Work**
+Unplanned Work
+--------------
 
 What's important here isn't that I did all this.  What's important is
 that the deliverables, user stories and project plans didn't include

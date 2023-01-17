@@ -14,7 +14,8 @@ This is largely transactional, not analytical.
 
 It's a simple inventory of ingredients, recipes and locations.
 
-**Context**
+Context
+-------
 
 -  42' sailboat.
 -  Lots of places to keep stuff. Lots.
@@ -25,13 +26,15 @@ stinks up the boat.
 
 Actor is essentially the cook.
 
-**Use Cases**
+Use Cases
+---------
 
 -  Perishables to be eaten soon?
 -  Shopping list for specific recipes.
 -  Where did I put that?
 
-**Model**
+Model
+-----
 
 |image1|
 

@@ -38,7 +38,8 @@ because the debits and credits are reversed. In the DIMY world,
 measurable complexity is valued as an asset and real simplicity is
 viewed as a cost.
 
-**Working Definitions**
+Working Definitions
+-------------------
 
 Based in the war story, we can identify several aspects of this
 working definition of complexity.
@@ -69,7 +70,8 @@ Complexity <http://en.wikipedia.org/wiki/Cyclomatic_complexity>`__
 are irrelevant. So a monolith, with lots of loops and ifs is somehow
 less "complex" and more desirable.
 
-**Perfect Code**
+Perfect Code
+------------
 
 Clearly, then, for some folks, high quality code involves (1) no
 match against the use case, (2) a single name, and (3) no limit on

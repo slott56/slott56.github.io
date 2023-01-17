@@ -25,7 +25,8 @@ the most common duplicate forms of this question asks (or demands)
 code completion. As if there are folks who cannot write code without
 code completion.
 
-**Chickens and Eggs**
+Chickens and Eggs
+-----------------
 
 The issue with sophisticated IDE's (like Eclipse, NetBeans, and even
 Komodo) is that you have to learn the tools before learning the
@@ -39,7 +40,8 @@ prerequisite for the tool.
 
 How to cut the Gordian Knot?
 
-**First Principles**
+First Principles
+----------------
 
 Irrespective of the "Visual Studio makes VB not suck" crowd, language
 comes first -- and last -- and fills all the spaces in between.
@@ -62,7 +64,8 @@ there's no universal tool any more than there's a universal language.
 And the bias is clearly very, very many tools for a given language
 and only a few languages for a given tool.
 
-**How To Start**
+How To Start
+------------
 
 Language comes first.
 
@@ -101,7 +104,8 @@ IDE can be used.
 Later, one can move to `NetBeans <http://netbeans.org/>`__ or
 `Eclipse <http://www.eclipse.org/>`__.
 
-**Classrooms and Autodidacts**
+Classrooms and Autodidacts
+--------------------------
 
 In the classroom, it's easy to demonstrate NetBeans and answer
 questions.

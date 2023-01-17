@@ -22,7 +22,8 @@ had a really brilliant comment on one of the answers.
   an insight into the horrors thinkign by analogy is inflicting upon
   us
 
-**Follow-up Reading**
+Follow-up Reading
+------------------
 
 `EWD 854 <http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD854.html>`__,
 "The fruits of misunderstanding". "when faced with something new and
@@ -51,17 +52,18 @@ layers of meaning that have a huge scope.
 I'll have to work my way through the archive. It will probably take
 years to read through all the manuscripts.
 
-**Wait -- I've Got One Of Those**
+Wait -- I've Got One Of Those
+------------------------------
 
 Back in the 70's, the undergrads at Syracuse University were given
 copies of
-`EDW316 <http://www.cs.utexas.edu/users/EWD/ewd03xx/EWD316.PDF>`__.
+`EWD316 <http://www.cs.utexas.edu/users/EWD/ewd03xx/EWD316.PDF>`__.
 At the time, it was just a paper on the art of programming. It sat in
 a file drawer for decades. I unearthed it recently.
 
-At the time, EDW316 looked like a course number. I assumed -- wrongly
+At the time, EWD316 looked like a course number. I assumed -- wrongly
 -- that it was notes from some other school of computer science.
-Turns out, it was one of those EDW missives. It had found it's way
+Turns out, it was one of those EWD missives. It had found it's way
 into the hands of the CS Faculty at SU. From there, a copy fell into
 my hands. Not until recently (30+ years later) did I realize exactly
 what it was a copy of.

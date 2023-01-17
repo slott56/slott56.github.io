@@ -34,7 +34,8 @@ starting point that isn't based on the requirements or any kind of
 rational design. It appears that many programmers start with a
 pretty random boilerplate program.
 
-**Teaching Java to COBOL Programmers**
+Teaching Java to COBOL Programmers
+----------------------------------
 
 I remember struggling with COBOL programmers. Back in '02 (before
 Code Dojo existed), I had no real way to educate folks except a
@@ -66,7 +67,8 @@ to the COBOL concepts everyone wanted to start with. A few
 lectures and presentations aren't helpful. Had I but known about
 Code Dojo, I would have suggested that. It might have worked.
 
-**The "Getting Started" Problem**
+The "Getting Started" Problem
+-----------------------------
 
 Some Stack Overflow questions on design are really questions about
 "getting started". These cause me to wonder how to help people who

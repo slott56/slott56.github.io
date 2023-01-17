@@ -14,7 +14,8 @@ I've described it as "interpreted", "scripting" and "dynamic", all of
 which seem to be true, but yet each seems to lead to a standard --
 and pointless -- dispute.
 
-**Yes but No**
+Yes but No
+----------
 
 Some folks object to "interpreted". They feel a need to repeat the
 fact that Python is compiled to byte code which is then interpreted.
@@ -28,7 +29,8 @@ really. I don't know why it is so important to raise the objection.
 
 So noted. Are we done? Can we move beyond this?
 
-**Scripting Means Bad**
+Scripting Means Bad
+-------------------
 
 Some folks object to "scripted". They insist that scripting languages
 must also include performance problems, limited data representation
@@ -45,7 +47,8 @@ seem to help clarify that scripting isn't inherently bad.
 Again, objection noted. And overruled. Scripting doesn't have to be
 complex or bad. It's just a relationship with the shell.
 
-**Further Nuances**
+Further Nuances
+---------------
 
 I'm baffled when some folks take this further and object to Scripted
 and Interpreted being separate terms. I guess they feel (very
@@ -59,7 +62,8 @@ But then, of course, Python is technically compiled before being
 interpreted, so what then? What's the point of bringing up the detail
 yet again?
 
-**Dynamic**
+Dynamic
+-------
 
 More rarely, folks will object to using Dynamic and Interpreted as
 separate dimensions of the language space.
@@ -81,7 +85,8 @@ laziness to object to a language based on the lack of code
 completion. But some folks claim that IDE auto-completion makes VB a
 good language.
 
-**Hair Resplitting**
+Hair Resplitting
+----------------
 
 How about we stop wasting so much bandwidth resplittting these
 hairs? It's scripted. It's interpreted. It's dynamic. How does it

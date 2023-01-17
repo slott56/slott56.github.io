@@ -53,7 +53,8 @@ looking.
 While wordy, it hints at a more generalized approach to have three
 processes passing data.
 
-**Termination**
+Termination
+-----------
 
 The issue is one of termination.  Most multiprocessing packages (like
 multiprocessing and celery) presume that your processing pipeline has
@@ -81,7 +82,8 @@ The approach, therefore, is to put a sentinel object in the queue.
 This way, a consumer knows that production has finished.  It can
 release resources and exit politely.
 
-**Fan-Out and Fan-In**
+Fan-Out and Fan-In
+------------------
 
 The problem with a sentinel on a multi-producer queue is that there
 will be multiple sentinels, one from each producer.  And, of course,
@@ -93,7 +95,8 @@ know to expect a sentinel-per-producer, then we can easily create
 dynamic multi-processing networks that startup and shutdown quickly
 and cleanly.
 
-**Use Case**
+Use Case
+--------
 
 Here's a use case.  We want to do **whois** analysis on IP addresses
 in a log.

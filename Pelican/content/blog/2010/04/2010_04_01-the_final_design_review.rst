@@ -45,7 +45,8 @@ Great. That ends this design review. With this kind of obvious
 simplification, we don't need any more design reviews, this one
 covers all possible bases.
 
-**Seriously**
+Seriously
+---------
 
 I've seen the first discussed seriously in the context of "why
 don't we simply...". The answer ("it doesn't perform well") is

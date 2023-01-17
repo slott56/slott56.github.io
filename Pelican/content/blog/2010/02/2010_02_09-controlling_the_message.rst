@@ -38,7 +38,8 @@ change? The "personnel cost" question is an excuse to veto change.
 The people will be more productive using C#. Start changing, stop
 preventing.)
 
-**Right vs. Wrong**
+Right vs. Wrong
+---------------
 
 I've been told that politics comes first when making a technical
 decision. That's perhaps the dumbest, most defeatist attitude I've
@@ -63,7 +64,8 @@ the politically-motivated response is that Stored Procedures *have* a
 place and *will* be used in spite of the problems. Politics trumps
 technology.
 
-**Controlling the Message**
+Controlling the Message
+-----------------------
 
 In my trips to the top of the IT food chain -- the CIO's office -- it
 seems like everything is political. It may not be, but the technical
@@ -81,7 +83,8 @@ Elected officials often have separate public and private messages.
 They have a public message that is nothing more than pandering to the
 "shouting class" at the party fringe.
 
-**Why Control It?**
+Why Control It?
+---------------
 
 Here's my lesson learned. If you need to control the message, then
 the message itself is flawed.

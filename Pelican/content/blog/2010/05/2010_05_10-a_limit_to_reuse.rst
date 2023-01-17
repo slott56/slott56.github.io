@@ -22,7 +22,8 @@ no, we're not building up data individual consumers. Really.]
 
 Until, of course, someone has a brain-fart.
 
-**Overall Application Design**
+Overall Application Design
+--------------------------
 
 An overall load application is a simple loop. For each row in the
 source document, conform the various dimensions, and then load the
@@ -46,7 +47,8 @@ customer. And the builders devolve to two methods
 The nice thing is that the builders abstract out all the messy
 details. Except.
 
-**Hard-to-Conform Data**
+Hard-to-Conform Data
+--------------------
 
 We're now getting data that's not -- narrowly -- based on things our
 customers tell us. We're getting data that might be useful to our
@@ -59,7 +61,8 @@ But... We lack the obvious customer-supplied keys required to do
 dimensional conformance. Instead, we have to resort to a multi-step
 matching dance.
 
-**Limiting Factors**
+Limiting Factors
+----------------
 
 The multi-step matching dance pushed the "Builder" design one step
 beyond. It moved from tidy to obscure. There's a line that seems to
@@ -90,7 +93,8 @@ The limiting factor seems to be a "conceptually complete" operation
 or step. Not all code is so costly that a simple repeat is an
 accident waiting to happen.
 
-**Hints from Map-Reduce**
+Hints from Map-Reduce
+---------------------
 
 It seems like there are two conceptual units. The loop. The function
 applied within the loop. And we should write all of the loop or all

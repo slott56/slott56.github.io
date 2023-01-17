@@ -67,8 +67,8 @@ Knowing that it did something roughly like the following for us.
 
     import package.implementation as package
 
-**Refactoring Module to Package**
-
+Refactoring Module to Package
+-----------------------------
 
 The Stingray angle on this is the need to add iWork '13 numbers to the
 collection of spreadsheets which it can parse. The iWork '13 format is

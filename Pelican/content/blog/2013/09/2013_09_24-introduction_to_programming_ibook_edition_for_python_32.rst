@@ -37,8 +37,8 @@ The rewrite involved three substantial changes.
 #.  I changed the focus from processing to data.
 
 
-**Processing vs. Data**
-
+Processing vs. Data
+-------------------
 
 When looking at a multi-faceted language like Python, it's difficult
 to know what's the most gentle introduction to software development.
@@ -65,8 +65,8 @@ That doesn't mean that procedural programming is really the
 absolutely best way to introduce the language.
 
 
-**Data First**
-
+Data First
+----------
 
 I think that it may be possible to introduce the language with a
 focus on data objects first and the procedural/imperative statements
@@ -112,8 +112,8 @@ which puts the focus on generator expressions as a way to clearly
 state the processing.
 
 
-**Other Forms**
-
+Other Forms
+-----------
 
 Currently, I only have the iBook available.
 

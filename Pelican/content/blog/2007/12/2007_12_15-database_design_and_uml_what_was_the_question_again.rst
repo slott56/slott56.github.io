@@ -160,7 +160,8 @@ There's a mapping between the two, but they are never isomorphic.  We rarely sol
 Clearly, to keep all the models in synch, we have to focus on design only or analysis only.  If we pick design only, we have layers of meaning from an abstract solution, a concrete platform independent solution, and a concrete platform-specific solution (i.e., "code"). 
 
 
-**What Was The Question?**
+What Was The Question?
+----------------------
 
 
 Can we keep the various design elements in synch?  The answer is almost "Yes".  If it weren't for the shortcomings of the SQL Relational model, it would be easy. 

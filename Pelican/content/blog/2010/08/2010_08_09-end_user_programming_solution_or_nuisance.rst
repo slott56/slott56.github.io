@@ -41,7 +41,8 @@ road where the user's behave properly." No, not really. This middle
 road doesn't exist. Why? Programming is hard. A phrase like "simple
 scripts" is contradictory.
 
-**War Story I -- The SAS Hacks**
+War Story I -- The SAS Hacks
+----------------------------
 
 At one organization, the accountants had created a monster. Their
 chart of accounts in the General Ledger (GL) was not consistent
@@ -77,7 +78,8 @@ The "simple" rules were used to create huge complexity. It's human
 nature. The world is complex; we want to write software which
 reflects the world as we encounter it.
 
-**War Story II -- The MS Access Hack**
+War Story II -- The MS Access Hack
+----------------------------------
 
 At another organization, we had helped the end users buy really nice
 reporting tools from
@@ -117,7 +119,8 @@ will always be several steps ahead of the warehouse processing. The
 MS-Access hacking is how they coped with the limitations of the
 warehouse.
 
-**Bottom Lines**
+Bottom Lines
+------------
 
 Software is complex. We can't create a language suitable for
 "non-technical users". Either the language is too technical for our
@@ -135,7 +138,8 @@ unforeseen use cases crop up and we either tell people they can't use
 our system [*Really, would you turn them down?*] or we have to add
 complexity.
 
-**Architectural Implications**
+Architectural Implications
+--------------------------
 
 Because of this complexity issue, avoid some urges to refactor. Not
 all refactoring is good refactoring. There is `A Limit to

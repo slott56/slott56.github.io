@@ -15,7 +15,8 @@ files to create a number of outputs. [Details can't be disclosed.]
 Objective: Refactor to distinguish between the overall sequence of
 transformational steps and the details of each individual step.
 
-**Observations**
+Observations
+------------
 
 The code is almost purely procedural. There are 11 class definitions.
 6 of these wrap built-in types with type conversion and
@@ -41,7 +42,8 @@ more complex set of formulæ that would be challenging (but not
 impossible) to implement as a spreadsheet. The use case, however, is
 the spreasheet use case: think, tweak, create results, repeat.
 
-**TDRE Approach**
+TDRE Approach
+-------------
 
 Start with an **Initial Survey** of the legacy code base and sample
 files.
@@ -69,7 +71,8 @@ From the output, **Build Unit Test Cases**. Fill in parts of the
 processing sequence and domain model. Debug code until the tests
 pass.
 
-**Initial Survey**
+Initial Survey
+--------------
 
 The **Initial Survey** locates several things.
 
@@ -103,7 +106,8 @@ reproduce the sample output, most reverse engineering will involve
 enhancements or bug fixes. Expect that errors will be found (or may
 be known to exist) in the sample output.
 
-**Create Outline**
+Create Outline
+--------------
 
 The outline is -- initially -- just generic MVP. There must be a
 domain model, some "presenter" that has the application logic, and
@@ -117,7 +121,8 @@ The goal was to extract the underlying model, break the application
 "presenter" logic into two layers (forest and trees) and build some
 views for each of the output files.
 
-**Pick a Processing Step**
+Pick a Processing Step
+----------------------
 
 This can be challenging, depending on the legacy code base. There are
 two paths through a procedural code base.
@@ -134,7 +139,8 @@ shown a little more clearly.
 A better architecture can be created by working back-to-front since
 dependencies are easier to understand.
 
-**Unit Test Volume, Edges and Corners**
+Unit Test Volume, Edges and Corners
+-----------------------------------
 
 There are two unit test design challenges when doing reverse
 engineering.

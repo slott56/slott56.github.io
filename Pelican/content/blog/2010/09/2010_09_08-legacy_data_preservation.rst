@@ -35,7 +35,8 @@ so that we can replace it with a nice, new `Standard Horizon CP
 300i <http://www.standardhorizon.com/indexVS.cfm?cmd=DisplayProducts&ProdCatID=84&encProdID=786FA3B62DC4B9B5DD197438F18995CD&DivisionID=3&isArchived=0>`__
 and MacBook Pro running `GPSNavX <http://www.gpsnavx.com>`__?
 
-**Raw Data**
+Raw Data
+--------
 
 To get the raw data, I pulled the disk drive, mounted it in an
 IDE-USB enclosure and pulled the relevant routes and waypoints
@@ -57,7 +58,8 @@ bearing to next waypoint as well as lookup the magnetic deviation
 from standard tables. So we don't need to preserve all of the
 data.
 
-**Pass 1**
+Pass 1
+------
 
 The first pass is to write simple "hex dump" utility in Python to
 see what's even in the files.
@@ -89,7 +91,8 @@ Once we have a sense of what's going on, we can use the Python
 `struct <http://docs.python.org/library/struct.html>`__ module to
 get the real data.
 
-**Pass 2**
+Pass 2
+------
 
 In the case of Chartview marks, we have a complex, but manageable
 structure definition. Some of the field sizes are conjectures.
@@ -135,7 +138,8 @@ required to get the latitudes and longitudes into a format
 acceptable by `GPSNavX <http://www.gpsnavx.com/>`__ or
 `X-Traverse <http://www.x-traverse.com/>`__.
 
-**Routes**
+Routes
+------
 
 Routes are more complex than marks because they have a header,
 followed by the details as a sequence of individual waypoints.
@@ -149,7 +153,8 @@ points, we simply disambiguate them a route number. There seemed
 to have been a limit of 15 routes, so we can just expand WP\ *x*
 to WP\ *x*-*rr*, where *rr* is the route number.
 
-**Bottom Line**
+Bottom Line
+-----------
 
 Data is preserved. Legacy PC and GPS can be chucked (or sold on
 eBay to a collector).

@@ -29,7 +29,8 @@ spreadsheet (or multiple spreadsheets) with concrete examples. It's
 often easier for users to make concrete examples than it is for them
 to write more general business rules.
 
-**Automated Test Case Construction**
+Automated Test Case Construction
+--------------------------------
 
 Here's what can easily happen next.
 
@@ -61,7 +62,8 @@ packages built from the end-user source documents.
 
 You have your tests. You can start doing TDD.
 
-**Scenarios**
+Scenarios
+---------
 
 One of the earliest problems you'll have is test case spreadsheets
 that are broken. Wrong column titles, wrong formatting, something
@@ -85,7 +87,8 @@ assumed -- and attributes you didn't have explicitly written down
 anywhere. Other times there's confusion that needs to be resolved
 before any programming should begin.
 
-**The Big Payoff**
+The Big Payoff
+--------------
 
 When the tests all pass, you're ready for performance and final
 acceptance testing. Here's where TDD (and having the users own the
@@ -108,7 +111,8 @@ get examples wrong, too. Either way (omission or error) we're just
 fixing the spreadsheets, regenerating the test cases, and starting up
 the TDD process with the revised suite of test cases.
 
-**Bug Fixing**
+Bug Fixing
+----------
 
 Interestingly, a bug fix after production roll-out is no different
 from an acceptance test problem. Indeed it's no different from

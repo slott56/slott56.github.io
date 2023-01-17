@@ -33,7 +33,8 @@ concepts.
 
 With two meanings for a single value, hilarity always ensues.
 
-**Further Confusion**
+Further Confusion
+-----------------
 
 The NULL value doesn't participate in comparisons or indexes. This is
 -- apparently -- shocking to some people. Here's a nice summary in
@@ -47,7 +48,8 @@ NULL <http://www.lifeaftercoffee.com/2005/09/28/oracle-conditions-and-how-they-h
 Because of this "NULL doesn't compare" problem, people get baffled by
 the use of NVL (or IFNULL) functions.
 
-**The Rules of NULL**
+The Rules of NULL
+-----------------
 
 **The first rule of NULL is "Don't."** Don't define a data model that
 depends on nullability. Define a model where each class is distinct
@@ -112,7 +114,8 @@ prove that a particular join is nearly one-to-one, and you can prove
 that the cost of the join is too high, then you can consider
 pre-joining and using NULLs.
 
-**Common Mistakes**
+Common Mistakes
+---------------
 
 There are two common NULL-join mistakes: optional joins and date
 ranges.

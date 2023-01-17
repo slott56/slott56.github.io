@@ -47,7 +47,8 @@ Except that it gives security managers a chance to improve the
 rules and enforce everyone to change their passwords to meet the
 new rules.
 
-**Missing the Point**
+Missing the Point
+-----------------
 
 One comment that's interesting is this:
 

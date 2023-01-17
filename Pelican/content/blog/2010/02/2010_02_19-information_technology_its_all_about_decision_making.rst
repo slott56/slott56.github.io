@@ -32,7 +32,8 @@ discover outliers and unusual special cases.
 
 Too many systems attempt to leave people out of the loop.
 
-**Business Rules**
+Business Rules
+--------------
 
 A canonical example of business rule processing is credit checks or
 discounts in an order processing system. This requires integrating a
@@ -67,7 +68,8 @@ to review. Screen shots or log scraping or special-purpose
 audit/extract programs mean the application doesn't correctly put
 people into the process.
 
-**"Automated" Data Mining**
+"Automated" Data Mining
+-----------------------
 
 In most of the data warehousing projects I've worked on, folks have
 been interested in the idea of "automated data mining" discovering

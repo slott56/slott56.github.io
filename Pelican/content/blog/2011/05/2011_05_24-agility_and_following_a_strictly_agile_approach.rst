@@ -26,7 +26,8 @@ how to test if you are agile or not". It's weird because testing for
 Agile is like testing for breathing; it's like testing for
 flammability.
 
-**The Agile Test**
+The Agile Test
+--------------
 
 Testing if your project is Agile can be done two ways.
 
@@ -64,7 +65,8 @@ debt be damned. Development must proceedfull speed ahead." All of
 this irrespective of the relative value of what's being developed.
 Schedule comes first; features second.
 
-**How Much Process?**
+How Much Process?
+-----------------
 
 The "Process Kills..." blog entry repeats observation that a lot of
 carefully-defined process isn't really all that helpful. It
@@ -85,7 +87,8 @@ surrogates—processes, documentation, contracts and plans—instead of
 actual software. The point of Agile methods it to release software
 early and often and avoid using surrogates.
 
-**Key Points of Agile**
+Key Points of Agile
+-------------------
 
 Here are the key points of the Agile Manifesto.
 
@@ -118,7 +121,8 @@ Here are the key points of the Agile Manifesto.
     it should be included in the requirements doesn't mean the feature
     is really required.
 
-**The "Process Kills Passion?" Question**
+The "Process Kills Passion?" Question
+-------------------------------------
 
 There Process Kills Passion blog lists a bunch of things that—it
 appears—some folks find burdensome:

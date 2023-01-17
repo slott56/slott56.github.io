@@ -33,7 +33,8 @@ that different from being swamped by software products that involve
 contracts and fees? And requires `Patch
 Tuesday <http://en.wikipedia.org/wiki/Patch_Tuesday>`__?
 
-**Agility**
+Agility
+-------
 
 SD Times has two articles on Agile methods. Both on the front page of
 a print publication. That's how you know the technique has "arrived".
@@ -57,7 +58,8 @@ capable organization that can manage work," [Rick Simmons] added.'
 If you're micro-managing, you're not building an organization.
 Excellent advice. However, tell that to the financial control crowd.
 
-**Budgets and "Control"**
+Budgets and "Control"
+---------------------
 
 Finally, be sure to read this by Frank Hayes in ComputerWorld: "`Big
 Projects, Done

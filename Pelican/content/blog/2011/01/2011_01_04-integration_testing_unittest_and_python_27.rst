@@ -20,7 +20,8 @@ and helpful.
 I argue that it's still "unit" testing because parts of the
 application have been extracted from their processing context.
 
-**OS and Module Mocks**
+OS and Module Mocks
+-------------------
 
 Some folks will hand-wring over the use of OS API's or other library
 API's in a unit test. They feel that the OS API's should be
@@ -46,7 +47,8 @@ decided to trust?
 [For that matter, we also trust Python, the OS and the unittest
 module itself. Why draw lines between Python, unittest and csv?]
 
-**ORM and RDBMS Mocks**
+ORM and RDBMS Mocks
+-------------------
 
 A similar kind of worry comes with an ORM layer. Somehow, the "trust"
 factor starts to break down here. Folks want to mock the ORM layer.
@@ -67,7 +69,8 @@ time. However, it has handsome rewards because the "unit" testing
 includes the ORM and RDBMS at a higher level where it's easier to
 work with.
 
-**Integration Testing**
+Integration Testing
+-------------------
 
 We use the unittest module to do integration testing also. In Python
 2.6, this involved a fair amount of work. We had to start our RESTful

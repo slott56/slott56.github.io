@@ -40,7 +40,8 @@ carpenter may switch brands of wall-board. It's still wall-board.
 The consequence of this is that -- for software projects --
 **Total Cost Is Hard To Predict**.
 
-**Hack-Arounds**
+Hack-Arounds
+------------
 
 Total cost is hard to predict, but we try to do it anyway. What we
 do is add "risk factors" to inflate our estimate. We add risk
@@ -63,7 +64,8 @@ to meet that plan. That's stupid.
 Worse still, we can't know the scope because it's usually a fabric
 of lies.
 
-**Scope Issue 1: "Required"**
+Scope Issue 1: "Required"
+-------------------------
 
 Customers claim that X, Y and Z are "required". Often, they have
 no idea what "required" even means. I spent a fruitless hour with
@@ -90,7 +92,8 @@ Of course, the project failed. But not because of up-time. There
 were dozens of these kinds of poorly-worded requirements that
 weren't really required.
 
-**Scope Issues 2: "The Game"**
+Scope Issues 2: "The Game"
+--------------------------
 
 I worked with some users who were adept at gaming IT. They knew
 that IT was utterly incapable of delivering everything in the
@@ -112,7 +115,8 @@ requirements. Then, when we got to acceptance testing, there were
 numerous "requirements" that were not required, nor even desired.
 They were padding.
 
-**What To Do?**
+What To Do?
+-----------
 
 Okay. Scope and delivery are unknowable. Fine. In spite of this,
 what do we do to provide a reasonable estimate of development
@@ -142,7 +146,8 @@ effort?
     adjust the order only. Cost is not negotiable. It's largely
     fixed.
 
-**Rejection 1: All Or Nothing**
+Rejection 1: All Or Nothing
+---------------------------
 
 One weird discussion point is the following: "Until release X,
 this is all useless. You may as well not do release 1 to X-1,
@@ -169,7 +174,8 @@ first. At the very least, you can play this trump card. "We need
 to do incremental releases to resolve any potential problems with
 delivery and turn-over."
 
-**Rejection 2: Total Total Cost**
+Rejection 2: Total Total Cost
+-----------------------------
 
 The most frustrating conversations surround the "total cost"
 issue.
@@ -190,7 +196,8 @@ It's just that simple.
 It takes several tries to get everyone's head wrapped around the
 concept.
 
-**Customer Control**
+Customer Control
+----------------
 
 You know the concept has started to sink in when the customer
 finally agrees that they can pull the plug on the project after

@@ -28,7 +28,8 @@ class has one responsibility. Now we have two implementations sharing
 some kind of responsibility for a single class of objects.
 Disentangling the responsibilities is always hard.
 
-**Standard Issues**
+Standard Issues
+---------------
 
 There's one standard issue with this kind of distributed database. It
 is horribly complex and never worth it.
@@ -46,7 +47,8 @@ distributed database.
 
 Now you have two problems.
 
-**Sensible Alternatives**
+Sensible Alternatives
+---------------------
 
 There are two standard solutions to problems that appear to require a
 distributed database.
@@ -65,7 +67,8 @@ application is not part of any of the foundational ("distributed")
 applications; a composite is fundamentally different and of a higher
 level
 
-**Stay Out Of That Box**
+Stay Out Of That Box
+--------------------
 
 In short, the "standard issues" with attempting a distributed
 database are often insurmountable. So don't try.

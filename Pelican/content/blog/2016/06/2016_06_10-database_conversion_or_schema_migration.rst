@@ -37,7 +37,8 @@ It's a standard situation to have less than 100% of the data
 successfully converted and still call the effort a success. If 100%
 was not required, why lose a weekend over it?
 
-**Good Plans and Bad Plans**
+Good Plans and Bad Plans
+------------------------
 
 From far wiser people than me, I learned an important lesson in schema
 migration.
@@ -71,7 +72,8 @@ application. And by then, the new application was already being used.
 
 There are bad ways to do schema migration, of course. HPL listed many.
 
-**Horrible Mistakes**
+Horrible Mistakes
+-----------------
 
 The horror story from HPL included this:
 
@@ -118,7 +120,8 @@ HPL concludes with a litany of errors of various types: performance,
 change management, file system issues, error logging and auditing.
 Blah blah blah. Yes, it was a nightmare. I feel their pain.
 
-**What About Coexistence?**
+What About Coexistence?
+-----------------------
 
 It appears that HPL was involved in a project where the **entire** old
 and new applications were supposed to somehow coexist during the
@@ -147,7 +150,8 @@ legacy.
 At some point, this copying back is of no value and can be
 discontinued.
 
-**What About Timing?**
+What About Timing?
+------------------
 
 This copying clearly requires some coordination. It's not done
 haphazardly.
@@ -168,7 +172,8 @@ This also means performance must be part of the test plan. As well as
 error handling and diagnostic logging. None of this is particularly
 difficult. It simply requires care.
 
-**Lessons Learned**
+Lessons Learned
+---------------
 
 HPL appeared to make the claim that schema migration is super hard. Or
 maybe that coexistence is really hard.

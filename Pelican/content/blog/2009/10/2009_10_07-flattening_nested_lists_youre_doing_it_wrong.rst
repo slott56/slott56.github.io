@@ -20,7 +20,8 @@ variants.
 [STRIKEOUT:All] Much of which is [STRIKEOUT:simply wrong]
 inappropriate.
 
-**You're Doing it Wrong**
+You're Doing it Wrong
+---------------------
 
 The only way to create a nested list is to append a list to a list.
 
@@ -37,7 +38,8 @@ You can trivially replace this with the following
 Now, your list is created flat. If it's created flat, you never need
 to flatten it.
 
-**Obscure Edge Cases**
+Obscure Edge Cases
+------------------
 
 Sometimes it may be necessary to have both a flattened and an
 unflattened list. I'm unclear on when or how this situation arises,
@@ -46,7 +48,8 @@ but this may be edge case that makes some of itertools handy.
 For the past 3 decades, I've never seen the "both nested and not
 nested" use case, so I can't fathom why or how this would arise.
 
-**Visiting a Tree**
+Visiting a Tree
+---------------
 
 Interestingly, a tree visitor has a net effect somewhat like
 "flattening". However, it does not actually create an intermediate

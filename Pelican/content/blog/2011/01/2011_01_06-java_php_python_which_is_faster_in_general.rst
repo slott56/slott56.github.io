@@ -17,7 +17,8 @@ There are three rules for figuring out which is faster.
 And there are three significant problems that make these rules
 inescapable.
 
-**Rule One. Languages don't have speeds. Implementations have speeds.**
+Rule One. Languages don't have speeds. Implementations have speeds.
+-------------------------------------------------------------------
 
 Info on
 `benchmarking <http://en.wikipedia.org/wiki/Benchmark_(computing)>`__.
@@ -41,7 +42,8 @@ We can then compare these various free attributes against each
 other. For details look at something like the `Java Micro
 Benchmark <http://www.cs.cmu.edu/~jch/java/microbench.html>`__.
 
-**Rule Two. Statistics Aren't a Panacea.**
+Rule Two. Statistics Aren't a Panacea.
+--------------------------------------
 
 The reason there's no "in general" comparison among languages is
 because there are too many degrees of freedom to make any kind of
@@ -62,7 +64,8 @@ language differences. If we're trying to compare PHP, Python and
 Java, we need to find a program which somehow -- magically -- is
 common across all three languages.
 
-**The Basis For Comparison**
+The Basis For Comparison
+------------------------
 
 Finding common programs degenerates into **Problem 2**: what
 programs could be comparable? For example, we have the Tomcat
@@ -87,7 +90,8 @@ Spring, Struts, Django, Pylons? None of these reflects a code base
 that's even remotely similar. Maybe Java JSP is similar enough to
 PHP. For Python there are several implementations. Sigh.
 
-**Crappy Program Problem**
+Crappy Program Problem
+----------------------
 
 We can't easily compare programs because we're really comparing
 implementations of an algorithm. This leads to **Problem 3**: we
@@ -108,7 +112,8 @@ sharing references, Python may appear to excel.
 Somehow we have to get past language differences and programmer
 mistakes. What to do?
 
-**Synthetic Benchmarks**
+Synthetic Benchmarks
+--------------------
 
 Since we can't easily find comparable programs -- as whole
 programs -- we're left with the need to create some kind of
@@ -134,7 +139,8 @@ The languages aren't very comparable at the statement level at
 all. And if we force them to be comparable, we're not comparing
 real programs, but an artificial mapping.
 
-**Virtual Machine Benchmarks**
+Virtual Machine Benchmarks
+--------------------------
 
 Since we can't compare the languages at the program level or the
 statement level, what's left? Clearly, the underlying interpreter
@@ -152,7 +158,8 @@ VM primitives used by each language and then -- what? Compare the
 run-time of the various VM primitives? No, that's silly, since the
 run-times are all JVM run-times.
 
-**What We're Left With**
+What We're Left With
+--------------------
 
 The very best we can can do is to compare the statistical
 distribution of the VM instructions created by Java, PHP or Jython
@@ -177,7 +184,8 @@ paper from Rob Nicholson from the CodeZero project on how to
 PHP doesn't fit the JVM as well as Python does. So there's a weird
 bias.
 
-**Rule Three. Benchmarking Is Hard.**
+Rule Three. Benchmarking Is Hard.
+---------------------------------
 
 There is no "in general" comparison of programming languages. All
 that we can do is benchmark something specific.

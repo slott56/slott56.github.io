@@ -7,13 +7,15 @@ Code Kata : Merge Changes
 :category: Technologies
 :status: published
 
-**The Situation**
+The Situation
+-------------
 
 A co-worker has mistakenly cloned a directory tree rather than link
 to it. Then they made some number of changes to files in that
 directory.
 
-**Your Job**
+Your Job
+--------
 
 Your job is to compute a directory-level difference between an
 official copy and the changes they made. Sadly, you can't trivially
@@ -41,7 +43,8 @@ Ultimately, you'll produce two things.
 2.  A script that will copy the changes from the clone back into the
     master directory.
 
-**Some Notes**
+Some Notes
+----------
 
 Python has several modules that help with doing directory and file
 comparison.

@@ -40,7 +40,8 @@ developers don't understand the code and screw up the merge?"
 (Stupid.) "If the code is not coupled, understanding should be
 easy?" (Both Lazy and Stupid.)
 
-**Root Cause Analysis**
+Root Cause Analysis
+-------------------
 
 The complaint is about process failure. Tools do not cause (or
 even contribute) to process failure. There are two possible

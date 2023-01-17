@@ -26,7 +26,8 @@ Here's the two real issues:
 Many organizations do things so poorly that open source software is
 unusable.
 
-**Configuration Management**
+Configuration Management
+------------------------
 
 Many organizations have non-existent or very primitive CM. They may
 have some source code control and some change management. But the
@@ -53,7 +54,8 @@ A tech stack must be a hallowed thing. Someone must actively manage
 change to be sure they're complete and consistent across the
 enterprise.
 
-**Quality Assurance**
+Quality Assurance
+-----------------
 
 Many organizations have very weak QA. They have an organization,
 but it has no authority and developers are permitted to run
@@ -73,7 +75,8 @@ software. Why not test the downloaded software? Indeed, why not test
 commercial software for which you pay fees? Why does QA only seem to
 apply to in-house software?
 
-**Goals vs. Directions**
+Goals vs. Directions
+--------------------
 
 I think one other thing that's endlessly confusing is "Architecture
 is a Direction not a Goal." I get the feeling that many organizations

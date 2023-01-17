@@ -47,7 +47,8 @@ a new Sphinx project.  The project originally used
 every single docstring had to be rewritten to use RST markup.  The
 upside of this is that we corrected numerous errors.
 
-**There Was Pain**
+There Was Pain
+--------------
 
 This wasn't without some pain.
 

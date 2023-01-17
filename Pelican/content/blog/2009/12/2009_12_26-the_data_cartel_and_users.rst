@@ -15,7 +15,8 @@ The worst problems seem to arise when we get out of the DBA comfort
 zone and start to talk about how the data is actually going to be
 used by actual human beings.
 
-**The Users Won't Mind**
+The Users Won't Mind
+--------------------
 
 I had one customer where the DBA demanded we use some Oracle-supplied
 job -- running in crontab -- for the LDAP to database
@@ -55,7 +56,8 @@ agree to anything until we paid for a security audit that illustrated
 all the shabby security practices. The OWASP list wasn't good
 enough.]
 
-**The Users Shouldn't Learn**
+The Users Shouldn't Learn
+-------------------------
 
 Recent conversations occurred in a similarly vacuous environment.
 
@@ -81,7 +83,8 @@ temerity to trickle in through incremental evolution of the
 requirements. This incremental design became a "problem" that needed
 a a "solution".
 
-**Two Layers of Hated User Interaction**
+Two Layers of Hated User Interaction
+------------------------------------
 
 First, users are a problem because they're always touching the data.
 Some DBA's do not want to know why users are always touching the
@@ -95,7 +98,8 @@ bulkhead, collect all of the requirements and pass them through the
 bulkhead just once. No more. What the users are learning on their
 side is none of our concern as DBA.
 
-**What's Missing?**
+What's Missing?
+---------------
 
 What's missing from the above story? Use Cases.
 
@@ -117,7 +121,8 @@ all, the "actor" in a use case is a person and the database contains
 information on people. That's as far as the DBA was willing to go:
 repeat the data model elements that involved people.
 
-**If It Weren't For the Users**
+If It Weren't For the Users
+---------------------------
 
 The DBA could not name a user of the application, or provide a use
 case for the application. They actually refused to articulate one
@@ -133,7 +138,8 @@ To the DBA, this was an exercise in pure data: there was no purpose
 behind it. Seriously. Why else would they tell me that there were no
 use cases for the application.
 
-**Just Write Down What's Supposed to Happen**
+Just Write Down What's Supposed to Happen
+-----------------------------------------
 
 So I demanded that the DBA write down some sequence of interactions
 between actual real-world end-user and system that created something
@@ -154,7 +160,8 @@ associations.
 That didn't go well. The data cartel, it appears, doesn't like
 end-users.
 
-**The Final Response**
+The Final Response
+------------------
 
 Here's what the DBA said. "The ideal case is to find a person that is
 actually trying to do something and solve a real end user problem.

@@ -37,7 +37,8 @@ it takes about data modeling.  It seems to describe ways that relational
 database modelers can cling to relevance in spite of threats represented
 by "NoSQL" databases.
 
-**The Transit System Problem**
+The Transit System Problem
+--------------------------
 
 For a particularly gnarly problem, look at the `Google Transit Feed
 Specification <https://developers.google.com/transit/gtfs/reference>`__.
@@ -66,7 +67,8 @@ on a Stop Time.  We may be able to use the CouchDB map definitions to
 provide some of these alternative views of  a stop (i.e., by stop time,
 by route).
 
-**Some No SQL Lessons**
+Some No SQL Lessons
+-------------------
 
 What's really important here is that NoSQL schema design is not
 precisely the same as RDBMS schema design.  In the RDMS world, with a

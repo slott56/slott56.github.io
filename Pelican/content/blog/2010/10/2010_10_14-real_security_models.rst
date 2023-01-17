@@ -27,7 +27,8 @@ actually manageable.
 What's more interesting than quibbling over BVC, is determining the
 authorization rules.
 
-**Basics**
+Basics
+------
 
 Two of the pillars of security are Authentication (who are you?) and
 Authorization (what are you allowed to do?)
@@ -46,7 +47,8 @@ License an established product for identity management
 
 and use it for all authentication.
 
-**Authorization**
+Authorization
+-------------
 
 The Authorization problem is always more nuanced, and more
 interesting, than Authentication. Once we know who the user is, we
@@ -99,7 +101,8 @@ Our current structure is simple: all customers get all applications.
 We have to move away from that to mix-and-match applications on a
 per-customer basis. And Django supports this elegantly.
 
-**Security In Depth**
+Security In Depth
+-----------------
 
 This leads us to the "Defense in Depth" buzzword bingo. We have SSL.
 We have SSO. We have high-level "product" authorizations. We have

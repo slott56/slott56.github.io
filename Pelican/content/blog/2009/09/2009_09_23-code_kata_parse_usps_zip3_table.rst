@@ -7,7 +7,8 @@ Code Kata : Parse USPS ZIP3 table
 :category: Technologies
 :status: published
 
-**Situation**
+Situation
+---------
 
 The USPS ZIP codes have a multi-part structure. The first three
 digits are a prefix that defines a sectional center facility.
@@ -18,7 +19,8 @@ following URL has this table.
 
 http://pe.usps.gov/text/DMM300/L005.htm
 
-**Your Job**
+Your Job
+--------
 
 Your job is to write a library module that does two things:
 
@@ -27,7 +29,8 @@ Your job is to write a library module that does two things:
 2.  Support ZIP-code lookup (ZIP3, ZIP, ZIP+4) to return SCF and
     State information.
 
-**Some Notes**
+Some Notes
+----------
 
 Finding and parsing the table is often done in Python with
 components like `Beautiful

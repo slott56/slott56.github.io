@@ -15,7 +15,7 @@ to be rebuilt.
 
 ::
 
-    pelican --write-selected output/posts/my-post-title.html
+    pelican --write-selected output/posts/my-post-title.html,...
 
 TODO: Better integration with Pelican.
 """

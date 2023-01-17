@@ -35,7 +35,8 @@ works if "...the underlying data storage and compute engine is
 powerful enough to operate on a large dataset in a time-efficient
 manner."
 
-**Pandering? Really?**
+Pandering? Really?
+------------------
 
 Here's why it seems like the article is pandering. Because it worked.
 It totally appealed to the target audience. I saw this piece because
@@ -60,7 +61,8 @@ relational model perfectly, why would we have DBA's? Why would we
 have performance tuning? Why would we have DBA's adjusting
 normalization to correct application design problems?
 
-**Weaknesses**
+Weaknesses
+----------
 
 So the weaknesses of Hadoop are that it (a) demands resources and (b)
 requires specialized skills. Okay. But isn't that the exact same

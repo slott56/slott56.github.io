@@ -116,7 +116,8 @@ How about we avoid all the conceptual overhead of materialized
 views and aggregate aware reporting. Instead we can write simple
 Python procedures that do the processing we want.
 
-**Bottom Line**
+Bottom Line
+-----------
 
 Data Warehouse does not imply SQL.  Indeed, it doesn't even
 suggest SQL except for datamart processing of flexible ad-hoc

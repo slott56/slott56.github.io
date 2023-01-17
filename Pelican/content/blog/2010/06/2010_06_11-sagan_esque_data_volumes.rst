@@ -22,7 +22,8 @@ This is a really, really poor use of an RDBMS. This requires some
 kind of well-planned hierarchy of storage and analytic solutions.
 Load and Query can't work.
 
-**Goal**
+Goal
+----
 
 The question is "What's the Goal"? Some of the Stack Overflow
 questions lack essential use cases, making it impossible to determine
@@ -36,7 +37,8 @@ Analysis of a subset may involve ad-hoc SQL queries. But the whole
 data set isn't really useful -- as a whole. It's useful when sliced
 and diced.
 
-**Heresy**
+Heresy
+------
 
 At this point, many DBA's pronounce me Heretic and Apostate. Anyone
 who suggests that a SQL database is (a) slow, and (b) biased toward
@@ -56,7 +58,8 @@ application from the physical data model. The idea is that SQL offers
 an ad-hoc scale of flexibility in exchange for glacial processing
 speed.
 
-**Acquisition**
+Acquisition
+-----------
 
 The first step is to acquire the data in some storage that will
 handle 60 billion rows of data. Even if the rows are small, this is a
@@ -78,7 +81,8 @@ periodic close-reopen operations will probably be reliable enough.
 The dimension values can be built into a database. The facts,
 however, have to reside in flat files.
 
-**Analysis**
+Analysis
+--------
 
 In the unlikely case that someone thinks they want to analyze all 60
 billion rows, there are two things to be done. First, talk them out

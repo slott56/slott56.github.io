@@ -18,7 +18,8 @@ participate in capacity planning.
 Capacity planning, generally, means canvassing applications to
 track down disk storage requirements.
 
-**Back In The Day**
+Back In The Day
+---------------
 
 Back in the day, when we wrote SQL by hand, we were expected to
 carefully plan all our table and index use down to the kilobyte. I
@@ -30,7 +31,8 @@ longer have to spend a lot of time carefully modelling the
 byte-by-byte storage allocation. The price has fallen so fast that
 some people still spend way more time on this than it deserves.
 
-**Django ORM**
+Django ORM
+----------
 
 The Django ORM obscures the physical database design. This is a
 good thing.

@@ -19,7 +19,8 @@ weren't performing well, and perhaps weren't helping.
 My point is that these architectural mistakes are the result of
 Conway's Law. They aren't inherently flawed.
 
-**The Root Cause**
+The Root Cause
+--------------
 
 What's flawed is **not** the architecture. What's flawed is the
 organization that built the architecture.
@@ -38,7 +39,8 @@ teams, the areas of responsibility are broken.
 
     **Rule 1: A Broken Architecture Is A Broken Organization**
 
-**Complexity**
+Complexity
+----------
 
 One can try to make a distinction between *Essential Complexity* and
 *Accidental Complexity*. One can claim that essential complexity is
@@ -71,7 +73,8 @@ actuarial risk analysis, we don't really need an ontological model of
 
     **Corollary: The Organization Doesn't Fit the Problem**
 
-**Kinds of Broken**
+Kinds of Broken
+---------------
 
 Why would we declare an architecture broken? Generally, we've got a
 grotesque failure due to the very structure of the solution. These
@@ -101,7 +104,8 @@ In short, a broken architecture is not a simple technical problem
 and it doesn't have a simple technical solution. It's an
 organizational problem, and it has a multi-part solution.
 
-**Making Progress**
+Making Progress
+---------------
 
 It's important to acknowledge that Conway's Law, like Mutual
 Attraction and Thermodynamics is a feature of the universe. It
@@ -121,7 +125,8 @@ rehire then to create brand-new team. The broken architecture came
 from a broken organization. To fix the architecture, you need to
 fix the organization.
 
-**Example #1, Unmaintainable Stored Procedures**
+Example #1, Unmaintainable Stored Procedures
+--------------------------------------------
 
 Consider an application with stored procedures (SP) so badly
 broken as to be unmaintainable. Let's say it's many hundreds of
@@ -158,7 +163,8 @@ all database interface or SP's must maintain "low-level" rules
 or other blurry lines. Things are not handed to the DBA's --
 the team solves the problem.
 
-**Example #2, Too Many Tiers**
+Example #2, Too Many Tiers
+--------------------------
 
 Consider an architecture with too many tiers. The inter-tier
 communication is blamed as creating "accidental complexity".
@@ -187,7 +193,8 @@ the feature set -- all tiers -- all technologies -- and can
 make all the implementation choices required to bring that
 feature set to the users.
 
-**Example #3, Overuse of Ontology**
+Example #3, Overuse of Ontology
+-------------------------------
 
 Consider an inappropriate use of an Ontology where a Database
 would have been a better choice.
@@ -203,7 +210,8 @@ would have been a better choice.
 
 #.  The new team stands alone and builds the solution.
 
-**Excuses Excuses**
+Excuses Excuses
+---------------
 
 The number one cultural impediment is the "Skill Focus"
 excuse. These are just Conway's Law in action.
@@ -226,7 +234,8 @@ of "security".
 -   "We can't assign a DBA or SysAdmin or anyone to support
     new development..."
 
-**Conclusion**
+Conclusion
+----------
 
 Stop organizing teams by skills.
 

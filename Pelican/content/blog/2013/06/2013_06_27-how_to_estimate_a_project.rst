@@ -26,7 +26,8 @@ This is an understatement. The statement is generally well written,
 but the word "hard" is weak. It's not hard. It's essentially
 impossible.
 
-**I.  The Conundrum**
+I.  The Conundrum
+-----------------
 
 Let's say you decide that the budget for "everything" is two point
 five kajillion dollars. Clearly, you don't want to just fork that
@@ -70,7 +71,8 @@ return to the farcical nature of "done", below.
 Worse, there's no way to know the budget without knowing the people
 who will be doing the building.
 
-**II. The Productivity Issue**
+II. The Productivity Issue
+--------------------------
 
 Until there's a relatively stable team, it's essentially impossible to
 know how quickly programmers can build anything. And even then, there
@@ -138,7 +140,8 @@ spending money and we're supposed to compare plan and actual. This is
 all farcical in software world. Software development is like R&D: it's
 structured learning and encoding the learning into software.
 
-**III. The Done Issue**
+III. The Done Issue
+-------------------
 
 One of the Great Lies is that software has a defined "done" state.
 This only true for reductionist classroom exercises. Real software
@@ -166,7 +169,8 @@ The vision will not be stable.
 It won't even be finite.  A good business model grows and adapts and
 expands.
 
-**IV. Strategy 1: Estimate**
+IV. Strategy 1: Estimate
+------------------------
 
 What can you do?
 
@@ -215,7 +219,8 @@ meaningless.
     300% or, well anything. Oh. Right. Somethings **are** unknowable. Like
     the future. Ahem.]
 
-**V. Strategy 2: Agile**
+V. Strategy 2: Agile
+--------------------
 
 The very best you can do—indeed, the only rational thing you can do—is
 to locate talent who are willing to work for an indefinite period of

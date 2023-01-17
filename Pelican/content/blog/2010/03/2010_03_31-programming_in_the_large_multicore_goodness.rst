@@ -22,7 +22,8 @@ The best part about the shell's PITL language is that a simple shell
 pipeline will use every core in our processor, maximizing throughput
 and minimizing the amount of programming we have to do.
 
-**PITL Objects**
+PITL Objects
+------------
 
 This PITL language has a simple set of operators. If your programs
 are well-behaved, the language is, in a formal mathematical sense,
@@ -41,7 +42,8 @@ standard out. A program like cat.
 Note that any map-reduce step will be well-behaved. To seed the
 map-reduce pipeline we use cat as the "head-0f-the-pipeline".
 
-**PITL Operators**
+PITL Operators
+--------------
 
 We'll look at the composition operators using three short-hand
 commands: p1, p2 and p3. Each of these is "well-behaved": they read
@@ -90,7 +92,8 @@ and \``). Also the conditional and repetitive statements
 effectively group series of programs. We use syntax like ``"``( p1 & p2 ); p3`` to show the situation where p1 and p2 must both complete
 before p3 can begin processing.
 
-**Using All the Cores**
+Using All the Cores
+-------------------
 
 Most importantly, something like "( p1 ; p2 ) \| p3" directs the
 output of two programs into a third for further processing. And
@@ -103,7 +106,8 @@ stream of atomic writes carefully interleaved. They are non-atomic
 buffer copies that are impossible to disentangle. Sadly, this
 can't easily be implemented.
 
-**Other Features**
+Other Features
+--------------
 
 The shell offers a few other composition operations, but as we start
 using these, we find that the shell isn't a very effective
@@ -122,7 +126,8 @@ Four of these PITL operators (sequence, parallel, pipeline, grouping)
 give us a hint as to how we can proceed to design large-scale
 applications that will use every core we own.
 
-**Implementation Hints**
+Implementation Hints
+--------------------
 
 You can -- trivially -- use all your cores simply by using the shell
 appropriately. Use the shell's pipeline features **and nothing

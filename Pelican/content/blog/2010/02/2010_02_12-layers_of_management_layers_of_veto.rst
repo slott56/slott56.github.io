@@ -25,7 +25,8 @@ insubordinate. And the top manager has "outside pressure" to say
 "no". Approval is largely impossible to obtain except at the very
 top.
 
-**Variations on the Theme**
+Variations on the Theme
+-----------------------
 
 A "no" can come in a variety of forms.
 
@@ -44,7 +45,8 @@ For CMM level 3 or higher organizations, there's an approval
 *process*, that will net a big old "no" after a lot of work following
 the defined process.
 
-**What Gets Done?**
+What Gets Done?
+---------------
 
 Generally, ideas that come down from the top have a pre-approved
 "yes". After all, what comes from above was already in this year's
@@ -65,7 +67,8 @@ details in those project descriptions.
 Projects that bubble up from below, however, have to be be rejected.
 They weren't in the budget.
 
-**Fixing The Approval Process**
+Fixing The Approval Process
+---------------------------
 
 You pretty much can't fix the approval process. Taking things
 upstairs to your manager is -- generally -- insubordination. You

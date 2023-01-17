@@ -41,7 +41,8 @@ Let's look at these expectations in some detail. This is
 important because Agile PM is a wrenching change from waterfall
 PM.
 
-**Planning**
+Planning
+--------
 
 There are two levels of detail in planning. The top level is
 the overall backlog. This is based on the "complete
@@ -75,7 +76,8 @@ built and skills of the team. You don't know enough going in,
 so don't over-plan. After the first few sprints you'll learn a
 lot about the business problem, the technology and the team.
 
-**Estimating**
+Estimating
+----------
 
 Rule 1: don't. Rule 2: the estimate is merely the burn rate
 (cost per sprint) times the number of sprints. Each sprint
@@ -106,7 +108,8 @@ line under any sprint, call it "done" and call that the "total
 cost". Any sprint. Any. There are as many different total costs
 as there are sprints, and all of them are right.
 
-**Tracking**
+Tracking
+--------
 
 I don't know what this is. I assume it's "tracking progress of
 tasks against a plan". Since the tasks are not planned at a low
@@ -136,7 +139,8 @@ AFTER the sprint is over, and you've updated the backlog and
 fixed the priorities, you might want to consider design changes
 or technology changes.
 
-**Reporting**
+Reporting
+---------
 
 What? To Whom? Each sprint is a deliverable. The report is
 "Done".
@@ -145,19 +149,22 @@ The backlog is a shared document that the users "own" and you
 use to assure that the next sprint is the next most important
 thing to do.
 
-**Support both Agile and Waterfall projects**
+Support both Agile and Waterfall projects
+-----------------------------------------
 
 Not possible. Incompatible at a fundamental level. You can't do
 both with one tool because you don't use tools for Agile
 projects. You just use spreadsheets.
 
-**Releases**
+Releases
+--------
 
 Some sprints are release sprints. They're no different (from a
 management perspective) than development sprints. This is just
 CM.
 
-**Bug fixes**
+Bug fixes
+---------
 
 Probably just another type of backlog. Correct.
 

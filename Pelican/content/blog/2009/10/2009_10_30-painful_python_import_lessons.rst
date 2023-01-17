@@ -44,7 +44,8 @@ At first, just one app had this feature.
 Then, it grew. Now several apps need to use check_session and
 check_other_context.
 
-**Where to Put The Common Code?**
+Where to Put The Common Code?
+-----------------------------
 
 So, now we have the standard architectural problem of refactoring
 upwards. We need to move these functions somewhere accessible. It's
@@ -71,7 +72,8 @@ the dummy database engine, Yet, a basic from django.conf import
 settings; print settings.DATABASE_ENGINE shows that you should have
 your expected database.
 
-**Moral Of the Story**
+Moral Of the Story
+------------------
 
 Nothing with any Django imports can go into the package-level
 ``\``__init__.py`` files that may get brought in while importing settings.

@@ -20,7 +20,8 @@ Transmutation problem.
 3. "I can do that with delegation, I don't need subclasses." The
 Denial problem.
 
-**Identification**
+Identification
+------------------
 
 The Identification problem is the most common. There are two
 variants: People ask about class comparisons, and people who use some
@@ -51,7 +52,8 @@ Better. Use inheritance. Override one method, don't provide two.
 
     someObject.foo_method()
 
-**Transmutation**
+Transmutation
+--------------
 
 This is more subtle because there's no easy "wrong" implementation.
 Instead of bad code, you have goofy questions.
@@ -82,7 +84,8 @@ delegation and the **Strategy** pattern. If you think you want to
 use a class change, you really want to plug in a different
 strategy object.
 
-**Denial**
+Denial
+-------
 
 For example,
 http://stackoverflow.com/questions/1020453/whats-the-point-of-inheritance-in-python.

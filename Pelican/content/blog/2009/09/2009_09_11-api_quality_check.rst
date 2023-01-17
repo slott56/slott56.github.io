@@ -33,7 +33,8 @@ library. C# has the entire .Net framework. Python has a vast library.
 All of these are tremendous, well-designed, carefully crafted
 examples of API's.
 
-**API's Everywhere**
+API's Everywhere
+----------------
 
 As far as I can see, the world is fat with API examples. Everywhere
 you look, every vendor, every product, everything has an API.
@@ -51,7 +52,8 @@ were all Visual Basic or PL/SQL programmers and didn't see much
 open-source code. Or perhaps they had some really obscure language
 where no one posts any open source API's.
 
-**What To Do?**
+What To Do?
+-----------
 
 My direct advice was to read Tulach and create a big spreadsheet
 ranking their code against each principle that Tulach provides.

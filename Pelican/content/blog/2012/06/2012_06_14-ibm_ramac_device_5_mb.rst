@@ -11,7 +11,8 @@ Check out this picture.
 
 http://www.petapixel.com/2011/12/27/what-5mb-of-storage-looked-like-in-1956/
 
-**Random Reminiscing Follows**
+Random Reminiscing Follows
+--------------------------
 
 When I was in college (1974-1978) 64K of RAM was the size of a
 refrigerator.
@@ -29,7 +30,8 @@ up so much real-estate when compared with the Mac itself that was
 designed to take up an 8 x 11 space (not including keyboard or mouse).
 Now 5MB is round-off error.
 
-**What's Important?**
+What's Important?
+-----------------
 
 Has computing gotten that much better?
 

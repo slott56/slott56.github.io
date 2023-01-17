@@ -17,8 +17,8 @@ certification, requiring them to pass their exams again.
 Here's three strikes against two clods who wasted hours on -- perhaps
 -- the dumbest things possible.
 
-**Strike 1. Counting From Zero**
-
+Strike 1. Counting From Zero
+----------------------------
 
     I then ponited out that the Microsoft doco is weird because
     the highest
@@ -39,7 +39,8 @@ It works like this: :math:`n` values have numbers from 0 to :math:`n-1`. Didn't
 know that? Consider your certification revoked. Even hobbyists know
 this.
 
-**Strike 2. Wrong Tools and Wrong Approach**
+Strike 2. Wrong Tools and Wrong Approach
+----------------------------------------
 
 This is more subtle and involves two strikes. We'll look at just one
 of them.
@@ -70,7 +71,8 @@ the spreadsheet as if it was somehow important that they could
 enumerate values between 2**0 and 2**135. No summary or rule. Just a
 mountain of useless numbers.
 
-**Strike 3. Floating Point**
+Strike 3. Floating Point
+------------------------
 
 This is not news. Nor should it be. Indeed, this should be the first
 set of questions on the certification exam. If you can't figure out

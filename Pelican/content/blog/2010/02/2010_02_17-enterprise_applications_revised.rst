@@ -35,7 +35,8 @@ something you don't like. In reading the Stack Overflow
 questions, I've figured out what the political consideration
 behind Enterprise Scale might be.
 
-**Mission Critical**
+Mission Critical
+----------------
 
 In many cases, Enterprise-Scale is taken to mean that the
 software can be trusted to handle Mission-Critical or
@@ -58,7 +59,8 @@ that is wasn't "critical". It was central, conspicuous and
 important. Based on the evidence, we need a new word, other
 than "critical".
 
-**Working Definition of Enterprise Scale**
+Working Definition of Enterprise Scale
+--------------------------------------
 
 In talking with a sysadmin about installs, it occurred to me
 what the politically-motivated definition of Enterprise Scale

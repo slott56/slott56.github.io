@@ -25,7 +25,8 @@ Not a single word on **why** wildcards were even being used in the
 first place. Wildcards appear to solve a business problem; the
 business problem was never mentioned.
 
-**Use Case for Wildcards**
+Use Case for Wildcards
+----------------------
 
 After some back-and-forth, the use case emerged. We'll address it
 below. Essentially, the invoices have names (really) that have "rich
@@ -43,7 +44,8 @@ about it.
 
 We'll return to this use case below.
 
-**Basic Rules**
+Basic Rules
+-----------
 
 Here's are the two rules.
 
@@ -78,7 +80,8 @@ benchmark, we can't know. There's no trivial rule that says the
 database always does search faster. For real speed, we may have to
 resort to a hybrid solution.
 
-**Search Optimization**
+Search Optimization
+-------------------
 
 We might create a small RESTful server for our searchable text
 fields. This is a cache; the server should handle CRUD rules to
@@ -116,7 +119,8 @@ those phrases. This may benefit from wild-cards.
 Note that we're looking at the *business* issues. Not the technology
 issues.
 
-**Design Errors**
+Design Errors
+-------------
 
 The proper use for LIKE is only to optimize the human-friendly
 search. Nothing else. Which brings us to rule 2, **Outside Human-Friendly Search, Wild Cards are Useless**.
@@ -154,7 +158,8 @@ calculation when we accept the input value. We save the full field,
 plus we extract the various sub-fields based on whatever hellish,
 complex rules we're faced with.
 
-**Implementation Choices**
+Implementation Choices
+----------------------
 
 Whenever we have a single text field with "rich semantic content"
 (i.e., combines multiple disjoint attributes like customer, time
@@ -180,7 +185,8 @@ The "rich semantic content" field can be decomposed one of two ways.
 There isn't any magic. If wild-card searches are too slow, they have
 to be replaced.
 
-**Benefits?**
+Benefits?
+---------
 
 The benefit of decomposing (or denormalizing) a complex field is that
 we can eliminate LIKE processing and wild-cards. Instead of

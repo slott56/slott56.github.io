@@ -31,7 +31,8 @@ written with copy-and-paste programming and blocks of code are simply
 repeated.  It's also important to note that some of the code is no
 longer exercised in the first place.
 
-**Mythical Risk**
+Mythical Risk
+-------------
 
 The "risk" comes from the perceived opacity of  the tricky, nuanced
 legacy details.  It doesn't appear to be clear what they mean.  How
@@ -85,8 +86,8 @@ also be a whopping 20% of the lines of code.  They are the few big
 programs that really matter.
 
 
-**Risk Mitigation**
-
+Risk Mitigation
+---------------
 
 The risk mitigation strategy involves several parts.
 
@@ -160,8 +161,8 @@ The remaining risks are ordinary project risks, unrelated to COBOL or
 legacy data.
 
 
-**The Other Great Lie**
-
+The Other Great Lie
+-------------------
 
 Another popular fallacy is this:
 

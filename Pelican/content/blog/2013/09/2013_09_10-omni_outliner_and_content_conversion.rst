@@ -23,7 +23,8 @@ outline decorated with a column of budget numbers?
 We have two approaches, one is workable, but not great, the other has
 numerous advantages.
 
-**Answer 1: Workable**
+Answer 1: Workable
+------------------
 
 Sure, you say, that's easy. Export into a Plain Text with Tabs (or
 HTML or OPML) and then parse the resulting tab-delimited file.
@@ -80,7 +81,8 @@ columns, but that's unlikely.
 
 We have to do some cleanup
 
-**Answer 1A: Cleanup In Column 1**
+Answer 1A: Cleanup In Column 1
+------------------------------
 
 We want to transform indented data into proper first-normal form
 schema with a consistent number of fixed columns. Step 1 is to know
@@ -155,7 +157,8 @@ Now we can do some real work with properly normalized data. With
 overheads, we have an 80-line module that lets us process the outline
 extract in a simple, civilized CSV-style loop.
 
-**The Ick Factor**
+The Ick Factor
+--------------
 
 What's unpleasant about this is that it requires a fair amount of
 configuration.

@@ -24,7 +24,8 @@ Lock <http://www.apple.com/downloads/macosx/networking_security/filelock.html>`_
 to assure that the file -- no matter where it goes -- is encrypted.
 This will be a problem.
 
-**Non-Standards**
+Non-Standards
+-------------
 
 A search for Windows File Encryption shows that there are a lot of
 choices. Hopefully, they will all find a way to adhere to some
@@ -56,7 +57,8 @@ Or, the company making "Crypto-Uniqueo" ceases support. Now how do
 you get into your files? Or, the company goes out of business? What
 now?
 
-**Unintended Consequences**
+Unintended Consequences
+-----------------------
 
 Without an applicable encryption standard -- and some boundaries on
 what's really required -- I think these legal initiatives will do

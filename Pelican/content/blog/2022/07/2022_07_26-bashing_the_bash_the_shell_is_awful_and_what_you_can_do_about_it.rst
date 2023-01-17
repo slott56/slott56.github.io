@@ -15,8 +15,9 @@ Folks were polite and didn't have too many questions. I guess they
 fundamentally agreed: the shell is awful, we can use it for a few
 things.
 
-**Safe Shell Scripts Stay Simple: Set the environment, Start the
-application.**
+Safe Shell Scripts Stay Simple: Set the environment, Start the
+application.
+---------------------------------------------------------------------------
 
 The Seven S's of shell scripting.
 

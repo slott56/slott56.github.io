@@ -43,7 +43,8 @@ install`.
 At some point, I would like to create an SConstruct file that runs
 our integration test suite. But it's trapped at a low priority.
 
-**SCons and Sphinx**
+SCons and Sphinx
+----------------
 
 I did find an SConscript example that automated a document build
 using Sphinx. This
@@ -56,7 +57,8 @@ value, but it was a lot of work.
 I'm hoping that `No Starch Press <http://nostarch.com/>`__ finds
 someone to write a tidy introduction to SCons.
 
-**SCons and RST and LaTeX (oh, my!)**
+SCons and RST and LaTeX (oh, my!)
+---------------------------------
 
 Sphinx has made me a total fanboi of `ReStructured
 Text <http://docutils.sourceforge.net/rst.html>`__. While I know
@@ -95,7 +97,8 @@ SCons has a great deal of the TeX/DVI/PDF tool chain already
 installed. However, it doesn't have either the rst2latex script or
 the XeTeX tools.
 
-**An SConscript**
+An SConscript
+-------------
 
 While my first attempts to understand SCons didn't work out well,
 looking at RST and XeLaTex was a much better use case.

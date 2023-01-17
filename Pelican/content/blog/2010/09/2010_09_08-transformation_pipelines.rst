@@ -25,7 +25,8 @@ GPSNavX has a number of marvelous export capabilities -- as GPX, KML
 or CSV data. These contain a list of waypoints and little more. We
 need to enrich this data to produce an overall schedule.
 
-**Enriching The Data**
+Enriching The Data
+------------------
 
 Fundamentally, we have a number of enrichment stages. The functional
 programming features of Python make this complex sequence of
@@ -79,7 +80,8 @@ Navigator, `chapter
 24 <http://www.irbs.com/bowditch/pdf/chapt24.pdf>`__, provides
 alternate methods using table lookup and interpolation.
 
-**Seeding the Pipeline**
+Seeding the Pipeline
+--------------------
 
 Here, for example, is the first step of the pipeline. Creating a
 RoutePoint from the four values found in the CSV or GPX route file.
@@ -98,7 +100,8 @@ used by an iterator. The source iterator can be a csv.reader. Or it
 can be the result of XML parsing -- just so long as it matches the
 interface specification of being an iterator over a 4-tuple.
 
-**Rhumb-Line Calculation**
+Rhumb-Line Calculation
+----------------------
 
 We'll enrich the data. But we won't update an object. We'll stick
 closely to the philosophy of immutable objects (i.e., named tuples)
@@ -122,7 +125,8 @@ that we can transform a simple list of points into a list of pairs of
 points: the from and to for each leg of the trip. Between the two
 points, we compute the simple rhumb line, the distance and bearing.
 
-**True to Magnetic Conversion**
+True to Magnetic Conversion
+---------------------------
 
 We need to enrich our waypoint rhumb-line information with magnetic
 compass information. The true course needs a declination or variance
@@ -156,7 +160,8 @@ courses. Further, the chartplotter will be computing the final CTS
 
 So this stage in the pipeline might be optional.
 
-**Distance Run and Elapsed Time**
+Distance Run and Elapsed Time
+-----------------------------
 
 The final distance run and elapsed time is pretty simple. We're
 creating a new tuple from existing tuples.

@@ -32,7 +32,8 @@ Python markup (module and library tags are missing, for example) and
 the syntax-oriented statement, class and function markup is all over
 the map in DocBook.
 
-**Objectives**
+Objectives
+----------
 
 My goal is to have the books in four formats: XML, single HTML file,
 chunked HTML and PDF. Of these, the single HTML is the least
@@ -50,7 +51,8 @@ FireFox can handle, so I haven't really customized the CSS for
 printing. However, the FireFox PDF has properly embedded fonts and
 cross-reference links.
 
-**Choices**
+Choices
+-------
 
 Apple's `Pages <http://www.apple.com/iwork/pages/>`__ does a lot.
 It's a very nice product. But I'm not sure that the PDF and Chunked
@@ -82,7 +84,8 @@ from DocBook XML LaTeX. The
 `dblatex <http://dblatex.sourceforge.net/>`__ package may do this
 nicely.
 
-**Tradeoffs**
+Tradeoffs
+---------
 
 If I switch to Sphinx, editing is much easier. The source is plain
 text.
@@ -99,7 +102,8 @@ may be ways around this; perhaps by using an alternate \`..
 toctree::\` directive. But this is also a low-priority requirement,
 so this may have to be dropped in favor of a better-looking PDF page.
 
-**LaTeX to PDF**
+LaTeX to PDF
+------------
 
 A Google search for "mac os x latex to pdf" turns up some interesting
 results.
@@ -122,7 +126,8 @@ which may also convert my Sphinx LaTeX to PDF.
 These, however, seem to be largely WYSIWYG editing. While editing
 LaTeX isn't too bad, I want to work from a single RST source.
 
-**Python Solutions**
+Python Solutions
+----------------
 
 The "python latex to pdf" Google search turns up the following
 projects for doing LaTeX processing in Python. These look very nice.
@@ -132,7 +137,8 @@ In particular, they get away from manual editing of LaTeX.
 
 - `pdfTeX <http://www.tug.org/applications/pdftex/>`__
 
-**Better Still**
+Better Still
+~~~~~~~~~~~~
 
 Finally, I located the following:
 http://jimmyg.org/blog/2009/sphinx-pdf-generation-with-latex.html.
@@ -145,14 +151,16 @@ Sphinx generates a makefile to create PDF from the LaTeX. Hopefully,
 this is not highly Linux-specific and will use the TeXlive
 distribution on Mac OS X.
 
-**Bonus Feature**
+Bonus Feature
+~~~~~~~~~~~~~
 
 Switching to LaTeX may also give me a better way to handle the
 formulas in the exercise sections. Currently, I have to write them
 and save the images. I don't know how many different equation editors
 I've used.
 
-**Alternative RST to PDF**
+Alternative RST to PDF
+~~~~~~~~~~~~~~~~~~~~~~~
 
 There's an `rst2pdf <http://code.google.com/p/rst2pdf/>`__ tool that
 may make it possible to go from Sphinx RST directly to PDF.

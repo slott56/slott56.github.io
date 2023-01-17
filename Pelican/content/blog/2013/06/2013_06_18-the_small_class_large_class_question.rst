@@ -51,7 +51,8 @@ extremely narrow focus. When this is done well, new features are added
 via adding subclasses and (possibly) changing an initialization to
 switch which **Factory** subclass is used.
 
-**But Why?**
+But Why?
+--------
 
 Why do people reject "lots of small classes"?
 
@@ -95,7 +96,8 @@ packages (or Python packages and modules) provide distinct namespaces
 was not something that this manager understood. The idea that a class
 defines a scope was not really making much sense to them.
 
-**Also Suspicious**
+Also Suspicious
+---------------
 
 Another suspicious design feature are "utility" packages. It's rare
 (not impossible, but rare) for a class to truly be interpackagial in
@@ -115,7 +117,8 @@ These things do not belong together in a sprawling unfocused package.
 Nor does disparate functionality belong in a sprawling, unfocused
 class.
 
-**Education**
+Education
+---------
 
 The answer is a lot of eduction. It requires time and patience.
 

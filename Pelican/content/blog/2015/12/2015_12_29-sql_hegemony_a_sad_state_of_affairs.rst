@@ -217,7 +217,8 @@ Turing-complete programming language.
 
 What's important is this:
 
-**We have to embed SQL in another language.**
+We have to embed SQL in another language.
+-----------------------------------------
 
 You can't actually DO anything in SQL by itself. You need another
 language.

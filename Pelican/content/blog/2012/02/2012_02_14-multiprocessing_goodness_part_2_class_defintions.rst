@@ -33,7 +33,8 @@ for more information.
 
 We have three use cases:  Producer, Consumer and Consumer-Producer.
 
-**Producer**
+Producer
+--------
 
 A Producer gets data from somewhere and populates a queue with it.
 This is the source that feeds data into the pipeline.
@@ -69,7 +70,8 @@ generator.   Every value yielded is put into the "output_queue".  When
 the source data runs out, enough sentinel tokens are put into the
 queue to satisfy all consumers.
 
-**Consumer**
+Consumer
+--------
 
 A Consumer gets data from a queue and does some final processing.
 Perhaps it loads a database, or writes a file.  It is the sink that
@@ -106,7 +108,8 @@ with any iterable.  Every value from the queue will be provided to the
 target function for processing.  When enough sentinel tokens have been
 consumed from producers, it terminates processing.
 
-**Consumer-Producer**
+Consumer-Producer
+-----------------
 
 The middle of a processing pipeline is consumer-producer processes
 which consume from one queue and the produce to another queue.
@@ -153,7 +156,8 @@ value yielded by the generator is sent to the output queue.  The input
 side counts sentinels to know when to stop.  The output side produces
 enough sentinels to alert downstream processes.
 
-**Target Functions**
+Target Functions
+----------------
 
 A producer function must be a generator function of this form
 

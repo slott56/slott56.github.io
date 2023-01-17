@@ -23,7 +23,8 @@ that it's something central like using
 jobs. Clearly, we don't want to just hack celery features into all
 three families of applications. Do we?
 
-**Choices**
+Choices
+-------
 
 It appears that we have three choices.
 
@@ -39,7 +40,8 @@ It appears that we have three choices.
     some additional decorators added to the various applications to
     make them use the new functionality in a consistent way.
 
-**Lessons Learned**
+Lessons Learned
+---------------
 
 Adding a new application to be an overall wrapper turned out to be a
 bad idea. After implementing it, it was difficult to extend. We had
@@ -56,7 +58,8 @@ two dimensions of extension.
     and the underlying applications. The wrapper merely serves to
     dilute the responsibilities.
 
-**Libraries/Aspects**
+Libraries/Aspects
+-----------------
 
 It appears that new common features are almost always new aspects of
 existing applications.

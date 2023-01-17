@@ -23,7 +23,8 @@ With some more finesse, one can handle COMP-3 fields. Right?
 
 Maybe not.
 
-**Problems**
+Problems
+--------
 
 There are three serious problems.
 
@@ -37,7 +38,8 @@ There are three serious problems.
 
 Okay, what's the solution?
 
-**COBOL DDE Parsing**
+COBOL DDE Parsing
+-----------------
 
 What I did was write a simple parser that read the COBOL
 "copybook" -- the COBOL source that defined the file layout.
@@ -53,7 +55,8 @@ questions.
 
 Recently, however, I got a patch kit because of a serious bug.
 
-**Unit Tests**
+Unit Tests
+----------
 
 The code was written in Python 2.2 style -- very primitive. I
 cleaned it up, added unit tests, and -- most importantly --

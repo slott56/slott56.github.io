@@ -44,7 +44,8 @@ checking.  It's not clear if proper polymorphism is even possible.
 But some kind of filter that picked elements by type might be nicer
 than a lot of isinstance checks.
 
-**Annotation Extraction**
+Annotation Extraction
+---------------------
 
 While shabby, the good news is that PDFMiner seems to reliably
 extract the annotations on a PDF form.

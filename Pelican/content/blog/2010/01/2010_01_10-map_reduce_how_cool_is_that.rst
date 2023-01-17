@@ -16,7 +16,8 @@ however, is chock-full of MapReduce goodness.
 After reading some of the articles, I decided to look a little more
 closely at that approach to handling large datasets.
 
-**Python Implementation**
+Python Implementation
+---------------------
 
 Map-Reduce is a pleasant functional approach to handling several
 closely-related problems.
@@ -30,7 +31,8 @@ The good part is that it works with no magic. The best part is that
 you can build map-reduce processors very easily with readily
 available tools.
 
-**Map-Reduce on the Cheap**
+Map-Reduce on the Cheap
+-----------------------
 
 The basics of map reduce can be done several ways in Python. We could
 use the built-in

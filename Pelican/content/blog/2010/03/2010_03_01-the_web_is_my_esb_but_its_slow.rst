@@ -25,7 +25,8 @@ imaginary level of performance.
 It appears that there are two assumptions people make. Here's what
 happens.
 
-**Shoddy Design**
+Shoddy Design
+-------------
 
 They design a really complex web transaction and then complain.
 Attributes of these complex web transactions:
@@ -46,7 +47,8 @@ So, the assumptions appear to be that the actual web is as
 fast as your integration test mock web. And the actual web
 is as reliable as your mock web.
 
-**Alternatives**
+Alternatives
+------------
 
 In the case that the transaction is an "order from stock"
 (it involves competition for physical goods) then the user
@@ -72,7 +74,8 @@ beach-ball spin while your transaction grinds away.
     providing some kind standard information aggregates, we
     should gather it in advance.
 
-**Work Queues**
+Work Queues
+-----------
 
 The work queue is no different from an eBay auction. You
 place an order or request and monitor the status.
@@ -93,7 +96,8 @@ The background process dequeues the request, gathers the
 data. It handles slow, timeout, crashes, etc. When it's
 done, the status is updated. Maybe an email is sent.
 
-**Pre-Cached Data**
+Pre-Cached Data
+---------------
 
 Many applications aggregate data. Except in the rare case
 that the data involves competition over physical goods
@@ -124,7 +128,8 @@ end. The Twitter servers have latency and unreliability.
 Your web server has latency and unreliability. Your
 user's browser has latency and unreliability.
 
-**High-Value Data**
+High-Value Data
+---------------
 
 In some applications, the data is very high value.
 Electronic Health Records, for example. Econometric Data
@@ -149,7 +154,8 @@ sequence of REST (or SOAP) requests. We have to break the
 processing down so that each source is handled separately
 and can be retried until it works.
 
-**Background Processing Tier**
+Background Processing Tier
+--------------------------
 
 This says that a standard web architecture should have
 the following tiers.
@@ -176,7 +182,8 @@ handles the long-running background processing as a
 separate thread. Sadly threads compete for I/O
 resources, so this is often ineffective.
 
-**WSGI-Based ESB**
+WSGI-Based ESB
+--------------
 
 Writing a REST+WSGI ESB (in Python) is relatively
 straight-forward.

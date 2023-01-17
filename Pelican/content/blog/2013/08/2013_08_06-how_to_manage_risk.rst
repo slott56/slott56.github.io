@@ -12,8 +12,8 @@ Also see "`On Risk and Estimating and Agile
 Methods <{filename}/blog/2013/06/2013_06_27-on_risk_and_estimating_and_agile_methods.rst>`__".
 This post is yet another angle on a common theme.
 
-**Orders of Ignorance and Risk Management.**
-
+Orders of Ignorance and Risk Management.
+----------------------------------------
 
 Software risk management has two sides.  First, there's the classical
 meaning of risk, we'll call that "casino risk" because it's really
@@ -37,9 +37,8 @@ are certainties.
 
 
 
-**0 Order Ignorance: Things We Know.**
-
-
+0 Order Ignorance: Things We Know.
+----------------------------------
 
 There are two sides to the things we think we know about a project.
 There are the things we know which are true, and things which are
@@ -78,9 +77,8 @@ to be false.
 
 
 
-**1st Order Ignorance: Things We Don't Know.**
-
-
+1st Order Ignorance: Things We Don't Know.
+------------------------------------------
 
 There are two ways to deal with things we don't know.  Make a guess
 and document this, or actually ask a question.
@@ -151,9 +149,8 @@ turn out to be false.
 
 
 
-**2nd Order Ignorance: Things We Didn't Know to Ask.**
-
-
+2nd Order Ignorance: Things We Didn't Know to Ask.
+--------------------------------------------------
 
 If we didn't know to ask, what's that?  Is that a risk?  What are the
 odds we forgot to ask something?
@@ -208,9 +205,8 @@ risk is lying about it.
 
 
 
-**3rd Order Ignorance: No Process for Managing Ignorance.**
-
-
+3rd Order Ignorance: No Process for Managing Ignorance.
+-------------------------------------------------------
 
 When we have second-order ignorance (we didn't know to ask) there are
 two responses: an organized change-management process, or a leap down
@@ -251,9 +247,8 @@ delivering software that works on time.
 
 
 
-**Bottom Line.**
-
-
+Bottom Line.
+------------
 
 Here's the summary of ignorance and mitigation.
 

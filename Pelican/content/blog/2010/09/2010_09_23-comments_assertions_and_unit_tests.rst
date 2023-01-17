@@ -65,7 +65,8 @@ This leaves me with two use cases for Python code commentary
 The other situations are better handled through docstrings or
 named tuples.
 
-**Assertions**
+Assertions
+----------
 
 Comments are interesting and useful, but they aren't real quality
 assurance.
@@ -85,7 +86,8 @@ cases which (a) occur rarely and (b) are difficult to design and
 Since the obscure, oddball cases are rare, cover these with the
 assert statement in addition to a comment.
 
-**That's Fine, But My Colleagues are Imbeciles**
+That's Fine, But My Colleagues are Imbeciles
+--------------------------------------------
 
 There are numerous questions on Stack Overflow that amount to
 "comments don't work". Look at at the hundreds of question that
@@ -112,7 +114,8 @@ For languages like C++ and Java, where the source can be separated
 and kept secret, comments don't work. In this case, you have to
 resort to something even stronger.
 
-**Unit Tests**
+Unit Tests
+----------
 
 Unit tests are perhaps the best form of documentation. If someone
 refuses to read the comments, abuses a variable that's supposed to be
@@ -123,7 +126,8 @@ developers so they can see how the API is supposed to work. A unit
 test is a living, breathing document that describes how a class,
 method or function behaves.
 
-**Explanatory Power**
+Explanatory Power
+-----------------
 
 Docstrings are essential. Tools can process these.
 

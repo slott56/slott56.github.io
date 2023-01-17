@@ -16,8 +16,8 @@ Changing tack requires sometimes pervasive rework to the application.
 How can we reduce the risks and improve the value created?
 
 
-**A Recent Example**
-
+A Recent Example
+----------------
 
 When dealing with bulk econometric data (Bloomberg, D&B, Moody's,
 etc.) you get BIG files with lots of fields. Depending on what
@@ -42,8 +42,8 @@ gracefully.
 What's wrong with that decision? Nothing.
 
 
-**Variant Column Names**
-
+Variant Column Names
+--------------------
 
 The question arises when you've purchased several files of
 econometric data and the column names are slightly different. This
@@ -71,8 +71,8 @@ The extra punctuation is fairly hideous.
 More importantly, however, is the nature of the metadata.
 
 
-**Consequence One -- Dynamic Metadata**
-
+Consequence One -- Dynamic Metadata
+-----------------------------------
 
 Dynamic metadata, in this case, means that any indexing of the
 data is done based on character string column names.
@@ -91,8 +91,8 @@ has a fixed definition.
     some_index[row.column].append( row )
 
 
-**Consequence Two -- Murky ORM**
-
+Consequence Two -- Murky ORM
+----------------------------
 
 Once we have dynamic metadata, we're largely frozen out of
 ordinary SQL database implementations. We don't know the column
@@ -120,8 +120,8 @@ application to *become* a kind of ORM because of the dynamic SQL
 and dynamic column names.
 
 
-**Cleanup**
-
+Cleanup
+-------
 
 The cleanup road is clear.
 

@@ -11,7 +11,8 @@ Looked interesting enough for someone to email it to me. Still can't
 figure out why they sent it. Posting this feels like advertising, so
 perhaps I should charge them a promotional fee.
 
-**Web Services - Mobile Developer**
+Web Services - Mobile Developer
+-------------------------------
 
     "A minimum of 2 years of Web Service development, preferably using an
     established Python-based framework (Django or Pylons).

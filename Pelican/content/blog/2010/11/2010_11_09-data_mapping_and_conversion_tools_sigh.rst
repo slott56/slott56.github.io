@@ -34,7 +34,8 @@ Here's a piece on `Open Source
 BI <http://www.information-management.com/issues/20060601/1088417-1.html>`__,
 just to drive the point home.
 
-**Business Rules**
+Business Rules
+--------------
 
 The ETL tools must have rules. Either simple field alignment or more
 complex transformations. The rules can either be interpreted
@@ -59,7 +60,8 @@ tool-generated code was inefficient in a way that's so grotesque that
 it couldn't be fixed by an optimizing compiler. It happens that we
 can have rules that run afoul of the boilerplate loops.
 
-**Old-School Architecture**
+Old-School Architecture
+-----------------------
 
 First, we need to focus on the "TL" part of ETL. Our applications
 receive files from our customers. We don't do the extract -- they do.
@@ -84,7 +86,8 @@ Folks working on YAETLT have to focus on just the "T" step. Indeed,
 they should be writing Yet Another Transformation Tool (YATT) instead
 of YAETLT.
 
-**Enter the Python**
+Enter the Python
+----------------
 
 If all we're doing is moving data around, what's involved?
 
@@ -131,7 +134,8 @@ saying that we're processing the entire input file. Unless, of
 course, we're merging several files. Then, perhaps, it's not a simple
 loop that can be somehow implied.
 
-**It's Just Code**
+It's Just Code
+--------------
 
 The point of Python-based ETL is that the problem "solved" by YATT
 isn't that interesting. Python is an excellent transformation engine
@@ -156,7 +160,8 @@ automate. Indeed, that's about all we can automate. Everything else
 requires complex coding that can't be built as "drag-and-drop"
 functionality.
 
-**Transformations**
+Transformations
+---------------
 
 There are several standard transformations.
 
@@ -195,7 +200,8 @@ Of these, only the first three are candidates for drag-and-drop.
 And for mapping and filtering, we either need to write code or
 have a huge library of pre-built mapping and filtering functions.
 
-**Problems and Solutions**
+Problems and Solutions
+----------------------
 
 The YATT problem has two parts. Creating the rules and executing the
 rules.

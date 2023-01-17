@@ -24,7 +24,8 @@ I'm going to disagree with several particulars on the mind map. I'll
 present an alternative, with a point-by-point commentary on the mind
 map. (And I'll eschew the graphics, I don't find them helpful.)
 
-**Foundation**
+Foundation
+----------
 
 The language itself is (duh) the foundation. I find it important to
 emphasize this because the Python universe is replete with a
@@ -49,7 +50,8 @@ That's not the starting point for learning how to solve problems with
 Python. That's merely one waypoint along the course. And it's not the
 most important waypoint.
 
-**Attractive Nuisance**
+Attractive Nuisance
+-------------------
 
 We have to set the external libraries aside as an "attractive
 nuisance." They're a distraction, in fact. Let's focus on the stuff
@@ -93,7 +95,8 @@ example, start programming by covering Boolean Algebra and Set Theory
 first. But it would be a long dull slog before we got to anything
 that appeared "useful."
 
-**Data Is Central**
+Data Is Central
+---------------
 
 I'm starting to see that the data structures are more helpful than
 imperative statements. This leads to a different approach to studying
@@ -174,7 +177,8 @@ to simplicity and clarity.
     of Java with one class per file.
 
 
-**Class Definitions**
+Class Definitions
+-----------------
 
 The essential goal behind the first 14 topics is to get to the
 point where all the language features can be used to create
@@ -245,7 +249,8 @@ proper extension of a Java class than Python's casual
 "nudge-nudge-wink-wink-private".
 
 
-**The Standard Library**
+The Standard Library
+--------------------
 
 After looking at class definitions, it's important to look at the
 default library, subsection by subsection. There is a **lot** to
@@ -261,8 +266,8 @@ essential before tackling "real" projects. This is so important,
 we'll use this set of topics as the basis for our point-by-point
 commentary on the mind-map linked above.
 
-**External Components and Downloads**
-
+External Components and Downloads
+---------------------------------
 
 One of the reasons why Python is a well-designed language is the
 way the principle of orthogonality is applied.
@@ -392,7 +397,8 @@ for external packages. But it's misleading to provide a huge
 list of external packages when the default suite of packages
 will solve a large number of problems gracefully.
 
-**Which Python Version?**
+Which Python Version?
+---------------------
 
 Generally, everything should be done in Python3.2.
 In some cases a crucial package hasn't been upgraded to

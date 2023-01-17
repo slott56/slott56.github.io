@@ -26,7 +26,8 @@ some kind of initiating incident that clarifies the overall
 conflict and sets up the character's goals. We can call this the
 narrative framework. Or a story design pattern.
 
-**Project Narrative**
+Project Narrative
+-----------------
 
 A "project" -- in principle -- has a narrative arc, much like a
 movie. Walker Royce (`Project Management: A Unified
@@ -46,7 +47,8 @@ In some cases, folks will try to impose this four-act structure on
 an otherwise Agile method. It's often a serious mistake to attempt
 to impose this convention of fiction on reality.
 
-**Things That Don't Exist**
+Things That Don't Exist
+-----------------------
 
 One of the most important parts of the narrative arc is
 "inception". Every story has a "beginning".
@@ -78,7 +80,8 @@ the rest of the work. The "rest of the work" -- the real project
 falsification. It has to ignore (or at best summarize) the stuff
 that happened prior to inception.
 
-**The Price of Ignorance**
+The Price of Ignorance
+----------------------
 
 The Narrative Arc of a project requires us to collect things into
 an official Inception or story setup. It absolutely requires that
@@ -113,7 +116,8 @@ says.
 requirements and the kick-off meeting? You were there. We walked
 through the story and the scenarios. There can't be one-click."
 
-**Communicate More? Hardly**
+Communicate More? Hardly
+------------------------
 
 What can be done to "prevent" this? Essentially, nothing.
 
@@ -137,7 +141,8 @@ project. All of that back story really is part of the project,
 irrespective of the requirements of the project's standard
 narrative structure.
 
-**Bottom Line**
+Bottom Line
+-----------
 
 Poetics don't apply to large, strategic projects. A project is a
 subtle and complex thing. There's no tidy narrative arc. Backstory

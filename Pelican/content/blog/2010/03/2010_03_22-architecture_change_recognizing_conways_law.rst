@@ -23,7 +23,8 @@ will run afoul of Conway's Law. In addition to having the guts to
 acknowledge that something is broken, figuring a way to work with
 Conway's Law is essential to success.
 
-**Broken 3-Tier Architecture**
+Broken 3-Tier Architecture
+--------------------------
 
 The biggest reason for broken architectures is dumb over-engineering.
 And most of the dumbosity has Conway's Law as its root cause. Yes,
@@ -69,7 +70,8 @@ to my theory. Here's my question? What's the alternative to the
 3-tier architecture? Are they claiming that the three tiers are
 *logically* necessary?
 
-**Necessary Decomposition**
+Necessary Decomposition
+-----------------------
 
 If three tiers were logically necessary, we wouldn't discuss
 N-tier architectures.
@@ -101,7 +103,8 @@ were technical, we'd have technical spikes and we'd discard broken
 ideas. Instead we pursue broken ideas in that weird deadline
 driven project death-march.
 
-**Apostasy**
+Apostasy
+--------
 
 One consequence of Conway's Law is Stored Procedures. That's the
 tier assigned to the DBA's. The idea that stored procedures might
@@ -131,7 +134,8 @@ Java were unthinkable, heretical. As a former DBA, my suggestion
 to give up on stored procedures makes me apostate. Stored
 procedures can be driven by necessity or Conway's Law.
 
-**Conway's Law**
+Conway's Law
+------------
 
 From http://www.code-muse.com/blog/?p=7
 
@@ -148,7 +152,8 @@ Conway’s own website (which also has the original paper in full):
 
 http://en.wikipedia.org/wiki/Conway%27s_Law
 
-**More Broken Architectures**
+More Broken Architectures
+-------------------------
 
 Another example.
 
@@ -181,7 +186,8 @@ initial ontology-based application is entirely Conway's Law in
 action. Trying to create the necessary architectural features without
 creating a proper organization around the solution ran aground.
 
-**Calling It Quits**
+Calling It Quits
+----------------
 
 A really hard thing to do is call it quits when something isn't
 working. A fundamental law of human behavior says that we hold onto

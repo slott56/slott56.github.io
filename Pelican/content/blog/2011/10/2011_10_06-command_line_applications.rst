@@ -18,7 +18,8 @@ applications are essential.
 
 I've seen command-line applications done very badly.
 
-**Overusing Main**
+Overusing Main
+--------------
 
 When writing OO programs, it's absolutely essential that the OS
 interface (public static void main in Java or the if \__name_\_ ==

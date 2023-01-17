@@ -39,7 +39,8 @@ have to create the source yourself. That *is* the job. Sorry for
 making you work, but you have to *actually* do the work. There's no
 royal road to programming.
 
-**The "Other" Bucket**
+The "Other" Bucket
+------------------
 
 I get some emails that I file under "other" because they're so funny.
 They have the following boilerplate.
@@ -60,7 +61,8 @@ question instead of a complaint.
 
 Since they correctly understood it, what's misleading?
 
-**User Interface Reviews**
+User Interface Reviews
+----------------------
 
 In software development, we used to go through the "misleading"
 crap-ola in user interface reviews. In non-Agile ("waterfall")
@@ -102,7 +104,8 @@ of negativity. The right thing to do is put a UI in front of more
 than one user and bypass the negativity with a consensus that the UI
 actually is usable and isn't really misleading.
 
-**Might Be Misleading**
+Might Be Misleading
+-------------------
 
 The "Might be Misleading" comments are often code-speak for "I don't
 like it because..." And the reason why is often "because I had to
@@ -127,7 +130,8 @@ figure out if it's the problem or the UI that folks are complaining
 about. In many cases, parts of the problem are actually hard and no
 amount of UI fixup can ever make the problem easier.
 
-**Not Completely Accurate**
+Not Completely Accurate
+-----------------------
 
 One of the most common UI label complaints is that the label isn't
 "completely" accurate. They seem to object to fact that a UI label
@@ -149,7 +153,8 @@ They can't be "completely" accurate unless the label recapitulates
 the entire problem domain description and all source code leading to
 the value.
 
-**Apologies**
+Apologies
+---------
 
 In too many cases of "Might Be Misleading," people are really
 complaining that they don't like the UI label (or the code example)

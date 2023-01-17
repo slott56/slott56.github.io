@@ -33,7 +33,8 @@ Then I ran across some problem domains for which pyLit didn't work out
 well. It's not that I've abandoned pyLit, but I believe I'll focus
 more on pyWeb.
 
-**The Awkward Problem Domains**
+The Awkward Problem Domains
+---------------------------
 
 Here are the two awkward problem domains.
 

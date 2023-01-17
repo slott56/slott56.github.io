@@ -28,7 +28,8 @@ best to interface with existing applications and frameworks.
 
 They didn't want a "project".
 
-**Root Cause**
+Root Cause
+----------
 
 Why does IT anger the users with too much process?
 
@@ -53,7 +54,8 @@ down.
 All processes aren't bad. Processes to create software are
 demonstrably unhelpful.
 
-**Suggestion One: Lighten UP**
+Suggestion One: Lighten UP
+--------------------------
 
 "The first step is to bring business developers out of the shadows
 and into the limelight."
@@ -74,7 +76,8 @@ that's how they work anyway. IT needs to help them get started and
 help them release. The rest has to be hands-off. Inside corporate IT
 and outside the corporate IT enclave.
 
-**Suggestion Two: Open The Door**
+Suggestion Two: Open The Door
+-----------------------------
 
 "Next, it’s important for IT to take the lead in providing tools and
 guidelines that make it easy for business developers to start off on
@@ -108,7 +111,8 @@ building vast shadow systems in MS-Access. Seven interlocked Access
 databases that all magically work together on a single desktop is the
 kind of thing they'll do if we don't help them do something better.
 
-**Suggestion Three: Stop Driving and Start Guiding**
+Suggestion Three: Stop Driving and Start Guiding
+------------------------------------------------
 
 DIY folks want first class access to servers, data and tools.
 
@@ -160,7 +164,8 @@ like the kind of rigorous, expensive, sophisticated testing that
 IT imposes on itself. That doesn't remove the need to engage the
 DIY folks in some kind of test plan.
 
-**Making Progress**
+Making Progress
+---------------
 
 IT needs to offer a menu of services including "secure, reliable and
 available data and processing resources".

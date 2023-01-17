@@ -41,7 +41,8 @@ hegemony" and "versioning is hard" -- the phrase "direct compiler
 support of versioning of APIs" maps to "direct
 tool/database/everything support of versioning." Nirvana.
 
-**All Things in Moderation**
+All Things in Moderation
+------------------------
 
 A relevant quote from the book is much more sensible than this
 fragment of a review. "Some parts of the solution should be in the
@@ -85,7 +86,8 @@ identifies the feature set. Numbers will be replaced with URI's.
 Therefore: **Don't Canonize Today's Management Practice in the Language**. When the current practice has faded from memory, we don't
 want to have to retool our programming languages.
 
-**What To Do?**
+What To Do?
+-----------
 
 What we do for API version control is -- well -- hard work.
 Annotations are good. A tool that scrapes out the annotations to
@@ -103,7 +105,8 @@ bad language features. We can't simply deprecate them, we have to
 find a new language that has similar syntax, but lacks the old-bad
 API management features.
 
-**Distutils**
+Distutils
+---------
 
 Python `distutils <http://docs.python.org/distutils/setupscript.html>`__ has
 a nice "Requires", "Provides" and "Obsoletes" specification that's

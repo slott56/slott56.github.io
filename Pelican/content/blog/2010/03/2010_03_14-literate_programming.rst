@@ -20,7 +20,8 @@ actually cared deeply enough to send me a patch to fix some
 long-standing errors in the LaTeX output. What do I do with a patch
 kit?
 
-**Forward and Reverse LP**
+Forward and Reverse LP
+----------------------
 
 There are two schools of literate programming: Forward and Reverse.
 Forward literate programming starts with a source text and generates
@@ -40,7 +41,8 @@ without further, deeper explanation. And keeping a separate
 documentation tree in Sphinx means that the code and the
 documentation can disagree.
 
-**My pyWeb Tool**
+My pyWeb Tool
+-------------
 
 The gold standard in Literate Programming is Knuth's Web. This is
 available as
@@ -64,7 +66,8 @@ and today. It was hard-to-find; but there are some hard-core Literate
 Programmers who are willing to chase down tools and play with them to
 see how they work at producing elegant, readable code. Way cool.
 
-**Patch Kit**
+Patch Kit
+---------
 
 Recently, I received a patch kit for pyWeb. This says several things.
 

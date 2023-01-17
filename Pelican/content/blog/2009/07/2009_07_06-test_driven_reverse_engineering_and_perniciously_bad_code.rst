@@ -25,7 +25,8 @@ tests are essential to success in reverse engineering. Without user
 acceptance tests being provided up front, reverse engineering is a
 nightmare.
 
-**Mystery Code**
+Mystery Code
+------------
 
 Today's issue is legacy code that is -- frankly -- incompetently
 done. As a bonus, the user organization is a little vague on what
@@ -42,7 +43,8 @@ There will be no easy way to get to create up-front acceptance tests
 to drive development. We'll have to take careful notes during the
 demo and transform the demo script into test results we can use.
 
-**Worse Still**
+Worse Still
+------------
 
 What's worse is the incompetent coding. How bad can code be? Let me
 count the ways:

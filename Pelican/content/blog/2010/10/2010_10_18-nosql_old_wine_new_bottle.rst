@@ -44,11 +44,13 @@ that large, high-volume data warehouses are mostly flat files. Data
 marts are SQL databases suitable for ad-hoc SQL queries. But the
 RDBMS isn't always the best place for large volumes of data.
 
-**Bottom Line**
+Bottom Line
+-----------
 
 NoSQL isn't new or even very interesting.
 
-**Consequences**
+Consequences
+------------
 
 If you're an architect, but you're not looking at alternatives to the
 RDBMS -- and running benchmarks to compare the choices -- you're not

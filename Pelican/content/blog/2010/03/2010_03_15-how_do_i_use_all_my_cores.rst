@@ -29,7 +29,8 @@ Any Linux-based OS (and even Windows) will take a simple shell
 pipeline and assure that the processing elements are spread around
 among the various cores.
 
-**Pipelines and Concurrency**
+Pipelines and Concurrency
+-------------------------
 
 A shell pipeline -- viewed as Programming In The Large -- is not
 "written using a serial approach". Each stage of a shell pipeline
@@ -58,8 +59,8 @@ A big ESB-based SOA architecture may be too much machinery for
 something that may turn out to be relatively simple.
 
 
-**Easy Problems**
-
+Easy Problems
+-------------
 
 Many problems are easily transformed into map-reduce problems. A
 "head" will push data down a shell pipeline. Each step on the
@@ -69,8 +70,8 @@ on the data. A "reduce" step can combine data for further maps.
 This can be expressed simply as: head.py \| map1.py \| map2.py \|
 reduce1.py \| map3.py. You'll use both cores heavily.
 
-**Optimization**
-
+Optimization
+------------
 
 Some folks like to really focus on "balancing" the workload so
 that each core has precisely the same amount of work.
@@ -85,7 +86,8 @@ to be a single process, map12.py.
 
 Easy and well-understood.
 
-**Harder Problems**
+Harder Problems
+---------------
 
 The Hard Problems involve "fan-out" and "fan-in". Sometimes we
 think we need a thread pool and a queue of processing agents.
@@ -112,7 +114,8 @@ number of identical children. The parent then simply round-robins
 the requests among the children. It's not optimal, but it's
 simple.
 
-**Bottom Line**
+Bottom Line
+-----------
 
 Want to make effective use of your fancy, new multi-core
 processors?

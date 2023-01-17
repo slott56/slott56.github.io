@@ -51,7 +51,8 @@ While NetBeans or Komodo Edit seems like overkill, it will
 (eventually) pay out as you move into developing more than static
 HTML pages.
 
-**Better Than HTML**
+Better Than HTML
+----------------
 
 Instead of creating HTML, many of us use “Lightweight Markup”
 which is much, much easier to cope with and simple tools to
@@ -78,7 +79,8 @@ effective this is. Few things require up-to-the-second web
 applications. Many things can be done as nightly batch programs
 that emit static HTML and FTP the HTML up to the web page. No PHP.
 
-**Application Development**
+Application Development
+-----------------------
 
 For web development, PHP is fine. It will – before long – create
 holes in your head because it’s so badly thought out. But for
@@ -98,7 +100,8 @@ view is more headache than solution.
 
 But it’s fun when you first build a site that works.
 
-**Frameworks**
+Frameworks
+----------
 
 Generally, most folks find that a “framework” is absolutely
 essential for debugging, consistency and separating Content,
@@ -124,7 +127,8 @@ Us <http://www.reddit.com/r/django/comments/bhvhz/the_onion_uses_django_and_why_
     components across applications. An ORM rather than a just a series
     of functional query helpers...."
 
-**Summary**
+Summary
+-------
 
 #.  Get an IDE to edit your pages. **Komodo Edit**.
 

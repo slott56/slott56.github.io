@@ -24,7 +24,8 @@ language.
 Perhaps I'm wrong, but database triggers always seem to create more
 problems than they solve.
 
-**They Totally Solve a Problem**
+They Totally Solve a Problem
+----------------------------
 
 The most common argument boils down to application-specific
 `cross-cutting
@@ -54,7 +55,8 @@ organizations. Now that you know about, you can manage it. You don't
 need to add Yet Another Language to the problem. Just *cooperate* to
 propagate the changes.
 
-**They're Totally Essential To The Database**
+They're Totally Essential To The Database
+-----------------------------------------
 
 The silly argument is that some business rules are "closer to" or
 "essential to" the database. The reason I can call this silly is
@@ -70,7 +72,8 @@ specific to the application really **is** a cross-cutting concern
 (see above). There is no "essential" processing that's magically part
 of the data.
 
-**What If...**
+What If...
+----------
 
 Life is simpler if all application programming is done in application
 programming languages. And all triggers are just methods in classes.

@@ -26,7 +26,8 @@ However, we were recently stabbed by an assumption. I had to spend
 over 40 hours restructuring our workbook library and application
 code.
 
-**Go With What You Know**
+Go With What You Know
+---------------------
 
 The point of an Agile approach is to build high-value things first.
 In the olden days, we would have spent months (really) writing a
@@ -47,7 +48,8 @@ like. They provided everything as proper columns.
 Recently, we got some data for a new customer pilot that was just
 enough different that it was a costly problem.
 
-**What Changed?**
+What Changed?
+-------------
 
 The change was the use of the sheet tab names to carry meaningful key
 information.
@@ -60,7 +62,8 @@ This workbook had the time dimension coded in the sheet names, not a
 column of data on each sheet. Suddenly, the worksheet name was
 significant. And that's not all.
 
-**How Bad Can It Be?**
+How Bad Can It Be?
+------------------
 
 The extensive breakage came from a bad design decision buried in the
 workbook library and all application layers that depend on the
@@ -89,7 +92,8 @@ the sheet name to a Python object, we did parsing and database
 lookups. Other mappings now must be "aware" of this mapping so they
 don't redo the parsing and database lookups.
 
-**Lessons Learned**
+Lessons Learned
+---------------
 
 The trivial (and wrong) lesson learned could be "don't make so many
 assumptions". That's silly. We didn't casually make assumptions. We

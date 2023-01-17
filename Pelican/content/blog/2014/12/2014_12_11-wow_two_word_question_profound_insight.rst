@@ -45,8 +45,8 @@ The omission of detailed analysis of Python's TCO approach was
 considered a significant flaw. Other reviewers seemed happy setting
 discussion of TCO aside for later.
 
-**The Functional Python Conundrum**
-
+The Functional Python Conundrum
+-------------------------------
 
 This book is going to be difficult. The ratings from the reviewers were
 low. Really low. It looks like I've got a lot of work to do. Finding the

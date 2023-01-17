@@ -42,7 +42,8 @@ make a legacy application "better". Converting quirky code to Java
 will merely canonize the quirks, obscuring the essential business
 value that was also encoded in the quirky legacy code.
 
-**Focus on Value**
+Focus on Value
+--------------
 
 The fundamental modernization question is "Where's the Value?" Or,
 more specifically, "What part of this legacy is worth preserving?"
@@ -55,7 +56,8 @@ thing.
 While "Focus on Value" is essential, it's not clear how one achieves
 this. Here's a process I've used.
 
-**Step 1. Create a code and data inventory.**
+Step 1. Create a code and data inventory.
+-----------------------------------------
 
 This is essential for determine what parts of the legacy system have
 value. Blue Phoenix has "Legacy Indexing" for determine the current
@@ -84,7 +86,8 @@ programs which have clear bugs and (apparently) never worked. There
 are programs with quirks; programs that work because of an
 undocumented "feature" of the language or platform.
 
-**Step 2. Capture the Data.**
+Step 2. Capture the Data.
+-------------------------
 
 In most cases, the data is central: the legacy files or databases need
 to be preserved. The application code is often secondary. In **most**
@@ -135,7 +138,8 @@ What's left?
 
 The high value processing.
 
-**Step 3. Extract the Business Rules.**
+Step 3. Extract the Business Rules.
+-----------------------------------
 
 Once we've disposed of overheads, utility code, quirks, bad design,
 and wrong use cases, what's left are a the real brass tacks. A few
@@ -173,7 +177,8 @@ The unique processing rules need to have modern, formal documentation.
 Minimally, the documentation must be in the form of unit test cases;
 English as a backup can be helpful.
 
-**Step 4. Build Bridges.**
+Step 4. Build Bridges.
+----------------------
 
 A modernization project is not a once-and-done operation.
 
@@ -217,8 +222,8 @@ to convert, the remaining code is -- by definition -- worthless.
 The unconverted code is a net cost savings.
 
 
-**Automated Translation**
-
+Automated Translation
+---------------------
 
 Note that there is very little emphasis on automated translation of
 legacy code. The important work is uncovering the data and the

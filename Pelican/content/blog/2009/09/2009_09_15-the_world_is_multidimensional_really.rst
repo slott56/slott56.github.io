@@ -31,11 +31,13 @@ as if that was something new or different.
 What's interesting in Weinberger’s book is (1) recognizing this and
 (2) taking some concrete action.
 
-**What To Do?**
+What To Do?
+-----------
 
 What's perhaps the most important thing is this
 
-**Stop Forcing Things Into Hierarchies**
+Stop Forcing Things Into Hierarchies
+------------------------------------
 
 I sat in a multiple hour meeting where we debated the file-system
 structure for artifacts created during a development project. Each
@@ -64,7 +66,8 @@ more "logical" or "works better for the team". What you'll find is
 that they **all** make sense. They all make sense because the
 dimensions are all peers -- equally meaningful.
 
-**Alternatives**
+Alternatives
+------------
 
 One alternative is to do this.
 
@@ -79,7 +82,8 @@ structure. Do not limit yourself to a few alternative orderings of
 the dimensions. There are *n*! permutations of your dimensions.
 Expect to create many of these for different user consituencies.
 
-**Remember, Search Exists**
+Remember, Search Exists
+-----------------------
 
 Recognize that highly structured metadata fields in a database are
 usually a waste of time and money. Search exists. Much data is

@@ -28,7 +28,8 @@ my SQL.]
 The good news is that Object Navigation replaces much of the
 hideousness of SQL. To an extent. Let's look at some cases.
 
-**Joins in General**
+Joins in General
+----------------
 
 SQL SELECT statements are an algebraic specification of a result set.
 The database is free to use any algorithm to build the required set.
@@ -44,7 +45,8 @@ navigation is simply the name of a `related
 object <http://docs.djangoproject.com/en/dev/topics/db/queries/#related-objects>`__.
 Nothing more.
 
-**Master-Detail (1:m) Joins**
+Master-Detail (1:m) Joins
+-------------------------
 
 A master-detail join in SQL works with a foreign key reference on the
 children.
@@ -77,7 +79,8 @@ quicker than this.
 As practical matter, however, the rest of the web transaction --
 including the painfully slow download -- will dominate the timeline.
 
-**Association (m:m) Joins**
+Association (m:m) Joins
+-----------------------
 
 An association in SQL requires an intermediate table to carry the
 combinations of foreign keys.
@@ -109,7 +112,8 @@ Here's the other side of the navigation.
         for this in that.these:
            process this and that
 
-**Outer Joins**
+Outer Joins
+------------
 
 An Outer Join is a "Join with Null for Missing Relationships".
 It's navigation with an if-statement or an exception clause.

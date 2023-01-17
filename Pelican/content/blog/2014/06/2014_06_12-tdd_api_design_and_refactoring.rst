@@ -69,7 +69,8 @@ This summarized example allowed construction of a test case that made
 use of a API that might have existed. I was pretty sure I had a test
 case that showed an approach.
 
-**What Actually Happened**
+What Actually Happened
+----------------------
 
 Since the application already had 178 unit tests, there was plenty of
 structure that worked.
@@ -94,7 +95,8 @@ The notional API was a bad idea.
 
 The tweaks to make it work were a worse idea.
 
-**Back to the Lab Bench**
+Back to the Lab Bench
+---------------------
 
 At this point, I had made enough changes that the only thing to do was
 copy the new test and use the Git Revoke on the local changes to
@@ -124,7 +126,8 @@ However. I did get a test which passed. Yay. Sort of.
 
 The test code was hideous.
 
-**TDD and API Design**
+TDD and API Design
+------------------
 
 The point of TDD, however, is that we have a working suite of tests.
 Refactoring won't break anything.

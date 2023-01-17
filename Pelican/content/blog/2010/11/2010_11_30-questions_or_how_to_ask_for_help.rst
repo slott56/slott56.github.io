@@ -27,7 +27,8 @@ there are only two choices. They can also be called "saturated",
 possibly because all the possible answers are laid out in the
 question.
 
-**Asking Questions**
+Asking Questions
+----------------
 
 The most important part about asking questions is to go through a few
 steps of preparation.
@@ -55,7 +56,8 @@ steps of preparation.
 
 In some cases, folks will skip one or more steps. Hilarity Ensues.
 
-**Leading/Presuming Questions**
+Leading/Presuming Questions
+---------------------------
 
 Another form of closed-ended question is the veiled complaint. "Why
 doesn't Python do [X] the way Perl/PHP/Haskell/Java/C# does it?"
@@ -87,7 +89,8 @@ really all that easy to provide answers for. Knowledge is simply hard
 to provide. Questions about what you want to **do**, are much, much
 easier to answer.
 
-**Probing/Confirming Questions**
+Probing/Confirming Questions
+----------------------------
 
 One other category are the "questions" that post a pile of details
 looking for confirmation. There are three common variations.

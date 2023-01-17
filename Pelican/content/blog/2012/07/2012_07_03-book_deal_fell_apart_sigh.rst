@@ -22,8 +22,9 @@ suggested changes.
 But the deal fell apart, so my subjective impression isn't too
 relevant.
  
-**What To Do?**
- 
+What To Do?
+-----------
+
 I have two essential choices here.
 
 #. **Finish up**.  Simply press on with the heavily-edited version.  The

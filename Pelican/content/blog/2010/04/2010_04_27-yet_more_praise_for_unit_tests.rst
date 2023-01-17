@@ -30,7 +30,8 @@ As I noted recently, Apache doesn't like to give up the HTTP
 Authorization header. So, the real deployment on our real servers
 didn't really work.
 
-**The Blame Game**
+The Blame Game
+--------------
 
 At this point there are lots of things we can blame. Let's start
 blaming the process.
@@ -49,7 +50,8 @@ u   nit. Unit testing is oversold as a technology.
 Clearly, we need a Bold New Process to solve and prevent problems
 like this.
 
-**Seriously**
+Seriously
+---------
 
 Search Stack Overflow for "Justification of TDD" or "ROI of Unit
 Testing" and those kinds of loaded questions and you'll find folks
@@ -61,7 +63,8 @@ There is no Pixie Dust. You've been told. Stop searching for it.
 Software is hard. Unit Testing helps, but doesn't make it less
 hard.
 
-**Unit Testing to the Rescue**
+Unit Testing to the Rescue
+--------------------------
 
 Our code coverage is -- at best -- middlin'. I don't have counts,
 nor do I actually care what the lines of code number is. Code
@@ -95,7 +98,8 @@ This is a tightly focused change in authentication and the
 client library. About two days of work to subclass and refactor
 the auth.rest module.
 
-**Success Factors**
+Success Factors
+---------------
 
 Because of TDD and a suite of unit tests, many things went
 really, really well.

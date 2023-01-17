@@ -26,7 +26,8 @@ My second point, however, was that the Agile Manifesto and the
 Scrum method are responses to a larger problem. Looking for a
 process isn't an appropriate response to the problem.
 
-**The One True Scrum Quest**
+The One True Scrum Quest
+------------------------
 
 Claiming that there's one true Scrum method and everything else is
 "not scrum" is an easy mental habit. The question gets asked on
@@ -55,7 +56,8 @@ Sigh. The point of Agile is that we should value "Individuals
 and interactions over processes and tools". The quest for "One
 True Scrum" specifically elevates the process above the people.
 
-**In The Real World**
+In The Real World
+-----------------
 
 The biggest issue is that the Agile Manifesto is really a
 response to some fundamental truths about software development.
@@ -95,7 +97,8 @@ talking about some variable in a formula with a value that's
 currently unknown. I'm talking about predicting the
 *unknowable* future.
 
-**The Agile Response to Reality**
+The Agile Response to Reality
+-----------------------------
 
 In the Real real world, software development is extraordinarily
 hard.
@@ -129,7 +132,8 @@ for a solution, polluting the problem description with
 In the Management Fantasy "Real World", this is all knowable
 and simple. In the Real Real World, this is rather hard.
 
-**Adapting to Reality**
+Adapting to Reality
+-------------------
 
 Once we've recognized that software development is hard, we
 have several responses.
@@ -150,7 +154,8 @@ consistent results.
 development requires asking, "what -- if anything --
 expedites software development?"
 
-**What Do We Need to Succeed?**
+What Do We Need to Succeed?
+---------------------------
 
 There are essentially two domains of knowledge required to
 create software: the problem domain and the solution domain.
@@ -199,7 +204,8 @@ That's the core of the Agile Response: Close the gap
 between Problem Domain and Solution Domain by letting
 programmers understand the problem.
 
-**The Bowl of Bananas Solution(tm)**
+The Bowl of Bananas Solution(tm)
+--------------------------------
 
 "But wait", managers like to say, "in the real world, we
 can't just let you play around until you claim you're

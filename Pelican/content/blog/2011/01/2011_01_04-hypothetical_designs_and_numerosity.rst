@@ -19,7 +19,8 @@ management. It's one step above numerology.
 There is no substitute for hands-on work. Quantity leads directly to
 Quality. Bottom Line: **touch the technology early and often**.
 
-**Easier**
+Easier
+------
 
 I described the Sphinx production pipeline as "easier" than
 DocBook.
@@ -41,7 +42,8 @@ and run them a few times to see how they work. But that relies on
 the undefined term "easier". To cut the Gordian Knot while keeping
 the eyes averted, one resorts to numerosity.
 
-**Cleaner and More Uniform**
+Cleaner and More Uniform
+------------------------
 
 I described XML as cleaner and more uniform than LaTeX. (Even
 though I've switched to LaTeX because it produces better results.)
@@ -62,7 +64,8 @@ burden themselves with looking at the technology. I suppose actual
 examples of XML vs. LaTex vs. RST would burn holes in the brain,
 running the risk of killing one of the few working brain cells.
 
-**Inheritance vs. Delegation**
+Inheritance vs. Delegation
+--------------------------
 
 My favorite, however, is the question on "criteria for when to use
 / not use inheritance". Asking for criteria is the leading
@@ -88,7 +91,8 @@ I'm revising my Building Skills in OO Design book to make it a
 better answer to the Inheritance vs. Delegation question. Do the
 exercises. At the end of the book, you'll know the answers.
 
-**Sadly**
+Sadly
+-----
 
 Sadly, the bulk of IT management does not believe in
 skill-building. Training is limited to one or two weeks out of 52

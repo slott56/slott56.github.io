@@ -20,7 +20,8 @@ What's important is the the **if** statement -- in general -- isn't
 the issue. The anti-if folks are simply demanding that folks don't
 use **if** as a stand-in for proper polymorphism.
 
-**Related Issues**
+Related Issues
+--------------
 
 Related to abuse of the **if** statement is abuse of the **else**
 clause.

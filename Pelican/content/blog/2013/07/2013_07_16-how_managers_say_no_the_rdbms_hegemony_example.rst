@@ -80,8 +80,8 @@ manager to avoid pain entirely.
 Let's look at the various approaches.
 
 
-**Doing A "Presentation"**
-
+Doing A "Presentation"
+----------------------
 
 The email hinted at a conversation or presentation on the problem
 of RDBMS Hegemony.
@@ -133,8 +133,8 @@ It was good to start the conversation.
 It's good to continue the conversation. But the specific request was
 silliness.
 
-**Exposing the Existing Pain**
-
+Exposing the Existing Pain
+--------------------------
 
 What's more important than a hypothetical conversation is showing how
 the RDBMS is causing pain right now. It's easier to convince managers
@@ -159,7 +159,8 @@ If you can point to specific trouble tickets that come from wrong use
 of an RDBMS, then you might be able to get a manager to think about
 it.
 
-**The Airtight Case**
+The Airtight Case
+-----------------
 
 Your goal on breaking RDBMS Hegemony is to have a case that is
 "airtight". Ideally, so airtight that the manager in question sits
@@ -193,7 +194,8 @@ It's important to make the airtight case.
 
 It's important to accept the "no" gracefully.
 
-**Management Rewards**
+Management Rewards
+------------------
 
 When you look at the management reward structure, project managers
 and their ilk are happiest when they have a backlog of huge,
@@ -250,7 +252,8 @@ It's necessary to accept the "no" gracefully.
 The "stop using the database for everything" idea takes a while to
 sink in.
 
-**Proof Of Concept**
+Proof Of Concept
+----------------
 
 The only way to avoid management pain (and the inaction that comes
 from pain avoidance) is to make the technology choice a `fait
@@ -264,7 +267,8 @@ been answered. But—and this is very important—it will involve no
 management thought or action. By avoiding pain, you also default into
 a kind of management buy-in.
 
-**War Story**
+War Story
+---------
 
 The vendors send us archives of spreadsheets. (Really.) We could
 unpack them and load them into the RDBMS. But. Sadly. The
@@ -302,7 +306,8 @@ They couldn't say no because (a) it was the right thing to do and (b)
 it was already done. It was cheaper to do it than to talk about doing
 it.
 
-**Failure To See The Problem**
+Failure To See The Problem
+--------------------------
 
 The original email continued to say this:
 
@@ -365,8 +370,8 @@ as wide as the ocean and as deep as a well. They've been down so long
 it looks like up.
 
 
-**Outside the SQL Box**
-
+Outside the SQL Box
+-------------------
 
 To get outside the SQL box means to actually stop using SQL even for
 metaphoric conversations about data manipulation, persistence,

@@ -55,7 +55,8 @@ relevant to the graphing the equation shown above. See Symptom #1.
 There's just no reason for this. It's Very Important, but No One Else
 Can Understand The Reason Why.
 
-**How To Begin?**
+How To Begin?
+-------------
 
 So, now we're at this weird impasse.
 

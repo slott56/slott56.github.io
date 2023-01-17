@@ -20,7 +20,8 @@ Hardly news.
 No, my conclusion is that the high cost of software comes from doing
 the *wrong things* to manage the high cost of software.
 
-**The Illusion of Control**
+The Illusion of Control
+-----------------------
 
 Nothing gives a better illusion of control than a project plan. I
 think that software development project management tools -- MS
@@ -38,7 +39,8 @@ capture the complexity -- that's simply silly.
 If you find that you need a really complex document to capture a lot
 of really complex complexity, you're doing something wrong.
 
-**Hands in the Pocket Explanations**
+Hands in the Pocket Explanations
+--------------------------------
 
 I think that user stories are great because they reduce the
 complexity down to something that we can articulate and remember.
@@ -53,7 +55,8 @@ summary.
 If you can't explain the use case with your hands in your pockets,
 it's too complex.
 
-**Architecture**
+Architecture
+------------
 
 An architecture diagram is helpful. Architecture -- as a foundation
 -- has to be subject to considerable analysis to be sure it's right.
@@ -65,7 +68,8 @@ A miraculous pronunciation that some architecture will work is a
 terrible thing. A few pithy formula (that we can remember) and some
 justification are a whole lot better.
 
-**The WBS Is The Problem**
+The WBS Is The Problem
+----------------------
 
 I find that projects with complicated WBS's have added a layer of
 complexity and management that aren't helpful. The cost of software
@@ -82,7 +86,8 @@ status reports.
 Meetings with product owners have more value than a carefully-written
 schedule for doing the poorly-understood process of detailed design.
 
-**Justifications**
+Justifications
+--------------
 
 We can justify project management by saying that it somehow makes the
 software development process more efficient by eliminating

@@ -36,7 +36,8 @@ secret technique you're not telling us about?"
 It's time to come clean. There **is** a Secret Cabal of
 Architects. There **are** things we're not telling you.
 
-**Many-to-Many**
+Many-to-Many
+------------
 
 The many-to-many question shows just how successful the Society of
 Secrets (as we call ourselves) has been about creating a SQL bias.
@@ -64,7 +65,8 @@ be many, many others.
 
 It is to laugh.
 
-**The Secret Techniques for Associations**
+The Secret Techniques for Associations
+--------------------------------------
 
 The problem arises when someone ask about the *OO implementation*
 of many-to-many associations. It's really difficult to misdirect
@@ -87,7 +89,8 @@ many-to-many association techniques in a general way. Please get
 the broomstick of the Wicked Witch of the West if you want more
 answers."
 
-**Persistence**
+Persistence
+-----------
 
 The persistence question, however, was gift. When someone equates
 "relational model" with a "persistence mechanism", we have lots of
@@ -111,7 +114,8 @@ they appear to be part of persistence.
 
 Excellent.
 
-**Logical vs. Physical**
+Logical vs. Physical
+--------------------
 
 What's really helpful here is the confusion folks have with
 "Logical" vs. "Physical" design layers.
@@ -143,7 +147,8 @@ Value by insisting that we add a "Persistence Layer" underneath
 helps confuse the developers by implying that we must "isolate"
 the database from the persistence mechanism.
 
-**Many-to-many and ORM**
+Many-to-many and ORM
+--------------------
 
 Sadly, these two questions may turn out to be ORM questions. The
 problem with ORM layers is that the application objects are
@@ -197,7 +202,8 @@ with a simple ORM is hurtful, too. But putting application
 functionality into the database -- that really helps make
 Architecture appear to be magical.
 
-**The Persistence Mechanisms**
+The Persistence Mechanisms
+--------------------------
 
 The bottom line is that the Secret Conference of Architects
 doesn't have a pat answer on Persistence Mechanisms. We have,

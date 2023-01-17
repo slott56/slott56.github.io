@@ -34,7 +34,8 @@ isn't a good phrase for it in most other languages. Although Ned
 Batchelder has some really good suggestions. (Except for C++, which
 should be "C-Posh-Posh" for really good coding style.)
 
-**History**
+History
+-------
 
 When I was a COBOL programmer, there were two buzz-phrases used.
 "Clean" and "Structured". Clean was poorly-defined and really just a
@@ -85,7 +86,8 @@ guidelines completely overlap with C and C++ style guidelines. Fair
 enough. Doesn't solve the "Code Golf" vs. "Clean" problem. But it
 doesn't confound it with another syntax, either.
 
-**Python**
+Python
+------
 
 From this history, I think that "Pythonic" exists because we have a
 BDFL with high standards.

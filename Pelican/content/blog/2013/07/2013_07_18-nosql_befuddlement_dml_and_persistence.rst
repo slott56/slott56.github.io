@@ -56,7 +56,8 @@ this, below.
 
 
 
-**Persistence and Manipulation**
+Persistence and Manipulation
+----------------------------
 
 We have lots of persistent data and lots of manipulation. Lots. So
 many that it's hard to understand what they were asking for.
@@ -92,7 +93,8 @@ processing. Failure to grasp the idea of persistence outside the
 database almost seems like a failure to grasp persistence in the first
 place.
 
-**The Crazy Request**
+The Crazy Request
+-----------------
 
 Their original request was—to me—incomprehensible. As fair as I can
 tell, they appeared to want the following.
@@ -126,7 +128,8 @@ objects.
 The SQL reductionist view isn't really all that helpful. Indeed, it
 appears to have been deeply misleading.
 
-**The Log File**
+The Log File
+------------
 
 Here's an example that seems to completely violate the spirit of their
 request. This is ordinary processing that doesn't fit the SQL DML mold
@@ -165,7 +168,8 @@ filter that rejects deleted records from future queries.
 Which is it? Filter or Delete? This little conundrum seems to violate
 the spirit of their request, also.
 
-**Python Code**
+Python Code
+-----------
 
 Here's an example of using persistence to filter the "raw" log files.
 We keep the relevant events and write these in a more regular,
@@ -210,7 +214,8 @@ processing can be done outside a relational database. This seems
 obvious beyond repeating. Obvious to the point where it's hard to
 imagine what knowledge gap needs to be filled.
 
-**Conclusion**
+Conclusion
+----------
 
 Persistence is not a thing you haphazardly laminate onto an
 application as an afterthought.

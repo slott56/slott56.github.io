@@ -71,9 +71,8 @@ than rewriting the API's and moving the data.
 
 
 
-**Desire to Utilize [Relational DB]**
-
-
+Desire to Utilize [Relational DB]
+---------------------------------
 
 **More Support Available for [Relational DB]**
 

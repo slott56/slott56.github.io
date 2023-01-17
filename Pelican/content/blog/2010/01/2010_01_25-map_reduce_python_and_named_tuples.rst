@@ -20,7 +20,8 @@ are not the best design pattern. The same kind of exploration can be
 done with map-reduce techniques, and the resulting application is
 slightly simpler.
 
-**Design Coupling**
+Design Coupling
+---------------
 
 The problem with design-by-subclass is that the map and reduce
 operations are often defined relatively informally. After all,
@@ -43,7 +44,8 @@ of the workbooks (ignoring all the directory, archive and file
 structure), we worked around the hidden stateful object without
 realizing it.
 
-**Named Tuples and Immutability**
+Named Tuples and Immutability
+-----------------------------
 
 A much cleaner solution is to make use of Python's
 `namedtuple <http://docs.python.org/dev/library/collections.html#collections.namedtuple>`__
@@ -68,7 +70,8 @@ map-reduce pipelines that work. It's better to prove that the
 assertion true through code inspection and comment out the assert
 statement.
 
-**Pipelining**
+Pipelining
+----------
 
 What pops out of this are stateless objects. Since named tuples are
 immutable, it appears that we've done some purely functional
@@ -97,7 +100,8 @@ This might give us several benefits.
     This should yield map-reduce operations that swamp the OS by
     having multiple concurrent stages.
 
-**Goals**
+Goals
+-----
 
 Generally, our goal is to get the CPU 100% committed to the right
 task. Either 100% doing web services, or 100% doing database

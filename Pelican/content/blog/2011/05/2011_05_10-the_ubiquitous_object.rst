@@ -45,7 +45,8 @@ questions tagged "Python" on Stack Overflow. With some patient
 reading, I think I could develop a taxonomy of OO confusion. However,
 let's just focus on this comment.
 
-**The Bother Factor**
+The Bother Factor
+-----------------
 
 Why is OO a "bother"?
 
@@ -64,7 +65,8 @@ Why is OO a "bother"?
 Let's look at some of these in a little depth to see the
 underlying fallacies.
 
-**Procedural Is More Fundamental**
+Procedural Is More Fundamental
+------------------------------
 
 This is subtle and pernicious. An OO language contains within it a
 procedural language. Because of this, we can use Java, C++ or Python
@@ -90,7 +92,8 @@ programming is a subset of object-oriented programming. Not a
 foundation. We can, for example, do functional-style object-oriented
 programming by using immutable objects.
 
-**Some Problems Aren't A Good Fit**
+Some Problems Aren't A Good Fit
+-------------------------------
 
 Claiming that there are problems which don't fit the object-oriented
 paradigm is false. Or such a claim hearkens to a more elaborate
@@ -131,7 +134,8 @@ Software that uses only immutable objects is termed "functional".
 Software that uses mutable objects is mistakenly termed
 "object-oriented".
 
-**Object-Relational Mismatch**
+Object-Relational Mismatch
+--------------------------
 
 This isn't really very interesting, no matter how many times people
 like to flog it. Use an ORM. Move on.
@@ -146,7 +150,8 @@ foreign keys in Java/C++/Python?" question. The answer is always the
 same: foreign keys are a hack-around because there are no proper
 object references in a relational database.
 
-**What's Left?**
+What's Left?
+------------
 
 In spite of the obvious logic that OO is central, there is always a
 residual "It's a bother" sense from folks who's first language was
@@ -178,7 +183,8 @@ The folks who claim OO programming is a "bother" just don't happen to
 recognize that they're already following some of the SOLID principles
 and actually doing OO programming with built-in classes.
 
-**Doing Procedural Programming Correctly**
+Doing Procedural Programming Correctly
+--------------------------------------
 
 Bottom Line: "doing procedural code correctly" is simply OO
 programming using only built-in classes.

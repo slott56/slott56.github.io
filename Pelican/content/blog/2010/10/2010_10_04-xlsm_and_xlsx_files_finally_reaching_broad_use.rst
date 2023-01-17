@@ -35,7 +35,8 @@ be trivially converted to CSV by my installation of Excel.
 
 What to do?
 
-**Python to the Rescue**
+Python to the Rescue
+--------------------
 
 Step 1. Read the standards. Start with the Wikipedia article: "`Open
 Office XML <http://en.wikipedia.org/wiki/Office_Open_XML>`__". Move
@@ -54,7 +55,8 @@ Further, a simple DOM parser, like Python's excellent
 `ElementTree <http://docs.python.org/library/xml.etree.elementtree.html>`__,
 won't work on files this huge.
 
-**Expanding an XLSX or XLSM file**
+Expanding an XLSX or XLSM file
+------------------------------
 
 Here's step 2. Expanding the zip archive to locate the shared strings
 and sheets.
@@ -85,7 +87,8 @@ Once we have the raw files, we have to parse the shared strings
 first. Then we can parse the data. Both of these files are simple
 XML. However, they don't fit in memory. We're forced to use SAX.
 
-**Step 3 -- Parse the Strings**
+Step 3 -- Parse the Strings
+---------------------------
 
 Here's a SAX ContentHandler that finds the shared strings.
 
@@ -140,7 +143,8 @@ that a `shelve <http://docs.python.org/library/shelve.html>`__
 database could be used if the string dictionary was so epic that it
 wouldn't fit in memory.
 
-**The Final Countdown**
+The Final Countdown
+-------------------
 
 Once we have the shared strings, we can then parse each worksheet,
 using the share string data to reconstruct a simple CSV file (or JSON
@@ -269,7 +273,8 @@ The resulting .CSV -- stripped of the XML overheads -- is 80,000+
 rows and only 39M. Also, it can be processed with the Python
 `csv <http://docs.python.org/library/csv.html>`__ library.
 
-**CSV Processing**
+CSV Processing
+--------------
 
 This, after all, was the goal. Read the CSV file and do some useful
 work.
