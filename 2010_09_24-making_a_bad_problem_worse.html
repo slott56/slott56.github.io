@@ -140,7 +140,8 @@ customer's order <strong>should</strong> match the invoice, right? Yes, but. In
 this business, the fulfillment will diverge from the order; it
 makes more sense to create a mapping from invoice to order than to
 rewrite the order.</p>
-<p><strong>Not the Crazy Part</strong></p>
+<div class="section" id="not-the-crazy-part">
+<h2>Not the Crazy Part</h2>
 <p>The hellish thing that I saw was the many-to-many association
 between order and beer type. A many-to-many isn't bad. What they
 did, however, was really bad. But not crazy. Not yet.</p>
@@ -168,7 +169,9 @@ order.</p>
 values and ten business rules to interpret those flag values to
 determine what the was ordered and what was fulfilled. Two columns of
 flags. Ten rules. But that's not the crazy part.</p>
-<p><strong>Bad Data</strong></p>
+</div>
+<div class="section" id="bad-data">
+<h2>Bad Data</h2>
 <p>A database that requires ten business rules and procedural processing
 to interpret the data is bad. It gets worse, however.</p>
 <p>One of the ten business rules is a tie-breaker. The process that
@@ -180,7 +183,9 @@ keep going.&quot;</p>
 <p>There's &quot;bad data&quot;? Keep going? I would think this would be a
 show-stopper. Whomever wrote the application that created the bad
 data needs career guidance (guidance as in, &quot;you're fired&quot;.)</p>
-<p><strong>It's Broken, But...</strong></p>
+</div>
+<div class="section" id="it-s-broken-but">
+<h2>It's Broken, But...</h2>
 <p>Clearly, any database that requires ten procedural business rules is
 not much of a database. A SQL query cannot be used to produce either
 order or invoice. To fetch an order or an invoice requires a
@@ -194,7 +199,9 @@ worse plan, too. We'll get to that.</p>
 database is broken.</p>
 <p>If you can't agree on the implementation, you've got big, big
 problems.</p>
-<p><strong>The Crazy Part</strong></p>
+</div>
+<div class="section" id="the-crazy-part">
+<h2>The Crazy Part</h2>
 <p>The pitch from one of the DBA's was to add yet more complexity. There
 are two flag columns and ten business rules to resolve nuances of
 order and fulfillment. This is a mistake which requires someone sit
@@ -210,11 +217,14 @@ problem now has two problems. They've got a analytic layer that only
 one DBA understands. This wraps a broken many-to-many table that
 (apparently) no one understands.</p>
 <p>None of this reflects the actual business model very well, does it?</p>
-<p><strong>Bottom Line</strong></p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>If the database does not (1) reflect the actual business model and
 (2) work in simple SQL, it's broken. Adding technology to a broken
 database makes it more complex but leaves it essentially broken.</p>
 <p>Stop. Adding. Complexity.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="sounds-scary-couple-typos-for-you-http-www-eme">
 <h2>Sounds scary. Couple typos for you: <a class="reference external" href="http://www.eme">http://www.eme</a>...</h2>
@@ -313,7 +323,7 @@ rather than products.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

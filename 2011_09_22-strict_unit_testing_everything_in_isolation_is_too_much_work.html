@@ -129,7 +129,8 @@ up properly.</p>
 <p>In Python, duck typing allows a mock to be defined quite trivially.
 A mock library isn't terribly helpful, since it doesn't reduce the
 code volume or complexity in any meaningful way.</p>
-<p><strong>Dependencies without Injection</strong></p>
+<div class="section" id="dependencies-without-injection">
+<h2>Dependencies without Injection</h2>
 <p>The larger issue with trying to unit test in Python with mock objects
 is the impact of change.</p>
 <p>We have some class with an interface.</p>
@@ -155,7 +156,9 @@ class MockAnotherClass( object ):
 </pre>
 <p>In Python, this mock isn't a best practice.  It can be helpful.  But
 adding a mock can also be confusing and misleading.</p>
-<p><strong>Refactoring Scenario</strong></p>
+</div>
+<div class="section" id="refactoring-scenario">
+<h2>Refactoring Scenario</h2>
 <p>Consider the situation where we're refactoring and change the
 interface to AnotherClass.  We modify another_method to take an
 additional argument, for example.</p>
@@ -167,7 +170,9 @@ this can (and does) get murky when we've got a mock that replaces a
 complex cluster of objects with a simple <strong>Facade</strong> for testing
 purposes.  Now, we've got a mock that doesn't trivially replace the
 mocked class.</p>
-<p><strong>Alternative: Less Strict Mocking</strong></p>
+</div>
+<div class="section" id="alternative-less-strict-mocking">
+<h2>Alternative: Less Strict Mocking</h2>
 <p>In Python--and other duck typing languages--a less mock-heavy
 approach seems more productive.  The goal of testing <strong>every</strong> class
 in isolation surrounded by mocks needs to be relaxed.  A more helpful
@@ -199,6 +204,7 @@ testing.</li>
 to mock every dependency, we are forced to confront every
 dependency in glorious detail.  If we don't mock every single
 dependency, we can slide by without properly isolating our design.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="you-need-to-mock-out-to-a-level-which-allows-yo">
 <h2>You need to mock out to a level which allows yo...</h2>
@@ -299,7 +305,7 @@ Technologies</a></p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

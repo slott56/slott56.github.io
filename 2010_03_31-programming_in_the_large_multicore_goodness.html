@@ -130,7 +130,8 @@ patterns that can help us create complex multi-processing pipelines.</p>
 <p>The best part about the shell's PITL language is that a simple shell
 pipeline will use every core in our processor, maximizing throughput
 and minimizing the amount of programming we have to do.</p>
-<p><strong>PITL Objects</strong></p>
+<div class="section" id="pitl-objects">
+<h2>PITL Objects</h2>
 <p>This PITL language has a simple set of operators. If your programs
 are well-behaved, the language is, in a formal mathematical sense,
 closed. You can apply PITL operators to combinations of programs to
@@ -144,7 +145,9 @@ from someplace other than standard in, but write it's content to
 standard out. A program like cat.</p>
 <p>Note that any map-reduce step will be well-behaved. To seed the
 map-reduce pipeline we use cat as the &quot;head-0f-the-pipeline&quot;.</p>
-<p><strong>PITL Operators</strong></p>
+</div>
+<div class="section" id="pitl-operators">
+<h2>PITL Operators</h2>
 <p>We'll look at the composition operators using three short-hand
 commands: p1, p2 and p3. Each of these is &quot;well-behaved&quot;: they read
 from stdin and write to stdout.</p>
@@ -182,7 +185,9 @@ sort temp1 &gt;temp2; p3 temp2&quot;.</p>
 and ``). Also the conditional and repetitive statements
 effectively group series of programs. We use syntax like <tt class="docutils literal"><span class="pre">&quot;``(</span> p1 &amp; p2 ); p3</tt> to show the situation where p1 and p2 must both complete
 before p3 can begin processing.</p>
-<p><strong>Using All the Cores</strong></p>
+</div>
+<div class="section" id="using-all-the-cores">
+<h2>Using All the Cores</h2>
 <p>Most importantly, something like &quot;( p1 ; p2 ) | p3&quot; directs the
 output of two programs into a third for further processing. And
 the two program sequence runs concurrently with that third
@@ -192,7 +197,9 @@ as well as we might hope. The output from p1 and p2 are not a
 stream of atomic writes carefully interleaved. They are non-atomic
 buffer copies that are impossible to disentangle. Sadly, this
 can't easily be implemented.</p>
-<p><strong>Other Features</strong></p>
+</div>
+<div class="section" id="other-features">
+<h2>Other Features</h2>
 <p>The shell offers a few other composition operations, but as we start
 using these, we find that the shell isn't a very effective
 programming environment. While the shell pipeline notation is
@@ -206,7 +213,9 @@ crummy. The for statement is usable without needless complication.</p>
 <p>Four of these PITL operators (sequence, parallel, pipeline, grouping)
 give us a hint as to how we can proceed to design large-scale
 applications that will use every core we own.</p>
-<p><strong>Implementation Hints</strong></p>
+</div>
+<div class="section" id="implementation-hints">
+<h2>Implementation Hints</h2>
 <p>You can -- trivially -- use all your cores simply by using the shell
 appropriately. Use the shell's pipeline features <strong>and nothing
 else</strong>, and you'll use every core you own.</p>
@@ -218,6 +227,7 @@ construct pleasant, simple, &quot;use-all-the-cores&quot; pipelines directly in
 Python.</p>
 <hr class="docutils" />
 <p>Check out</p>
+</div>
 <div class="section" id="computer-scientists-created-the-paralle">
 <h2>Computer Scientists Created the Paralle...</h2>
 <p>Robert Lucente&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
@@ -334,7 +344,7 @@ url:
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

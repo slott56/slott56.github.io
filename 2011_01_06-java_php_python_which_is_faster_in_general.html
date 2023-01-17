@@ -128,7 +128,8 @@ is essentially impossible to answer. And yet, the question persists.</p>
 <p>There are three rules for figuring out which is faster.</p>
 <p>And there are three significant problems that make these rules
 inescapable.</p>
-<p><strong>Rule One. Languages don't have speeds. Implementations have speeds.</strong></p>
+<div class="section" id="rule-one-languages-don-t-have-speeds-implementations-have-speeds">
+<h2>Rule One. Languages don't have speeds. Implementations have speeds.</h2>
 <p>Info on
 <a class="reference external" href="http://en.wikipedia.org/wiki/Benchmark_(computing)">benchmarking</a>.
 The idea of a benchmark is to have a single, standard suite of
@@ -148,7 +149,9 @@ allow a rational statement of what the experimental results where.
 We can then compare these various free attributes against each
 other. For details look at something like the <a class="reference external" href="http://www.cs.cmu.edu/~jch/java/microbench.html">Java Micro
 Benchmark</a>.</p>
-<p><strong>Rule Two. Statistics Aren't a Panacea.</strong></p>
+</div>
+<div class="section" id="rule-two-statistics-aren-t-a-panacea">
+<h2>Rule Two. Statistics Aren't a Panacea.</h2>
 <p>The reason there's no &quot;in general&quot; comparison among languages is
 because there are too many degrees of freedom to make any kind of
 rational comparison. We can make irrational comparisons, but
@@ -165,7 +168,9 @@ have almost no common features.</p>
 language differences. If we're trying to compare PHP, Python and
 Java, we need to find a program which somehow -- magically -- is
 common across all three languages.</p>
-<p><strong>The Basis For Comparison</strong></p>
+</div>
+<div class="section" id="the-basis-for-comparison">
+<h2>The Basis For Comparison</h2>
 <p>Finding common programs degenerates into <strong>Problem 2</strong>: what
 programs could be comparable? For example, we have the Tomcat
 application, written in Java. We wouldn't want to write Tomcat in
@@ -186,7 +191,9 @@ Java (and Python) framework is <em>identical</em> to PHP's framework?
 Spring, Struts, Django, Pylons? None of these reflects a code base
 that's even remotely similar. Maybe Java JSP is similar enough to
 PHP. For Python there are several implementations. Sigh.</p>
-<p><strong>Crappy Program Problem</strong></p>
+</div>
+<div class="section" id="crappy-program-problem">
+<h2>Crappy Program Problem</h2>
 <p>We can't easily compare programs because we're really comparing
 implementations of an algorithm. This leads to <strong>Problem 3</strong>: we
 picked a poor algorithm or did a lousy job of implementing it in
@@ -202,7 +209,9 @@ to excel. If we pick an algorithm implementation which depends on
 sharing references, Python may appear to excel.</p>
 <p>Somehow we have to get past language differences and programmer
 mistakes. What to do?</p>
-<p><strong>Synthetic Benchmarks</strong></p>
+</div>
+<div class="section" id="synthetic-benchmarks">
+<h2>Synthetic Benchmarks</h2>
 <p>Since we can't easily find comparable programs -- as whole
 programs -- we're left with the need to create some kind of
 benchmark based on language primitives. Statements or expressions
@@ -223,7 +232,9 @@ multi-statement Java loop. Rats.</p>
 <p>The languages aren't very comparable at the statement level at
 all. And if we force them to be comparable, we're not comparing
 real programs, but an artificial mapping.</p>
-<p><strong>Virtual Machine Benchmarks</strong></p>
+</div>
+<div class="section" id="virtual-machine-benchmarks">
+<h2>Virtual Machine Benchmarks</h2>
 <p>Since we can't compare the languages at the program level or the
 statement level, what's left? Clearly, the underlying interpreter
 is what we care about.</p>
@@ -237,7 +248,9 @@ JVM and <a class="reference external" href="http://www.jython.org/">Jython</a>. 
 VM primitives used by each language and then -- what? Compare the
 run-time of the various VM primitives? No, that's silly, since the
 run-times are all JVM run-times.</p>
-<p><strong>What We're Left With</strong></p>
+</div>
+<div class="section" id="what-we-re-left-with">
+<h2>What We're Left With</h2>
 <p>The very best we can can do is to compare the statistical
 distribution of the VM instructions created by Java, PHP or Jython
 compilers. We could note that maybe PHP or Python uses too many
@@ -256,7 +269,9 @@ paper from Rob Nicholson from the CodeZero project on how to
 <a class="reference external" href="http://wiki.jvmlangsummit.com/pdf/24_Nicholson_p8.pdf">implement PHP in the JVM</a>.
 PHP doesn't fit the JVM as well as Python does. So there's a weird
 bias.</p>
-<p><strong>Rule Three. Benchmarking Is Hard.</strong></p>
+</div>
+<div class="section" id="rule-three-benchmarking-is-hard">
+<h2>Rule Three. Benchmarking Is Hard.</h2>
 <p>There is no &quot;in general&quot; comparison of programming languages. All
 that we can do is benchmark something specific.</p>
 <p>It works like this.</p>
@@ -284,6 +299,7 @@ That's the basis for all benchmark comparisons. Since each
 implementation was well-done and properly optimized, the degree of
 freedom is the language -- and the run-time implementation of that
 language -- and the selected OS and hardware.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="nice-post-thanks-for-sharing">
 <h2>Nice post, thanks for sharing.</h2>
@@ -418,7 +434,7 @@ Let me know what you think</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

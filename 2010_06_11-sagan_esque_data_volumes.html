@@ -126,7 +126,8 @@ minimum of 60 billion rows.</p>
 <p>This is a really, really poor use of an RDBMS. This requires some
 kind of well-planned hierarchy of storage and analytic solutions.
 Load and Query can't work.</p>
-<p><strong>Goal</strong></p>
+<div class="section" id="goal">
+<h2>Goal</h2>
 <p>The question is &quot;What's the Goal&quot;? Some of the Stack Overflow
 questions lack essential use cases, making it impossible to determine
 what these folks are trying to do.</p>
@@ -136,7 +137,9 @@ volumes like that will involve fairly narrow and specific queries.</p>
 <p>Analysis of a subset may involve ad-hoc SQL queries. But the whole
 data set isn't really useful -- as a whole. It's useful when sliced
 and diced.</p>
-<p><strong>Heresy</strong></p>
+</div>
+<div class="section" id="heresy">
+<h2>Heresy</h2>
 <p>At this point, many DBA's pronounce me Heretic and Apostate. Anyone
 who suggests that a SQL database is (a) slow, and (b) biased toward
 ad-hoc queries must have fallen from the true path.</p>
@@ -152,7 +155,9 @@ line. However, most applications use SQL specifically to divorce the
 application from the physical data model. The idea is that SQL offers
 an ad-hoc scale of flexibility in exchange for glacial processing
 speed.</p>
-<p><strong>Acquisition</strong></p>
+</div>
+<div class="section" id="acquisition">
+<h2>Acquisition</h2>
 <p>The first step is to acquire the data in some storage that will
 handle 60 billion rows of data. Even if the rows are small, this is a
 big pile of disk. Super-large files are a mistake, so it means a
@@ -169,7 +174,9 @@ dimension FK's emerges and is appended to a file. Some flushing and
 periodic close-reopen operations will probably be reliable enough.</p>
 <p>The dimension values can be built into a database. The facts,
 however, have to reside in flat files.</p>
-<p><strong>Analysis</strong></p>
+</div>
+<div class="section" id="analysis">
+<h2>Analysis</h2>
 <p>In the unlikely case that someone thinks they want to analyze all 60
 billion rows, there are two things to be done. First, talk them out
 of it. Second, write special-purpose flat-file analyzers which do
@@ -188,6 +195,7 @@ to be summarized to create appropriate sums and counts.</li>
 <p>This subset datamart can be turned over to people for further
 slicing and dicing or whatever it is that they do with 60 billion
 rows of data.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="lustre-or-similar-file-systems-can-solve-many-of">
 <h2>Lustre (or similar file-systems) can solve many of...</h2>
@@ -278,7 +286,7 @@ ususal).</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

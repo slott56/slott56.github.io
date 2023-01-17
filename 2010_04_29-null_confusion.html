@@ -134,7 +134,8 @@ also be due to state changes: the attribite is not used in one
 state, but will be used in another state.</li>
 </ul>
 <p>With two meanings for a single value, hilarity always ensues.</p>
-<p><strong>Further Confusion</strong></p>
+<div class="section" id="further-confusion">
+<h2>Further Confusion</h2>
 <p>The NULL value doesn't participate in comparisons or indexes. This is
 -- apparently -- shocking to some people. Here's a nice summary in
 &quot;<a class="reference external" href="http://www.xaprb.com/blog/2006/05/18/why-null-never-compares-false-to-anything-in-sql/">Why NULL never compares false to anything in
@@ -145,7 +146,9 @@ and &quot;<a class="reference external" href="http://www.lifeaftercoffee.com/200
 NULL</a>&quot;</p>
 <p>Because of this &quot;NULL doesn't compare&quot; problem, people get baffled by
 the use of NVL (or IFNULL) functions.</p>
-<p><strong>The Rules of NULL</strong></p>
+</div>
+<div class="section" id="the-rules-of-null">
+<h2>The Rules of NULL</h2>
 <p><strong>The first rule of NULL is &quot;Don't.&quot;</strong> Don't define a data model that
 depends on nullability. Define a model where each class is distinct
 and all the attributes are <em>required</em>. This will lead to a number of
@@ -197,7 +200,9 @@ addresses; scores change over time. Implementing this as a
 prove that a particular join is nearly one-to-one, and you can prove
 that the cost of the join is too high, then you can consider
 pre-joining and using NULLs.</p>
-<p><strong>Common Mistakes</strong></p>
+</div>
+<div class="section" id="common-mistakes">
+<h2>Common Mistakes</h2>
 <p>There are two common NULL-join mistakes: optional joins and date
 ranges.</p>
 <p>One common mistake is attempting to join on an &quot;optional&quot; attribute.
@@ -227,6 +232,7 @@ mystery constants. Please. You have lots of mystery constants. If you
 want to be &quot;transparent&quot;, make it a configuration parameter.</p>
 <p>Just code the end-of-time as a real date not a NULL and use ordinary
 date-range logic with no silly NVL business.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="null-means-that-a-property-doesn-39-t-exist-for-a">
 <h2>NULL means that a property doesn&amp;#39;t exist for a...</h2>
@@ -360,7 +366,7 @@ document store or other non-SQL store).</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

@@ -132,7 +132,8 @@ Very clever stuff.</p>
 <p>It was described as horribly slow. Since it was only 400 lines of
 code, it was a great subject for review in a Python meetup.  I would
 be able to show some tweaks and performance tips.</p>
-<p><strong>Hypothetical Step 1:  Profile</strong></p>
+<div class="section" id="hypothetical-step-1-profile">
+<h2>Hypothetical Step 1:  Profile</h2>
 <p>My first thought was to run the profiler and see what popped up as a
 possible root cause of slowness.</p>
 <p>Generally, there are three kinds of performance problems.</p>
@@ -168,7 +169,9 @@ have.</p>
 Thankfully, they provided some typical input files.  For example,
 1979 High School Football season results.  159 lines of patiently
 gathered teams and scores.</p>
-<p><strong>It Didn't Run</strong></p>
+</div>
+<div class="section" id="it-didn-t-run">
+<h2>It Didn't Run</h2>
 <p>When we tried to run it with the profiler, we found that we had a
 bug.  Tracking down the bug, revealed the essential performance
 problem, also.</p>
@@ -192,7 +195,9 @@ for t in team_list:
 <p>And one of those repeats had the bug in it.</p>
 <p>What we have here is &quot;wrong data structure&quot;.  Replacing a list with a
 dict will have earth-shattering impact on performance.</p>
-<p><strong>The Bug</strong></p>
+</div>
+<div class="section" id="the-bug">
+<h2>The Bug</h2>
 <p>The bug, BTW, was a lookup loop which had the additional requirement
 of adding missing teams.  It tried to use the <strong>for-else</strong> structure.
 This was the intended code (not the actual code).</p>
@@ -207,7 +212,9 @@ statement is a real feature of the language.  However, it's obscure
 enough that it's easy to get wrong.</p>
 <p>However, it's also unique to Python, and the kind of thing that can
 lead to confusion.  I discourage it's use.</p>
-<p><strong>Test-Driven Reverse Engineering</strong></p>
+</div>
+<div class="section" id="test-driven-reverse-engineering">
+<h2>Test-Driven Reverse Engineering</h2>
 <p>We're doing TDRE on a little piece of recreational programming.  This
 means that we need to fabricate unit tests for code that is purported
 to work.  Some folks like to call this &quot;exploratory testing&quot; (a
@@ -226,7 +233,9 @@ output log as the expected results from each refactoring step.</p>
 TDRE effort last year, I had to create 122 unit tests to successfully
 refactor a program of over 6,000 lines of code.  It took several
 weeks.</p>
-<p><strong>Real Step 1: Fix The Data Structure</strong></p>
+</div>
+<div class="section" id="real-step-1-fix-the-data-structure">
+<h2>Real Step 1: Fix The Data Structure</h2>
 <p>Before profiling (but after running to capture some output) we have
 to fix the essential data structure.  Repeated scanning of a list is
 never going to perform well.</p>
@@ -239,7 +248,9 @@ program included a goofy loop to lookup a team in the list.  The Elo
 algorithm itself, which is already <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>2</sup>)</span>, is dragged
 down by using the linear search for the opposing team four more
 times, making it <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>3</sup>)</span>.</p>
-<p><strong>Cyclomatic Complexity</strong></p>
+</div>
+<div class="section" id="cyclomatic-complexity">
+<h2>Cyclomatic Complexity</h2>
 <p>One of the big &quot;issues&quot; is the use of <strong>if</strong> statements throughout
 the scoring algorithm.  An <strong>if</strong> statement creates <a class="reference external" href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">Cyclomatic
 Complexity</a>
@@ -263,7 +274,9 @@ normalization.</p>
 program where an instance of the sports normalization object is
 created.  This object's methods are then used by the Elo algorithm to
 normalize scores.</p>
-<p><strong>Icing on the Cake</strong></p>
+</div>
+<div class="section" id="icing-on-the-cake">
+<h2>Icing on the Cake</h2>
 <p>Once we've fixed the bug and replaced a list with a dict, everything
 else is merely icing.</p>
 <p>Some other OO changes.</p>
@@ -298,7 +311,9 @@ discards) a number of immutable candidate ranking objects.  The
 iteration that leads to convergence might be a matter of object
 creation rather than update.  I didn't make this change, since it
 required real work and we were out of time.</p>
-<p><strong>Bottom Line</strong></p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>The more times I do TDRE to improve performance, the more I
 realize that it's all about bugs and data structures.
 This recreational application took 45-60 seconds to process one
@@ -315,6 +330,7 @@ minuscule at best.</p>
 <li>Remove deeply-nested <strong>if</strong> statements.</li>
 </ul>
 <p>Generally, reduce Cyclomatic Complexity.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="this-also-falls-nicely-into-the-anti-if-campaign">
 <h2>This also falls nicely into the “anti if campaign”...</h2>
@@ -405,7 +421,7 @@ minuscule at best.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

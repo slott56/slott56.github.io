@@ -138,7 +138,8 @@ format so we can do some interesting processing, not simple web
 presentation.</p>
 <p>This is a note on how to read iWeb files to get at the content. And
 further, how to get at XML content in the form of a simple iterator.</p>
-<p><strong>Opening The Package</strong></p>
+<div class="section" id="opening-the-package">
+<h2>Opening The Package</h2>
 <p>Here's how to overview the package.</p>
 <pre class="literal-block">
 path=&quot;~/Documents/iWeb/Domain&quot;
@@ -156,7 +157,9 @@ with closing( gzip.GzipFile( os.path.join(path_full,&quot;index.xml.gz&quot;) ) 
     index_root= index_doc.getroot()
 </pre>
 <p>This gets us the XML version of the blog.</p>
-<p><strong>Finding the Pages</strong></p>
+</div>
+<div class="section" id="finding-the-pages">
+<h2>Finding the Pages</h2>
 <p>We can use the following to thread through the XML. We're looking for
 a particular &quot;Domain&quot;, a &quot;Site&quot; and a particular blog page within that
 site. The rest of the blog is mostly text. This portion of the blog is
@@ -205,7 +208,9 @@ for site_page in travel.findall('{http://developer.apple.com/namespaces/bl}serie
 <p>Once we have access to the page XML document, we can extract the
 content. At this point, we could define a function which simply
 yielded the individual site_page tags.</p>
-<p><strong>Summary Iterable</strong></p>
+</div>
+<div class="section" id="summary-iterable">
+<h2>Summary Iterable</h2>
 <p>The most useful form for the pages is an iterable that yields the
 date, title and content text. In this case, we're not going to
 preserve the internal markup, we're just going to extract the text in
@@ -240,7 +245,9 @@ used, but they're completely consistent indicators of the content.</p>
 </ul>
 <p>These becomes keys of the content_map mapping. The values are
 iterators over the text.</p>
-<p><strong>Processing The Text</strong></p>
+</div>
+<div class="section" id="processing-the-text">
+<h2>Processing The Text</h2>
 <p>Here's an iterator that makes use of the postings_iter() function
 shown above.</p>
 <pre class="literal-block">
@@ -282,7 +289,9 @@ def fact_iter( flat_postings=flatten_posting_iter(postings_iter(path=&quot;~/Doc
 </pre>
 <p>This iterates through focused data structures that include the
 requested lat/lon points.</p>
-<p><strong>Final Application</strong></p>
+</div>
+<div class="section" id="final-application">
+<h2>Final Application</h2>
 <p>The final application function that uses all of these iterators has
 the following kind of structure.</p>
 <pre class="literal-block">
@@ -301,6 +310,7 @@ wtr.writerows( f.as_dict() for f in fact_iter( source ) )
 </pre>
 <p>The iWeb XML structure, while bulky and complex, can easily be reduced
 to a simple iterator. That's why I love Python.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -382,7 +392,7 @@ to a simple iterator. That's why I love Python.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

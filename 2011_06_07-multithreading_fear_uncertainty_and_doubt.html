@@ -135,7 +135,8 @@ if we can't write multithreaded apps. And we can't write
 multi-threaded apps because—well—there are lots of reasons, split
 between ignorance and arrogance. All of which can be solved by
 throwing money after tools. Right?</p>
-<p><strong>Arrogance</strong></p>
+<div class="section" id="arrogance">
+<h2>Arrogance</h2>
 <p>One thing that makes multi-threaded applications error-prone is
 simple arrogance. There are lots and lots of race conditions that can
 arise. And folks aren't trained to think about how simple it is to
@@ -149,7 +150,9 @@ reading a variable. Setting a variable is a little less confusing.
 Because we don't think much about reads, we fail to see the
 consequences of moving the read of a variable around as part of an
 optimization effort.</p>
-<p><strong>Ignorance</strong></p>
+</div>
+<div class="section" id="ignorance">
+<h2>Ignorance</h2>
 <p>The best kind of lock is not a mutex or a semaphore. It surely isn't
 an RDBMS (but God knows, numerous organizations have used an RDBMS as
 a large, slow, complex and expensive message queue.)</p>
@@ -169,7 +172,9 @@ getting data to start doing useful work; a get is atomic and
 thread-safe object. There's no weird race condition when passing a
 result on to the next step in a pipeline. It's dropped into the
 queue, where it's available to another thread.</p>
-<p><strong>Dining Philosophers</strong></p>
+</div>
+<div class="section" id="dining-philosophers">
+<h2>Dining Philosophers</h2>
 <p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">Dining Philosophers</a>
 Code Kata has a queue-based solution that's pretty cool.</p>
 <p>A queue of Forks can be shared by the various Philosopher threads.
@@ -184,14 +189,18 @@ that the next waiting Philosopher can be seated.</p>
 <p>A queue-based solution is delightfully simple. 200 or so lines of
 code including docstrings comments so that the documentation looked
 nice, too.</p>
-<p><strong>Additional Constraints</strong></p>
+</div>
+<div class="section" id="additional-constraints">
+<h2>Additional Constraints</h2>
 <p>The simplest solution uses a single queue of anonymous Forks. A
 common constraint is to insist that each Philosopher use only the two
 adjacent forks. Philosopher <em>p</em> can use forks <span class="formula"><i>p</i> + 1<span class="unknown">\mod</span>5</span> and
 <span class="formula"><i>p</i> − 1<span class="unknown">\mod</span>5</span>.</p>
 <p>This is pleasant to implement. The Philosopher simply dequeues a
 fork, checks the position, and re-enqueues it if it's a wrong fork.</p>
-<p><strong>FUD Factor</strong></p>
+</div>
+<div class="section" id="fud-factor">
+<h2>FUD Factor</h2>
 <p>I think that the publicity around parallel programming and
 multithreaded applications is designed to create Fear, Uncertainty
 and Doubt (FUD™).</p>
@@ -214,7 +223,9 @@ money for a language or package that &quot;solves&quot; the problem.</li>
 <p>Sigh. The answer isn't software tools, it's design. Break the
 problem down into independent parallel tasks and feed them from
 message queues. Collect the results in message queues.</p>
-<p><strong>Some Code</strong></p>
+</div>
+<div class="section" id="some-code">
+<h2>Some Code</h2>
 <pre class="literal-block">
 class Philosopher( threading.Thread ):
     &quot;&quot;&quot;A Philosopher.  When invited to dine, they will
@@ -397,6 +408,7 @@ finished.  It also assures that four Philosophers sit at the table
 and when one finishes, another takes their place.  Finally, it also
 assures that all Philosophers are done eating before the dining room
 is closed.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="sometimes-even-when-its-a-black-box-people-get-t">
 <h2>Sometimes, even when its a black box, people get t...</h2>
@@ -500,7 +512,7 @@ feature, you'll have obvious contention issues.&quot;</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

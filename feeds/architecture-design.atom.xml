@@ -619,7 +619,8 @@ in Python so that we can parse the EBCDIC COBOL data.&lt;/p&gt;
 &lt;p&gt;This summarized example allowed construction of a test case that made
 use of a API that might have existed. I was pretty sure I had a test
 case that showed an approach.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;What Actually Happened&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="what-actually-happened"&gt;
+&lt;h2&gt;What Actually Happened&lt;/h2&gt;
 &lt;p&gt;Since the application already had 178 unit tests, there was plenty of
 structure that worked.&lt;/p&gt;
 &lt;p&gt;The single new unit test relied on a notional API that wasn't really
@@ -636,7 +637,9 @@ but another test was failing.&lt;/p&gt;
 wrong. Way wrong.&lt;/p&gt;
 &lt;p&gt;The notional API was a bad idea.&lt;/p&gt;
 &lt;p&gt;The tweaks to make it work were a worse idea.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Back to the Lab Bench&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="back-to-the-lab-bench"&gt;
+&lt;h2&gt;Back to the Lab Bench&lt;/h2&gt;
 &lt;p&gt;At this point, I had made enough changes that the only thing to do was
 copy the new test and use the Git Revoke on the local changes to
 unwind the awful mistakes.&lt;/p&gt;
@@ -657,7 +660,9 @@ that's a sign that the API is too complex. Refactoring must happen.&lt;/p&gt;
 something had drifted out of tolerance.&lt;/p&gt;
 &lt;p&gt;However. I did get a test which passed. Yay. Sort of.&lt;/p&gt;
 &lt;p&gt;The test code was hideous.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TDD and API Design&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tdd-and-api-design"&gt;
+&lt;h2&gt;TDD and API Design&lt;/h2&gt;
 &lt;p&gt;The point of TDD, however, is that we have a working suite of tests.
 Refactoring won't break anything.&lt;/p&gt;
 &lt;p&gt;The point was that the hideous API could be rewritten into something
@@ -676,6 +681,7 @@ spin into quite complex API's, limited only by the laziness of the
 programmer who avoids refactoring.&lt;/p&gt;
 &lt;p&gt;Or the malice of the programmer's manager in not allowing time to
 refactor.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="unit testing"></category><category term="#python"></category><category term="tdd"></category><category term="stingray reader"></category><category term="API Design"></category><category term="mastering object-oriented python"></category></entry><entry><title>Explaining an Application</title><link href="https://slott56.github.io/2014_02_21-explaining_an_application.html" rel="alternate"></link><published>2014-02-21T10:56:00-05:00</published><updated>2014-02-21T10:56:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2014-02-21:/2014_02_21-explaining_an_application.html</id><summary type="html">&lt;p&gt;Some years ago--never mind how long precisely--having little or no money
 in my purse...  I had a great chance to do some Test-Driven Reverse
 Engineering on a rather complex C program. I extracted test cases. I
@@ -747,7 +753,8 @@ suggested that everything will be released three times, called the
 &lt;p&gt;Not everything required three releases. Simpler components can merge
 better and best. Some components simply start out in really, really
 good shape.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Teaching Moment&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="teaching-moment"&gt;
+&lt;h2&gt;Teaching Moment&lt;/h2&gt;
 &lt;p&gt;What I've also noticed is that the explanation of the component --
 writing documentation, presenting to peers in a walkthrough -- leads
 to profound rethinking.&lt;/p&gt;
@@ -772,6 +779,7 @@ unit tests -- then refactoring to meet non-functional quality factors
 &lt;p&gt;Also, refactoring to make the software clear, simple, and elegant
 should probably wait until it works and has a complete suite of
 automated unit tests.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="unit testing"></category><category term="software process improvement"></category><category term="OO design"></category><category term="requirements"></category></entry><entry><title>Unit Test Naming [Updated]</title><link href="https://slott56.github.io/2014_01_01-unit_test_naming_updated.html" rel="alternate"></link><published>2014-01-01T13:22:00-05:00</published><updated>2014-01-01T13:22:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2014-01-01:/2014_01_01-unit_test_naming_updated.html</id><summary type="html">&lt;p&gt;Just stumbled across several blog postings on unit test naming.&lt;/p&gt;
 &lt;p&gt;Essentially the TestCase will name the fixture. That's pretty easy to
 understand.&lt;/p&gt;
@@ -813,7 +821,8 @@ Very clever stuff.&lt;/p&gt;
 &lt;p&gt;It was described as horribly slow. Since it was only 400 lines of
 code, it was a great subject for review in a Python meetup.  I would
 be able to show some tweaks and performance tips.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hypothetical Step 1:  Profile&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="hypothetical-step-1-profile"&gt;
+&lt;h2&gt;Hypothetical Step 1:  Profile&lt;/h2&gt;
 &lt;p&gt;My first thought was to run the profiler and see what popped up as a
 possible root cause of slowness.&lt;/p&gt;
 &lt;p&gt;Generally, there are three kinds of performance problems.&lt;/p&gt;
@@ -849,7 +858,9 @@ have.&lt;/p&gt;
 Thankfully, they provided some typical input files.  For example,
 1979 High School Football season results.  159 lines of patiently
 gathered teams and scores.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It Didn't Run&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="it-didn-t-run"&gt;
+&lt;h2&gt;It Didn't Run&lt;/h2&gt;
 &lt;p&gt;When we tried to run it with the profiler, we found that we had a
 bug.  Tracking down the bug, revealed the essential performance
 problem, also.&lt;/p&gt;
@@ -873,7 +884,9 @@ for t in team_list:
 &lt;p&gt;And one of those repeats had the bug in it.&lt;/p&gt;
 &lt;p&gt;What we have here is &amp;quot;wrong data structure&amp;quot;.  Replacing a list with a
 dict will have earth-shattering impact on performance.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-bug"&gt;
+&lt;h2&gt;The Bug&lt;/h2&gt;
 &lt;p&gt;The bug, BTW, was a lookup loop which had the additional requirement
 of adding missing teams.  It tried to use the &lt;strong&gt;for-else&lt;/strong&gt; structure.
 This was the intended code (not the actual code).&lt;/p&gt;
@@ -888,7 +901,9 @@ statement is a real feature of the language.  However, it's obscure
 enough that it's easy to get wrong.&lt;/p&gt;
 &lt;p&gt;However, it's also unique to Python, and the kind of thing that can
 lead to confusion.  I discourage it's use.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Test-Driven Reverse Engineering&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-driven-reverse-engineering"&gt;
+&lt;h2&gt;Test-Driven Reverse Engineering&lt;/h2&gt;
 &lt;p&gt;We're doing TDRE on a little piece of recreational programming.  This
 means that we need to fabricate unit tests for code that is purported
 to work.  Some folks like to call this &amp;quot;exploratory testing&amp;quot; (a
@@ -907,7 +922,9 @@ output log as the expected results from each refactoring step.&lt;/p&gt;
 TDRE effort last year, I had to create 122 unit tests to successfully
 refactor a program of over 6,000 lines of code.  It took several
 weeks.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Real Step 1: Fix The Data Structure&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="real-step-1-fix-the-data-structure"&gt;
+&lt;h2&gt;Real Step 1: Fix The Data Structure&lt;/h2&gt;
 &lt;p&gt;Before profiling (but after running to capture some output) we have
 to fix the essential data structure.  Repeated scanning of a list is
 never going to perform well.&lt;/p&gt;
@@ -920,7 +937,9 @@ program included a goofy loop to lookup a team in the list.  The Elo
 algorithm itself, which is already &lt;span class="formula"&gt;&lt;span class="textbf"&gt;O&lt;/span&gt;(&lt;i&gt;n&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt;)&lt;/span&gt;, is dragged
 down by using the linear search for the opposing team four more
 times, making it &lt;span class="formula"&gt;&lt;span class="textbf"&gt;O&lt;/span&gt;(&lt;i&gt;n&lt;/i&gt;&lt;sup&gt;3&lt;/sup&gt;)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cyclomatic Complexity&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cyclomatic-complexity"&gt;
+&lt;h2&gt;Cyclomatic Complexity&lt;/h2&gt;
 &lt;p&gt;One of the big &amp;quot;issues&amp;quot; is the use of &lt;strong&gt;if&lt;/strong&gt; statements throughout
 the scoring algorithm.  An &lt;strong&gt;if&lt;/strong&gt; statement creates &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"&gt;Cyclomatic
 Complexity&lt;/a&gt;
@@ -944,7 +963,9 @@ normalization.&lt;/p&gt;
 program where an instance of the sports normalization object is
 created.  This object's methods are then used by the Elo algorithm to
 normalize scores.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Icing on the Cake&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="icing-on-the-cake"&gt;
+&lt;h2&gt;Icing on the Cake&lt;/h2&gt;
 &lt;p&gt;Once we've fixed the bug and replaced a list with a dict, everything
 else is merely icing.&lt;/p&gt;
 &lt;p&gt;Some other OO changes.&lt;/p&gt;
@@ -979,7 +1000,9 @@ discards) a number of immutable candidate ranking objects.  The
 iteration that leads to convergence might be a matter of object
 creation rather than update.  I didn't make this change, since it
 required real work and we were out of time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bottom Line&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bottom-line"&gt;
+&lt;h2&gt;Bottom Line&lt;/h2&gt;
 &lt;p&gt;The more times I do TDRE to improve performance, the more I
 realize that it's all about bugs and data structures.
 This recreational application took 45-60 seconds to process one
@@ -996,6 +1019,7 @@ minuscule at best.&lt;/p&gt;
 &lt;li&gt;Remove deeply-nested &lt;strong&gt;if&lt;/strong&gt; statements.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Generally, reduce Cyclomatic Complexity.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="this-also-falls-nicely-into-the-anti-if-campaign"&gt;
 &lt;h2&gt;This also falls nicely into the “anti if campaign”...&lt;/h2&gt;
@@ -1182,7 +1206,8 @@ quirks and bad design from one language to another will not magically
 make a legacy application &amp;quot;better&amp;quot;. Converting quirky code to Java
 will merely canonize the quirks, obscuring the essential business
 value that was also encoded in the quirky legacy code.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Focus on Value&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="focus-on-value"&gt;
+&lt;h2&gt;Focus on Value&lt;/h2&gt;
 &lt;p&gt;The fundamental modernization question is &amp;quot;Where's the Value?&amp;quot; Or,
 more specifically, &amp;quot;What part of this legacy is worth preserving?&amp;quot;&lt;/p&gt;
 &lt;p&gt;In some cases, it's not even completely clear what the legacy software
@@ -1191,7 +1216,9 @@ thousands) of application programs, each of which does some very small
 thing.&lt;/p&gt;
 &lt;p&gt;While &amp;quot;Focus on Value&amp;quot; is essential, it's not clear how one achieves
 this. Here's a process I've used.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 1. Create a code and data inventory.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-1-create-a-code-and-data-inventory"&gt;
+&lt;h2&gt;Step 1. Create a code and data inventory.&lt;/h2&gt;
 &lt;p&gt;This is essential for determine what parts of the legacy system have
 value. Blue Phoenix has &amp;quot;Legacy Indexing&amp;quot; for determine the current
 state of the application portfolio. Bravo. This is important.&lt;/p&gt;
@@ -1214,7 +1241,9 @@ they don't appear in shell scripts or interactive menus. There are
 programs which have clear bugs and (apparently) never worked. There
 are programs with quirks; programs that work because of an
 undocumented &amp;quot;feature&amp;quot; of the language or platform.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2. Capture the Data.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-2-capture-the-data"&gt;
+&lt;h2&gt;Step 2. Capture the Data.&lt;/h2&gt;
 &lt;p&gt;In most cases, the data is central: the legacy files or databases need
 to be preserved. The application code is often secondary. In &lt;strong&gt;most&lt;/strong&gt;
 cases, the application code is almost worthless, and only the data
@@ -1253,7 +1282,9 @@ liability than asset and should be discarded in order to simplify,
 streamline or improve operations.&lt;/p&gt;
 &lt;p&gt;What's left?&lt;/p&gt;
 &lt;p&gt;The high value processing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 3. Extract the Business Rules.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-3-extract-the-business-rules"&gt;
+&lt;h2&gt;Step 3. Extract the Business Rules.&lt;/h2&gt;
 &lt;p&gt;Once we've disposed of overheads, utility code, quirks, bad design,
 and wrong use cases, what's left are a the real brass tacks. A few
 lines of code here and there will decode a one-character flag or
@@ -1282,7 +1313,9 @@ unit test cases.&lt;/p&gt;
 &lt;p&gt;The unique processing rules need to have modern, formal documentation.
 Minimally, the documentation must be in the form of unit test cases;
 English as a backup can be helpful.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 4. Build Bridges.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-4-build-bridges"&gt;
+&lt;h2&gt;Step 4. Build Bridges.&lt;/h2&gt;
 &lt;p&gt;A modernization project is not a once-and-done operation.&lt;/p&gt;
 &lt;p&gt;I've been told that the IT department goal is to pick a long weekend,
 preferably a federal Monday holiday weekend (Labor Day is always
@@ -1315,7 +1348,9 @@ situation where you have a portfolio of unconverted code but no
 missing features. Since there are no more desirable legacy features
 to convert, the remaining code is -- by definition -- worthless.
 The unconverted code is a net cost savings.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Automated Translation&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automated-translation"&gt;
+&lt;h2&gt;Automated Translation&lt;/h2&gt;
 &lt;p&gt;Note that there is very little emphasis on automated translation of
 legacy code. The important work is uncovering the data and the
 processing rules that make the data usable. The important tools are
@@ -1330,6 +1365,7 @@ Automated translation cannot capture meaning, identify use cases or
 write unit test cases. Thoughtful manual analysis of meaning,
 usability and unit tests is how the value of legacy code and data is
 preserved.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="you-nailed-it-here-steven-it-39-s-not-about-th"&gt;
 &lt;h2&gt;You nailed it here, Steven.  It&amp;amp;#39;s not about th...&lt;/h2&gt;
@@ -1462,14 +1498,16 @@ Very well put!&lt;/p&gt;
 &lt;p&gt;&amp;quot;So what are non-mathematicians suppose to do?&amp;quot; Either learn some math
 or stop trying to write equations.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="requirements"></category><category term="use case"></category><category term="LaTeX"></category><category term="user stories"></category></entry><entry><title>TDRE - Test Driven Reverse Engineering Case Study</title><link href="https://slott56.github.io/2012_02_14-tdre_test_driven_reverse_engineering_case_study.html" rel="alternate"></link><published>2012-02-14T08:00:00-05:00</published><updated>2012-02-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-02-14:/2012_02_14-tdre_test_driven_reverse_engineering_case_study.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Background&lt;/strong&gt;&lt;/p&gt;
+</content><category term="Architecture &amp; Design"></category><category term="requirements"></category><category term="use case"></category><category term="LaTeX"></category><category term="user stories"></category></entry><entry><title>TDRE - Test Driven Reverse Engineering Case Study</title><link href="https://slott56.github.io/2012_02_14-tdre_test_driven_reverse_engineering_case_study.html" rel="alternate"></link><published>2012-02-14T08:00:00-05:00</published><updated>2012-02-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-02-14:/2012_02_14-tdre_test_driven_reverse_engineering_case_study.html</id><summary type="html">&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;Read up on compass variation or declination.  For example, this
 &lt;a class="reference external" href="http://www.ngdc.noaa.gov/geomag/declination.shtml"&gt;NOAA&lt;/a&gt; site
 provides some useful information.&lt;/p&gt;
 &lt;p&gt;Mariners use the magnetic variation to compute the difference between
 True north (i.e., aligned with the grid on the chart) and Magnetic
 north (i.e., aligned with the compass.)&lt;/p&gt;
-&lt;p&gt;The essential use …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Background&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The essential use …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;Read up on compass variation or declination.  For example, this
 &lt;a class="reference external" href="http://www.ngdc.noaa.gov/geomag/declination.shtml"&gt;NOAA&lt;/a&gt; site
 provides some useful information.&lt;/p&gt;
@@ -1492,7 +1530,9 @@ output&amp;quot;, which amount to unit test cases.&lt;/p&gt;
 small Fortran program,
 &lt;a class="reference external" href="http://www.ngdc.noaa.gov/IAGA/vmod/igrf11.f"&gt;igrf11.f&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Which leads us to reverse engineering this program into Python.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TDRE Approach&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tdre-approach"&gt;
+&lt;h2&gt;TDRE Approach&lt;/h2&gt;
 &lt;p&gt;The TDRE approach requires having some test cases to drive the reverse
 engineering process toward some kind of useful results.&lt;/p&gt;
 &lt;p&gt;The geomag7.0 package includes two &amp;quot;Sample Output&amp;quot; files that have the
@@ -1557,7 +1597,9 @@ def  igrf11syn( date, nlat, elong, alt=0.0, coord='D' ):
    return None, None, None, None
 &lt;/pre&gt;
 &lt;p&gt;This lets us run the tests and find that we have work to do.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Reverse Engineering&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reverse-engineering"&gt;
+&lt;h2&gt;Reverse Engineering&lt;/h2&gt;
 &lt;p&gt;The IGRF11.F fortran code contains this IGRF11SYN &amp;quot;subroutine&amp;quot; that
 does the work we want.  The geomag 7.0 package has a function called
 shval3 which is essentially the same thing.&lt;/p&gt;
@@ -1621,7 +1663,9 @@ few calls to print reveal how the matrix is accessed.&lt;/p&gt;
 it's relatively easy to hypothesize a dictionary by year that
 contains a pair of simple dictionaries, g[n,m] and h[n,m], for the
 coefficients.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Cleanup and Packaging&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cleanup-and-packaging"&gt;
+&lt;h2&gt;Cleanup and Packaging&lt;/h2&gt;
 &lt;p&gt;Once the tests pass, the package -- as a whole -- needs to be made
 reasonably Pythonic.   In this case, it means a number of additional
 changes.  For example, converting the API from degrees to radians,
@@ -1634,6 +1678,7 @@ during construction.&lt;/p&gt;
 &lt;p&gt;Note that there's little point in profiling to apply further
 optimizations.  The legacy Fortran code was already meticulously hand
 optimized.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="i-am-not-sure-where-you-are-getting-your-info-but"&gt;
 &lt;h2&gt;I am not sure where you are getting your info, but...&lt;/h2&gt;
@@ -1675,7 +1720,8 @@ application.&lt;/p&gt;
 &lt;p&gt;One optional behavior is to dump the interface details.&lt;/p&gt;
 &lt;p&gt;Another optional behavior is to allow selection among a small number
 of simple interactions just to be sure things are working.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Unplanned Work&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="unplanned-work"&gt;
+&lt;h2&gt;Unplanned Work&lt;/h2&gt;
 &lt;p&gt;What's important here isn't that I did all this.  What's important is
 that the deliverables, user stories and project plans didn't include
 this little nugget of high-value goodness.&lt;/p&gt;
@@ -1684,6 +1730,7 @@ story (&amp;quot;As system admin...&amp;quot;) is rarely considered as a first-c
 user of the application.  Yet, the admin is a first-class user, and
 needs to have proper user stories for confirming that the application
 is working properly.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="unit testing"></category><category term="architecture"></category></entry><entry><title>Paranoid Schizophrenic Programming (Revised)</title><link href="https://slott56.github.io/2011_12_12-paranoid_schizophrenic_programming_revised.html" rel="alternate"></link><published>2011-12-12T14:31:00-05:00</published><updated>2011-12-12T14:31:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-12-12:/2011_12_12-paranoid_schizophrenic_programming_revised.html</id><summary type="html">&lt;p&gt;Some folks love the twin ideas that (1) &amp;quot;someone&amp;quot; might break the API
 rules and (2) they must write lots of bonus code to &amp;quot;prevent&amp;quot; problems.&lt;/p&gt;
 &lt;p&gt;Sigh.&lt;/p&gt;
@@ -2076,13 +2123,15 @@ I'd rather see a crash than garbage output.&lt;/p&gt;
 files to create a number of outputs. [Details can't be disclosed.]&lt;/p&gt;
 &lt;p&gt;Objective: Refactor to distinguish between the overall sequence of
 transformational steps and the details of each individual step.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Observations&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The code …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Another case study on TDRE.&lt;/p&gt;
+&lt;div class="section" id="observations"&gt;
+&lt;h2&gt;Observations&lt;/h2&gt;
+&lt;p&gt;The code …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Another case study on TDRE.&lt;/p&gt;
 &lt;p&gt;Provided: 2,938 lines of Python code which process a handful of large
 files to create a number of outputs. [Details can't be disclosed.]&lt;/p&gt;
 &lt;p&gt;Objective: Refactor to distinguish between the overall sequence of
 transformational steps and the details of each individual step.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Observations&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="observations"&gt;
+&lt;h2&gt;Observations&lt;/h2&gt;
 &lt;p&gt;The code is almost purely procedural. There are 11 class definitions.
 6 of these wrap built-in types with type conversion and
 null-handling. 1 is a new exception. 1 is a generic &amp;quot;table&amp;quot; that
@@ -2104,7 +2153,9 @@ cells and formulæ that permits simple what-if analysis. This is a
 more complex set of formulæ that would be challenging (but not
 impossible) to implement as a spreadsheet. The use case, however, is
 the spreasheet use case: think, tweak, create results, repeat.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TDRE Approach&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tdre-approach"&gt;
+&lt;h2&gt;TDRE Approach&lt;/h2&gt;
 &lt;p&gt;Start with an &lt;strong&gt;Initial Survey&lt;/strong&gt; of the legacy code base and sample
 files.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Create an Outline&lt;/strong&gt; or &amp;quot;sketch&amp;quot; of the domain model and main
@@ -2125,7 +2176,9 @@ print( &amp;quot;Case:&amp;quot;, foo, bar, &amp;quot;, Expect:&amp;quot;, baz, 
 &lt;p&gt;From the output, &lt;strong&gt;Build Unit Test Cases&lt;/strong&gt;. Fill in parts of the
 processing sequence and domain model. Debug code until the tests
 pass.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Initial Survey&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="initial-survey"&gt;
+&lt;h2&gt;Initial Survey&lt;/h2&gt;
 &lt;p&gt;The &lt;strong&gt;Initial Survey&lt;/strong&gt; locates several things.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;The usable, working modules. It appears that all reverse
@@ -2153,7 +2206,9 @@ acceptance test. While it's desirable for reverse engineering to
 reproduce the sample output, most reverse engineering will involve
 enhancements or bug fixes. Expect that errors will be found (or may
 be known to exist) in the sample output.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Create Outline&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="create-outline"&gt;
+&lt;h2&gt;Create Outline&lt;/h2&gt;
 &lt;p&gt;The outline is -- initially -- just generic MVP. There must be a
 domain model, some &amp;quot;presenter&amp;quot; that has the application logic, and
 some &amp;quot;view&amp;quot; for displaying the outputs.&lt;/p&gt;
@@ -2163,7 +2218,9 @@ all &amp;quot;presenter&amp;quot; application logic.&lt;/p&gt;
 &lt;p&gt;The goal was to extract the underlying model, break the application
 &amp;quot;presenter&amp;quot; logic into two layers (forest and trees) and build some
 views for each of the output files.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pick a Processing Step&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pick-a-processing-step"&gt;
+&lt;h2&gt;Pick a Processing Step&lt;/h2&gt;
 &lt;p&gt;This can be challenging, depending on the legacy code base. There are
 two paths through a procedural code base.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -2176,7 +2233,9 @@ result based on the input files. Unit test the initial steps.&lt;/li&gt;
 shown a little more clearly.&lt;/p&gt;
 &lt;p&gt;A better architecture can be created by working back-to-front since
 dependencies are easier to understand.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Unit Test Volume, Edges and Corners&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-test-volume-edges-and-corners"&gt;
+&lt;h2&gt;Unit Test Volume, Edges and Corners&lt;/h2&gt;
 &lt;p&gt;There are two unit test design challenges when doing reverse
 engineering.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -2195,6 +2254,7 @@ exercises that logic path.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Once the unit tests are built, this is just Test-Driven
 Development (TDD).&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="really-great-post-i-got-some-similar-advice-from"&gt;
 &lt;h2&gt;Really great post! I got some similar advice from ...&lt;/h2&gt;
@@ -2367,7 +2427,8 @@ points&lt;/a&gt;&amp;quot;.]&lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;Only it has a a few more rows with different examples. Equator
 Crossing. Prime Meridian Crossing. All the usual suspects.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;TDD Means Making Test Cases&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="tdd-means-making-test-cases"&gt;
+&lt;h2&gt;TDD Means Making Test Cases&lt;/h2&gt;
 &lt;p&gt;Step one, then, is to parse the spreadsheet full of examples and
 create some domain-specific examples. Since it's far, far easier to
 work with .CSV files, we'll presume that we can save the
@@ -2422,7 +2483,9 @@ for tc in test_iter():
 &lt;/pre&gt;
 &lt;p&gt;This is long, but, it handles a lot of the formatting vagaries that
 users are prone to.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;From Abstract to TestCase&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="from-abstract-to-testcase"&gt;
+&lt;h2&gt;From Abstract to TestCase&lt;/h2&gt;
 &lt;p&gt;Once we have a generator to build test cases as abstraction examples,
 generating code for Java or Python or anything else is just a little
 template-fu.&lt;/p&gt;
@@ -2448,6 +2511,7 @@ for name, tc in enumerate( test_iter() ):
 generate a hair more than this. A few imports, a &amp;quot;unittest.main()&amp;quot; is
 usually sufficient to transform a spreadsheet into unit tests that we
 can confidently use for test-driven development.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="pretty-cool-thanks-for-sharing"&gt;
 &lt;h2&gt;Pretty cool. Thanks for sharing&lt;/h2&gt;
@@ -2478,7 +2542,8 @@ a spreadsheet.&lt;/p&gt;
 spreadsheet (or multiple spreadsheets) with concrete examples. It's
 often easier for users to make concrete examples than it is for them
 to write more general business rules.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Automated Test Case Construction&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="automated-test-case-construction"&gt;
+&lt;h2&gt;Automated Test Case Construction&lt;/h2&gt;
 &lt;p&gt;Here's what can easily happen next.&lt;/p&gt;
 &lt;p&gt;Write a Python script to parse the spreadsheet and extract the cases.
 There will be some ad-hoc rules, inconsistent test cases, small
@@ -2502,7 +2567,9 @@ for case_dict in testCaseParser( &amp;quot;some.xls&amp;quot; ):
 &lt;p&gt;You now have a fully-populated tree of unit test classes, modules and
 packages built from the end-user source documents.&lt;/p&gt;
 &lt;p&gt;You have your tests. You can start doing TDD.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Scenarios&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="scenarios"&gt;
+&lt;h2&gt;Scenarios&lt;/h2&gt;
 &lt;p&gt;One of the earliest problems you'll have is test case spreadsheets
 that are broken. Wrong column titles, wrong formatting, something
 wrong. Go meet with the user or expert that built the spreadsheet and
@@ -2522,7 +2589,9 @@ attributes are missing from the spreadsheet -- attributes they each
 assumed -- and attributes you didn't have explicitly written down
 anywhere. Other times there's confusion that needs to be resolved
 before any programming should begin.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Big Payoff&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-big-payoff"&gt;
+&lt;h2&gt;The Big Payoff&lt;/h2&gt;
 &lt;p&gt;When the tests all pass, you're ready for performance and final
 acceptance testing. Here's where TDD (and having the users own the
 test cases) pays out well.&lt;/p&gt;
@@ -2539,7 +2608,9 @@ incomplete.&lt;/p&gt;
 get examples wrong, too. Either way (omission or error) we're just
 fixing the spreadsheets, regenerating the test cases, and starting up
 the TDD process with the revised suite of test cases.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bug Fixing&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bug-fixing"&gt;
+&lt;h2&gt;Bug Fixing&lt;/h2&gt;
 &lt;p&gt;Interestingly, a bug fix after production roll-out is no different
 from an acceptance test problem. Indeed it's no different from
 anything that's happened so far.&lt;/p&gt;
@@ -2552,6 +2623,7 @@ spreadsheets with the test data, they can maintain those spreadsheets
 to clarify the bugs. 20% of the time it's a new requirement. Either
 way, the test cases are as complete and consistent as the users are
 capable of producing.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="this-sounds-a-lot-like-pyfit-and-robot-framework"&gt;
 &lt;h2&gt;This sounds a lot like PyFIT and Robot Framework, ...&lt;/h2&gt;
@@ -2597,7 +2669,8 @@ It's done using Django's stand-alone testserver capability.&lt;/p&gt;
 &lt;p&gt;As I noted recently, Apache doesn't like to give up the HTTP
 Authorization header. So, the real deployment on our real servers
 didn't really work.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Blame Game&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="the-blame-game"&gt;
+&lt;h2&gt;The Blame Game&lt;/h2&gt;
 &lt;p&gt;At this point there are lots of things we can blame. Let's start
 blaming the process.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -2614,7 +2687,9 @@ to deploy it. Testing simply doesn't uncover enough problems.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Clearly, we need a Bold New Process to solve and prevent problems
 like this.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Seriously&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="seriously"&gt;
+&lt;h2&gt;Seriously&lt;/h2&gt;
 &lt;p&gt;Search Stack Overflow for &amp;quot;Justification of TDD&amp;quot; or &amp;quot;ROI of Unit
 Testing&amp;quot; and those kinds of loaded questions and you'll find folks
 that are angry that software development is hard and TDD or Unit
@@ -2623,7 +2698,9 @@ something didn't make software easy.&lt;/p&gt;
 &lt;p&gt;There is no Pixie Dust. You've been told. Stop searching for it.
 Software is hard. Unit Testing helps, but doesn't make it less
 hard.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Unit Testing to the Rescue&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-testing-to-the-rescue"&gt;
+&lt;h2&gt;Unit Testing to the Rescue&lt;/h2&gt;
 &lt;p&gt;Our code coverage is -- at best -- middlin'. I don't have counts,
 nor do I actually care what the lines of code number is. Code
 coverage can devolve to
@@ -2651,7 +2728,9 @@ Plus some refactoring to locate the digest in the query string.
 This is a tightly focused change in authentication and the
 client library. About two days of work to subclass and refactor
 the auth.rest module.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Success Factors&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="success-factors"&gt;
+&lt;h2&gt;Success Factors&lt;/h2&gt;
 &lt;p&gt;Because of TDD and a suite of unit tests, many things went
 really, really well.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -2677,6 +2756,7 @@ still sound. We're just stumbling on an Apache deployment
 issue. In one sense, it's a &amp;quot;show stopper&amp;quot;, but in another
 sense it's just a Visible But Minor (VBM™) hurdle.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="not-meaning-to-rub-it-in-more-just-providing-furt"&gt;
 &lt;h2&gt;Not meaning to rub it in, more just providing furt...&lt;/h2&gt;
@@ -2800,13 +2880,15 @@ and '&lt;a class="reference external" href="http://code.google.com/p/modwsgi/wik
 &lt;li&gt;&lt;strong&gt;&amp;quot;Security&amp;quot;&lt;/strong&gt;.  I put &amp;quot;security&amp;quot; in quotes because it's not at all clear what we're securing against.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So Python has better syntax, and non-Python is slightly easier to reload.  At this point, we've got no good reason for anything other than Python.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Security Specter&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="the-security-specter"&gt;
+&lt;h2&gt;The Security Specter&lt;/h2&gt;
 &lt;p&gt;It's not clear why &amp;quot;security&amp;quot; keeps surfacing.  I can't determine the threat scenario.  Since the config files are under tight permission control, only a sys admin can change them.&lt;/p&gt;
 &lt;p&gt;So, the security threat is a sys admin who knows Python and is using the configuration files to subvert something in the organization.&lt;/p&gt;
 &lt;p&gt;And -- bonus -- there can be no other corporate controls over the system being subverted.&lt;/p&gt;
 &lt;p&gt;Wait -- what?&lt;/p&gt;
 &lt;p&gt;No controls.  The security thing only makes sense when you have programming sysadmins and no controls.  Python syntax vs. .INI syntax has nothing to do with this.&lt;/p&gt;
 &lt;p&gt;The security argument makes no sense.  There is no point in .INI configuration files.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="design"></category><category term="data structure"></category><category term="algorithm"></category></entry><entry><title>Conflating Test and Debug</title><link href="https://slott56.github.io/2008_12_02-conflating_test_and_debug.html" rel="alternate"></link><published>2008-12-02T18:06:00-05:00</published><updated>2008-12-02T18:06:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-12-02:/2008_12_02-conflating_test_and_debug.html</id><summary type="html">&lt;p&gt;Check out this StackOverflow &amp;quot;question&amp;quot;: &lt;a class="reference external" href="http://stackoverflow.com/questions/333922/does-anyone-have-metrics-on-the-utility-of-formal-unit-testing"&gt;Does anyone have metrics on the utility of formal Unit Testing?&lt;/a&gt; . While -- technically -- it does have a question, it's more of a rant against formal unit testing than a proper question.&lt;/p&gt;
 &lt;p&gt;Here's the conflation comment.  &amp;quot;I've worked with developers who never caught any errors in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Check out this StackOverflow &amp;quot;question&amp;quot;: &lt;a class="reference external" href="http://stackoverflow.com/questions/333922/does-anyone-have-metrics-on-the-utility-of-formal-unit-testing"&gt;Does anyone have metrics on the utility of formal Unit Testing?&lt;/a&gt; . While -- technically -- it does have a question, it's more of a rant against formal unit testing than a proper question.&lt;/p&gt;
 &lt;p&gt;Here's the conflation comment.  &amp;quot;I've worked with developers who never caught any errors in their unit tests.&amp;quot;&lt;/p&gt;

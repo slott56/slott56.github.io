@@ -152,7 +152,8 @@ audit can check the counts and totals.</p>
 <p>Yesterday we got an .XLSM with over 80,000 plus rows. It couldn't
 be trivially converted to CSV by my installation of Excel.</p>
 <p>What to do?</p>
-<p><strong>Python to the Rescue</strong></p>
+<div class="section" id="python-to-the-rescue">
+<h2>Python to the Rescue</h2>
 <p>Step 1. Read the standards. Start with the Wikipedia article: &quot;<a class="reference external" href="http://en.wikipedia.org/wiki/Office_Open_XML">Open
 Office XML</a>&quot;. Move
 to the <a class="reference external" href="http://www.ecma-international.org/publications/standards/Ecma-376.htm">ECMA
@@ -167,7 +168,9 @@ memory.</p>
 <p>Further, a simple DOM parser, like Python's excellent
 <a class="reference external" href="http://docs.python.org/library/xml.etree.elementtree.html">ElementTree</a>,
 won't work on files this huge.</p>
-<p><strong>Expanding an XLSX or XLSM file</strong></p>
+</div>
+<div class="section" id="expanding-an-xlsx-or-xlsm-file">
+<h2>Expanding an XLSX or XLSM file</h2>
 <p>Here's step 2. Expanding the zip archive to locate the shared strings
 and sheets.</p>
 <pre class="literal-block">
@@ -192,7 +195,9 @@ format.</p>
 <p>Once we have the raw files, we have to parse the shared strings
 first. Then we can parse the data. Both of these files are simple
 XML. However, they don't fit in memory. We're forced to use SAX.</p>
-<p><strong>Step 3 -- Parse the Strings</strong></p>
+</div>
+<div class="section" id="step-3-parse-the-strings">
+<h2>Step 3 -- Parse the Strings</h2>
 <p>Here's a SAX ContentHandler that finds the shared strings.</p>
 <pre class="literal-block">
 import xml.sax
@@ -240,7 +245,9 @@ dictionary of all strings. This is string_handler.string_dict. Note
 that a <a class="reference external" href="http://docs.python.org/library/shelve.html">shelve</a>
 database could be used if the string dictionary was so epic that it
 wouldn't fit in memory.</p>
-<p><strong>The Final Countdown</strong></p>
+</div>
+<div class="section" id="the-final-countdown">
+<h2>The Final Countdown</h2>
 <p>Once we have the shared strings, we can then parse each worksheet,
 using the share string data to reconstruct a simple CSV file (or JSON
 document or something more usable).</p>
@@ -356,7 +363,9 @@ through the sheets, using the shared strings, to create a bunch of
 <p>The resulting .CSV -- stripped of the XML overheads -- is 80,000+
 rows and only 39M. Also, it can be processed with the Python
 <a class="reference external" href="http://docs.python.org/library/csv.html">csv</a> library.</p>
-<p><strong>CSV Processing</strong></p>
+</div>
+<div class="section" id="csv-processing">
+<h2>CSV Processing</h2>
 <p>This, after all, was the goal. Read the CSV file and do some useful
 work.</p>
 <pre class="literal-block">
@@ -377,6 +386,7 @@ rows of data. Given these big, complex headers, we can then build a
 dictionary from each data row. The resulting structure is exactly
 like the results of a csv.DictReader, and can be used to do the &quot;real
 work&quot; of the application.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="you-know-you-could-use-elementtree-to-do-this">
 <h2>You know you could use elementtree to do this ...</h2>
@@ -524,7 +534,7 @@ Thanks for sharing.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

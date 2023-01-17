@@ -126,7 +126,8 @@ along with it's state class hierarchy is usually far more interesting
 and helpful.</p>
 <p>I argue that it's still &quot;unit&quot; testing because parts of the
 application have been extracted from their processing context.</p>
-<p><strong>OS and Module Mocks</strong></p>
+<div class="section" id="os-and-module-mocks">
+<h2>OS and Module Mocks</h2>
 <p>Some folks will hand-wring over the use of OS API's or other library
 API's in a unit test. They feel that the OS API's should be
 completely mocked in order to call it a &quot;unit&quot; test. In most cases,
@@ -146,7 +147,9 @@ tests for csv, why not use it in our tests? Why Mock something we've
 decided to trust?</p>
 <p>[For that matter, we also trust Python, the OS and the unittest
 module itself. Why draw lines between Python, unittest and csv?]</p>
-<p><strong>ORM and RDBMS Mocks</strong></p>
+</div>
+<div class="section" id="orm-and-rdbms-mocks">
+<h2>ORM and RDBMS Mocks</h2>
 <p>A similar kind of worry comes with an ORM layer. Somehow, the &quot;trust&quot;
 factor starts to break down here. Folks want to mock the ORM layer.
 Or -- worse -- they want to try and mock the RDBMS layer so that
@@ -163,7 +166,9 @@ fixture data. This is an annoying bit of code to write the first
 time. However, it has handsome rewards because the &quot;unit&quot; testing
 includes the ORM and RDBMS at a higher level where it's easier to
 work with.</p>
-<p><strong>Integration Testing</strong></p>
+</div>
+<div class="section" id="integration-testing">
+<h2>Integration Testing</h2>
 <p>We use the unittest module to do integration testing also. In Python
 2.6, this involved a fair amount of work. We had to start our RESTful
 server, run the unit test, and then kill the server. Because of the
@@ -179,6 +184,7 @@ tear down and provide proper names.</p>
 down to a little Python unittest module. This module will build a
 unittest.Suite from all the other test modules (there are dozens) and
 simply execute the suite as a single, integrated whole.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="nice-post-i-39-ve-done-something-similar-while-t">
 <h2>Nice post! I&amp;#39;ve done something similar while t...</h2>
@@ -293,7 +299,7 @@ because they want their unit tests to be *fast*.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

@@ -120,7 +120,8 @@ your stuck with it, you make accommodations, hacks and work-arounds.
 Eventually, things work, but the result is less than ideal.</p>
 <p>Changing tack requires sometimes pervasive rework to the application.
 How can we reduce the risks and improve the value created?</p>
-<p><strong>A Recent Example</strong></p>
+<div class="section" id="a-recent-example">
+<h2>A Recent Example</h2>
 <p>When dealing with bulk econometric data (Bloomberg, D&amp;B, Moody's,
 etc.) you get BIG files with lots of fields. Depending on what
 you're paying for, the file layouts are frequently different even
@@ -136,7 +137,9 @@ multiple columns with the same name. Sigh.</p>
 library module lets us cope with CSV (and tab-delim) quite
 gracefully.</p>
 <p>What's wrong with that decision? Nothing.</p>
-<p><strong>Variant Column Names</strong></p>
+</div>
+<div class="section" id="variant-column-names">
+<h2>Variant Column Names</h2>
 <p>The question arises when you've purchased several files of
 econometric data and the column names are slightly different. This
 happens with a single vendor and across vendors. It's part of the
@@ -151,7 +154,9 @@ some_row['this_field'] and some_row['that_field']. How bad can it
 be?</p>
 <p>The extra punctuation is fairly hideous.</p>
 <p>More importantly, however, is the nature of the metadata.</p>
-<p><strong>Consequence One -- Dynamic Metadata</strong></p>
+</div>
+<div class="section" id="consequence-one-dynamic-metadata">
+<h2>Consequence One -- Dynamic Metadata</h2>
 <p>Dynamic metadata, in this case, means that any indexing of the
 data is done based on character string column names.</p>
 <pre class="literal-block">
@@ -162,7 +167,9 @@ has a fixed definition.</p>
 <pre class="literal-block">
 some_index[row.column].append( row )
 </pre>
-<p><strong>Consequence Two -- Murky ORM</strong></p>
+</div>
+<div class="section" id="consequence-two-murky-orm">
+<h2>Consequence Two -- Murky ORM</h2>
 <p>Once we have dynamic metadata, we're largely frozen out of
 ordinary SQL database implementations. We don't know the column
 names, we don't know the indices. We can't do simple CREATE TABLE
@@ -181,7 +188,9 @@ ships with Python. We want our application to <em>use</em> an ORM (like
 <a class="reference external" href="http://sqlobject.org/">SQLObject</a>). We don't want our
 application to <em>become</em> a kind of ORM because of the dynamic SQL
 and dynamic column names.</p>
-<p><strong>Cleanup</strong></p>
+</div>
+<div class="section" id="cleanup">
+<h2>Cleanup</h2>
 <p>The cleanup road is clear.</p>
 <p>#. Map all variant inputs to one common structure. Rather than
 work with raw dictionaries from csv, map each row to a standard
@@ -202,6 +211,7 @@ name has been transformed into an attribute-syntax name.</p>
 <p>Item 3 barely requires testing. Indexes and other features are
 performance enhancements that can be removed and added without
 altering functionality.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -283,7 +293,7 @@ altering functionality.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

@@ -137,7 +137,8 @@ way we can easily handle multiple-producer and multiple-consumer
 Cases</a>
 for more information.</p>
 <p>We have three use cases:  Producer, Consumer and Consumer-Producer.</p>
-<p><strong>Producer</strong></p>
+<div class="section" id="producer">
+<h2>Producer</h2>
 <p>A Producer gets data from somewhere and populates a queue with it.
 This is the source that feeds data into the pipeline.</p>
 <pre class="literal-block">
@@ -166,7 +167,9 @@ class ProducerProcess( Process ):
 generator.   Every value yielded is put into the &quot;output_queue&quot;.  When
 the source data runs out, enough sentinel tokens are put into the
 queue to satisfy all consumers.</p>
-<p><strong>Consumer</strong></p>
+</div>
+<div class="section" id="consumer">
+<h2>Consumer</h2>
 <p>A Consumer gets data from a queue and does some final processing.
 Perhaps it loads a database, or writes a file.  It is the sink that
 consumes data on the pipeline.</p>
@@ -196,7 +199,9 @@ class ConsumerProcess( Process ):
 with any iterable.  Every value from the queue will be provided to the
 target function for processing.  When enough sentinel tokens have been
 consumed from producers, it terminates processing.</p>
-<p><strong>Consumer-Producer</strong></p>
+</div>
+<div class="section" id="consumer-producer">
+<h2>Consumer-Producer</h2>
 <p>The middle of a processing pipeline is consumer-producer processes
 which consume from one queue and the produce to another queue.</p>
 <pre class="literal-block">
@@ -234,7 +239,9 @@ function that consumes an iterable.</p>
 value yielded by the generator is sent to the output queue.  The input
 side counts sentinels to know when to stop.  The output side produces
 enough sentinels to alert downstream processes.</p>
-<p><strong>Target Functions</strong></p>
+</div>
+<div class="section" id="target-functions">
+<h2>Target Functions</h2>
 <p>A producer function must be a generator function of this form</p>
 <pre class="literal-block">
 def prod( *args ):
@@ -261,6 +268,7 @@ for final in consumer( cons_prod( producer( *args ) ) ):
 </pre>
 <p>That way we're confident that our algorithm is correct before
 attempting to scale it with multiprocessing.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="i-try-your-the-above-code-but-it-does-run-would-y">
 <h2>I try your the above code but it does run. Would y...</h2>
@@ -366,7 +374,7 @@ blog rather than hints or suggestions that something might be wrong.
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

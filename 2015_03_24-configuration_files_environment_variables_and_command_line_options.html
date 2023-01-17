@@ -155,7 +155,8 @@ overrides to be used for the current invocation.</p>
 <p>Some applications can be restarted, leading to re-reading the
 configuration files. We can change the configuration more easily than
 we can bind in new command-line arguments or environment variables.</p>
-<p><strong>Representation Issues</strong></p>
+<div class="section" id="representation-issues">
+<h2>Representation Issues</h2>
 <p>When we think about configuration files, we also have to consider the
 syntax we want to use to represent configurable parameters. We have
 five common choices.</p>
@@ -182,7 +183,9 @@ disadvantage is the time wasted arguing with folks who call it a
 vulnerability by people who fail to realize that the Python source
 itself can be hacked. Why waste time injecting a bug into a
 configuration file? Why not just hack the source?</p>
-<p><strong>My Current Fave</strong></p>
+</div>
+<div class="section" id="my-current-fave">
+<h2>My Current Fave</h2>
 <p>My current favorite way to handle configuration is by defining some
 kind of configuration class and using the class object throughout the
 application. Because of Python's import processing, a single instance
@@ -228,7 +231,9 @@ and use this: Config=host_map(os.uname()[1],Defaults).</li>
 complex than the above techniques, but it seems to work out nicely
 in the long run.</li>
 </ul>
-<p><strong>Command-line args to select a specific configuration</strong></p>
+</div>
+<div class="section" id="command-line-args-to-select-a-specific-configuration">
+<h2>Command-line args to select a specific configuration</h2>
 <p>To select a configuration using command-line arguments, we must
 decompose configuration into two parts. The configuration
 alternatives shown above are placed in a config_params.py module. The
@@ -274,6 +279,7 @@ class Config(Base):
            for nm,class_val in names.items() )
 </pre>
 <p>It's not clear this is required. But it's kind of cool for debugging.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -355,7 +361,7 @@ class Config(Base):
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

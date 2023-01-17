@@ -137,7 +137,8 @@ ethernet, only a modem connection.</p>
 so that we can replace it with a nice, new <a class="reference external" href="http://www.standardhorizon.com/indexVS.cfm?cmd=DisplayProducts&amp;ProdCatID=84&amp;encProdID=786FA3B62DC4B9B5DD197438F18995CD&amp;DivisionID=3&amp;isArchived=0">Standard Horizon CP
 300i</a>
 and MacBook Pro running <a class="reference external" href="http://www.gpsnavx.com">GPSNavX</a>?</p>
-<p><strong>Raw Data</strong></p>
+<div class="section" id="raw-data">
+<h2>Raw Data</h2>
 <p>To get the raw data, I pulled the disk drive, mounted it in an
 IDE-USB enclosure and pulled the relevant routes and waypoints
 files. Now we have something we can work with.</p>
@@ -155,7 +156,9 @@ Nothing else. New software will correctly calculate range and
 bearing to next waypoint as well as lookup the magnetic deviation
 from standard tables. So we don't need to preserve all of the
 data.</p>
-<p><strong>Pass 1</strong></p>
+</div>
+<div class="section" id="pass-1">
+<h2>Pass 1</h2>
 <p>The first pass is to write simple &quot;hex dump&quot; utility in Python to
 see what's even in the files.</p>
 <p>Something like this seems to allow enough flexibility to get a
@@ -182,7 +185,9 @@ with open(file,'rb') as data:
 <p>Once we have a sense of what's going on, we can use the Python
 <a class="reference external" href="http://docs.python.org/library/struct.html">struct</a> module to
 get the real data.</p>
-<p><strong>Pass 2</strong></p>
+</div>
+<div class="section" id="pass-2">
+<h2>Pass 2</h2>
 <p>In the case of Chartview marks, we have a complex, but manageable
 structure definition. Some of the field sizes are conjectures.
 It's possible that all those filler bytes are some kind of word or
@@ -219,7 +224,9 @@ def print_marks( file ):
 required to get the latitudes and longitudes into a format
 acceptable by <a class="reference external" href="http://www.gpsnavx.com/">GPSNavX</a> or
 <a class="reference external" href="http://www.x-traverse.com/">X-Traverse</a>.</p>
-<p><strong>Routes</strong></p>
+</div>
+<div class="section" id="routes">
+<h2>Routes</h2>
 <p>Routes are more complex than marks because they have a header,
 followed by the details as a sequence of individual waypoints.
 Since Chartview doesn't normalize these things, each route can
@@ -230,7 +237,9 @@ additional WP1 is a problem. But it's a small problem. For the WPx
 points, we simply disambiguate them a route number. There seemed
 to have been a limit of 15 routes, so we can just expand WP<em>x</em>
 to WP<em>x</em>-<em>rr</em>, where <em>rr</em> is the route number.</p>
-<p><strong>Bottom Line</strong></p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>Data is preserved. Legacy PC and GPS can be chucked (or sold on
 eBay to a collector).</p>
 <p>It's important to note that data outlives application software.
@@ -244,6 +253,7 @@ the key pieces of data in the legacy files. Perhaps the hardest
 part was tracking down single and double-precision floating-point
 numbers. But once they were found -- matching known latitudes and
 longitudes -- it was clear sailing.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="microsoft-will-not-provide-usb-2-0-driver-support">
 <h2>Microsoft will not provide USB 2.0 driver support ...</h2>
@@ -344,7 +354,7 @@ Terry Jones, 11.03.10, 06:00 AM EDT
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

@@ -118,7 +118,8 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Background</strong></p>
+                <div class="section" id="background">
+<h2>Background</h2>
 <p>Read up on compass variation or declination.  For example, this
 <a class="reference external" href="http://www.ngdc.noaa.gov/geomag/declination.shtml">NOAA</a> site
 provides some useful information.</p>
@@ -141,7 +142,9 @@ output&quot;, which amount to unit test cases.</p>
 small Fortran program,
 <a class="reference external" href="http://www.ngdc.noaa.gov/IAGA/vmod/igrf11.f">igrf11.f</a>.</p>
 <p>Which leads us to reverse engineering this program into Python.</p>
-<p><strong>TDRE Approach</strong></p>
+</div>
+<div class="section" id="tdre-approach">
+<h2>TDRE Approach</h2>
 <p>The TDRE approach requires having some test cases to drive the reverse
 engineering process toward some kind of useful results.</p>
 <p>The geomag7.0 package includes two &quot;Sample Output&quot; files that have the
@@ -206,7 +209,9 @@ def  igrf11syn( date, nlat, elong, alt=0.0, coord='D' ):
    return None, None, None, None
 </pre>
 <p>This lets us run the tests and find that we have work to do.</p>
-<p><strong>Reverse Engineering</strong></p>
+</div>
+<div class="section" id="reverse-engineering">
+<h2>Reverse Engineering</h2>
 <p>The IGRF11.F fortran code contains this IGRF11SYN &quot;subroutine&quot; that
 does the work we want.  The geomag 7.0 package has a function called
 shval3 which is essentially the same thing.</p>
@@ -270,7 +275,9 @@ few calls to print reveal how the matrix is accessed.</p>
 it's relatively easy to hypothesize a dictionary by year that
 contains a pair of simple dictionaries, g[n,m] and h[n,m], for the
 coefficients.</p>
-<p><strong>Cleanup and Packaging</strong></p>
+</div>
+<div class="section" id="cleanup-and-packaging">
+<h2>Cleanup and Packaging</h2>
 <p>Once the tests pass, the package -- as a whole -- needs to be made
 reasonably Pythonic.   In this case, it means a number of additional
 changes.  For example, converting the API from degrees to radians,
@@ -283,6 +290,7 @@ during construction.</p>
 <p>Note that there's little point in profiling to apply further
 optimizations.  The legacy Fortran code was already meticulously hand
 optimized.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="i-am-not-sure-where-you-are-getting-your-info-but">
 <h2>I am not sure where you are getting your info, but...</h2>
@@ -375,7 +383,7 @@ Beach</a></p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

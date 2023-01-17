@@ -126,7 +126,8 @@ S.Lott -- Software Architect            </a>
 files to create a number of outputs. [Details can't be disclosed.]</p>
 <p>Objective: Refactor to distinguish between the overall sequence of
 transformational steps and the details of each individual step.</p>
-<p><strong>Observations</strong></p>
+<div class="section" id="observations">
+<h2>Observations</h2>
 <p>The code is almost purely procedural. There are 11 class definitions.
 6 of these wrap built-in types with type conversion and
 null-handling. 1 is a new exception. 1 is a generic &quot;table&quot; that
@@ -148,7 +149,9 @@ cells and formulæ that permits simple what-if analysis. This is a
 more complex set of formulæ that would be challenging (but not
 impossible) to implement as a spreadsheet. The use case, however, is
 the spreasheet use case: think, tweak, create results, repeat.</p>
-<p><strong>TDRE Approach</strong></p>
+</div>
+<div class="section" id="tdre-approach">
+<h2>TDRE Approach</h2>
 <p>Start with an <strong>Initial Survey</strong> of the legacy code base and sample
 files.</p>
 <p><strong>Create an Outline</strong> or &quot;sketch&quot; of the domain model and main
@@ -169,7 +172,9 @@ print( &quot;Case:&quot;, foo, bar, &quot;, Expect:&quot;, baz, file=tdre )
 <p>From the output, <strong>Build Unit Test Cases</strong>. Fill in parts of the
 processing sequence and domain model. Debug code until the tests
 pass.</p>
-<p><strong>Initial Survey</strong></p>
+</div>
+<div class="section" id="initial-survey">
+<h2>Initial Survey</h2>
 <p>The <strong>Initial Survey</strong> locates several things.</p>
 <ol class="arabic simple">
 <li>The usable, working modules. It appears that all reverse
@@ -197,7 +202,9 @@ acceptance test. While it's desirable for reverse engineering to
 reproduce the sample output, most reverse engineering will involve
 enhancements or bug fixes. Expect that errors will be found (or may
 be known to exist) in the sample output.</p>
-<p><strong>Create Outline</strong></p>
+</div>
+<div class="section" id="create-outline">
+<h2>Create Outline</h2>
 <p>The outline is -- initially -- just generic MVP. There must be a
 domain model, some &quot;presenter&quot; that has the application logic, and
 some &quot;view&quot; for displaying the outputs.</p>
@@ -207,7 +214,9 @@ all &quot;presenter&quot; application logic.</p>
 <p>The goal was to extract the underlying model, break the application
 &quot;presenter&quot; logic into two layers (forest and trees) and build some
 views for each of the output files.</p>
-<p><strong>Pick a Processing Step</strong></p>
+</div>
+<div class="section" id="pick-a-processing-step">
+<h2>Pick a Processing Step</h2>
 <p>This can be challenging, depending on the legacy code base. There are
 two paths through a procedural code base.</p>
 <ul class="simple">
@@ -220,7 +229,9 @@ result based on the input files. Unit test the initial steps.</li>
 shown a little more clearly.</p>
 <p>A better architecture can be created by working back-to-front since
 dependencies are easier to understand.</p>
-<p><strong>Unit Test Volume, Edges and Corners</strong></p>
+</div>
+<div class="section" id="unit-test-volume-edges-and-corners">
+<h2>Unit Test Volume, Edges and Corners</h2>
 <p>There are two unit test design challenges when doing reverse
 engineering.</p>
 <ul class="simple">
@@ -239,6 +250,7 @@ exercises that logic path.</li>
 </ul>
 <p>Once the unit tests are built, this is just Test-Driven
 Development (TDD).</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="really-great-post-i-got-some-similar-advice-from">
 <h2>Really great post! I got some similar advice from ...</h2>
@@ -338,7 +350,7 @@ Colorado</a></p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

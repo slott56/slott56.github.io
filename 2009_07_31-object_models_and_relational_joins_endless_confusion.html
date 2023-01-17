@@ -142,7 +142,8 @@ hoped it would have. [Yes, I was a DBA in Ingres and Oracle. I know
 my SQL.]</p>
 <p>The good news is that Object Navigation replaces much of the
 hideousness of SQL. To an extent. Let's look at some cases.</p>
-<p><strong>Joins in General</strong></p>
+<div class="section" id="joins-in-general">
+<h2>Joins in General</h2>
 <p>SQL SELECT statements are an algebraic specification of a result set.
 The database is free to use any algorithm to build the required set.</p>
 <p>SQL imposes the Join hack because SQL is a completely consistent set
@@ -154,7 +155,9 @@ objects. In OO world, this is simply object containment; the
 navigation is simply the name of a <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/db/queries/#related-objects">related
 object</a>.
 Nothing more.</p>
-<p><strong>Master-Detail (1:m) Joins</strong></p>
+</div>
+<div class="section" id="master-detail-1-m-joins">
+<h2>Master-Detail (1:m) Joins</h2>
 <p>A master-detail join in SQL works with a foreign key reference on the
 children.</p>
 <p>In Django, this has to be declared in a SQL-friendly way so that the
@@ -179,7 +182,9 @@ answer is &quot;rarely&quot;. It's possible that the RDBMS, doing a
 quicker than this.</p>
 <p>As practical matter, however, the rest of the web transaction --
 including the painfully slow download -- will dominate the timeline.</p>
-<p><strong>Association (m:m) Joins</strong></p>
+</div>
+<div class="section" id="association-m-m-joins">
+<h2>Association (m:m) Joins</h2>
 <p>An association in SQL requires an intermediate table to carry the
 combinations of foreign keys.</p>
 <p>In Django, this has to be declared in a SQL-friendly way so that
@@ -203,7 +208,9 @@ for that in That.objects.filter():
     for this in that.these:
        process this and that
 </pre>
-<p><strong>Outer Joins</strong></p>
+</div>
+<div class="section" id="outer-joins">
+<h2>Outer Joins</h2>
 <p>An Outer Join is a &quot;Join with Null for Missing Relationships&quot;.
 It's navigation with an if-statement or an exception clause.</p>
 <pre class="literal-block">
@@ -216,6 +223,7 @@ for that in That.objects.filter():
 </pre>
 <p>There isn't any &quot;join&quot; in object-oriented programming. The ORM
 layer removes the need.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="you-might-be-interested-in-rql-which-is-similar-to">
 <h2>You might be interested in RQL which is similar to...</h2>
@@ -356,7 +364,7 @@ knowledge obsolete, for web programmers, at least.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

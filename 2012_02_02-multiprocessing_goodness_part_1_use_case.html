@@ -155,7 +155,8 @@ p3.start()
 </pre>
 <p>While wordy, it hints at a more generalized approach to have three
 processes passing data.</p>
-<p><strong>Termination</strong></p>
+<div class="section" id="termination">
+<h2>Termination</h2>
 <p>The issue is one of termination.  Most multiprocessing packages (like
 multiprocessing and celery) presume that your processing pipeline has
 a fairly long lifetime.  Because of this, it presumes that you can
@@ -175,7 +176,9 @@ the number of producers may not have a fixed, known-in-advance limit.</p>
 <p>The approach, therefore, is to put a sentinel object in the queue.
 This way, a consumer knows that production has finished.  It can
 release resources and exit politely.</p>
-<p><strong>Fan-Out and Fan-In</strong></p>
+</div>
+<div class="section" id="fan-out-and-fan-in">
+<h2>Fan-Out and Fan-In</h2>
 <p>The problem with a sentinel on a multi-producer queue is that there
 will be multiple sentinels, one from each producer.  And, of course,
 with a multi-consumer queue, there must be one sentinels for each
@@ -184,7 +187,9 @@ consumer.</p>
 know to expect a sentinel-per-producer, then we can easily create
 dynamic multi-processing networks that startup and shutdown quickly
 and cleanly.</p>
-<p><strong>Use Case</strong></p>
+</div>
+<div class="section" id="use-case">
+<h2>Use Case</h2>
 <p>Here's a use case.  We want to do <strong>whois</strong> analysis on IP addresses
 in a log.</p>
 <p>If we have a simple loop to parse the log and do a <strong>whois</strong> request
@@ -238,6 +243,7 @@ produce results (queue entries or a report file.)</p>
 <p>Also important is the fact that it closes down cleanly.  When the
 input reaches end-of-file, sentinel values are put into the queues to
 trickle through and lead to orderly process shutdown.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="this-statement-is-nonsense-for-any-definition-of">
 <h2>This statement is nonsense for any definition of &amp;...</h2>
@@ -357,7 +363,7 @@ a producer or consumer exits prematurely...</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

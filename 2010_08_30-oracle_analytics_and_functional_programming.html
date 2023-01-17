@@ -139,7 +139,8 @@ applies.]</p>
 <p>Specific functions lifted up to me were RANK, FIRST, LAST, ROW_NUMBER
 and DENSE_RANK. All of these are relatively simple functional
 programming examples.</p>
-<p><strong>GROUP BY</strong></p>
+<div class="section" id="group-by">
+<h2>GROUP BY</h2>
 <p>First -- and foremost -- SQL GROUP-BY can be slow. No one ever wants
 to hear this. The true haterz will claim that it's supposed to be
 faster and provide a bunch of non-reasons. Please benchmark.</p>
@@ -163,7 +164,9 @@ for row in some_query_result_set:
 groups is small enough to fit into memory. That assumption allows us
 to avoid a sort. The database can't make this assumption, and can't
 easily use this kind of data structure.</p>
-<p><strong>Functional Programming</strong></p>
+</div>
+<div class="section" id="functional-programming">
+<h2>Functional Programming</h2>
 <p>The analytical functions are nice applications of a functional style
 of programming. The ROW_NUMBER is already part of Python: it's the
 internal enumerate function.</p>
@@ -204,7 +207,9 @@ for row in first( 10, sorted( some_query, key=lambda row: row['key']) ):
 database. Python has the potential advantage of in-memory sorting.
 Oracle, however, is clever enough to use in-memory sorting on small
 sets of data, offsetting Python's advantage.</p>
-<p><strong>More Complex Functions</strong></p>
+</div>
+<div class="section" id="more-complex-functions">
+<h2>More Complex Functions</h2>
 <p>The more complex functions of RANK and DENSE_RANK require two-phase
 processing of rows. If we assume that we can fit the rows in memory,
 this isn't very complex at all. Indeed, the rank function is just a
@@ -231,7 +236,9 @@ def dense_rank( some_query, key ):
             current= row
         yield rank, row
 </pre>
-<p><strong>Composition</strong></p>
+</div>
+<div class="section" id="composition">
+<h2>Composition</h2>
 <p>One of the strong suits of SQL is that it allows us to define a
 functional-programming composition. Rather than write a lot of
 looping, we specify a series of functions which are composed and
@@ -256,6 +263,7 @@ the HAVING clause.</p>
 resulting collection of rows.</p>
 <p>The analytic functions, like subqueries, are simple complex mapping
 operations that involve other query pipelines.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="you-could-use-itertools-islice-to-implement-firs">
 <h2>You could use itertools.islice() to implement firs...</h2>
@@ -358,7 +366,7 @@ see <a class="reference external" href="http://pypi.python.org/pypi/sendtools">h
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

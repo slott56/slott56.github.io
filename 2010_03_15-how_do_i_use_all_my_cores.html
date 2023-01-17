@@ -131,7 +131,8 @@ requires little or no modification.</p>
 <p>Any Linux-based OS (and even Windows) will take a simple shell
 pipeline and assure that the processing elements are spread around
 among the various cores.</p>
-<p><strong>Pipelines and Concurrency</strong></p>
+<div class="section" id="pipelines-and-concurrency">
+<h2>Pipelines and Concurrency</h2>
 <p>A shell pipeline -- viewed as Programming In The Large -- is not
 &quot;written using a serial approach&quot;. Each stage of a shell pipeline
 runs concurrently, and folks have been leveraging that since Unix's
@@ -151,14 +152,18 @@ there that are barking up the wrong tree.</p>
 <p>I agree in general. I don't agree with all of Isaacson's approach.
 A big ESB-based SOA architecture may be too much machinery for
 something that may turn out to be relatively simple.</p>
-<p><strong>Easy Problems</strong></p>
+</div>
+<div class="section" id="easy-problems">
+<h2>Easy Problems</h2>
 <p>Many problems are easily transformed into map-reduce problems. A
 &quot;head&quot; will push data down a shell pipeline. Each step on the
 pipeline is a &quot;map&quot; step that does one incremental transformation
 on the data. A &quot;reduce&quot; step can combine data for further maps.</p>
 <p>This can be expressed simply as: head.py | map1.py | map2.py |
 reduce1.py | map3.py. You'll use both cores heavily.</p>
-<p><strong>Optimization</strong></p>
+</div>
+<div class="section" id="optimization">
+<h2>Optimization</h2>
 <p>Some folks like to really focus on &quot;balancing&quot; the workload so
 that each core has precisely the same amount of work.</p>
 <p>You can do that, but it's not really going to help much. The OS
@@ -168,7 +173,9 @@ other optimization cards have been played. Even then, you'd simply
 be moving the functionality around to refactor map1.py | map2.py
 to be a single process, map12.py.</p>
 <p>Easy and well-understood.</p>
-<p><strong>Harder Problems</strong></p>
+</div>
+<div class="section" id="harder-problems">
+<h2>Harder Problems</h2>
 <p>The Hard Problems involve &quot;fan-out&quot; and &quot;fan-in&quot;. Sometimes we
 think we need a thread pool and a queue of processing agents.
 Sometimes this isn't actually necessary because a simple
@@ -189,7 +196,9 @@ abstraction available in the
 number of identical children. The parent then simply round-robins
 the requests among the children. It's not optimal, but it's
 simple.</p>
-<p><strong>Bottom Line</strong></p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>Want to make effective use of your fancy, new multi-core
 processors?</p>
 <p>Use Linux pipelines. Right now. Don't wait for new tools or new
@@ -197,6 +206,7 @@ languages.</p>
 <p>Don't try to decide which threading library is optimal.</p>
 <p>Simply refactor your programs using a simple <strong>Map-Reduce</strong> design
 pattern.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="just-to-mention-a-href-http-pypi-python-org-p">
 <h2>Just to mention, &lt;a href=&quot;<a class="reference external" href="http://pypi.python.org/p">http://pypi.python.org/p</a>...</h2>
@@ -301,7 +311,7 @@ communicating between processes and not for running things in parallel
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

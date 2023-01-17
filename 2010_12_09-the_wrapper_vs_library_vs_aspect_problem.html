@@ -130,7 +130,8 @@ that it's something central like using
 <a class="reference external" href="http://celeryproject.org/">celery</a> to manage long-running batch
 jobs. Clearly, we don't want to just hack celery features into all
 three families of applications. Do we?</p>
-<p><strong>Choices</strong></p>
+<div class="section" id="choices">
+<h2>Choices</h2>
 <p>It appears that we have three choices.</p>
 <ol class="arabic simple">
 <li>A &quot;wrapper&quot; application that unifies all the application families
@@ -143,7 +144,9 @@ involves less of a responsibility shift.</li>
 some additional decorators added to the various applications to
 make them use the new functionality in a consistent way.</li>
 </ol>
-<p><strong>Lessons Learned</strong></p>
+</div>
+<div class="section" id="lessons-learned">
+<h2>Lessons Learned</h2>
 <p>Adding a new application to be an overall wrapper turned out to be a
 bad idea. After implementing it, it was difficult to extend. We had
 two dimensions of extension.</p>
@@ -158,7 +161,9 @@ responsibility for this is effectively split between the wrapper
 and the underlying applications. The wrapper merely serves to
 dilute the responsibilities.</li>
 </ol>
-<p><strong>Libraries/Aspects</strong></p>
+</div>
+<div class="section" id="libraries-aspects">
+<h2>Libraries/Aspects</h2>
 <p>It appears that new common features are almost always new aspects of
 existing applications.</p>
 <p>What makes this realization painful is the process of retrofitting a
@@ -171,6 +176,7 @@ places.</p>
 wrapper isn't a very good idea.</p>
 <p>A pervasive change is simply a lot of changes and regression tests.
 Okay, I'm over it.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -252,7 +258,7 @@ Okay, I'm over it.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

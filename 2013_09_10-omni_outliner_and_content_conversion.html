@@ -132,7 +132,8 @@ structured environment? What if it was a detailed log or a project
 outline decorated with a column of budget numbers?</p>
 <p>We have two approaches, one is workable, but not great, the other has
 numerous advantages.</p>
-<p><strong>Answer 1: Workable</strong></p>
+<div class="section" id="answer-1-workable">
+<h2>Answer 1: Workable</h2>
 <p>Sure, you say, that's easy. Export into a Plain Text with Tabs (or
 HTML or OPML) and then parse the resulting tab-delimited file.</p>
 <p>In Python. Piece of cake.</p>
@@ -173,7 +174,9 @@ where the data elements seem to be properly attached to outline nodes.
 It's still possible to have a &quot;blank&quot; outline node with data in the
 columns, but that's unlikely.</p>
 <p>We have to do some cleanup</p>
-<p><strong>Answer 1A: Cleanup In Column 1</strong></p>
+</div>
+<div class="section" id="answer-1a-cleanup-in-column-1">
+<h2>Answer 1A: Cleanup In Column 1</h2>
 <p>We want to transform indented data into proper first-normal form
 schema with a consistent number of fixed columns. Step 1 is to know
 the deepest indent. Step 2 is to then fill each row with enough empty
@@ -228,7 +231,9 @@ for row in cleaned( filled( rows, width_max, len(columns) ) ):
 <p>Now we can do some real work with properly normalized data. With
 overheads, we have an 80-line module that lets us process the outline
 extract in a simple, civilized CSV-style loop.</p>
-<p><strong>The Ick Factor</strong></p>
+</div>
+<div class="section" id="the-ick-factor">
+<h2>The Ick Factor</h2>
 <p>What's unpleasant about this is that it requires a fair amount of
 configuration.</p>
 <p>The conversion from tab-delim outline to normalized data requires some
@@ -240,6 +245,7 @@ schema information that's difficult to parameterize.</p>
 <p>We can deduce how many columns of ancillary data are present, but the
 order of the columns is a separate piece of logical schema that we
 can't deduce from the export itself.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -321,7 +327,7 @@ can't deduce from the export itself.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

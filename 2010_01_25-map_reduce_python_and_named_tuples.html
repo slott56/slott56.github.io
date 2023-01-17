@@ -125,7 +125,8 @@ Map-Reduce, the more I realize that Visitors and Subclass Extension
 are not the best design pattern. The same kind of exploration can be
 done with map-reduce techniques, and the resulting application is
 slightly simpler.</p>
-<p><strong>Design Coupling</strong></p>
+<div class="section" id="design-coupling">
+<h2>Design Coupling</h2>
 <p>The problem with design-by-subclass is that the map and reduce
 operations are often defined relatively informally. After all,
 they're just method invocations within the same class. You can,
@@ -144,7 +145,9 @@ when we tried to refactor things into a simple Visitor to visit all
 of the workbooks (ignoring all the directory, archive and file
 structure), we worked around the hidden stateful object without
 realizing it.</p>
-<p><strong>Named Tuples and Immutability</strong></p>
+</div>
+<div class="section" id="named-tuples-and-immutability">
+<h2>Named Tuples and Immutability</h2>
 <p>A much cleaner solution is to make use of Python's
 <a class="reference external" href="http://docs.python.org/dev/library/collections.html#collections.namedtuple">namedtuple</a>
 constructor and write generator functions which map one kind of
@@ -164,7 +167,9 @@ function. It's provided here because it's essential to creating
 map-reduce pipelines that work. It's better to prove that the
 assertion true through code inspection and comment out the assert
 statement.</p>
-<p><strong>Pipelining</strong></p>
+</div>
+<div class="section" id="pipelining">
+<h2>Pipelining</h2>
 <p>What pops out of this are stateless objects. Since named tuples are
 immutable, it appears that we've done some purely functional
 programming without really breaking a sweat.</p>
@@ -187,7 +192,9 @@ around each stage.</li>
 This should yield map-reduce operations that swamp the OS by
 having multiple concurrent stages.</li>
 </ol>
-<p><strong>Goals</strong></p>
+</div>
+<div class="section" id="goals">
+<h2>Goals</h2>
 <p>Generally, our goal is to get the CPU 100% committed to the right
 task. Either 100% doing web services, or 100% doing database
 queries or 100% doing batch processing of massive flat-file
@@ -196,6 +203,7 @@ datasets.</p>
 but the other is only lightly involved. By growing to
 multi-processing, we should be able to red-line a processor with
 any number of cores.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -277,7 +285,7 @@ any number of cores.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

@@ -130,7 +130,8 @@ XML parsing to read a wide variety of spreadsheet formats.</p>
 <p>However, we were recently stabbed by an assumption. I had to spend
 over 40 hours restructuring our workbook library and application
 code.</p>
-<p><strong>Go With What You Know</strong></p>
+<div class="section" id="go-with-what-you-know">
+<h2>Go With What You Know</h2>
 <p>The point of an Agile approach is to build high-value things first.
 In the olden days, we would have spent months (really) writing a
 sophisticated set of hypothetical use cases for the workbook library
@@ -146,7 +147,9 @@ couldn't define &quot;Normalization&quot; -- knew what normalized data looked
 like. They provided everything as proper columns.</p>
 <p>Recently, we got some data for a new customer pilot that was just
 enough different that it was a costly problem.</p>
-<p><strong>What Changed?</strong></p>
+</div>
+<div class="section" id="what-changed">
+<h2>What Changed?</h2>
 <p>The change was the use of the sheet tab names to carry meaningful key
 information.</p>
 <p>Every previous example either had sheets with names like &quot;sheet1&quot;,
@@ -155,7 +158,9 @@ filter on.</p>
 <p>This workbook had the time dimension coded in the sheet names, not a
 column of data on each sheet. Suddenly, the worksheet name was
 significant. And that's not all.</p>
-<p><strong>How Bad Can It Be?</strong></p>
+</div>
+<div class="section" id="how-bad-can-it-be">
+<h2>How Bad Can It Be?</h2>
 <p>The extensive breakage came from a bad design decision buried in the
 workbook library and all application layers that depend on the
 workbook libraries. Assuming that data was in columns -- instead of
@@ -178,7 +183,9 @@ sheet name, exposed our wishful thinking.</p>
 the sheet name to a Python object, we did parsing and database
 lookups. Other mappings now must be &quot;aware&quot; of this mapping so they
 don't redo the parsing and database lookups.</p>
-<p><strong>Lessons Learned</strong></p>
+</div>
+<div class="section" id="lessons-learned">
+<h2>Lessons Learned</h2>
 <p>The trivial (and wrong) lesson learned could be &quot;don't make so many
 assumptions&quot;. That's silly. We didn't casually make assumptions. We
 had example data; the sample data was biased and didn't show all
@@ -190,6 +197,7 @@ make the breakage significantly easier to fix.</p>
 make all of the mappings into independent objects. The phrase &quot;shared
 nothing&quot; is our mantra. While shared nothing gave us a very
 composable design, it wasn't actually correct.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -271,7 +279,7 @@ composable design, it wasn't actually correct.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

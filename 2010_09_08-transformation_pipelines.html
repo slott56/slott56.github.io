@@ -129,7 +129,8 @@ decision-making. Tack? Hole up for the night? Motor?</p>
 <p>GPSNavX has a number of marvelous export capabilities -- as GPX, KML
 or CSV data. These contain a list of waypoints and little more. We
 need to enrich this data to produce an overall schedule.</p>
-<p><strong>Enriching The Data</strong></p>
+<div class="section" id="enriching-the-data">
+<h2>Enriching The Data</h2>
 <p>Fundamentally, we have a number of enrichment stages. The functional
 programming features of Python make this complex sequence of
 enrichment stages into a very tidy, and adaptable application.</p>
@@ -176,7 +177,9 @@ clear and useful treatment of the math. Bowditch's American Practical
 Navigator, <a class="reference external" href="http://www.irbs.com/bowditch/pdf/chapt24.pdf">chapter
 24</a>, provides
 alternate methods using table lookup and interpolation.</p>
-<p><strong>Seeding the Pipeline</strong></p>
+</div>
+<div class="section" id="seeding-the-pipeline">
+<h2>Seeding the Pipeline</h2>
 <p>Here, for example, is the first step of the pipeline. Creating a
 RoutePoint from the four values found in the CSV or GPX route file.</p>
 <pre class="literal-block">
@@ -191,7 +194,9 @@ for name,lat,lon,desc in rte:
 used by an iterator. The source iterator can be a csv.reader. Or it
 can be the result of XML parsing -- just so long as it matches the
 interface specification of being an iterator over a 4-tuple.</p>
-<p><strong>Rhumb-Line Calculation</strong></p>
+</div>
+<div class="section" id="rhumb-line-calculation">
+<h2>Rhumb-Line Calculation</h2>
 <p>We'll enrich the data. But we won't update an object. We'll stick
 closely to the philosophy of immutable objects (i.e., named tuples)
 which are modified by a generator function.</p>
@@ -211,7 +216,9 @@ we've done, however, is merge information from adjacent values so
 that we can transform a simple list of points into a list of pairs of
 points: the from and to for each leg of the trip. Between the two
 points, we compute the simple rhumb line, the distance and bearing.</p>
-<p><strong>True to Magnetic Conversion</strong></p>
+</div>
+<div class="section" id="true-to-magnetic-conversion">
+<h2>True to Magnetic Conversion</h2>
 <p>We need to enrich our waypoint rhumb-line information with magnetic
 compass information. The true course needs a declination or variance
 value added to it. Again, we're just creating new objects from
@@ -239,7 +246,9 @@ helpful to have magnetic courses in the schedule instead of true
 courses. Further, the chartplotter will be computing the final CTS
 (Course to Steer).</p>
 <p>So this stage in the pipeline might be optional.</p>
-<p><strong>Distance Run and Elapsed Time</strong></p>
+</div>
+<div class="section" id="distance-run-and-elapsed-time">
+<h2>Distance Run and Elapsed Time</h2>
 <p>The final distance run and elapsed time is pretty simple. We're
 creating a new tuple from existing tuples.</p>
 <pre class="literal-block">
@@ -265,6 +274,7 @@ reasonably flexible and built from small, easy-to-validate pieces.</p>
 <p>Python's functional programming features -- particularly generator
 functions and named tuples -- seem to make it pleasant to write this
 kind of transformation pipeline.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -346,7 +356,7 @@ kind of transformation pipeline.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">

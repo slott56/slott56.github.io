@@ -139,7 +139,8 @@ the code directly.</p>
 F#, I wondered what your experience is with the hack/test/finalise
 development cycle.&quot;</p>
 </blockquote>
-<p><strong>Some Background</strong></p>
+<div class="section" id="some-background">
+<h2>Some Background</h2>
 <p><a class="reference external" href="http://www.tug.org/TUGboat/Articles/tb13-3/childs.pdf">http://www.tug.org/TUGboat/Articles/tb13-3/childs.pdf</a></p>
 <p>Also, this quote from the discussion on <a class="reference external" href="http://lambda-the-ultimate.org/node/3663#comment-51878">Lambda the
 Ulimate</a>.</p>
@@ -163,7 +164,9 @@ numeric data, replace the old FixedPoint module with Decimal, add
 unit tests and -- of course -- fix other bugs that showed up.</p>
 <p>Based on my recent experience, I have some advice on &quot;Full
 Life-Cycle Literate Programming&quot;.</p>
-<p><strong>A Life Cycle</strong></p>
+</div>
+<div class="section" id="a-life-cycle">
+<h2>A Life Cycle</h2>
 <p>In order to identify the barriers, we need to look at the
 deliverables and the software development life cycle that produces
 those deliverables. Let's break the software development
@@ -182,7 +185,9 @@ Application Life Cycle Management.</p>
 Maintenance or Adaptation. Doing new development seems somehow
 easier than maintenance or adaptation. How do we work with an
 established Literate Program?</p>
-<p><strong>New Development</strong></p>
+</div>
+<div class="section" id="new-development">
+<h2>New Development</h2>
 <p>New Development of a program is always a delicate subject. We have
 an explicit goal of creating some deliverable. We'll look at the
 deliverables next. First, we'll look at the conflicting forces
@@ -208,7 +213,9 @@ that's neither adaptable nor maintainable. Indeed, one can create
 software very cheaply if one starts relaxing functional
 requirements. Software that doesn't work well can be very cheap to
 create.</p>
-<p><strong>Forward vs. Reverse Literate Programming</strong></p>
+</div>
+<div class="section" id="forward-vs-reverse-literate-programming">
+<h2>Forward vs. Reverse Literate Programming</h2>
 <p>As a digression, we'll note that some folks recognize two broad
 approaches to literate programming (LP). This isn't the whole
 story, however. Ordinary LP encourages the author to create a
@@ -226,7 +233,9 @@ documentation. This isn't as interesting, since the resulting
 document can't easily contain the entire source.</p>
 <p>We can assign the retronym &quot;Forward Literate Programming&quot; to
 ordinary LP to distinguish it from Reverse LP.</p>
-<p><strong>Code-First Literate Programming</strong></p>
+</div>
+<div class="section" id="code-first-literate-programming">
+<h2>Code-First Literate Programming</h2>
 <p>There's an apparent distinction between two variations on the
 Forward LP theme: Document-First and Code-First LP. In
 Document-First, we aspire to a noble ideal of writing the document
@@ -255,7 +264,9 @@ not start with the code?</p>
 useful distinction. If the resulting document (a) contains the
 entire source and (b) stands as piece of well-written description,
 then the literate programming mandate has been satisfied.</p>
-<p><strong>Center of Balance</strong></p>
+</div>
+<div class="section" id="center-of-balance">
+<h2>Center of Balance</h2>
 <p>Literate Programming strikes a balance among the various
 development forces. It emphasizes working software with abundant
 documentation. It does not emphasize the short-term cost to
@@ -271,14 +282,17 @@ that's the only deliverable that matters. Second, we slap on some
 extra documentation, since only the software really matters. While
 satisfying in some respects, most folks find -- in the long run --
 that this is unworkable. They often diverge.</p>
-<p><strong>When the code and the comments disagree, probably both are
-wrong.</strong></p>
+<p>When the code and the comments disagree, probably both are
+wrong.
+-----------------------------------------------------------------</p>
 <p>The goal of LP is to prevent this.</p>
 <p>Literate Programming seems like a lot of work. But it's work we
 have to do anyway. And a non-literate approach is simply <em>more</em>
 work. Almost any approach that seems to create software &quot;quickly&quot;
 doesn't create any enduring value. Why not?</p>
-<p><strong>The Deliverables</strong></p>
+</div>
+<div class="section" id="the-deliverables">
+<h2>The Deliverables</h2>
 <p>The point of <strong>all</strong> software development is to create a two-part
 deliverable.</p>
 <ul class="simple">
@@ -304,13 +318,16 @@ documents) from a single LP source document. LP seeks to
 <em>minimize</em> the effort required to create software with
 supporting documentation that actually matches the software.</p>
 <p>I'll emphasize that.</p>
-<p><strong>Literate Programming seeks to minimize the effort required to
-create software with supporting documentation</strong></p>
+<p>Literate Programming seeks to minimize the effort required to
+create software with supporting documentation
+-----------------------------------------------------------------------------------------------------------</p>
 <p>If we have to produce software, tests and explanations, clearly
 it is simpler to have a single source file which emits all of
 that stuff in a coherent, easy-to-follow format. While it's
 clearly simpler, there are some barriers to be overcome.</p>
-<p><strong>If It's So Much Easier... ?</strong></p>
+</div>
+<div class="section" id="if-it-s-so-much-easier">
+<h2>If It's So Much Easier... ?</h2>
 <p>The Jon Bentley issue with LP is that it doesn't feel easier to
 write a coherent document because we aren't all good writers.
 Bentley notes that there are good writers and good programmers
@@ -331,7 +348,9 @@ intelligent syntax coloring and code folding. We find tools
 which lack these features to be harder to use. Second, we're
 working in multiple languages in a single document. Finally, it
 takes some experience to get settled into an LP mode.</p>
-<p><strong>The Tool Barrier</strong></p>
+</div>
+<div class="section" id="the-tool-barrier">
+<h2>The Tool Barrier</h2>
 <p>The first of the barriers to effective literate programming is
 the tool pipeline. The complaint is that &quot;having to ‘compile’
 my markdown to code, then compile my code to test it, all seems
@@ -354,7 +373,9 @@ console interfaces (sometimes called the Read Evaluate Print
 Loop, REPL); this clutters up the problem with an irrelevant
 detail. Console hacking is helpful, but it isn't literate and
 it's barely programming.</p>
-<p><strong>The Language Barrier</strong></p>
+</div>
+<div class="section" id="the-language-barrier">
+<h2>The Language Barrier</h2>
 <p>In addition the tool barrier, we also have a language barrier.
 When we're doing literate programming we're working in at least
 three different languages concurrently. This makes our life
@@ -378,7 +399,9 @@ small sections still applies to literate programming. The
 document sections do not in any way correspond with the final
 program source, making the LP document tree far, far easier to
 work with.</p>
-<p><strong>The Mental Barrier</strong></p>
+</div>
+<div class="section" id="the-mental-barrier">
+<h2>The Mental Barrier</h2>
 <p>The final barrier is entirely mental. This is really one of
 experience and expectation.</p>
 <p>It's hard -- really hard -- to step back from the code and ask
@@ -399,7 +422,9 @@ personal best is 17 years in production) then the 10-paragraph
 explanation will -- over the life of the software -- be worth
 it's weight in gold. A one line fix may actually be a
 liability, not an asset.</p>
-<p><strong>Solid Approach</strong></p>
+</div>
+<div class="section" id="solid-approach">
+<h2>Solid Approach</h2>
 <p>I think the approach has to be the following.</p>
 <ol class="arabic simple">
 <li>Create a Spike Solution. Something that works, is
@@ -454,7 +479,9 @@ sometimes nicer than the test-first development.</li>
 barriers to overcome. We don't have exceptional tools.
 We have a complex welter of languages. And we have bad
 habits to break and transform into new habits.</p>
-<p><strong>Some Links</strong></p>
+</div>
+<div class="section" id="some-links">
+<h2>Some Links</h2>
 <p><a class="reference external" href="http://www-cs-faculty.stanford.edu/~uno/programs.html">http://www-cs-faculty.stanford.edu/~uno/programs.html</a></p>
 <p><a class="reference external" href="http://tex.loria.fr/english/litte.html">http://tex.loria.fr/english/litte.html</a></p>
 <p><a class="reference external" href="http://lambda-the-ultimate.org/node/3663">http://lambda-the-ultimate.org/node/3663</a></p>
@@ -466,12 +493,15 @@ habits to break and transform into new habits.</p>
 <p><a class="reference external" href="http://www.literateprogramming.com/">http://www.literateprogramming.com/</a> - Good stuff, but not
 a real wiki or forum site.</p>
 <p><a class="reference external" href="http://www.squidoo.com/literateprogramming">http://www.squidoo.com/literateprogramming</a></p>
-<p><strong>Some Tools</strong></p>
+</div>
+<div class="section" id="some-tools">
+<h2>Some Tools</h2>
 <p><a class="reference external" href="http://en.literateprograms.org/LiteratePrograms:Welcome">http://en.literateprograms.org/LiteratePrograms:Welcome</a></p>
 <p><a class="reference external" href="http://nuweb.sourceforge.net/">http://nuweb.sourceforge.net/</a></p>
 <p><a class="reference external" href="http://pylit.berlios.de/literate-programming.html">http://pylit.berlios.de/literate-programming.html</a></p>
 <p><a class="reference external" href="http://webpages.charter.net/edreamleo/design.html">http://webpages.charter.net/edreamleo/design.html</a></p>
 <p><a class="reference external" href="http://pywebtool.sourceforge.net/">http://pywebtool.sourceforge.net/</a></p>
+</div>
 <hr class="docutils" />
 <div class="section" id="nice-simple-blog-layout-i-will-click-through-on-y">
 <h2>Nice simple blog layout. I will click through on y...</h2>
@@ -611,7 +641,7 @@ terrible (for user).</li>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (2)
+          <a href="https://slott56.github.io/posts/2023/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2023 (3)
           </a>
         </li>
         <li class="list-group-item">
