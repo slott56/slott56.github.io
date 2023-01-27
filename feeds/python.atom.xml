@@ -1,5 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2008-08-13T10:10:00-04:00</updated><entry><title>Testing RESTful web services in Django -- Tantalizingly Close.</title><link href="https://slott56.github.io/2008_08_13-testing_restful_web_services_in_django_tantalizingly_close.html" rel="alternate"></link><published>2008-08-13T10:10:00-04:00</published><updated>2008-08-13T10:10:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-08-13:/2008_08_13-testing_restful_web_services_in_django_tantalizingly_close.html</id><summary type="html">&lt;p&gt;Here's what's great about &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;  coupled with the &lt;a class="reference external" href="http://code.google.com/p/django-rest-interface/"&gt;Django-REST Interface&lt;/a&gt; :  It's almost all model.  You define the model, write some tests.  Add the URL mappings, write some tests using the built-in Django client.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-01-27T08:00:00-05:00</updated><entry><title>Behave Tests and Fixtures</title><link href="https://slott56.github.io/2023_01_27-behave_tests_and_fixtures.html" rel="alternate"></link><published>2023-01-27T08:00:00-05:00</published><updated>2023-01-27T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-01-27:/2023_01_27-behave_tests_and_fixtures.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Behave&lt;/strong&gt; fixtures totally rock for testing
+complex applications.&lt;/p&gt;
+&lt;p&gt;I had been doing them wrong. Doing them right is simpler.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="history"&gt;
+&lt;h2&gt;History&lt;/h2&gt;
+&lt;p&gt;I'm a fan of the Gherkin language for specifying
+the behavior of software.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Scenario: Works for Me
+
+Given a configuration
+When a request is made
+Then the response can …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Behave&lt;/strong&gt; fixtures totally rock for testing
+complex applications.&lt;/p&gt;
+&lt;p&gt;I had been doing them wrong. Doing them right is simpler.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="history"&gt;
+&lt;h2&gt;History&lt;/h2&gt;
+&lt;p&gt;I'm a fan of the Gherkin language for specifying
+the behavior of software.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Scenario: Works for Me
+
+Given a configuration
+When a request is made
+Then the response can be evaluated.
+&lt;/pre&gt;
+&lt;p&gt;I love this.&lt;/p&gt;
+&lt;p&gt;What I particularly love is the way &lt;strong&gt;Behave's&lt;/strong&gt; &lt;tt class="docutils literal"&gt;steps&lt;/tt&gt; package
+provide implementations for the individual steps of the scenario.&lt;/p&gt;
+&lt;p&gt;The steps can be organized around technical needs,
+where the features are organized around the user's experience
+when operating the software.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-non-fixture-approach"&gt;
+&lt;h2&gt;The Non-Fixture Approach&lt;/h2&gt;
+&lt;p&gt;For a long time, I used the &lt;tt class="docutils literal"&gt;Given&lt;/tt&gt; step and an &lt;tt class="docutils literal"&gt;after_scenario()&lt;/tt&gt;
+function in &lt;strong&gt;Behave's&lt;/strong&gt; environment module to create and destroy fixtures.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Scenario: Test with Mock API
+
+Given a server running on http://127.0.0.1:8000
+And the server has the resource requested
+When a client makes some random request or other
+Then the response is a tidy bit of data the user just loves
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Given&lt;/tt&gt; step would seed the context with details used
+to configure a tiny, specialized service built with
+Python's &lt;tt class="docutils literal"&gt;http.server&lt;/tt&gt; module. This separate subprocess would provide
+an appropriate response for this scenario.&lt;/p&gt;
+&lt;p&gt;The mock server srequired creating a request handling class hierarchy
+with reusable and extensible choices for the
+various scenarios and features.
+Often only one or two paths would be handled, since that's all
+a scenario needed.&lt;/p&gt;
+&lt;p&gt;The context parameters were turned into command-line options.
+The mini server was started by the &lt;tt class="docutils literal"&gt;When&lt;/tt&gt; step and stopped
+(eventually) after the scenario.&lt;/p&gt;
+&lt;p&gt;This was workable. But. Ultimately. Dumb.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fixtures"&gt;
+&lt;h2&gt;Fixtures&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Behave&lt;/strong&gt; has a much, much better way to configure
+and manage fixtures. This is great for tests that
+databases or RESTful API servers or other, separate processes
+to collaborate with.&lt;/p&gt;
+&lt;p&gt;Fixtures.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;fixture.the_mock_server
+Scenario: Test with Mock API
+
+Given a server running on http://127.0.0.1:8000
+And the server has the resource requested
+When a client makes some random request or other
+Then the response is a tidy bit of data the user just loves
+&lt;/pre&gt;
+&lt;p&gt;There's one change to the scenario -- a tag with &lt;tt class="docutils literal"&gt;&amp;#64;fixture.&lt;/tt&gt; to positively identify
+a fixture required for this scenario to make sense.&lt;/p&gt;
+&lt;p&gt;When reviewing the Gherkin with users, the &lt;tt class="docutils literal"&gt;&amp;#64;fixture&lt;/tt&gt; tag
+is easy to explain. There are often other tags throughout
+the scenarios. A &lt;tt class="docutils literal"&gt;&amp;#64;slow&lt;/tt&gt; tag, for example, might be used for those
+scenarios that involve throttling or timeouts. A &lt;tt class="docutils literal"&gt;&amp;#64;future&lt;/tt&gt; tag
+for those options that aren't required but can be tested
+to observe development progress. For one project I had a &lt;tt class="docutils literal"&gt;&amp;#64;core&lt;/tt&gt; tag
+that recapitulated the examples in the documentation --- these &lt;strong&gt;had&lt;/strong&gt; to work
+exactly as shown.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="infrastructure"&gt;
+&lt;h2&gt;Infrastructure&lt;/h2&gt;
+&lt;p&gt;The fixture infrastructure has three parts.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Our specific fixture-managing generator function. This will create the fixture, yield something, and then destroy the fixture. This precisely parallels the way &lt;strong&gt;pytest&lt;/strong&gt; fixtures work.&lt;/li&gt;
+&lt;li&gt;A &lt;tt class="docutils literal"&gt;before_tag()&lt;/tt&gt; function in the environment to look for the tags and do any setup or logging required.&lt;/li&gt;
+&lt;li&gt;The fixture itself. This is our specialized test-case server based on &lt;tt class="docutils literal"&gt;http.server&lt;/tt&gt;. It still uses a configuration file or command-line options -- or both -- to define some behavior required for the scenario.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What happens, then, is this.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;before_tag()&lt;/tt&gt; function is evaluated for every tag on every step.
+If a tag starts with &lt;tt class="docutils literal"&gt;&amp;quot;fixture.&amp;quot;&lt;/tt&gt; then, something special needs to be done.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;before_tag()&lt;/tt&gt; function will evaluate the &lt;tt class="docutils literal"&gt;behave.use_fixture()&lt;/tt&gt; function to inject
+our specific fixture-managing generator function into the step processing.&lt;/li&gt;
+&lt;li&gt;The fixture will be created (and destroyed) as part of the scenario's execution.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;(If you need details, see &lt;a class="reference external" href="https://behave.readthedocs.io/en/stable/fixtures.html#fixture-cleanup-points"&gt;https://behave.readthedocs.io/en/stable/fixtures.html#fixture-cleanup-points&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;The mapping from &lt;tt class="docutils literal"&gt;&amp;quot;fixture.this_special_api&amp;quot;&lt;/tt&gt; to
+a generator function named &lt;tt class="docutils literal"&gt;this_special_api()&lt;/tt&gt; is kind
+of trivial. So trivial that the examples in the &lt;strong&gt;Behave&lt;/strong&gt;
+documentation suggest you look these up in a map in
+the simplest possible way.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+TAG_IMPLEMENTATIONS = {
+    &amp;quot;the_mock_server&amp;quot;: server_fixture_generator,
+    &amp;quot;the_other_server&amp;quot;: another_fixture_generator,
+    &amp;quot;the_timeout_server&amp;quot;: the_timeout_server
+}
+
+def before_tag(context, tag):
+    if tag.startswith(&amp;quot;fixture.&amp;quot;):
+        _, name = tag.split('.')
+        use_fixture(TAG_IMPLEMENTATIONS[name], context)
+&lt;/pre&gt;
+&lt;p&gt;There's a &lt;tt class="docutils literal"&gt;use_fixture_by_tag()&lt;/tt&gt; function that may be considered to be simpler
+than my example.&lt;/p&gt;
+&lt;p&gt;Now, we can add fixtures by writing a generator
+function to create (and destroy) the fixture
+and adding the new function to the &lt;tt class="docutils literal"&gt;TAG_IMPLEMENTATIONS&lt;/tt&gt; mapping.&lt;/p&gt;
+&lt;p&gt;The fixture names are for users who might want to review
+the scenarios. They're subject to the same kind of negotiation
+the rest of the Gherkin terminology is. Sometimes, you'll
+tweak the wording as the user's understanding (and needs)
+evolve.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cleanup"&gt;
+&lt;h2&gt;Cleanup&lt;/h2&gt;
+&lt;p&gt;When you have serious problems in your test implementation,
+you'll have tiny cleanup issues.&lt;/p&gt;
+&lt;p&gt;For example, if your step implementation code is broken,
+the test can crash without having executed all
+the steps you anticipated.&lt;/p&gt;
+&lt;p&gt;This can mean a fixture isn't properly torn down.
+It's a rare, but annoying thing to happen.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://behave.readthedocs.io/en/stable/fixtures.html#ensure-fixture-cleanups-with-fixture-setup-errors"&gt;https://behave.readthedocs.io/en/stable/fixtures.html#ensure-fixture-cleanups-with-fixture-setup-errors&lt;/a&gt; for
+some solutions.&lt;/p&gt;
+&lt;p&gt;I'm a fan of leaving information about the fixture in the context,
+and using &lt;tt class="docutils literal"&gt;after_scenario()&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;after_feature()&lt;/tt&gt; functions
+to kill long-running process in the rare case that a step failed.&lt;/p&gt;
+&lt;p&gt;The alternative, using &lt;tt class="docutils literal"&gt;add_cleanup()&lt;/tt&gt;, is -- perhaps -- nicer,
+because it relies on a closure that doesn't clutter the
+context with these little, technical overheads. (I find closures
+a little awkward to debug, but, debugging is rarely needed
+for this.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="books"&gt;
+&lt;h2&gt;Books&lt;/h2&gt;
+&lt;p&gt;Yes, this is for a book.
+Stay tuned. Later this year.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="books"></category><category term="design"></category><category term="test-driven-development"></category></entry><entry><title>Testing RESTful web services in Django -- Tantalizingly Close.</title><link href="https://slott56.github.io/2008_08_13-testing_restful_web_services_in_django_tantalizingly_close.html" rel="alternate"></link><published>2008-08-13T10:10:00-04:00</published><updated>2008-08-13T10:10:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-08-13:/2008_08_13-testing_restful_web_services_in_django_tantalizingly_close.html</id><summary type="html">&lt;p&gt;Here's what's great about &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;  coupled with the &lt;a class="reference external" href="http://code.google.com/p/django-rest-interface/"&gt;Django-REST Interface&lt;/a&gt; :  It's almost all model.  You define the model, write some tests.  Add the URL mappings, write some tests using the built-in Django client.&lt;/p&gt;
 &lt;p&gt;We're almost there, but this doesn't work out perfectly.  To do complete tests, we have to either …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here's what's great about &lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt;  coupled with the &lt;a class="reference external" href="http://code.google.com/p/django-rest-interface/"&gt;Django-REST Interface&lt;/a&gt; :  It's almost all model.  You define the model, write some tests.  Add the URL mappings, write some tests using the built-in Django client.&lt;/p&gt;
 &lt;p&gt;We're almost there, but this doesn't work out perfectly.  To do complete tests, we have to either subclass the Django Client to add &amp;quot;put&amp;quot; and &amp;quot;delete&amp;quot; or curry in methods for &amp;quot;put&amp;quot; and &amp;quot;delete&amp;quot;.  Then we can almost test our complete set of web services functions.&lt;/p&gt;
 &lt;p&gt;At this point, the core of the application is -- well -- done.  It works, it handles the web services requests.  We can then start folding in HTML pages for the endlessly negotiated human interface.&lt;/p&gt;
