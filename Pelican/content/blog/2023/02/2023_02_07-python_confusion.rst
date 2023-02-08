@@ -5,7 +5,7 @@ Python Confusion
 :tags: #python
 :slug: 2023_02_07-python_confusion
 :category: Technologies
-:status: draft
+:status: published
 
 For social contact, I'm generally following people on https://fosstodon.org/home.
 I'm https://fosstodon.org/@slott56.
