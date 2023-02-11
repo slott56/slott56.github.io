@@ -2,7 +2,7 @@ Python Confusion
 ######################
 
 :date: 2023-02-07 08:00
-:tags: #python
+:tags: #python,learning
 :slug: 2023_02_07-python_confusion
 :category: Technologies
 :status: published
