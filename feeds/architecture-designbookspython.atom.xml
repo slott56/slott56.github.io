@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design,Books,Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-designbookspython.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-02-14T08:00:00-05:00</updated><entry><title>Jupyter Notebook for Tide Table Analysis</title><link href="https://slott56.github.io/2023_02_14-tide_table_analysis.html" rel="alternate"></link><published>2023-02-14T08:00:00-05:00</published><updated>2023-02-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-02-14:/2023_02_14-tide_table_analysis.html</id><summary type="html">&lt;p&gt;I'm undecided if this goes into the next book.
+Maybe this is a teaser...
+And yes, this is a &lt;strong&gt;Python to the Rescue&lt;/strong&gt; story.&lt;/p&gt;
+&lt;p&gt;I live on a boat. See &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Red Ranger Blog&lt;/a&gt; for details.
+What's essential is this little complication.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://www.charlottecountyfl.gov/departments/public-works/maintenance-operations/south-gulf-cove-boat-lock.stml"&gt;South Gulf Cove Boat Lock&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The lock keeps …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm undecided if this goes into the next book.
+Maybe this is a teaser...
+And yes, this is a &lt;strong&gt;Python to the Rescue&lt;/strong&gt; story.&lt;/p&gt;
+&lt;p&gt;I live on a boat. See &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Red Ranger Blog&lt;/a&gt; for details.
+What's essential is this little complication.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://www.charlottecountyfl.gov/departments/public-works/maintenance-operations/south-gulf-cove-boat-lock.stml"&gt;South Gulf Cove Boat Lock&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The lock keeps saltwater from Charlotte Harbor out of the canal system
+in South Gulf Cove.
+The creek beyond the lock is subject to silting.
+We'd like to be &lt;strong&gt;sure&lt;/strong&gt; we don't run aground.&lt;/p&gt;
+&lt;div class="section" id="filter-rules"&gt;
+&lt;h2&gt;Filter Rules&lt;/h2&gt;
+&lt;p&gt;There are two critical criteria for passing through the lock:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;High tide.&lt;/li&gt;
+&lt;li&gt;In the afternoon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The lock and the associated creeks and canals tend to silt
+up over time. Water moves slowly through the water system.
+High tide helps get us over the sandbars.&lt;/p&gt;
+&lt;p&gt;It's a bit over a three-hour trip from &lt;a class="reference external" href="https://www.safecoveinc.com"&gt;Safe Cove Boat Storage and Marina&lt;/a&gt;
+to the lock.
+If we start at 06:00, we're not getting out before 10:00.
+And.
+Who wants to get up at 05:00 to prep for departure at first light?&lt;/p&gt;
+&lt;p&gt;(Okay. I've done that. See &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/Schooner_Creek__Not_our_best_idea.html"&gt;Schooner Creek — Not our best idea&lt;/a&gt;.
+It's not ideal, but we can make it work.)&lt;/p&gt;
+&lt;p&gt;How do we know when high tide is? NOAA provides that information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="raw-data"&gt;
+&lt;h2&gt;Raw Data&lt;/h2&gt;
+&lt;p&gt;The tides have a well-understood model.
+This is a triumph of big-data analysis.&lt;/p&gt;
+&lt;p&gt;It leads to files like this:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://tidesandcurrents.noaa.gov/noaatideannual.html?id=8725769"&gt;https://tidesandcurrents.noaa.gov/noaatideannual.html?id=8725769&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Okay. That's a right mess of data.&lt;/p&gt;
+&lt;p&gt;There's a big multi-line header.
+It's followed by columns of details.
+The details have slightly irregular tab characters, making parsing annoying.&lt;/p&gt;
+&lt;p&gt;Choices.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Load it into Numbers and fool with it more-or-less manually looking the afternoon high-tides we can make use of.&lt;/li&gt;
+&lt;li&gt;Load it into a Jupyter Lab Notebook.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It's a one-time thing, right?&lt;/p&gt;
+&lt;p&gt;Not exactly.&lt;/p&gt;
+&lt;p&gt;Every year, we're going to redo this little computation.&lt;/p&gt;
+&lt;blockquote&gt;
+I hear you. Once a year isn't very often.
+The principle is this: the manual steps are hard to record
+and reproduce.
+It's much, much more reliable to build a notebook for
+repeatable results.&lt;/blockquote&gt;
+&lt;p&gt;I'll repeat that&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Build a Notebook For Repeatable Results.&lt;/strong&gt;&lt;/blockquote&gt;
+&lt;p&gt;Here's the essential features of that notebook.
+It's a three-step process&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Acquire&lt;/li&gt;
+&lt;li&gt;Clean&lt;/li&gt;
+&lt;li&gt;Analyze&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll begin at the beginning: acquiring the raw data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-1-acquire"&gt;
+&lt;h2&gt;Step 1. Acquire&lt;/h2&gt;
+&lt;p&gt;Okay. The data was already downloaded. Done. Check.
+We need to extract a meaningful structure from it.&lt;/p&gt;
+&lt;p&gt;First, strip that god-awful header.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def header(source: TextIO) -&amp;gt; dict[str, str]:
+    content = {}
+    for row in source:
+        if (clean := row.rstrip()) == '':
+            break
+        label, _, value = clean.partition(&amp;quot;:&amp;quot;)
+        content[label] = value
+    return content
+&lt;/pre&gt;
+&lt;p&gt;This function extracts the header lines
+to make a little dictionary with the metadata.
+The value of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;metadata['StationName']&lt;/span&gt;&lt;/tt&gt; is particularly
+useful.&lt;/p&gt;
+&lt;p&gt;This changes the state of the &lt;tt class="docutils literal"&gt;source&lt;/tt&gt; object.
+It advances it to the first line after the header.
+This line has the column titles.&lt;/p&gt;
+&lt;p&gt;(For some, this state change is a kind of functional programming no-no.
+A proper functional approach might involve defining some kind
+of monad that can be used to represent the file split,
+preserving the order.)&lt;/p&gt;
+&lt;p&gt;The column titles are in wrong positions with regard
+to the data. This offset makes them essentially useless except
+as a visual cue.&lt;/p&gt;
+&lt;p&gt;Here's what we observe.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+tide_csv[0:2]
+
+[['Date ', '', 'Day', 'Time', '', 'Pred(Ft)', 'Pred(cm)', 'High/Low'],
+ ['2023/01/01', 'Sun', '06:35 AM', '-0.13', '', '-4', '', '', 'L']]
+&lt;/pre&gt;
+&lt;p&gt;We want columns 0, 1, 2, 3, 5, and 8.&lt;/p&gt;
+&lt;p&gt;Here's the first pass at a kind of named-tuple or dataclass
+to structure the source text.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass, field
+
+&amp;#64;dataclass
+class Tide:
+    date: str
+    day: str
+    time: str
+    pred_ft: str
+    pred_cm: str
+    high_low: str
+
+    &amp;#64;classmethod
+    def from_csvrow(cls, row):
+        return cls(
+            date=row[0],
+            day=row[1],
+            time=row[2],
+            pred_ft=row[3],
+            pred_cm=row[5],
+            high_low=row[8]
+        )
+&lt;/pre&gt;
+&lt;p&gt;I'm a fan of including builders within the class
+definition. With a tiny prevarication.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;from_csvrow()&lt;/tt&gt; function is dependent
+on something &lt;strong&gt;outside&lt;/strong&gt; this class.
+Therefore we can argue this breaks the &lt;strong&gt;SOLID&lt;/strong&gt; design
+principles -- this class has than one reason to change:
+an internal representation change and an external parsing change.&lt;/p&gt;
+&lt;p&gt;(The Open-Closed principle still applies. Subclasses have have different parsers.)&lt;/p&gt;
+&lt;p&gt;If there are multiple sources, or the source is some hack
+built as a temporary stop-gap as part of Enterprise software development,]
+then separate parsers are helpful.&lt;/p&gt;
+&lt;p&gt;(Enterprise in-house programmers are sometimes told to build junk.)&lt;/p&gt;
+&lt;p&gt;This is from a government agency. Change will arise at a stately pace.
+Including a parser/builder method in the class is fair because I &lt;em&gt;never&lt;/em&gt; expect to see this source format change.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-2-clean-and-transform"&gt;
+&lt;h2&gt;Step 2. Clean and Transform&lt;/h2&gt;
+&lt;p&gt;There's only a little bit of this data we need:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The predicted height in feet &amp;quot;Pred(Ft)&amp;quot;.&lt;/li&gt;
+&lt;li&gt;The timestamp built from &amp;quot;Date&amp;quot; and &amp;quot;Time&amp;quot;.&lt;/li&gt;
+&lt;li&gt;The High/Low flag telling us the tide's state. We like to make trick transits &lt;strong&gt;before&lt;/strong&gt; high-tide so the rising tide can help float us free of trouble.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The day, for example, is redundant and computed from the date.
+The predicted height in cm is a multiplication.&lt;/p&gt;
+&lt;p&gt;We have two general approaches for this.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For complex, fluid situations with multiple sources and formats, it helps to separate clean data from raw data. This means creating a secondary class, built from the raw (&amp;quot;all strings&amp;quot;) source class. This class can have a more useful structure.&lt;/li&gt;
+&lt;li&gt;For this kind of stable data, we can enrich the dataclass with &lt;tt class="docutils literal"&gt;init=False&lt;/tt&gt; fields.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It looks like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass, field
+from enum import Enum
+import datetime
+
+class HighLow(str, Enum):
+    High = &amp;quot;H&amp;quot;
+    Low = &amp;quot;L&amp;quot;
+
+&amp;#64;dataclass
+class Tide:
+    date: str
+    day: str
+    time: str
+    pred_ft: str
+    pred_cm: str
+    high_low: str
+    timestamp: datetime.datetime = field(init=False)
+    height: float = field(init=False)
+    state: HighLow = field(init=False)
+
+    &amp;#64;classmethod
+    def from_csvrow(cls, row):
+        return cls(
+            date=row[0],
+            day=row[1],
+            time=row[2],
+            pred_ft=row[3],
+            pred_cm=row[5],
+            high_low=row[8]
+        )
+
+    def __post_init__(self):
+        date = datetime.datetime.strptime(self.date, '%Y/%m/%d').date()
+        time = datetime.datetime.strptime(self.time, '%I:%M %p').time()
+        self.timestamp = datetime.datetime.combine(date, time)
+        self.height = float(self.pred_ft)
+        self.state = HighLow(self.high_low)
+&lt;/pre&gt;
+&lt;p&gt;The three &lt;tt class="docutils literal"&gt;field(init=False)&lt;/tt&gt; attributes are &lt;strong&gt;not&lt;/strong&gt; provided from the source.
+These are derived.
+The &lt;tt class="docutils literal"&gt;__post_init__()&lt;/tt&gt; method computes the useful derived values.&lt;/p&gt;
+&lt;p&gt;These values can also be &lt;tt class="docutils literal"&gt;&amp;#64;property&lt;/tt&gt; methods.
+Indeed, they started out as properties.
+There are only about 1200 rows of data, so the performance advantage of one-time computation is miniscule.&lt;/p&gt;
+&lt;p&gt;For completeness, here's the overall parser for this data.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def tides(source_csv):
+    for line in source_csv:
+        if len(line) != 9:
+            continue
+        yield Tide.from_csvrow(line)
+&lt;/pre&gt;
+&lt;p&gt;Given the list of CSV rows (or a generator for the CSV rows)
+this will iterate over the rows, building &lt;tt class="docutils literal"&gt;Tide&lt;/tt&gt; instances.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-3-when-do-we-go"&gt;
+&lt;h2&gt;Step 3. When Do We Go?&lt;/h2&gt;
+&lt;p&gt;Now, we can start analysis.
+The fundamental question is this &amp;quot;When to we leave?&amp;quot;&lt;/p&gt;
+&lt;p&gt;The answer is &amp;quot;When the lock is passable.&amp;quot;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def passable(t):
+    return all([
+        t.state == HighLow.High,     # High tide
+        11 &amp;lt;= t.timestamp.hour &amp;lt; 18  # Late morning and afternoon
+    ])
+&lt;/pre&gt;
+&lt;p&gt;We need to to know the high-tide time so we can back off three hours.
+We need to arrive at the lock in daylight, and we don't want to get up at 05:00 (pre-dawn).&lt;/p&gt;
+&lt;p&gt;The final cell in this notebook?&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+for t in tides(tide_csv):
+    if passable(t) and t.timestamp.month in {3, 4, 5}:
+        print(f&amp;quot;{t.timestamp} {t.height:6.2f} {t.state.name}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This tells us what we need to know about making the lock
+in daylight with a good probability of enough water out in the harbor.&lt;/p&gt;
+&lt;p&gt;We still have to fix Hurricane Ian damage.
+We're not 100% the engine will start.
+The solar panels are a wreck.&lt;/p&gt;
+&lt;p&gt;And.&lt;/p&gt;
+&lt;p&gt;We don't know where we might go.
+A lot the South Florida Gulf Coast is still a right-awful mess.&lt;/p&gt;
+&lt;p&gt;Maybe all we'll be able to do is
+drop the anchor at &lt;a class="reference external" href="https://activecaptain.garmin.com/en-US/pois/46419"&gt;Punta Gorda&lt;/a&gt; for a month.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design,Books,Python"></category><category term="#python"></category><category term="jupyter lab"></category><category term="functional programming"></category><category term="navigation"></category></entry></feed>

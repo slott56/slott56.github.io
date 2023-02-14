@@ -5,7 +5,7 @@ Jupyter Notebook for Tide Table Analysis
 :tags: #python,jupyter lab,functional programming,navigation
 :slug: 2023_02_14-tide_table_analysis
 :category: Architecture & Design,Books,Python
-:status: draft
+:status: published
 
 I'm undecided if this goes into the next book.
 Maybe this is a teaser...
