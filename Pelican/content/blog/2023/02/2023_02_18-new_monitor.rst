@@ -4,7 +4,7 @@ New Monitor
 :date: 2023-02-18 08:00
 :tags: hardware,mac os x,macintosh,work-life,writing
 :slug: 2023_02_18-new_monitor
-:category: Technology
+:category: Technologies
 :status: published
 
 

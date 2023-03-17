@@ -4,7 +4,7 @@ EDI Message Parsing
 :date: 2023-03-17 08:00
 :tags: architecture,design,data structure,algorithm
 :slug: 2023_03_17-edi_message_parsing
-:category: Technology
+:category: Technologies
 :status: published
 
 Reaching back to 2008. Yes. Decade(s) ago. Python 2.5.

@@ -4,7 +4,7 @@ Programming Languages -- In Time Order
 :date: 2023-02-21 08:00
 :tags: books,building skills,learning,programming languages
 :slug: 2023_02_21-programming_languages
-:category: Technology
+:category: Technologies
 :status: published
 
 See `Programming Languages I've Learned (more-or-less in order) [Update] <{filename}/blog/2008/09/2008_09_28-programming_languages_ive_learned_more_or_less_in_order_update.rst>`_.
