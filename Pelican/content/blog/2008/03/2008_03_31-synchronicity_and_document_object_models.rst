@@ -1,4 +1,4 @@
-Synchronicity and Document Object Models.
+Synchronicity and Document Object Models
 =========================================
 
 :date: 2008-03-31 15:32
@@ -40,8 +40,8 @@ The first use case is the easy one: Marshalling.  We want a POPO to marshall its
 
 
 
-Unmarshall (or parse)
-----------------------
+Use Case 2: Unmarshall (or parse)
+----------------------------------
 
 
 
@@ -69,11 +69,7 @@ Use Case 4: POPO Manipulation
 
 
 
-I want to be able to say things like 
-
-
-
-:Apple-tab-span:`` msg.LOOP1.DTP.DTP02= "20080330"
+I want to be able to say things like ``msg.LOOP1.DTP.DTP02= "20080330"``
 
 
 
@@ -148,7 +144,7 @@ The Marshall and Unmarshall use cases work out reasonably well.  I have a beef w
 
 
 
-Really, I should subclass ElementTree and incorporate this into it.
+Really, I should subclass ``ElementTree`` and incorporate this into it.
 
 
 

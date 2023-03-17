@@ -109,7 +109,7 @@ The real win however, will come from upgrading to the 1.3 release of ElementTree
 
 
 The Hierarchy Parser
-
+--------------------
 
 
 Here's a way to parse a big block o' text and create a proper XML structure from the content.  Similar algorithms can be used to emit Python class definitions, XML loop structures, etc.
