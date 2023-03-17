@@ -4770,7 +4770,9 @@ Use SQL*Loader to reload the resulting file
 &lt;p&gt;For now, I don't have XSD or DTD, just a few examples plus an MS-Word .doc with message elements in a big, indented layout.  Creating proper POPO's for this hierarchy isn't too bad.  I have a simple parser that transforms an indented outline into Python class definitions.&lt;/p&gt;
 &lt;p&gt;Creating a Bridge to XML, similarly, isn't too bad.  It just makes the POPO's a bit more complex.  Each element is a descriptor that contains navigation into the underlying XML.  Creating a message from scratch adds enough complexity that it's a headache.  Either we introspect our POPO's or do additional parsing of the indented layout to create an XML constructor in addition to the Bridge class definitions.&lt;/p&gt;
 &lt;p&gt;The real win however, will come from upgrading to the 1.3 release of ElementTree, which has more complete XPath support.  The ElementTree find method provides a pleasant, Pythonic encapsulation of the XPath that makes life relatively simple.  Bridges and Facades are no longer desirable.&lt;/p&gt;
-&lt;p&gt;The Hierarchy Parser&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-hierarchy-parser"&gt;
+&lt;h2&gt;The Hierarchy Parser&lt;/h2&gt;
 &lt;p&gt;Here's a way to parse a big block o' text and create a proper XML structure from the content.  Similar algorithms can be used to emit Python class definitions, XML loop structures, etc.&lt;/p&gt;
 &lt;p&gt;The message is the top-level Element.  The description is simple indented block of text, for example&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -4813,7 +4815,7 @@ def makeXML( message, description ):
 &lt;/pre&gt;
 &lt;p&gt;Now, I'm happy.  I can unmarshall and marshall using ElementTree.  I can manipulate with simple things like &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;msg.find(&amp;quot;SOME/NESTED/PART&amp;quot;).text&lt;/span&gt; = &amp;quot;new value&amp;quot;&lt;/tt&gt; .  I can build using the above &lt;tt class="docutils literal"&gt;makeXML&lt;/tt&gt;  function.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="design"></category><category term="complexity"></category></entry><entry><title>Synchronicity and Document Object Models.</title><link href="https://slott56.github.io/2008_03_31-synchronicity_and_document_object_models.html" rel="alternate"></link><published>2008-03-31T15:32:00-04:00</published><updated>2008-03-31T15:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-03-31:/2008_03_31-synchronicity_and_document_object_models.html</id><summary type="html">&lt;p&gt;Message-oriented applications involve an interface defined around messages (or documents).  I've been working on applications that involve a fair amount of manipulation of XML and X12.  Recently I started yet another, and started to recognize the essential design patterns.&lt;/p&gt;
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="design"></category><category term="complexity"></category></entry><entry><title>Synchronicity and Document Object Models</title><link href="https://slott56.github.io/2008_03_31-synchronicity_and_document_object_models.html" rel="alternate"></link><published>2008-03-31T15:32:00-04:00</published><updated>2008-03-31T15:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2008-03-31:/2008_03_31-synchronicity_and_document_object_models.html</id><summary type="html">&lt;p&gt;Message-oriented applications involve an interface defined around messages (or documents).  I've been working on applications that involve a fair amount of manipulation of XML and X12.  Recently I started yet another, and started to recognize the essential design patterns.&lt;/p&gt;
 &lt;p&gt;There are four use cases.  The first two use cases define …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Message-oriented applications involve an interface defined around messages (or documents).  I've been working on applications that involve a fair amount of manipulation of XML and X12.  Recently I started yet another, and started to recognize the essential design patterns.&lt;/p&gt;
 &lt;p&gt;There are four use cases.  The first two use cases define the interface: marshall and unmarshall.  The third and fourth use cases are building and manipulating the internal objects, separate from any XML (or X12) considerations.&lt;/p&gt;
 &lt;p&gt;The problem recently gave me brain cramps because I wanted something a bit more general than my last (ad-hoc) go-around.&lt;/p&gt;
@@ -4822,8 +4824,8 @@ def makeXML( message, description ):
 &lt;h2&gt;Use Case 1: Marshall&lt;/h2&gt;
 &lt;p&gt;The first use case is the easy one: Marshalling.  We want a POPO to marshall itself into an XML (or X12 message).&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="unmarshall-or-parse"&gt;
-&lt;h2&gt;Unmarshall (or parse)&lt;/h2&gt;
+&lt;div class="section" id="use-case-2-unmarshall-or-parse"&gt;
+&lt;h2&gt;Use Case 2: Unmarshall (or parse)&lt;/h2&gt;
 &lt;p&gt;While this is solved by SAX, expat, xml.dom.minidom and xml.etree, there are some distinctions that are important.  The &amp;quot;event-based&amp;quot; parsing of SAX or expat is only part of the use case.  The more important part is the creation of a resulting document object that can be used for further processing.&lt;/p&gt;
 &lt;p&gt;This document is easiest to work with if it's built of POPO's.  The &amp;quot;manipulation&amp;quot; use case, below, depends on simple, elegant Python syntax.&lt;/p&gt;
 &lt;/div&gt;
@@ -4833,8 +4835,7 @@ def makeXML( message, description ):
 &lt;/div&gt;
 &lt;div class="section" id="use-case-4-popo-manipulation"&gt;
 &lt;h2&gt;Use Case 4: POPO Manipulation&lt;/h2&gt;
-&lt;p&gt;I want to be able to say things like&lt;/p&gt;
-&lt;p&gt;:Apple-tab-span:`` msg.LOOP1.DTP.DTP02= &amp;quot;20080330&amp;quot;&lt;/p&gt;
+&lt;p&gt;I want to be able to say things like &lt;tt class="docutils literal"&gt;msg.LOOP1.DTP.DTP02= &amp;quot;20080330&amp;quot;&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;The Python &amp;quot;.&amp;quot; is much, much cleaner than the rather complex search references required by the xml.dom structures.&lt;/p&gt;
 &lt;p&gt;However, this isn't the only construct I'd like.  Many XML (and X12) constructs can repeat, so we need to use the &amp;quot;[]&amp;quot; or insert a number in the &amp;quot;.&amp;quot; path.&lt;/p&gt;
 &lt;p&gt;XPath is not particularly pleasant for this, since it is not very Pythonic.  [XPath is a useful model, however, because the navigation axes can serve as a template for method design.]&lt;/p&gt;
@@ -4865,7 +4866,7 @@ def toXML( etree ):
     buffer.close()
     return txt
 &lt;/pre&gt;
-&lt;p&gt;Really, I should subclass ElementTree and incorporate this into it.&lt;/p&gt;
+&lt;p&gt;Really, I should subclass &lt;tt class="docutils literal"&gt;ElementTree&lt;/tt&gt; and incorporate this into it.&lt;/p&gt;
 &lt;p&gt;Building an Element Tree isn't too bad.  The Element and SubElement constructors are easy enough to use.  The text attribute (missing from the documentation) helps set text values of tags without fuss or complexity.&lt;/p&gt;
 &lt;p&gt;Manipulating, similarly, isn't awful.  The (currently undocumented) ElementPath module provides a &amp;quot;name/name&amp;quot; XPath-like search functionality.  However, the way that the ElementPath (or _SimpleElementPath) plug into the overall structure of the find method shows how to build more sophisticated versions of ElementPath that handle more complex XPath search axes.  The nasty part of this is parsing the &lt;a class="reference external" href="http://www.w3.org/TR/xpath"&gt;XPath notation&lt;/a&gt;  itself.&lt;/p&gt;
 &lt;p&gt;[Specifically, abbreviated notation, which limits searches to the child axis.  The &amp;quot;[&lt;em&gt;n&lt;/em&gt;]&amp;quot; index construct and &amp;quot;[&amp;#64; &lt;em&gt;attr&lt;/em&gt; = &lt;em&gt;value&lt;/em&gt;]&amp;quot; constructs are the most useful.]&lt;/p&gt;

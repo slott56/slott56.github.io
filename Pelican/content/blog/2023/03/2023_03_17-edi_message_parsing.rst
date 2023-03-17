@@ -7,7 +7,7 @@ EDI Message Parsing
 :category: Technology
 :status: published
 
-Reaching back to 2008. Yes. Decades ago. Python 2.5.
+Reaching back to 2008. Yes. Decade(s) ago. Python 2.5.
 
 I was reminded of this when a former colleague
 pinged me about this: https://github.com/slott56/TigerShark.
