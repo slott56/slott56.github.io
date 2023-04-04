@@ -1,5 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-03-17T08:00:00-04:00</updated><entry><title>EDI Message Parsing</title><link href="https://slott56.github.io/2023_03_17-edi_message_parsing.html" rel="alternate"></link><published>2023-03-17T08:00:00-04:00</published><updated>2023-03-17T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-03-17:/2023_03_17-edi_message_parsing.html</id><summary type="html">&lt;p&gt;Reaching back to 2008. Yes. Decade(s) ago. Python 2.5.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-04-04T08:00:00-04:00</updated><entry><title>Side Quest</title><link href="https://slott56.github.io/2023_04_04-side_quest.html" rel="alternate"></link><published>2023-04-04T08:00:00-04:00</published><updated>2023-04-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-04:/2023_04_04-side_quest.html</id><summary type="html">&lt;p&gt;Few things are as distracting as those god-awful side quests.&lt;/p&gt;
+&lt;p&gt;In this case, I had to search out all of the examples in my new book drafts.&lt;/p&gt;
+&lt;div class="section" id="previously"&gt;
+&lt;h2&gt;Previously&lt;/h2&gt;
+&lt;p&gt;Once upon a time, it was a manual check of code in the book to be sure it made sense.&lt;/p&gt;
+&lt;p&gt;Ugh. Not …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Few things are as distracting as those god-awful side quests.&lt;/p&gt;
+&lt;p&gt;In this case, I had to search out all of the examples in my new book drafts.&lt;/p&gt;
+&lt;div class="section" id="previously"&gt;
+&lt;h2&gt;Previously&lt;/h2&gt;
+&lt;p&gt;Once upon a time, it was a manual check of code in the book to be sure it made sense.&lt;/p&gt;
+&lt;p&gt;Ugh. Not living like that again.&lt;/p&gt;
+&lt;p&gt;Tons of mistakes found by readers.&lt;/p&gt;
+&lt;p&gt;The root cause? Editors who liked MS Word forcing me to copy-and-paste examples.&lt;/p&gt;
+&lt;p&gt;Never again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automation-i"&gt;
+&lt;h2&gt;Automation I&lt;/h2&gt;
+&lt;p&gt;I would draft in RST and then use Pandoc to convert to MS Word.&lt;/p&gt;
+&lt;p&gt;Then tweak the MS Word to use the publisher's preferred MS Word Template.
+Point and click at every single thing to make sure it has the right
+paragraph or character style name.&lt;/p&gt;
+&lt;p&gt;Nope. Never doing that again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automation-ii"&gt;
+&lt;h2&gt;Automation II&lt;/h2&gt;
+&lt;p&gt;Let's use LaTeX. My project is an update to a book to the 3rd edition.&lt;/p&gt;
+&lt;p&gt;(It's this: &lt;a class="reference external" href="https://www.packtpub.com/product/functional-python-programming-third-edition/9781803232577"&gt;https://www.packtpub.com/product/functional-python-programming-third-edition/9781803232577&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;The 2nd ed. files came to me in MS Word format. I converted them to LaTeX with Pandoc.
+Easy. Peasy.&lt;/p&gt;
+&lt;p&gt;I can now edit the LaTeX Like a real person with a text editor.
+Global search and replace now works reliably.
+No need to endlessly point and click at pieces of text to set the style.&lt;/p&gt;
+&lt;p&gt;I do need to remove some pandoc-isms and replace them with the publisher's preferred LaTeX.
+This works out very nicely.&lt;/p&gt;
+&lt;p&gt;But... The examples...&lt;/p&gt;
+&lt;p&gt;Here's the side quest. (Foreshadowing: it's not the only one.)&lt;/p&gt;
+&lt;div class="section" id="side-quest-ii-a"&gt;
+&lt;h3&gt;Side Quest II-A&lt;/h3&gt;
+&lt;p&gt;Parse the LaTeX (ugh) and locate all the examples.&lt;/p&gt;
+&lt;p&gt;Pandoc made them &lt;tt class="docutils literal"&gt;{verbatim}&lt;/tt&gt; (I think) or maybe &lt;tt class="docutils literal"&gt;{lstlisting}&lt;/tt&gt;. Not sure. Doesn't matter.&lt;/p&gt;
+&lt;p&gt;Change them all to &lt;tt class="docutils literal"&gt;{minted}&lt;/tt&gt;. (The publisher then changed them all to a customized &lt;tt class="docutils literal"&gt;{codeblock}&lt;/tt&gt; that looked GREAT!)&lt;/p&gt;
+&lt;p&gt;The code to do this &lt;strong&gt;also&lt;/strong&gt; added a unique label to each example so the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;example~\\ref{ex-some-tag}&lt;/span&gt;&lt;/tt&gt; worked.&lt;/p&gt;
+&lt;p&gt;(Yes, LaTeX is ugly.)&lt;/p&gt;
+&lt;p&gt;This was really only preparation for the second side quest.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="side-quest-ii-b"&gt;
+&lt;h3&gt;Side Quest II-B&lt;/h3&gt;
+&lt;p&gt;That's really only the start.
+Once every example has a unique label, I can then do the following:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Extract all of the code snippets from the book, and load them up into a big-old dictionary. LaTeX parsing is a potential ugh, but it works for this book's LaTeX.&lt;/li&gt;
+&lt;li&gt;Put each snippet into a test context using Jinja and a directory of templates.&lt;ul&gt;
+&lt;li&gt;Some snippets are doctest code, and require little-to-no context.&lt;/li&gt;
+&lt;li&gt;Some snippets are full functions, easy to plug into a file that includes test case(s).&lt;/li&gt;
+&lt;li&gt;Some snippets are code fragments that require a much more elaborate context. And test cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Run Black on the filled-in templates to undo any formatting mischief from the book (or from the template.)&lt;/li&gt;
+&lt;li&gt;Run pytest on the whole show and make sure &lt;strong&gt;everything&lt;/strong&gt; works.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The book's examples are a lot of code.
+It works out better with a combination of &lt;tt class="docutils literal"&gt;tox&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;make&lt;/tt&gt; to go chapter-by-chapter
+to be sure everything works.&lt;/p&gt;
+&lt;p&gt;This is only to be sure the examples withstand scrutiny. I still have to write the text.
+And rewrite the text when the reviewers find problems.
+Which means rewriting the examples.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code"&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;Here's a LaTeX parser. I can't make any guarantees, because your LaTeX may involve
+constructs that I've never seen before.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class BlockKind(Enum):
+    BLANK = 0         # An empty line.
+    COMMENT = 1       # A &amp;quot;%...&amp;quot; line. Comments at the end of a line are treated as part of the text.
+    ENV = 2           # \\begin{name}[opts] ... \\end{name}. Nesting is **not** examined.
+    MATH = 3          # $$ ... $$
+    TEXTWITHMATH = 4  # A block with &amp;quot;$&amp;quot; in it
+    TEXT = 5          # A block, frequently containing \\command[opts]{stuff}
+&lt;/pre&gt;
+&lt;p&gt;I don't think this is all of the block types. But it is representative of all the block types I actually used.&lt;/p&gt;
+&lt;p&gt;Here's the definition of a block.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;dataclass
+class Block:
+    kind: BlockKind
+    lines: list[str]
+
+    &amp;#64;property
+    def text(self) -&amp;gt; str:
+        return '\n'.join(self.lines)
+&lt;/pre&gt;
+&lt;p&gt;The first goal being that we can iterate through the blocks, and perform special-case
+processing based on the enumerated &lt;tt class="docutils literal"&gt;BlockKind&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The second goal is to be lossless. This means that some block text contains trailing or
+leading stuff. Specifically, LaTeX in-line comments.&lt;/p&gt;
+&lt;p&gt;Next up, the various regex patterns that recognize most instances of the above
+blocks.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;This is not a general solution.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;LaTeX has lots and lots of ways to extend the language. Lots.&lt;/p&gt;
+&lt;p&gt;One opinion I've seen is that the whole thing is better understood
+as a Turing machine that's executed and produces an output stream.&lt;/p&gt;
+&lt;p&gt;And it has constructs that extend the Turing machine with new syntax.
+Dynamically.  On-the-fly.&lt;/p&gt;
+&lt;p&gt;But I don't use any of those. Or if I do use them, the implementation details
+are opaque to me and I don't need to care.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+COMMENT_PAT = re.compile(r&amp;quot;^\s*%&amp;quot;)
+MATH_ENV_PAT = re.compile(r&amp;quot;^\s*\$\$\s*$&amp;quot;)
+ENV_BEGIN_PAT = re.compile(r&amp;quot;^\s*\\begin\{(\w+)\}(\[.*\])?&amp;quot;)
+ENV_END_PAT = re.compile(r&amp;quot;^\s*\\end\{(\w+)\}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;A few more patterns that are used later to distinguish different kinds of block content:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+CONSOLE_PAT = re.compile(r&amp;quot;^\\textbf\{(.*)\}&amp;quot;)
+GREATER_PAT = re.compile(r&amp;quot;\\textgreater\{\}|\\textgreater&amp;quot;)
+CURLY_PAT = re.compile(r&amp;quot;\{(.)\}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;Here's the parser that breaks LaTeX into &lt;tt class="docutils literal"&gt;Block&lt;/tt&gt; instances:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;BlockKind.BLANK  Blank lines between paragraphs.&lt;/li&gt;
+&lt;li&gt;BlockKind.COMMENT: Line starting with &amp;quot;%&amp;quot;. Note that comments at the end of a line are treated as part of the text.
+This is semantically wrong but syntactically lossless; it preserves the comment in an odd context.&lt;/li&gt;
+&lt;li&gt;BlockKind.ENV: \begin{env}[options] -- \end{env}
+This is not &lt;strong&gt;all&lt;/strong&gt; environments. It's only a short list of code sample environments.
+These are {&amp;quot;quote&amp;quot;, &amp;quot;lstlisting&amp;quot;, &amp;quot;minted&amp;quot;, &amp;quot;codeblock&amp;quot;, &amp;quot;consoleblock&amp;quot;}.
+The potential complication is an admonition environment (&lt;tt class="docutils literal"&gt;\\begin{tipbox}&lt;/tt&gt;) MAY contain
+embedded code sample environments, but would not be found because we don't parse the full LaTeX tree.&lt;/li&gt;
+&lt;li&gt;BlockKind.MATH: $$ to $$ block&lt;/li&gt;
+&lt;li&gt;BlockKind.TEXTWITHMATH: Block of text with &amp;quot;$&amp;quot; in it somewhere.&lt;/li&gt;
+&lt;li&gt;BlockKind.TEXT: blocks of text, possibly including commands of the form &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\\command[options]{stuff}&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://pylatexenc.readthedocs.io/en/latest/latexwalker/"&gt;https://pylatexenc.readthedocs.io/en/latest/latexwalker/&lt;/a&gt; for a possibly better approach.&lt;/p&gt;
+&lt;p&gt;This flat expansion works here because we &lt;strong&gt;ONLY&lt;/strong&gt; want to distinguish code environments from non-code environments.
+We don't really need the full parse tree.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def block_iter(text: str) -&amp;gt; Iterator[Block]:
+    &amp;quot;&amp;quot;&amp;quot;
+    Dirty hack lossless LaTeX parser. Treats LaTeX as if it were a flat tree of environments (and commands.)
+    Ignores nested environments. Will not dig into lists, for example.
+    Doesn't find all comments.
+    Will be confused by verbatim in general, but not in most examples that aren't books about LaTeX
+    &amp;quot;&amp;quot;&amp;quot;
+
+    target_environs =  {&amp;quot;quote&amp;quot;, &amp;quot;lstlisting&amp;quot;, &amp;quot;minted&amp;quot;, &amp;quot;codeblock&amp;quot;, &amp;quot;consoleblock&amp;quot;}
+    text_lines = []
+    line_iter = iter(text.splitlines())
+    for line in line_iter:
+        if len(line) == 0:
+            if text_lines:
+                # End previous block
+                yield Block(BlockKind.TEXT, text_lines)
+                text_lines = []
+            yield Block(BlockKind.BLANK, [&amp;quot;&amp;quot;])
+        elif (comment := COMMENT_PAT.match(line)) and comment:
+            if text_lines:
+                # End previous block
+                yield Block(BlockKind.TEXT, text_lines)
+                text_lines = []
+            yield Block(BlockKind.COMMENT, [line])
+        elif (start := ENV_BEGIN_PAT.match(line)) and start and start.group(1) in target_environs:
+            if text_lines:
+                # End previous block
+                yield Block(BlockKind.TEXT, text_lines)
+                text_lines = []
+            body_lines = [line]
+            for body in line_iter:
+                body_lines.append(body)
+                if (end := ENV_END_PAT.match(body)) and end and end.group(1) == start.group(1):
+                    break
+            yield Block(BlockKind.ENV, body_lines)
+        elif (math := MATH_ENV_PAT.match(line)) and math:
+            if text_lines:
+                # End previous block
+                yield Block(BlockKind.TEXT, text_lines)
+                text_lines = []
+            body_lines = [line]
+            for body in line_iter:
+                body_lines.append(body)
+                if body.strip() == &amp;quot;$$&amp;quot;:
+                    break
+            yield Block(BlockKind.MATH, body_lines)
+        elif &amp;quot;$&amp;quot; in line:  # TODO: must be unescaped and outside \verb
+            if text_lines:
+                # End previous block
+                yield Block(BlockKind.TEXT, text_lines)
+                text_lines = []
+            yield Block(BlockKind.TEXTWITHMATH, [line])
+        else:
+            # Accumulate a block
+            text_lines.append(line)
+    if text_lines:
+        # End any final block
+        yield Block(BlockKind.TEXT, text_lines)
+&lt;/pre&gt;
+&lt;p&gt;Once we have the sequence of blocks, we can tweak the various code sample blocks.&lt;/p&gt;
+&lt;p&gt;Because the parsing is lossless, we can reconstruct a modified LaTeX document,
+as long we nothing too weird is going on inside &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\\verbatim|...|&lt;/span&gt;&lt;/tt&gt; blocks.&lt;/p&gt;
+&lt;p&gt;This worked well-enough to -- reliably -- pull all the code samples out of the text.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automation-iii"&gt;
+&lt;h2&gt;Automation III&lt;/h2&gt;
+&lt;p&gt;New book in the works.&lt;/p&gt;
+&lt;p&gt;Two key alternatives:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Write all the examples and use minted to pull lines of code from the example files.&lt;/li&gt;
+&lt;li&gt;Recapitulate the previous book's unique approach to example labels, and injection into specific contexts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This book has a distinct focus, however. There isn't as much code.
+it doesn't seem to be essential for the code to be copy-and-paste complete.&lt;/p&gt;
+&lt;p&gt;Further, it doesn't seem helpful to provide doctest-like examples.
+The book is for a more advanced audience.&lt;/p&gt;
+&lt;p&gt;What I'm could try to do is locate all of the code examples in a corpus of code files.
+Then I can gingerly switch out actual code for a reference to lines in a code file.&lt;/p&gt;
+&lt;p&gt;That seems easier to live with.&lt;/p&gt;
+&lt;p&gt;If I need to change the code, I fix the corpus of code files, and rerun the test suite.
+If the example's line numbers changed, fiddle with the LaTeX a little to get the right lines into the book.&lt;/p&gt;
+&lt;p&gt;The downside of doing this is the corpus of code files become a first-class part of the book's
+source. It lives side-by-side with images and LaTeX files.&lt;/p&gt;
+&lt;p&gt;Some more thinking required before I finally make a commitment.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="architecture"></category><category term="design"></category><category term="writing"></category><category term="workflow"></category></entry><entry><title>EDI Message Parsing</title><link href="https://slott56.github.io/2023_03_17-edi_message_parsing.html" rel="alternate"></link><published>2023-03-17T08:00:00-04:00</published><updated>2023-03-17T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-03-17:/2023_03_17-edi_message_parsing.html</id><summary type="html">&lt;p&gt;Reaching back to 2008. Yes. Decade(s) ago. Python 2.5.&lt;/p&gt;
 &lt;p&gt;I was reminded of this when a former colleague
 pinged me about this: &lt;a class="reference external" href="https://github.com/slott56/TigerShark"&gt;https://github.com/slott56/TigerShark&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Yes, it's an X12/EDI message parsing library from -- well -- decades ago.&lt;/p&gt;
