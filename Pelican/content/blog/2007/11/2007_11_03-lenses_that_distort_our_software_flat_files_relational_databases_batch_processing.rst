@@ -17,7 +17,7 @@ When approaching reverse-engineering, we have to partition the big puddle of cod
 
 
 
-More commonly, the data model is so out of date from current business practice, that there's little real value in attempting to preserve it.  We need to find the underlying model first, and then determine how the program imposes the application processing on this model.  To develop a model from the legacy code, we have to `Find the Objects <{filename}/blog/2007/09/2007_09_21-deconstructing_programs_from_c_or_finding_the_objectstm.rst>`_ .  In some cases, the actual objects are so distorted by the implementation lens that this can be challenging.
+More commonly, the data model is so out of date from current business practice, that there's little real value in attempting to preserve it.  We need to find the underlying model first, and then determine how the program imposes the application processing on this model.  To develop a model from the legacy code, we have to `Find the Objects <{filename}/blog/2007/09/2007_09_21-deconstructing_programs_from_c_or_finding_the_objects.rst>`_ .  In some cases, the actual objects are so distorted by the implementation lens that this can be challenging.
 
 
 

@@ -76,6 +76,7 @@ I believe there are two parts to the rewrite.
 
 2. Create a generic parser protocol that can extract the segments, loops, and atomic fields from the X12 messages. This becomes a superclass feature of all X12 components.
 
+This should be much simpler than the old version. Which was **very** complicated.
 The old release had two levels of interpretation of the X12 content:
 
 - Generic segments and loops

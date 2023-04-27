@@ -167,8 +167,10 @@ have. But the comment did lead to rewriting this to use
 AssertionError instead of vague, generic Exception.</blockquote>
 </div>
 <hr class="docutils" />
+<div class="section" id="comments">
+<h2>Comments</h2>
 <div class="section" id="how-do-you-feel-about-an-assert-in-the-else-e-g">
-<h2>How do you feel about an assert in the else, e.g. ...</h2>
+<h3>How do you feel about an assert in the else, e.g. ...</h3>
 <p>Fred&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2010-12-23 18:47:19.280000-05:00</p>
 <p>How do you feel about an assert in the else, e.g. assert not (condition1
@@ -177,7 +179,7 @@ design or logic error (they mean that exactly to me, but opinions vary),
 which you indicated in your last mock up.</p>
 </div>
 <div class="section" id="um-i-thought-everyone-whom-took-cs101-was-taugh">
-<h2>Um... I thought everyone whom took CS101 was taugh...</h2>
+<h3>Um... I thought everyone whom took CS101 was taugh...</h3>
 <p>Doug Napoleone&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2010-12-25 05:07:08.052000-05:00</p>
 <p>Um... I thought everyone whom took CS101 was taught this when the case
@@ -185,40 +187,43 @@ statement was covered.</p>
 <p>To be clear:</p>
 </div>
 <div class="section" id="rules-for-the-proper-use-of-the-case">
-<h2>Rules for the proper use of the case...</h2>
+<h3>Rules for the proper use of the case...</h3>
 <p>Doug Napoleone&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2010-12-25 05:12:46.968000-05:00</p>
 <p>To be clear:
-Rules for the proper use of the case statement:
-1. always have a 'default:'</p>
-<p>2a. if the work in the case statement changes the score state (i.e.
-later code is expecting it to have set state to a valid value) then
+Rules for the proper use of the case statement:</p>
+<ol class="arabic simple">
+<li>always have a 'default:'</li>
+</ol>
+<dl class="docutils">
+<dt>2a. if the work in the case statement changes the score state (i.e.</dt>
+<dd>later code is expecting it to have set state to a valid value) then
 raise an exception unconditionally as the only work in the default
 target. That exception should not be treated as a normal error, but a
-development internal error.</p>
+development internal error.</dd>
+</dl>
 <p>2b. if not, then use an assert in the default target.</p>
-<p>3. In either case of 2, have the error or assert contain descriptive
-text.</p>
+<ol class="arabic simple" start="3">
+<li>In either case of 2, have the error or assert contain descriptive text.</li>
+</ol>
 <p>(Taken from our coding standards document)</p>
 </div>
-<div class="section" id="i-didn-39-t-mean-the-assert-as-code-golf-the-ass">
-<h2>I didn&amp;#39;t mean the assert as code golf. The ass...</h2>
+<div class="section" id="i-didn-t-mean-the-assert-as-code-golf-the-ass">
+<h3>I didn't mean the assert as code golf. The ass...</h3>
 <p>Fred&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2010-12-28 19:24:26.852000-05:00</p>
 <p>I didn't mean the assert as code golf. The assert has an indication of
 &quot;we shouldn't really have to check this, as it's supposed to be
 guaranteed true already, but we will anyway&quot;, which isn't as obvious (at
-least to me) the other way.
-I do find it useful, moreso in early prototyping, to include the failed
+least to me) the other way.</p>
+<p>I do find it useful, moreso in early prototyping, to include the failed
 expression as the exception message by default. A generic &quot;internal
 error, exiting&quot; message can be shown to the user at a higher level where
 AssertionError is caught, rather than coming up with a meaningful
-message for each of these explicit raises.
-However, both are very close in any case. (You seemed to acknowledge
+message for each of these explicit raises.</p>
+<p>However, both are very close in any case. (You seemed to acknowledge
 this by saying the only difference is in golf.)</p>
-<p>Fred&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
-<p>2010-12-28 19:24:38.279000-05:00</p>
-<p>This comment has been removed by the author.</p>
+</div>
 </div>
 
             </div>
@@ -253,9 +258,6 @@ this by saying the only difference is in golf.)</p>
   <ul class="list-group" id="categories">
     <li class="list-group-item">
       <a href="https://slott56.github.io/category/architecture-design.html"><i class="fa fa-folder-open fa-lg"></i>Architecture & Design</a>
-    </li>
-    <li class="list-group-item">
-      <a href="https://slott56.github.io/category/architecture-designbookspython.html"><i class="fa fa-folder-open fa-lg"></i>Architecture & Design,Books,Python</a>
     </li>
     <li class="list-group-item">
       <a href="https://slott56.github.io/category/books.html"><i class="fa fa-folder-open fa-lg"></i>Books</a>
@@ -304,7 +306,7 @@ this by saying the only difference is in golf.)</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2023/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2023 (1)
+          <a href="https://slott56.github.io/posts/2023/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2023 (2)
           </a>
         </li>
         <li class="list-group-item">

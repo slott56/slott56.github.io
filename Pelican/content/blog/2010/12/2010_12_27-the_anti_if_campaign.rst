@@ -74,8 +74,12 @@ Then you'll know when you've screwed up.
 
 -----
 
+Comments
+---------
+
+
 How do you feel about an assert in the else, e.g. ...
------------------------------------------------------
+******************************************************
 
 Fred<noreply@blogger.com>
 
@@ -88,7 +92,7 @@ which you indicated in your last mock up.
 
 
 Um... I thought everyone whom took CS101 was taugh...
------------------------------------------------------
+******************************************************
 
 Doug Napoleone<noreply@blogger.com>
 
@@ -101,7 +105,7 @@ statement was covered.
 To be clear:
 
 Rules for the proper use of the case...
------------------------------------------------------
+******************************************************
 
 Doug Napoleone<noreply@blogger.com>
 
@@ -109,24 +113,24 @@ Doug Napoleone<noreply@blogger.com>
 
 To be clear:
 Rules for the proper use of the case statement:
+
 1. always have a 'default:'
 
 2a. if the work in the case statement changes the score state (i.e.
-later code is expecting it to have set state to a valid value) then
-raise an exception unconditionally as the only work in the default
-target. That exception should not be treated as a normal error, but a
-development internal error.
+    later code is expecting it to have set state to a valid value) then
+    raise an exception unconditionally as the only work in the default
+    target. That exception should not be treated as a normal error, but a
+    development internal error.
 
 2b. if not, then use an assert in the default target.
 
-3. In either case of 2, have the error or assert contain descriptive
-text.
+3. In either case of 2, have the error or assert contain descriptive text.
 
 (Taken from our coding standards document)
 
 
-I didn&#39;t mean the assert as code golf. The ass...
------------------------------------------------------
+I didn't mean the assert as code golf. The ass...
+******************************************************
 
 Fred<noreply@blogger.com>
 
@@ -136,23 +140,13 @@ I didn't mean the assert as code golf. The assert has an indication of
 "we shouldn't really have to check this, as it's supposed to be
 guaranteed true already, but we will anyway", which isn't as obvious (at
 least to me) the other way.
+
 I do find it useful, moreso in early prototyping, to include the failed
 expression as the exception message by default. A generic "internal
 error, exiting" message can be shown to the user at a higher level where
 AssertionError is caught, rather than coming up with a meaningful
 message for each of these explicit raises.
+
 However, both are very close in any case. (You seemed to acknowledge
 this by saying the only difference is in golf.)
-
-
-
-Fred<noreply@blogger.com>
-
-2010-12-28 19:24:38.279000-05:00
-
-This comment has been removed by the author.
-
-
-
-
 

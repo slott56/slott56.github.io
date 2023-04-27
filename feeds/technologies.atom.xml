@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-04-04T08:00:00-04:00</updated><entry><title>Side Quest</title><link href="https://slott56.github.io/2023_04_04-side_quest.html" rel="alternate"></link><published>2023-04-04T08:00:00-04:00</published><updated>2023-04-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-04:/2023_04_04-side_quest.html</id><summary type="html">&lt;p&gt;Few things are as distracting as those god-awful side quests.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-04-25T08:00:00-04:00</updated><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This is tricky because -- well -- so many patterns appear and re-appear in software.
+Picking a few from the vast world of patterns is fraught with difficulties.&lt;/p&gt;
+&lt;p&gt;Here are some thoughts:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_01_03-code_quality_which_implementation_is_better.html"&gt;Code Quality - Which Implementation is &amp;quot;Better&amp;quot;?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_06_25-state_based_object_modeling.html"&gt;State-Based Object Modeling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2022_11_29-functional_programming_and_finite_state_automata_fsa.html"&gt;Functional Programming and Finite State …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This is tricky because -- well -- so many patterns appear and re-appear in software.
+Picking a few from the vast world of patterns is fraught with difficulties.&lt;/p&gt;
+&lt;p&gt;Here are some thoughts:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_01_03-code_quality_which_implementation_is_better.html"&gt;Code Quality - Which Implementation is &amp;quot;Better&amp;quot;?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_06_25-state_based_object_modeling.html"&gt;State-Based Object Modeling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2022_11_29-functional_programming_and_finite_state_automata_fsa.html"&gt;Functional Programming and Finite State Automata (FSA)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_09_21-deconstructing_programs_from_c_or_finding_the_objects.html"&gt;Deconstructing Programs from C; or Finding The Objects™&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2009_02_20-python_business_rules_engine.html"&gt;Python Business Rules Engine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2010_12_27-the_anti_if_campaign.html"&gt;The Anti-IF Campaign&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes. That's a lot of writing on design patterns.&lt;/p&gt;
+</content><category term="Technologies"></category><category term="architecture"></category><category term="design"></category><category term="patterns"></category><category term="python"></category></entry><entry><title>Side Quest</title><link href="https://slott56.github.io/2023_04_04-side_quest.html" rel="alternate"></link><published>2023-04-04T08:00:00-04:00</published><updated>2023-04-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-04:/2023_04_04-side_quest.html</id><summary type="html">&lt;p&gt;Few things are as distracting as those god-awful side quests.&lt;/p&gt;
 &lt;p&gt;In this case, I had to search out all of the examples in my new book drafts.&lt;/p&gt;
 &lt;div class="section" id="previously"&gt;
 &lt;h2&gt;Previously&lt;/h2&gt;
@@ -278,7 +298,8 @@ Two are central to this project:&lt;/p&gt;
 &lt;li&gt;Create dataclass-like class definition for segments and loops. These generally come from the non-Python configuration files used elsewhere. The Python is built from this. Once.&lt;/li&gt;
 &lt;li&gt;Create a generic parser protocol that can extract the segments, loops, and atomic fields from the X12 messages. This becomes a superclass feature of all X12 components.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The old release had two levels of interpretation of the X12 content:&lt;/p&gt;
+&lt;p&gt;This should be much simpler than the old version. Which was &lt;strong&gt;very&lt;/strong&gt; complicated.
+The old release had two levels of interpretation of the X12 content:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Generic segments and loops&lt;/li&gt;
 &lt;li&gt;A Pythonic &lt;strong&gt;Façade&lt;/strong&gt; over the generic structure&lt;/li&gt;
@@ -39749,8 +39770,10 @@ have. But the comment did lead to rewriting this to use
 AssertionError instead of vague, generic Exception.&lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;hr class="docutils" /&gt;
+&lt;div class="section" id="comments"&gt;
+&lt;h2&gt;Comments&lt;/h2&gt;
 &lt;div class="section" id="how-do-you-feel-about-an-assert-in-the-else-e-g"&gt;
-&lt;h2&gt;How do you feel about an assert in the else, e.g. ...&lt;/h2&gt;
+&lt;h3&gt;How do you feel about an assert in the else, e.g. ...&lt;/h3&gt;
 &lt;p&gt;Fred&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2010-12-23 18:47:19.280000-05:00&lt;/p&gt;
 &lt;p&gt;How do you feel about an assert in the else, e.g. assert not (condition1
@@ -39759,7 +39782,7 @@ design or logic error (they mean that exactly to me, but opinions vary),
 which you indicated in your last mock up.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="um-i-thought-everyone-whom-took-cs101-was-taugh"&gt;
-&lt;h2&gt;Um... I thought everyone whom took CS101 was taugh...&lt;/h2&gt;
+&lt;h3&gt;Um... I thought everyone whom took CS101 was taugh...&lt;/h3&gt;
 &lt;p&gt;Doug Napoleone&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2010-12-25 05:07:08.052000-05:00&lt;/p&gt;
 &lt;p&gt;Um... I thought everyone whom took CS101 was taught this when the case
@@ -39767,40 +39790,43 @@ statement was covered.&lt;/p&gt;
 &lt;p&gt;To be clear:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="rules-for-the-proper-use-of-the-case"&gt;
-&lt;h2&gt;Rules for the proper use of the case...&lt;/h2&gt;
+&lt;h3&gt;Rules for the proper use of the case...&lt;/h3&gt;
 &lt;p&gt;Doug Napoleone&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2010-12-25 05:12:46.968000-05:00&lt;/p&gt;
 &lt;p&gt;To be clear:
-Rules for the proper use of the case statement:
-1. always have a 'default:'&lt;/p&gt;
-&lt;p&gt;2a. if the work in the case statement changes the score state (i.e.
-later code is expecting it to have set state to a valid value) then
+Rules for the proper use of the case statement:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;always have a 'default:'&lt;/li&gt;
+&lt;/ol&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;2a. if the work in the case statement changes the score state (i.e.&lt;/dt&gt;
+&lt;dd&gt;later code is expecting it to have set state to a valid value) then
 raise an exception unconditionally as the only work in the default
 target. That exception should not be treated as a normal error, but a
-development internal error.&lt;/p&gt;
+development internal error.&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;p&gt;2b. if not, then use an assert in the default target.&lt;/p&gt;
-&lt;p&gt;3. In either case of 2, have the error or assert contain descriptive
-text.&lt;/p&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;In either case of 2, have the error or assert contain descriptive text.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;(Taken from our coding standards document)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="i-didn-39-t-mean-the-assert-as-code-golf-the-ass"&gt;
-&lt;h2&gt;I didn&amp;amp;#39;t mean the assert as code golf. The ass...&lt;/h2&gt;
+&lt;div class="section" id="i-didn-t-mean-the-assert-as-code-golf-the-ass"&gt;
+&lt;h3&gt;I didn't mean the assert as code golf. The ass...&lt;/h3&gt;
 &lt;p&gt;Fred&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2010-12-28 19:24:26.852000-05:00&lt;/p&gt;
 &lt;p&gt;I didn't mean the assert as code golf. The assert has an indication of
 &amp;quot;we shouldn't really have to check this, as it's supposed to be
 guaranteed true already, but we will anyway&amp;quot;, which isn't as obvious (at
-least to me) the other way.
-I do find it useful, moreso in early prototyping, to include the failed
+least to me) the other way.&lt;/p&gt;
+&lt;p&gt;I do find it useful, moreso in early prototyping, to include the failed
 expression as the exception message by default. A generic &amp;quot;internal
 error, exiting&amp;quot; message can be shown to the user at a higher level where
 AssertionError is caught, rather than coming up with a meaningful
-message for each of these explicit raises.
-However, both are very close in any case. (You seemed to acknowledge
+message for each of these explicit raises.&lt;/p&gt;
+&lt;p&gt;However, both are very close in any case. (You seemed to acknowledge
 this by saying the only difference is in golf.)&lt;/p&gt;
-&lt;p&gt;Fred&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-12-28 19:24:38.279000-05:00&lt;/p&gt;
-&lt;p&gt;This comment has been removed by the author.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="anti-if"></category><category term="#python"></category></entry><entry><title>Code Base Fragmentation -- Again</title><link href="https://slott56.github.io/2010_12_14-code_base_fragmentation_again.html" rel="alternate"></link><published>2010-12-14T08:00:00-05:00</published><updated>2010-12-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2010-12-14:/2010_12_14-code_base_fragmentation_again.html</id><summary type="html">&lt;p&gt;Check this out: &amp;quot;&lt;a class="reference external" href="http://pydanny.blogspot.com/2010/12/stupid-template-languages.html"&gt;Stupid Template
 Languages&lt;/a&gt;&amp;quot;.&lt;/p&gt;
