@@ -3,7 +3,7 @@ Software Rewrites to Add Hints
 
 :date: 2023-05-04 08:00
 :tags: architecture,design,patterns,python,games,herogame
-:slug: 2023_05_04-software_rewrits_to_add_hints
+:slug: 2023_05_04-software_rewrites_to_add_hints
 :category: Technologies
 :status: published
 

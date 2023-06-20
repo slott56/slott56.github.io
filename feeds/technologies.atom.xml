@@ -1,5 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-05-04T08:00:00-04:00</updated><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrits_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrits_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-06-20T08:00:00-04:00</updated><entry><title>Python and Encapsulation -- How do I private?</title><link href="https://slott56.github.io/2023_06_20-python_and_encapsulation.html" rel="alternate"></link><published>2023-06-20T08:00:00-04:00</published><updated>2023-06-20T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-20:/2023_06_20-python_and_encapsulation.html</id><summary type="html">&lt;p&gt;Central to OO design is &amp;quot;encapsulation.&amp;quot; It's so central it is part of several separate principles.&lt;/p&gt;
+&lt;p&gt;In the S. O. L. I. D. design principles it's the &lt;strong&gt;Interface Segregation Principle&lt;/strong&gt;.
+And a significant part of the &lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, Python n00bz -- folks who already know some OO …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Central to OO design is &amp;quot;encapsulation.&amp;quot; It's so central it is part of several separate principles.&lt;/p&gt;
+&lt;p&gt;In the S. O. L. I. D. design principles it's the &lt;strong&gt;Interface Segregation Principle&lt;/strong&gt;.
+And a significant part of the &lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, Python n00bz -- folks who already know some OO programming in other languages -- complain
+that the usual artifacts of encapsulation are missing from the Python language.&lt;/p&gt;
+&lt;p&gt;There's no &lt;strong&gt;private&lt;/strong&gt; or &lt;strong&gt;static&lt;/strong&gt; or &lt;strong&gt;protected&lt;/strong&gt; keyword.&lt;/p&gt;
+&lt;p&gt;How can we implement super-important encapsulation without this super-important text marker in the source?&lt;/p&gt;
+&lt;p&gt;I'll address this from two points of view: what to do, and what not to do.&lt;/p&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;p&gt;Design with encapsulation in mind. Follow the S.O.L.I.D. design principles.&lt;/p&gt;
+&lt;p&gt;I suggest starting with Interface Separation.&lt;/p&gt;
+&lt;p&gt;For things that aren't part of the public API (perhaps &amp;quot;private&amp;quot; in some sense) use a leading &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; in their name.
+One &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; only, please.&lt;/p&gt;
+&lt;p&gt;For things that are &amp;quot;protected&amp;quot;, or &amp;quot;final&amp;quot;, you probably don't need to do anything.
+If you're really &lt;strong&gt;really&lt;/strong&gt; worried about someone misapprehending your design intent,
+include many comments.&lt;/p&gt;
+&lt;p&gt;If you're &lt;strong&gt;sure&lt;/strong&gt; someone will utterly disregard your comments,
+misuse a private item outside the class,
+or misuse a protected item outside the package or subclass,
+or extend a final item,
+or some other nefarious thing, well, there it is.
+You'll have to ask yourself why this feature is both private/protected and so appealingly attractive.
+If you can't discourage people from abusing it, perhaps there are other design problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-not-to-do"&gt;
+&lt;h2&gt;What not to do&lt;/h2&gt;
+&lt;p&gt;A &lt;tt class="docutils literal"&gt;__name&lt;/tt&gt; is mangled to make it an implementation detail of a &lt;em&gt;specific&lt;/em&gt; class.
+These names tend to defeat ordinary inheritance.&lt;/p&gt;
+&lt;p&gt;Don't use double-underscore before-and-after &lt;tt class="docutils literal"&gt;__names__&lt;/tt&gt; at all.
+Never.
+These are not conventionally &amp;quot;private&amp;quot; -- these are implementation details.
+The name space is reserved to be part of Python's run-time.&lt;/p&gt;
+&lt;p&gt;Other double-underscore before &lt;tt class="docutils literal"&gt;__names&lt;/tt&gt; are private, but are private to the class.
+They cannot easily be overridden by a subclass. This is by design, and these are
+specific solutions to the problem of implementing something where an override
+is constrained to a single class in a hierarchy.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#reserved-classes-of-identifiers"&gt;https://docs.python.org/3/reference/lexical_analysis.html#reserved-classes-of-identifiers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here's the quote:&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;Names in this category, when used within the context of a class definition, are re-written to use a mangled form to help avoid name clashes between “private” attributes of base and derived classes.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;This is not conventional encapsulation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="some-additional-thoughts"&gt;
+&lt;h2&gt;Some additional thoughts&lt;/h2&gt;
+&lt;p&gt;Some questions I ask when people have &lt;strong&gt;Serious Problems&lt;/strong&gt;
+with Python's approach to privacy.&lt;/p&gt;
+&lt;div class="section" id="question-1-is-private-really-important"&gt;
+&lt;h3&gt;Question 1 -- Is private really important?&lt;/h3&gt;
+&lt;p&gt;Let me state as a going-on assumption that encapsulation is an important part of an OO design.
+Failure to encapsulate can create incomprehensible state changes, which is isomorphic to
+a lot of functions sharing global variables. That's precisely the thing OO design
+lets us avoid.&lt;/p&gt;
+&lt;p&gt;So, yes, private -- as a design concept -- is very important.
+Perhaps it's the single most important of OO design.&lt;/p&gt;
+&lt;p&gt;Inheritance follows behind encapsulation. It's riddled with disputes
+because we can often use delegation instead of inheritance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="question-2-given-encapsulation-what-more-does-the-language-need"&gt;
+&lt;h2&gt;Question 2 -- Given encapsulation, what more does the language need?&lt;/h2&gt;
+&lt;p&gt;In other words, Python lacks a &lt;tt class="docutils literal"&gt;private&lt;/tt&gt; keyword: is this a problem?&lt;/p&gt;
+&lt;p&gt;Python's notion of &amp;quot;hidden-ish&amp;quot; attributes and methods
+seems to be perfectly adequate.
+The leading &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; on the name seems to be &lt;strong&gt;more&lt;/strong&gt; visible
+than having to look back at a class definition to
+see if a name is public, protected, or private.&lt;/p&gt;
+&lt;p&gt;It looks like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class MyExampleClass:
+    def visble_method(self, anArgValue: int) -&amp;gt; None:
+        self._less_visible_method(anArgValue * 2)
+
+    def _less_visible_method(self, anArgValue: int) -&amp;gt; None:
+        self.anAttribute = anArgValue
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;visible_method()&lt;/tt&gt; method is considered &amp;quot;public&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;_less_visible_method()&lt;/tt&gt; method is considered by most to be &amp;quot;private&amp;quot;.
+Yes, we can all see the method when we read the source.&lt;/p&gt;
+&lt;p&gt;Many tools will make some effort to hide this behind a thin screen.&lt;/p&gt;
+&lt;p&gt;Many developers understand this distinction. Sometimes n00bz don't -- at first -- recognize this convention.
+They might complain that the &lt;tt class="docutils literal"&gt;_less_visible_method()&lt;/tt&gt; method is missing from the API documentation.
+Then they're told this is because it's an implementation detail they can't depend on.
+Then they complain that it's still visible in the source -- they can see the implementation!
+It's not &lt;strong&gt;really&lt;/strong&gt; private!&lt;/p&gt;
+&lt;p&gt;The language makes no distinction between these methods.&lt;/p&gt;
+&lt;p&gt;The leading &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; is a convention. Widely-followed. Pretty universally adopted.
+But not formally part of the language semantics.&lt;/p&gt;
+&lt;p&gt;Some linters will remind you that you've broken the rules by using a &amp;quot;private&amp;quot; method
+from outside the confines of the class hierarchy.&lt;/p&gt;
+&lt;p&gt;Do we need more? Let's dig into what more we might ask for.&lt;/p&gt;
+&lt;div class="section" id="q2a1-the-language-needs-formal-semantic-support-for-private"&gt;
+&lt;h3&gt;Q2A1. The language needs formal semantic support for private&lt;/h3&gt;
+&lt;p&gt;Q: Why?&lt;/p&gt;
+&lt;p&gt;A: Because I need all the tools to absolutely guarantee that I don't abuse this.&lt;/p&gt;
+&lt;p&gt;Recall the use for privacy is to help us &lt;strong&gt;design&lt;/strong&gt; API's cleanly.
+Keywords like &lt;tt class="docutils literal"&gt;protected&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;final&lt;/tt&gt; are part of a design effort.
+They're (sometimes) helpful information for designers.&lt;/p&gt;
+&lt;p&gt;They're easily overlooked when using the class.&lt;/p&gt;
+&lt;p&gt;And, at run-time, they cease to be useful.&lt;/p&gt;
+&lt;p&gt;Do we really want the byte-code interpreter to be checking some kind of &amp;quot;ownership&amp;quot; before each
+write to memory?&lt;/p&gt;
+&lt;p&gt;The usual answer is &amp;quot;No.&amp;quot;&lt;/p&gt;
+&lt;p&gt;For a compiled language, privacy is honored as part of code generation.
+But. That's essentially the same as having a convention and using a linter to
+confirm the convention is followed properly.&lt;/p&gt;
+&lt;p&gt;(And yes, &amp;quot;language + linter&amp;quot; is not the same as &amp;quot;language&amp;quot;.
+Those folks who can't tolerate the &amp;quot;two-ness&amp;quot; of it
+can a shell script to bundle a linter with the Python run-time.
+After all, that's how gcc used to work. It was a bundle of precompiler, C++ to C translator,
+and the C compiler, which -- itself -- was a multi-step operation to build code.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="q2a2-the-languge-tools-must-support-private"&gt;
+&lt;h3&gt;Q2A2. The languge tools must support private&lt;/h3&gt;
+&lt;p&gt;Q: Why? Do you have trouble seeing the &lt;tt class="docutils literal"&gt;_&lt;/tt&gt;? Do you have trouble remembering the semantics? Do you like referring back to the class definition all the time to see if a name is private or not?&lt;/p&gt;
+&lt;p&gt;A: Don't be an ass with questions like that. Of course &lt;strong&gt;I&lt;/strong&gt; see it. Of course &lt;strong&gt;I&lt;/strong&gt; know what it means. I worry about others, who aren't as gifted in the programming. Everyone knows there's always &lt;em&gt;someone&lt;/em&gt; who can't follow the simple rules.&lt;/p&gt;
+&lt;p&gt;This is about projecting nefarious intent on others?&lt;/p&gt;
+&lt;p&gt;Some folks insist a Very Clever IDE (VCI™) would recognize context and provide
+private or protected attributes in a drop-down list of alternatives based on
+context. That seems nice, I suppose.&lt;/p&gt;
+&lt;p&gt;We've wandered far from the design intent behind encapsulation and into
+areas of IDE UX. A UX can identify leading-&lt;tt class="docutils literal"&gt;_&lt;/tt&gt; variables pretty well,
+and mark them as not public.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="backstory"&gt;
+&lt;h2&gt;Backstory&lt;/h2&gt;
+&lt;p&gt;The quote that drives this is &amp;quot;We're all consenting adults here.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This summarizes the idea that Python is distributed as source.
+We can all see the implementation.
+The notion of &amp;quot;private&amp;quot; is -- at best -- a suggestion.&lt;/p&gt;
+&lt;p&gt;(Tangentially related: ` Python Big Picture -- What's the &amp;quot;roadmap&amp;quot;? &amp;lt;{filename}/blog/2015/12/2015_12_08-python_big_picture_whats_the_roadmap_revised&amp;gt;`_.)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="architecture"></category><category term="design"></category><category term="patterns"></category><category term="python"></category></entry><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrites_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrites_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
 This will let me talk about OO programming and Python Type Hints. (really)
 And doing OO design for things that are as pervasive (and transparent) as air.
 Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
@@ -13193,71 +13329,60 @@ from it's structure -- what name would you give it?&lt;/p&gt;
 isn't easy. (The other hardest problem? Cache invalidation and
 off-by-one errors.)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="@PacktAuthors"></category><category term="functional python programming"></category><category term="type hints"></category></entry><entry><title>Misunderstanding OO Programming</title><link href="https://slott56.github.io/2018_05_01-misunderstanding_oo_programming.html" rel="alternate"></link><published>2018-05-01T08:00:00-04:00</published><updated>2018-05-01T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2018-05-01:/2018_05_01-misunderstanding_oo_programming.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this. &lt;a class="reference external" href="https://medium.com/&amp;#64;cscalfani/goodbye-object-oriented-programming-a59cda4c0e53?source=linkShare-879bf4230309-1524537370"&gt;Goodbye, Object Oriented
-Programming&lt;/a&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I like this because parts of it are wrong, and parts are based on
-peculiarities of specific languages which aren’t problems in other
-languages.&lt;/div&gt;
-&lt;div class="line"&gt;The “wrong” things are on a spectrum. At one end are things almost
-right. The other end is hoped-for …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this. &lt;a class="reference external" href="https://medium.com/&amp;#64;cscalfani/goodbye-object-oriented-programming-a59cda4c0e53?source=linkShare-879bf4230309-1524537370"&gt;Goodbye, Object Oriented
-Programming&lt;/a&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I like this because parts of it are wrong, and parts are based on
-peculiarities of specific languages which aren’t problems in other
-languages.&lt;/div&gt;
-&lt;div class="line"&gt;The “wrong” things are on a spectrum. At one end are things almost
+</content><category term="Technologies"></category><category term="#python"></category><category term="@PacktAuthors"></category><category term="functional python programming"></category><category term="type hints"></category></entry><entry><title>Misunderstanding OO Programming</title><link href="https://slott56.github.io/2018_05_01-misunderstanding_oo_programming.html" rel="alternate"></link><published>2018-05-01T08:00:00-04:00</published><updated>2018-05-01T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2018-05-01:/2018_05_01-misunderstanding_oo_programming.html</id><summary type="html">&lt;p&gt;Read this. &lt;a class="reference external" href="https://medium.com/&amp;#64;cscalfani/goodbye-object-oriented-programming-a59cda4c0e53?source=linkShare-879bf4230309-1524537370"&gt;Goodbye, Object Oriented Programming&lt;/a&gt;
+I like this because parts of it are wrong, and parts are based on
+peculiarities of specific languages which aren’t problems in other languages.&lt;/p&gt;
+&lt;p&gt;The “wrong” things are on a spectrum. At one end are things almost
+right. The other end is hoped-for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Read this. &lt;a class="reference external" href="https://medium.com/&amp;#64;cscalfani/goodbye-object-oriented-programming-a59cda4c0e53?source=linkShare-879bf4230309-1524537370"&gt;Goodbye, Object Oriented Programming&lt;/a&gt;
+I like this because parts of it are wrong, and parts are based on
+peculiarities of specific languages which aren’t problems in other languages.&lt;/p&gt;
+&lt;p&gt;The “wrong” things are on a spectrum. At one end are things almost
 right. The other end is hoped-for things which — frankly — were never
-true.&lt;/div&gt;
-&lt;div class="line"&gt;The most important piece of nonsense is class-level reuse across
+true.&lt;/p&gt;
+&lt;p&gt;The most important piece of nonsense is class-level reuse across
 projects. Class-level reuse in a new project was not a thing in OO
 programming. The monkey-banana-jungle “problem” only exists in a
 strange world were someone made up the idea of single classes being
 reused in isolation. The rest of us knew the scope of reuse was within
 a project or a narrow family of projects aimed at a single problem
-domain.&lt;/div&gt;
-&lt;div class="line"&gt;&amp;quot;Utility&amp;quot; classes that could be reused and generic data structures
+domain.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Utility&amp;quot; classes that could be reused and generic data structures
 were always available as frameworks and libraries. Things built to
 solve a specific problem were going to be tailored to the problem.
 Most OO designers knew this and knew that making something generic
 would be hard. Making something reusable and installable by others was
 even harder. (Especially in compiled languages where you wanted to
-hide intellectual property by keeping the source secret.)&lt;/div&gt;
-&lt;div class="line"&gt;The &amp;quot;OO promised me reuse and lied&amp;quot; is a misstatement. Please rephrase
-this is &amp;quot;I imagined there could be class-level reuse and discovered it
-was hard.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;Multiple inheritance does work in a number of languages, so I’ll skip
-the complaints centered on single inheritance.&lt;/div&gt;
-&lt;div class="line"&gt;I don't fully understand the complained about encapsulation. There are
+hide intellectual property by keeping the source secret.)&lt;/p&gt;
+&lt;p&gt;The &amp;quot;OO promised me reuse and lied&amp;quot; is a misstatement. Please rephrase&lt;/p&gt;
+&lt;p&gt;Multiple inheritance does work in a number of languages, so I’ll skip
+the complaints centered on single inheritance.&lt;/p&gt;
+&lt;p&gt;I don't fully understand the complaints about encapsulation. There are
 lots of books on separating interface from implementation to more
 fully isolate implementation details. If references need to be treated
 more opaquely, there are lots of techniques for this. It’s not broken.
 Indeed, it’s really well understood. (&amp;quot;But I won't want to introduce
 wrapper classes to insulate the references.&amp;quot; Sigh. That's how it's
-done.)&lt;/div&gt;
-&lt;div class="line"&gt;I think the &amp;quot;references leak details about encapsulation&amp;quot; requires
+done.)&lt;/p&gt;
+&lt;p&gt;I think the &amp;quot;references leak details about encapsulation&amp;quot; requires
 rephrasing as &amp;quot;I imagined some kind of perfectly isolated programming
 where references were not usable in spite of me making them usable.&amp;quot;
 Or perhaps &amp;quot;I wish references had special treatment to make them not
 work as references except in a limited context which I get to
-imagine.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;The polymorphism complaint appears to be “okay, this actually works.”
- I guess. Or. “There are other ways to do this in other languages.”
+imagine.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The polymorphism complaint appears to be “okay, this actually works.”
+I guess. Or. “There are other ways to do this in other languages.”
 I'm sure it's an important point, but I can't quite discern what OO
-principle is allegedly broken here.&lt;/div&gt;
-&lt;/div&gt;
+principle is allegedly broken here.&lt;/p&gt;
 &lt;div class="section" id="tl-dr"&gt;
 &lt;h2&gt;tl;dr&lt;/h2&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;No one was lied to. If someone was &amp;quot;burned&amp;quot; by some OO hype, I’d like
+&lt;p&gt;No one was lied to. If someone was &amp;quot;burned&amp;quot; by some OO hype, I’d like
 to see the actual quote of the actual hype. The “I was told there
-would be X”, requires some substantiation.&lt;/div&gt;
-&lt;div class="line"&gt;And. Stop griping about encapsulation. When the source is available
+would be X”, requires some substantiation.&lt;/p&gt;
+&lt;p&gt;And. Stop griping about encapsulation. When the source is available
 (as it is in many languages) there's no enforcement other than public
-shaming.&lt;/div&gt;
-&lt;div class="line"&gt;Also. Use Python. Most of the original post seems to be complaints
-about C++ weirdness.&lt;/div&gt;
-&lt;/div&gt;
+shaming.&lt;/p&gt;
+&lt;p&gt;Also. Use Python. Most of the original post seems to be complaints
+about C++ weirdness.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="OO design"></category><category term="#python"></category><category term="OO language"></category></entry><entry><title>Should I use x.__len__() or len(x)?</title><link href="https://slott56.github.io/2018_04_21-should_i_use_x__len___or_lenx.html" rel="alternate"></link><published>2018-04-21T09:37:00-04:00</published><updated>2018-04-21T09:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2018-04-21:/2018_04_21-should_i_use_x__len___or_lenx.html</id><summary type="html">&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;In the context of providing type hints, someone had a function like
