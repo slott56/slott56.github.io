@@ -158,7 +158,7 @@ confirm the convention is followed properly.
 
 (And yes, "language + linter" is not the same as "language".
 Those folks who can't tolerate the "two-ness" of it
-can a shell script to bundle a linter with the Python run-time.
+can write a shell script to bundle a linter with the Python run-time.
 After all, that's how gcc used to work. It was a bundle of precompiler, C++ to C translator,
 and the C compiler, which -- itself -- was a multi-step operation to build code.)
 
@@ -190,4 +190,4 @@ We can all see the implementation.
 The notion of "private" is -- at best -- a suggestion.
 
 
-(Tangentially related: ` Python Big Picture -- What's the "roadmap"? <{filename}/blog/2015/12/2015_12_08-python_big_picture_whats_the_roadmap_revised>`_.)
+(Tangentially related: `Python Big Picture -- What's the "roadmap"? <{filename}/blog/2015/12/2015_12_08-python_big_picture_whats_the_roadmap_revised.rst>`_.)
