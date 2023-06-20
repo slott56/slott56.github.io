@@ -88,7 +88,7 @@ Inheritance follows behind encapsulation. It's riddled with disputes
 because we can often use delegation instead of inheritance.
 
 Question 2 -- Given encapsulation, what more does the language need?
-====================================================================
+--------------------------------------------------------------------
 
 In other words, Python lacks a ``private`` keyword: is this a problem?
 
@@ -180,8 +180,8 @@ areas of IDE UX. A UX can identify leading-\ ``_`` variables pretty well,
 and mark them as not public.
 
 
-Backstory
-=========
+Some Backstory
+==============
 
 The quote that drives this is "We're all consenting adults here."
 
