@@ -7,9 +7,12 @@ any() and all() and Identity Elements
 :category: Technologies
 :status: published
 
-This was a sad thing to see on Twitter.
+This was a surprising thing (for me) to see.
+Surprising because -- after writing a book about functional programming,
+I'd forgotten that some of the ideas are actually really new to people.
 
-Not as sad as the various nazis and haters that the New Owner is courting, but sad.
+(I've omitted the source of the quote because I want to reuse this
+without worrying about link rot. Some web sites have rocky futures.)
 
     "
     Python tip:
