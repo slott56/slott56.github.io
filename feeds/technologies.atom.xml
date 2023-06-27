@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-06-20T08:00:00-04:00</updated><entry><title>Python and Encapsulation -- How do I private?</title><link href="https://slott56.github.io/2023_06_20-python_and_encapsulation.html" rel="alternate"></link><published>2023-06-20T08:00:00-04:00</published><updated>2023-06-20T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-20:/2023_06_20-python_and_encapsulation.html</id><summary type="html">&lt;p&gt;Central to OO design is &amp;quot;encapsulation.&amp;quot; It's so central it is part of several separate principles.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-06-27T09:00:00-04:00</updated><entry><title>any() and all() and Identity Elements</title><link href="https://slott56.github.io/2023-06-27-any_and_all_and_identity_elements.html" rel="alternate"></link><published>2023-06-27T09:00:00-04:00</published><updated>2023-06-27T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-27:/2023-06-27-any_and_all_and_identity_elements.html</id><summary type="html">&lt;p&gt;This was a sad thing to see on Twitter.&lt;/p&gt;
+&lt;p&gt;Not as sad as the various nazis and haters that the New Owner is courting, but sad.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;
+Python tip:&lt;/p&gt;
+&lt;p&gt;Be careful when using all()&lt;/p&gt;
+&lt;p&gt;all() returns True for an empty sequence
+&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This seemed to be a surprise to the author. And …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a sad thing to see on Twitter.&lt;/p&gt;
+&lt;p&gt;Not as sad as the various nazis and haters that the New Owner is courting, but sad.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;
+Python tip:&lt;/p&gt;
+&lt;p&gt;Be careful when using all()&lt;/p&gt;
+&lt;p&gt;all() returns True for an empty sequence
+&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This seemed to be a surprise to the author. And a large number of people argued -- a few seemed vehement -- that Python is wrong here.&lt;/p&gt;
+&lt;p&gt;When I pointed out this is the mathematical definition they argued that&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Programming isn't math. (This is demonstrably false. You may not have wide-ranging math skills, but programming very much is applied math.)&lt;/li&gt;
+&lt;li&gt;The math is wrong. (Also false.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="section" id="what-is-all"&gt;
+&lt;h2&gt;What is all()?&lt;/h2&gt;
+&lt;p&gt;First. What is &lt;tt class="docutils literal"&gt;all(x)&lt;/tt&gt;?&lt;/p&gt;
+&lt;p&gt;In effect it's &lt;tt class="docutils literal"&gt;reduce(and, x)&lt;/tt&gt;. Except, of course, there's no simple &lt;tt class="docutils literal"&gt;and&lt;/tt&gt; operator. So, it's not &lt;strong&gt;exactly&lt;/strong&gt; that, but it's close enough.
+We'll get to &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; in the next setion.&lt;/p&gt;
+&lt;p&gt;Let's reason by analogy for a while, using &lt;cite&gt;sum()&lt;/cite&gt; and &lt;cite&gt;math.prod()&lt;/cite&gt;.
+These are also &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; operations, but they work with numbers, not boolean values.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; sum([1,2,3])
+6
+&amp;gt;&amp;gt;&amp;gt; prod([1,2,3])
+6
+&lt;/pre&gt;
+&lt;p&gt;Okay. Using a perfect number like 6 is a bad example, isn't it?&lt;/p&gt;
+&lt;p&gt;Here's a better example.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; sum([0, 1, 2])
+3
+&amp;gt;&amp;gt;&amp;gt; prod([0, 1, 2])
+0
+&lt;/pre&gt;
+&lt;p&gt;No surprise, right?&lt;/p&gt;
+&lt;p&gt;Here is a more fundamental definition of the &lt;tt class="docutils literal"&gt;sum()&lt;/tt&gt; function.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; from functools import reduce
+&amp;gt;&amp;gt;&amp;gt; from operator import add, mul
+&amp;gt;&amp;gt;&amp;gt; reduce(add, [0, 1, 2])
+3
+&lt;/pre&gt;
+&lt;p&gt;In effect, &lt;tt class="docutils literal"&gt;sum = functools.partial(reduce, add)&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This works for &lt;tt class="docutils literal"&gt;prod = functools.partial(reduce, mul)&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;It would work for &lt;tt class="docutils literal"&gt;any()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;all()&lt;/tt&gt; &lt;strong&gt;if&lt;/strong&gt; there was a simple operator in the
+&lt;tt class="docutils literal"&gt;operator&lt;/tt&gt; module.&lt;/p&gt;
+&lt;p&gt;There's an &lt;tt class="docutils literal"&gt;and_&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;or_&lt;/tt&gt; definition in operator, but these are names for &lt;tt class="docutils literal"&gt;&amp;amp;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;,
+which a bit-tweaking operations, only defined over integer values. They're &lt;strong&gt;not&lt;/strong&gt;
+the general-purpose, short-circuiting &lt;tt class="docutils literal"&gt;and&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;or&lt;/tt&gt; operators.&lt;/p&gt;
+&lt;p&gt;You could create a lambda for this. &lt;tt class="docutils literal"&gt;all = functools.partial(reduce, lambda a, b: a and b)&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;All of this depends on the definition of &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-is-reduce"&gt;
+&lt;h2&gt;What is reduce()?&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; function is sometimes described as  a &amp;quot;fold&amp;quot;.&lt;/p&gt;
+&lt;p&gt;When we do &lt;tt class="docutils literal"&gt;reduce(add, [1, 2, 3])&lt;/tt&gt; it's essentially &lt;tt class="docutils literal"&gt;1 + 2 + 3&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;We've folded the &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operator into the sequence of values.&lt;/p&gt;
+&lt;p&gt;When we do &lt;tt class="docutils literal"&gt;reduce(mul, [1, 2, 3])&lt;/tt&gt; it's a lot like we did &lt;tt class="docutils literal"&gt;1 * 2 * 3&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This folding idea also applies well to &lt;tt class="docutils literal"&gt;and&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;or&lt;/tt&gt;. We can fold logical operators into the sequence of values.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;all(x)&lt;/tt&gt; is (conceptually) &lt;tt class="docutils literal"&gt;reduce(and, x)&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;x[0] and x[1] and &lt;span class="pre"&gt;x[2]...&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;any(y)&lt;/tt&gt; is (also, in concept) &lt;tt class="docutils literal"&gt;reduce(or, y)&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;y[0] or y[1] or &lt;span class="pre"&gt;y[2]...&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;(We have to throw around conceptually, because there's no trivial &lt;tt class="docutils literal"&gt;and&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;or&lt;/tt&gt; operator.)&lt;/p&gt;
+&lt;p&gt;So far, so good. This &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; hasn't introduced an complications, it's just a way of defining things
+around the &amp;quot;fold&amp;quot; idea.&lt;/p&gt;
+&lt;p&gt;What about empty sequences or iterables?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-initialization-problem"&gt;
+&lt;h2&gt;The Initialization Problem&lt;/h2&gt;
+&lt;p&gt;Here's the problem with our overly-simplistic use of Python's &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; reduce(add, [])
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+TypeError: reduce() of empty iterable with no initial value
+&amp;gt;&amp;gt;&amp;gt; reduce(mul, [])
+Traceback (most recent call last):
+  File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+TypeError: reduce() of empty iterable with no initial value
+&lt;/pre&gt;
+&lt;p&gt;Failure.&lt;/p&gt;
+&lt;p&gt;Here are the right answers:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; sum([])
+0
+&amp;gt;&amp;gt;&amp;gt; prod([])
+1
+&lt;/pre&gt;
+&lt;p&gt;The sum of an empty list is zero.&lt;/p&gt;
+&lt;p&gt;The product of an empty list is 1.&lt;/p&gt;
+&lt;p&gt;Similarly.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; any([])
+False
+&amp;gt;&amp;gt;&amp;gt; all([])
+True
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;any()&lt;/tt&gt; function is a little bit like a sum. The &lt;tt class="docutils literal"&gt;all()&lt;/tt&gt; function is a little bit like
+a product.&lt;/p&gt;
+&lt;p&gt;I think that's why the &lt;tt class="docutils literal"&gt;and&lt;/tt&gt; operator has precedence over the &lt;tt class="docutils literal"&gt;or&lt;/tt&gt; operator.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="wait-what"&gt;
+&lt;h2&gt;Wait, what?&lt;/h2&gt;
+&lt;p&gt;Yes, the value of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;all([])&lt;/span&gt;&lt;/tt&gt; is True and the value of the expression &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([])&lt;/span&gt;&lt;/tt&gt; is 1.&lt;/p&gt;
+&lt;p&gt;This &lt;strong&gt;must&lt;/strong&gt; be true. It's not an implementation choice. It's a matter of definition.&lt;/p&gt;
+&lt;p&gt;Roll back to the definition of &amp;quot;reduce&amp;quot; as &amp;quot;folding in an operator&amp;quot;.
+(See &lt;a class="reference internal" href="#what-is-reduce"&gt;What is reduce()?&lt;/a&gt;, above.)&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([1,&lt;/span&gt; 2, 3])&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;reduce(mul, [1, 2, 3])&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;1 * 2 * 3&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;But &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([])&lt;/span&gt;&lt;/tt&gt; works and &lt;tt class="docutils literal"&gt;reduce(mul, [])&lt;/tt&gt; doesn't work. Something's wrong with &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This is a problem with the &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; function (as we used it above) not quite providing &lt;strong&gt;all&lt;/strong&gt; the features required by the &lt;tt class="docutils literal"&gt;sum()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;prod()&lt;/tt&gt; functions.&lt;/p&gt;
+&lt;p&gt;Enter the initial value parameter for &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; reduce(mul, [], 1)
+1
+&lt;/pre&gt;
+&lt;p&gt;Aha. This fixes the &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; problem. It's a little more complicated, but it's now correct.&lt;/p&gt;
+&lt;p&gt;This means &lt;tt class="docutils literal"&gt;reduce(mul, [x, y, z], 1)&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;1 * x * y * z&lt;/tt&gt;.  The 1 is the multiplicative identity element and does nothing.&lt;/p&gt;
+&lt;p&gt;This means &lt;tt class="docutils literal"&gt;reduce(mul, [x, y, z])&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;x * y * z&lt;/tt&gt;. The 1 isn't needed because there's a value in the sequence.&lt;/p&gt;
+&lt;p&gt;And &lt;tt class="docutils literal"&gt;reduce(mul, [], 1)&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;1&lt;/tt&gt;.  The multiplicative identity element is &lt;strong&gt;required&lt;/strong&gt; when the sequence is empty.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="consider-the-fold"&gt;
+&lt;h2&gt;Consider the Fold&lt;/h2&gt;
+&lt;p&gt;Where are we?&lt;/p&gt;
+&lt;p&gt;Right.  &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([1,&lt;/span&gt; 2, 3])&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;1 * 1 * 2 * 3&lt;/tt&gt;. A multiplicateive identity element is provided.&lt;/p&gt;
+&lt;p&gt;Therefore, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([])&lt;/span&gt;&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;1&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Note the delightful algebraic elegance of the fold definition.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([2,&lt;/span&gt; 3, 4])&lt;/tt&gt; == &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([2,&lt;/span&gt; 3]) * 4&lt;/tt&gt; == &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([2])&lt;/span&gt; * 3 * 4&lt;/tt&gt; == &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;prod([])&lt;/span&gt; * 2 * 3 * 4&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This is the reason why &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;all([])&lt;/span&gt;&lt;/tt&gt; &lt;strong&gt;must&lt;/strong&gt; return &lt;tt class="docutils literal"&gt;True&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="architecture"></category><category term="design"></category><category term="patterns"></category><category term="python"></category></entry><entry><title>Python and Encapsulation -- How do I private?</title><link href="https://slott56.github.io/2023_06_20-python_and_encapsulation.html" rel="alternate"></link><published>2023-06-20T08:00:00-04:00</published><updated>2023-06-20T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-20:/2023_06_20-python_and_encapsulation.html</id><summary type="html">&lt;p&gt;Central to OO design is &amp;quot;encapsulation.&amp;quot; It's so central it is part of several separate principles.&lt;/p&gt;
 &lt;p&gt;In the S. O. L. I. D. design principles it's the &lt;strong&gt;Interface Segregation Principle&lt;/strong&gt;.
 And a significant part of the &lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;In some cases, Python n00bz -- folks who already know some OO …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Central to OO design is &amp;quot;encapsulation.&amp;quot; It's so central it is part of several separate principles.&lt;/p&gt;
