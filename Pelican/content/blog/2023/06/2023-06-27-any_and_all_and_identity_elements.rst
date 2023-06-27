@@ -2,7 +2,7 @@ any() and all() and Identity Elements
 ##############################################
 
 :date: 2023-06-27 09:00
-:tags: architecture,design,patterns,python
+:tags: patterns,python,functional-programming
 :slug: 2023-06-27-any_and_all_and_identity_elements
 :category: Technologies
 :status: published
