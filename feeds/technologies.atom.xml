@@ -1,5 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-06-27T09:00:00-04:00</updated><entry><title>any() and all() and Identity Elements</title><link href="https://slott56.github.io/2023-06-27-any_and_all_and_identity_elements.html" rel="alternate"></link><published>2023-06-27T09:00:00-04:00</published><updated>2023-06-27T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-27:/2023-06-27-any_and_all_and_identity_elements.html</id><summary type="html">&lt;p&gt;This was a surprising thing (for me) to see.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Technologies</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/technologies.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-07-11T09:00:00-04:00</updated><entry><title>An Implementation of Annotated Types</title><link href="https://slott56.github.io/2023-07-11-an_implementation_of_annotated_types.html" rel="alternate"></link><published>2023-07-11T09:00:00-04:00</published><updated>2023-07-11T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-11:/2023-07-11-an_implementation_of_annotated_types.html</id><summary type="html">&lt;p&gt;The &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module includes the mysterious-looking &lt;tt class="docutils literal"&gt;Annotated&lt;/tt&gt; type hint.
+See &lt;a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Annotated"&gt;https://docs.python.org/3/library/typing.html#typing.Annotated&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#what-does-this-do"&gt;What does this do?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#why-do-i-need-it"&gt;Why do I need it?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#where-can-i-see-examples"&gt;Where can I see examples?&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="what-does-this-do"&gt;
+&lt;h2&gt;What does this do?&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Annotated&lt;/tt&gt; type hint lets us append &amp;quot;details&amp;quot; to a …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;The &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module includes the mysterious-looking &lt;tt class="docutils literal"&gt;Annotated&lt;/tt&gt; type hint.
+See &lt;a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Annotated"&gt;https://docs.python.org/3/library/typing.html#typing.Annotated&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#what-does-this-do"&gt;What does this do?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#why-do-i-need-it"&gt;Why do I need it?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference internal" href="#where-can-i-see-examples"&gt;Where can I see examples?&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="what-does-this-do"&gt;
+&lt;h2&gt;What does this do?&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Annotated&lt;/tt&gt; type hint lets us append &amp;quot;details&amp;quot; to a type.&lt;/p&gt;
+&lt;p&gt;It might look like this&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+x: Annotated[int, MustBePrime()]
+&lt;/pre&gt;
+&lt;p&gt;The annotated type has one origin type (which must be first) and a sequence of objects. Presumably, they are &amp;quot;annotations&amp;quot; of some kind.
+They can be anything. We can do a lot with them; we'll start with using them to narrow the domain of values.&lt;/p&gt;
+&lt;p&gt;The core &lt;tt class="docutils literal"&gt;x: int&lt;/tt&gt; provides a large domain of possible values. Python's ints can be immense numbers, easily filling memory with digits.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;MustBePrime&lt;/tt&gt; class is the kind of thing that might be used to narrow the domain of allowed
+values to prime numbers.&lt;/p&gt;
+&lt;div class="section" id="when-does-this-value-checking-happen"&gt;
+&lt;h3&gt;When does this value checking happen?&lt;/h3&gt;
+&lt;p&gt;I'm glad you asked.&lt;/p&gt;
+&lt;p&gt;Use of annotated types is &lt;strong&gt;not&lt;/strong&gt; part of the Python run-time. Annotated type arguments are essentially ignored.
+The origin type is used by tools like &lt;strong&gt;mypy&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Any further use of annotations is a thing your application or tool-chain will need to do.&lt;/p&gt;
+&lt;p&gt;An application can see the annotations for an object using the &lt;tt class="docutils literal"&gt;__annotations__&lt;/tt&gt; special attribute number,
+or use the &lt;tt class="docutils literal"&gt;typing.get_type_hints()&lt;/tt&gt; function.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; from typing import Annotated, get_type_hints
+&amp;gt;&amp;gt;&amp;gt; class MustBePrime:
+...     pass
+...
+
+&amp;gt;&amp;gt;&amp;gt; class SomeApp:
+...     x: Annotated[int, MustBePrime()]
+...
+
+&amp;gt;&amp;gt;&amp;gt; get_type_hints(SomeApp)
+{'x': &amp;lt;class 'int'&amp;gt;}
+&amp;gt;&amp;gt;&amp;gt; get_type_hints(SomeApp, include_extras=True)
+{'x': typing.Annotated[int, &amp;lt;__main__.MustBePrime object at 0x7fde259a7be0&amp;gt;]}
+&amp;gt;&amp;gt;&amp;gt; get_type_hints(SomeApp, include_extras=True)['x']
+typing.Annotated[int, &amp;lt;__main__.MustBePrime object at 0x7fde259a7be0&amp;gt;]
+&lt;/pre&gt;
+&lt;p&gt;We can see the annotated type hint for &lt;tt class="docutils literal"&gt;x&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This means, our application is free to &amp;quot;apply&amp;quot; the annotation in some way.&lt;/p&gt;
+&lt;p&gt;&amp;quot;&lt;strong&gt;Whoa!  That's vague&lt;/strong&gt;,&amp;quot; you say. &amp;quot;There are no specific rules for annotated types?&amp;quot;&lt;/p&gt;
+&lt;p&gt;I agree.&lt;/p&gt;
+&lt;p&gt;The details are up to your app.  Seriously.  Define them in a way that makes sense.&lt;/p&gt;
+&lt;p&gt;Maybe you want your app looks like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; class SomeApp:
+....    x: Annotated[int, MustBePrime()]
+...     def __init__(self, arg_value: int) -&amp;gt; None:
+...         self.x = arg_value
+...
+&lt;/pre&gt;
+&lt;p&gt;And you've got a use case in mind...&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; sa = SomeApp(42)
+Traceback (most recent call last):
+   ...
+ValueError: value 42 is not prime
+&lt;/pre&gt;
+&lt;p&gt;The idea is that this specific app has an associated collection of annotations that are used
+during &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; processing to further validate the supplied values.&lt;/p&gt;
+&lt;p&gt;The code to this is &lt;em&gt;clearly&lt;/em&gt; part of &lt;tt class="docutils literal"&gt;SomeApp&lt;/tt&gt; -- maybe a metaclass, maybe a superclass -- but
+clearly part of the app.&lt;/p&gt;
+&lt;p&gt;And the app will use the annotation as a kind of &amp;quot;plug-in&amp;quot; or &amp;quot;extension&amp;quot; or &lt;strong&gt;Strategy&lt;/strong&gt; design pattern to do some additional processing at some point.&lt;/p&gt;
+&lt;p&gt;Our use case was part of &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; processing.  What does this look like?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="an-example-app"&gt;
+&lt;h3&gt;An example app&lt;/h3&gt;
+&lt;p&gt;We'll avoid metaclasses, and pretend that Annotated types are checked by an
+explict call to a method of the class.
+Let's say a superclass, named &lt;tt class="docutils literal"&gt;RuleCheck&lt;/tt&gt; has a method that must be
+called at the end of &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; to check compliance with annotations.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class SomeApp(RuleCheck):
+    x: Annotated[int, MustBePrime()]
+
+    def __init__(self, arg_value: int) -&amp;gt; None:
+        self.x = arg_value
+        self.check()
+&lt;/pre&gt;
+&lt;p&gt;The idea here is that the class-level hints are carefully defined.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; merely slaps any old value in there.&lt;/p&gt;
+&lt;p&gt;And the &lt;tt class="docutils literal"&gt;self.check()&lt;/tt&gt; then assures that all hints are actually true for the supplied
+values.&lt;/p&gt;
+&lt;p&gt;This means it will &amp;quot;apply&amp;quot; the annotation to the given value. In this case,
+it will either allow the value silently or raise an exception if there's a problem.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;tt class="docutils literal"&gt;RuleCheck&lt;/tt&gt; class.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from typing import Annotated, get_type_hints, get_args
+
+class RuleCheck:
+    def check(self) -&amp;gt; None:
+        vars = get_type_hints(self.__class__, include_extras=True)
+        for name in vars:
+            match vars[name]:
+                case Annotated:
+                   base, *rules = get_args(vars[name])
+                   for rule in rules:
+                       rule(getattr(self, name))
+&lt;/pre&gt;
+&lt;p&gt;Each annotated variable has the arguments to the annotation
+retrieved with &lt;tt class="docutils literal"&gt;typing.get_args()&lt;/tt&gt;.
+Each of these annotations must be a callable object of some kind
+that can be applied to the attribute's value.&lt;/p&gt;
+&lt;p&gt;We leave the implementation of &lt;tt class="docutils literal"&gt;MustBePrime&lt;/tt&gt; as an exercise for the reader.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-do-i-need-it"&gt;
+&lt;h2&gt;Why do I need it?&lt;/h2&gt;
+&lt;p&gt;You need it in a bunch of cases. Here are some ideas.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Type domain narrowing. We used &amp;quot;prime&amp;quot; as an example. You might want to use positive values, or
+values in a range. Or other properties that you'd like to make part of a type.&lt;/li&gt;
+&lt;li&gt;Documentation. You can imagine &lt;tt class="docutils literal"&gt;x: Annotated[str, &lt;span class="pre"&gt;title(&amp;quot;Some&lt;/span&gt; Descriptive &lt;span class="pre"&gt;Information&amp;quot;),&lt;/span&gt; &lt;span class="pre"&gt;Positive()]&lt;/span&gt;&lt;/tt&gt;.
+Since the documentation is not a comment or other ephermeral source text, you can use this
+to create a formal Schema for a class. Thing JSONSchema. (Or XSD if you're old.)
+You could use the title to beef up the exception messages, for example.&lt;/li&gt;
+&lt;li&gt;Other Processing. Let's not get crazy, but the following is possible.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+x: Annotated[float, Title(&amp;quot;Independent&amp;quot;), Range(0, 10)]
+y: Annotated[float, DerivedFrom(&amp;quot;x&amp;quot;), Function(lambda x: 2*x-1)]
+&lt;/pre&gt;
+&lt;p&gt;The idea is that we might build a class where any change to &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; computes a value
+for &lt;tt class="docutils literal"&gt;y&lt;/tt&gt; based on the annotation; and the value is cached as an attribute
+value, not a &lt;tt class="docutils literal"&gt;&amp;#64;property&lt;/tt&gt; which is always recompued.&lt;/p&gt;
+&lt;p&gt;(Yes, &lt;tt class="docutils literal"&gt;&amp;#64;cache&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&amp;#64;property&lt;/tt&gt; can do this. This isn't necessarily a &lt;strong&gt;great&lt;/strong&gt; idea.
+But it's possible.)&lt;/p&gt;
+&lt;div class="section" id="building-a-type-definition"&gt;
+&lt;h3&gt;Building a type definition&lt;/h3&gt;
+&lt;p&gt;Maybe we want this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+PosInt: TypeAlias = Annotated[int, MustBePositive()]
+PrimePosInt: TypeAlias = Annotated[PosInt, MustBePrime()]
+&lt;/pre&gt;
+&lt;p&gt;We've built a complicated type on top of another complicated type.&lt;/p&gt;
+&lt;p&gt;This permits us to -- for example -- improve the performance of &lt;tt class="docutils literal"&gt;MustBePositive&lt;/tt&gt; with an attendant speedup of other, related objects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="file-parsing"&gt;
+&lt;h3&gt;File Parsing&lt;/h3&gt;
+&lt;p&gt;This is an edge case. But. It applies to the vast number of files processed by COBOL programs.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+x: Annotated[str, Start(0), Length(5)]
+y: Annotated[str, Start(5), Length(10)]
+z: Annotated[Decimal, Start(15), Length(10), Scale(2)]
+&lt;/pre&gt;
+&lt;p&gt;We've provided the metadata for positions of the source data in a text document.
+A file with a line like &lt;tt class="docutils literal"&gt;&amp;quot;ABCDEZYXWVUTSRQ0000001299&amp;quot;&lt;/tt&gt; could be parsed by a class
+that leveraged the annotations to pluck values out of the source string.
+It could apply conversion from mainframe encodings (&amp;quot;EBCDIC&amp;quot;) and do &lt;tt class="docutils literal"&gt;decimal&lt;/tt&gt; conversion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="where-can-i-see-examples"&gt;
+&lt;h2&gt;Where can I see examples?&lt;/h2&gt;
+&lt;p&gt;I have two examples, right now.&lt;/p&gt;
+&lt;p&gt;Pydantic v2 Annotated Validators: &lt;a class="reference external" href="https://docs.pydantic.dev/latest/usage/validators/#annotated-validators"&gt;https://docs.pydantic.dev/latest/usage/validators/#annotated-validators&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wow is this cool.&lt;/p&gt;
+&lt;p&gt;Also.&lt;/p&gt;
+&lt;p&gt;TigerShark. &lt;a class="reference external" href="https://github.com/slott56/TigerShark"&gt;https://github.com/slott56/TigerShark&lt;/a&gt;  This is a pretty narrow problem domain.
+But, the Annotated type hints were a &lt;em&gt;perfect&lt;/em&gt; solution to an ages-old problem.
+The X12 messages have complex more-or-less hierarchical structure. Messages have Loops (that can repeat), Segments, and individual Data Elements.&lt;/p&gt;
+&lt;p&gt;The definitions of the messages have complicated meta-data on size, encoding, data types,
+optionality, etc., and etc.&lt;/p&gt;
+&lt;p&gt;What we want is a top-level definition of a message that looks like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class MSG270(Message):
+    &amp;quot;&amp;quot;&amp;quot;HIPAA Health Care Eligibility Inquiry X092A1-270&amp;quot;&amp;quot;&amp;quot;
+    ItemIsa_Loop: TypeAlias = Annotated[ISA_LOOP, Title('Interchange Control Header'), Usage('R'), Position(1), Required(True)]
+    isa_loop: Annotated[list[ItemIsa_Loop], MinItems(1)]
+&lt;/pre&gt;
+&lt;p&gt;The TypeAlias and Annotated type provide all the metadata for this message.&lt;/p&gt;
+&lt;p&gt;Looking elsewhere in the message module, we find this...&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class ISA_LOOP_ISA(Segment):
+    &amp;quot;&amp;quot;&amp;quot;Interchange Control Header&amp;quot;&amp;quot;&amp;quot;
+    _segment_name = 'ISA'
+
+    isa01: Annotated[I01, Title('Authorization Information Qualifier'), Usage('R'), Position(1), Enumerated(*['00', '03'])]
+
+    isa02: Annotated[I02, Title('Authorization Information'), Usage('R'), Position(2)]
+
+    isa03: Annotated[I03, Title('Security Information Qualifier'), Usage('R'), Position(3), Enumerated(*['00', '01'])]
+&lt;/pre&gt;
+&lt;p&gt;Again, the elements are defined (entirely) by annotations.&lt;/p&gt;
+&lt;p&gt;The base type? &lt;tt class="docutils literal"&gt;I01&lt;/tt&gt;?  A pool of common definitions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+I01: TypeAlias = Annotated[ID, MinLen(2), MaxLen(2)]
+&lt;/pre&gt;
+&lt;p&gt;But wait! That still depends on a more foundational definition, &lt;tt class="docutils literal"&gt;ID&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+ID: TypeAlias = str
+&lt;/pre&gt;
+&lt;p&gt;The idea of this is to map the type information to type aliases, so anyone
+can follow the message definitions completely. The annotations are defined
+formally by the X12/EDI standards; the mapping to Python is through these
+foundational type aliases for Python types.&lt;/p&gt;
+&lt;p&gt;Also see &lt;a class="reference external" href="https://pypi.org/project/TigerShark3/"&gt;https://pypi.org/project/TigerShark3/&lt;/a&gt; if you have the urge to install it.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="patterns"></category><category term="python"></category><category term="type-hints"></category></entry><entry><title>any() and all() and Identity Elements</title><link href="https://slott56.github.io/2023-06-27-any_and_all_and_identity_elements.html" rel="alternate"></link><published>2023-06-27T09:00:00-04:00</published><updated>2023-06-27T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-06-27:/2023-06-27-any_and_all_and_identity_elements.html</id><summary type="html">&lt;p&gt;This was a surprising thing (for me) to see.
 Surprising because -- after writing a book about functional programming,
 I'd forgotten that some of the ideas are actually really new to people.&lt;/p&gt;
 &lt;p&gt;(I've omitted the source of the quote because I want to reuse this
