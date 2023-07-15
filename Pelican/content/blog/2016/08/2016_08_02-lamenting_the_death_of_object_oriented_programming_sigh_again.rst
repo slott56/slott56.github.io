@@ -2,7 +2,7 @@ Lamenting the Death of Object-Oriented Programming. (Sigh) Again?
 ==================================================================
 
 :date: 2016-08-02 08:00
-:tags: functional programming,OO design,OO language
+:tags: functional programming,object-oriented design,object-oriented language
 :slug: 2016_08_02-lamenting_the_death_of_object_oriented_programming_sigh_again
 :category: Technologies
 :status: published

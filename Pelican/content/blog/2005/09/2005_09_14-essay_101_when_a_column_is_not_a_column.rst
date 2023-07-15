@@ -2,7 +2,7 @@ Essay 10.1 - When A Column Is Not A Column
 ==========================================
 
 :date: 2005-09-14 10:00
-:tags: architecture,design
+:tags: architecture,software design,database design
 :slug: 2005_09_14-essay_101_when_a_column_is_not_a_column
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Sales Person with Principles
 ============================
 
 :date: 2010-06-14 08:00
-:tags: apple,retail,sales
+:tags: apple,retail
 :slug: 2010_06_14-sales_person_with_principles
 :category: Technologies
 :status: published

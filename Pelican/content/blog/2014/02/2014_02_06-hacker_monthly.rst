@@ -2,7 +2,7 @@ Hacker Monthly
 ==============
 
 :date: 2014-02-06 08:00
-:tags: OO design,stackoverflow
+:tags: object-oriented design,stackoverflow
 :slug: 2014_02_06-hacker_monthly
 :category: Technologies
 :status: published

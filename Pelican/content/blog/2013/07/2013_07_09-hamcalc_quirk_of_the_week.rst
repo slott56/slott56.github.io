@@ -2,12 +2,12 @@ HamCalc Quirk of the Week
 =========================
 
 :date: 2013-07-09 08:00
-:tags: HamCalc,preservation,GW-Basic,modernization,quirk
+:tags: HamCalc,preservation,GW-Basic,modernization
 :slug: 2013_07_09-hamcalc_quirk_of_the_week
 :category: Technologies
 :status: published
 
-The HamCalc program binhop is one of those little nuggets of beauty that
+The HamCalc program **binhop** is one of those little nuggets of beauty that
 might be helpful or might be useless. Or. Perhaps there's some useful
 stuff commingled with quirky stuff.
 
@@ -16,10 +16,10 @@ calculation could be helpful. Although it's also likely that folks don't
 spend much time designing hoppered bins; they just buy something out of
 a catalog.
 
-The binhop program is 151 lines long. Of those lines, 13 lines appear to
+The **binhop** program is 151 lines long. Of those lines, 13 lines appear to
 be some orphaned code that doesn't belong there. They appear to be part
 of a hoppered bin design program that appears to have been split off
-into binvol.
+into **binvol**.
 
 It's easy to grep for all 46 instances
 of ``(?:GOTO|GOSUB|THEN)\s+\d\d\d0`` to locate references to line

@@ -2,7 +2,7 @@ Absurdity?  Consistent Code and Inconsistent Data Structures
 ============================================================
 
 :date: 2006-10-11 16:27
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2006_10_11-absurdity_consistent_code_and_inconsistent_data_structures
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ NoSQL -- Old Wine, New Bottle
 =============================
 
 :date: 2010-10-18 10:15
-:tags: architecture,noSQL,design
+:tags: architecture,noSQL,database design,SQL
 :slug: 2010_10_18-nosql_old_wine_new_bottle
 :category: Technologies
 :status: published

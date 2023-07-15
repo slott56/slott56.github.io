@@ -2,7 +2,7 @@ Essay 8 - Data First, User Interface Later
 ==========================================
 
 :date: 2005-09-11 16:30
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_11-essay_8_data_first_user_interface_later
 :category: Architecture & Design
 :status: published

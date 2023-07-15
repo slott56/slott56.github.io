@@ -2,7 +2,7 @@ Use Cases, Why Cases and The Bentley Test
 =========================================
 
 :date: 2007-08-05 23:09
-:tags: architecture,design
+:tags: architecture,software design,requirements
 :slug: 2007_08_05-use_cases_why_cases_and_the_bentley_test
 :category: Architecture & Design
 :status: published

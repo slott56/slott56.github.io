@@ -2,7 +2,7 @@ More On Inheritance vs. Delegation
 ==================================
 
 :date: 2011-11-17 08:00
-:tags: #python,OO design,delegation,inheritance
+:tags: #python,object-oriented design,delegation,inheritance
 :slug: 2011_11_17-more_on_inheritance_vs_delegation
 :category: Technologies
 :status: published

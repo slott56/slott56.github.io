@@ -2,7 +2,7 @@ Map Reduce -- How Cool is that?
 ===============================
 
 :date: 2010-01-10 12:57
-:tags: map-reduce,#python,design
+:tags: map-reduce,#python,software design
 :slug: 2010_01_10-map_reduce_how_cool_is_that
 :category: Technologies
 :status: published

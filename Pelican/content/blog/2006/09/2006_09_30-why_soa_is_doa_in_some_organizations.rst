@@ -2,7 +2,7 @@ Why SOA is DOA in some organizations
 ====================================
 
 :date: 2006-09-30 03:09
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,soa,management
 :slug: 2006_09_30-why_soa_is_doa_in_some_organizations
 :category: Architecture & Design
 :status: published

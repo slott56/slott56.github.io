@@ -2,7 +2,7 @@ Python's multi-threading and the GIL
 ====================================
 
 :date: 2019-03-18 07:36
-:tags: dask,#python,multiprocessing,multithreaded
+:tags: dask,#python,multiprocessing,threads
 :slug: 2019_03_18-pythons_multi_threading_and_the_gil
 :category: Technologies
 :status: published

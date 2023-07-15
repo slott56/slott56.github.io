@@ -2,7 +2,7 @@ The Half-Truth About Consultants
 ================================
 
 :date: 2008-04-20 11:27
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2008_04_20-the_half_truth_about_consultants
 :category: Architecture & Design
 :status: published

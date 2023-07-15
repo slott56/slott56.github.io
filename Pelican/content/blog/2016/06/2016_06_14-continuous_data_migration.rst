@@ -2,7 +2,7 @@ Continuous Data Migration
 =========================
 
 :date: 2016-06-14 08:00
-:tags: data conversion,data migration,continuous migration,design,continuous deployment,continuous integration
+:tags: data conversion,data migration,continuous migration,database design,continuous deployment,continuous integration
 :slug: 2016_06_14-continuous_data_migration
 :category: Technologies
 :status: published

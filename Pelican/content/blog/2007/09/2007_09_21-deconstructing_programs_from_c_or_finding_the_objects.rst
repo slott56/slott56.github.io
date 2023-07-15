@@ -2,7 +2,7 @@ Deconstructing Programs from C; or Finding The Objects™
 =======================================================
 
 :date: 2007-09-21 01:26
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2007_09_21-deconstructing_programs_from_c_or_finding_the_objects
 :category: Architecture & Design
 :status: published

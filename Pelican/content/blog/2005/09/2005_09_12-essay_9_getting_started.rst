@@ -2,7 +2,7 @@ Essay 9 - Getting Started
 =========================
 
 :date: 2005-09-12 14:51
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_12-essay_9_getting_started
 :category: Architecture & Design
 :status: published

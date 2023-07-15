@@ -2,7 +2,7 @@ Faerie Dust™
 ============
 
 :date: 2006-06-19 20:12
-:tags: architecture,design
+:tags: architecture,software design,Faerie Dust
 :slug: 2006_06_19-faerie_dusttm
 :category: Architecture & Design
 :status: published
@@ -12,7 +12,7 @@ Faerie Dust™
 
 
 Here's how to recognize a
-**Faerie Dust** 
+**Faerie Dust**
 request:
 
 

@@ -2,7 +2,7 @@ On "Taste" in Software Design
 =============================
 
 :date: 2015-06-16 08:00
-:tags: software process improvement,design,architecture
+:tags: software process improvement,software design,architecture
 :slug: 2015_06_16-on_taste_in_software_design
 :category: Technologies
 :status: published

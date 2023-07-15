@@ -2,7 +2,7 @@ Getting to an Agile process
 ===========================
 
 :date: 2008-07-30 13:27
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,sotware design,methodology,process,agile
 :slug: 2008_07_30-getting_to_an_agile_process
 :category: Architecture & Design
 :status: published

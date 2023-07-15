@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://slott56.github.io/2014_03_27-preconceived_notions_perceptual_narrowing_the_einstellung_effect.html">
 
         <meta name="author" content="S.Lott" />
-        <meta name="keywords" content="design,OO design,Einstellung Effect" />
+        <meta name="keywords" content="design,object-oriented design,Einstellung Effect" />
         <meta name="description" content="Read this http://en.wikipedia.org/wiki/Einstellung_effect Great article in Scientific American on this. I didn&#39;t realize that sometimes I do spend time trying to defeat the Einstellung effect. Not a lot of time. But some time. When confronted with gnarly design problems, I have the same bad habits …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
@@ -23,7 +23,7 @@
         <meta property="article:published_time" content="2014-03-27" />
             <meta property="article:section" content="Technologies" />
             <meta property="article:tag" content="design" />
-            <meta property="article:tag" content="OO design" />
+            <meta property="article:tag" content="object-oriented design" />
             <meta property="article:tag" content="Einstellung Effect" />
             <meta property="article:author" content="S.Lott" />
 
@@ -112,7 +112,7 @@ S.Lott -- Software Architect            </a>
 <span class="label label-default">Tags</span>
 	<a href="https://slott56.github.io/tag/design.html">design</a>
         /
-	<a href="https://slott56.github.io/tag/oo-design.html">OO design</a>
+	<a href="https://slott56.github.io/tag/object-oriented-design.html">object-oriented design</a>
         /
 	<a href="https://slott56.github.io/tag/einstellung-effect.html">Einstellung Effect</a>
     
@@ -121,58 +121,58 @@ S.Lott -- Software Architect            </a>
                 <p>Read this <a class="reference external" href="http://en.wikipedia.org/wiki/Einstellung_effect">http://en.wikipedia.org/wiki/Einstellung_effect</a>
 Great
 <a class="reference external" href="http://www.scientificamerican.com/article/einstellung-how-psychologists-study-einstellung-effect-chess/">article</a>
-in Scientific American on this.
-I didn't realize that sometimes I do spend time trying to defeat the
-Einstellung effect. Not a lot of time. But some time.
-When confronted with gnarly design problems, I have the same bad habits
+in Scientific American on this.</p>
+<p>I didn't realize that sometimes I do spend time trying to defeat the
+Einstellung effect. Not a lot of time. But some time.</p>
+<p>When confronted with gnarly design problems, I have the same bad habits
 as many other programmers. I reach for algorithms or data structures
 that I'm familiar with, even if they're not optimal. Sometimes I'll use
-algorithms that are not even appropriate to the problem domain.
-However.
-In working on a book on Advanced Object-Oriented Python, I realized that
+algorithms that are not even appropriate to the problem domain.</p>
+<p>However.</p>
+<p>In working on a book on Advanced Object-Oriented Python, I realized that
 one habit I have is -- perhaps -- actually helpful.  It's this.
 I can -- if I'm careful -- enumerate the alternatives. It's challenging
 to exhaustively enumerate design choices. It seems to help to have a
 list of things that clearly aren't optimal or aren't workable or aren't
 elegant. After pruning away the bad ideas, sometimes a good idea
-remains.
-I'm not often good at this. Sometimes I dive in early, make choices,
-learn from my failures, and am forced to refactor.
-The &quot;enumeration&quot; isn't literally <strong>every</strong> possibility. Sometimes, it's
+remains.</p>
+<p>I'm not often good at this. Sometimes I dive in early, make choices,
+learn from my failures, and am forced to refactor.</p>
+<p>The &quot;enumeration&quot; isn't literally <strong>every</strong> possibility. Sometimes, it's
 the <strong>types</strong> of possibilities or the strategies involved. Sometimes
-it's the patterns that the possibilities fulfill.
-Example 1. When looking at Python data structures, the ABC's of
+it's the patterns that the possibilities fulfill.</p>
+<p>Example 1. When looking at Python data structures, the ABC's of
 Sequence, Mapping and Set provide a big-picture way to identify places
 to look. Once we've narrowed the field of view, we can look at kinds of
 sequences of kinds of mappings. We can also look at the generator
-expression alternative to a sequence object.
-Example 2. There are often three design strategies: inheritance,
+expression alternative to a sequence object.</p>
+<p>Example 2. There are often three design strategies: inheritance,
 composition (or wrapping) and invent-from-scratch. It's sometimes
 helpful to actually put together a technical spike of a subclass, a
 wrapper class and the outline of a <em>de novo</em> class definition. Bad ideas
-usually surface quickly when actual code is involved.
-I thought I was being fussy. Or I was just stalling to avoid starting to
+usually surface quickly when actual code is involved.</p>
+<p>I thought I was being fussy. Or I was just stalling to avoid starting to
 write bad code too early. Or I was wasting time obsessing over
-performance issues.
-No. I was preventing Einstellung. Avoiding Perceptual Narrowing.
-Avoiding &quot;Calling a problems nails because I'm wielding the hammer.&quot;
-<strong>The Relational Database as Hammer</strong>
-I feel obligated to note that the relational database often becomes the
+performance issues.</p>
+<p>No. I was preventing Einstellung. Avoiding Perceptual Narrowing.
+Avoiding &quot;Calling a problems nails because I'm wielding the hammer.&quot;</p>
+<p><strong>The Relational Database as Hammer</strong></p>
+<p>I feel obligated to note that the relational database often becomes the
 hammer and all problems are then reduced to RDBMS/SQL nails. No matter
-what the problem is.
-One of the most amazing of these problems was an inquiry about &quot;the top
+what the problem is.</p>
+<p>One of the most amazing of these problems was an inquiry about &quot;the top
 <em>n</em> rows query&quot;. It was the DBA's sense that getting the &quot;top <em>n</em> rows&quot;
 using some selection and ordering criteria was a really standard problem
 that everyone had confronted. The problem was so common there just
-<strong>had</strong> to be a standard, widely-adopted high-performance solution.
-When getting the top 100 rows out of 40,000, there will be performance
+<strong>had</strong> to be a standard, widely-adopted high-performance solution.</p>
+<p>When getting the top 100 rows out of 40,000, there will be performance
 issues. The filtering and sorting (and any joins) will take time and DB
-resources. My question was &quot;why?&quot;
-The answer was appalling. The database was being used as a message
+resources. My question was &quot;why?&quot;</p>
+<p>The answer was appalling. The database was being used as a message
 queue. The top 100 rows out of 40,000 was being doing to pick the next
 few items out of the queue for processing. The non-top-100 rows were
-merely lower priority items in the queue.
-Wouldn't a proper message queue have been cheaper and simpler?'
+merely lower priority items in the queue.</p>
+<p>Wouldn't a proper message queue have been cheaper and simpler?'
 Apparently not. Einstellung had set in. They had data. They had a
 database. What more is there?</p>
 
@@ -1068,7 +1068,7 @@ database. What more is there?</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (23)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (22)
           </a>
         </li>
         <li class="list-group-item">

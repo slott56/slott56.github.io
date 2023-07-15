@@ -2,7 +2,7 @@ Measurable Improvement
 ======================
 
 :date: 2007-01-04 11:27
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2007_01_04-measurable_improvement
 :category: Architecture & Design
 :status: published

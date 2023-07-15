@@ -2,7 +2,7 @@ Bind Variables and Prepared Statements -- Good, Bad or Indifferent?
 ===================================================================
 
 :date: 2008-09-06 01:29
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2008_09_06-bind_variables_and_prepared_statements_good_bad_or_indifferent
 :category: Architecture & Design
 :status: published

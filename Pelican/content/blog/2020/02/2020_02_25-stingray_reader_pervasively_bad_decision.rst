@@ -2,7 +2,7 @@ Stingray Reader Pervasively Bad Decision
 ========================================
 
 :date: 2020-02-25 08:00
-:tags: stingray reader,Design Principles,OO design,type hints
+:tags: stingray reader,Design Principles,object-oriented design,type hints
 :slug: 2020_02_25-stingray_reader_pervasively_bad_decision
 :category: Technologies
 :status: published

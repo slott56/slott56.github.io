@@ -2,7 +2,7 @@ Normalization Experiment Protocol (revised)
 ===========================================
 
 :date: 2005-12-01 11:24
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_12_01-normalization_experiment_protocol_revised
 :category: Architecture & Design
 :status: published

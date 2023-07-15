@@ -2,7 +2,7 @@ Some Design Pattern Thoughts
 ############################
 
 :date: 2023-04-25 08:00
-:tags: architecture,design,patterns,python
+:tags: architecture,software design,design patterns,python
 :slug: 2023_04_25-some_design_pattern_thoughts
 :category: Technologies
 :status: published

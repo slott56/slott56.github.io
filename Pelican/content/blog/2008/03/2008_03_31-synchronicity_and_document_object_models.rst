@@ -2,7 +2,7 @@ Synchronicity and Document Object Models
 =========================================
 
 :date: 2008-03-31 15:32
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,xml,edi,x12
 :slug: 2008_03_31-synchronicity_and_document_object_models
 :category: Architecture & Design
 :status: published

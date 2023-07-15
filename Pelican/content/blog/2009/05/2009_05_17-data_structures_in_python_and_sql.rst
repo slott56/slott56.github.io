@@ -2,7 +2,7 @@ Data Structures in Python and SQL
 =================================
 
 :date: 2009-05-17 19:54
-:tags: #python,OO design,design,SQL
+:tags: #python,object-oriented design,SQL
 :slug: 2009_05_17-data_structures_in_python_and_sql
 :category: Technologies
 :status: published

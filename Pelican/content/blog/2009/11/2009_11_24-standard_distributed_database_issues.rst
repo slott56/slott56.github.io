@@ -2,7 +2,7 @@ Standard "Distributed" Database Issues
 ======================================
 
 :date: 2009-11-24 21:43
-:tags: architecture,design,ESB,SOA
+:tags: architecture,software design,ESB,SOA
 :slug: 2009_11_24-standard_distributed_database_issues
 :category: Technologies
 :status: published

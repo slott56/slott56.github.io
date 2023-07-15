@@ -2,7 +2,7 @@ Essay 18 - What Is Your Problem?
 ================================
 
 :date: 2005-09-23 17:58
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_23-essay_18_what_is_your_problem
 :category: Architecture & Design
 :status: published

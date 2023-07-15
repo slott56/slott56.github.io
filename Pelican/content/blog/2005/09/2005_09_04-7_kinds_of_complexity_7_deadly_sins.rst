@@ -2,7 +2,7 @@
 ======================================
 
 :date: 2005-09-04 11:44
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_09_04-7_kinds_of_complexity_7_deadly_sins
 :category: Architecture & Design
 :status: published

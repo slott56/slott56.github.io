@@ -2,7 +2,7 @@ The world is multidimensional?  Really?
 =======================================
 
 :date: 2009-09-15 11:33
-:tags: dimensional data,design,content management
+:tags: dimensional data,database design,content management
 :slug: 2009_09_15-the_world_is_multidimensional_really
 :category: Technologies
 :status: published

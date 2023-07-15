@@ -2,7 +2,7 @@ Shiny New MacBook Pro
 =====================
 
 :date: 2014-03-20 08:00
-:tags: macintosh,#python,mac os x
+:tags: #python,macosx
 :slug: 2014_03_20-shiny_new_macbook_pro
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Today's Milestone: Refactoring and Django Migrations
 ====================================================
 
 :date: 2015-10-06 08:00
-:tags: Django,design,API Design
+:tags: Django,API Design
 :slug: 2015_10_06-todays_milestone_refactoring_and_django_migrations
 :category: Technologies
 :status: published

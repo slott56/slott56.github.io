@@ -2,7 +2,7 @@ The E. W. Dijkstra Archive (Update)
 ===================================
 
 :date: 2009-08-06 13:08
-:tags: software process improvement,OO design,defensive programming
+:tags: software process improvement,object-oriented design,defensive programming
 :slug: 2009_08_06-the_e_w_dijkstra_archive_update
 :category: Technologies
 :status: published

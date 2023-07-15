@@ -2,7 +2,7 @@ Legacy Software is a Sticky Mess
 ================================
 
 :date: 2021-10-12 08:00
-:tags: navtools,navigation,design,#python
+:tags: navtools,navigation,object-oriented design,#python
 :slug: 2021_10_12-legacy_software_is_a_sticky_mess
 :category: Technologies
 :status: published

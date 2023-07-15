@@ -2,7 +2,7 @@ The Problem with Spreadsheets
 =============================
 
 :date: 2007-01-23 11:13
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,spreadsheet
 :slug: 2007_01_23-the_problem_with_spreadsheets
 :category: Architecture & Design
 :status: published

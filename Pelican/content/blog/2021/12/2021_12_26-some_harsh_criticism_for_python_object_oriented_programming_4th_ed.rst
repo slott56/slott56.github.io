@@ -2,7 +2,7 @@ Some Harsh Criticism for Python Object-Oriented Programming 4th ed.
 ===================================================================
 
 :date: 2021-12-26 11:11
-:tags:
+:tags: python,writing
 :slug: 2021_12_26-some_harsh_criticism_for_python_object_oriented_programming_4th_ed
 :category: Technologies
 :status: published

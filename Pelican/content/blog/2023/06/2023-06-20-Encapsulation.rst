@@ -2,7 +2,7 @@ Python and Encapsulation -- How do I private?
 ##############################################
 
 :date: 2023-06-20 08:00
-:tags: architecture,design,patterns,python
+:tags: architecture,software design,design patterns,python
 :slug: 2023_06_20-python_and_encapsulation
 :category: Technologies
 :status: published

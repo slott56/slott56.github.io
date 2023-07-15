@@ -116,33 +116,18 @@ S.Lott -- Software Architect            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>Learned about module globals the hard way.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>The mod_wsgi daemon by default spawns 15 threads.  This is important,
 but not obvious.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>During load testing, we had intermittent weird errors.  We were seeing
 an odd inconsistency in replies.  My experience in creating military
 software in the ’80’s leads me to put loop-back self-tests everywhere.
 One of our loopbacks wasn’t looping back properly.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>The symptom looked like a single value being overwritten.  After a
 design review, it appears that one information source -- a module global
 -- wasn’t working well.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>Module globals -- like other Singletons -- are a seductive trap.   The
 issue is that a multi-threaded application will have one copy of the
 module.  The one copy may not be thread safe.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <p>The problem is that  thread-safety requires some fairly detailed
 analysis. Simple unit testing isn’t quite enough.  But the process of
 designing for testability is helpful.  Isolation and encapsulation are
@@ -1040,7 +1025,7 @@ important for testability as well as locating thread-safety issues.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (23)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (22)
           </a>
         </li>
         <li class="list-group-item">

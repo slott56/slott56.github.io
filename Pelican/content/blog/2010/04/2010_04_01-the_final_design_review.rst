@@ -2,7 +2,7 @@ The Final Design Review
 =======================
 
 :date: 2010-04-01 08:00
-:tags: architecture,design,humor,software process improvement
+:tags: architecture,software design,software process improvement
 :slug: 2010_04_01-the_final_design_review
 :category: Technologies
 :status: published

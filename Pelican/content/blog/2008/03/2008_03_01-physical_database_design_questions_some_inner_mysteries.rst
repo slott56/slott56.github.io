@@ -2,7 +2,7 @@ Physical Database Design Questions -- Some Inner Mysteries
 ==========================================================
 
 :date: 2008-03-01 19:35
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,database design,data structure,algorithm
 :slug: 2008_03_01-physical_database_design_questions_some_inner_mysteries
 :category: Architecture & Design
 :status: published

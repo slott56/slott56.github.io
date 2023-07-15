@@ -2,7 +2,7 @@ The Weirdness Of Change (Revised)
 =================================
 
 :date: 2006-04-07 16:02
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,project management,knowledge capture
 :slug: 2006_04_07-the_weirdness_of_change_revised
 :category: Architecture & Design
 :status: published

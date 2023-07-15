@@ -2,7 +2,7 @@ The curse of procedural design
 ==============================
 
 :date: 2011-05-03 08:00
-:tags: #python,procedural programming,OO design
+:tags: #python,procedural programming,object-oriented design
 :slug: 2011_05_03-the_curse_of_procedural_design
 :category: Technologies
 :status: published

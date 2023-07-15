@@ -2,7 +2,7 @@ SOA: Cheaper?  Simpler?
 =======================
 
 :date: 2007-09-24 16:58
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,SOA
 :slug: 2007_09_24-soa_cheaper_simpler
 :category: Architecture & Design
 :status: published

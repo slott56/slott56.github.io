@@ -2,7 +2,7 @@ Why Is OO So Popular?
 =====================
 
 :date: 2006-01-10 03:29
-:tags: architecture,design,complexity
+:tags: architecture,object-oriented design,complexity
 :slug: 2006_01_10-why_is_oo_so_popular
 :category: Architecture & Design
 :status: published

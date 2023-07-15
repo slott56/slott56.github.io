@@ -2,7 +2,7 @@ Get this to "Work"
 ==================
 
 :date: 2007-08-27 10:16
-:tags: architecture,design
+:tags: architecture,software design,management,requirements
 :slug: 2007_08_27-get_this_to_work
 :category: Architecture & Design
 :status: published

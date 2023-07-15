@@ -2,7 +2,7 @@ The Waterfall's Not Working -- Even A Client Said So
 ====================================================
 
 :date: 2008-02-11 11:23
-:tags: architecture,design
+:tags: architecture,software design,agile,management
 :slug: 2008_02_11-the_waterfalls_not_working_even_a_client_said_so
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Essay 1 - All Software Problems are Large or Complex
 ====================================================
 
 :date: 2005-08-31 23:38
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_08_31-essay_1_all_software_problems_are_large_or_complex
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Chain of Command Example
 ========================
 
 :date: 2017-03-07 08:00
-:tags: #python,design
+:tags: #python,object-oriented design
 :slug: 2017_03_07-chain_of_command_example
 :category: Technologies
 :status: published

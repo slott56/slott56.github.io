@@ -2,7 +2,7 @@ Risk-Based Testing
 ==================
 
 :date: 2008-08-22 10:29
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_08_22-risk_based_testing
 :category: Architecture & Design
 :status: published

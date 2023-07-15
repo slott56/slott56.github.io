@@ -2,7 +2,7 @@ Essay 19 - Disentangling Use Cases and GUI Design (Revised)
 ===========================================================
 
 :date: 2005-09-24 11:40
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_24-essay_19_disentangling_use_cases_and_gui_design_revised
 :category: Architecture & Design
 :status: published

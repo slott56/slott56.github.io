@@ -2,7 +2,7 @@ Filesystem Deployment: Some Hand-Wringing
 =========================================
 
 :date: 2008-09-14 20:03
-:tags: architecture,design
+:tags: architecture,software design,data persistence
 :slug: 2008_09_14-filesystem_deployment_some_hand_wringing
 :category: Architecture & Design
 :status: published

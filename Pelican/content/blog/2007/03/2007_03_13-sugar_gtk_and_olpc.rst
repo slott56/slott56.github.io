@@ -2,7 +2,7 @@ Sugar, GTK and OLPC
 ===================
 
 :date: 2007-03-13 19:12
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI,PyGTK
 :slug: 2007_03_13-sugar_gtk_and_olpc
 :category: Architecture & Design
 :status: published

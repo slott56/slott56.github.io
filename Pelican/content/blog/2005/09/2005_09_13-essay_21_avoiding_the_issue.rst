@@ -2,7 +2,7 @@ Essay 21 - Avoiding the Issue
 =============================
 
 :date: 2005-09-13 23:27
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_13-essay_21_avoiding_the_issue
 :category: Architecture & Design
 :status: published

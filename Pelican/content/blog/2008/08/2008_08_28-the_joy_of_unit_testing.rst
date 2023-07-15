@@ -2,7 +2,7 @@ The Joy of Unit Testing
 =======================
 
 :date: 2008-08-28 09:46
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_08_28-the_joy_of_unit_testing
 :category: Architecture & Design
 :status: published

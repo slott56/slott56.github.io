@@ -2,7 +2,7 @@ Essay 6 - Politics
 ==================
 
 :date: 2005-09-08 10:00
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_08-essay_6_politics
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ KTLO Management
 ===============
 
 :date: 2007-06-28 19:20
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management
 :slug: 2007_06_28-ktlo_management
 :category: Architecture & Design
 :status: published

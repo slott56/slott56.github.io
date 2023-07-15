@@ -2,7 +2,7 @@ What are "Requirements"?
 ========================
 
 :date: 2005-09-21 14:48
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,requirements
 :slug: 2005_09_21-what_are_requirements
 :category: Architecture & Design
 :status: published

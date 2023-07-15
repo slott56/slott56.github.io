@@ -2,7 +2,7 @@ The Small Class Large Class "Question"
 ======================================
 
 :date: 2013-06-18 08:00
-:tags: project management,OO design,design,software process improvement
+:tags: project management,object-oriented design,software process improvement
 :slug: 2013_06_18-the_small_class_large_class_question
 :category: Technologies
 :status: published

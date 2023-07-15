@@ -2,7 +2,7 @@ Wishful Thinking -- An Accident Waiting To Happen
 =================================================
 
 :date: 2009-08-03 07:39
-:tags: agile,OO design
+:tags: agile,object-oriented design
 :slug: 2009_08_03-wishful_thinking_an_accident_waiting_to_happen
 :category: Technologies
 :status: published

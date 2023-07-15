@@ -2,7 +2,7 @@ How can we demo web services?
 =============================
 
 :date: 2008-10-21 22:47
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2008_10_21-how_can_we_demo_web_services
 :category: Architecture & Design
 :status: published

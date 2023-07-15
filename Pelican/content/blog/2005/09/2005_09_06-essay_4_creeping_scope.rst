@@ -2,7 +2,7 @@ Essay 4 - Creeping Scope
 ========================
 
 :date: 2005-09-06 10:54
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_06-essay_4_creeping_scope
 :category: Architecture & Design
 :status: published

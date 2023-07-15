@@ -2,7 +2,7 @@ Permutations, Combinations and Frustrations
 ===========================================
 
 :date: 2022-11-22 17:21
-:tags: algorithm,design
+:tags: algorithm,software design
 :slug: 2022_11_22-permutations_combinations_and_frustrations
 :category: Technologies
 :status: published

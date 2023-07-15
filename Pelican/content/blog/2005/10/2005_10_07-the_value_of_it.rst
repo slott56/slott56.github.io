@@ -2,7 +2,7 @@ The Value of IT
 ===============
 
 :date: 2005-10-07 00:22
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_10_07-the_value_of_it
 :category: Architecture & Design
 :status: published
@@ -22,7 +22,8 @@ lines in the sand at low tide."
 
 
 See
-RLucente's BLOKI  [`bloki 1 <http://rlucente.bloki.com/forum/messages-index.jsp?tid=121692&fid=63898#forum-message1126636772113slott>`_  ] for the "IT uses ROI, but no one else
+RLucente's BLOKI  [`bloki 1 <http://rlucente.bloki.com/forum/messages-index.jsp?tid=121692&fid=63898#forum-message1126636772113slott>`_]
+for the "IT uses ROI, but no one else
 does" conversation.  I'll summarize some of
 it.
 

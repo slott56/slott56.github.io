@@ -2,7 +2,7 @@ Architecture
 ============
 
 :date: 2005-10-01 13:34
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2005_10_01-architecture
 :category: Architecture & Design
 :status: published

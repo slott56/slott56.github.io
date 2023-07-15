@@ -2,7 +2,7 @@ A Simple Graphic Learning Environment - Part 2
 ==============================================
 
 :date: 2007-03-31 02:32
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI,pyGTK
 :slug: 2007_03_31-a_simple_graphic_learning_environment_part_2
 :category: Architecture & Design
 :status: published

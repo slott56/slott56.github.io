@@ -2,7 +2,7 @@ Deliverables, Process and Standards
 ===================================
 
 :date: 2005-09-27 01:22
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2005_09_27-deliverables_process_and_standards
 :category: Architecture & Design
 :status: published

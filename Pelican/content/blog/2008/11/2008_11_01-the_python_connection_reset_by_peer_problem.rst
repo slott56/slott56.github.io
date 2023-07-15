@@ -2,7 +2,7 @@ The Python "Connection Reset By Peer" Problem
 =============================================
 
 :date: 2008-11-01 00:42
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2008_11_01-the_python_connection_reset_by_peer_problem
 :category: Architecture & Design
 :status: published

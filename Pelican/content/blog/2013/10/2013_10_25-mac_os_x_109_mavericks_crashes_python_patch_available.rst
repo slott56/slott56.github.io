@@ -2,7 +2,7 @@ Mac OS X 10.9 "Mavericks" Crashes Python -- Patch Available
 ===========================================================
 
 :date: 2013-10-25 18:08
-:tags: #python,patch,bug,crash
+:tags: #python,patch,crash
 :slug: 2013_10_25-mac_os_x_109_mavericks_crashes_python_patch_available
 :category: Technologies
 :status: published

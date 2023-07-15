@@ -2,7 +2,7 @@ Software Engineering doesn't fit the Standard Model
 ===================================================
 
 :date: 2006-05-08 11:06
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,numerosity
 :slug: 2006_05_08-software_engineering_doesnt_fit_the_standard_model
 :category: Architecture & Design
 :status: published

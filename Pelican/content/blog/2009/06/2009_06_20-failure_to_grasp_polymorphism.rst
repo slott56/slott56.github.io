@@ -2,7 +2,7 @@ Failure To Grasp Polymorphism
 =============================
 
 :date: 2009-06-20 08:10
-:tags: polymorphism,#python,OO design
+:tags: polymorphism,#python,object-oriented design
 :slug: 2009_06_20-failure_to_grasp_polymorphism
 :category: Technologies
 :status: published

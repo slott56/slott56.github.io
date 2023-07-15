@@ -2,7 +2,7 @@ Lenses that Distort our Software: Flat Files, Relational Databases, Batch Proces
 ====================================================================================
 
 :date: 2007-11-03 12:49
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2007_11_03-lenses_that_distort_our_software_flat_files_relational_databases_batch_processing
 :category: Architecture & Design
 :status: published

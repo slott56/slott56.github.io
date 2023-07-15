@@ -13,29 +13,28 @@ I do see them once in a great while.
 It might be something like the following two-part explanation with a
 following question.
 
-| 
 
-I have this code
+    I have this code
 
-::
+    ::
 
-   from base64 import b64encode
-   def some_func(message):
-       msg = b64encode(message)
+       from base64 import b64encode
+       def some_func(message):
+           msg = b64encode(message)
 
-   msg = some_func(b'hello world')
-   print(f"padding = {msg.count(b'=')}")
-
-I'm getting this error.
-
-::
-
-   Traceback (most recent call last):
-     File "/Users/slott/miniconda3/envs/CaseStudy39/lib/python3.9/site-packages/IPython/core/interactiveshell.py", line 3437, in run_code
-       exec(code_obj, self.user_global_ns, self.user_ns)
-     File "<ipython-input-18-d54347890e97>", line 7, in <module>
+       msg = some_func(b'hello world')
        print(f"padding = {msg.count(b'=')}")
-   AttributeError: 'NoneType' object has no attribute 'count'
+
+    I'm getting this error.
+
+    ::
+
+       Traceback (most recent call last):
+         File "/Users/slott/miniconda3/envs/CaseStudy39/lib/python3.9/site-packages/IPython/core/interactiveshell.py", line 3437, in run_code
+           exec(code_obj, self.user_global_ns, self.user_ns)
+         File "<ipython-input-18-d54347890e97>", line 7, in <module>
+           print(f"padding = {msg.count(b'=')}")
+       AttributeError: 'NoneType' object has no attribute 'count'
 
 What can I do?
 
@@ -45,13 +44,13 @@ important to present code as text. Not a picture of text. </rant>
 
 There are two kinds of answers to this question.
 
-1. It's obvious (to me) what's wrong. While I can say what the problem
-is likely to be, that doesn't help the questioner.
+1.  It's obvious (to me) what's wrong. While I can say what the problem
+    is likely to be, that doesn't help the questioner.
 
-2. The questioner needs a strategy for getting to working software.
-This, of course, can piss off some people because they insist all
-questions have simple answers and I'm just being unhelpful by giving
-them a bunch of steps they're supposed to follow.
+2.  The questioner needs a strategy for getting to working software.
+    This, of course, can piss off some people because they insist all
+    questions have simple answers and I'm just being unhelpful by giving
+    them a bunch of steps they're supposed to follow.
 
 I'm going to stick to answers of the second kind. I don't provide
 answers of the first kind.
@@ -61,8 +60,9 @@ The Two General Answers
 
 There are two general answers of the second kind.
 
-#. Use the debugger.
-#. Add ``print()``.
+1. Use the debugger.
+
+2. Add ``print()``.
 
 I'm told the debugger can be fun to use. I'm not skilled in using it, so
 I don't generally recommend it. I find it difficult to uncover state
@@ -79,9 +79,11 @@ doesn't work.
 
 The procedure for adding ``print()`` works like this:
 
-#. Find the line with the error. In the example, it's the final
+1. Find the line with the error. In the example, it's the final
    ``print()``.
+
 #. Look at all the variables. In this case, there's only one, ``msg``.
+
 #. Put a ``print()`` in front to show the values of all the variables.
    ``print(f"{msg=}")``.
 

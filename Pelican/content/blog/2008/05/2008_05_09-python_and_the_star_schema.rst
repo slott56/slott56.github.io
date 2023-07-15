@@ -2,7 +2,7 @@ Python and the Star Schema
 ==========================
 
 :date: 2008-05-09 10:37
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,database design,data structure,algorithm,python,pycon
 :slug: 2008_05_09-python_and_the_star_schema
 :category: Architecture & Design
 :status: published

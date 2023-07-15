@@ -2,7 +2,7 @@ Essay 15 - Errors and Exceptions
 ================================
 
 :date: 2005-09-19 18:00
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_19-essay_15_errors_and_exceptions
 :category: Architecture & Design
 :status: published

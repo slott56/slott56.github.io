@@ -2,7 +2,7 @@ The Data Cartel and "Users"
 ===========================
 
 :date: 2009-12-26 10:14
-:tags: database administration,design
+:tags: database administration,database design
 :slug: 2009_12_26-the_data_cartel_and_users
 :category: Technologies
 :status: published

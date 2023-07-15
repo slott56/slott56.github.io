@@ -2,7 +2,7 @@ Unit Test Coverage
 ==================
 
 :date: 2009-02-25 20:22
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2009_02_25-unit_test_coverage
 :category: Architecture & Design
 :status: published

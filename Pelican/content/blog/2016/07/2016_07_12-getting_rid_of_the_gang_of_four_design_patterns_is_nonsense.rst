@@ -2,7 +2,7 @@ Getting Rid of the Gang-of-Four Design Patterns is Nonsense
 ===========================================================
 
 :date: 2016-07-12 08:00
-:tags: C,#python,functional programming,OO design,design,java
+:tags: C,#python,functional programming,object-oriented design,java
 :slug: 2016_07_12-getting_rid_of_the_gang_of_four_design_patterns_is_nonsense
 :category: Technologies
 :status: published

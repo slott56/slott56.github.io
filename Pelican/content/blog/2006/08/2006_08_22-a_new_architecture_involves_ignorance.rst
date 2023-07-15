@@ -2,7 +2,7 @@ A New Architecture Involves Ignorance
 =====================================
 
 :date: 2006-08-22 17:07
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2006_08_22-a_new_architecture_involves_ignorance
 :category: Architecture & Design
 :status: published

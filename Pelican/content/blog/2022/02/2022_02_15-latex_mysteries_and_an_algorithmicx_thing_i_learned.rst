@@ -2,7 +2,7 @@ LaTeX Mysteries and an algorithmicx thing I learned.
 ====================================================
 
 :date: 2022-02-15 08:00
-:tags:
+:tags: writing,latex,markup
 :slug: 2022_02_15-latex_mysteries_and_an_algorithmicx_thing_i_learned
 :category: Technologies
 :status: published

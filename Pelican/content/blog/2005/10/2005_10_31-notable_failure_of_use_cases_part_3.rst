@@ -2,7 +2,7 @@ Notable Failure Of Use Cases - Part 3
 =====================================
 
 :date: 2005-10-31 19:52
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_10_31-notable_failure_of_use_cases_part_3
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Software Project Management and Magic: The Gathering
 ====================================================
 
 :date: 2005-10-24 00:18
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2005_10_24-software_project_management_and_magic_the_gathering
 :category: Architecture & Design
 :status: published

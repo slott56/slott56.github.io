@@ -2,7 +2,7 @@ Layers, Interfaces and Mutability
 =================================
 
 :date: 2006-10-20 18:50
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2006_10_20-layers_interfaces_and_mutability
 :category: Architecture & Design
 :status: published
@@ -16,49 +16,49 @@ question:
 
 
 
-"We are having a debate about
-the basic way the UI, Business Logic, and Data Access layers
-communicate.
+    "We are having a debate about
+    the basic way the UI, Business Logic, and Data Access layers
+    communicate.
 
 
 
-My experience has been
-that the UI talks to the BizLogic, and the BizLogic maps between itself and the
-Data Access layer.. like
-this:
+    My experience has been
+    that the UI talks to the BizLogic, and the BizLogic maps between itself and the
+    Data Access layer.. like
+    this:
 
-::      
-    UI -> BizLogic -> Data Access -> DB
-
-
-
-The debate is whether the UI should
-see both the Data Access and the BizLogic, and the Data Access object references
-the Biz Object.
+    ::
+        UI -> BizLogic -> Data Access -> DB
 
 
 
-So instead
-of
-
-::       
-
-    myBizObject.Save()
-
-you
-have
-
-::   
-
-    DataAccess.Save(myBizObject)
+    The debate is whether the UI should
+    see both the Data Access and the BizLogic, and the Data Access object references
+    the Biz Object.
 
 
 
-In my view
-there are a few flaws with this approach, not the least being that the business
-object cannot ask for another business object required for processing, since the
-business layer does not know of the existence of the data
-access."
+    So instead
+    of
+
+    ::
+
+        myBizObject.Save()
+
+    you
+    have
+
+    ::
+
+        DataAccess.Save(myBizObject)
+
+
+
+    In my view
+    there are a few flaws with this approach, not the least being that the business
+    object cannot ask for another business object required for processing, since the
+    business layer does not know of the existence of the data
+    access."
 
 
 

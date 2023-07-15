@@ -2,7 +2,7 @@ Great Quotes about The Spreadsheet Problem™
 ===========================================
 
 :date: 2007-02-07 18:10
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,spreadsheet
 :slug: 2007_02_07-great_quotes_about_the_spreadsheet_problemtm
 :category: Architecture & Design
 :status: published

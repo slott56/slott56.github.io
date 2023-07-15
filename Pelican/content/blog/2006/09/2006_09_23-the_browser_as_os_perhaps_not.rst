@@ -2,7 +2,7 @@ The Browser as OS?  Perhaps Not
 ===============================
 
 :date: 2006-09-23 15:02
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2006_09_23-the_browser_as_os_perhaps_not
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Normalization Results
 =====================
 
 :date: 2005-12-12 12:16
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_12_12-normalization_results
 :category: Architecture & Design
 :status: published

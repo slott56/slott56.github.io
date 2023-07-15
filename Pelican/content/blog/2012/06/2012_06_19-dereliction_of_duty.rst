@@ -2,7 +2,7 @@ Dereliction of Duty
 ===================
 
 :date: 2012-06-19 08:00
-:tags: research,sales
+:tags: metadata,udef,cognos
 :slug: 2012_06_19-dereliction_of_duty
 :category: Technologies
 :status: published

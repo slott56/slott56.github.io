@@ -2,7 +2,7 @@ Apple's Feckless Download Protocol
 ==================================
 
 :date: 2013-12-17 08:00
-:tags: apple,mac os x
+:tags: apple,macosx
 :slug: 2013_12_17-apples_feckless_download_protocol
 :category: Technologies
 :status: published

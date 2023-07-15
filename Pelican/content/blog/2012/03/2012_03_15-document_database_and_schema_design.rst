@@ -2,7 +2,7 @@ Document Database and Schema Design
 ===================================
 
 :date: 2012-03-15 08:00
-:tags: couchdb,#python,noSQL,couchdbkit
+:tags: couchdb,#python,noSQL
 :slug: 2012_03_15-document_database_and_schema_design
 :category: Technologies
 :status: published

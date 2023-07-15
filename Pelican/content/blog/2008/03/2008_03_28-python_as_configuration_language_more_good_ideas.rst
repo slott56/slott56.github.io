@@ -2,7 +2,7 @@ Python as Configuration Language -- More Good Ideas
 ===================================================
 
 :date: 2008-03-28 21:27
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python
 :slug: 2008_03_28-python_as_configuration_language_more_good_ideas
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ The Users Just Want "Search" -- What's So Hard?
 ===============================================
 
 :date: 2010-06-09 08:00
-:tags: dimensional data,design
+:tags: dimensional data,database design
 :slug: 2010_06_09-the_users_just_want_search_whats_so_hard
 :category: Technologies
 :status: published

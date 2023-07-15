@@ -2,7 +2,7 @@ My Favorite Appliance
 =====================
 
 :date: 2008-12-18 00:47
-:tags: architecture,design,complexity
+:tags: architecture,software design,hardware
 :slug: 2008_12_18-my_favorite_appliance
 :category: Architecture & Design
 :status: published

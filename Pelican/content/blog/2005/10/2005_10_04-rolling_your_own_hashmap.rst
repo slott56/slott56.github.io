@@ -2,7 +2,7 @@ Rolling Your Own HashMap
 ========================
 
 :date: 2005-10-04 10:22
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_10_04-rolling_your_own_hashmap
 :category: Architecture & Design
 :status: published

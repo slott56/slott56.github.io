@@ -2,7 +2,7 @@ Abuses of Use Cases - a Failure Taxonomy
 ========================================
 
 :date: 2008-04-15 01:27
-:tags: architecture,design
+:tags: architecture,software design,requirements
 :slug: 2008_04_15-abuses_of_use_cases_a_failure_taxonomy
 :category: Architecture & Design
 :status: published

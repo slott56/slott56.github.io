@@ -2,7 +2,7 @@ Problems, problems, problems
 ============================
 
 :date: 2007-08-08 19:39
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2007_08_08-problems_problems_problems
 :category: Architecture & Design
 :status: published
@@ -13,7 +13,7 @@ Problems, problems, problems
 
 
 
-Centuries ago -- it seems -- Jim Coplien facilitated a session for us at `CiliPLoP <http://hillside.net/chiliplop/>`_ .  Eventually, I figured out that patterns are a solution to a problem in a context which resolves various alternative forces, and has some understood consequences.  Context - Problem - Forces - Solution - Consequences.
+Centuries ago -- it seems -- Jim Coplien facilitated a session for us at `ChiliPLoP <http://hillside.net/chiliplop/>`_ .  Eventually, I figured out that patterns are a solution to a problem in a context which resolves various alternative forces, and has some understood consequences.  Context - Problem - Forces - Solution - Consequences.
 
 
 

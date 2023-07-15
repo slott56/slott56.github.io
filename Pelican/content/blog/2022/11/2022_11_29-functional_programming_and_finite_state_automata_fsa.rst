@@ -2,7 +2,7 @@ Functional Programming and Finite State Automata (FSA)
 ======================================================
 
 :date: 2022-11-29 11:00
-:tags: functional python programming,design,#python
+:tags: functional python programming,software design,#python
 :slug: 2022_11_29-functional_programming_and_finite_state_automata_fsa
 :category: Technologies
 :status: published

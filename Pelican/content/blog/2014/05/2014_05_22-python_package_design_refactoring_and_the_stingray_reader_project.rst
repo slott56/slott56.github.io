@@ -2,7 +2,7 @@ Python Package Design, Refactoring and the Stingray Reader Project
 ==================================================================
 
 :date: 2014-05-22 08:00
-:tags: #python,OO design,architecture,stingray reader,refactoring,mastering object-oriented python
+:tags: #python,object-oriented design,architecture,stingray reader,refactoring,mastering object-oriented python
 :slug: 2014_05_22-python_package_design_refactoring_and_the_stingray_reader_project
 :category: Technologies
 :status: published

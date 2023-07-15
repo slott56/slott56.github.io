@@ -2,7 +2,7 @@ Obstinate Idiocy, Expanded
 ==========================
 
 :date: 2022-11-22 17:15
-:tags: software process improvement,design,analysis,spreadsheet
+:tags: software process improvement,software design,analysis,spreadsheet
 :slug: 2022_11_22-obstinate_idiocy_expanded
 :category: Technologies
 :status: published

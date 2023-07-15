@@ -2,7 +2,7 @@ Hypothetical Designs and Numerosity
 ===================================
 
 :date: 2011-01-04 07:22
-:tags: numerosity,architecture,OO design
+:tags: numerosity,architecture,object-oriented design
 :slug: 2011_01_04-hypothetical_designs_and_numerosity
 :category: Technologies
 :status: published

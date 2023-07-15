@@ -2,7 +2,7 @@ Essay 13 - Analysis Without Running Aground
 ===========================================
 
 :date: 2005-09-17 11:27
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_17-essay_13_analysis_without_running_aground
 :category: Architecture & Design
 :status: published

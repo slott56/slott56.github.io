@@ -2,7 +2,7 @@ Object Modeling (Revised)
 =========================
 
 :date: 2005-10-16 18:16
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2005_10_16-object_modeling_revised
 :category: Architecture & Design
 :status: published

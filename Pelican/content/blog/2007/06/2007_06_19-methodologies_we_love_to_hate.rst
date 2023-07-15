@@ -2,7 +2,7 @@ Methodologies we love to hate.
 ==============================
 
 :date: 2007-06-19 23:19
-:tags: architecture,design,complexity
+:tags: architecture,softeware design,complexity
 :slug: 2007_06_19-methodologies_we_love_to_hate
 :category: Architecture & Design
 :status: published
@@ -38,7 +38,7 @@ ADD (Asshole-Driven Development) for example, tackles everything head-on.  If yo
 
 
 
-CDD (Cognitive Dissonance Drive Development) is a way of encouraging a quantity of ideas in lieu of any high quality ideas.
+CDD (Cognitive Dissonance Driven Development) is a way of encouraging a quantity of ideas in lieu of any high quality ideas.
 
 
 

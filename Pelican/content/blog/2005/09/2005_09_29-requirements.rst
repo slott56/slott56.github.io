@@ -2,7 +2,7 @@ Requirements
 ============
 
 :date: 2005-09-29 10:39
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile,requirements
 :slug: 2005_09_29-requirements
 :category: Architecture & Design
 :status: published

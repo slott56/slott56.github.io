@@ -2,7 +2,7 @@ Multithreading -- Fear, Uncertainty and Doubt
 =============================================
 
 :date: 2011-06-07 14:10
-:tags: multithreaded,design,code-kata,queue
+:tags: threads,software design,code-kata,queue
 :slug: 2011_06_07-multithreading_fear_uncertainty_and_doubt
 :category: Technologies
 :status: published

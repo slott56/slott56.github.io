@@ -2,7 +2,7 @@ Essay 14 - Mutability Analysis
 ==============================
 
 :date: 2005-09-18 16:24
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_18-essay_14_mutability_analysis
 :category: Architecture & Design
 :status: published

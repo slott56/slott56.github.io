@@ -2,7 +2,7 @@ Python as Config Language -- Forget XML and INI files
 =====================================================
 
 :date: 2008-01-12 01:54
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python
 :slug: 2008_01_12-python_as_config_language_forget_xml_and_ini_files
 :category: Architecture & Design
 :status: published

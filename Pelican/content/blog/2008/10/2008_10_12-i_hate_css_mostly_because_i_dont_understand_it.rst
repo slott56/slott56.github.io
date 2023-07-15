@@ -2,7 +2,7 @@ I hate CSS -- mostly because I don't understand it
 ==================================================
 
 :date: 2008-10-12 12:27
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2008_10_12-i_hate_css_mostly_because_i_dont_understand_it
 :category: Architecture & Design
 :status: published

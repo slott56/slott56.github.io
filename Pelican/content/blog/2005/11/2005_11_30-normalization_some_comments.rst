@@ -2,7 +2,7 @@ Normalization - Some Comments
 =============================
 
 :date: 2005-11-30 16:53
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_11_30-normalization_some_comments
 :category: Architecture & Design
 :status: published

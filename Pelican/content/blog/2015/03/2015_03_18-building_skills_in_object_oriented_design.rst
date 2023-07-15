@@ -2,7 +2,7 @@ Building Skills in Object-Oriented Design
 =========================================
 
 :date: 2015-03-18 07:25
-:tags: packtpub,building skills books,OO design
+:tags: packtpub,building skills books,object-oriented design
 :slug: 2015_03_18-building_skills_in_object_oriented_design
 :category: Technologies
 :status: published

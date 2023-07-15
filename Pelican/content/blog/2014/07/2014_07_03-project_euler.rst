@@ -2,7 +2,7 @@ Project Euler
 =============
 
 :date: 2014-07-03 08:00
-:tags: #python,design,algorithm,project euler
+:tags: #python,algorithm,project euler
 :slug: 2014_07_03-project_euler
 :category: Technologies
 :status: published

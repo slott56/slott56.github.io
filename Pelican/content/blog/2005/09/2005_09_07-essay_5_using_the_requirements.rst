@@ -2,7 +2,7 @@ Essay 5 - Using the Requirements
 ================================
 
 :date: 2005-09-07 10:10
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_07-essay_5_using_the_requirements
 :category: Architecture & Design
 :status: published

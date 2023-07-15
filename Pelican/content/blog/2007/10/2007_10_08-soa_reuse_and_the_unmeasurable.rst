@@ -2,7 +2,7 @@ SOA, Reuse and The Unmeasurable
 ===============================
 
 :date: 2007-10-08 17:37
-:tags: architecture,design,complexity
+:tags: architecture,softare design,complexity,SOA,numerosity
 :slug: 2007_10_08-soa_reuse_and_the_unmeasurable
 :category: Architecture & Design
 :status: published

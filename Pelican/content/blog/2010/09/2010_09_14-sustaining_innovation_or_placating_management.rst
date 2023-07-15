@@ -2,7 +2,7 @@ Sustaining Innovation or Placating Management
 =============================================
 
 :date: 2010-09-14 08:00
-:tags:
+:tags: innovation,management
 :slug: 2010_09_14-sustaining_innovation_or_placating_management
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Business Analysis vs. Architecture
 ==================================
 
 :date: 2007-04-03 17:41
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2007_04_03-business_analysis_vs_architecture
 :category: Architecture & Design
 :status: published

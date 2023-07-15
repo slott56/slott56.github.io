@@ -2,7 +2,7 @@ My Peers Don't Get PL/SQL, What Can I Do?
 =========================================
 
 :date: 2008-05-30 00:29
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,pl/sql
 :slug: 2008_05_30-my_peers_dont_get_plsql_what_can_i_do
 :category: Architecture & Design
 :status: published

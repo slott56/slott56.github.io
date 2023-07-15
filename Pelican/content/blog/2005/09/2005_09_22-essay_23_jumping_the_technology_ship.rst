@@ -2,7 +2,7 @@ Essay 23 - Jumping the Technology Ship
 ======================================
 
 :date: 2005-09-22 20:42
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_22-essay_23_jumping_the_technology_ship
 :category: Architecture & Design
 :status: published

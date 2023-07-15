@@ -2,7 +2,7 @@ Object Models and Relational Joins -- Endless Confusion
 =======================================================
 
 :date: 2009-07-31 07:32
-:tags: Django,#python,OO design,design,SQL,ORM
+:tags: Django,#python,object-oriented design,SQL,ORM
 :slug: 2009_07_31-object_models_and_relational_joins_endless_confusion
 :category: Technologies
 :status: published

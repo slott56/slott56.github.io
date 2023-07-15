@@ -2,7 +2,7 @@ Too Much of the Wrong Kind of Fun or The Object Model To The Rescue
 ===================================================================
 
 :date: 2007-12-03 03:04
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,object-oriented design,data structure,algorithm
 :slug: 2007_12_03-too_much_of_the_wrong_kind_of_fun_or_the_object_model_to_the_rescue
 :category: Architecture & Design
 :status: published

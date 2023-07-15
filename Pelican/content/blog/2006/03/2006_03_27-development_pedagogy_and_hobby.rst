@@ -2,7 +2,7 @@ Development, Pedagogy and Hobby
 ===============================
 
 :date: 2006-03-27 15:35
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_03_27-development_pedagogy_and_hobby
 :category: Architecture & Design
 :status: published

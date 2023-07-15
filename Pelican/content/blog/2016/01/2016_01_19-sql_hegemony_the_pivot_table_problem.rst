@@ -2,7 +2,7 @@ SQL Hegemony -- the "Pivot Table" problem
 =========================================
 
 :date: 2016-01-19 08:00
-:tags: #python,design,SQL
+:tags: #python,database design,SQL
 :slug: 2016_01_19-sql_hegemony_the_pivot_table_problem
 :category: Technologies
 :status: published

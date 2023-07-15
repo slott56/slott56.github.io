@@ -4,7 +4,7 @@ An Implementation of Annotated Types
 :date: 2023-07-11 09:00
 :tags: patterns,python,type-hints
 :slug: 2023-07-11-an_implementation_of_annotated_types
-:category: Technologies
+:category: Python
 :status: published
 
 The ``typing`` module includes the mysterious-looking ``Annotated`` type hint.

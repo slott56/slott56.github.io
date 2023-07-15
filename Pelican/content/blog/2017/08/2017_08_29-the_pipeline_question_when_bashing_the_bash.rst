@@ -2,7 +2,7 @@ The Pipeline Question when Bashing the Bash
 ===========================================
 
 :date: 2017-08-29 08:00
-:tags: #python,architecture,bash,design
+:tags: #python,architecture,bash,software design
 :slug: 2017_08_29-the_pipeline_question_when_bashing_the_bash
 :category: Technologies
 :status: published

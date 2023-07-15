@@ -2,7 +2,7 @@ BOSSIE Awards
 =============
 
 :date: 2011-09-13 08:06
-:tags:
+:tags: management,python
 :slug: 2011_09_13-bossie_awards
 :category: Technologies
 :status: published

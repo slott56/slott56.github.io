@@ -2,7 +2,7 @@ Database Schema Migration
 =========================
 
 :date: 2016-09-27 08:00
-:tags: data migration,design,database administration,schema migration
+:tags: data migration,database design,database administration,schema migration
 :slug: 2016_09_27-database_schema_migration
 :category: Technologies
 :status: published

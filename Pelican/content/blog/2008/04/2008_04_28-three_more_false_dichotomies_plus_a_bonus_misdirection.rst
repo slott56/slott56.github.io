@@ -2,7 +2,7 @@ Three More False Dichotomies -- Plus a Bonus Misdirection
 =========================================================
 
 :date: 2008-04-28 23:46
-:tags: architecture,design
+:tags: architecture,database design
 :slug: 2008_04_28-three_more_false_dichotomies_plus_a_bonus_misdirection
 :category: Architecture & Design
 :status: published

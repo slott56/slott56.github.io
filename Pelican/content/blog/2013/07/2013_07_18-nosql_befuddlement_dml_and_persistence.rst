@@ -2,7 +2,7 @@ NoSQL Befuddlement: DML and Persistence
 =======================================
 
 :date: 2013-07-18 08:00
-:tags: #python,persistence,architecture,noSQL,Apache,csv,RDBMS,SQL
+:tags: #python,data persistence,architecture,noSQL,Apache,csv,RDBMS,SQL
 :slug: 2013_07_18-nosql_befuddlement_dml_and_persistence
 :category: Technologies
 :status: published

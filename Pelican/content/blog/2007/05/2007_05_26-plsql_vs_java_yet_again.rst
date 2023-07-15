@@ -2,7 +2,7 @@ PL/SQL vs. Java - Yet Again
 ===========================
 
 :date: 2007-05-26 14:43
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,pl/sql,java
 :slug: 2007_05_26-plsql_vs_java_yet_again
 :category: Architecture & Design
 :status: published

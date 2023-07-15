@@ -2,7 +2,7 @@ The Passive-Aggressive Programmer, part II
 ==========================================
 
 :date: 2008-03-24 13:19
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2008_03_24-the_passive_aggressive_programmer_part_ii
 :category: Architecture & Design
 :status: published

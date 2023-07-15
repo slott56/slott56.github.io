@@ -2,7 +2,7 @@ couchdb on Mac OS X
 ===================
 
 :date: 2012-03-06 08:00
-:tags: xcode,mac os x,SQL,noSQL
+:tags: xcode,macosx,SQL,noSQL
 :slug: 2012_03_06-couchdb_on_mac_os_x
 :category: Technologies
 :status: published

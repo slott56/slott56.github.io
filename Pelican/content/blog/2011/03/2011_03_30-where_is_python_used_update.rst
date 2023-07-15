@@ -2,7 +2,7 @@ Where is Python Used? (Update)
 ==============================
 
 :date: 2011-03-30 14:25
-:tags: mac os x,#python
+:tags: macosx,#python
 :slug: 2011_03_30-where_is_python_used_update
 :category: Technologies
 :status: published

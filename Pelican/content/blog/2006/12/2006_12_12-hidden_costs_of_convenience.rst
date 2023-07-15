@@ -2,7 +2,7 @@ Hidden Costs of "Convenience"
 =============================
 
 :date: 2006-12-12 16:19
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_12_12-hidden_costs_of_convenience
 :category: Architecture & Design
 :status: published

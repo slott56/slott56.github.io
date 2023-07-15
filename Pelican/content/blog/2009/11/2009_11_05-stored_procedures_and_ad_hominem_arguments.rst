@@ -2,7 +2,7 @@ Stored Procedures and Ad Hominem Arguments
 ==========================================
 
 :date: 2009-11-05 21:07
-:tags: stored procedures,architecture,design,triggers
+:tags: stored procedures,architecture,database design,triggers
 :slug: 2009_11_05-stored_procedures_and_ad_hominem_arguments
 :category: Technologies
 :status: published

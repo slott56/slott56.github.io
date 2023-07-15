@@ -2,7 +2,7 @@ What Goes In the Database?  Besides Data, of Course.
 ====================================================
 
 :date: 2007-11-01 10:23
-:tags: architecture,design
+:tags: architecture,software design,database design
 :slug: 2007_11_01-what_goes_in_the_database_besides_data_of_course
 :category: Architecture & Design
 :status: published

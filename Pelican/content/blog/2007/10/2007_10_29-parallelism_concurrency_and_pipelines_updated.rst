@@ -2,7 +2,7 @@ Parallelism, Concurrency and Pipelines (Updated)
 ================================================
 
 :date: 2007-10-29 19:45
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,concurrency
 :slug: 2007_10_29-parallelism_concurrency_and_pipelines_updated
 :category: Architecture & Design
 :status: published

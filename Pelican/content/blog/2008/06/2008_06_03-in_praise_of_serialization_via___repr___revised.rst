@@ -2,7 +2,7 @@ In Praise of Serialization via __repr__ (Revised)
 =================================================
 
 :date: 2008-06-03 09:50
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python,html
 :slug: 2008_06_03-in_praise_of_serialization_via___repr___revised
 :category: Architecture & Design
 :status: published

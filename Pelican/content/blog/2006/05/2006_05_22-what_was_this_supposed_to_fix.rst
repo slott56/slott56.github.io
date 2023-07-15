@@ -2,7 +2,7 @@ What was this supposed to fix?
 ==============================
 
 :date: 2006-05-22 18:19
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management
 :slug: 2006_05_22-what_was_this_supposed_to_fix
 :category: Architecture & Design
 :status: published

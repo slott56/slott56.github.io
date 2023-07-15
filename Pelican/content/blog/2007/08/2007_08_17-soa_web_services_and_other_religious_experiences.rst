@@ -2,7 +2,7 @@ SOA, Web Services, and Other Religious Experiences
 ==================================================
 
 :date: 2007-08-17 21:53
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,SOA
 :slug: 2007_08_17-soa_web_services_and_other_religious_experiences
 :category: Architecture & Design
 :status: published

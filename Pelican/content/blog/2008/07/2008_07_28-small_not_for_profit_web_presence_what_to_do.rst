@@ -2,7 +2,7 @@ Small Not-For-Profit Web Presence -- What to do?
 ================================================
 
 :date: 2008-07-28 22:45
-:tags: architecture,design
+:tags: architecture,software design,not-for-profit
 :slug: 2008_07_28-small_not_for_profit_web_presence_what_to_do
 :category: Architecture & Design
 :status: published

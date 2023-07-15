@@ -2,7 +2,7 @@ Splitting Meta-Hairs
 ====================
 
 :date: 2010-01-21 09:01
-:tags: #python,interpreted,dynamic,scripted
+:tags: #python,interpreted,scripted
 :slug: 2010_01_21-splitting_meta_hairs
 :category: Technologies
 :status: published

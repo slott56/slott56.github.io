@@ -2,7 +2,7 @@ Why Are Things So Complicated? - 7 Deadly Reasons?
 ==================================================
 
 :date: 2005-09-03 14:27
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_09_03-why_are_things_so_complicated_7_deadly_reasons
 :category: Architecture & Design
 :status: published

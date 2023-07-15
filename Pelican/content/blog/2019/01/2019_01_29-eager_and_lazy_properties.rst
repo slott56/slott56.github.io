@@ -2,7 +2,7 @@ Eager and Lazy Properties
 =========================
 
 :date: 2019-01-29 21:30
-:tags: #python,OO design
+:tags: #python,object-oriented design
 :slug: 2019_01_29-eager_and_lazy_properties
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Tackling the Spreadsheet Problem
 ================================
 
 :date: 2008-04-27 12:50
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,spreadsheet
 :slug: 2008_04_27-tackling_the_spreadsheet_problem
 :category: Architecture & Design
 :status: published

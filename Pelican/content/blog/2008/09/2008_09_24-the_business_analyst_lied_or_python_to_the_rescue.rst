@@ -2,7 +2,7 @@
 =====================================================
 
 :date: 2008-09-24 12:28
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2008_09_24-the_business_analyst_lied_or_python_to_the_rescue
 :category: Architecture & Design
 :status: published

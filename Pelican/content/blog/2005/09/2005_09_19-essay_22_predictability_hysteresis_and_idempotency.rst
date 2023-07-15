@@ -2,7 +2,7 @@ Essay 22 - Predictability, Hysteresis and Idempotency
 =====================================================
 
 :date: 2005-09-19 23:50
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_19-essay_22_predictability_hysteresis_and_idempotency
 :category: Architecture & Design
 :status: published

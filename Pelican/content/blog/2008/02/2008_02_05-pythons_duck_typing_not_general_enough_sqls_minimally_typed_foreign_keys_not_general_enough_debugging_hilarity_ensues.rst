@@ -2,7 +2,7 @@ Python's Duck Typing Not General Enough; SQL's Minimally Typed Foreign Keys Not 
 ===========================================================================================================================
 
 :date: 2008-02-05 02:24
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,database design
 :slug: 2008_02_05-pythons_duck_typing_not_general_enough_sqls_minimally_typed_foreign_keys_not_general_enough_debugging_hilarity_ensues
 :category: Architecture & Design
 :status: published

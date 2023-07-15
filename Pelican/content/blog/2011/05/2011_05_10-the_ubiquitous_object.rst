@@ -2,7 +2,7 @@ The Ubiquitous Object
 =====================
 
 :date: 2011-05-10 08:00
-:tags: procedural programming,OO design
+:tags: procedural programming,object-oriented design
 :slug: 2011_05_10-the_ubiquitous_object
 :category: Technologies
 :status: published

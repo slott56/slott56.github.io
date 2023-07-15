@@ -2,7 +2,7 @@ FW: Eight Things Business Hates About IT
 ========================================
 
 :date: 2010-01-12 09:38
-:tags:
+:tags: management,innovation,agile
 :slug: 2010_01_12-fw_eight_things_business_hates_about_it
 :category: Technologies
 :status: published

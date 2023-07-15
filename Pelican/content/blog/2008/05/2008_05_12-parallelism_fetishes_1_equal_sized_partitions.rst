@@ -2,7 +2,7 @@ Parallelism Fetishes. #1: Equal-Sized Partitions
 ================================================
 
 :date: 2008-05-12 12:10
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,database design,data structure,algorithm,concurrency
 :slug: 2008_05_12-parallelism_fetishes_1_equal_sized_partitions
 :category: Architecture & Design
 :status: published

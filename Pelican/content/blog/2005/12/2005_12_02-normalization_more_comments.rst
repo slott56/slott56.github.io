@@ -2,7 +2,7 @@ Normalization - More Comments
 =============================
 
 :date: 2005-12-02 03:02
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_12_02-normalization_more_comments
 :category: Architecture & Design
 :status: published
@@ -11,7 +11,7 @@ Normalization - More Comments
 
 
 
-Fragmentation &amp; similar is sometimes a
+Fragmentation & similar is sometimes a
 storage problem in I/O generated, vs. the gross space consumed. This distinction
 didn't leap out at me.
 

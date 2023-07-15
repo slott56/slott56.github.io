@@ -2,7 +2,7 @@ The Big Plan For Change™ -- Since it never works, what's the alternative?
 =========================================================================
 
 :date: 2008-09-02 10:23
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management
 :slug: 2008_09_02-the_big_plan_for_changetm_since_it_never_works_whats_the_alternative
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Code Base Fragmentation -- Again
 ================================
 
 :date: 2010-12-14 08:00
-:tags: #python,Django,architecture,template
+:tags: #python,Django,architecture,text-template,jinja,mako
 :slug: 2010_12_14-code_base_fragmentation_again
 :category: Technologies
 :status: published

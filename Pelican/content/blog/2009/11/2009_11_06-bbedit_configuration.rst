@@ -2,7 +2,7 @@ BBEdit Configuration
 ====================
 
 :date: 2009-11-06 10:07
-:tags: mac os x,#python,bbedit
+:tags: macosx,#python,bbedit
 :slug: 2009_11_06-bbedit_configuration
 :category: Technologies
 :status: published

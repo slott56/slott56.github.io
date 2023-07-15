@@ -2,7 +2,7 @@ POPO and GOPS - Plain Old Python Objects and Good Old Python Syntax
 ===================================================================
 
 :date: 2008-04-01 10:01
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,xml,edi,x12
 :slug: 2008_04_01-popo_and_gops_plain_old_python_objects_and_good_old_python_syntax
 :category: Architecture & Design
 :status: published

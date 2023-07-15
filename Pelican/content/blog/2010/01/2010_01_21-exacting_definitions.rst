@@ -2,7 +2,7 @@ Exacting Definitions
 ====================
 
 :date: 2010-01-21 11:21
-:tags: #python,interpreted,dynamic,scripted
+:tags: #python,interpreted,scripted
 :slug: 2010_01_21-exacting_definitions
 :category: Technologies
 :status: published

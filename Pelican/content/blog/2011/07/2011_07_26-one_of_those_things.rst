@@ -2,7 +2,7 @@ One of Those Things
 ===================
 
 :date: 2011-07-26 08:00
-:tags: #python,template
+:tags: #python,text-template,string
 :slug: 2011_07_26-one_of_those_things
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Why Agile?  What's the Point?
 =============================
 
 :date: 2008-02-14 11:06
-:tags: architecture,design
+:tags: architecture,softare design,agile,management
 :slug: 2008_02_14-why_agile_whats_the_point
 :category: Architecture & Design
 :status: published

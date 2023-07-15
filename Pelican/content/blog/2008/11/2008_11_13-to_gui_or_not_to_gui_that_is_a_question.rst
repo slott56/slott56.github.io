@@ -2,7 +2,7 @@ To GUI or not to GUI, that is a question
 ========================================
 
 :date: 2008-11-13 11:25
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,GUI,UX
 :slug: 2008_11_13-to_gui_or_not_to_gui_that_is_a_question
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Faerie Dust™ - Part 2
 =====================
 
 :date: 2006-09-06 00:42
-:tags: architecture,design
+:tags: architecture,software design,Faerie Dust
 :slug: 2006_09_06-faerie_dusttm_part_2
 :category: Architecture & Design
 :status: published

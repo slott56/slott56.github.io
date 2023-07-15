@@ -2,7 +2,7 @@ Office 12 Interface
 ===================
 
 :date: 2005-10-15 02:06
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_10_15-office_12_interface
 :category: Architecture & Design
 :status: published

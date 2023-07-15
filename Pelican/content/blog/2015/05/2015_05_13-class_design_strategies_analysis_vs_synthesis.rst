@@ -2,7 +2,7 @@ Class Design Strategies -- analysis vs. synthesis
 =================================================
 
 :date: 2015-05-13 07:45
-:tags: #python,analysis,OO design
+:tags: #python,analysis,object-oriented design
 :slug: 2015_05_13-class_design_strategies_analysis_vs_synthesis
 :category: Technologies
 :status: published

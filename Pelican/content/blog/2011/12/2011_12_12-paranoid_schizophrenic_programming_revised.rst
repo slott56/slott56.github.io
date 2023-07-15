@@ -2,7 +2,7 @@ Paranoid Schizophrenic Programming (Revised)
 ============================================
 
 :date: 2011-12-12 14:31
-:tags: #python,architecture,OO design,defensive programming,assert statement
+:tags: #python,architecture,object-oriented design,defensive programming,assert statement
 :slug: 2011_12_12-paranoid_schizophrenic_programming_revised
 :category: Architecture & Design
 :status: published

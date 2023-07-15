@@ -2,7 +2,7 @@ Django Capacity Planning -- Reading the Meta Model
 ==================================================
 
 :date: 2009-10-16 14:34
-:tags: Django,design,capacity planning
+:tags: Django,database design,capacity planning
 :slug: 2009_10_16-django_capacity_planning_reading_the_meta_model
 :category: Technologies
 :status: published

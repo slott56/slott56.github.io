@@ -2,7 +2,7 @@ The Old Old Days -- ca. 1968
 ============================
 
 :date: 2021-12-28 08:00
-:tags: history
+:tags: history,learning,simulation,random numbers
 :slug: 2021_12_28-the_old_old_days_ca_1968
 :category: Technologies
 :status: published

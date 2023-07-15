@@ -2,7 +2,7 @@ The Universal Data Element Framework (UDEF)
 ===========================================
 
 :date: 2012-06-12 08:00
-:tags: #python,design
+:tags: #python,software design,UDEF
 :slug: 2012_06_12-the_universal_data_element_framework_udef
 :category: Technologies
 :status: published

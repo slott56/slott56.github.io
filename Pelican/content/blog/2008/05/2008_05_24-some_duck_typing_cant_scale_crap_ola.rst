@@ -2,7 +2,7 @@ Some "Duck Typing Can't Scale" crap-ola
 =======================================
 
 :date: 2008-05-24 11:05
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2008_05_24-some_duck_typing_cant_scale_crap_ola
 :category: Architecture & Design
 :status: published

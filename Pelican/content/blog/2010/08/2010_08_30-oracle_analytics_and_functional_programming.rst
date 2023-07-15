@@ -2,7 +2,7 @@ Oracle Analytics and Functional Programming
 ===========================================
 
 :date: 2010-08-30 07:28
-:tags: #python,design,functional programming
+:tags: #python,software design,functional programming,SQL
 :slug: 2010_08_30-oracle_analytics_and_functional_programming
 :category: Technologies
 :status: published

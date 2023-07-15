@@ -2,7 +2,7 @@ Notable Failure of Use Cases - Part 4
 =====================================
 
 :date: 2006-04-28 10:32
-:tags: architecture,design
+:tags: architecture,software design,requirements
 :slug: 2006_04_28-notable_failure_of_use_cases_part_4
 :category: Architecture & Design
 :status: published

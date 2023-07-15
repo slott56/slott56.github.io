@@ -2,7 +2,7 @@ Spreadsheet as Syntax
 =====================
 
 :date: 2007-01-25 16:11
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,spreadsheet
 :slug: 2007_01_25-spreadsheet_as_syntax
 :category: Architecture & Design
 :status: published

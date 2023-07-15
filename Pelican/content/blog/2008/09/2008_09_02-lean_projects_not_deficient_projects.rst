@@ -2,7 +2,7 @@ Lean Projects — Not Deficient Projects
 ======================================
 
 :date: 2008-09-02 19:59
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management,agile
 :slug: 2008_09_02-lean_projects_not_deficient_projects
 :category: Architecture & Design
 :status: published

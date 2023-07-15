@@ -2,7 +2,7 @@ Configuration File Scalability -- Who Knew? (Revised)
 =====================================================
 
 :date: 2008-01-26 23:12
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2008_01_26-configuration_file_scalability_who_knew_revised
 :category: Architecture & Design
 :status: published

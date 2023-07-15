@@ -2,7 +2,7 @@ Standard Software Defects - Java Edition
 ========================================
 
 :date: 2008-05-08 12:58
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,defects
 :slug: 2008_05_08-standard_software_defects_java_edition
 :category: Architecture & Design
 :status: published

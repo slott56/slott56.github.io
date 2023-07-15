@@ -2,7 +2,7 @@ IT Management's Love-Hate Relationship with Tools
 =================================================
 
 :date: 2007-04-28 13:04
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2007_04_28-it_managements_love_hate_relationship_with_tools
 :category: Architecture & Design
 :status: published

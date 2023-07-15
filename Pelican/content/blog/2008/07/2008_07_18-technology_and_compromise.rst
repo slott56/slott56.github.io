@@ -2,7 +2,7 @@ Technology and Compromise
 =========================
 
 :date: 2008-07-18 10:10
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2008_07_18-technology_and_compromise
 :category: Architecture & Design
 :status: published

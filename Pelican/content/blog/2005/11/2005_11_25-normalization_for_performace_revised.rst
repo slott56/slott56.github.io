@@ -2,7 +2,7 @@ Normalization for Performace (revised)
 ======================================
 
 :date: 2005-11-25 20:27
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_11_25-normalization_for_performace_revised
 :category: Architecture & Design
 :status: published

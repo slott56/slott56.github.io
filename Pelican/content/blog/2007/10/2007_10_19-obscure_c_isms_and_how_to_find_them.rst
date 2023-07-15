@@ -2,7 +2,7 @@ Obscure C-isms and How To Find Them
 ===================================
 
 :date: 2007-10-19 14:05
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2007_10_19-obscure_c_isms_and_how_to_find_them
 :category: Architecture & Design
 :status: published

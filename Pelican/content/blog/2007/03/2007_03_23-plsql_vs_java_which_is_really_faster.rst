@@ -2,7 +2,7 @@ PL/SQL vs. Java - Which is REALLY faster?
 =========================================
 
 :date: 2007-03-23 00:12
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,database design,data structure,algorithm
 :slug: 2007_03_23-plsql_vs_java_which_is_really_faster
 :category: Architecture & Design
 :status: published

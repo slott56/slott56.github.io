@@ -2,7 +2,7 @@ What's Central Here?
 ====================
 
 :date: 2008-07-12 15:25
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2008_07_12-whats_central_here
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Essay 12 - Don't Talk to Strangers
 ==================================
 
 :date: 2005-09-16 20:25
-:tags: architecture,design
+:tags: architecture,object-oriented design
 :slug: 2005_09_16-essay_12_dont_talk_to_strangers
 :category: Architecture & Design
 :status: published
@@ -11,7 +11,7 @@ Essay 12 - Don't Talk to Strangers
 
 
 
-There is a Design Pattern, somtimes called "Don't
+There is a Design Pattern, sometimes called "Don't
 Talk to Strangers" that embodies the OO design principle of "Responsibility
 Assignment".  This pattern can also be called "The Opacity
 Principle."

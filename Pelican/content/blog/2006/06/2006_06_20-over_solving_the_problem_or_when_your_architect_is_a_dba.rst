@@ -2,7 +2,7 @@ Over-Solving the Problem or When your architect is a DBA...
 ===========================================================
 
 :date: 2006-06-20 20:22
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_06_20-over_solving_the_problem_or_when_your_architect_is_a_dba
 :category: Architecture & Design
 :status: published

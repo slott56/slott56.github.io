@@ -2,7 +2,7 @@ Writing Tools
 =============
 
 :date: 2017-02-07 08:00
-:tags: RST,docutils,mmd,writing,epub,tools
+:tags: RST,docutils,writing,epub,tools
 :slug: 2017_02_07-writing_tools
 :category: Technologies
 :status: published

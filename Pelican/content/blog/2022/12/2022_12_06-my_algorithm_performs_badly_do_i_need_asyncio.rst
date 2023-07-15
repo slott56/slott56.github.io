@@ -2,7 +2,7 @@ My algorithm performs badly, do I need asyncio?
 ===============================================
 
 :date: 2022-12-06 11:00
-:tags: algorithm,design,analysis
+:tags: algorithm,software design,analysis,asyncio,concurrency
 :slug: 2022_12_06-my_algorithm_performs_badly_do_i_need_asyncio
 :category: Technologies
 :status: published

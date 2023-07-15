@@ -2,7 +2,7 @@ Proverbs and Bumper-Sticker Computer Science
 ============================================
 
 :date: 2015-04-21 08:00
-:tags: software process improvement,design,knowledge capture
+:tags: software process improvement,software design,knowledge capture
 :slug: 2015_04_21-proverbs_and_bumper_sticker_computer_science
 :category: Technologies
 :status: published

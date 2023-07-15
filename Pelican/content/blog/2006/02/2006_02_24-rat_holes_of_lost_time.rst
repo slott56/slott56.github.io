@@ -2,7 +2,7 @@ Rat-holes of Lost Time
 ======================
 
 :date: 2006-02-24 01:36
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,knowledge capture
 :slug: 2006_02_24-rat_holes_of_lost_time
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Almost a good idea
 ==================
 
 :date: 2013-07-25 13:44
-:tags: macintosh,data conversion,mac os x,#python
+:tags: data conversion,macosx,#python
 :slug: 2013_07_25-almost_a_good_idea
 :category: Technologies
 :status: published

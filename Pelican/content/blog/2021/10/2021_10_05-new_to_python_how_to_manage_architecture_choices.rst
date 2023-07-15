@@ -2,7 +2,7 @@ New to Python -- How to manage architecture choices
 ###################################################
 
 :date: 2021-10-05 10:00
-:tags: #python,architecture,community
+:tags: #python,architecture,community,management
 :slug: 2021_10_05-new_to_python_how_to_manage_architecture_choices
 :category: Technologies
 :status: published

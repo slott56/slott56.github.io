@@ -2,7 +2,7 @@ Tweet by Matt Harrison on Twitter
 =================================
 
 :date: 2022-07-25 15:24
-:tags:
+:tags: python
 :slug: 2022_07_25-tweet_by_matt_harrison_on_twitter
 :category: Technologies
 :status: draft

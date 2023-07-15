@@ -2,7 +2,7 @@ I Thought It Was Just Me
 ========================
 
 :date: 2008-01-05 14:52
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_01_05-i_thought_it_was_just_me
 :category: Architecture & Design
 :status: published

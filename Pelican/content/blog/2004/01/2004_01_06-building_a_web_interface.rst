@@ -2,7 +2,7 @@ Building a Web Interface
 ========================
 
 :date: 2004-01-06 11:01
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2004_01_06-building_a_web_interface
 :category: Architecture & Design
 :status: published

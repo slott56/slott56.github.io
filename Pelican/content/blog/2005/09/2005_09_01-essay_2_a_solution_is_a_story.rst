@@ -2,7 +2,7 @@ Essay 2 - A Solution Is A Story
 ===============================
 
 :date: 2005-09-01 22:43
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_01-essay_2_a_solution_is_a_story
 :category: Architecture & Design
 :status: published

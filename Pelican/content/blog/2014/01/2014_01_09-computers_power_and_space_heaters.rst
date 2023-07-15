@@ -2,7 +2,7 @@ Computers, Power and Space Heaters
 ==================================
 
 :date: 2014-01-09 08:00
-:tags:
+:tags: epic-fail,hardware
 :slug: 2014_01_09-computers_power_and_space_heaters
 :category: Technologies
 :status: published

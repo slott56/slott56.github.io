@@ -2,7 +2,7 @@ Quantum Time: Dates, Times, DateTimes and Timestamps (3rd ed.)
 ==============================================================
 
 :date: 2008-02-09 12:57
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2008_02_09-quantum_time_dates_times_datetimes_and_timestamps_3rd_ed
 :category: Architecture & Design
 :status: published

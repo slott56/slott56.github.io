@@ -2,7 +2,7 @@ Code Dojo and OO Design -- OO Design Dojo
 =========================================
 
 :date: 2009-08-14 14:58
-:tags: code-kata,OO design
+:tags: code-kata,object-oriented design
 :slug: 2009_08_14-code_dojo_and_oo_design_oo_design_dojo
 :category: Technologies
 :status: published

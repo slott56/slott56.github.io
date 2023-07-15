@@ -2,7 +2,7 @@ Python Business Rules Engine
 ============================
 
 :date: 2009-02-20 11:03
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,python
 :slug: 2009_02_20-python_business_rules_engine
 :category: Architecture & Design
 :status: published

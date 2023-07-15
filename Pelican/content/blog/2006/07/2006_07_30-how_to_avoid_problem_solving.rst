@@ -2,7 +2,7 @@ How to Avoid Problem-Solving
 ============================
 
 :date: 2006-07-30 13:41
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2006_07_30-how_to_avoid_problem_solving
 :category: Architecture & Design
 :status: published

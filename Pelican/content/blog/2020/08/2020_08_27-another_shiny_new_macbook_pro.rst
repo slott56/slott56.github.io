@@ -2,7 +2,7 @@ Another shiny new MacBook pro
 =============================
 
 :date: 2020-08-27 07:19
-:tags: arduino,mac os x,CircuitPlayground,macintosh,hardware
+:tags: arduino,macosx,CircuitPlayground,macintosh,hardware
 :slug: 2020_08_27-another_shiny_new_macbook_pro
 :category: Technologies
 :status: published

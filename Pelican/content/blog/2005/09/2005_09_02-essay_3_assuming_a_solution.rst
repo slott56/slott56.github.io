@@ -2,7 +2,7 @@ Essay 3 - Assuming a Solution
 =============================
 
 :date: 2005-09-02 22:56
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_02-essay_3_assuming_a_solution
 :category: Architecture & Design
 :status: published

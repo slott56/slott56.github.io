@@ -2,7 +2,7 @@ Good Design and Pragmatic Design
 ================================
 
 :date: 2005-09-28 10:46
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_28-good_design_and_pragmatic_design
 :category: Architecture & Design
 :status: published

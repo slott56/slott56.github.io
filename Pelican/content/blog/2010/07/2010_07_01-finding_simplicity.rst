@@ -2,7 +2,7 @@ Finding Simplicity
 ==================
 
 :date: 2010-07-01 08:00
-:tags: software process improvement,design,analysis
+:tags: software process improvement,software design,analysis
 :slug: 2010_07_01-finding_simplicity
 :category: Technologies
 :status: published

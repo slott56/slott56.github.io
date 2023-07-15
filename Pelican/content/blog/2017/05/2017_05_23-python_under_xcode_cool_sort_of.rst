@@ -2,7 +2,7 @@ Python under XCode?!? Cool. Sort of.
 ====================================
 
 :date: 2017-05-23 08:00
-:tags: mac os x,#python
+:tags: macosx,#python
 :slug: 2017_05_23-python_under_xcode_cool_sort_of
 :category: Technologies
 :status: published

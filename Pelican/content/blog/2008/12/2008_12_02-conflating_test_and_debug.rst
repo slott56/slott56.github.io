@@ -2,7 +2,7 @@ Conflating Test and Debug
 =========================
 
 :date: 2008-12-02 18:06
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_12_02-conflating_test_and_debug
 :category: Architecture & Design
 :status: published

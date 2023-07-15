@@ -2,7 +2,7 @@ It used to work... Now they've fixed it.
 ========================================
 
 :date: 2009-06-29 20:52
-:tags:
+:tags: macosx,apple,backups
 :slug: 2009_06_29-it_used_to_work_now_theyve_fixed_it
 :category: Technologies
 :status: published

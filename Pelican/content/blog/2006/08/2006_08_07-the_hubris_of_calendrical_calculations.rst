@@ -2,7 +2,7 @@ The Hubris of Calendrical Calculations
 ======================================
 
 :date: 2006-08-07 13:34
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2006_08_07-the_hubris_of_calendrical_calculations
 :category: Architecture & Design
 :status: published

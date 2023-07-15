@@ -2,7 +2,7 @@ Meeting The Customer's Expectation (Revised)
 ============================================
 
 :date: 2006-08-20 15:26
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_08_20-meeting_the_customers_expectation_revised
 :category: Architecture & Design
 :status: published

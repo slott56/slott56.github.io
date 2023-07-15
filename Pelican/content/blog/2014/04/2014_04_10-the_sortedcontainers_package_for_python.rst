@@ -2,7 +2,7 @@ The SortedContainers Package for Python
 =======================================
 
 :date: 2014-04-10 08:00
-:tags: performance,#python,OO design
+:tags: performance,#python,object-oriented design
 :slug: 2014_04_10-the_sortedcontainers_package_for_python
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Coping with a Spreadsheet Database
 ==================================
 
 :date: 2018-07-02 19:18
-:tags: #python,spreadsheet,design,stingray reader
+:tags: #python,spreadsheet,software design,stingray reader
 :slug: 2018_07_02-coping_with_a_spreadsheet_database
 :category: Technologies
 :status: published

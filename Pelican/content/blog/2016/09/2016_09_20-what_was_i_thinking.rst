@@ -2,7 +2,7 @@ What was I thinking?
 ====================
 
 :date: 2016-09-20 08:00
-:tags: #python,py-false,interpreted,Programming Languages,false,forth
+:tags: #python,py-false,interpreted,Programming Languages,forth
 :slug: 2016_09_20-what_was_i_thinking
 :category: Technologies
 :status: published

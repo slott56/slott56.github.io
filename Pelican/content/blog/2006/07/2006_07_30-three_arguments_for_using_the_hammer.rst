@@ -2,7 +2,7 @@ Three Arguments for Using the Hammer
 ====================================
 
 :date: 2006-07-30 16:42
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_07_30-three_arguments_for_using_the_hammer
 :category: Architecture & Design
 :status: published

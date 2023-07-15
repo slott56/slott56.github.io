@@ -2,7 +2,7 @@ Code Quality - Which Implementation is "Better"?
 ================================================
 
 :date: 2007-01-03 11:39
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management
 :slug: 2007_01_03-code_quality_which_implementation_is_better
 :category: Architecture & Design
 :status: published

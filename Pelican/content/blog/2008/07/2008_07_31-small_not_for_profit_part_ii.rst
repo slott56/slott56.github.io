@@ -2,7 +2,7 @@ Small Not-For-Profit, Part II
 =============================
 
 :date: 2008-07-31 10:13
-:tags: architecture,design
+:tags: architecture,software design,not-for-profit
 :slug: 2008_07_31-small_not_for_profit_part_ii
 :category: Architecture & Design
 :status: published

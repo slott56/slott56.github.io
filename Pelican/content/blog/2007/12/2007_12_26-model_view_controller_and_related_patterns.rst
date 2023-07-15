@@ -2,7 +2,7 @@ Model - View - Controller, and Related Patterns
 ===============================================
 
 :date: 2007-12-26 03:08
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI
 :slug: 2007_12_26-model_view_controller_and_related_patterns
 :category: Architecture & Design
 :status: published

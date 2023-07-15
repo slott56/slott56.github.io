@@ -2,7 +2,7 @@ Essay 11 - Management Trump Cards
 =================================
 
 :date: 2005-09-15 15:13
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2005_09_15-essay_11_management_trump_cards
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Code Base Fragmentation
 =======================
 
 :date: 2010-10-21 08:00
-:tags: triggers,design
+:tags: triggers,database design
 :slug: 2010_10_21-code_base_fragmentation
 :category: Technologies
 :status: published

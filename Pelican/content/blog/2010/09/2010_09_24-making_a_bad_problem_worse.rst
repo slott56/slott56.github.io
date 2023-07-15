@@ -2,7 +2,7 @@ Making a bad problem worse
 ==========================
 
 :date: 2010-09-24 08:14
-:tags: complexity,design
+:tags: complexity,software design,database design,SQL
 :slug: 2010_09_24-making_a_bad_problem_worse
 :category: Technologies
 :status: published

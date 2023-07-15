@@ -2,7 +2,7 @@ Building Skills in Object-Oriented Design
 =========================================
 
 :date: 2010-01-02 11:14
-:tags: #python,OO design,building skills books,java
+:tags: #python,object-oriented design,building skills books,java
 :slug: 2010_01_02-building_skills_in_object_oriented_design
 :category: Technologies
 :status: published

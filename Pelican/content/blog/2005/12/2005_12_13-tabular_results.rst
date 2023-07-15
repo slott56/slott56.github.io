@@ -2,7 +2,7 @@ Tabular Results
 ===============
 
 :date: 2005-12-13 11:43
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,database design
 :slug: 2005_12_13-tabular_results
 :category: Architecture & Design
 :status: published

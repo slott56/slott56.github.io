@@ -2,7 +2,7 @@ Deployment
 ==========
 
 :date: 2005-10-15 14:56
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2005_10_15-deployment
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Mastering Object-Oriented Python
 ================================
 
 :date: 2014-05-09 08:00
-:tags: #python,OO design,mastering object-oriented python
+:tags: #python,object-oriented design,mastering object-oriented python
 :slug: 2014_05_09-mastering_object_oriented_python
 :category: Technologies
 :status: published

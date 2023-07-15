@@ -3,7 +3,7 @@ Obstinate Idiocy [Updated]
 
 :date: 2013-06-06 07:00
 :modified: 2022-11-22 17:04
-:tags: #python,spreadsheet,design,software process improvement,analysis
+:tags: #python,spreadsheet,software design,software process improvement,analysis
 :slug: 2022_11_22-obstinate_idiocy_updated
 :category: Technologies
 :status: published

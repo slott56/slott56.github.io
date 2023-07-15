@@ -2,7 +2,7 @@ Two Python Config-File Design Patterns
 ======================================
 
 :date: 2008-01-19 13:23
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python,edi,x12
 :slug: 2008_01_19-two_python_config_file_design_patterns
 :category: Architecture & Design
 :status: published

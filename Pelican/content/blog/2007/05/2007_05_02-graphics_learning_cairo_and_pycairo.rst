@@ -2,7 +2,7 @@ Graphics Learning, Cairo and PyCairo
 ====================================
 
 :date: 2007-05-02 10:26
-:tags: architecture,design,UX,UI,GUI,TUI
+:tags: architecture,software design,UX,UI,GUI,TUI,pyGTK
 :slug: 2007_05_02-graphics_learning_cairo_and_pycairo
 :category: Architecture & Design
 :status: published

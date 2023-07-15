@@ -2,7 +2,7 @@ The Visitor Design Pattern and Python
 =====================================
 
 :date: 2014-03-13 08:00
-:tags: #python,design,OO design
+:tags: #python,object-oriented design
 :slug: 2014_03_13-the_visitor_design_pattern_and_python
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Mutability Analysis
 ===================
 
 :date: 2009-12-09 07:29
-:tags: OO design
+:tags: object-oriented design
 :slug: 2009_12_09-mutability_analysis
 :category: Technologies
 :status: published

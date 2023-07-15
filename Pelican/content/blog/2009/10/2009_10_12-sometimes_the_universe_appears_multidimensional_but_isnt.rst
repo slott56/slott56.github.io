@@ -2,7 +2,7 @@ Sometimes the universe appears multidimensional -- but isn't
 ============================================================
 
 :date: 2009-10-12 18:23
-:tags: star-schema,dimensional data,design
+:tags: star-schema,dimensional data,database design
 :slug: 2009_10_12-sometimes_the_universe_appears_multidimensional_but_isnt
 :category: Technologies
 :status: published

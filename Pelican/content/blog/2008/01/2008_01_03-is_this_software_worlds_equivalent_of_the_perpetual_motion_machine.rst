@@ -2,7 +2,7 @@ Is This Software World's Equivalent of The Perpetual Motion Machine?
 ====================================================================
 
 :date: 2008-01-03 11:01
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2008_01_03-is_this_software_worlds_equivalent_of_the_perpetual_motion_machine
 :category: Architecture & Design
 :status: published

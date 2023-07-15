@@ -2,7 +2,7 @@ On Algorithm Design
 ####################
 
 :date: 2022-12-13 11:00
-:tags: algorithm,design,Design Principles
+:tags: algorithm,software design,Design Principles,asycnio,faerie dust
 :slug: 2022_12_13-on_algorithm_design
 :category: Technologies
 :status: published
@@ -46,6 +46,7 @@ Here are two symptoms.
    the essential problem. There's a (large) number of details that don't
    really explain what the hierarchy means or why it has to be
    preserved. but somehow make it essential.
+
 #. The problem can only be described by repeating the legacy algorithm.
 
 Let's dwell on this second symptom for a moment. We have two competing
@@ -81,6 +82,7 @@ This would be dramatically better. From seconds to milliseconds. You know, 1,000
 There's a disciplined approach to this. Here are the steps.
 
 #. Write the post-condition for the processing as a whole.
+
 #. Write code that achieves the post-condition. (This may involve
    decomposing the big problem into sub-problems, each of which is
    approached by the same two-step process.)

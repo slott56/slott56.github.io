@@ -2,7 +2,7 @@ State-Based Object Modeling
 ===========================
 
 :date: 2007-06-25 13:29
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,object-oriented design,methodology,process,agile
 :slug: 2007_06_25-state_based_object_modeling
 :category: Architecture & Design
 :status: published

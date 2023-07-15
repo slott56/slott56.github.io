@@ -2,7 +2,7 @@ Is it really test *driven*  reverse engineering?
 ================================================
 
 :date: 2007-10-21 21:28
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2007_10_21-is_it_really_test_driven_reverse_engineering
 :category: Architecture & Design
 :status: published

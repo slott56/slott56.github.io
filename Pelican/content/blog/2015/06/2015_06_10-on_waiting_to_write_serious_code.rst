@@ -2,7 +2,7 @@ On Waiting to Write "Serious Code"
 ==================================
 
 :date: 2015-06-10 07:40
-:tags: OO design,design,tools,software process improvement
+:tags: object-oriented design,tools,software process improvement
 :slug: 2015_06_10-on_waiting_to_write_serious_code
 :category: Technologies
 :status: published

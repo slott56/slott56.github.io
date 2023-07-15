@@ -2,7 +2,7 @@ Essay 17 - Solution or Workaround?
 ==================================
 
 :date: 2005-09-22 17:29
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_22-essay_17_solution_or_workaround
 :category: Architecture & Design
 :status: published

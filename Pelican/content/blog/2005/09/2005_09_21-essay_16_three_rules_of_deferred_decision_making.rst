@@ -2,7 +2,7 @@ Essay 16 - Three Rules of Deferred Decision-Making
 ==================================================
 
 :date: 2005-09-21 10:10
-:tags: architecture,design
+:tags: architecture,software design,management
 :slug: 2005_09_21-essay_16_three_rules_of_deferred_decision_making
 :category: Architecture & Design
 :status: published

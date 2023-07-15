@@ -2,7 +2,7 @@ Misunderstanding OO Programming
 ===============================
 
 :date: 2018-05-01 08:00
-:tags: OO design,#python,OO language
+:tags: object-oriented design,#python,object-oriented language
 :slug: 2018_05_01-misunderstanding_oo_programming
 :category: Technologies
 :status: published

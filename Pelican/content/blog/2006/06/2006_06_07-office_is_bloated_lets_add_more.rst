@@ -2,7 +2,7 @@ Office is Bloated, Let's Add More
 =================================
 
 :date: 2006-06-07 15:39
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,microsoft
 :slug: 2006_06_07-office_is_bloated_lets_add_more
 :category: Architecture & Design
 :status: published

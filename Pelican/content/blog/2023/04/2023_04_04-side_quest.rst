@@ -2,7 +2,7 @@ Side Quest
 ###################
 
 :date: 2023-04-04 08:00
-:tags: architecture,design,writing,workflow
+:tags: architecture,software design,writing,workflow
 :slug: 2023_04_04-side_quest
 :category: Technologies
 :status: published

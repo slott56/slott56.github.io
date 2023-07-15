@@ -2,7 +2,7 @@ Calendar Calculations - Part 2
 ==============================
 
 :date: 2006-08-20 01:26
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,requirements
 :slug: 2006_08_20-calendar_calculations_part_2
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Python Enhancement Proposal -- Floating an Idea
 ===============================================
 
 :date: 2019-02-05 08:00
-:tags: #python,OO design,complexity,Design Principles,PEP
+:tags: #python,object-oriented design,complexity,Design Principles,PEP
 :slug: 2019_02_05-python_enhancement_proposal_floating_an_idea
 :category: Architecture & Design
 :status: published

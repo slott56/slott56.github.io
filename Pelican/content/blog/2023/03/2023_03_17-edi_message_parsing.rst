@@ -2,7 +2,7 @@ EDI Message Parsing
 ###################
 
 :date: 2023-03-17 08:00
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,edi,x12
 :slug: 2023_03_17-edi_message_parsing
 :category: Technologies
 :status: published

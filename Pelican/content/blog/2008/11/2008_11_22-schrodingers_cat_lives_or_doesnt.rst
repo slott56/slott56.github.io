@@ -2,7 +2,7 @@ Schrodinger's cat lives! Or doesn't!
 ====================================
 
 :date: 2008-11-22 23:27
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python
 :slug: 2008_11_22-schrodingers_cat_lives_or_doesnt
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Performance Discussions and Software Design
 ===========================================
 
 :date: 2011-04-05 08:00
-:tags: algorithm,API Design,OO design,stackoverflow
+:tags: algorithm,API Design,object-oriented design,stackoverflow
 :slug: 2011_04_05-performance_discussions_and_software_design
 :category: Architecture & Design
 :status: published

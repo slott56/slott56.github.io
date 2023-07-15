@@ -2,7 +2,7 @@ Consequences of Reverse Engineering
 ===================================
 
 :date: 2008-03-13 23:43
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_03_13-consequences_of_reverse_engineering
 :category: Architecture & Design
 :status: published

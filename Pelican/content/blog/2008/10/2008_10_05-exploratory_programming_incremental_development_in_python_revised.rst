@@ -2,7 +2,7 @@ Exploratory Programming -- Incremental Development in Python (Revised)
 ======================================================================
 
 :date: 2008-10-05 23:16
-:tags: architecture,design
+:tags: architecture,software design,python
 :slug: 2008_10_05-exploratory_programming_incremental_development_in_python_revised
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Audio Synth [Updated]
 =====================
 
 :date: 2015-08-30 09:32
-:tags: mac os x,#python,pyaudio
+:tags: macosx,#python,pyaudio
 :slug: 2015_08_30-audio_synth_updated
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Rolling Your Own Hashmap (performance)
 ======================================
 
 :date: 2005-10-25 14:19
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2005_10_25-rolling_your_own_hashmap_performance
 :category: Architecture & Design
 :status: published

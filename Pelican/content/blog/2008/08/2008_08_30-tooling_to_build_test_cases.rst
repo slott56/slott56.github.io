@@ -2,7 +2,7 @@ Tooling to Build Test Cases
 ===========================
 
 :date: 2008-08-30 13:11
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2008_08_30-tooling_to_build_test_cases
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ The Passive-Aggressive Programmer or Why Nothing Gets Done (Revised)
 ====================================================================
 
 :date: 2007-11-29 11:00
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2007_11_29-the_passive_aggressive_programmer_or_why_nothing_gets_done_revised
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Not Quite Following the Book
 ============================
 
 :date: 2007-12-07 21:23
-:tags: architecture,design,unit testing,tdre
+:tags: architecture,software design,unit testing,test-driven reverse engineering
 :slug: 2007_12_07-not_quite_following_the_book
 :category: Architecture & Design
 :status: published
@@ -13,7 +13,7 @@ Not Quite Following the Book
 
 
 
-I can't find all of the Better Software Magazine articles on the `Sticky Minds <http://www.stickyminds.com>`_  web site, so I can't provide a permalink.  But look for "A Story About User Stories and Test Driven Development".  It's good stuff, weighing out the good and bad features of "by-the-book" TDD.
+I can't find all of the **Better Software Magazine** articles on the `Sticky Minds <http://www.stickyminds.com>`_  web site, so I can't provide a permalink.  But look for "A Story About User Stories and Test Driven Development".  It's good stuff, weighing out the good and bad features of "by-the-book" TDD.
 
 
 

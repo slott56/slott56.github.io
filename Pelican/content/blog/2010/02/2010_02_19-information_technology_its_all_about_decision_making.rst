@@ -2,7 +2,7 @@ Information Technology -- It's all about Decision-Making
 ========================================================
 
 :date: 2010-02-19 08:00
-:tags: dimensional data,design
+:tags: dimensional data,database design
 :slug: 2010_02_19-information_technology_its_all_about_decision_making
 :category: Technologies
 :status: published

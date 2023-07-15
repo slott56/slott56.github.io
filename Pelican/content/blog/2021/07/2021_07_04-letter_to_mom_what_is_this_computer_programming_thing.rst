@@ -2,7 +2,7 @@ Letter to Mom -- What Is This "Computer Programming" Thing?
 ===========================================================
 
 :date: 2021-07-04 14:31
-:tags: architecture,C4model,Programming Languages,API Design,operating systems
+:tags: architecture,C4model,Programming Languages,API Design,os
 :slug: 2021_07_04-letter_to_mom_what_is_this_computer_programming_thing
 :category: Technologies
 :status: published

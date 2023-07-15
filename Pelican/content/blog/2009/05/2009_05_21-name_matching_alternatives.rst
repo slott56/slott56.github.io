@@ -2,7 +2,7 @@ Name Matching Alternatives
 ==========================
 
 :date: 2009-05-21 17:05
-:tags: metaphone,soundex,regular expressions,design,SQL,like
+:tags: metaphone,soundex,regular expressions,software design,SQL
 :slug: 2009_05_21-name_matching_alternatives
 :category: Technologies
 :status: published

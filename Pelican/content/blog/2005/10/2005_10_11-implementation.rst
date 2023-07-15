@@ -2,7 +2,7 @@ Implementation
 ==============
 
 :date: 2005-10-11 11:02
-:tags: architecture,design,methodology,process,agile
+:tags: architecture,software design,methodology,agile
 :slug: 2005_10_11-implementation
 :category: Architecture & Design
 :status: published

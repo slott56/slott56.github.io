@@ -2,7 +2,7 @@ Complexity and Simplicity
 =========================
 
 :date: 2010-07-12 21:45
-:tags: #python,WebServices,design
+:tags: #python,Web Services,software design
 :slug: 2010_07_12-complexity_and_simplicity
 :category: Technologies
 :status: published

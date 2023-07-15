@@ -2,7 +2,7 @@ Numerology
 ==========
 
 :date: 2005-10-27 13:58
-:tags: architecture,design
+:tags: architecture,software design,numerosity
 :slug: 2005_10_27-numerology
 :category: Architecture & Design
 :status: published

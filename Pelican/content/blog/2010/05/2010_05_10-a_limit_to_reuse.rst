@@ -2,7 +2,7 @@ A Limit to Reuse
 ================
 
 :date: 2010-05-10 08:00
-:tags: #python,dimensional data,design,refactoring
+:tags: #python,dimensional data,database design,refactoring
 :slug: 2010_05_10-a_limit_to_reuse
 :category: Technologies
 :status: published

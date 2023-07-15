@@ -2,7 +2,7 @@ The Technology Obsession
 ========================
 
 :date: 2008-08-16 01:11
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,management
 :slug: 2008_08_16-the_technology_obsession
 :category: Architecture & Design
 :status: published

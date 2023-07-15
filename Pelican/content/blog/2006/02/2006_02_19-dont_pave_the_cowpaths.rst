@@ -2,7 +2,7 @@ Don't Pave the Cowpaths
 =======================
 
 :date: 2006-02-19 21:33
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2006_02_19-dont_pave_the_cowpaths
 :category: Architecture & Design
 :status: published

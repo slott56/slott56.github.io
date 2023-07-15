@@ -2,7 +2,7 @@ PL/SQL and Java - The Benchmark Challenge (revised)
 ===================================================
 
 :date: 2007-05-27 13:07
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,pl/sql,java
 :slug: 2007_05_27-plsql_and_java_the_benchmark_challenge_revised
 :category: Architecture & Design
 :status: published

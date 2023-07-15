@@ -2,7 +2,7 @@ PyCon Presentation
 ==================
 
 :date: 2006-12-02 14:36
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software,data structure,algorithm,pycon
 :slug: 2006_12_02-pycon_presentation
 :category: Architecture & Design
 :status: published

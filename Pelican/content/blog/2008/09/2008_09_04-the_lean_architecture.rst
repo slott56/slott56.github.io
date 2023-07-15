@@ -2,7 +2,7 @@ The Lean Architecture
 =====================
 
 :date: 2008-09-04 10:15
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,database design
 :slug: 2008_09_04-the_lean_architecture
 :category: Architecture & Design
 :status: published

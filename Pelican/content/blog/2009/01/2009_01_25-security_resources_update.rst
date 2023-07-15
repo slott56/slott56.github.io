@@ -2,7 +2,7 @@ Security Resources [Update]
 ===========================
 
 :date: 2009-01-25 01:52
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,OWASP
 :slug: 2009_01_25-security_resources_update
 :category: Architecture & Design
 :status: published

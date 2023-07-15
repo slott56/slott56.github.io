@@ -2,7 +2,7 @@ On Pre-built Binaries for Python Packages
 =========================================
 
 :date: 2015-06-02 08:00
-:tags: mac os x,#python,windows,linux
+:tags: macosx,#python,windows,linux
 :slug: 2015_06_02-on_pre_built_binaries_for_python_packages
 :category: Technologies
 :status: published

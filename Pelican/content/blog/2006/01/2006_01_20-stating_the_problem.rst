@@ -2,7 +2,7 @@ Stating the Problem
 ===================
 
 :date: 2006-01-20 12:01
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity,requirements
 :slug: 2006_01_20-stating_the_problem
 :category: Architecture & Design
 :status: published

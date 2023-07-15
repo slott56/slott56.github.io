@@ -2,7 +2,7 @@ Over-Solving or Solving Problems You Don't Have
 ===============================================
 
 :date: 2020-07-25 08:02
-:tags: #python,haversine,complexity,OO design,Design Principles,SOLID,navigation
+:tags: #python,haversine,complexity,object-oriented design,Design Principles,SOLID,navigation
 :slug: 2020_07_25-over_solving_or_solving_problems_you_dont_have
 :category: Architecture & Design
 :status: published

@@ -2,7 +2,7 @@ Wrestling with REST
 ===================
 
 :date: 2008-06-25 10:18
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,REST,SOA
 :slug: 2008_06_25-wrestling_with_rest
 :category: Architecture & Design
 :status: published

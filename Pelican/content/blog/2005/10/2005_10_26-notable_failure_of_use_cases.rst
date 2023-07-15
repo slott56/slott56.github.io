@@ -2,7 +2,7 @@ Notable Failure of Use Cases
 ============================
 
 :date: 2005-10-26 22:43
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_10_26-notable_failure_of_use_cases
 :category: Architecture & Design
 :status: published

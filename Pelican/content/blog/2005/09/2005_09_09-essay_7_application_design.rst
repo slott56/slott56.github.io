@@ -2,7 +2,7 @@ Essay 7 - Application Design
 ============================
 
 :date: 2005-09-09 15:27
-:tags: architecture,design
+:tags: architecture,software design
 :slug: 2005_09_09-essay_7_application_design
 :category: Architecture & Design
 :status: published

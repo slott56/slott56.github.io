@@ -2,7 +2,7 @@ CI/CD DevOps and Python
 =======================
 
 :date: 2017-11-14 08:00
-:tags: DevOps,#python,ci/cd
+:tags: DevOps,#python,continuous integration,continuous deployment
 :slug: 2017_11_14-cicd_devops_and_python
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Architectural Boundaries: Which Package/Module/Class Owns That Responsibility?
 ==============================================================================
 
 :date: 2021-06-22 09:19
-:tags: #python,OO design,Design Principles,SOLID
+:tags: #python,object-oriented design,Design Principles,SOLID
 :slug: 2021_06_22-architectural_boundaries_which_packagemoduleclass_owns_that_responsibility
 :category: Architecture & Design
 :status: published

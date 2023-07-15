@@ -2,7 +2,7 @@ Introduction to Programming: iBook Edition for Python 3.2
 =========================================================
 
 :date: 2013-09-24 08:00
-:tags: ebook,#python,ibooks,iTunes bookstore,building skills books
+:tags: ebook,#python,ibooks,building skills books
 :slug: 2013_09_24-introduction_to_programming_ibook_edition_for_python_32
 :category: Technologies
 :status: published

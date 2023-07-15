@@ -2,7 +2,7 @@ XML Parsing
 ===========
 
 :date: 2009-07-23 20:14
-:tags:
+:tags: python,xml,lxml
 :slug: 2009_07_23-xml_parsing
 :category: Technologies
 :status: published

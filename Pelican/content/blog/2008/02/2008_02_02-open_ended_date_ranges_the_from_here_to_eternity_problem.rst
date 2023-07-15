@@ -2,7 +2,7 @@ Open-Ended Date Ranges -- The "From Here to Eternity" Problem
 =============================================================
 
 :date: 2008-02-02 03:01
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm
 :slug: 2008_02_02-open_ended_date_ranges_the_from_here_to_eternity_problem
 :category: Architecture & Design
 :status: published

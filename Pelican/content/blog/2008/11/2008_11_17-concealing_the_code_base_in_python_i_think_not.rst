@@ -2,7 +2,7 @@ Concealing the code base -- in Python.  I think not.
 ====================================================
 
 :date: 2008-11-17 11:10
-:tags: architecture,design,complexity
+:tags: architecture,software design,complexity
 :slug: 2008_11_17-concealing_the_code_base_in_python_i_think_not
 :category: Architecture & Design
 :status: published

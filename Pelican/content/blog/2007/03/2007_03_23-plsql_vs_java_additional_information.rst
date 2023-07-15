@@ -2,7 +2,7 @@ PL/SQL vs. Java - Additional Information
 ========================================
 
 :date: 2007-03-23 15:21
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,database design,data structure,algorithm
 :slug: 2007_03_23-plsql_vs_java_additional_information
 :category: Architecture & Design
 :status: published

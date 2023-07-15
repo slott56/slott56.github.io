@@ -2,7 +2,7 @@ Configuration Files -- Again
 ============================
 
 :date: 2008-12-09 02:29
-:tags: architecture,design,data structure,algorithm
+:tags: architecture,software design,data structure,algorithm,python
 :slug: 2008_12_09-configuration_files_again
 :category: Architecture & Design
 :status: published

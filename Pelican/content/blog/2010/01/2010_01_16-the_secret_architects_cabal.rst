@@ -2,7 +2,7 @@ The Secret Architect's Cabal
 ============================
 
 :date: 2010-01-16 07:37
-:tags: OO design
+:tags: object-oriented design
 :slug: 2010_01_16-the_secret_architects_cabal
 :category: Technologies
 :status: published
