@@ -5,7 +5,7 @@ Literate Programming with PyWebLP
 :tags: python,literate programming,pyweb
 :slug: 2023-07-18-literate_programming_with_pyweblp
 :category: Python
-:status: draft
+:status: published
 
 See https://github.com/slott56/py-web-tool
 
