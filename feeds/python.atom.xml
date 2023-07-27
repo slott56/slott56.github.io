@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-07-18T09:00:00-04:00</updated><entry><title>Literate Programming with PyWebLP</title><link href="https://slott56.github.io/2023-07-18-literate_programming_with_pyweblp.html" rel="alternate"></link><published>2023-07-18T09:00:00-04:00</published><updated>2023-07-18T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-18:/2023-07-18-literate_programming_with_pyweblp.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-07-25T09:00:00-04:00</updated><entry><title>Two Problems with Python</title><link href="https://slott56.github.io/2023-07-25-two_problems_with_python.html" rel="alternate"></link><published>2023-07-25T09:00:00-04:00</published><updated>2023-07-25T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-25:/2023-07-25-two_problems_with_python.html</id><summary type="html">&lt;p&gt;I want to call out two huge problems with Python.
+I'm not the first to point these out, but they've been bothering me for a while.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#surprising-changes"&gt;Surprising Changes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#dependency-hell"&gt;Dependency Hell&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I've provided them here to save folks from repeating these.
+They're now officially &amp;quot;known&amp;quot; and there's no point in repeating …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I want to call out two huge problems with Python.
+I'm not the first to point these out, but they've been bothering me for a while.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#surprising-changes"&gt;Surprising Changes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#dependency-hell"&gt;Dependency Hell&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I've provided them here to save folks from repeating these.
+They're now officially &amp;quot;known&amp;quot; and there's no point in repeating this again.
+Write your blog posts about something else, please.&lt;/p&gt;
+&lt;div class="section" id="surprising-changes"&gt;
+&lt;h2&gt;Surprising Changes&lt;/h2&gt;
+&lt;p&gt;Every language and library has changes. That's part of normal innovation and
+evolution of the language.&lt;/p&gt;
+&lt;p&gt;Some changes, however, were not communicated to me, personnally, and are therefore
+suprising, which makes them bad. Really bad.&lt;/p&gt;
+&lt;p&gt;Let's focus on linter tools as an example. Here's the scenario.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;I have a code base. It's good. 100% compliant.&lt;/li&gt;
+&lt;li&gt;I ugprade the linter.&lt;/li&gt;
+&lt;li&gt;A new error is flagged. This was not an error before but &lt;strong&gt;somehow&lt;/strong&gt; (big eyeroll) it's an error now.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is a surprising change. No one told me.&lt;/p&gt;
+&lt;p&gt;The code &lt;em&gt;is&lt;/em&gt; sketchy. It could be seen as ambiguous. &lt;strong&gt;Even though it passes all the unit tests.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Someone else may have learned a lesson about sketchy code, and embodied that lesson in the linter.
+But they didn't tell me.&lt;/p&gt;
+&lt;p&gt;Python had a surprise change, and the mere presence of a surprise means one thing:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python is useless&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dependency-hell"&gt;
+&lt;h2&gt;Dependency Hell&lt;/h2&gt;
+&lt;p&gt;Every application has dependencies. That's part of building a language
+in a rich ecosystem with a lot of useful packages.&lt;/p&gt;
+&lt;p&gt;Some changes to these packages, while well-intentioned, can break a dependency with another package.
+Packages have inter-dependencies, which I find &lt;strong&gt;impossible&lt;/strong&gt; to manage.&lt;/p&gt;
+&lt;p&gt;Here's the scenario.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;I have a code base. It's good. 100% tests pass. Installs perfectly on all supported platforms.&lt;/li&gt;
+&lt;li&gt;Two packages, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;p==3.14&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;q==2.78&lt;/span&gt;&lt;/tt&gt; both depend on &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; version 1.1&lt;/li&gt;
+&lt;li&gt;The authors of &lt;tt class="docutils literal"&gt;p&lt;/tt&gt; updated to &lt;tt class="docutils literal"&gt;4.0&lt;/tt&gt; and switched their dependency to to &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; version 2.0. The authors of &lt;tt class="docutils literal"&gt;q&lt;/tt&gt; did not switch.&lt;/li&gt;
+&lt;li&gt;If I include &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;p==4.0&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;x==2.0&lt;/span&gt;&lt;/tt&gt; the &lt;tt class="docutils literal"&gt;q&lt;/tt&gt; package breaks. I can't upgrade &lt;tt class="docutils literal"&gt;p&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Dependency Hell.  Unresolvable Conflicts.&lt;/p&gt;
+&lt;p&gt;Any combination of packages will have numerous internal dependencies.
+The mere presence of these dependencies means one thing:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python is useless&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="summary"&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Python is useless&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I cannot tolerate innovation.&lt;/p&gt;
+&lt;p&gt;If someone learns something and changes a linter, that's innovation: it breaks my code; I don't want it.&lt;/p&gt;
+&lt;p&gt;If someone creates a new version of an open-source package, that's innovation: it breaks my code; I don't want it.&lt;/p&gt;
+&lt;p&gt;This isn't to say that innovation is &lt;strong&gt;bad&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Innovation is &lt;strong&gt;good&lt;/strong&gt;. When it occurs very slowly, and I'm able to personally vet each individual change for impact on my project(s).&lt;/p&gt;
+&lt;p&gt;The idea that every single open source package is innovating and learning at their own unique tempo
+is insanity. It makes Python &lt;strong&gt;useless&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>Literate Programming with PyWebLP</title><link href="https://slott56.github.io/2023-07-18-literate_programming_with_pyweblp.html" rel="alternate"></link><published>2023-07-18T09:00:00-04:00</published><updated>2023-07-18T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-18:/2023-07-18-literate_programming_with_pyweblp.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;And &lt;a class="reference external" href="https://pypi.org/project/py-web-lp/"&gt;https://pypi.org/project/py-web-lp/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I finally made the PyWeb LP tool installable from PyPI.&lt;/p&gt;
 &lt;p&gt;I need to fix the name of the GitHub repo (some day) to make it also say &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;py-web-lp&lt;/span&gt;&lt;/tt&gt;.
