@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-07-25T09:00:00-04:00</updated><entry><title>Two Problems with Python</title><link href="https://slott56.github.io/2023-07-25-two_problems_with_python.html" rel="alternate"></link><published>2023-07-25T09:00:00-04:00</published><updated>2023-07-25T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-25:/2023-07-25-two_problems_with_python.html</id><summary type="html">&lt;p&gt;I want to call out two huge problems with Python.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-01T09:00:00-04:00</updated><entry><title>Python Quirks that aren't very quirky</title><link href="https://slott56.github.io/2023-08-01-python_quirks_that_arent_very_quirky.rst.html" rel="alternate"></link><published>2023-08-01T09:00:00-04:00</published><updated>2023-08-01T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-01:/2023-08-01-python_quirks_that_arent_very_quirky.rst.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://writing.peercy.net/p/python-quirks"&gt;https://writing.peercy.net/p/python-quirks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Superficially, most of these are true.&lt;/p&gt;
+&lt;p&gt;Looking a little more deeply, most of them are also presented in a somewhat misleading way.
+A few set up a good punch-line. The &lt;strong&gt;Inheritance&lt;/strong&gt; one, for example, is funny.&lt;/p&gt;
+&lt;p&gt;If the point is to force a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://writing.peercy.net/p/python-quirks"&gt;https://writing.peercy.net/p/python-quirks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Superficially, most of these are true.&lt;/p&gt;
+&lt;p&gt;Looking a little more deeply, most of them are also presented in a somewhat misleading way.
+A few set up a good punch-line. The &lt;strong&gt;Inheritance&lt;/strong&gt; one, for example, is funny.&lt;/p&gt;
+&lt;p&gt;If the point is to force a deeper investigation, I think the piece might not be helpful.
+I know too many people who would look at this list and say &amp;quot;See, Python is as bad as JavaScript.&amp;quot;
+Or &amp;quot;That's why I only use perl.&amp;quot;
+These are the sort of folks won't actually refer to the Python language reference manual to see what's going on.&lt;/p&gt;
+&lt;p&gt;One of these &lt;strong&gt;is&lt;/strong&gt; a legitimate quirk.
+The rest involve a little bit of &amp;quot;don't look at the man behind the curtain&amp;quot; mixed with &amp;quot;don't read the documentation.&amp;quot;&lt;/p&gt;
+&lt;p&gt;To ease my own mental anguish, I'll include a slightly deeper dive into these language feaures.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Generators.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;sorted()&lt;/tt&gt; creates a new list from the argument value. It's not a generator.
+Comparing the resulting list to the argument is unsurprising.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;reversed()&lt;/tt&gt; doesn't create a list. It is a generator. Since it can only
+be used once, one use of the generator &lt;tt class="docutils literal"&gt;y&lt;/tt&gt; has a sequence of values.
+The other use of the generator &lt;tt class="docutils literal"&gt;y&lt;/tt&gt; has no values.&lt;/p&gt;
+&lt;p&gt;I suppose the single-use-of-a-generator featrure could be called a quirk.
+Except it's well-documented, so, I'd argue that this simply exposes a language feature.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;References.&lt;/p&gt;
+&lt;p&gt;The example fails to show how &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; was created. It's not obvious
+how the reused reference to a sublist was propogated throughout
+the list.&lt;/p&gt;
+&lt;p&gt;Missing:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+a = [[0]] * 5
+&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Assignment.&lt;/p&gt;
+&lt;p&gt;Not sure what the point of this is.
+It doesn't even seem quirky.&lt;/p&gt;
+&lt;p&gt;I guess they're astonished they can use something other than a trivial
+variable in a &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; statement.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Closures.&lt;/p&gt;
+&lt;p&gt;My guess on this is they were hoping the &lt;tt class="docutils literal"&gt;i&lt;/tt&gt; variable would not be a single variable;
+instead, a fresh, new variable would be created by the generator expression.
+Perhaps other languages do this, and manufacture fresh, new variable bindings.&lt;/p&gt;
+&lt;p&gt;Python has a (relatively) simple rule for variables: Local, Enclosing, Global, and Built-in.
+There's no closure rule to create new variables. There are many good tutorials on the LEGB rule.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Inheritance.  This one is kind of funny.&lt;/p&gt;
+&lt;p&gt;It's also, on reflection, unsurprising.
+The &lt;tt class="docutils literal"&gt;type&lt;/tt&gt; type -- like all types -- is an &lt;tt class="docutils literal"&gt;object&lt;/tt&gt;. Mostly because almost everything is an object.
+The &lt;tt class="docutils literal"&gt;object&lt;/tt&gt; type -- like all types -- is a &lt;tt class="docutils literal"&gt;type&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Operator Chaining.&lt;/p&gt;
+&lt;p&gt;This isn't a quirk at all.
+This seems to be an exploration of precedence rules among operators.
+It seems to be a matter of definition among &lt;tt class="docutils literal"&gt;==&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;and&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;in&lt;/tt&gt; operators.&lt;/p&gt;
+&lt;p&gt;Also, it's not clear what &amp;quot;chaining&amp;quot; means here.
+If &lt;tt class="docutils literal"&gt;1 + 2 + 3&lt;/tt&gt; is what they mean by &amp;quot;operator chaining&amp;quot;, then I think that may be the root
+cause of the confusion. These are all binary operators with intermediate results.
+Perhaps it can help to think of implicit ()'s around each binary operation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Identity.&lt;/p&gt;
+&lt;p&gt;This is an optimization in the CPython interpreter to pre-allocate some integers.
+This is a proper quirk. I'm glad it's on this list.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;NFKC Normalization.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://unicode.org/reports/tr15/"&gt;https://unicode.org/reports/tr15/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This isn't Python. This is Unicode.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Default Arguments.&lt;/p&gt;
+&lt;p&gt;This is pretty well-known. Some newbies discover it, and then
+re-read the documentation that describes why this happens, and say &amp;quot;makes sense.&amp;quot;
+Here's the rule: &lt;strong&gt;The mutable object is only created once; it's shared.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Most linters warn that this feature may not be doing what folks think it's doing.&lt;/p&gt;
+&lt;p&gt;This appears in many other places. For example, default values for fields of
+dataclasses cannot be mutable objects, because they'd be shared.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Whatever This Is.&lt;/p&gt;
+&lt;p&gt;This isn't a quirk, it's a bug. It was fixed in Python 3.11, though. So it's much less interesting.
+It remains a known bug until Python 3.10 end-of-life, 04 Oct 2026.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Python 2.&lt;/p&gt;
+&lt;p&gt;Python 2 has been at end-of-life since 01 Jan 2020.
+These kinds of things ceased to be interesting on that date.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In summary, and in conclusion, the identity of small integers is a legitimate quirk.
+I like it. The inheritance is funny. I like that, too.&lt;/p&gt;
+</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>Two Problems with Python</title><link href="https://slott56.github.io/2023-07-25-two_problems_with_python.html" rel="alternate"></link><published>2023-07-25T09:00:00-04:00</published><updated>2023-07-25T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-07-25:/2023-07-25-two_problems_with_python.html</id><summary type="html">&lt;p&gt;I want to call out two huge problems with Python.
 I'm not the first to point these out, but they've been bothering me for a while.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#surprising-changes"&gt;Surprising Changes&lt;/a&gt;&lt;/li&gt;
