@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-01T09:00:00-04:00</updated><entry><title>Python Quirks that aren't very quirky</title><link href="https://slott56.github.io/2023-08-01-python_quirks_that_arent_very_quirky.html" rel="alternate"></link><published>2023-08-01T09:00:00-04:00</published><updated>2023-08-01T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-01:/2023-08-01-python_quirks_that_arent_very_quirky.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://writing.peercy.net/p/python-quirks"&gt;https://writing.peercy.net/p/python-quirks&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-15T09:00:00-04:00</updated><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
+&lt;p&gt;(And no, I didn't ask for clarification.
+If the author posts things without supporting details it suggests they might lack the supporting
+details. I can be charitable and assume they don't really care about providing useful information,
+but …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
+&lt;p&gt;(And no, I didn't ask for clarification.
+If the author posts things without supporting details it suggests they might lack the supporting
+details. I can be charitable and assume they don't really care about providing useful information,
+but are merely trolling for engagement. Yes. That's cruel.
+I can't see how you take the time to have an opinion and not provide support for it.)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A few of #Python 3 #quirks and #kludges&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Global Interpreter Lock&lt;/li&gt;
+&lt;li&gt;Strong, dynamic typing&lt;/li&gt;
+&lt;li&gt;Massive &lt;tt class="docutils literal"&gt;Any&lt;/tt&gt; hole in the type system&lt;/li&gt;
+&lt;li&gt;Verbose class definition&lt;/li&gt;
+&lt;li&gt;Declaration of instance attributes is their definitions in &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;Repetitious &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; and kludgy &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;super().__init__()&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;Kludgy string-quotes to reference the class from within its definition&lt;/li&gt;
+&lt;li&gt;Kludgy &lt;tt class="docutils literal"&gt;TypeVar&lt;/tt&gt; definition&lt;/li&gt;
+&lt;li&gt;Absence of structural typing&lt;/li&gt;
+&lt;li&gt;Need explicitly to convert iterator to list using &lt;tt class="docutils literal"&gt;list()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;Usurping the &lt;tt class="docutils literal"&gt;id()&lt;/tt&gt; name&lt;/li&gt;
+&lt;li&gt;Inner method may mutate referenced objects in the closure but may not mutate primitive values therein&lt;/li&gt;
+&lt;li&gt;Kludgy &lt;tt class="docutils literal"&gt;main()&lt;/tt&gt; invocation&lt;/li&gt;
+&lt;li&gt;Disconcerting lack of type information in the holdover documentation from the P2 days&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Some of these might be good points. Some of these seem to be nonsense.
+A bunch can't be interpreted, which I find madding.&lt;/p&gt;
+&lt;div class="section" id="global-interpreter-lock"&gt;
+&lt;h2&gt;1. Global Interpreter Lock&lt;/h2&gt;
+&lt;p&gt;I'm not sure what this means. It's a solution to a specific problem.
+It's -- I suppose -- a candidate &amp;quot;quirk&amp;quot; because it's an unusual solution to
+the problem of assuring that data structure updates are atomic.&lt;/p&gt;
+&lt;p&gt;It saves us from having to use explicit locks all over the place when updating
+objects with complex state.&lt;/p&gt;
+&lt;p&gt;The GIL-less Python proposals will require a bit more care in defining structures
+useful in multithreaded environments. Is this a gain? It's disputable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="strong-dynamic-typing"&gt;
+&lt;h2&gt;2. Strong, dynamic typing&lt;/h2&gt;
+&lt;p&gt;Yep. There it is. Quirk? Kluge? Dunno. It seems like a brilliant solution to a long-standing problem.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="massive-any-hole-in-the-type-system"&gt;
+&lt;h2&gt;3. Massive &lt;tt class="docutils literal"&gt;Any&lt;/tt&gt; hole in the type system&lt;/h2&gt;
+&lt;p&gt;Does this mean it's bad that &lt;strong&gt;mypy&lt;/strong&gt; assumes &lt;tt class="docutils literal"&gt;Any&lt;/tt&gt; for missing types?
+If you don't like the &lt;strong&gt;mypy&lt;/strong&gt; assumptions, write type hints.&lt;/p&gt;
+&lt;p&gt;Does this mean it's bad that you can use &lt;tt class="docutils literal"&gt;Any&lt;/tt&gt; to provide uninformative type hints?
+If you don't like &lt;tt class="docutils literal"&gt;Any&lt;/tt&gt;, consider not using it as a type hint.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="verbose-class-definition"&gt;
+&lt;h2&gt;4. Verbose class definition&lt;/h2&gt;
+&lt;p&gt;Quirk?  I guess they've never seen Java.&lt;/p&gt;
+&lt;p&gt;Kluge?  What would they prefer?&lt;/p&gt;
+&lt;p&gt;What would they omit is the real question. From the item 6, below, I'm guessing
+they don't like to have &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; listed explicitly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="declaration-of-instance-attributes-is-their-definitions-in-init"&gt;
+&lt;h2&gt;5. Declaration of instance attributes is their definitions in &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt;&lt;/h2&gt;
+&lt;p&gt;First -- and most important -- there aren't any C- or Java- style declarations.
+The instances are dynamic in every sense of the word.
+The &lt;tt class="docutils literal"&gt;__new__()&lt;/tt&gt; method does almost nothing.&lt;/p&gt;
+&lt;p&gt;I'll buy this as a legit quirk. It's a consequence of the way attributes
+work, and logic is compelling and consistent.&lt;/p&gt;
+&lt;p&gt;It's trivial to include type hints in the class definition, separate
+from initialization in the &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; method. I find this helpful.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class X:
+    a: int
+    b: float
+
+    def __init__(self, a: str, b: str) -&amp;gt; None:
+        self.a = int(a)
+        self.b = float(b)
+&lt;/pre&gt;
+&lt;p&gt;It's potentially misleading: the &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt; appear to be class variables.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="repetitious-self-and-kludgy-super-init"&gt;
+&lt;h2&gt;6. Repetitious &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; and kludgy &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;super().__init__()&lt;/span&gt;&lt;/tt&gt;&lt;/h2&gt;
+&lt;p&gt;The use of &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; is not repetitious. It's explicit.&lt;/p&gt;
+&lt;p&gt;Not sure what's klugy about &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;super().__init__()&lt;/span&gt;&lt;/tt&gt;. I guess they don't like writing &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt; and
+prefer having this assumed, also.&lt;/p&gt;
+&lt;p&gt;This is -- to me -- flat our wrong.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kludgy-string-quotes-to-reference-the-class-from-within-its-definition"&gt;
+&lt;h2&gt;7. Kludgy string-quotes to reference the class from within its definition&lt;/h2&gt;
+&lt;p&gt;I guess they'd prefer to have an explicitly complicated-looking forward reference
+for a name. We could have a lot of &lt;tt class="docutils literal"&gt;class XYZ: defined_later()&lt;/tt&gt; constructs
+to sort out circular references among classes.&lt;/p&gt;
+&lt;p&gt;I guess they don't like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class X:
+    &amp;#64;classmethod
+    def makes_X(cls: type[&amp;quot;X&amp;quot;], *args, **kwargs) -&amp;gt; &amp;quot;X&amp;quot;:
+        ...
+&lt;/pre&gt;
+&lt;p&gt;It seems like a tedious &lt;tt class="docutils literal"&gt;X = &lt;span class="pre"&gt;ForwardRef('X')&lt;/span&gt;&lt;/tt&gt; would be required
+to define the name &lt;tt class="docutils literal"&gt;X&lt;/tt&gt; before the actual class is defined.
+See #8, below, they don't like that syntax. Does this mean they want a new statement for
+forward references?&lt;/p&gt;
+&lt;p&gt;Or. It would require &lt;strong&gt;mypy&lt;/strong&gt; to gaze more deeply at the parse tree to resolve
+circular references. I'm not sure what they think would be better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kludgy-typevar-definition"&gt;
+&lt;h2&gt;8. Kludgy &lt;tt class="docutils literal"&gt;TypeVar&lt;/tt&gt; definition&lt;/h2&gt;
+&lt;p&gt;I'm guessing they want a new statement in the language instead of a function
+in the &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module.&lt;/p&gt;
+&lt;p&gt;Since types are explicitly optional, new statements to handle types seems wrong to me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="absence-of-structural-typing"&gt;
+&lt;h2&gt;9. Absence of structural typing&lt;/h2&gt;
+&lt;p&gt;This is confusing. The &lt;tt class="docutils literal"&gt;NamedTuple&lt;/tt&gt; provides structural types.&lt;/p&gt;
+&lt;p&gt;I'm guessing they were hoping for some other classes to &lt;strong&gt;also&lt;/strong&gt; behave like
+types in a structural system. It seems simplest to use &lt;tt class="docutils literal"&gt;NamedTuple&lt;/tt&gt;
+and a functional style of programming.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="need-explicitly-to-convert-iterator-to-list-using-list"&gt;
+&lt;h2&gt;10. Need explicitly to convert iterator to list using &lt;tt class="docutils literal"&gt;list()&lt;/tt&gt;&lt;/h2&gt;
+&lt;p&gt;This is nonsense. What if the iterator is a sequence of pairs that
+should be converted to a mapping with &lt;tt class="docutils literal"&gt;dict()&lt;/tt&gt;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usurping-the-id-name"&gt;
+&lt;h2&gt;11. Usurping the &lt;tt class="docutils literal"&gt;id()&lt;/tt&gt; name&lt;/h2&gt;
+&lt;p&gt;Don't get this. The &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; name is also usurped by built-ins.
+There are a dozen built-in function names that usurp other names one might want to use.
+And all those keywords!  The name &lt;tt class="docutils literal"&gt;class&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;def&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;return&lt;/tt&gt; are all usurped
+by keywords.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="inner-method-may-mutate-referenced-objects-in-the-closure-but-may-not-mutate-primitive-values-therein"&gt;
+&lt;h2&gt;12. Inner method may mutate referenced objects in the closure but may not mutate primitive values therein&lt;/h2&gt;
+&lt;p&gt;Primitives can't be mutated.&lt;/p&gt;
+&lt;p&gt;Referenced objects can &lt;strong&gt;always&lt;/strong&gt; be mutated.&lt;/p&gt;
+&lt;p&gt;It doesn't require an &amp;quot;inner&amp;quot; method. It's true for every function and method at all levels.&lt;/p&gt;
+&lt;p&gt;I'm guessing the idea of mutable vs. immutable objects could be a quirk.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kludgy-main-invocation"&gt;
+&lt;h2&gt;13. Kludgy &lt;tt class="docutils literal"&gt;main()&lt;/tt&gt; invocation&lt;/h2&gt;
+&lt;p&gt;Kludge? Really?  I guess they've never seen Java.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="disconcerting-lack-of-type-information-in-the-holdover-documentation-from-the-p2-days"&gt;
+&lt;h2&gt;14. Disconcerting lack of type information in the holdover documentation from the P2 days&lt;/h2&gt;
+&lt;p&gt;It's often helpful to provide an example of a documentation gap where
+type information is totally missing (or is only present in a stubs file where it's not
+automatically included by Sphinx). While I haven't seen any examples of missing type information in
+Python or standard library documentation, that doesn't mean much. I only write books
+about Python, I don't actually help maintain it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="summary"&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;There's a good point:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Declaration of instance attributes is their definitions in &lt;tt class="docutils literal"&gt;__init__()&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The reset is a mixture of&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;too vague to comment on,&lt;/li&gt;
+&lt;li&gt;it's not clear what would be better, and&lt;/li&gt;
+&lt;li&gt;wrong.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mostly the former. Few of the latter. (#10 seems to be the stand-out for wrong.)&lt;/p&gt;
+&lt;p&gt;It's important to think about these things when learning a language.
+Some discussion of alterantives from other languages would make these points a lot
+easier to interpret and understand.&lt;/p&gt;
+&lt;p&gt;However, it's also important to understand why soem things are present in a language.
+It's important to look a little more deeply at the language rules -- perhaps read the
+relevant PEP's -- to see what alternatives have been proposed and discarded.&lt;/p&gt;
+&lt;p&gt;In most cases, decisions aren't arbitrary, but reflect deeper considerations on the underlying
+semantics of the language and the implementation details of the compiler and/or run-time.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>Python Quirks that aren't very quirky</title><link href="https://slott56.github.io/2023-08-01-python_quirks_that_arent_very_quirky.html" rel="alternate"></link><published>2023-08-01T09:00:00-04:00</published><updated>2023-08-01T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-01:/2023-08-01-python_quirks_that_arent_very_quirky.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://writing.peercy.net/p/python-quirks"&gt;https://writing.peercy.net/p/python-quirks&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Superficially, most of these are true.&lt;/p&gt;
 &lt;p&gt;Looking a little more deeply, most of them are also presented in a somewhat misleading way.
 A few set up a good punch-line. The &lt;strong&gt;Inheritance&lt;/strong&gt; one, for example, is funny.&lt;/p&gt;
