@@ -1,5 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-15T09:00:00-04:00</updated><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-30T09:00:00-04:00</updated><entry><title>The Echo-Pipe Trap</title><link href="https://slott56.github.io/2023-08-30-the_echo_pipe_trap.html" rel="alternate"></link><published>2023-08-30T09:00:00-04:00</published><updated>2023-08-30T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-30:/2023-08-30-the_echo_pipe_trap.html</id><summary type="html">&lt;p&gt;This is a &lt;strong&gt;great&lt;/strong&gt; question.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636"&gt;https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This works, they said.&lt;/p&gt;
+&lt;blockquote&gt;
+echo -en &amp;quot;Firefox\0icon\x1fweechat&amp;quot; | fuzzel -d -w 100 -l 10&lt;/blockquote&gt;
+&lt;p&gt;But. The superficial switch to &lt;tt class="docutils literal"&gt;subprocess.Popen()&lt;/tt&gt; doesn't work.&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;The way &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; works varies from shell to shell. When MacOSX changes to zsh, things …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a &lt;strong&gt;great&lt;/strong&gt; question.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636"&gt;https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This works, they said.&lt;/p&gt;
+&lt;blockquote&gt;
+echo -en &amp;quot;Firefox\0icon\x1fweechat&amp;quot; | fuzzel -d -w 100 -l 10&lt;/blockquote&gt;
+&lt;p&gt;But. The superficial switch to &lt;tt class="docutils literal"&gt;subprocess.Popen()&lt;/tt&gt; doesn't work.&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;The way &lt;tt class="docutils literal"&gt;echo&lt;/tt&gt; works varies from shell to shell. When MacOSX changes to zsh, things can break.
+Or when you share it with someone else, who uses YetAnotherShell, things break.&lt;/p&gt;
+&lt;p&gt;Two choices:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Specify which shell.&lt;/li&gt;
+&lt;li&gt;Stop using the &lt;tt class="docutils literal"&gt;echo ... |&lt;/tt&gt; (echo-pipe) construct.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="section" id="what-s-better"&gt;
+&lt;h2&gt;What's Better?&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;stdin&lt;/tt&gt; parameter to &lt;tt class="docutils literal"&gt;Popen()&lt;/tt&gt; can be used to provide the required stream of bytes.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from pathlib import Path
+import subprocess
+
+temp = Path.cwd() / &amp;quot;temp.tmp&amp;quot;
+temp.write_text(&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;)  # I think.
+
+with temp.open() as echo_file:
+    subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=echo_file)
+&lt;/pre&gt;
+&lt;p&gt;Something like the above will avoid the echo-pipe construct.&lt;/p&gt;
+&lt;p&gt;But. It leaves a temporary file lying around. What to do?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="slightly-better"&gt;
+&lt;h2&gt;Slightly Better&lt;/h2&gt;
+&lt;p&gt;This will cleanup the file. And. You don't have to pick a name.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import tempfile
+import subprocess
+
+temp = tempfile.TemporaryFile(mode='w+')
+with temp:
+    temp.write(&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;)  # I think.
+    temp.seek(0)
+    subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=temp)
+&lt;/pre&gt;
+&lt;p&gt;Seems kind of long. And it involves an additional problem. A file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-there-s-a-file"&gt;
+&lt;h2&gt;But. There's a FILE!&lt;/h2&gt;
+&lt;p&gt;Yes. We &lt;strong&gt;can&lt;/strong&gt; create a pipe.  I think it's kind of hideous, though.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import os
+import subprocess
+
+r, w = os.pipe()
+readable = os.fdopen(r, 'r')
+writeable = os.fdopen(w, 'w')
+writeable.write(&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;)  # I think.
+writeable.close()
+subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=readable)
+readable.close()
+&lt;/pre&gt;
+&lt;p&gt;However. It's not too long.&lt;/p&gt;
+&lt;p&gt;We can create a pleasant wrapper in the form
+of a context manager.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-s-this"&gt;
+&lt;h2&gt;How's This?&lt;/h2&gt;
+&lt;p&gt;This seems pleasant, if you do a lot of this sort of thing.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import os
+import subprocess
+
+class EchoPipe:
+    def __init__(self, content):
+        self.content = content
+
+    def __enter__(self):
+        r, w = os.pipe()
+        self.readable = os.fdopen(r, 'r')
+        writeable = os.fdopen(w, 'w')
+        writeable.write(self.content)
+        writeable.close()
+        return self.readable
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.readable.close()
+&lt;/pre&gt;
+&lt;p&gt;Once you have the &lt;tt class="docutils literal"&gt;EchoPipe&lt;/tt&gt; context, you can now write this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+with EchoPipe(&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;) as echo_pipe:
+    subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=echo_pipe)
+&lt;/pre&gt;
+&lt;p&gt;Which is pretty close to the original terse shell stuff.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
 &lt;p&gt;(And no, I didn't ask for clarification.
 If the author posts things without supporting details it suggests they might lack the supporting
 details. I can be charitable and assume they don't really care about providing useful information,
