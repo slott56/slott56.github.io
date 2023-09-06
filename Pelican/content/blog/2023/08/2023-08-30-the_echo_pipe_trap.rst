@@ -1,4 +1,4 @@
-The Echo-Pipe Trap
+The Echo-Pipe Trap [Updated]
 ##############################################
 
 :date: 2023-08-30 09:00
@@ -123,3 +123,21 @@ Once you have the ``EchoPipe`` context, you can now write this.
         subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=echo_pipe)
 
 Which is pretty close to the original terse shell stuff.
+
+And this [Update]
+==================
+
+Consider this...
+
+::
+
+    subprocess.run(
+        ['fuzzel', '-d', '-w', '100', '-l', '10'],
+        input="Firefox\0icon\0x1fweechat",
+        text=True
+    )
+
+It a very useful variant. This is -- perhaps -- the best of them all.
+
+I found the documentation is a bit hard to follow around this topic, so I was
+completely taken by surprise when I was shown this.

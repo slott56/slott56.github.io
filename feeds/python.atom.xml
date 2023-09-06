@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-08-30T09:00:00-04:00</updated><entry><title>The Echo-Pipe Trap</title><link href="https://slott56.github.io/2023-08-30-the_echo_pipe_trap.html" rel="alternate"></link><published>2023-08-30T09:00:00-04:00</published><updated>2023-08-30T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-30:/2023-08-30-the_echo_pipe_trap.html</id><summary type="html">&lt;p&gt;This is a &lt;strong&gt;great&lt;/strong&gt; question.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-09-05T09:00:00-04:00</updated><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023-09-05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023-09-05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;p&gt;Each has a description, and approach, and deliverables.
+It's a lot like ordinary development work, but with some detailed guidance from the author.
+(And no deadline imposed by your team lead or manager.)&lt;/p&gt;
+&lt;p&gt;These are projects you can do. You can post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;p&gt;Each has a description, and approach, and deliverables.
+It's a lot like ordinary development work, but with some detailed guidance from the author.
+(And no deadline imposed by your team lead or manager.)&lt;/p&gt;
+&lt;p&gt;These are projects you can do. You can post them GitHub, and make them part of your personal portfolio.
+You can demonstrate your ability to code in Python.&lt;/p&gt;
+&lt;p&gt;The focus is on exploratory data analysis.
+This is because almost everything devolves into an exercise in data wrangling.&lt;/p&gt;
+&lt;p&gt;Pre-order now:&lt;/p&gt;
+&lt;p&gt;Via Computer Science Books &amp;#64; Amazon.com&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.amazon.com/Python-Real-World-Projects-Deployable-Applications/dp/1803246766/"&gt;Python Real-World Projects: Crafting your Python Portfolio with Deployable Applications: 9781803246765&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you plan to write a review contact me directly, slott56 at gmail dot com. I can get you
+an e-copy or physical copy for your reviewing pleasure.&lt;/p&gt;
+</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>The Echo-Pipe Trap [Updated]</title><link href="https://slott56.github.io/2023-08-30-the_echo_pipe_trap.html" rel="alternate"></link><published>2023-08-30T09:00:00-04:00</published><updated>2023-08-30T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-30:/2023-08-30-the_echo_pipe_trap.html</id><summary type="html">&lt;p&gt;This is a &lt;strong&gt;great&lt;/strong&gt; question.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636"&gt;https://fosstodon.org/&amp;#64;JustineSmithies/110979871574705636&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This works, they said.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -98,6 +115,20 @@ with EchoPipe(&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;) as echo_pipe:
     subprocess.Popen(['fuzzel', '-d', '-w', '100', '-l', '10'], stdin=echo_pipe)
 &lt;/pre&gt;
 &lt;p&gt;Which is pretty close to the original terse shell stuff.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="and-this-update"&gt;
+&lt;h2&gt;And this [Update]&lt;/h2&gt;
+&lt;p&gt;Consider this...&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+subprocess.run(
+    ['fuzzel', '-d', '-w', '100', '-l', '10'],
+    input=&amp;quot;Firefox\0icon\0x1fweechat&amp;quot;,
+    text=True
+)
+&lt;/pre&gt;
+&lt;p&gt;It a very useful variant. This is -- perhaps -- the best of them all.&lt;/p&gt;
+&lt;p&gt;I found the documentation is a bit hard to follow around this topic, so I was
+completely taken by surprise when I was shown this.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
 &lt;p&gt;(And no, I didn't ask for clarification.
