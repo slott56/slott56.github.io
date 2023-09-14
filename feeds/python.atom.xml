@@ -1,5 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-09-05T09:00:00-04:00</updated><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023-09-05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023-09-05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-09-14T14:57:00-04:00</updated><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023-09-14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023-09-14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+We'll use Python to see how the dice shake out.&lt;/p&gt;
+&lt;div class="section" id="a-little-backstory"&gt;
+&lt;h2&gt;A little backstory&lt;/h2&gt;
+&lt;p&gt;For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win,
+2, 3 …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+We'll use Python to see how the dice shake out.&lt;/p&gt;
+&lt;div class="section" id="a-little-backstory"&gt;
+&lt;h2&gt;A little backstory&lt;/h2&gt;
+&lt;p&gt;For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win,
+2, 3, or 12 for an immediate loss, and the other numbers establish a point.
+You continue to roll until you get your point or a 7. That's a mechanic.
+Kind of complicated -- by design.&lt;/p&gt;
+&lt;p&gt;Many Table-Top Role-Playing Games (TTRPG) include game mechanics that involve dice.
+The original D&amp;amp;D used the Platonic regular polyhedra. They were summarized as &amp;quot;d6&amp;quot;
+for the 6-sided die folks often think of. The term &amp;quot;3d8&amp;quot; was interpreted as &amp;quot;3 eight-sided dice.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It, of course, gets more complicated &amp;quot;3d6+1&amp;quot; is add one to three six-sided dice.&lt;/p&gt;
+&lt;p&gt;And, there are things like &amp;quot;4d6-low&amp;quot; to discard the lowest of 4 dice.
+Or maybe &amp;quot;ll4d6&amp;quot; for &amp;quot;lose lowest&amp;quot;. Clever people have worked out a lot of mechanics,
+and a lot of ways to describe them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-mechanics-in-question"&gt;
+&lt;h2&gt;The mechanics in question&lt;/h2&gt;
+&lt;p&gt;We want to compare two mechanics:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers.&lt;/li&gt;
+&lt;li&gt;Middle of 3d6. This -- well -- does it tend to favor low numbers, also?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.&lt;/p&gt;
+&lt;p&gt;Another really good alternative is to exhaustively enumerate the possible outcomes.
+With 3d6 there are only &lt;span class="formula"&gt;6&lt;sup&gt;3&lt;/sup&gt; = 216&lt;/span&gt; ways the dice can fall. This doesn't seem
+pleasant. We'll set it aside.&lt;/p&gt;
+&lt;p&gt;Instead, we'll simulate.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first"&gt;This isn't as dumb as it might sound.&lt;/p&gt;
+&lt;p&gt;Some of the foundational statistical tests are designed to discern of outcomes
+are random or not. The &amp;quot;Null Hypothesis&amp;quot; is that the data's random.
+The various tests for the null hypothesis are often difficult to understand,
+and involve tables of magical numbers. The &lt;span class="formula"&gt;&lt;i&gt;χ&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt; test involves a
+complicated computation to compare actual and expected and then you have to look
+up a number in a table.&lt;/p&gt;
+&lt;p class="last"&gt;In some cases, it's easier to create random data and compute the correlation between
+actual and random. High correlation? Accept the Null Hypothesis.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We'll start by building a simulation of each mechanic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="worst-of-2d6"&gt;
+&lt;h2&gt;Worst of 2d6&lt;/h2&gt;
+&lt;p&gt;Here's the code to roll a handful of dice.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from random import randint
+
+def nd6(n: int) -&amp;gt; list[int]:
+    return [randint(1, 6) for _ in range(n)]
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;nd6(2)&lt;/tt&gt; expression gives us a pair of dice as a tiny little list.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def worst(dice: list[int]) -&amp;gt; int:
+    return min(dice)
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;worst(some_dice)&lt;/tt&gt; expression returns the worst of the two values.
+If we were more clever, we might write something like.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def worst(dice: list[int]) -&amp;gt; int:
+    d_1, d_2 = dice
+    return d_1 if d_1 &amp;lt;= d_2 else d_2
+&lt;/pre&gt;
+&lt;p&gt;Which would be faster when it runs.
+But this is a lot more coding.
+Efficiency isn't the goal.
+We're comparing two dice mechanics.&lt;/p&gt;
+&lt;p&gt;Finally, this will apply the &lt;tt class="docutils literal"&gt;worst()&lt;/tt&gt; decision to &lt;tt class="docutils literal"&gt;nd6(2)&lt;/tt&gt; to
+capture the worst numbers.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from collections.abc import Iterator
+
+def worst_2d6(samples=1000) -&amp;gt; Iterator[int]:
+    yield from (
+        worst(nd6(2)) for _ in range(samples)
+    )
+&lt;/pre&gt;
+&lt;p&gt;This function is a kind of generator. It doesn't simply compute a value the way
+the &lt;tt class="docutils literal"&gt;nd6()&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;worst()&lt;/tt&gt; functions did. This will yield a result
+each time it's asked for something. It iterates over a sequence of &lt;tt class="docutils literal"&gt;worst(nd6(2))&lt;/tt&gt; values.&lt;/p&gt;
+&lt;p&gt;(The &lt;tt class="docutils literal"&gt;range(samples)&lt;/tt&gt; defines how long the sequence will be.)&lt;/p&gt;
+&lt;p&gt;The point of the generator is to avoid producing a giant list with a thousand values
+when all we're going to do is summarize the list into a small result.&lt;/p&gt;
+&lt;p&gt;Here's the summary.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from collections import Counter
+
+distro_worst_2d6 = Counter(worst_2d6())
+&lt;/pre&gt;
+&lt;p&gt;We'll create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; object from the values generated when evaluating the &lt;tt class="docutils literal"&gt;worst(nd6(2))&lt;/tt&gt; expression 1,000 times.&lt;/p&gt;
+&lt;p&gt;Here's the result:&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;304&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;242&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;202&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;132&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That fits our expectation, more-or-less.&lt;/p&gt;
+&lt;p&gt;And it wasn't too hard to create.&lt;/p&gt;
+&lt;p&gt;Let's look at the other mechanic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="middle-of-3d6"&gt;
+&lt;h2&gt;Middle of 3d6&lt;/h2&gt;
+&lt;p&gt;We're going to reuse the &lt;tt class="docutils literal"&gt;nd6()&lt;/tt&gt; function. It works delightfully well for 3 dice as well as 2 dice.&lt;/p&gt;
+&lt;p&gt;Here's an approach to picking the middle value.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def mid(dice: list[int]) -&amp;gt; int:
+    return sorted(dice)[1]
+&lt;/pre&gt;
+&lt;p&gt;We've sorted the three dice, and taken the one in position 1.
+Position 0 has the least, and position 2 has the most.
+In the middle is the target value.&lt;/p&gt;
+&lt;p&gt;We can optimize this, of course.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+d_0, d_1, d_2 = dice
+return (
+    d_0 if d_1 &amp;lt;= d_0 &amp;lt;= d_2 else
+    d_1 if d_0 &amp;lt;= d_1 &amp;lt;= d_2 else
+    d_2
+)
+&lt;/pre&gt;
+&lt;p&gt;Who needs that kind of optimization? Not me.&lt;/p&gt;
+&lt;p&gt;Here's a generator to provide the needed 1,000 samples.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def mid_3d6(samples=1000):
+    yield from (
+        mid(nd6(3)) for _ in range(samples)
+    )
+&lt;/pre&gt;
+&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming.)&lt;/p&gt;
+&lt;p&gt;Here's the distribution:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+distro_mid_3d6 = Counter(mid_3d6())
+&lt;/pre&gt;
+&lt;p&gt;What's it look like? This.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;72&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;192&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;245&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;226&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;185&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Seriously? It's weighted toward 3's and 4's?&lt;/p&gt;
+&lt;p&gt;That shouldn't be too surprising. Maybe it is.&lt;/p&gt;
+&lt;p&gt;I had no idea.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so-far-so-good"&gt;
+&lt;h2&gt;So Far, So Good&lt;/h2&gt;
+&lt;p&gt;The point is to compare dice mechanics.&lt;/p&gt;
+&lt;p&gt;The strategy is to simulate them.&lt;/p&gt;
+&lt;p&gt;We wrote some functions to apply the mechanic.&lt;/p&gt;
+&lt;p&gt;We sampled it 1,000 times to create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; with the distribution of the 1,000 samples.&lt;/p&gt;
+&lt;p&gt;And now, you can decide if that's acceptable for the game you're designing.&lt;/p&gt;
+&lt;p&gt;Or, you can press on and do a little more math.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-wait-there-s-more"&gt;
+&lt;h2&gt;But wait, there's more&lt;/h2&gt;
+&lt;p&gt;The worst-of-2d6 isn't too difficult to compute on paper.&lt;/p&gt;
+&lt;p&gt;When will the lowest value be 6? This requires a (6, 6) tie, &lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(6) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;36&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;It's a 5 when there's a (5, 5), (5, 6), or (6, 5)) pair. &lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(5) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;3&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;36&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;It's a 4 when there's any of (4, 4), (4, 5), (4, 6), (5, 4), or (6, 4). &lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(4) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;5&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;36&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;And so on for 3, 2, and 1.  &lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(&lt;i&gt;n&lt;/i&gt;) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;2(6 − &lt;i&gt;n&lt;/i&gt;) + 1&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;36&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We can create prediction from this essential probability theory.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+for n in range(6):
+    print(n+1, int(1000 * (2*(5-n)+1) / 36))
+&lt;/pre&gt;
+&lt;p&gt;The predicted distribution is this.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;305&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;250&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;194&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;138&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;83&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That looks pretty close to the random simulation. It was more work to do the theory
+than to simulate. That's why I started with the simulation.&lt;/p&gt;
+&lt;p&gt;This part is to convince any doubters that simulation gives useful results.&lt;/p&gt;
+&lt;p&gt;We'll continue to flog that point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="middle-of-3d6-theory"&gt;
+&lt;h2&gt;Middle of 3d6 Theory&lt;/h2&gt;
+&lt;p&gt;This exceeds my skills.&lt;/p&gt;
+&lt;p&gt;When will the median value be 6? This requires a (6, 6, 6) tie. Actually, it's a lot more than that. Anything with a pair of 6's means 6 will be the mid value. There are &lt;span class="formula"&gt;&lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;15&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;216&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; ways to have a pair of sixes and another number. Think of (1, 6, 6) to (5, 6, 6), and (6, 1, 6) to (6, 5, 6), and (6, 6, 1) to (6, 6, 5). So, total, is &lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(6) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;16&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;sup&gt;3&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;For 5's? Ugh. I can't enumerate them manually. So. I'll use &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; to emit all &lt;span class="formula"&gt;6&lt;sup&gt;3&lt;/sup&gt; = 216&lt;/span&gt; combinations.&lt;/p&gt;
+&lt;p&gt;This isn't quite the same as simulation. The simulation &lt;em&gt;probably&lt;/em&gt; hit all the combinations.
+The &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; approach will absolutely create all of the combinations.&lt;/p&gt;
+&lt;p&gt;Here's the central part of enumerating all combinations:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import itertools
+
+d6 = [n+1 for n in range(6)]
+for c in itertools.product(d6, d6, d6):
+    # do something with c
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;itertools.product()&lt;/tt&gt; will enumerate all 3-item combinations of the values in the &lt;tt class="docutils literal"&gt;d6&lt;/tt&gt; sequence.&lt;/p&gt;
+&lt;p&gt;Here it is in context.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import itertools
+from collections import defaultdict
+
+d6 = [n+1 for n in range(6)]
+mid_3d6 = defaultdict(list)
+for c in itertools.product(d6, d6, d6):
+    mid_3d6[mid(c)].append(c)
+for k in sorted(mid_3d6):
+    print(k, len(mid_3d6[k]), [''.join(map(str, v)) for v in mid_3d6[k]])
+&lt;/pre&gt;
+&lt;p&gt;We created a &lt;tt class="docutils literal"&gt;defaultdict&lt;/tt&gt; object, a dictionary that will -- if a key is not found -- jam in a an empty &lt;tt class="docutils literal"&gt;list&lt;/tt&gt;. When we evaluate  &lt;tt class="docutils literal"&gt;mid_3d6[mid(c)]&lt;/tt&gt; it will either&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;find a list in the dictionary, because this value of &lt;tt class="docutils literal"&gt;mid(c)&lt;/tt&gt; has been seen before, OR&lt;/li&gt;
+&lt;li&gt;jam a new empty list into the dictionary, because the value has not been seen before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Either way, &lt;tt class="docutils literal"&gt;mid_3d6[mid(c)]&lt;/tt&gt; is a list, and we can &lt;tt class="docutils literal"&gt;append(c)&lt;/tt&gt; to put another combination into that list. Why save them?&lt;/p&gt;
+&lt;p&gt;So we can display the count and all the patterns.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+6 16 ['166', '266', '366', '466', '566', '616', '626', '636', '646', '656', '661', '662', '663', '664', '665', '666']
+&lt;/pre&gt;
+&lt;p&gt;A 6 is the middle value &lt;span class="formula"&gt;&lt;span class="textfraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;16&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;216&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; times. And there are the 16 patterns, to make it perfectly clear what's going on.&lt;/p&gt;
+&lt;p&gt;The sequence of 16-40-52-52-40-16 looks a lot like it is part of the binomial function.
+Looking at the text patterns, I can work out the following.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(6) = &lt;i&gt;P&lt;/i&gt;(1) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1 + 3×5&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;sup&gt;3&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(5) = &lt;i&gt;P&lt;/i&gt;(2) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1 + 3×5 + 6×4&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;sup&gt;3&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="formula"&gt;&lt;i&gt;P&lt;/i&gt;(4) = &lt;i&gt;P&lt;/i&gt;(3) = &lt;span class="fraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1 + 3×5 + 6×4 + 4×3&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;sup&gt;3&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beyond this, I'm lost.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023-09-05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023-09-05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
 &lt;p&gt;Each has a description, and approach, and deliverables.
 It's a lot like ordinary development work, but with some detailed guidance from the author.
 (And no deadline imposed by your team lead or manager.)&lt;/p&gt;
@@ -130,7 +438,7 @@ subprocess.run(
 &lt;p&gt;I found the documentation is a bit hard to follow around this topic, so I was
 completely taken by surprise when I was shown this.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="community"></category></entry><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
+</content><category term="Python"></category><category term="python"></category><category term="shell"></category><category term="bash"></category></entry><entry><title>More Python Quirks Debunking</title><link href="https://slott56.github.io/2023-08-15-more_python_quirk_debunking.html" rel="alternate"></link><published>2023-08-15T09:00:00-04:00</published><updated>2023-08-15T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-08-15:/2023-08-15-more_python_quirk_debunking.html</id><summary type="html">&lt;p&gt;Stuff I found on the internet that I have to disagree with.&lt;/p&gt;
 &lt;p&gt;(And no, I didn't ask for clarification.
 If the author posts things without supporting details it suggests they might lack the supporting
 details. I can be charitable and assume they don't really care about providing useful information,
