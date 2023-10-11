@@ -7,22 +7,22 @@ An Object-Lesson in How to Stifle Innovation
 :category: Technologies
 :status: published
 
-| Read this: `How Ma Bell Shelved the Future for 60
-  Years <http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years>`__.
+Read this: `How Ma Bell Shelved the Future for 60 Years <http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years>`_.
 
    AT&T firmly believed that the answering machine, and its magnetic
    tapes, would lead the public to abandon the telephone.
 
-| How many good ideas are set aside by managers who simply don't have a
-  clue what users actually want?
-| How many great IT projects are rejected because of this kind of
-  delusional paranoia?
+How many good ideas are set aside by managers who simply don't have a
+clue what users actually want?
+
+How many great IT projects are rejected because of this kind of
+delusional paranoia?
 
 
 
 -----
 
-Its not just AT&amp;T and the &quot;old guard&quot...
+Its not just AT&T and the "old guard"...
 -----------------------------------------------------
 
 Robert Lucente<noreply@blogger.com>

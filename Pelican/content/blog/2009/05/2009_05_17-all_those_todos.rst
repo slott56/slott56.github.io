@@ -14,7 +14,7 @@ that used \ `epydoc <http://epydoc.sourceforge.net/>`__\  with the
 \ `epytext <http://epydoc.sourceforge.net/manual-epytext.html>`__\ 
 markup language.
 
-| 
+
 
 No, it wasn’t confusing.  Free-text documents (requirements,
 architecture, design, test plans, etc.) are easy and fun to write in
@@ -22,18 +22,18 @@ RST.  Just write.  Leave the formatting to someone else.  A little
 semantic markup doesn’t hurt, but you don’t spend hours with MS-Word
 trying to  disentangle your bullets and your numbering.
 
-| 
+
 
 Adding comments to code in epytext was pretty easy, also.
 
-| 
+
 
 Then I discovered \ `Sphinx <http://sphinx.pocoo.org/>`__\ .   Sphinx
 can add module documentation to a document tree very elegantly.
 Further, Sphinx can pull in RST-formatted module comment strings.  Very
 nice.
 
-| 
+
 
 Except, of course, we have hundreds of modules in epytext.  Today, I
 started tracking down all of the 150+ modules without proper document

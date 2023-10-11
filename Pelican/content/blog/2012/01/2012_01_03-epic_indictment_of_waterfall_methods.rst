@@ -7,25 +7,30 @@ Epic indictment of Waterfall Methods
 :category: Technologies
 :status: published
 
-| Saw this recently.
+
+Saw this recently.
 
    Why do most gov websites look like they were created by someone's 10
    year old nephew yet cost millions to make?
    — Steve Dekorte (@stevedekorte) `December 29,
    2011 <https://twitter.com/stevedekorte/status/152208488716701696>`__
 
-| 
-| I think this aptly summarizes the results of a waterfall methodology.
+
+
+
+I think this aptly summarizes the results of a waterfall methodology.
 
 #. You wrote a lot of requirements, not fully understanding the actors
    or their use cases.
+
 #. Your vendor implemented those requirements because they were
    contractual obligations not because they created value for the
    actors.
 
-| The government's not the only offender.  They're just more visible and
-  more bound up in a legally-mandated purchasing cycle that makes the
-  waterfall desirable and more Agile methods undesirable.
+
+The government's not the only offender.  They're just more visible and
+more bound up in a legally-mandated purchasing cycle that makes the
+waterfall desirable and more Agile methods undesirable.
 
 
 

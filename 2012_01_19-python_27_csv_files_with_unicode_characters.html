@@ -118,18 +118,16 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <div class="line-block">
-<div class="line">The csv module in Python 2.7 is more-or-less hard-wired to work with
-ASCII and only ASCII.</div>
-<div class="line">Sadly, we're often confronted with CSV files that include Unicode
+                <p>The csv module in Python 2.7 is more-or-less hard-wired to work with
+ASCII and only ASCII.</p>
+<p>Sadly, we're often confronted with CSV files that include Unicode
 characters.  There are numerous Stack Overflow questions on this
-topic.  <a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode">http://stackoverflow.com/search?q=python+csv+unicode</a></div>
-<div class="line">What to do?  Since csv is married to seeing ASCII/bytes, we must
-explicitly decode the column values.</div>
-<div class="line">One solution is to wrap csv.DictReader, something like the following.
- We need to decode each individual column before attempting to do
-anything with value.</div>
-</div>
+topic.  <a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode">http://stackoverflow.com/search?q=python+csv+unicode</a></p>
+<p>What to do?  Since csv is married to seeing ASCII/bytes, we must
+explicitly decode the column values.</p>
+<p>One solution is to wrap csv.DictReader, something like the following.
+We need to decode each individual column before attempting to do
+anything with value.</p>
 <pre class="literal-block">
 class UnicodeDictReader( object ):
     def __init__( self, *args, **kw ):
@@ -141,32 +139,26 @@ class UnicodeDictReader( object ):
             t= dict( (k,decode(row[k])[0]) for k in row )
             yield t
 </pre>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">This new object is an iterable which contains a DictReader. We could
-subclass DictReader, also.</div>
-<div class="line">The use case, then, becomes something simple like this.</div>
-</div>
+<p>This new object is an iterable which contains a DictReader. We could
+subclass DictReader, also.</p>
+<p>The use case, then, becomes something simple like this.</p>
 <pre class="literal-block">
 with open(&quot;some.csv&quot;,&quot;rU&quot;) as source:
     rdr= UnicodeDictReader( source )
     for row in rdr:
         # process the row
 </pre>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">We can now get Unicode characters from a CSV file.</div>
-</div>
+<p>We can now get Unicode characters from a CSV file.</p>
 <hr class="docutils" />
-<div class="section" id="it-39-s-one-of-those-things-the-files-came-to">
-<h2>It&amp;#39;s one of those things... The files came to ...</h2>
+<div class="section" id="it-s-one-of-those-things-the-files-came-to">
+<h2>It's one of those things... The files came to ...</h2>
 <p>S.Lott&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2012-01-23 11:27:19.901000-05:00</p>
 <p>It's one of those things... The files came to me in that encoding. UTF-8
 seems so much more sensible.</p>
 </div>
-<div class="section" id="i-like-that-you-think-39-mac-roman-39-is-a-sen">
-<h2>I like that you think &amp;#39;mac_roman&amp;#39; is a sen...</h2>
+<div class="section" id="i-like-that-you-think-mac-roman-is-a-sen">
+<h2>I like that you think 'mac_roman' is a sen...</h2>
 <p>Anonymous&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
 <p>2012-01-20 19:56:24.488000-05:00</p>
 <p>I like that you think 'mac_roman' is a sensible default encoding.</p>
@@ -251,6 +243,10 @@ seems so much more sensible.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2023/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2023 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2023 (2)
           </a>

@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-09-14T14:57:00-04:00</updated><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023-09-14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023-09-14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-10-10T18:21:00-04:00</updated><entry><title>The Debugger</title><link href="https://slott56.github.io/2023-10-10-the_debugger.html" rel="alternate"></link><published>2023-10-10T18:21:00-04:00</published><updated>2023-10-10T18:21:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-10-10:/2023-10-10-the_debugger.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://www.bitecode.dev/p/python-312-what-didnt-make-the-headlines"&gt;Python 3.12: what didn't make the headlines&lt;/a&gt;. This is &lt;strong&gt;very&lt;/strong&gt; helpful.&lt;/p&gt;
+&lt;p&gt;It is a great list of 7 key features of Python 3.12.&lt;/p&gt;
+&lt;p&gt;With one tiny point I need to object to.&lt;/p&gt;
+&lt;div class="section" id="i-don-t-like-debuggers"&gt;
+&lt;h2&gt;I don't like debuggers&lt;/h2&gt;
+&lt;p&gt;This is a strongly-held position.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Debuggers are harmful.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I say this …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://www.bitecode.dev/p/python-312-what-didnt-make-the-headlines"&gt;Python 3.12: what didn't make the headlines&lt;/a&gt;. This is &lt;strong&gt;very&lt;/strong&gt; helpful.&lt;/p&gt;
+&lt;p&gt;It is a great list of 7 key features of Python 3.12.&lt;/p&gt;
+&lt;p&gt;With one tiny point I need to object to.&lt;/p&gt;
+&lt;div class="section" id="i-don-t-like-debuggers"&gt;
+&lt;h2&gt;I don't like debuggers&lt;/h2&gt;
+&lt;p&gt;This is a strongly-held position.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Debuggers are harmful.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I say this because I have had the misfortune to help more than one programmer
+who could not actually describe the semantics of the code.&lt;/p&gt;
+&lt;p&gt;They couldn't draw a picture. Write a sentence. Nothing.&lt;/p&gt;
+&lt;p&gt;They could only point at the interactive debugger session with hapless flailing, and &amp;quot;see, it should work&amp;quot;
+kind of noises.&lt;/p&gt;
+&lt;p&gt;This is emphatically &lt;strong&gt;bad&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Every time I would ask them to step away from the debugger and describe -- maybe on a whiteboard --
+what the heck they thought was going on.&lt;/p&gt;
+&lt;p&gt;I could go on with horror stories of bad debugging.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="i-use-debuggers"&gt;
+&lt;h2&gt;I use debuggers&lt;/h2&gt;
+&lt;p&gt;Back when C++ was my &amp;quot;stock-in-trade&amp;quot;, I used the debugger.&lt;/p&gt;
+&lt;p&gt;Rarely.&lt;/p&gt;
+&lt;p&gt;And then, mostly, on core dump files to figure out where the program failed.&lt;/p&gt;
+&lt;p&gt;And to look at a few key variables to confirm the state of the computation.&lt;/p&gt;
+&lt;p&gt;Then.&lt;/p&gt;
+&lt;p&gt;I went back to the source, and looked for a logic path that lead to the wrong state.
+It wasn't often hard to find.
+And it didn't involve using the debugger for much more than finding the
+call frame, stack contents, and local variables.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-set-me-off"&gt;
+&lt;h2&gt;What set me off&lt;/h2&gt;
+&lt;p&gt;This:&lt;/p&gt;
+&lt;blockquote&gt;
+...it's also removing a big &amp;quot;WTF&amp;quot; that all beginners will experience using the Python debugger with nobody in sight to explain to them what's going on.&lt;/blockquote&gt;
+&lt;p&gt;I think there are no circumstances under which beginners should be using the debugger.&lt;/p&gt;
+&lt;p&gt;I think there are no circumstances under which anyone should use a debugger before they already know
+what's supposed to be going on.&lt;/p&gt;
+&lt;p&gt;The idea of &amp;quot;beginners&amp;quot; being surprised at the structure of stackframes is an oxymoron.&lt;/p&gt;
+&lt;blockquote&gt;
+Beginners don't know about stack frames.&lt;/blockquote&gt;
+&lt;p&gt;More-or-less, this is one definition of &amp;quot;beginner&amp;quot;.&lt;/p&gt;
+&lt;p&gt;People who know about stack frames aren't beginners and can be trusted to understand the debugger.&lt;/p&gt;
+&lt;p&gt;The points in the blog posts are sound: better debugging, additional support for evaluating expressions.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;audience of beginners&amp;quot; is my only quibble.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023-09-14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023-09-14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
 We'll use Python to see how the dice shake out.&lt;/p&gt;
 &lt;div class="section" id="a-little-backstory"&gt;
 &lt;h2&gt;A little backstory&lt;/h2&gt;

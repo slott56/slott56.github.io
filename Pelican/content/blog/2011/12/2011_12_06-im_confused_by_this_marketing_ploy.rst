@@ -7,11 +7,10 @@ I'm Confused by this Marketing Ploy
 :category: Technologies
 :status: published
 
-| Got this a few weeks back.
+
+Got this a few weeks back.
 
    My job is to persuade bloggers to link to our site.
-
-..
 
    I really love my job! We have a friendly team and good management,
    but unfortunately I have no idea how to convince a blogger to link to
@@ -20,19 +19,20 @@ I'm Confused by this Marketing Ploy
    And that is why, instead of sending letters to thousands of different
    blogs, I am reading yours.
 
-| Couldn't parse it.
-| It seems to be a calculated Pity Ploy.  "I'm afraid I might lose my
-  job...I am reading your [blog]."
-| The product seemed cool enough.  The pitch, however, was too sketchy
+
+Couldn't parse it.
+
+It seems to be a calculated Pity Ploy.  "I'm afraid I might lose my
+job...I am reading your [blog]."
+
+The product seemed cool enough.  The pitch, however, was too sketchy
   for me.
 
 
 
 -----
 
-Other possible messages:
-
-&gt;I love something I h...
+Other possible messages: "I love something I h...
 -----------------------------------------------------
 
 cwallenpoole<noreply@blogger.com>

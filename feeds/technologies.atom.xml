@@ -14558,51 +14558,45 @@ the &lt;tt class="docutils literal"&gt;pip install&lt;/tt&gt; (or &lt;tt class="
 then tests or static analysis can be run separately, after the
 initial wave of installations.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="DevOps"></category><category term="#python"></category><category term="continuous integration"></category><category term="continuous deployment"></category></entry><entry><title>Python Type Hinting -- generally easy until you find your design flaws</title><link href="https://slott56.github.io/2017_11_07-python_type_hinting_generally_easy_until_you_find_your_design_flaws.html" rel="alternate"></link><published>2017-11-07T08:00:00-05:00</published><updated>2017-11-07T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2017-11-07:/2017_11_07-python_type_hinting_generally_easy_until_you_find_your_design_flaws.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Adding type hints is easy and fun. Seriously. It's not a lot of work.&lt;/div&gt;
-&lt;div class="line"&gt;Until.&lt;/div&gt;
-&lt;div class="line"&gt;Until you find a piece of code that does more than what you sort-of
-thought it kind-of did.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="DevOps"></category><category term="#python"></category><category term="continuous integration"></category><category term="continuous deployment"></category></entry><entry><title>Python Type Hinting -- generally easy until you find your design flaws</title><link href="https://slott56.github.io/2017_11_07-python_type_hinting_generally_easy_until_you_find_your_design_flaws.html" rel="alternate"></link><published>2017-11-07T08:00:00-05:00</published><updated>2017-11-07T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2017-11-07:/2017_11_07-python_type_hinting_generally_easy_until_you_find_your_design_flaws.html</id><summary type="html">&lt;p&gt;Adding type hints is easy and fun. Seriously. It's not a lot of work.&lt;/p&gt;
+&lt;p&gt;Until.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;Until you find a piece of code that does more than what you sort-of&lt;/dt&gt;
+&lt;dd&gt;thought it kind-of did.&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;pre class="literal-block"&gt;
 def null_aware_func(x):
     if x is None:
          return x
     return 2.2*x**1.05
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;This is …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Adding type hints is easy and fun. Seriously. It's not a lot of work.&lt;/div&gt;
-&lt;div class="line"&gt;Until.&lt;/div&gt;
-&lt;div class="line"&gt;Until you find a piece of code that does more than what you sort-of
-thought it kind-of did.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;This is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Adding type hints is easy and fun. Seriously. It's not a lot of work.&lt;/p&gt;
+&lt;p&gt;Until.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;Until you find a piece of code that does more than what you sort-of&lt;/dt&gt;
+&lt;dd&gt;thought it kind-of did.&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;pre class="literal-block"&gt;
 def null_aware_func(x):
     if x is None:
          return x
     return 2.2*x**1.05
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;This is a stab at a none-aware computation.&lt;/div&gt;
-&lt;div class="line"&gt;Let's add type hints, shall we?&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;This is a stab at a none-aware computation.
+Let's add type hints, shall we?&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 def null_aware_func(x: float) -&amp;gt; float:
     if x is None:
         return None
     return 2.2*x**1.05
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;This won't fool mypy. Sigh. It passes unit tests, but it's flagged as
-a problem.&lt;/div&gt;
-&lt;div class="line"&gt;We have a variety of ways of define this function. And that means we
-need to think carefully about our None-aware design.&lt;/div&gt;
-&lt;div class="line"&gt;Is this really an &amp;#64;overload?&lt;/div&gt;
-&lt;/div&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;This won't fool mypy. Sigh. It passes unit tests, but it's flagged as&lt;/dt&gt;
+&lt;dd&gt;a problem.&lt;/dd&gt;
+&lt;dt&gt;We have a variety of ways of define this function. And that means we&lt;/dt&gt;
+&lt;dd&gt;need to think carefully about our None-aware design.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Is this really an &lt;tt class="docutils literal"&gt;&amp;#64;overload&lt;/tt&gt;?&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 from typing import overload
 &amp;#64;overload
@@ -14613,12 +14607,11 @@ def null_aware_func(x: float) -&amp;gt; float:
         return None
     return 2.2*x**1.05
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;And yes, the ... is legit Python syntax. (It's a rarely used token
-that forms the body of the function.)&lt;/div&gt;
-&lt;div class="line"&gt;Or is this a more advanced type?&lt;/div&gt;
-&lt;/div&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;And yes, the &lt;tt class="docutils literal"&gt;...&lt;/tt&gt; is legit Python syntax. (It's a rarely used token&lt;/dt&gt;
+&lt;dd&gt;that forms the body of the function.)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Or is this a more advanced type?&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 from typing import Optional
 OptFloat = Optional[float]
@@ -14628,22 +14621,20 @@ def null_aware_func(x: OptFloat) -&amp;gt; OptFloat:
         return None
     return 2.2*x**1.05
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I'd argue that OptFloat is a more sensible definition. However, if
-this is the only function that's none-aware, perhaps it's an overload.&lt;/div&gt;
-&lt;div class="line"&gt;The deeper question is one of underlying meaning. Why are we doing
-this? What does it mean?&lt;/div&gt;
-&lt;div class="line"&gt;And. Bonus. Will this be working in a SQLAlchemy environment, where
-they have their own wrappers for database objects, meaning that `is
-None` doesn't work and `== None` is required?&lt;/div&gt;
-&lt;div class="line"&gt;What's important is that adding type hints forced us to think about
-what we were doing. Unlike Java we did this without stopping progress
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;I'd argue that &lt;tt class="docutils literal"&gt;OptFloat&lt;/tt&gt; is a more sensible definition. However, if&lt;/dt&gt;
+&lt;dd&gt;this is the only function that's none-aware, perhaps it's an overload.&lt;/dd&gt;
+&lt;dt&gt;The deeper question is one of underlying meaning. Why are we doing&lt;/dt&gt;
+&lt;dd&gt;this? What does it mean?&lt;/dd&gt;
+&lt;dt&gt;And. Bonus. Will this be working in a SQLAlchemy environment, where&lt;/dt&gt;
+&lt;dd&gt;they have their own wrappers for database objects, meaning that &lt;tt class="docutils literal"&gt;is None&lt;/tt&gt; doesn't work and &lt;tt class="docutils literal"&gt;== None&lt;/tt&gt; is required?&lt;/dd&gt;
+&lt;dt&gt;What's important is that adding type hints forced us to think about&lt;/dt&gt;
+&lt;dd&gt;what we were doing. Unlike Java we did this without stopping progress
 for an extended period of &amp;quot;wrestling with the compiler&amp;quot;. We can use
 Any temporarily because the unit tests all pass. Then, we can pay down
-the technical debt by fixing the type declaration.&lt;/div&gt;
-&lt;div class="line"&gt;Total. Victory.&lt;/div&gt;
-&lt;/div&gt;
+the technical debt by fixing the type declaration.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Total. Victory.&lt;/p&gt;
 </content><category term="Technologies"></category><category term="#python"></category></entry><entry><title>Some Reading</title><link href="https://slott56.github.io/2017_10_31-some_reading.html" rel="alternate"></link><published>2017-10-31T08:00:00-04:00</published><updated>2017-10-31T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2017-10-31:/2017_10_31-some_reading.html</id><summary type="html">&lt;p&gt;Higher-Order Functions. A really cool idea. Javascript isn't my favorite
 language.
 &lt;a class="reference external" href="https://medium.freecodecamp.org/higher-order-functions-in-javascript-d9101f9cf528"&gt;https://medium.freecodecamp.org/higher-order-functions-in-javascript-d9101f9cf528&lt;/a&gt;
@@ -35202,24 +35193,21 @@ Where can I find the book?&lt;/p&gt;
 &lt;p&gt;2019-04-10 09:48:35.488000-04:00&lt;/p&gt;
 &lt;p&gt;This comment has been removed by the author.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="building skills books"></category></entry><entry><title>Python 2.7 CSV files with Unicode Characters</title><link href="https://slott56.github.io/2012_01_19-python_27_csv_files_with_unicode_characters.html" rel="alternate"></link><published>2012-01-19T08:00:00-05:00</published><updated>2012-01-19T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-01-19:/2012_01_19-python_27_csv_files_with_unicode_characters.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;The csv module in Python 2.7 is more-or-less hard-wired to work with
-ASCII and only ASCII.&lt;/div&gt;
-&lt;div class="line"&gt;Sadly, we're often confronted with CSV files that include Unicode
+</content><category term="Technologies"></category><category term="#python"></category><category term="building skills books"></category></entry><entry><title>Python 2.7 CSV files with Unicode Characters</title><link href="https://slott56.github.io/2012_01_19-python_27_csv_files_with_unicode_characters.html" rel="alternate"></link><published>2012-01-19T08:00:00-05:00</published><updated>2012-01-19T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-01-19:/2012_01_19-python_27_csv_files_with_unicode_characters.html</id><summary type="html">&lt;p&gt;The csv module in Python 2.7 is more-or-less hard-wired to work with
+ASCII and only ASCII.&lt;/p&gt;
+&lt;p&gt;Sadly, we're often confronted with CSV files that include Unicode
 characters.  There are numerous Stack Overflow questions on this
-topic.  &lt;a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode"&gt;http://stackoverflow.com/search?q=python+csv+unicode&lt;/a&gt;&lt;/div&gt;
-&lt;div class="line"&gt;What to do?  Since csv …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;The csv module in Python 2.7 is more-or-less hard-wired to work with
-ASCII and only ASCII.&lt;/div&gt;
-&lt;div class="line"&gt;Sadly, we're often confronted with CSV files that include Unicode
+topic.  &lt;a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode"&gt;http://stackoverflow.com/search?q=python+csv+unicode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;What to do?  Since csv …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The csv module in Python 2.7 is more-or-less hard-wired to work with
+ASCII and only ASCII.&lt;/p&gt;
+&lt;p&gt;Sadly, we're often confronted with CSV files that include Unicode
 characters.  There are numerous Stack Overflow questions on this
-topic.  &lt;a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode"&gt;http://stackoverflow.com/search?q=python+csv+unicode&lt;/a&gt;&lt;/div&gt;
-&lt;div class="line"&gt;What to do?  Since csv is married to seeing ASCII/bytes, we must
-explicitly decode the column values.&lt;/div&gt;
-&lt;div class="line"&gt;One solution is to wrap csv.DictReader, something like the following.
- We need to decode each individual column before attempting to do
-anything with value.&lt;/div&gt;
-&lt;/div&gt;
+topic.  &lt;a class="reference external" href="http://stackoverflow.com/search?q=python+csv+unicode"&gt;http://stackoverflow.com/search?q=python+csv+unicode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;What to do?  Since csv is married to seeing ASCII/bytes, we must
+explicitly decode the column values.&lt;/p&gt;
+&lt;p&gt;One solution is to wrap csv.DictReader, something like the following.
+We need to decode each individual column before attempting to do
+anything with value.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 class UnicodeDictReader( object ):
     def __init__( self, *args, **kw ):
@@ -35231,32 +35219,26 @@ class UnicodeDictReader( object ):
             t= dict( (k,decode(row[k])[0]) for k in row )
             yield t
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;This new object is an iterable which contains a DictReader. We could
-subclass DictReader, also.&lt;/div&gt;
-&lt;div class="line"&gt;The use case, then, becomes something simple like this.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;This new object is an iterable which contains a DictReader. We could
+subclass DictReader, also.&lt;/p&gt;
+&lt;p&gt;The use case, then, becomes something simple like this.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 with open(&amp;quot;some.csv&amp;quot;,&amp;quot;rU&amp;quot;) as source:
     rdr= UnicodeDictReader( source )
     for row in rdr:
         # process the row
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;We can now get Unicode characters from a CSV file.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;We can now get Unicode characters from a CSV file.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
-&lt;div class="section" id="it-39-s-one-of-those-things-the-files-came-to"&gt;
-&lt;h2&gt;It&amp;amp;#39;s one of those things... The files came to ...&lt;/h2&gt;
+&lt;div class="section" id="it-s-one-of-those-things-the-files-came-to"&gt;
+&lt;h2&gt;It's one of those things... The files came to ...&lt;/h2&gt;
 &lt;p&gt;S.Lott&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2012-01-23 11:27:19.901000-05:00&lt;/p&gt;
 &lt;p&gt;It's one of those things... The files came to me in that encoding. UTF-8
 seems so much more sensible.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="i-like-that-you-think-39-mac-roman-39-is-a-sen"&gt;
-&lt;h2&gt;I like that you think &amp;amp;#39;mac_roman&amp;amp;#39; is a sen...&lt;/h2&gt;
+&lt;div class="section" id="i-like-that-you-think-mac-roman-is-a-sen"&gt;
+&lt;h2&gt;I like that you think 'mac_roman' is a sen...&lt;/h2&gt;
 &lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2012-01-20 19:56:24.488000-05:00&lt;/p&gt;
 &lt;p&gt;I like that you think 'mac_roman' is a sensible default encoding.&lt;/p&gt;
@@ -35622,31 +35604,21 @@ people's way so that they can do the right thing.
 Micromanagement, incentives, annual performance reviews and the like
 aren't as useful as providing the sense of purpose, the opportunity for
 mastery and the freedom of self-direction.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="software process improvement"></category></entry><entry><title>Epic indictment of Waterfall Methods</title><link href="https://slott56.github.io/2012_01_03-epic_indictment_of_waterfall_methods.html" rel="alternate"></link><published>2012-01-03T08:00:00-05:00</published><updated>2012-01-03T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-01-03:/2012_01_03-epic_indictment_of_waterfall_methods.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Saw this recently.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="software process improvement"></category></entry><entry><title>Epic indictment of Waterfall Methods</title><link href="https://slott56.github.io/2012_01_03-epic_indictment_of_waterfall_methods.html" rel="alternate"></link><published>2012-01-03T08:00:00-05:00</published><updated>2012-01-03T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2012-01-03:/2012_01_03-epic_indictment_of_waterfall_methods.html</id><summary type="html">&lt;p&gt;Saw this recently.&lt;/p&gt;
 &lt;blockquote&gt;
 Why do most gov websites look like they were created by someone's 10
 year old nephew yet cost millions to make?
 — Steve Dekorte (&amp;#64;stevedekorte) &lt;a class="reference external" href="https://twitter.com/stevedekorte/status/152208488716701696"&gt;December 29,
 2011&lt;/a&gt;&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I think this aptly summarizes the results of a waterfall methodology.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;I think this aptly summarizes the results of a waterfall methodology.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;You wrote a lot of requirements, not fully understanding …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Saw this recently.&lt;/div&gt;
-&lt;/div&gt;
+&lt;li&gt;You wrote a lot of requirements, not fully understanding …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Saw this recently.&lt;/p&gt;
 &lt;blockquote&gt;
 Why do most gov websites look like they were created by someone's 10
 year old nephew yet cost millions to make?
 — Steve Dekorte (&amp;#64;stevedekorte) &lt;a class="reference external" href="https://twitter.com/stevedekorte/status/152208488716701696"&gt;December 29,
 2011&lt;/a&gt;&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I think this aptly summarizes the results of a waterfall methodology.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;I think this aptly summarizes the results of a waterfall methodology.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;You wrote a lot of requirements, not fully understanding the actors
 or their use cases.&lt;/li&gt;
@@ -35654,11 +35626,9 @@ or their use cases.&lt;/li&gt;
 contractual obligations not because they created value for the
 actors.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;The government's not the only offender.  They're just more visible and
+&lt;p&gt;The government's not the only offender.  They're just more visible and
 more bound up in a legally-mandated purchasing cycle that makes the
-waterfall desirable and more Agile methods undesirable.&lt;/div&gt;
-&lt;/div&gt;
+waterfall desirable and more Agile methods undesirable.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="another-aspect-is-the-damaged-or-virtually-non-exi"&gt;
 &lt;h2&gt;Another aspect is the damaged or virtually non-exi...&lt;/h2&gt;
@@ -35796,20 +35766,12 @@ password without salt can be broken in about half an hour.  There's no
 &amp;quot;moving target&amp;quot; here.  At 30 minutes to crack a password, the only way
 the target can appear to move is making every password a 1-time-only
 password based on some kind of external source (like a token generator.)&lt;/p&gt;
-</content><category term="Technologies"></category><category term="security"></category></entry><entry><title>Statically Typed Language Nonsense</title><link href="https://slott56.github.io/2011_12_09-statically_typed_language_nonsense.html" rel="alternate"></link><published>2011-12-09T08:00:00-05:00</published><updated>2011-12-09T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-12-09:/2011_12_09-statically_typed_language_nonsense.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this: &amp;quot;&lt;a class="reference external" href="http://www.sdtimes.com/l/36103"&gt;Here Comes Functional
-Programming&lt;/a&gt;&amp;quot; by Larry O'Brien in
-SD Times.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="security"></category></entry><entry><title>Statically Typed Language Nonsense</title><link href="https://slott56.github.io/2011_12_09-statically_typed_language_nonsense.html" rel="alternate"></link><published>2011-12-09T08:00:00-05:00</published><updated>2011-12-09T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-12-09:/2011_12_09-statically_typed_language_nonsense.html</id><summary type="html">&lt;p&gt;Read this: &amp;quot;&lt;a class="reference external" href="http://www.sdtimes.com/l/36103"&gt;Here Comes Functional Programming&lt;/a&gt;&amp;quot; by Larry O'Brien in SD Times.&lt;/p&gt;
 &lt;blockquote&gt;
 people who should know better continue to assert that statically
 typed languages are &amp;quot;safer, because the compiler can catch errors
 that otherwise wouldn't show up until runtime.&amp;quot; While it's true a
-statically typed language can detect that you've …&lt;/blockquote&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this: &amp;quot;&lt;a class="reference external" href="http://www.sdtimes.com/l/36103"&gt;Here Comes Functional
-Programming&lt;/a&gt;&amp;quot; by Larry O'Brien in
-SD Times.&lt;/div&gt;
-&lt;/div&gt;
+statically typed language can detect that you've …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;Read this: &amp;quot;&lt;a class="reference external" href="http://www.sdtimes.com/l/36103"&gt;Here Comes Functional Programming&lt;/a&gt;&amp;quot; by Larry O'Brien in SD Times.&lt;/p&gt;
 &lt;blockquote&gt;
 people who should know better continue to assert that statically
 typed languages are &amp;quot;safer, because the compiler can catch errors
@@ -35819,16 +35781,14 @@ a double without running your code, no type system is so strict that
 it can substitute for a test suite, and if you have a test suite,
 type-assignment errors are discovered and precisely diagnosed with
 little difficulty.&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Thank you.   A language like Python, which lacks static type
+&lt;p&gt;Thank you.   A language like Python, which lacks static type
 declarations for variables, is not evil or an accident waiting to
-happen.&lt;/div&gt;
-&lt;div class="line"&gt;The article is about functional languages.  But the static declaration
-statement is universally true.&lt;/div&gt;
-&lt;/div&gt;
+happen.&lt;/p&gt;
+&lt;p&gt;The article is about functional languages.  But the static declaration
+statement is universally true.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
-&lt;div class="section" id="i-love-python-myself-but-i-39-ve-dabbled-in-hask"&gt;
-&lt;h2&gt;I love Python myself, but I&amp;amp;#39;ve dabbled in Hask...&lt;/h2&gt;
+&lt;div class="section" id="i-love-python-myself-but-i-ve-dabbled-in-hask"&gt;
+&lt;h2&gt;I love Python myself, but I've dabbled in Hask...&lt;/h2&gt;
 &lt;p&gt;Luke Plant&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-12-09 12:02:48.058000-05:00&lt;/p&gt;
 &lt;p&gt;I love Python myself, but I've dabbled in Haskell and this oft-repeated
@@ -35847,10 +35807,9 @@ For example, the guarantees made by STM code in Haskell - see
 &lt;a class="reference external" href="http://book.realworldhaskell.org/read/software-transactional-memory.html"&gt;http://book.realworldhaskell.org/read/software-transactional-memory.html&lt;/a&gt;
 section &amp;quot;STM and safety&amp;quot; - these checks are impossible to do using
 tests.&lt;/p&gt;
-&lt;p&gt;Types Considered Harmful by Lamport&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="http-resear"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="http://resear"&gt;http://resear&lt;/a&gt;...&lt;/h2&gt;
+&lt;div class="section" id="types-considered-harmful-by-lamport-http-resear"&gt;
+&lt;h2&gt;Types Considered Harmful by Lamport &lt;a class="reference external" href="http://resear"&gt;http://resear&lt;/a&gt;...&lt;/h2&gt;
 &lt;p&gt;Robert Lucente&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-12-26 15:38:19.907000-05:00&lt;/p&gt;
 &lt;p&gt;Types Considered Harmful by Lamport
@@ -35868,8 +35827,8 @@ news is that dynamic languages allow for greater flexibility. The bad
 news is that the greater flexibility allows you to get yourself into
 more trouble.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="quot-but-i-39-ve-dabbled-in-haskell-and-this-oft"&gt;
-&lt;h2&gt;&amp;amp;quot;but I&amp;amp;#39;ve dabbled in Haskell and this oft...&lt;/h2&gt;
+&lt;div class="section" id="quot-but-i-ve-dabbled-in-haskell-and-this-oft"&gt;
+&lt;h2&gt;&amp;amp;quot;but I've dabbled in Haskell and this oft...&lt;/h2&gt;
 &lt;p&gt;mazelife&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-12-09 13:36:30.290000-05:00&lt;/p&gt;
 &lt;p&gt;&amp;quot;but I've dabbled in Haskell and this oft-repeated argument only goes so
@@ -35891,46 +35850,37 @@ ACM Transactions on Programming Languages and Systems 21, 3 (May 1999)
 502-526. Also appeared as SRC Research Report 147.
 &lt;a class="reference external" href="http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-types.pdf"&gt;http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-types.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="luke-i-39-d-argue-that-it-is-not-100-coverage-a"&gt;
-&lt;h2&gt;&amp;#64;Luke I&amp;amp;#39;d argue that it is not 100% coverage a...&lt;/h2&gt;
+&lt;div class="section" id="luke-i-d-argue-that-it-is-not-100-coverage-a"&gt;
+&lt;h2&gt;&amp;#64;Luke I'd argue that it is not 100% coverage a...&lt;/h2&gt;
 &lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-12-09 13:39:10.885000-05:00&lt;/p&gt;
 &lt;p&gt;&amp;#64;Luke I'd argue that it is not 100% coverage as it does not verify the
 logic of what happens if val &amp;gt; 10.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="Programming Languages"></category><category term="#python"></category><category term="functional programming"></category></entry><entry><title>I'm Confused by this Marketing Ploy</title><link href="https://slott56.github.io/2011_12_06-im_confused_by_this_marketing_ploy.html" rel="alternate"></link><published>2011-12-06T08:00:00-05:00</published><updated>2011-12-06T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-12-06:/2011_12_06-im_confused_by_this_marketing_ploy.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Got this a few weeks back.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="Programming Languages"></category><category term="#python"></category><category term="functional programming"></category></entry><entry><title>I'm Confused by this Marketing Ploy</title><link href="https://slott56.github.io/2011_12_06-im_confused_by_this_marketing_ploy.html" rel="alternate"></link><published>2011-12-06T08:00:00-05:00</published><updated>2011-12-06T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-12-06:/2011_12_06-im_confused_by_this_marketing_ploy.html</id><summary type="html">&lt;p&gt;Got this a few weeks back.&lt;/p&gt;
 &lt;blockquote&gt;
-My job is to persuade bloggers to link to our site.&lt;/blockquote&gt;
-&lt;!--  --&gt;
-&lt;blockquote&gt;
+&lt;p&gt;My job is to persuade bloggers to link to our site.&lt;/p&gt;
 &lt;p&gt;I really love my job! We have a friendly team and good management,
 but unfortunately I have no idea how to convince a blogger to link to
-us, I'm afraid I might lose …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Got this a few weeks back.&lt;/div&gt;
-&lt;/div&gt;
+us, I'm afraid I might lose …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;Got this a few weeks back.&lt;/p&gt;
 &lt;blockquote&gt;
-My job is to persuade bloggers to link to our site.&lt;/blockquote&gt;
-&lt;!--  --&gt;
-&lt;blockquote&gt;
+&lt;p&gt;My job is to persuade bloggers to link to our site.&lt;/p&gt;
 &lt;p&gt;I really love my job! We have a friendly team and good management,
 but unfortunately I have no idea how to convince a blogger to link to
 us, I'm afraid I might lose my job because of it :(&lt;/p&gt;
 &lt;p&gt;And that is why, instead of sending letters to thousands of different
 blogs, I am reading yours.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Couldn't parse it.&lt;/div&gt;
-&lt;div class="line"&gt;It seems to be a calculated Pity Ploy.  &amp;quot;I'm afraid I might lose my
-job...I am reading your [blog].&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;The product seemed cool enough.  The pitch, however, was too sketchy
-for me.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;Couldn't parse it.&lt;/p&gt;
+&lt;p&gt;It seems to be a calculated Pity Ploy.  &amp;quot;I'm afraid I might lose my
+job...I am reading your [blog].&amp;quot;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;The product seemed cool enough.  The pitch, however, was too sketchy&lt;/dt&gt;
+&lt;dd&gt;for me.&lt;/dd&gt;
+&lt;/dl&gt;
 &lt;hr class="docutils" /&gt;
-&lt;p&gt;Other possible messages:&lt;/p&gt;
-&lt;div class="section" id="gt-i-love-something-i-h"&gt;
-&lt;h2&gt;&amp;amp;gt;I love something I h...&lt;/h2&gt;
+&lt;div class="section" id="other-possible-messages-i-love-something-i-h"&gt;
+&lt;h2&gt;Other possible messages: &amp;quot;I love something I h...&lt;/h2&gt;
 &lt;p&gt;cwallenpoole&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-12-06 11:56:00.637000-05:00&lt;/p&gt;
 &lt;p&gt;Other possible messages:
@@ -36128,58 +36078,46 @@ throughout my daily life.
 &lt;a class="reference external" href="http://www.cprime.com/about/scrum_faq.html"&gt;Agile Software
 Development&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="software process improvement"></category><category term="agile"></category><category term="project management"></category></entry><entry><title>The Value of Microsoft's Tools</title><link href="https://slott56.github.io/2011_11_29-the_value_of_microsofts_tools.html" rel="alternate"></link><published>2011-11-29T08:00:00-05:00</published><updated>2011-11-29T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-29:/2011_11_29-the_value_of_microsofts_tools.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;See Andrew Binstock's &amp;quot;&lt;a class="reference external" href="http://drdobbs.com/windows/231700224#"&gt;Windows 8: Microsoft's Development
-Re-Do&lt;/a&gt;&amp;quot;.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="software process improvement"></category><category term="agile"></category><category term="project management"></category></entry><entry><title>The Value of Microsoft's Tools</title><link href="https://slott56.github.io/2011_11_29-the_value_of_microsofts_tools.html" rel="alternate"></link><published>2011-11-29T08:00:00-05:00</published><updated>2011-11-29T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-29:/2011_11_29-the_value_of_microsofts_tools.html</id><summary type="html">&lt;p&gt;See Andrew Binstock's &amp;quot;&lt;a class="reference external" href="http://drdobbs.com/windows/231700224#"&gt;Windows 8: Microsoft's Development Re-Do&lt;/a&gt;&amp;quot;.&lt;/p&gt;
 &lt;blockquote&gt;
 The costs of these migrations has been enormous and continues to
 accumulate...&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;I can only rub my hands with glee and engage in shameless &amp;quot;I Told You
-So&amp;quot; self-congratulations.&lt;/div&gt;
-&lt;div class="line"&gt;Only you can prevent being held hostage by Microsoft.&lt;/div&gt;
-&lt;div class="line"&gt;More than once, I've …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;See Andrew Binstock's &amp;quot;&lt;a class="reference external" href="http://drdobbs.com/windows/231700224#"&gt;Windows 8: Microsoft's Development
-Re-Do&lt;/a&gt;&amp;quot;.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;I can only rub my hands with glee and engage in shameless &amp;quot;I Told You
+So&amp;quot; self-congratulations.&lt;/p&gt;
+&lt;p&gt;Only you can prevent being held hostage by Microsoft.&lt;/p&gt;
+&lt;p&gt;More than once, I've …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See Andrew Binstock's &amp;quot;&lt;a class="reference external" href="http://drdobbs.com/windows/231700224#"&gt;Windows 8: Microsoft's Development Re-Do&lt;/a&gt;&amp;quot;.&lt;/p&gt;
 &lt;blockquote&gt;
 The costs of these migrations has been enormous and continues to
 accumulate...&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;I can only rub my hands with glee and engage in shameless &amp;quot;I Told You
-So&amp;quot; self-congratulations.&lt;/div&gt;
-&lt;div class="line"&gt;Only you can prevent being held hostage by Microsoft.&lt;/div&gt;
-&lt;div class="line"&gt;More than once, I've observed that a strategy of using only
+&lt;p&gt;I can only rub my hands with glee and engage in shameless &amp;quot;I Told You
+So&amp;quot; self-congratulations.&lt;/p&gt;
+&lt;p&gt;Only you can prevent being held hostage by Microsoft.&lt;/p&gt;
+&lt;p&gt;More than once, I've observed that a strategy of using only
 proprietary tools would be expensive and complex.  And every time, the
 folks I was talking to trivialized my concerns as hardly worth
-considering.&lt;/div&gt;
-&lt;div class="line"&gt;I've seen orphaned software: it only compiles on an old version of
+considering.&lt;/p&gt;
+&lt;p&gt;I've seen orphaned software: it only compiles on an old version of
 Visual Studio.   I've seen software orphaned so badly that it can only
 be compiled on one creaky old PC.  The cost to convert was so
 astronomical that the customer preferred to hope for a product to
 arise somewhere in the marketplace.  When no suitable product appeared
 over the decades, the problem reached palpable Pants On Fire (POF)
-levels of panic.  All due to the hidden costs of Microsoft's tools.&lt;/div&gt;
-&lt;div class="line"&gt;I've even been told that VB is a terrible language, but Visual Studio
-makes it acceptable.&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="tools"></category></entry><entry><title>Justification of Project Staffing</title><link href="https://slott56.github.io/2011_11_28-justification_of_project_staffing.html" rel="alternate"></link><published>2011-11-28T07:37:00-05:00</published><updated>2011-11-28T07:37:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-28:/2011_11_28-justification_of_project_staffing.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;I really dislike being asked to plan a project.  It's hard to predict
-the future accurately.&lt;/div&gt;
-&lt;div class="line"&gt;In spite of the future being -- well -- the future, and utterly
-unknowable, we still have to have the following kinds of discussions.&lt;/div&gt;
-&lt;div class="line"&gt;Me: &amp;quot;It's probably going to take a team of six.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;Customer: &amp;quot;We …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;I really dislike being asked to plan a project.  It's hard to predict
-the future accurately.&lt;/div&gt;
-&lt;div class="line"&gt;In spite of the future being -- well -- the future, and utterly
-unknowable, we still have to have the following kinds of discussions.&lt;/div&gt;
-&lt;div class="line"&gt;Me: &amp;quot;It's probably going to take a team of six.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;Customer: &amp;quot;We don't really have the budget for that.  You're going to
-have to provide a lot of justification for a team that big.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;What's wrong with this picture?  Let's enumerate.&lt;/div&gt;
-&lt;/div&gt;
+levels of panic.  All due to the hidden costs of Microsoft's tools.&lt;/p&gt;
+&lt;p&gt;I've even been told that VB is a terrible language, but Visual Studio
+makes it acceptable.&lt;/p&gt;
+</content><category term="Technologies"></category><category term="tools"></category></entry><entry><title>Justification of Project Staffing</title><link href="https://slott56.github.io/2011_11_28-justification_of_project_staffing.html" rel="alternate"></link><published>2011-11-28T07:37:00-05:00</published><updated>2011-11-28T07:37:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-28:/2011_11_28-justification_of_project_staffing.html</id><summary type="html">&lt;p&gt;I really dislike being asked to plan a project.  It's hard to predict
+the future accurately.&lt;/p&gt;
+&lt;p&gt;In spite of the future being -- well -- the future, and utterly
+unknowable, we still have to have the following kinds of discussions.&lt;/p&gt;
+&lt;p&gt;Me: &amp;quot;It's probably going to take a team of six.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Customer: &amp;quot;We …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I really dislike being asked to plan a project.  It's hard to predict
+the future accurately.&lt;/p&gt;
+&lt;p&gt;In spite of the future being -- well -- the future, and utterly
+unknowable, we still have to have the following kinds of discussions.&lt;/p&gt;
+&lt;p&gt;Me: &amp;quot;It's probably going to take a team of six.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Customer: &amp;quot;We don't really have the budget for that.  You're going to
+have to provide a lot of justification for a team that big.&amp;quot;&lt;/p&gt;
+&lt;p&gt;What's wrong with this picture?  Let's enumerate.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Customer is paying me for my opinion based on my experience.  If they
 want to provide me with the answers, I have a way to save them a lot
@@ -36203,60 +36141,57 @@ rewrite the plan to say &amp;quot;four&amp;quot; without changing the effort and
 duration.  Why ask me to change the plan?  A customer can only do
 what they &lt;strong&gt;know&lt;/strong&gt; to be the right thing.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Doing the Right Thing&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;Let's return to that last point.  A customer project manager can only
+&lt;p&gt;&lt;strong&gt;Doing the Right Thing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let's return to that last point.  A customer project manager can only
 do what they absolutely &lt;strong&gt;know&lt;/strong&gt; is the right thing.  I can suggest
 all kinds of things.  If they're too new, too different, too
-disturbing, they're going to get ignored.&lt;/div&gt;
-&lt;div class="line"&gt;Indeed, since people have such a huge &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Confirmation_bias"&gt;Confirmation
+disturbing, they're going to get ignored.&lt;/p&gt;
+&lt;p&gt;Indeed, since people have such a huge &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Confirmation_bias"&gt;Confirmation
 Bias&lt;/a&gt;, it's very,
 very hard to introduce anything new.  A customer doesn't bring in
 consultants without having already sold the idea that a software
 development project is in the offing.  They justify spending a few
 thousand on consulting by establishing some overall, ball-park,
 big-picture budget and showing that the consulting fees are just a
-small fraction of the overall.&lt;/div&gt;
-&lt;div class="line"&gt;As consultants, we have to guess this overall, ball-park, big-picture
+small fraction of the overall.&lt;/p&gt;
+&lt;p&gt;As consultants, we have to guess this overall, ball-park, big-picture
 budget accurately, or the project will be shut down.  If we guess too
 high, then the budget is out of control, or the scope isn't
 well-enough defined, or some other smell will stop all progress.  If
 we guess too low, then we have to lard on additional work to get back
-to the original concept.&lt;/div&gt;
-&lt;div class="line"&gt;Architectures, components and techniques &lt;strong&gt;all&lt;/strong&gt; have to meet
+to the original concept.&lt;/p&gt;
+&lt;p&gt;Architectures, components and techniques &lt;strong&gt;all&lt;/strong&gt; have to meet
 expectations. A customer that isn't familiar with test drive
 development, for example, will have an endless supply of objections.
 &amp;quot;It's unproven.&amp;quot;  &amp;quot;We don't have the budget for all that testing.&amp;quot;
-&amp;quot;We're more comfortable with our existing process.&amp;quot;&lt;/div&gt;
-&lt;div class="line"&gt;The final trump card is the passive aggressive &amp;quot;I'll have to see the
+&amp;quot;We're more comfortable with our existing process.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The final trump card is the passive aggressive &amp;quot;I'll have to see the
 detailed justification.&amp;quot;  It means &amp;quot;Don't you dare.&amp;quot;  But it sounds
-just like passive acceptance.&lt;/div&gt;
-&lt;div class="line"&gt;Since project managers can only do what they know is right, they'll
-find lots of ways of subverting the new and unfamiliar.&lt;/div&gt;
-&lt;div class="line"&gt;If they don't like the architecture, the first glitch or delay or
+just like passive acceptance.&lt;/p&gt;
+&lt;p&gt;Since project managers can only do what they know is right, they'll
+find lots of ways of subverting the new and unfamiliar.&lt;/p&gt;
+&lt;p&gt;If they don't like the architecture, the first glitch or delay or
 problem will immediately lead to a change in direction to yank out the
-new and replace it with the familiar.&lt;/div&gt;
-&lt;div class="line"&gt;If they don't like a component, they'll find numerous great reasons to
-rework that part of the project to remove the offending component.&lt;/div&gt;
-&lt;div class="line"&gt;If they don't like a technique (e.g., Code Walk Throughs) they'll
+new and replace it with the familiar.&lt;/p&gt;
+&lt;p&gt;If they don't like a component, they'll find numerous great reasons to
+rework that part of the project to remove the offending component.&lt;/p&gt;
+&lt;p&gt;If they don't like a technique (e.g., Code Walk Throughs) they'll
 subvert it.  Either not schedule them.  Or cancel them because there
 are &amp;quot;more important things to do.&amp;quot;  Or interrupt them to pull people
-out of them.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Overcoming the Confirmation Bias&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;I find the process of overcoming the confirmation bias to be tedious.
+out of them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Overcoming the Confirmation Bias&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I find the process of overcoming the confirmation bias to be tedious.
 Some people like the one-on-one &amp;quot;influencing&amp;quot; role.  It takes patience
 and time to overcome the confirmation bias so that the customer is
 open to new ideas.  I just don't have the patience.  It's too much
 work to listen patiently to all the objections and slowly work through
-all the alternatives.&lt;/div&gt;
-&lt;div class="line"&gt;I've worked with folks who really relish this kind of thing.  Endless
+all the alternatives.&lt;/p&gt;
+&lt;p&gt;I've worked with folks who really relish this kind of thing.  Endless
 one-on-one meetings.  Lots of pre-meetings and post-meetings and
-reviews of drafts.  I suppose it's rewarding.  Sigh.&lt;/div&gt;
-&lt;/div&gt;
+reviews of drafts.  I suppose it's rewarding.  Sigh.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
-&lt;p&gt;&amp;amp;quot;Doing the Right Thing&amp;amp;quot;&lt;/p&gt;
-&lt;div class="section" id="is-this-a-relig"&gt;
-&lt;h2&gt;Is this a relig...&lt;/h2&gt;
+&lt;div class="section" id="doing-the-right-thing-is-this-a-relig"&gt;
+&lt;h2&gt;&amp;quot;Doing the Right Thing&amp;quot; Is this a relig...&lt;/h2&gt;
 &lt;p&gt;Robert Lucente&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-11-24 17:39:52.953000-05:00&lt;/p&gt;
 &lt;p&gt;&amp;quot;Doing the Right Thing&amp;quot;
@@ -36313,25 +36248,22 @@ more to learn. Start as soon as you can. The exact choices don't
 matter.  Why?  Because, eventually, you'll read &lt;strong&gt;all&lt;/strong&gt; of those books
 plus  &lt;strong&gt;many, many&lt;/strong&gt; others.&lt;/p&gt;
 &lt;p&gt;Spend less time waiting for advice and more time studying.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="building skills books"></category><category term="learning"></category></entry><entry><title>More On Inheritance vs. Delegation</title><link href="https://slott56.github.io/2011_11_17-more_on_inheritance_vs_delegation.html" rel="alternate"></link><published>2011-11-17T08:00:00-05:00</published><updated>2011-11-17T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-17:/2011_11_17-more_on_inheritance_vs_delegation.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
+</content><category term="Technologies"></category><category term="building skills books"></category><category term="learning"></category></entry><entry><title>More On Inheritance vs. Delegation</title><link href="https://slott56.github.io/2011_11_17-more_on_inheritance_vs_delegation.html" rel="alternate"></link><published>2011-11-17T08:00:00-05:00</published><updated>2011-11-17T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-11-17:/2011_11_17-more_on_inheritance_vs_delegation.html</id><summary type="html">&lt;p&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
 error story.  The issue is that inheritance happens along an &amp;quot;axis&amp;quot; or
 &amp;quot;dimension&amp;quot; where the subclasses are at different points along that
-axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;Data warehouse processing can involve a fair …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
+axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Data warehouse processing can involve a fair …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
 error story.  The issue is that inheritance happens along an &amp;quot;axis&amp;quot; or
 &amp;quot;dimension&amp;quot; where the subclasses are at different points along that
-axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;Data warehouse processing can involve a fair amount of &amp;quot;big batch&amp;quot;
+axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Data warehouse processing can involve a fair amount of &amp;quot;big batch&amp;quot;
 programs.  Loading 40,000 rows of econometric data in a single swoop,
-updating dimensions and loading facts, for example.&lt;/div&gt;
-&lt;div class="line"&gt;When you get data from customers and vendors, you have endless
+updating dimensions and loading facts, for example.&lt;/p&gt;
+&lt;p&gt;When you get data from customers and vendors, you have endless
 file-format problems.  To assure that things will work, each of these
-big batch programs has at least two operating modes.&lt;/div&gt;
-&lt;/div&gt;
+big batch programs has at least two operating modes.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Validate.  Go through all the motions.  Except.  Don't commit any
 changes to the database; don't make any filesystem changes.  (i.e.,
@@ -36340,63 +36272,59 @@ current.)&lt;/li&gt;
 &lt;li&gt;Load.  Go through all the motions including a complete commit to the
 database and any filesystem changes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Problem&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;What's the difference between the two modes?  Clearly, one is a
-subclass of the other.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;What's the difference between the two modes?  Clearly, one is a
+subclass of the other.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Load can be the superclass.  The Validate subclass simply replaces
 the save methods stubs that do nothing.&lt;/li&gt;
 &lt;li&gt;Validate can be the superclass.  The Load subclass simply implements
 the save method stubs with methods that do something useful.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Simple, right?&lt;/div&gt;
-&lt;div class="line"&gt;Wrong.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;What Doesn't Work&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;This design has a smell.  The smell is that we can't easily extend the
-overall processing to include an additional feature.&lt;/div&gt;
-&lt;div class="line"&gt;Why not?&lt;/div&gt;
-&lt;div class="line"&gt;This design has the persistence feature set as the inheritance axis or
+&lt;p&gt;Simple, right?&lt;/p&gt;
+&lt;p&gt;Wrong.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What Doesn't Work&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This design has a smell.  The smell is that we can't easily extend the
+overall processing to include an additional feature.&lt;/p&gt;
+&lt;p&gt;Why not?&lt;/p&gt;
+&lt;p&gt;This design has the persistence feature set as the inheritance axis or
 dimension.  This is kind of limited.  We really want a different
-feature set for inheritance.&lt;/div&gt;
-&lt;div class="line"&gt;Consider a Validate for two dimensions (Company and Time) that loads
-econometric facts.  It has stub &amp;quot;save&amp;quot; methods.&lt;/div&gt;
-&lt;div class="line"&gt;We subclass the Validate to create the proper Load for these two
+feature set for inheritance.&lt;/p&gt;
+&lt;p&gt;Consider a Validate for two dimensions (Company and Time) that loads
+econometric facts.  It has stub &amp;quot;save&amp;quot; methods.&lt;/p&gt;
+&lt;p&gt;We subclass the Validate to create the proper Load for these two
 dimensions and one fact.  We replace the stub save methods with proper
-database commits.&lt;/div&gt;
-&lt;div class="line"&gt;After the actuaries think for a while, suddenly we have a file which
+database commits.&lt;/p&gt;
+&lt;p&gt;After the actuaries think for a while, suddenly we have a file which
 includes an additional dimension (i.e., business location) or an
 additional fact (i.e., econometric data at a different level of
 granularity).  What now?  If we subclass Validate to add the dimension
 or fact, we have a problem.  We have to repeat the Load subclass
-methods for the new, extended Load.  Oops.&lt;/div&gt;
-&lt;div class="line"&gt;If we subclass Load to add the dimension or fact, we have a problem.
+methods for the new, extended Load.  Oops.&lt;/p&gt;
+&lt;p&gt;If we subclass Load to add the dimension or fact, we have a problem.
 We have to repeat the Validate stubs in the new extended Load to make
-it into a Validate.  Oops.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Recognizing Delegation&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;It's difficult to predict inheritance vs. delegation design problems.&lt;/div&gt;
-&lt;div class="line"&gt;The hand-waving advice is to consider the &lt;em&gt;essential&lt;/em&gt; features of the
+it into a Validate.  Oops.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recognizing Delegation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It's difficult to predict inheritance vs. delegation design problems.&lt;/p&gt;
+&lt;p&gt;The hand-waving advice is to consider the &lt;em&gt;essential&lt;/em&gt; features of the
 object.  This isn't too helpful.  Often, we're so focused on the
-database design that persistence seems essential.&lt;/div&gt;
-&lt;div class="line"&gt;Experience shows, however, that some things are not essential.
+database design that persistence seems essential.&lt;/p&gt;
+&lt;p&gt;Experience shows, however, that some things are not essential.
 Persistence, for example, is one of those things that should &lt;em&gt;always&lt;/em&gt;
-be delegated.&lt;/div&gt;
-&lt;div class="line"&gt;Another thing that should always be delegated is the more general
+be delegated.&lt;/p&gt;
+&lt;p&gt;Another thing that should always be delegated is the more general
 problem of representation: JSON, XML, etc., should rely on delegation
 since this is never essential.  There's always another representation
 for data.  Representation is always independent of the object's
-essential internal state changes.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Consequence&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;In my case, I've got about a dozen implementations using a clunky
-inheritance that had some copy-and-paste programming.  Oops.&lt;/div&gt;
-&lt;div class="line"&gt;I'm trying to reduce that technical debt by rewriting each to be a
+essential internal state changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Consequence&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In my case, I've got about a dozen implementations using a clunky
+inheritance that had some copy-and-paste programming.  Oops.&lt;/p&gt;
+&lt;p&gt;I'm trying to reduce that technical debt by rewriting each to be a
 proper delegation.  With good unit test coverage, there's no real
 technical risk.  Just tedious fixing the same mistake that I rushed
-into production twelve separate times.&lt;/div&gt;
-&lt;div class="line"&gt;Really.  Colossally dumb.&lt;/div&gt;
-&lt;/div&gt;
+into production twelve separate times.&lt;/p&gt;
+&lt;p&gt;Really.  Colossally dumb.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="check-out-quot-composition-versus-inheritance-a"&gt;
 &lt;h2&gt;Check out &amp;amp;quot;Composition versus inheritance: A ...&lt;/h2&gt;
@@ -36881,46 +36809,37 @@ Access/Excel to explore/document the business rules. Once it's stable
 (ie they have figured out what they really want), then it gets
 incorporated into their infrastructure via a programming language.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="business rules"></category></entry><entry><title>The Politics of Estimating</title><link href="https://slott56.github.io/2011_09_29-the_politics_of_estimating.html" rel="alternate"></link><published>2011-09-29T08:00:00-04:00</published><updated>2011-09-29T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-09-29:/2011_09_29-the_politics_of_estimating.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Computerworld, September 12, page 10.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="business rules"></category></entry><entry><title>The Politics of Estimating</title><link href="https://slott56.github.io/2011_09_29-the_politics_of_estimating.html" rel="alternate"></link><published>2011-09-29T08:00:00-04:00</published><updated>2011-09-29T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-09-29:/2011_09_29-the_politics_of_estimating.html</id><summary type="html">&lt;p&gt;Computerworld, September 12, page 10.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;strong&gt;Microburst&lt;/strong&gt;IT Disasters
 According to a study of 1,471 big IT projects, 15% turn out to be
 money pits, with cost overruns averaging 200%.&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;How is this a politically-charged statement?  We hear this kind of
-thing all the time.&lt;/div&gt;
-&lt;div class="line"&gt;As developers (or project leaders …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Computerworld, September 12, page 10.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;How is this a politically-charged statement?  We hear this kind of
+thing all the time.&lt;/p&gt;
+&lt;p&gt;As developers (or project leaders …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Computerworld, September 12, page 10.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;strong&gt;Microburst&lt;/strong&gt;IT Disasters
 According to a study of 1,471 big IT projects, 15% turn out to be
 money pits, with cost overruns averaging 200%.&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;How is this a politically-charged statement?  We hear this kind of
-thing all the time.&lt;/div&gt;
-&lt;div class="line"&gt;As developers (or project leaders) we're failing to execute.&lt;/div&gt;
-&lt;div class="line"&gt;Right?&lt;/div&gt;
-&lt;div class="line"&gt;Hogwash.&lt;/div&gt;
-&lt;div class="line"&gt;An &amp;quot;overrun&amp;quot; is isomorphic to &amp;quot;badly justified&amp;quot; or &amp;quot;badly budgeted&amp;quot; or
-&amp;quot;oversold to executive sponsors&amp;quot;.&lt;/div&gt;
-&lt;div class="line"&gt;An &amp;quot;overrun&amp;quot; can be a failure to use (or even permit) realistic
+&lt;p&gt;How is this a politically-charged statement?  We hear this kind of
+thing all the time.&lt;/p&gt;
+&lt;p&gt;As developers (or project leaders) we're failing to execute.&lt;/p&gt;
+&lt;p&gt;Right?&lt;/p&gt;
+&lt;p&gt;Hogwash.&lt;/p&gt;
+&lt;p&gt;An &amp;quot;overrun&amp;quot; is isomorphic to &amp;quot;badly justified&amp;quot; or &amp;quot;badly budgeted&amp;quot; or
+&amp;quot;oversold to executive sponsors&amp;quot;.&lt;/p&gt;
+&lt;p&gt;An &amp;quot;overrun&amp;quot; can be a failure to use (or even permit) realistic
 estimates.  It may reflect an executive sponsor restating objectives
 to make the project large enough to justify it.  An overrun can mean
-anything.&lt;/div&gt;
-&lt;div class="line"&gt;Calling it an overrun is a way to label it as &amp;quot;failure to execute&amp;quot;.&lt;/div&gt;
-&lt;div class="line"&gt;I prefer to call it a failure of vision (or whatever it is executive
+anything.&lt;/p&gt;
+&lt;p&gt;Calling it an overrun is a way to label it as &amp;quot;failure to execute&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I prefer to call it a failure of vision (or whatever it is executive
 sponsors do).  It's more likely to be an under-estimate than it is to
-be an over-run.&lt;/div&gt;
-&lt;div class="line"&gt;After all, how many times have we been told to reduce an estimate?
- How many times have folks gotten their &amp;quot;attaboys&amp;quot; and &amp;quot;attagirls&amp;quot; for
+be an over-run.&lt;/p&gt;
+&lt;p&gt;After all, how many times have we been told to reduce an estimate?
+How many times have folks gotten their &amp;quot;attaboys&amp;quot; and &amp;quot;attagirls&amp;quot; for
 &amp;quot;sharpening their pencils&amp;quot; and reducing the proposal to the smallest
-amount that the customer would approve?&lt;/div&gt;
-&lt;/div&gt;
+amount that the customer would approve?&lt;/p&gt;
 </content><category term="Technologies"></category><category term="project management"></category><category term="estimating"></category></entry><entry><title>Threads and I/O</title><link href="https://slott56.github.io/2011_09_27-threads_and_io.html" rel="alternate"></link><published>2011-09-27T18:58:00-04:00</published><updated>2011-09-27T18:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-09-27:/2011_09_27-threads_and_io.html</id><summary type="html">&lt;p&gt;&amp;quot;Threads don't promote concurrent I/O.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Kernel threads may.  Most of us write user threads.  Here's a great
 summary under &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Thread_(computer_science)"&gt;Thread (Computer Science)&lt;/a&gt;.&lt;/p&gt;
@@ -37213,23 +37132,20 @@ outline like the &amp;quot;Group By&amp;quot; SQL statement.&lt;/p&gt;
 &lt;p&gt;When visiting blogs, i usually discover a very good content like yours
 &lt;a class="reference external" href="https://www.linkedin.com/in/scott-korn-62546a19/"&gt;see here&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="data warehouse"></category><category term="#python"></category><category term="performance"></category><category term="star-schema"></category></entry><entry><title>Brain-Damaged Data</title><link href="https://slott56.github.io/2011_08_04-brain_damaged_data.html" rel="alternate"></link><published>2011-08-04T08:00:00-04:00</published><updated>2011-08-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-08-04:/2011_08_04-brain_damaged_data.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;We process a fair amount of externally-prepared datasets.  40,000 rows
+</content><category term="Technologies"></category><category term="data warehouse"></category><category term="#python"></category><category term="performance"></category><category term="star-schema"></category></entry><entry><title>Brain-Damaged Data</title><link href="https://slott56.github.io/2011_08_04-brain_damaged_data.html" rel="alternate"></link><published>2011-08-04T08:00:00-04:00</published><updated>2011-08-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-08-04:/2011_08_04-brain_damaged_data.html</id><summary type="html">&lt;p&gt;We process a fair amount of externally-prepared datasets.  40,000 rows
 of econometric data that we purchased from a third-party.  Mostly, the
-data is in a usable format: .CSV or .XSLX.&lt;/div&gt;
-&lt;div class="line"&gt;Once in a while, we get CSV with | (pipe).  A few times, we got
-fixed-format COBOL-style records.&lt;/div&gt;
-&lt;div class="line"&gt;Recently, we …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;We process a fair amount of externally-prepared datasets.  40,000 rows
+data is in a usable format: .CSV or .XSLX.&lt;/p&gt;
+&lt;p&gt;Once in a while, we get CSV with &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;.  A few times, we got
+fixed-format COBOL-style records.&lt;/p&gt;
+&lt;p&gt;Recently, we got …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We process a fair amount of externally-prepared datasets.  40,000 rows
 of econometric data that we purchased from a third-party.  Mostly, the
-data is in a usable format: .CSV or .XSLX.&lt;/div&gt;
-&lt;div class="line"&gt;Once in a while, we get CSV with | (pipe).  A few times, we got
-fixed-format COBOL-style records.&lt;/div&gt;
-&lt;div class="line"&gt;Recently, we got a CSV-with-pipe that included 2 records with embedded
-\n sequences in the middle of a CSV row of data.  Really.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Painful Elimination&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;There are two ways to &amp;quot;eliminate&amp;quot; this problem.&lt;/div&gt;
-&lt;/div&gt;
+data is in a usable format: .CSV or .XSLX.&lt;/p&gt;
+&lt;p&gt;Once in a while, we get CSV with &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;.  A few times, we got
+fixed-format COBOL-style records.&lt;/p&gt;
+&lt;p&gt;Recently, we got a CSV-with-pipe that included 2 records with embedded
+&lt;tt class="docutils literal"&gt;\n&lt;/tt&gt; sequences in the middle of a CSV row of data.  Really.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Painful Elimination&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are two ways to &amp;quot;eliminate&amp;quot; this problem.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Subclass our input processing to handle this special CSV-with-pipe
 case.&lt;/li&gt;
@@ -37237,16 +37153,14 @@ case.&lt;/li&gt;
 file that we can simply process with an existing CSV-with-pipe
 configuration.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;I elected to do the first.  The second is (to my mind) an auditing
+&lt;p&gt;I elected to do the first.  The second is (to my mind) an auditing
 nightmare because we touched the file.  We have to prove that we
 didn't disturb any other fields.  While not impossible, it becomes a
-very strange special case for this one-and-only file.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;CSV Simplicity&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;The CSV module's epic simplicity makes it easy to work around this
+very strange special case for this one-and-only file.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CSV Simplicity&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The CSV module's epic simplicity makes it easy to work around this
 kind of goofy data.  Our subclass for this case had the following
-extra foolishness put in&lt;/div&gt;
-&lt;/div&gt;
+extra foolishness put in&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 def make_reader( self ):
         def filter_damage( aFile ):
@@ -37263,38 +37177,22 @@ def make_reader( self ):
         tweaked_file= filter_damage( self.sourceFile )
         return csv.reader( tweaked_file, delimiter='|', doublequote=False, escapechar='&amp;quot;' )
 &lt;/pre&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;div class="line"&gt;That's it.  Since the Python CSV reader merely wants an iterator over
+&lt;p&gt;That's it.  Since the Python CSV reader merely wants an iterator over
 lines, we can (with a simple generator function) provide the necessary
-&amp;quot;iterator-over-lines&amp;quot;.&lt;/div&gt;
-&lt;div class="line"&gt;Delightful.&lt;/div&gt;
-&lt;div class="line"&gt;&lt;strong&gt;Apology&lt;/strong&gt;&lt;/div&gt;
-&lt;div class="line"&gt;The murky-looking row.rfind('&amp;quot;') &amp;gt;= len(row)-3 condition is one of
+&amp;quot;iterator-over-lines&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Delightful.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Apology&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The murky-looking &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;row.rfind('&amp;quot;')&lt;/span&gt; &amp;gt;= &lt;span class="pre"&gt;len(row)-3&lt;/span&gt;&lt;/tt&gt; condition is one of
 those consequences of trying to find just a few irregular line endings
 in an otherwise regular file.  For CSV processing, files often have to
 be opened in &amp;quot;rb&amp;quot; mode because they originate (or will be used with)
-MS-Excel.  This makes the damaged line-ending either '&amp;quot;\n' or maybe
-'&amp;quot;\r\n'.  Rather than spend too much time negotiating with Python's
+MS-Excel.  This makes the damaged line-ending either &lt;tt class="docutils literal"&gt;\n&lt;/tt&gt; or maybe
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\\r\\n&lt;/span&gt;&lt;/tt&gt;.  Rather than spend too much time negotiating with Python's
 universal newline and &amp;quot;rb&amp;quot; mode, it's slightly easier to look for a
-'&amp;quot;' near the end.&lt;/div&gt;
-&lt;div class="line"&gt;We're hoping this is a one-time-only subclass that we can safely
+&lt;tt class="docutils literal"&gt;&amp;quot;&lt;/tt&gt; near the end.&lt;/p&gt;
+&lt;p&gt;We're hoping this is a one-time-only subclass that we can safely
 ignore in the future.  If hope is dashed, it's a distinct subclass, so
-it's easily reused and didn't break anything else.&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;p&gt;Hello,
-We facilitate the provision of &amp;lt;a href=&amp;quot;htt...
------------------------------------------------------&lt;/p&gt;
-&lt;p&gt;Rudra455&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2011-08-04 13:57:07.942000-04:00&lt;/p&gt;
-&lt;p&gt;Hello,
-We facilitate the provision of &lt;a class="reference external" href="http://www.palmerleasing.com/"&gt;independent
-analysis&lt;/a&gt; to support expert testimony,
-regulatory or legislative engagements. Frequently, this work includes
-economic, financial and statistical studies of varying data analysis,
-technical and
-&lt;a class="reference external" href="http://www.palmerleasing.com/"&gt;http://www.palmerleasing.com&lt;/a&gt;.&lt;/p&gt;
+it's easily reused and didn't break anything else.&lt;/p&gt;
 </content><category term="Technologies"></category><category term="csv"></category><category term="#python"></category></entry><entry><title>One of Those Things</title><link href="https://slott56.github.io/2011_07_26-one_of_those_things.html" rel="alternate"></link><published>2011-07-26T08:00:00-04:00</published><updated>2011-07-26T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-07-26:/2011_07_26-one_of_those_things.html</id><summary type="html">&lt;p&gt;Check out this question on Stack Overflow: &amp;quot;&lt;a class="reference external" href="http://stackoverflow.com/questions/6789230/python-replace-a-string-by-a-float-in-txt-file/6789735#6789735"&gt;Python: replace a string by
 a float in txt
 file&lt;/a&gt;&amp;quot;.&lt;/p&gt;
@@ -37552,31 +37450,22 @@ Group&lt;/a&gt;, specifically.
 What a great idea.  Bright people.  Interested in the same area of
 technology.
 It's like hanging around with sailors at a marina.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="hackerspace"></category><category term="#python"></category></entry><entry><title>An Object-Lesson in How to Stifle Innovation</title><link href="https://slott56.github.io/2011_06_09-an_object_lesson_in_how_to_stifle_innovation.html" rel="alternate"></link><published>2011-06-09T08:00:00-04:00</published><updated>2011-06-09T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-06-09:/2011_06_09-an_object_lesson_in_how_to_stifle_innovation.html</id><summary type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this: &lt;a class="reference external" href="http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years"&gt;How Ma Bell Shelved the Future for 60
-Years&lt;/a&gt;.&lt;/div&gt;
-&lt;/div&gt;
+</content><category term="Technologies"></category><category term="hackerspace"></category><category term="#python"></category></entry><entry><title>An Object-Lesson in How to Stifle Innovation</title><link href="https://slott56.github.io/2011_06_09-an_object_lesson_in_how_to_stifle_innovation.html" rel="alternate"></link><published>2011-06-09T08:00:00-04:00</published><updated>2011-06-09T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-06-09:/2011_06_09-an_object_lesson_in_how_to_stifle_innovation.html</id><summary type="html">&lt;p&gt;Read this: &lt;a class="reference external" href="http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years"&gt;How Ma Bell Shelved the Future for 60 Years&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 AT&amp;amp;T firmly believed that the answering machine, and its magnetic
 tapes, would lead the public to abandon the telephone.&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;How many good ideas are set aside by managers who simply don't have a
-clue what users actually want …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Read this: &lt;a class="reference external" href="http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years"&gt;How Ma Bell Shelved the Future for 60
-Years&lt;/a&gt;.&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;How many good ideas are set aside by managers who simply don't have a
+clue what users actually want …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Read this: &lt;a class="reference external" href="http://gizmodo.com/5691604/how-ma-bell-shelved-the-future-for-60-years"&gt;How Ma Bell Shelved the Future for 60 Years&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 AT&amp;amp;T firmly believed that the answering machine, and its magnetic
 tapes, would lead the public to abandon the telephone.&lt;/blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;How many good ideas are set aside by managers who simply don't have a
-clue what users actually want?&lt;/div&gt;
-&lt;div class="line"&gt;How many great IT projects are rejected because of this kind of
-delusional paranoia?&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;How many good ideas are set aside by managers who simply don't have a
+clue what users actually want?&lt;/p&gt;
+&lt;p&gt;How many great IT projects are rejected because of this kind of
+delusional paranoia?&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
-&lt;div class="section" id="its-not-just-at-amp-t-and-the-quot-old-guard-quot"&gt;
-&lt;h2&gt;Its not just AT&amp;amp;amp;T and the &amp;amp;quot;old guard&amp;amp;quot...&lt;/h2&gt;
+&lt;div class="section" id="its-not-just-at-t-and-the-old-guard"&gt;
+&lt;h2&gt;Its not just AT&amp;amp;T and the &amp;quot;old guard&amp;quot;...&lt;/h2&gt;
 &lt;p&gt;Robert Lucente&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;2011-06-11 12:20:05.510000-04:00&lt;/p&gt;
 &lt;p&gt;Its not just AT&amp;amp;T and the &amp;quot;old guard&amp;quot;. Most humans ASSUME linear
@@ -55639,33 +55528,18 @@ filtering very large tables only.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="#python"></category><category term="object-oriented design"></category><category term="SQL"></category></entry><entry><title>Ways to Crush Innovation</title><link href="https://slott56.github.io/2009_05_17-ways_to_crush_innovation.html" rel="alternate"></link><published>2009-05-17T15:42:00-04:00</published><updated>2009-05-17T15:42:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2009-05-17:/2009_05_17-ways_to_crush_innovation.html</id><summary type="html">&lt;p&gt;Check this out:  “&lt;a class="reference external" href="http://sayamindu.randomink.org/ramblings/2009/04/29/why-should-i-bother/"&gt;Why should I
 bother&lt;/a&gt;?”.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;All organizations have an “Official Technology List”.  I work
 “Enterprise IT”, where the official languages are limited to Java, VB
 .Net, C, C++.  After that... well... it may as well be Esperanto or
 &lt;a class="reference external" href="http://compsoc.dur.ac.uk/whitespace/"&gt;Whitespace&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;PHP, for example, is near the top of the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Check this out:  “&lt;a class="reference external" href="http://sayamindu.randomink.org/ramblings/2009/04/29/why-should-i-bother/"&gt;Why should I
 bother&lt;/a&gt;?”.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;All organizations have an “Official Technology List”.  I work
 “Enterprise IT”, where the official languages are limited to Java, VB
 .Net, C, C++.  After that... well... it may as well be Esperanto or
 &lt;a class="reference external" href="http://compsoc.dur.ac.uk/whitespace/"&gt;Whitespace&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;PHP, for example, is near the top of the
 &lt;a class="reference external" href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html"&gt;TIOBE&lt;/a&gt;index, but often shunned as “not enterprise ready”.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;I’m using Python and folks have things to say: mostly tongue-clucking
 and eye-rolling.  So far, however, it’s working because things are so
 easy to develop, test and change.&lt;/p&gt;
@@ -55673,36 +55547,21 @@ easy to develop, test and change.&lt;/p&gt;
 &lt;a class="reference external" href="http://docutils.sourceforge.net/docs/user/tools.html"&gt;rst2html&lt;/a&gt;documents for requirements, design, etc.  In the code, we had comments
 that used &lt;a class="reference external" href="http://epydoc.sourceforge.net/"&gt;epydoc&lt;/a&gt; with the
 &lt;a class="reference external" href="http://epydoc.sourceforge.net/manual-epytext.html"&gt;epytext&lt;/a&gt;markup language.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;No, it wasn’t confusing.  Free-text documents (requirements,
 architecture, design, test plans, etc.) are easy and fun to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;About a year ago, we started out doing Python development with simple
 &lt;a class="reference external" href="http://docutils.sourceforge.net/docs/user/tools.html"&gt;rst2html&lt;/a&gt;documents for requirements, design, etc.  In the code, we had comments
 that used &lt;a class="reference external" href="http://epydoc.sourceforge.net/"&gt;epydoc&lt;/a&gt; with the
 &lt;a class="reference external" href="http://epydoc.sourceforge.net/manual-epytext.html"&gt;epytext&lt;/a&gt;markup language.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;No, it wasn’t confusing.  Free-text documents (requirements,
 architecture, design, test plans, etc.) are easy and fun to write in
 RST.  Just write.  Leave the formatting to someone else.  A little
 semantic markup doesn’t hurt, but you don’t spend hours with MS-Word
 trying to  disentangle your bullets and your numbering.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;Adding comments to code in epytext was pretty easy, also.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;Then I discovered &lt;a class="reference external" href="http://sphinx.pocoo.org/"&gt;Sphinx&lt;/a&gt;.   Sphinx
 can add module documentation to a document tree very elegantly.
 Further, Sphinx can pull in RST-formatted module comment strings.  Very
 nice.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;Except, of course, we have hundreds of modules in epytext.  Today, I
 started tracking down all of the 150+ modules without proper document
 strings in RST notation.  Hopefully, this time tomorrow, I’ll have a
@@ -55732,17 +55591,11 @@ important for testability as well as locating thread-safety issues.&lt;/p&gt;
 </content><category term="Technologies"></category><category term="#python"></category><category term="threads"></category></entry><entry><title>Changing Platforms</title><link href="https://slott56.github.io/2009_05_17-changing_platforms.html" rel="alternate"></link><published>2009-05-17T15:35:00-04:00</published><updated>2009-05-17T15:35:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2009-05-17:/2009_05_17-changing_platforms.html</id><summary type="html">&lt;p&gt;iBlog doesn’t work well -- and hasn’t for a while.&lt;/p&gt;
 &lt;p&gt;I have iWeb as part of my iLife package -- and I use iLife heavily.&lt;/p&gt;
 &lt;p&gt;Perhaps it’s time to move.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;There are some small “howevers” in that.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;344 blog entires that I’d like to migrate to iWeb.  It …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;iBlog doesn’t work well -- and hasn’t for a while.&lt;/p&gt;
 &lt;p&gt;I have iWeb as part of my iLife package -- and I use iLife heavily.&lt;/p&gt;
 &lt;p&gt;Perhaps it’s time to move.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;There are some small “howevers” in that.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;344 blog entires that I’d like to migrate to iWeb.  It remains to be
@@ -55763,9 +55616,6 @@ permalink from iWeb’s internals and generate the HTML.  Sigh.
 Perhaps I need
 &lt;a class="reference external" href="http://www.zarrastudios.com/ZDS/iWebBuddy.html"&gt;iWebBuddy&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;p&gt;Some things appear to be a wash.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;iBlog created Haloscan Comment and Trackback links.  iWeb replaces

@@ -7,9 +7,11 @@ Python Type Hinting -- generally easy until you find your design flaws
 :category: Technologies
 :status: published
 
-| Adding type hints is easy and fun. Seriously. It's not a lot of work.
-| Until.
-| Until you find a piece of code that does more than what you sort-of
+Adding type hints is easy and fun. Seriously. It's not a lot of work.
+
+Until.
+
+Until you find a piece of code that does more than what you sort-of
   thought it kind-of did.
 
 ::
@@ -19,9 +21,9 @@ Python Type Hinting -- generally easy until you find your design flaws
             return x
        return 2.2*x**1.05
 
-| 
-| This is a stab at a none-aware computation.
-| Let's add type hints, shall we?
+
+This is a stab at a none-aware computation.
+Let's add type hints, shall we?
 
 ::
 
@@ -30,12 +32,13 @@ Python Type Hinting -- generally easy until you find your design flaws
            return None
        return 2.2*x**1.05
 
-| 
-| This won't fool mypy. Sigh. It passes unit tests, but it's flagged as
+
+This won't fool mypy. Sigh. It passes unit tests, but it's flagged as
   a problem.
-| We have a variety of ways of define this function. And that means we
+We have a variety of ways of define this function. And that means we
   need to think carefully about our None-aware design.
-| Is this really an @overload?
+
+Is this really an ``@overload``?
 
 ::
 
@@ -48,10 +51,11 @@ Python Type Hinting -- generally easy until you find your design flaws
            return None
        return 2.2*x**1.05
 
-| 
-| And yes, the ... is legit Python syntax. (It's a rarely used token
+
+And yes, the ``...`` is legit Python syntax. (It's a rarely used token
   that forms the body of the function.)
-| Or is this a more advanced type?
+
+Or is this a more advanced type?
 
 ::
 
@@ -63,20 +67,21 @@ Python Type Hinting -- generally easy until you find your design flaws
            return None
        return 2.2*x**1.05
 
-| 
-| I'd argue that OptFloat is a more sensible definition. However, if
+
+I'd argue that ``OptFloat`` is a more sensible definition. However, if
   this is the only function that's none-aware, perhaps it's an overload.
-| The deeper question is one of underlying meaning. Why are we doing
+The deeper question is one of underlying meaning. Why are we doing
   this? What does it mean?
-| And. Bonus. Will this be working in a SQLAlchemy environment, where
-  they have their own wrappers for database objects, meaning that \`is
-  None\` doesn't work and \`== None\` is required?
-| What's important is that adding type hints forced us to think about
+And. Bonus. Will this be working in a SQLAlchemy environment, where
+  they have their own wrappers for database objects, meaning that ``is None`` doesn't work and ``== None`` is required?
+
+What's important is that adding type hints forced us to think about
   what we were doing. Unlike Java we did this without stopping progress
   for an extended period of "wrestling with the compiler". We can use
   Any temporarily because the unit tests all pass. Then, we can pay down
   the technical debt by fixing the type declaration.
-| Total. Victory.
+
+Total. Victory.
 
 
 

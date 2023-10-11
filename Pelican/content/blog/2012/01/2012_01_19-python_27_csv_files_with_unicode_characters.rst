@@ -7,16 +7,20 @@ Python 2.7 CSV files with Unicode Characters
 :category: Technologies
 :status: published
 
-| The csv module in Python 2.7 is more-or-less hard-wired to work with
-  ASCII and only ASCII.
-| Sadly, we're often confronted with CSV files that include Unicode
-  characters.  There are numerous Stack Overflow questions on this
-  topic.  http://stackoverflow.com/search?q=python+csv+unicode
-| What to do?  Since csv is married to seeing ASCII/bytes, we must
-  explicitly decode the column values.
-| One solution is to wrap csv.DictReader, something like the following.
-   We need to decode each individual column before attempting to do
-  anything with value.
+
+The csv module in Python 2.7 is more-or-less hard-wired to work with
+ASCII and only ASCII.
+
+Sadly, we're often confronted with CSV files that include Unicode
+characters.  There are numerous Stack Overflow questions on this
+topic.  http://stackoverflow.com/search?q=python+csv+unicode
+
+What to do?  Since csv is married to seeing ASCII/bytes, we must
+explicitly decode the column values.
+
+One solution is to wrap csv.DictReader, something like the following.
+We need to decode each individual column before attempting to do
+anything with value.
 
 ::
 
@@ -30,10 +34,13 @@ Python 2.7 CSV files with Unicode Characters
                t= dict( (k,decode(row[k])[0]) for k in row )
                yield t
 
-| 
-| This new object is an iterable which contains a DictReader. We could
-  subclass DictReader, also.
-| The use case, then, becomes something simple like this.
+
+
+
+This new object is an iterable which contains a DictReader. We could
+subclass DictReader, also.
+
+The use case, then, becomes something simple like this.
 
 ::
 
@@ -42,14 +49,16 @@ Python 2.7 CSV files with Unicode Characters
        for row in rdr:
            # process the row
 
-| 
-| We can now get Unicode characters from a CSV file.
+
+
+
+We can now get Unicode characters from a CSV file.
 
 
 
 -----
 
-It&#39;s one of those things... The files came to ...
+It's one of those things... The files came to ...
 -----------------------------------------------------
 
 S.Lott<noreply@blogger.com>
@@ -60,7 +69,7 @@ It's one of those things... The files came to me in that encoding. UTF-8
 seems so much more sensible.
 
 
-I like that you think &#39;mac_roman&#39; is a sen...
+I like that you think 'mac_roman' is a sen...
 -----------------------------------------------------
 
 Anonymous<noreply@blogger.com>

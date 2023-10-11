@@ -7,9 +7,9 @@ Statically Typed Language Nonsense
 :category: Technologies
 :status: published
 
-| Read this: "`Here Comes Functional
-  Programming <http://www.sdtimes.com/l/36103>`__" by Larry O'Brien in
-  SD Times.
+
+
+Read this: "`Here Comes Functional Programming <http://www.sdtimes.com/l/36103>`__" by Larry O'Brien in SD Times.
 
    people who should know better continue to assert that statically
    typed languages are "safer, because the compiler can catch errors
@@ -20,17 +20,21 @@ Statically Typed Language Nonsense
    type-assignment errors are discovered and precisely diagnosed with
    little difficulty.
 
-| Thank you.   A language like Python, which lacks static type
-  declarations for variables, is not evil or an accident waiting to
-  happen.
-| The article is about functional languages.  But the static declaration
-  statement is universally true.
+
+
+Thank you.   A language like Python, which lacks static type
+declarations for variables, is not evil or an accident waiting to
+happen.
+
+
+The article is about functional languages.  But the static declaration
+statement is universally true.
 
 
 
 -----
 
-I love Python myself, but I&#39;ve dabbled in Hask...
+I love Python myself, but I've dabbled in Hask...
 -----------------------------------------------------
 
 Luke Plant<noreply@blogger.com>
@@ -55,9 +59,7 @@ section "STM and safety" - these checks are impossible to do using
 tests.
 
 
-Types Considered Harmful by Lamport
-
-http://resear...
+Types Considered Harmful by Lamport http://resear...
 -----------------------------------------------------
 
 Robert Lucente<noreply@blogger.com>
@@ -84,7 +86,7 @@ news is that the greater flexibility allows you to get yourself into
 more trouble.
 
 
-&quot;but I&#39;ve dabbled in Haskell and this oft...
+&quot;but I've dabbled in Haskell and this oft...
 -----------------------------------------------------
 
 mazelife<noreply@blogger.com>
@@ -115,7 +117,7 @@ ACM Transactions on Programming Languages and Systems 21, 3 (May 1999)
 http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-types.pdf
 
 
-@Luke I&#39;d argue that it is not 100% coverage a...
+@Luke I'd argue that it is not 100% coverage a...
 -----------------------------------------------------
 
 Anonymous<noreply@blogger.com>

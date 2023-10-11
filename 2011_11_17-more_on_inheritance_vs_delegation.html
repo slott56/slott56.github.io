@@ -121,19 +121,17 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <div class="line-block">
-<div class="line">Emphasis on the &quot;More On&quot; as in &quot;Moron&quot;.  This is a standard design
+                <p>Emphasis on the &quot;More On&quot; as in &quot;Moron&quot;.  This is a standard design
 error story.  The issue is that inheritance happens along an &quot;axis&quot; or
 &quot;dimension&quot; where the subclasses are at different points along that
-axis.  Multi-dimensional inheritance is an EPIC FAIL.</div>
-<div class="line"><strong>Context</strong></div>
-<div class="line">Data warehouse processing can involve a fair amount of &quot;big batch&quot;
+axis.  Multi-dimensional inheritance is an EPIC FAIL.</p>
+<p><strong>Context</strong></p>
+<p>Data warehouse processing can involve a fair amount of &quot;big batch&quot;
 programs.  Loading 40,000 rows of econometric data in a single swoop,
-updating dimensions and loading facts, for example.</div>
-<div class="line">When you get data from customers and vendors, you have endless
+updating dimensions and loading facts, for example.</p>
+<p>When you get data from customers and vendors, you have endless
 file-format problems.  To assure that things will work, each of these
-big batch programs has at least two operating modes.</div>
-</div>
+big batch programs has at least two operating modes.</p>
 <ul class="simple">
 <li>Validate.  Go through all the motions.  Except.  Don't commit any
 changes to the database; don't make any filesystem changes.  (i.e.,
@@ -142,63 +140,59 @@ current.)</li>
 <li>Load.  Go through all the motions including a complete commit to the
 database and any filesystem changes.</li>
 </ul>
-<div class="line-block">
-<div class="line"><strong>Problem</strong></div>
-<div class="line">What's the difference between the two modes?  Clearly, one is a
-subclass of the other.</div>
-</div>
+<p><strong>Problem</strong></p>
+<p>What's the difference between the two modes?  Clearly, one is a
+subclass of the other.</p>
 <ul class="simple">
 <li>Load can be the superclass.  The Validate subclass simply replaces
 the save methods stubs that do nothing.</li>
 <li>Validate can be the superclass.  The Load subclass simply implements
 the save method stubs with methods that do something useful.</li>
 </ul>
-<div class="line-block">
-<div class="line">Simple, right?</div>
-<div class="line">Wrong.</div>
-<div class="line"><strong>What Doesn't Work</strong></div>
-<div class="line">This design has a smell.  The smell is that we can't easily extend the
-overall processing to include an additional feature.</div>
-<div class="line">Why not?</div>
-<div class="line">This design has the persistence feature set as the inheritance axis or
+<p>Simple, right?</p>
+<p>Wrong.</p>
+<p><strong>What Doesn't Work</strong></p>
+<p>This design has a smell.  The smell is that we can't easily extend the
+overall processing to include an additional feature.</p>
+<p>Why not?</p>
+<p>This design has the persistence feature set as the inheritance axis or
 dimension.  This is kind of limited.  We really want a different
-feature set for inheritance.</div>
-<div class="line">Consider a Validate for two dimensions (Company and Time) that loads
-econometric facts.  It has stub &quot;save&quot; methods.</div>
-<div class="line">We subclass the Validate to create the proper Load for these two
+feature set for inheritance.</p>
+<p>Consider a Validate for two dimensions (Company and Time) that loads
+econometric facts.  It has stub &quot;save&quot; methods.</p>
+<p>We subclass the Validate to create the proper Load for these two
 dimensions and one fact.  We replace the stub save methods with proper
-database commits.</div>
-<div class="line">After the actuaries think for a while, suddenly we have a file which
+database commits.</p>
+<p>After the actuaries think for a while, suddenly we have a file which
 includes an additional dimension (i.e., business location) or an
 additional fact (i.e., econometric data at a different level of
 granularity).  What now?  If we subclass Validate to add the dimension
 or fact, we have a problem.  We have to repeat the Load subclass
-methods for the new, extended Load.  Oops.</div>
-<div class="line">If we subclass Load to add the dimension or fact, we have a problem.
+methods for the new, extended Load.  Oops.</p>
+<p>If we subclass Load to add the dimension or fact, we have a problem.
 We have to repeat the Validate stubs in the new extended Load to make
-it into a Validate.  Oops.</div>
-<div class="line"><strong>Recognizing Delegation</strong></div>
-<div class="line">It's difficult to predict inheritance vs. delegation design problems.</div>
-<div class="line">The hand-waving advice is to consider the <em>essential</em> features of the
+it into a Validate.  Oops.</p>
+<p><strong>Recognizing Delegation</strong></p>
+<p>It's difficult to predict inheritance vs. delegation design problems.</p>
+<p>The hand-waving advice is to consider the <em>essential</em> features of the
 object.  This isn't too helpful.  Often, we're so focused on the
-database design that persistence seems essential.</div>
-<div class="line">Experience shows, however, that some things are not essential.
+database design that persistence seems essential.</p>
+<p>Experience shows, however, that some things are not essential.
 Persistence, for example, is one of those things that should <em>always</em>
-be delegated.</div>
-<div class="line">Another thing that should always be delegated is the more general
+be delegated.</p>
+<p>Another thing that should always be delegated is the more general
 problem of representation: JSON, XML, etc., should rely on delegation
 since this is never essential.  There's always another representation
 for data.  Representation is always independent of the object's
-essential internal state changes.</div>
-<div class="line"><strong>Consequence</strong></div>
-<div class="line">In my case, I've got about a dozen implementations using a clunky
-inheritance that had some copy-and-paste programming.  Oops.</div>
-<div class="line">I'm trying to reduce that technical debt by rewriting each to be a
+essential internal state changes.</p>
+<p><strong>Consequence</strong></p>
+<p>In my case, I've got about a dozen implementations using a clunky
+inheritance that had some copy-and-paste programming.  Oops.</p>
+<p>I'm trying to reduce that technical debt by rewriting each to be a
 proper delegation.  With good unit test coverage, there's no real
 technical risk.  Just tedious fixing the same mistake that I rushed
-into production twelve separate times.</div>
-<div class="line">Really.  Colossally dumb.</div>
-</div>
+into production twelve separate times.</p>
+<p>Really.  Colossally dumb.</p>
 <hr class="docutils" />
 <div class="section" id="check-out-quot-composition-versus-inheritance-a">
 <h2>Check out &amp;quot;Composition versus inheritance: A ...</h2>
@@ -323,6 +317,10 @@ schemes; composition is the only way to avoid this problem.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2023/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2023 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2023 (2)
           </a>

@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="csv,#python" />
-        <meta name="description" content="We process a fair amount of externally-prepared datasets. 40,000 rows of econometric data that we purchased from a third-party. Mostly, the data is in a usable format: .CSV or .XSLX. Once in a while, we get CSV with | (pipe). A few times, we got fixed-format COBOL-style records. Recently, we …" />
+        <meta name="description" content="We process a fair amount of externally-prepared datasets. 40,000 rows of econometric data that we purchased from a third-party. Mostly, the data is in a usable format: .CSV or .XSLX. Once in a while, we get CSV with |. A few times, we got fixed-format COBOL-style records. Recently, we got …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Brain-Damaged Data"/>
         <meta property="og:url" content="https://slott56.github.io/2011_08_04-brain_damaged_data.html"/>
-        <meta property="og:description" content="We process a fair amount of externally-prepared datasets. 40,000 rows of econometric data that we purchased from a third-party. Mostly, the data is in a usable format: .CSV or .XSLX. Once in a while, we get CSV with | (pipe). A few times, we got fixed-format COBOL-style records. Recently, we …"/>
+        <meta property="og:description" content="We process a fair amount of externally-prepared datasets. 40,000 rows of econometric data that we purchased from a third-party. Mostly, the data is in a usable format: .CSV or .XSLX. Once in a while, we get CSV with |. A few times, we got fixed-format COBOL-style records. Recently, we got …"/>
         <meta property="article:published_time" content="2011-08-04" />
             <meta property="article:section" content="Technologies" />
             <meta property="article:tag" content="csv" />
@@ -115,17 +115,15 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <div class="line-block">
-<div class="line">We process a fair amount of externally-prepared datasets.  40,000 rows
+                <p>We process a fair amount of externally-prepared datasets.  40,000 rows
 of econometric data that we purchased from a third-party.  Mostly, the
-data is in a usable format: .CSV or .XSLX.</div>
-<div class="line">Once in a while, we get CSV with | (pipe).  A few times, we got
-fixed-format COBOL-style records.</div>
-<div class="line">Recently, we got a CSV-with-pipe that included 2 records with embedded
-\n sequences in the middle of a CSV row of data.  Really.</div>
-<div class="line"><strong>Painful Elimination</strong></div>
-<div class="line">There are two ways to &quot;eliminate&quot; this problem.</div>
-</div>
+data is in a usable format: .CSV or .XSLX.</p>
+<p>Once in a while, we get CSV with <tt class="docutils literal">|</tt>.  A few times, we got
+fixed-format COBOL-style records.</p>
+<p>Recently, we got a CSV-with-pipe that included 2 records with embedded
+<tt class="docutils literal">\n</tt> sequences in the middle of a CSV row of data.  Really.</p>
+<p><strong>Painful Elimination</strong></p>
+<p>There are two ways to &quot;eliminate&quot; this problem.</p>
 <ul class="simple">
 <li>Subclass our input processing to handle this special CSV-with-pipe
 case.</li>
@@ -133,16 +131,14 @@ case.</li>
 file that we can simply process with an existing CSV-with-pipe
 configuration.</li>
 </ul>
-<div class="line-block">
-<div class="line">I elected to do the first.  The second is (to my mind) an auditing
+<p>I elected to do the first.  The second is (to my mind) an auditing
 nightmare because we touched the file.  We have to prove that we
 didn't disturb any other fields.  While not impossible, it becomes a
-very strange special case for this one-and-only file.</div>
-<div class="line"><strong>CSV Simplicity</strong></div>
-<div class="line">The CSV module's epic simplicity makes it easy to work around this
+very strange special case for this one-and-only file.</p>
+<p><strong>CSV Simplicity</strong></p>
+<p>The CSV module's epic simplicity makes it easy to work around this
 kind of goofy data.  Our subclass for this case had the following
-extra foolishness put in</div>
-</div>
+extra foolishness put in</p>
 <pre class="literal-block">
 def make_reader( self ):
         def filter_damage( aFile ):
@@ -159,38 +155,22 @@ def make_reader( self ):
         tweaked_file= filter_damage( self.sourceFile )
         return csv.reader( tweaked_file, delimiter='|', doublequote=False, escapechar='&quot;' )
 </pre>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line">That's it.  Since the Python CSV reader merely wants an iterator over
+<p>That's it.  Since the Python CSV reader merely wants an iterator over
 lines, we can (with a simple generator function) provide the necessary
-&quot;iterator-over-lines&quot;.</div>
-<div class="line">Delightful.</div>
-<div class="line"><strong>Apology</strong></div>
-<div class="line">The murky-looking row.rfind('&quot;') &gt;= len(row)-3 condition is one of
+&quot;iterator-over-lines&quot;.</p>
+<p>Delightful.</p>
+<p><strong>Apology</strong></p>
+<p>The murky-looking <tt class="docutils literal"><span class="pre">row.rfind('&quot;')</span> &gt;= <span class="pre">len(row)-3</span></tt> condition is one of
 those consequences of trying to find just a few irregular line endings
 in an otherwise regular file.  For CSV processing, files often have to
 be opened in &quot;rb&quot; mode because they originate (or will be used with)
-MS-Excel.  This makes the damaged line-ending either '&quot;\n' or maybe
-'&quot;\r\n'.  Rather than spend too much time negotiating with Python's
+MS-Excel.  This makes the damaged line-ending either <tt class="docutils literal">\n</tt> or maybe
+<tt class="docutils literal"><span class="pre">\\r\\n</span></tt>.  Rather than spend too much time negotiating with Python's
 universal newline and &quot;rb&quot; mode, it's slightly easier to look for a
-'&quot;' near the end.</div>
-<div class="line">We're hoping this is a one-time-only subclass that we can safely
+<tt class="docutils literal">&quot;</tt> near the end.</p>
+<p>We're hoping this is a one-time-only subclass that we can safely
 ignore in the future.  If hope is dashed, it's a distinct subclass, so
-it's easily reused and didn't break anything else.</div>
-</div>
-<hr class="docutils" />
-<p>Hello,
-We facilitate the provision of &lt;a href=&quot;htt...
------------------------------------------------------</p>
-<p>Rudra455&lt;<a class="reference external" href="mailto:noreply&#64;blogger.com">noreply&#64;blogger.com</a>&gt;</p>
-<p>2011-08-04 13:57:07.942000-04:00</p>
-<p>Hello,
-We facilitate the provision of <a class="reference external" href="http://www.palmerleasing.com/">independent
-analysis</a> to support expert testimony,
-regulatory or legislative engagements. Frequently, this work includes
-economic, financial and statistical studies of varying data analysis,
-technical and
-<a class="reference external" href="http://www.palmerleasing.com/">http://www.palmerleasing.com</a>.</p>
+it's easily reused and didn't break anything else.</p>
 
             </div>
             <!-- /.entry-content -->
@@ -271,6 +251,10 @@ technical and
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2023/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2023 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Sep/index.html"><i class="fa fa-calendar fa-lg"></i>September 2023 (2)
           </a>
