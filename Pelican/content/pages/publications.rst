@@ -35,4 +35,3 @@ Some legacy posts:
 
 - `CapitalOne Tech <https://medium.com/capital-one-tech/search?q=Lott>`_
 
-- http://slott-softwarearchitect.blogspot.com
