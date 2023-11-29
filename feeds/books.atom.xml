@@ -1,5 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Books</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/books.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2020-12-24T08:33:00-05:00</updated><entry><title>How to avoid writing a clickbait headline. (Click for details.)</title><link href="https://slott56.github.io/2020_12_24-how_to_avoid_writing_a_clickbait_headline_click_for_details.html" rel="alternate"></link><published>2020-12-24T08:33:00-05:00</published><updated>2020-12-24T08:33:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2020-12-24:/2020_12_24-how_to_avoid_writing_a_clickbait_headline_click_for_details.html</id><summary type="html">&lt;p&gt;It's hard to write shameless promotional material.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Books</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/books.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-11-17T08:01:00-05:00</updated><entry><title>Cleaning up Examples</title><link href="https://slott56.github.io/2023-11-17-example_cleanup.html" rel="alternate"></link><published>2023-11-17T08:01:00-05:00</published><updated>2023-11-17T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-11-17:/2023-11-17-example_cleanup.html</id><summary type="html">&lt;p&gt;Stand-alone document files for tech writing are awful.
+They should &lt;em&gt;not&lt;/em&gt; be used as widely as they are.&lt;/p&gt;
+&lt;div class="section" id="bluf-don-t-use-ms-word"&gt;
+&lt;h2&gt;BLUF: Don't Use MS-Word&lt;/h2&gt;
+&lt;p&gt;We used to call editors like MS-Word &lt;em&gt;WYSIWYG&lt;/em&gt; -- What You See Is What You Get.
+Once upon a time, an editor that immediately presented the final rendered doc …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Stand-alone document files for tech writing are awful.
+They should &lt;em&gt;not&lt;/em&gt; be used as widely as they are.&lt;/p&gt;
+&lt;div class="section" id="bluf-don-t-use-ms-word"&gt;
+&lt;h2&gt;BLUF: Don't Use MS-Word&lt;/h2&gt;
+&lt;p&gt;We used to call editors like MS-Word &lt;em&gt;WYSIWYG&lt;/em&gt; -- What You See Is What You Get.
+Once upon a time, an editor that immediately presented the final rendered doc was an amazing, life-changing thing.
+Steve Jobs insisted Macintosh offer variable-width fonts. Wonderful!&lt;/p&gt;
+&lt;p&gt;The current implementations seems terrible, however.&lt;/p&gt;
+&lt;p&gt;When writing about code, a &lt;tt class="docutils literal"&gt;.docx&lt;/tt&gt; file can be filled with examples that -- no matter how careful the writing and editing process --
+aren't really subject to any useful level of automated testing.&lt;/p&gt;
+&lt;p&gt;The author writes, tests and then -- ugh -- copies and pastes into the document file.
+The reviewers review and check. The tech editor checks.
+Any mistakes corrected in the source code need to be re-copied and re-pasted -- manually -- into the document file.
+Who's got the list of all the copy-and-paste locations? Anyone?&lt;/p&gt;
+&lt;p&gt;And how would you get such a thing from MS-Word?&lt;/p&gt;
+&lt;p&gt;Some kind of &amp;quot;INCLUDE FROM EXTERNAL FILE HERE&amp;quot; marker seems like it is absolutely essential.&lt;/p&gt;
+&lt;p&gt;And missing.&lt;/p&gt;
+&lt;p&gt;There's a way with some kind of &amp;quot;merge&amp;quot; capability to maybe jam external text into a document.
+But. Yuk. It's not at all clear how this works.
+It doesn't seem to be a first-class, easy-to-be-sure-you're-doing-it-right feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="it-gets-worse"&gt;
+&lt;h2&gt;It gets worse&lt;/h2&gt;
+&lt;p&gt;Unpacking the official, final source documents for my books from the publisher's &lt;tt class="docutils literal"&gt;.DOCX&lt;/tt&gt; was eye-opening.&lt;/p&gt;
+&lt;p&gt;First -- the various boundaries between segments of the text can be wrong.
+Which means they were wrong all along.
+The errors are small.
+Indeed, the errors are so small I don't think anyone can actually &lt;em&gt;see&lt;/em&gt; them. But.
+When I go to make changes, I find there's a kind of nightmare of invisible boundaries.&lt;/p&gt;
+&lt;p&gt;The key problem is that the WYSIWYG editors seem to have innumerable invisible borders.
+These wind up on the wrong side of the markup.
+They can be accidentally assigned the wrong style. With &lt;strong&gt;no&lt;/strong&gt; useful feedback.&lt;/p&gt;
+&lt;p&gt;(Yes you can make whitespace visible in MS-Word. Try it. Whitspace doesn't have a visible style,
+so you still don't know what part of the content it belongs to.)&lt;/p&gt;
+&lt;p&gt;The implicit ¶ boundary after a code example -- to be specific -- can wind up as part of
+the code.&lt;/p&gt;
+&lt;p&gt;Want to add text after the example?&lt;/p&gt;
+&lt;p&gt;It's now part of the example. It looks like &lt;tt class="docutils literal"&gt;CODE&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This leads time wasted on pointing and clicking to adjust the boundaries to get the text out of the example.
+Or the example out of the text.&lt;/p&gt;
+&lt;p&gt;Worse.&lt;/p&gt;
+&lt;p&gt;The implicit ¶ boundary that's part of an itemized list item can wind up in -- or out -- of the adjacent code example.
+Visually, you can't tell. Sometimes, you might notice the bullet looks a little &amp;quot;off&amp;quot;.
+It's not obvious (from a single bullet) that it's in the &lt;tt class="docutils literal"&gt;CODE&lt;/tt&gt; font, not the TEXT font.&lt;/p&gt;
+&lt;p&gt;Worse.&lt;/p&gt;
+&lt;p&gt;The WYSIWYG editor is designed so mom (my mom, who's in her 90's) can create a shopping list and print it out.
+(Which makes you wonder why it has so many features mom will never use.)&lt;/p&gt;
+&lt;p&gt;Here's the problem with these &amp;quot;amateur user&amp;quot; features:&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;The tools make (and enforce) assumptions about itemized and enumerated lists that are appropriate for mom.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;These assumption are not appropriate for technical writing.&lt;/p&gt;
+&lt;p&gt;I need multiple paragraphs per number. How do I do this? I have to change the style of the &amp;quot;additional&amp;quot; paragraphs.&lt;/p&gt;
+&lt;p&gt;Then, I have to make sure that the subsequent numbered paragraphs start with the right number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;This is a lot of error-prone pointing and clicking. A small change leads to strange numbers.
+Or numbers in the &lt;tt class="docutils literal"&gt;CODE&lt;/tt&gt; font.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I could go on. I'm not a fan of WYSIWYG. I call it &amp;quot;What is you is &lt;em&gt;all&lt;/em&gt; you get.&amp;quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-better"&gt;
+&lt;h2&gt;What's Better?&lt;/h2&gt;
+&lt;p&gt;I'm not &lt;strong&gt;sure&lt;/strong&gt; what's better. But. I have to say, that I'm really pleased with LaTeX and the ability
+to use the &lt;tt class="docutils literal"&gt;listings&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;minted&lt;/tt&gt; packages to include a few lines of code from external files.&lt;/p&gt;
+&lt;p&gt;(Some people hate LaTeX with unbridled passion. I can't recommend it because the haters stop reading at &amp;quot;LaTeX.&amp;quot;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="case-in-point"&gt;
+&lt;h2&gt;Case In Point&lt;/h2&gt;
+&lt;p&gt;The book has snippets like the following:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def some_method(self) -&amp;gt; None:
+    # Do some prep.
+    super().some_method()  # Use the superclass implementation.
+    # Any followup goes here.
+&lt;/pre&gt;
+&lt;p&gt;Just a little conceptual overview of how a subclass method can extend a superclass method using the &lt;tt class="docutils literal"&gt;super()&lt;/tt&gt; function.&lt;/p&gt;
+&lt;p&gt;No biggie, right?&lt;/p&gt;
+&lt;p&gt;Heh.&lt;/p&gt;
+&lt;p&gt;Now that I can put this in a separate file -- and unit test it -- and subject it to &lt;strong&gt;mypy&lt;/strong&gt; and &lt;strong&gt;pyright&lt;/strong&gt; and &lt;strong&gt;ruff&lt;/strong&gt;,
+the little stand-alone snippet has fatal problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h2&gt;What to do?&lt;/h2&gt;
+&lt;p&gt;It's not squeaky clean. What do I do?&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Don't pull it out of the text and test it. It's just &amp;quot;conceptual&amp;quot; code-like material.&lt;/li&gt;
+&lt;li&gt;Gussy it up with the needed context and make sure it's really, really correct.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I'm an option 2 kind of writer. I'm not brilliant. I'm not introducing something new to the world. I didn't write
+some world-changing FOSS package for which I'm writing the definitive documentation. All I've got -- really --
+is exhaustively detailed design alternatives and sparkingly correct code.&lt;/p&gt;
+&lt;p&gt;In LaTeX world, wrapping up &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\verb|some_method()|&lt;/span&gt;&lt;/tt&gt; into a separate file is&lt;/p&gt;
+&lt;ol class="loweralpha simple"&gt;
+&lt;li&gt;Easy.&lt;/li&gt;
+&lt;li&gt;Guarantees that it's correct.&lt;/li&gt;
+&lt;li&gt;The absolutely latest and greatest version becomes part of the book automatically.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Boom. Done.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="if-it-s-so-easy"&gt;
+&lt;h2&gt;If it's so easy?&lt;/h2&gt;
+&lt;p&gt;Why doesn't everyone do this?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Some folks hate LaTeX.  I don't blame them.  It's complicated.&lt;/li&gt;
+&lt;li&gt;Some folks hate LaTeX.  It's also quite slow. It takes multiple seconds to render a chapter.
+What that finishes, you're reading a PDF in one window and fiddling with LaTeX in another.
+Compilers are like that. Folks who hate on LaTeX put up with compiled code all the time.
+I get it. They have different expectations for editing words and editing code.&lt;/li&gt;
+&lt;li&gt;Some folks hate LaTeX.  As brilliant as Pandoc is, the .DOCX issues mean that you're LaTeX extraction from a .DOCX is -- well -- filled with annoying problems.
+Hundreds of non-breaking spaces &lt;tt class="docutils literal"&gt;~&lt;/tt&gt; will be peppered randomly around. Some things like &lt;tt class="docutils literal"&gt;'&lt;/tt&gt; will be transformed to &lt;tt class="docutils literal"&gt;\textsinglequote&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;\textsinglequote{}&lt;/tt&gt;.
+And on and on and on. I've got some Python code to cleanup parts of the problematic LaTeX, but not all of it. It's a manual
+pass -- 8 to 12 hours of labor -- to get things into an &amp;quot;acceptable&amp;quot; form where a good, clean PDF can be generated from a chapter.
+The invisible boundary problems all have to be found and fixed by hand.&lt;/li&gt;
+&lt;li&gt;Some folks hate LaTeX.  A single missing &lt;tt class="docutils literal"&gt;}&lt;/tt&gt; from a &lt;tt class="docutils literal"&gt;\textbf{command&lt;/tt&gt; can be a challenge to find. Easy to fix.
+Same for &lt;tt class="docutils literal"&gt;\verb|code&lt;/tt&gt; where the trailing &lt;tt class="docutils literal"&gt;|&lt;/tt&gt; is missing.&lt;/li&gt;
+&lt;li&gt;Some folks hate LaTeX.  Yesterday I spent a good 30 minutes -- maybe more -- looking for an unpaired &lt;tt class="docutils literal"&gt;&amp;quot;&lt;/tt&gt; in the text.
+I used the words &lt;tt class="docutils literal"&gt;30&amp;quot;&lt;/tt&gt; to mean &lt;tt class="docutils literal"&gt;30 inches&lt;/tt&gt;. Things don't work, but there's no positive &lt;strong&gt;line 3194: unpaird quote&lt;/strong&gt; error.
+There's not even an obvious point in the document where formatting went to hell.
+Indeed, my preferred editor only sees the chapters without the &lt;tt class="docutils literal"&gt;main.tex&lt;/tt&gt; wrapper, and doesn't know what packages have
+been included.  It thinks my LaTeX is just garbage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;My code is clean. And the document &lt;strong&gt;always&lt;/strong&gt; reflects unit-tested, type-checked code.&lt;/p&gt;
+&lt;p&gt;(I don't run all code through the &lt;strong&gt;ruff&lt;/strong&gt; formatter because book margins force me to manually undo ideal PEP-8 formats.)&lt;/p&gt;
+&lt;p&gt;The cross-references all work perfectly.  Word can do this, but it's clunky and awkward. LaTex &lt;tt class="docutils literal"&gt;\secref{}&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;\label{}&lt;/tt&gt; do everything I want.
+I can search the document for all &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\section{}\label{}&lt;/span&gt;&lt;/tt&gt; constructs to build a my own crib of things-to-cross-reference against.&lt;/p&gt;
+&lt;p&gt;The damnable invisible boundaries are visible. Commands like &lt;tt class="docutils literal"&gt;\begin{codeblock}&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;\end{codeblock}&lt;/tt&gt; are clearly separated from &lt;tt class="docutils literal"&gt;\item&lt;/tt&gt;.
+Clearly. I can add whitespace and comments to clarify, if I need to. Things are &lt;strong&gt;visible&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Books"></category><category term="writing"></category><category term="latex"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023_09_05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023_09_05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;p&gt;Each has a description, and approach, and deliverables.
+It's a lot like ordinary development work, but with some detailed guidance from the author.
+(And no deadline imposed by your team lead or manager.)&lt;/p&gt;
+&lt;p&gt;These are projects you can do. You can post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;p&gt;Each has a description, and approach, and deliverables.
+It's a lot like ordinary development work, but with some detailed guidance from the author.
+(And no deadline imposed by your team lead or manager.)&lt;/p&gt;
+&lt;p&gt;These are projects you can do. You can post them GitHub, and make them part of your personal portfolio.
+You can demonstrate your ability to code in Python.&lt;/p&gt;
+&lt;p&gt;The focus is on exploratory data analysis.
+This is because almost everything devolves into an exercise in data wrangling.&lt;/p&gt;
+&lt;p&gt;Pre-order now:&lt;/p&gt;
+&lt;p&gt;Via Computer Science Books &amp;#64; Amazon.com&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.amazon.com/Python-Real-World-Projects-Deployable-Applications/dp/1803246766/"&gt;Python Real-World Projects: Crafting your Python Portfolio with Deployable Applications: 9781803246765&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you plan to write a review contact me directly, slott56 at gmail dot com. I can get you
+an e-copy or physical copy for your reviewing pleasure.&lt;/p&gt;
+</content><category term="Books"></category><category term="community"></category><category term="projects"></category><category term="portfolio"></category></entry><entry><title>How to avoid writing a clickbait headline. (Click for details.)</title><link href="https://slott56.github.io/2020_12_24-how_to_avoid_writing_a_clickbait_headline_click_for_details.html" rel="alternate"></link><published>2020-12-24T08:33:00-05:00</published><updated>2020-12-24T08:33:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2020-12-24:/2020_12_24-how_to_avoid_writing_a_clickbait_headline_click_for_details.html</id><summary type="html">&lt;p&gt;It's hard to write shameless promotional material.&lt;/p&gt;
 &lt;p&gt;I already wrote the books, isn't that bold enough?&lt;/p&gt;
 &lt;p&gt;It isn't, though.&lt;/p&gt;
 &lt;blockquote&gt;

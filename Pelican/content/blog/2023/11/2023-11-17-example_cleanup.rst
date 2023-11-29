@@ -3,7 +3,7 @@ Cleaning up Examples
 
 :date: 2023-11-17 08:01
 :tags: writing,latex
-:slug: 2023_11_17-example_cleanup
+:slug: 2023-11-17-example_cleanup
 :category: Books
 :status: published
 
