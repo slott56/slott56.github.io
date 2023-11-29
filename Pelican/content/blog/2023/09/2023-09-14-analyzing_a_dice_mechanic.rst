@@ -2,8 +2,8 @@ Analyzing a Dice Mechanic
 ===============================================
 
 :date: 2023-09-14 14:57
-:tags: python,games,tutorial
-:slug: 2023-09-14-analyzing_a_dice_mechanic
+:tags: games,tutorial
+:slug: 2023_09_14-analyzing_a_dice_mechanic
 :category: Python
 :status: published
 

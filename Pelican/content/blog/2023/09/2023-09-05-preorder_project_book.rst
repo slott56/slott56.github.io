@@ -2,9 +2,9 @@ Preorder the *Python Real-World Projects* Book
 ===============================================
 
 :date: 2023-09-05 09:00
-:tags: python,community
-:slug: 2023-09-05-preorder_project_book
-:category: Python
+:tags: community,projects,portfolio
+:slug: 2023_09_05-preorder_project_book
+:category: Books
 :status: published
 
 Want a book with dozens of project ideas?

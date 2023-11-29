@@ -4,7 +4,9 @@ Publications
 Books
 -----
 
-**New! December 2022**
+**New! November 2023**
+`Python Real-World Projects <https://www.packtpub.com/product/python-real-world-projects/9781803246765>`_
+
 `Functional Python Programming, 3e <https://www.packtpub.com/product/functional-python-programming-third-edition/9781803232577>`_
 
 `Modern Python Cookbook, 2e <https://www.packtpub.com/product/modern-python-cookbook-second-edition/9781800207455>`_

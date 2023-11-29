@@ -2,8 +2,8 @@ The Debugger
 ===============================================
 
 :date: 2023-10-10 18:21
-:tags: python,games,tutorial
-:slug: 2023-10-10-the_debugger
+:tags: games,tutorial
+:slug: 2023_10_10-the_debugger
 :category: Python
 :status: published
 
