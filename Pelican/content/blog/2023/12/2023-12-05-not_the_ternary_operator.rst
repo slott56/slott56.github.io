@@ -1,13 +1,13 @@
 It's Not THE Ternary Operator -- there are many
 ===============================================
 
-:date: 2023-11-14 08:01
+:date: 2023-12-05 08:01
 :tags: language,semantics
 :slug: 2023_12_05-not_the_ternary_operator
 :category: Python
-:status: draft
+:status: published
 
-I'm sick of reading about **the** Ternary Operator.
+I'm sick of reading about **THE** Ternary Operator.
 
 There is not merely **a** single operator that is ternary.
 There are many operators that are ternary.

@@ -1,5 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-11-14T08:01:00-05:00</updated><entry><title>This is Awful</title><link href="https://slott56.github.io/2023_11_14-this_is_awful.html" rel="alternate"></link><published>2023-11-14T08:01:00-05:00</published><updated>2023-11-14T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-11-14:/2023_11_14-this_is_awful.html</id><summary type="html">&lt;p&gt;This is a disheartening thing to read&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-05T08:01:00-05:00</updated><entry><title>It's Not THE Ternary Operator -- there are many</title><link href="https://slott56.github.io/2023_12_05-not_the_ternary_operator.html" rel="alternate"></link><published>2023-12-05T08:01:00-05:00</published><updated>2023-12-05T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-05:/2023_12_05-not_the_ternary_operator.html</id><summary type="html">&lt;p&gt;I'm sick of reading about &lt;strong&gt;THE&lt;/strong&gt; Ternary Operator.&lt;/p&gt;
+&lt;p&gt;There is not merely &lt;strong&gt;a&lt;/strong&gt; single operator that is ternary.
+There are many operators that are ternary.&lt;/p&gt;
+&lt;p&gt;Here's one example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; 6+1 &amp;gt;= 6 &amp;gt;= 6-1
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&amp;gt;= &amp;gt;=&lt;/tt&gt; operator is ternary. It has 3 operands.  Count them.&lt;/p&gt;
+&lt;p&gt;There are a 36 of these ternary operators …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm sick of reading about &lt;strong&gt;THE&lt;/strong&gt; Ternary Operator.&lt;/p&gt;
+&lt;p&gt;There is not merely &lt;strong&gt;a&lt;/strong&gt; single operator that is ternary.
+There are many operators that are ternary.&lt;/p&gt;
+&lt;p&gt;Here's one example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; 6+1 &amp;gt;= 6 &amp;gt;= 6-1
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&amp;gt;= &amp;gt;=&lt;/tt&gt; operator is ternary. It has 3 operands.  Count them.&lt;/p&gt;
+&lt;p&gt;There are a 36 of these ternary operators.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Oh, pish-tosh,&amp;quot; you say. &amp;quot;It's an example of two binary operators.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Really?&lt;/p&gt;
+&lt;p&gt;In a sense, you're almost right, it's equivalent to &lt;tt class="docutils literal"&gt;6+1 &amp;gt;= 6 and 6 &amp;gt;= &lt;span class="pre"&gt;6-1&lt;/span&gt;&lt;/tt&gt;. Which is three binary operators.&lt;/p&gt;
+&lt;p&gt;But it's &lt;strong&gt;not&lt;/strong&gt; three binary operators. It's one ternary operator.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Whoa. What about &lt;tt class="docutils literal"&gt;5 &amp;lt; 6 &amp;lt; 7 &amp;lt; 8&lt;/tt&gt;?&amp;quot; you reply triumphantly. &amp;quot;That has four operands!&amp;quot;&lt;/p&gt;
+&lt;p&gt;Right. It's quaternary. There a lot of ways to create quaternary (and higher) operators in Python.
+There are 216 of quaternary operators.  1296 quinary.&lt;/p&gt;
+&lt;p&gt;There is not &lt;strong&gt;A Ternary Operator&lt;/strong&gt;.  The phrase is meaningless.  You can stop using it.&lt;/p&gt;
+&lt;div class="section" id="there-s-more"&gt;
+&lt;h2&gt;There's more&lt;/h2&gt;
+&lt;p&gt;We're not done.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; (2*a + 1
+...    for a in range(5)
+...    if a % 2 == 0
+... )
+&lt;/pre&gt;
+&lt;p&gt;Is ternary.&lt;/p&gt;
+&lt;p&gt;I'll clarify:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;2*a + 1&lt;/tt&gt; -- expression #1&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;range(5)&lt;/tt&gt; -- expression #2&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;a % 2 == 0&lt;/tt&gt; -- expression #3&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Admittedly, the two pieces of interstitial syntax are complicated.&lt;/p&gt;
+&lt;ol class="loweralpha simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;for a in&lt;/tt&gt;  -- kind of big; and it names a bind variable.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;if&lt;/tt&gt; -- more typical for ternary operators.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;But. There are three operands separated by punctuation.&lt;/p&gt;
+&lt;p&gt;It is, therefore, ternary.&lt;/p&gt;
+&lt;p&gt;And yes. When we have multiple &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; clauses or multiple &lt;tt class="docutils literal"&gt;if&lt;/tt&gt; clauses, we clearly have quaternary and quinary operators.
+That's part of my point: there are a number of &lt;em&gt;arities&lt;/em&gt; and a number of operators of each arity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="i-could-go-on"&gt;
+&lt;h2&gt;I could go on&lt;/h2&gt;
+&lt;p&gt;A Big Pointless Beef (BPB™) is often this.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The ternary operator&lt;/strong&gt; (by which I presume they mean the conditional expression) &lt;strong&gt;evaluates the middle first.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Which is kind of a &amp;quot;so what?&amp;quot;&lt;/p&gt;
+&lt;p&gt;Many things in Python are left-to-right.&lt;/p&gt;
+&lt;p&gt;But not everything is trivially left-to-right.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; noisy = lambda x: print(x) or x
+&amp;gt;&amp;gt;&amp;gt; list(noisy(2*a + 1)
+...   for a in noisy(range(5))
+...   if noisy(a % 2 == 0)
+... )
+range(0, 5)  # expression 2, the range(...)
+True  # expression 3, the if.
+1  # expression 1, the 2*a+1.
+False
+True
+5
+False
+True
+9
+[1, 5, 9]
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;range(5)&lt;/tt&gt; -- in the middle of this particular ternay operator -- is evaluated first.
+And only evaluated once, where the outer expressions are evaluated on right-to-left order over and over again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="we-re-not-done"&gt;
+&lt;h2&gt;We're not done&lt;/h2&gt;
+&lt;p&gt;Consider, if you will,&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = list(range(5))
+&amp;gt;&amp;gt;&amp;gt; a[1:-1]
+[1, 2, 3]
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;a[1:-1]&lt;/span&gt;&lt;/tt&gt; is ternary. It has three expressions. Count them yourself.&lt;/p&gt;
+&lt;p&gt;Also, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;a[:-1:2]&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;a[-1::-1]&lt;/span&gt;&lt;/tt&gt;.  All ternary subsets of a more general quaternary operator.&lt;/p&gt;
+&lt;p&gt;&amp;quot;That'a wrong! You can't call a slice part of an operator,&amp;quot; you claim.&lt;/p&gt;
+&lt;p&gt;Perhaps I am pushing it. But it sure looks like &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; is one expressions, &lt;tt class="docutils literal"&gt;1&lt;/tt&gt; is another and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-1&lt;/span&gt;&lt;/tt&gt; is the third.
+And it sure looks like &lt;tt class="docutils literal"&gt;[&lt;/tt&gt; is one separator, &lt;tt class="docutils literal"&gt;:&lt;/tt&gt; is another, and there's an extra closing
+punctuation mark of &lt;tt class="docutils literal"&gt;]&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;quot;You've jumbled up indexing and slicing!&amp;quot; you claim. &amp;quot;They're clearly separate syntactic categories!&amp;quot;&lt;/p&gt;
+&lt;p&gt;Clearly? If I can only using slicing in the context of indexing, I'm not completely sold that these two concepts
+are separate and foreign.  They seem pretty tightly coupled.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="summary"&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Stop writing (and saying) &amp;quot;The Ternary Operator&amp;quot;. Please.&lt;/p&gt;
+&lt;p&gt;There are a lot of ternary operators.&lt;/p&gt;
+&lt;p&gt;If you don't like the &lt;strong&gt;Conditional Expression&lt;/strong&gt; because it's too much like a list comprehension with that &amp;quot;evaluate something not on the left first&amp;quot; semantics,
+please say that you don't like &lt;strong&gt;The Section 6.13 Conditional Expression&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Please.  Please try to be precise.&lt;/p&gt;
+&lt;p&gt;Otherwise, the rest of your rant on evaluation order looks like you haven't really taken the time to think things through.
+Maybe you have, but the use of &amp;quot;The Ternary Operator&amp;quot; dilutes your message.&lt;/p&gt;
+&lt;p&gt;Other languages use phrases like &amp;quot;the ternary operator.&amp;quot; That doesn't really mean much.
+We're talking about Python, where there's more than one.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="language"></category><category term="semantics"></category></entry><entry><title>This is Awful</title><link href="https://slott56.github.io/2023-11-14-this_is_awful.html" rel="alternate"></link><published>2023-11-14T08:01:00-05:00</published><updated>2023-11-14T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-11-14:/2023-11-14-this_is_awful.html</id><summary type="html">&lt;p&gt;This is a disheartening thing to read&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;As someone who doesn't do a ton of JSON parsing on the command line, I tend to forget &lt;a class="reference external" href="https://jqlang.github.io/jq/manual/"&gt;jq&lt;/a&gt; syntax.&lt;/p&gt;
 &lt;p&gt;Two tools I really like are &lt;a class="reference external" href="github.com/tomnomnom/gron"&gt;gron&lt;/a&gt; (make JSON greppable) from &amp;#64;tomnomnom and &lt;a class="reference external" href="github.com/noahgorstein/jqp"&gt;jqp&lt;/a&gt; ..., which provides a &amp;quot;tui playground for exploring jq.&amp;quot;&lt;/p&gt;

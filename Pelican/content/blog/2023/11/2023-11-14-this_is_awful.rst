@@ -3,7 +3,7 @@ This is Awful
 
 :date: 2023-11-14 08:01
 :tags: bash,json
-:slug: 2023_11_14-this_is_awful
+:slug: 2023-11-14-this_is_awful
 :category: Python
 :status: published
 
