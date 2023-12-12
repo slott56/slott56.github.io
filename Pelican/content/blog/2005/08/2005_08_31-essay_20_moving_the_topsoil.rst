@@ -94,15 +94,3 @@ The CIO bellows that she doesn't want
 to pay for the topsoil twice.
 
 
-
-[See
-`http://rlucente.bloki.com/forum/messages-index.jsp?tid=121512&amp;fid=69143 <http://rlucente.bloki.com/forum/messages-index.jsp?tid=121512&fid=69143>`_
-for a response.]
-
-
-
-
-
-
-
-

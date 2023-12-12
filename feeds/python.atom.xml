@@ -1,5 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-05T08:01:00-05:00</updated><entry><title>It's Not THE Ternary Operator -- there are many</title><link href="https://slott56.github.io/2023_12_05-not_the_ternary_operator.html" rel="alternate"></link><published>2023-12-05T08:01:00-05:00</published><updated>2023-12-05T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-05:/2023_12_05-not_the_ternary_operator.html</id><summary type="html">&lt;p&gt;I'm sick of reading about &lt;strong&gt;THE&lt;/strong&gt; Ternary Operator.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-12T08:01:00-05:00</updated><entry><title>Understanding the Abstraction -- matplotlib Edition</title><link href="https://slott56.github.io/2023_12_12-understanding_the_abstraction.html" rel="alternate"></link><published>2023-12-12T08:01:00-05:00</published><updated>2023-12-12T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-12:/2023_12_12-understanding_the_abstraction.html</id><summary type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
+&lt;p&gt;Most of the time, folks like me are happy and successful using the &lt;a class="reference external" href="https://matplotlib.org/stable/api/pyplot_summary.html"&gt;pyplot&lt;/a&gt; module.
+The &lt;a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html"&gt;Quickstart&lt;/a&gt; provides brilliant, working
+examples.&lt;/p&gt;
+&lt;p&gt;As my partner's grandfather used to say, &amp;quot;We're off to the races in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
+&lt;p&gt;Most of the time, folks like me are happy and successful using the &lt;a class="reference external" href="https://matplotlib.org/stable/api/pyplot_summary.html"&gt;pyplot&lt;/a&gt; module.
+The &lt;a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html"&gt;Quickstart&lt;/a&gt; provides brilliant, working
+examples.&lt;/p&gt;
+&lt;p&gt;As my partner's grandfather used to say, &amp;quot;We're off to the races in a cloud of heifer dust.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The examples are easily rewritten for the data at hand. They work in Jupyter Lab. Boom. Done.&lt;/p&gt;
+&lt;p&gt;There's a little bit of technical detail in &lt;a class="reference external" href="https://matplotlib.org/stable/users/explain/figure/interactive.html#jupyter-notebooks-jupyterlab"&gt;https://matplotlib.org/stable/users/explain/figure/interactive.html#jupyter-notebooks-jupyterlab&lt;/a&gt;.
+When I realized things weren't working. I followed each piece of advice, scruplously. They were not the cause of my problems.
+The root cause was failure to understand the abstraction.&lt;/p&gt;
+&lt;div class="section" id="digging-a-little-deeper"&gt;
+&lt;h2&gt;Digging a Little Deeper&lt;/h2&gt;
+&lt;p&gt;What is not &lt;strong&gt;painfully&lt;/strong&gt; obvious is how the &lt;strong&gt;matplotlib&lt;/strong&gt; architecture works.
+(It's not written in flaming letters 100 feet high.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;pyplot&lt;/tt&gt; module is pure genius. It works to shield us from a tech stack that's non-trivial.&lt;/p&gt;
+&lt;p&gt;Which means, when someone like me wants to do something that's not copy-and-paste from one of the hundreds of examples,
+I have to &lt;strong&gt;actually&lt;/strong&gt; read the documentation. Carefully.&lt;/p&gt;
+&lt;p&gt;It took me three days to understand what the documentation said.
+Here's my timeline.&lt;/p&gt;
+&lt;p&gt;Day 1. Fuss around with my incorrect understanding of how graphics are created.&lt;/p&gt;
+&lt;p&gt;Day 2. Write the entire thing as a stand-alone command-line app, where the extemely robust, clever &lt;strong&gt;matplotlib&lt;/strong&gt; architecture works.
+It works in spite of me using it utterly incorrectly.&lt;/p&gt;
+&lt;p&gt;Day 3. Blinding realization that for the last two days, I've been &lt;strong&gt;doing it wrong.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-big-reveal"&gt;
+&lt;h2&gt;The Big Reveal&lt;/h2&gt;
+&lt;p&gt;Just about everything that happens in &lt;strong&gt;matplotlib&lt;/strong&gt; depends on an abstraction called an &lt;tt class="docutils literal"&gt;Artist&lt;/tt&gt; being out of date from the canvas.&lt;/p&gt;
+&lt;p&gt;This is not obvious, and no one needs to know it except in the rare cases of an animation.&lt;/p&gt;
+&lt;p&gt;The rest of the time, we observe that changes to scale or axes or whatever lead to changes to the diagram
+that are just what were expected. The &amp;quot;out-of-date&amp;quot; business doesn't enter into our experience
+when we're making changes that update the static diagram we want.&lt;/p&gt;
+&lt;p&gt;Anyone (even me) can get things to work by simply creating axes, crating a &amp;quot;fill&amp;quot; (a Polygon, actually), and being happy.
+The &lt;tt class="docutils literal"&gt;plt.show()&lt;/tt&gt; works.&lt;/p&gt;
+&lt;p&gt;But that's actually &lt;strong&gt;not&lt;/strong&gt; right for the kinds of things I was trying to do.&lt;/p&gt;
+&lt;p&gt;Here's what I was working on.&lt;/p&gt;
+&lt;a class="reference external image-reference" href="https://slott56.github.io/media/Empire_1337.png"&gt;&lt;img alt="Hexagonal map showing 5 interlocking regions" src="https://slott56.github.io/media/Empire_1337.png" style="width: 400px; height: 400px;" /&gt;&lt;/a&gt;
+&lt;p&gt;This map is actually &amp;quot;grown&amp;quot; using some simple rules from a few seed points.
+The animation of that growth process is what I want.&lt;/p&gt;
+&lt;p&gt;This isn't as clever as &lt;a class="reference external" href="https://conwaylife.com"&gt;Conway's Game of Life&lt;/a&gt;, but it is similar in a few respects.
+Mine, for example, involves random numbers. Is that desirable? Can the dependency be reduced
+and still lead to complicated structures?&lt;/p&gt;
+&lt;p&gt;I want to tinker with the rules.&lt;/p&gt;
+&lt;p&gt;(I have a version running in the Pythonista environment on my iPad. I want a version
+in JupyterLab that I can expand on more easily.)&lt;/p&gt;
+&lt;p&gt;Let's compare and contrast the two approaches&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="seductive-and-wrong"&gt;
+&lt;h2&gt;Seductive and Wrong&lt;/h2&gt;
+&lt;p&gt;This is seductive and simple. It fits (to an extent) with previous examples.
+It seems so right. And it sometimes works. But it's so wrong.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Create 324 polygon outlines to paint the background grid.&lt;/li&gt;
+&lt;li&gt;Create 324 text labels to label the hexes.&lt;/li&gt;
+&lt;li&gt;As the generative algorithm runs, create colored polygon fill patches, showing
+how the 5 seed positions evolve into the 5 interlocking shapes.
+This starts with 5 filled polygons and grows to 200+ polygons through 48 generations.
+So that's &lt;span class="formula"&gt;35 + ... + 235 = 6, 650&lt;/span&gt; filled polygons.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Wave after wave of increasing number of polygons.
+Sure, it's a lot of objects. I have a big laptop. We're good.&lt;/p&gt;
+&lt;p&gt;This has two problems.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;It's slow.&lt;/li&gt;
+&lt;li&gt;If I save the animation as an HTML or JSHTML object, I get a cycling animation with the right number of images, but  no content in any image.&lt;/li&gt;
+&lt;li&gt;In spite of the animation being empty, the final image looks good.&lt;/li&gt;
+&lt;li&gt;A few off-by-one errors.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What's wrong?&lt;/p&gt;
+&lt;p&gt;I'm patient and thorough. I tried a &lt;strong&gt;lot&lt;/strong&gt; of things.  I added Qt. I added ipympl. I restructured the animation
+as functions and callable objects. I used &lt;tt class="docutils literal"&gt;FuncAnimation&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;ArtistAnimation&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Nothing Worked.  Nothing.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Spoiler Alert&lt;/strong&gt;.  That's how you know you're doing something fundamentally wrong.
+The thing works in general. But specific features are missing.&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-can-that-be-wrong"&gt;
+&lt;h2&gt;How Can That Be Wrong?&lt;/h2&gt;
+&lt;p&gt;The foundational mis-understanding was trying to animate the appearance of various &lt;strong&gt;matplotlib&lt;/strong&gt; &lt;tt class="docutils literal"&gt;Artist&lt;/tt&gt; objects
+on the map.&lt;/p&gt;
+&lt;p&gt;I drew the grid. I drew the labels.&lt;/p&gt;
+&lt;p&gt;Then the colored hexes are supposed to appear, one at at time. I figured (wrongly) I would just draw the filled polygons.&lt;/p&gt;
+&lt;p&gt;See above. &amp;quot;Just about everything that happens in &lt;strong&gt;matplotlib&lt;/strong&gt; depends on an abstraction called an &lt;tt class="docutils literal"&gt;Artist&lt;/tt&gt; being out of date from the canvas.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Out-of-date?&lt;/p&gt;
+&lt;p&gt;Out-of-date!&lt;/p&gt;
+&lt;p&gt;State Change.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Artist&lt;/tt&gt; won't paint unless there's something &lt;strong&gt;new&lt;/strong&gt; to paint.&lt;/p&gt;
+&lt;p&gt;On day three, I realized the truth.&lt;/p&gt;
+&lt;p&gt;It works like this:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Create 324 polygon outlines to paint the background grid.&lt;/li&gt;
+&lt;li&gt;Create 324 text labels to label the hexes.&lt;/li&gt;
+&lt;li&gt;Create 324 polygons filled with white.&lt;/li&gt;
+&lt;li&gt;As the generative algorithm runs, change the color in the polygon.
+&lt;strong&gt;Change&lt;/strong&gt; the color. Change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Change. The &lt;tt class="docutils literal"&gt;Artist&lt;/tt&gt; is waiting for a change.&lt;/p&gt;
+&lt;p&gt;Don't create a wave of new polygons. Change the color of the polygons.
+It's simpler. It's faster. It works.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def paint(self, col: int, row: int, fill: str) -&amp;gt; None:
+    &amp;quot;&amp;quot;&amp;quot;
+    Update a hex's fill color.
+    &amp;quot;&amp;quot;&amp;quot;
+    for a in self.cells[col, row]:
+        a.set(
+            fill=True,
+            color=fill
+        )
+&lt;/pre&gt;
+&lt;p&gt;Don't create a new polygon.  Change the color of the polygon you have.&lt;/p&gt;
+&lt;p&gt;I still have no idea how the scale factors work when creating the JSHTML.
+I have eight mypy complaints because I'm not using &lt;strong&gt;matplotlib&lt;/strong&gt; correctly.
+I have more work to do.&lt;/p&gt;
+&lt;p&gt;But. I have pictures that work. For the right reason.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="language"></category><category term="semantics"></category></entry><entry><title>It's Not THE Ternary Operator -- there are many</title><link href="https://slott56.github.io/2023_12_05-not_the_ternary_operator.html" rel="alternate"></link><published>2023-12-05T08:01:00-05:00</published><updated>2023-12-05T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-05:/2023_12_05-not_the_ternary_operator.html</id><summary type="html">&lt;p&gt;I'm sick of reading about &lt;strong&gt;THE&lt;/strong&gt; Ternary Operator.&lt;/p&gt;
 &lt;p&gt;There is not merely &lt;strong&gt;a&lt;/strong&gt; single operator that is ternary.
 There are many operators that are ternary.&lt;/p&gt;
 &lt;p&gt;Here's one example:&lt;/p&gt;
