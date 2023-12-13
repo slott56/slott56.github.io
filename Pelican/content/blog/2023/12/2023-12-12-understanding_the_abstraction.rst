@@ -53,7 +53,7 @@ The rest of the time, we observe that changes to scale or axes or whatever lead 
 that are just what were expected. The "out-of-date" business doesn't enter into our experience
 when we're making changes that update the static diagram we want.
 
-Anyone (even me) can get things to work by simply creating axes, crating a "fill" (a Polygon, actually), and being happy.
+Anyone (even me) can get things to work by simply creating axes, creating a "fill" (a Polygon, actually), and being happy.
 The ``plt.show()`` works.
 
 But that's actually **not** right for the kinds of things I was trying to do.
