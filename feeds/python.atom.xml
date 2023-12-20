@@ -1,5 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-12T08:01:00-05:00</updated><entry><title>Understanding the Abstraction -- matplotlib Edition</title><link href="https://slott56.github.io/2023_12_12-understanding_the_abstraction.html" rel="alternate"></link><published>2023-12-12T08:01:00-05:00</published><updated>2023-12-12T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-12:/2023_12_12-understanding_the_abstraction.html</id><summary type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-19T08:01:00-05:00</updated><entry><title>More Reasons to Stop Bash-ing</title><link href="https://slott56.github.io/2023_12_19-more_reasons_to_stop_bashing.html" rel="alternate"></link><published>2023-12-19T08:01:00-05:00</published><updated>2023-12-19T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-19:/2023_12_19-more_reasons_to_stop_bashing.html</id><summary type="html">&lt;p&gt;There are many good reasons to use shell scripts.
+Mostly, a script can be useful when it's an alias that launches an application.
+Beyond that, I have doubts.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Incumbency is a popular argument for bash.&lt;/p&gt;
+&lt;p&gt;It's not a good argument, however.&lt;/p&gt;
+&lt;p&gt;Use &lt;a class="reference external" href="https://pypi.org/project/invoke/"&gt;invoke&lt;/a&gt; and you'll be much happier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;There are many good reasons to use shell scripts.
+Mostly, a script can be useful when it's an alias that launches an application.
+Beyond that, I have doubts.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Incumbency is a popular argument for bash.&lt;/p&gt;
+&lt;p&gt;It's not a good argument, however.&lt;/p&gt;
+&lt;p&gt;Use &lt;a class="reference external" href="https://pypi.org/project/invoke/"&gt;invoke&lt;/a&gt; and you'll be much happier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://dnastacio.medium.com/bash-over-python-39e0eba502f9"&gt;When You Should Use Bash Over Python&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'll start with the three &amp;quot;expressiveness&amp;quot; points.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Syntax&lt;/strong&gt;: Python code is longer. While true, this isn't a reason to use bash. I have to reject this for two reasons.&lt;ul&gt;
+&lt;li&gt;No one wins at code golf. Shorter code isn't better by any metric other than size. Bash syntax hides important details.&lt;/li&gt;
+&lt;li&gt;The argument starts from the notion that there's a &amp;quot;better&amp;quot; way to express complicated structures, and the bash reflects better.
+Python, by being more explicit, is less good.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Runtime&lt;/strong&gt;: Shell script interpreters are ubiquitous. True. Not a compelling argument, when we consider that bash scripts are untestable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semantics&lt;/strong&gt;: There is a cognitive cost in converteing bash to Python. Correct. Easy to avoid by avoiding the confusing and opaque bash abstractions.&lt;ul&gt;
+&lt;li&gt;The argument (again) starts from the notion that the bash abstraction is a standard against which other languages -- by virtue of being different -- aren't as good.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The argument &lt;strong&gt;for&lt;/strong&gt; bash is incumbency. Bash is installed, and because it's installed, it's better.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Bash’s longevity is rooted in core strengths that still resonate in the technology industry&amp;quot;.
+I suggest the longevity is due entirely to it's incumbency.
+It's not the &lt;strong&gt;best&lt;/strong&gt; choice for anything.
+It's a handy default choice because it's already installed.&lt;/p&gt;
+&lt;p&gt;And.  There's no easy way to unit test.&lt;/p&gt;
+&lt;p&gt;Let's move on to the other six reasons.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="some-reasons-for-using-bash"&gt;
+&lt;h2&gt;Some reasons for using bash&lt;/h2&gt;
+&lt;p&gt;Here are the the detailed reasons for rejecting Python. Most of this isn't persuasive.
+It's mostly about the incumbency of bash.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Mastery Matters. Parts of this argument are true. Bash scripts seem to be uniformly bad because bad is a permitted style.
+They could be better, making use of clever things like functions and their obscure semantics.&lt;/p&gt;
+&lt;p&gt;This doesn't make bash better. It only says that a lot of people write bad scripts.
+A lot of bash-bashing stems from seeing so many bad scripts.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Bash is Everywhere. True. Incumbency may be helpful under certain situations.
+It's like learning how to compute logarithms so you can then add them to avoid multiplication.
+Yes. It does work. However. Calculators exist on this timeline; it's no longer 1617.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&amp;quot;Sidestepping the discussions about the Python version to pick&amp;quot;? What discussion? Is this a &amp;quot;Python 2 v. Python 3&amp;quot; question? That's been answered.&lt;/li&gt;
+&lt;li&gt;&amp;quot;the best way to install Python on a given environment&amp;quot;? Most linux distros have Python ready-to-go. That's best.&lt;/li&gt;
+&lt;li&gt;&amp;quot;gymnastics to keep dependencies and environments in check&amp;quot;? This isn't hard, actually. Almost anything bash-related is in the standard library plus a few add-ons line &lt;a class="reference external" href="https://pypi.org/project/psutil/"&gt;psutil&lt;/a&gt;.
+For a very complicated application with a tall stack of poorly-chosen dependencies, there's work involved.
+That application with a complicated set of installs isn't doing bash-like things, though.&lt;/li&gt;
+&lt;li&gt;&amp;quot;fragmentation of Python runtime versions&amp;quot;? What fragmentation? Python is popular, and evolves quickly. Is evolution to new versions some kind of problem?&lt;/li&gt;
+&lt;li&gt;&amp;quot;mutually exclusive dependency matrix&amp;quot;? Callback to gymnastics. A tall stack of poorly-chosen dependencies is an edge case. It's not the sweet spot for admin tasks often written as bad, untestable bash scripts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Secured Production Environments. This is hard. None of these difficulties are Python-related, however. It applies to every single application in the environment.
+Java requires installs for develolpers, too. So go Go and Rust. Air-gapped systems are hard to build.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&amp;quot;whatever Python runtime environment you lock into a production environment&amp;quot;? Um. This is true for &lt;em&gt;all&lt;/em&gt; applications.
+It has nothing to do with Python. This is configuration management. It's hard.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Running package managers safely inside a production environment is possible, but everything’s got a price&amp;quot;. And the price is actually quite low.
+Further, this means building secured systems for software development. That's quite hard in all languages.
+The only language that wouldn't require extra downloads of new and useful packages would be Pascal, I think.&lt;/li&gt;
+&lt;li&gt;&amp;quot;You could do [here documents] with a Python script, too, as long as it does not import any package not already installed in the system.&amp;quot;
+Right. Most bash-related Python features are part of the standard library. This isn't daunting or even particularly difficult or complicated.
+And. With Python you can unit test.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Container Runtimes. See #3. This is bash incumbency and configuration management from point 3, repeated. It's still challenging.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The Universal Language of Platforms. The bash CLI is ubiquitous, it's ideal for bash. But it's not actually &lt;strong&gt;ideal&lt;/strong&gt; in general.
+A Python library that offers access an application's API may be much easier to work with and involve far fewer weird
+leaps to make the CLI amendable to the relatively weak set of abstractions bash has available.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;&amp;quot;It would take a couple of days in syntactical and semantical translations to get a result with more lines of code that were less readable than its Bash counterpart&amp;quot;.
+Again, the argument presumes the bash language is the gold standard. Starting with bash and enduring translating into Python involves a cost.
+It also had benefits, like the ability to test.
+Why not start with Python?
+&amp;quot;Less readable&amp;quot; is offered without further evidence. Again, this repeats the bash incumbency argument where smaller and older is inherently better.&lt;/p&gt;
+&lt;p&gt;Further, the time spent writing Python is often time &lt;strong&gt;well&lt;/strong&gt; spent getting the abstractions right,
+and understading use cases.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&amp;quot;All original samples in the docs were written using the command-line interface.&amp;quot;  Incumbency. And maybe lazy documentation writers in the vendor organization.
+&amp;quot;All Internet forums reference the command-line interface&amp;quot;. Sigh. The &amp;quot;All&amp;quot; is disputable, but the point remains that using Python takes some effort.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The End of the Line Is Not Scripted. (Not sure what this means.)
+There are two obstacles here, both of which seem specious at best.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Mega CLI's. Just because a bash CLI is available does not make it &amp;quot;best.&amp;quot;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&amp;quot;every bit of function be wrapped with command-line interfaces.&amp;quot;  While true, it ignores the fact
+that some packages are actually written in Python, and the bash interface is -- at best -- a hack
+for those folks who won't learn Python.&lt;/li&gt;
+&lt;li&gt;Bash is everywhere. Incumbency does not make it better. It only makes it incumbent.&lt;/li&gt;
+&lt;li&gt;Writing shell scripts is more accessible than writing a new application. A good straw-man.
+It throws Python scripting away as if we can't write a short, pithy, testable, reusable Python script.&lt;/li&gt;
+&lt;li&gt;&amp;quot;open-source juggernauts...&amp;quot; like &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;curl&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;openssl&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;yq&lt;/tt&gt; involves two issues.
+First, some programs like &lt;tt class="docutils literal"&gt;openssl&lt;/tt&gt; are better left as stand-alone binaries used by a Python script.
+Second, programs like  &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;yq&lt;/tt&gt; are the primary symptom of how unsuitable bash is for working with anything other
+than a trivial string of characters. Reliance on these add-on programs is one of the reasons why bash is so confusingly horrible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Operations Frameworks like Ansible, Terraform, and (not mentioned) Puppet. These require some scripting
+for integration. Having done it in Python, I can safely say Python works.&lt;/p&gt;
+&lt;p&gt;And I could unit test it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unrelated to the two obstacles is this nugget: &amp;quot;tuned for five decades of minimum resource utilization&amp;quot;.
+I don't think this is true at all.&lt;/p&gt;
+&lt;p&gt;The original Bourne &lt;tt class="docutils literal"&gt;sh&lt;/tt&gt; wasn't very thrifty to begin with. It was constrained by the tiny size of early
+machines. And. The Linux technique of sharing the read-only code pages meant the costs could stay low.
+State management was environment variables and some OS settings (like the current working directory.)
+The bash program is bloatware by comparison to the Bourne shell.
+The use of the OS &lt;tt class="docutils literal"&gt;|&lt;/tt&gt; operator forks subprocess after subprocess leading to crazy OS overheads
+for a &amp;quot;simple&amp;quot; &lt;tt class="docutils literal"&gt;app | awk | grep | sed &amp;gt; file&lt;/tt&gt; operation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;&amp;quot;In objective terms, regarding task automation for Cloud operations, it is hard to argue against Bash&amp;quot;.&lt;/p&gt;
+&lt;p&gt;No. Actually. It's really easy.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The bash scripting language is opaque. Objectively, the syntax rules are quite obscure with complicated line-ending and quoting rules.
+Objectively, it's really difficult to understand the semantics of the operators like &lt;tt class="docutils literal"&gt;;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&amp;amp;&lt;/tt&gt;.
+Why is &lt;tt class="docutils literal"&gt;;&lt;/tt&gt; optional? Why can a line end with &lt;tt class="docutils literal"&gt;&amp;amp;&lt;/tt&gt;  or &lt;tt class="docutils literal"&gt;;&lt;/tt&gt; but not end with &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;?&lt;/li&gt;
+&lt;li&gt;Error-handling in bash is an unholy mess. Objectively, what does &lt;tt class="docutils literal"&gt;set &lt;span class="pre"&gt;-e&lt;/span&gt;&lt;/tt&gt; do?
+Objectively, why are there so many return codes?&lt;/li&gt;
+&lt;li&gt;Unit testing is almost impossible. Objectively, no one should run a shell script without a test case.&lt;/li&gt;
+&lt;li&gt;Bash has almost no useful data structures beyond the string.
+Objectively, we can argue that there's a way to break strings on spaces to treat the string as an array.
+This is essentially Python &lt;tt class="docutils literal"&gt;.split()&lt;/tt&gt; as the alternative data structure to the string.&lt;/li&gt;
+&lt;li&gt;Programs like &lt;tt class="docutils literal"&gt;expr&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;[&lt;/tt&gt; are used widely and very difficult to understand.
+Objectively, the man pages for these programs are quite complicated.
+What looks like an expression isn't really. It's input to a separate binary that produces a result used by the shell's &lt;tt class="docutils literal"&gt;if&lt;/tt&gt; construct.
+Objectively, this is confusing and unpleasant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Programs like &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;jq&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;yq&lt;/tt&gt; are used widely and can be difficult to understand.
+They're -- technically -- separate binaries, part of the overall bash ecosystem of internal bash features and external binaries.
+They do permit a kind of functional style on bash programming which is nice.
+Objectively, this isn't all bad. Python, also, has functional programming features.&lt;/p&gt;
+&lt;p&gt;The ubiquity of the bash programming is undeniable. It's also terrible. Bash should be used cautiously.&lt;/p&gt;
+&lt;p&gt;When to use bash?&lt;/p&gt;
+&lt;p&gt;Use bash you need to launch a Python script. A bash script should be little more than an alias for a program written in a language that offers unit testing.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="shell"></category><category term="bash"></category><category term="unit-testing"></category></entry><entry><title>Understanding the Abstraction -- matplotlib Edition</title><link href="https://slott56.github.io/2023_12_12-understanding_the_abstraction.html" rel="alternate"></link><published>2023-12-12T08:01:00-05:00</published><updated>2023-12-12T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-12:/2023_12_12-understanding_the_abstraction.html</id><summary type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
 &lt;p&gt;Most of the time, folks like me are happy and successful using the &lt;a class="reference external" href="https://matplotlib.org/stable/api/pyplot_summary.html"&gt;pyplot&lt;/a&gt; module.
 The &lt;a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html"&gt;Quickstart&lt;/a&gt; provides brilliant, working
 examples.&lt;/p&gt;
