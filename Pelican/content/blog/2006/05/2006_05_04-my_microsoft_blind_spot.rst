@@ -11,19 +11,21 @@ My Microsoft Blind-Spot
 
 
 
-Hobbit says http://www.haloscan.com/comments/slott/E20060228202627/#90649 "Everything in the windows world does not
-directly work with the "rapidly-evolving" windows api's (for example, c# devs
-rarely concern themselves with api calls.) If there is such a lack of clarity in
-these API's causing a "barrier to innovation," why is windows still the easiest
-and most popular platform to develop
-on?
+Hobbit says:
+
+    "Everything in the windows world does not
+    directly work with the "rapidly-evolving" windows api's (for example, c# devs
+    rarely concern themselves with api calls.) If there is such a lack of clarity in
+    these API's causing a "barrier to innovation," why is windows still the easiest
+    and most popular platform to develop
+    on?
 
 
 
-"I would argue that development
-tools, languages and technologies are one of the few areas that MS actually
-excels, and that love it or not, it's played a big role in their market
-dominance."
+    "I would argue that development
+    tools, languages and technologies are one of the few areas that MS actually
+    excels, and that love it or not, it's played a big role in their market
+    dominance."
 
 
 

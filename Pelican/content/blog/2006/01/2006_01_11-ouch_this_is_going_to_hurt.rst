@@ -11,16 +11,6 @@ Ouch, this is going to hurt
 
 
 
-See RLucente's Blog [`bloki <http://rlucente.bloki.com/blog/index.jsp?name=blog-1136903210375>`_ ] and Business Week Online http://www.businessweek.com/the_thread/techbeat/archives/2006/01/_its_all_part_o.html?campaign_id=rss_blog_techbeat>`_ `  <http://blogs.businessweek.com/mt/mt-tb.cgi/2702.1285312848 for some information on JotSpot Tracker
-http://tracker.jot.com/.
-
-
-
-What
-a dangerous tool.  Which means an opportunity space of
-consultants.
-
-
 
 While some spread-sheet
 use is civilized numerical stuff, and other spread-sheet use is merely personal

@@ -11,7 +11,7 @@ Offshoring and Short-Term Thinking
 
 
 
-This comment http://www.haloscan.com/comments/slott/E20060320165855/#77968 floored me: "Another answer [to the 'what
+A comment on `Offshoring Shows How Valuable Code Is <{filename}/2006/03/2006_03_20-making_pdfs_with_and_without_xsl_fo_revised.rst>`_ floored me: "Another answer [to the 'what
 do you value?' question] could be to show cost reduction for the quarter. Its
 the old short term thinking to make Wall Street
 happy."

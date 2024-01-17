@@ -197,8 +197,7 @@ proprietary products and have a cost which exceeds their real value.
 
 #.  VB 
 
-#.  **Perl** 
-
+#.  **Perl**
 
 #.  C#
 

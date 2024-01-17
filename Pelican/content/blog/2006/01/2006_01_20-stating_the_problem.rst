@@ -11,10 +11,10 @@ Stating the Problem
 
 
 
-RL's blog http://rlucente.bloki.com/blog is
-full of scrambling attempts at stating a problem.  While, in principle, stating
-a problem is a trivial exercise (someone can't do something), RL has managed to
-make it wonderfully complex.  The root cause of the complexity could be a
+In principle, stating
+a problem is a trivial exercise: someone can't do something.
+It can be made wonderfully complex, however.
+The root cause of the complexity could be a
 fundamental unwillingness to state the problem without including technology
 hints like "database" or "hierarchy" or "project management" or "change
 control".
@@ -25,9 +25,7 @@ control".
 
 
 
-When
-the portal goes live, 10,000 people will want
-accounts.
+When the portal goes live, 10,000 people will want accounts.
 
 
 
@@ -35,17 +33,15 @@ accounts.
 
 
 
-The
-help desk can't handle 10,000 account activation
-requests.
+The help desk can't handle 10,000 account activation requests.
 
 
 
-The problem here will never
-change.  My favorite technology may not solve this problem.  In spite of the
-problem not being nuanced enough to justify a month of programming, that is the
-problem.  It is only that, and it won't
-change.
+The problem here will never change.
+My favorite technology may not solve this problem.
+In spite of the problem not being nuanced enough to justify a month of programming, that is the
+problem.
+It is only that, and it won't change.
 
 
 

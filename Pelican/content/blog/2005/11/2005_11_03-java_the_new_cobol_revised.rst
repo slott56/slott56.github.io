@@ -18,7 +18,7 @@ Kontrawize says http://kontrawize.blogs.com/kontrawize/2005/11/java_is_the_new.h
 
 /dev/null http://www.haloscan.com/comments/slott/E20051101105604/#27166 says "While we are willing to expose and
 discuss the problems in Java, we do it because we want to improve it, not
-because we need to cut &amp; run".  Taken out of context, I could twist this to
+because we need to cut & run".  Taken out of context, I could twist this to
 mean that Java is no longer looked at merely technology to build a solution, but
 has developed an independent existence and a rabidly patriotic following. 
 

@@ -23,7 +23,7 @@ overloading.
 
 
 
-**Lamba Introspection** 
+**Lambda Introspection**
 
 `Dejavu  <http://projects.amor.org/dejavu>`_
 It primarily uses a generic `Data Mapper <http://www.martinfowler.com/eaaCatalog/dataMapper.html>`_  architecture.  It is more of an OODB
