@@ -1226,14 +1226,6 @@ srcFile.close()
 &lt;li&gt;&lt;strong&gt;Application Deployment&lt;/strong&gt;. Building a web app is challenging.  Getting it to behave well in a web server is a different kind of challenge.  It requires a fair amount of poking around in Tomcat to figure out how to start, stop, restart and manage a web server with your web application stuffed inside it.  Java web servers have a large number of configuration files, and it takes some trial and error to work out what they do.  Once you get it, however, the power of providing configuration information in the XML files means that your applications can be more generic and tailored by a specific web deployment.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;After this, composite application skills are the &lt;strong&gt;Next Big Thing&lt;/strong&gt;.  This means the various XML parsing tools (DOM and SAX).  It also means SOAP and XML-RPC, as well as the rest of the technology stack in Web Services world.  However, composite application tools and standards are a rapidly-evolving area.  By the time you get here, the technology will have moved on.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Programming for Non-Programmers Book</title><link href="https://slott56.github.io/2007_05_31-programming_for_non_programmers_book.html" rel="alternate"></link><published>2007-05-31T17:02:00-04:00</published><updated>2007-05-31T17:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-31:/2007_05_31-programming_for_non_programmers_book.html</id><summary type="html">&lt;p&gt;The more time I spend coaching and teaching programmers, the more I am convinced that the bulk of programming is a core set of skills coupled with translations to a target language.&lt;/p&gt;
-&lt;p&gt;However, not everything that's covered in ordinary Computer Science books is a core skill.  Some subtleties are features …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The more time I spend coaching and teaching programmers, the more I am convinced that the bulk of programming is a core set of skills coupled with translations to a target language.&lt;/p&gt;
-&lt;p&gt;However, not everything that's covered in ordinary Computer Science books is a core skill.  Some subtleties are features of specific languages or architectures; they aren't applicable across the board to all other languages.&lt;/p&gt;
-&lt;p&gt;For example, you can spend some quality time wrapping your brain around call-by-name and call-by-value semantics.  In C, and C++, this is &lt;strong&gt;A Big Deal&lt;/strong&gt;™.  In Java, it's a subtlety that helps show the slight differences between primitive types and reference types [&lt;a class="reference external" href="http://java.sun.com/docs/books/jls/second_edition/html/typesValues.doc.html"&gt;Types, Values and Variables&lt;/a&gt; ].  In Python, it can be taught as a simple feature of objects: some are mutable, some are not.&lt;/p&gt;
-&lt;p&gt;Some design patterns are important in Java, but moot in Python.  Since Python has multiple inheritance and Duck typing, the use of &lt;strong&gt;Strategy&lt;/strong&gt;  and other kinds of mixins isn't as important as it is in Java.  Similarly, Python has many different flavors of &lt;strong&gt;Singleton&lt;/strong&gt;, each with a distinct purpose.&lt;/p&gt;
-&lt;p&gt;Somewhere, there's a Platonic Ideal programming language, and it has mappings into each existing language.  Each language, additionally, has some unique features that supplement this ideal language.  Some of those features are junk, but most are extensions that help solve problems in a particular domain.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/nonprogrammer.html"&gt;Programming for Non-Programmers&lt;/a&gt;  is my attempt at covering the core programming skills with a mapping of those skills into Python.&lt;/p&gt;
-&lt;p&gt;The book is available with a Creative Commons Attribution-Noncommercial-No Derivative Works (&lt;a class="reference external" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"&gt;by-nc-nd&lt;/a&gt; ) license.&lt;/p&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Web Services and Architecture</title><link href="https://slott56.github.io/2007_05_22-web_services_and_architecture.html" rel="alternate"></link><published>2007-05-22T23:11:00-04:00</published><updated>2007-05-22T23:11:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-22:/2007_05_22-web_services_and_architecture.html</id><summary type="html">&lt;p&gt;Thanks to everyone who attended.  See &lt;a class="reference external" href="http://java.sun.com/blueprints/guidelines/designing_webservices/"&gt;Designing Web Services with the J2EE(TM) 1.4 Platform : JAX-RPC, SOAP, and XML Technologies&lt;/a&gt;  for more information.
 Also, check out Dr. Dobb's &lt;a class="reference external" href="http://www.ddj.com/dept/webservices/"&gt;SOA, Web Services and XML&lt;/a&gt;  department.&lt;/p&gt;
 &lt;p&gt;Here's the Micro$oft PPT file:  &lt;a class="reference external" href="https://slott56.github.io/media/Web Services 8.ppt"&gt;Web Services 8.ppt&lt;/a&gt;&lt;/p&gt;
@@ -1658,33 +1650,33 @@ have to relax your previous ideas and accept some new ones.  The &amp;quot;incom
 implementation had to do with the lack of a C++ or Java-style formal separation
 between interface and implementation.  It isn't that the formalized interface is
 missing, but that it's moved around a bit.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;OO Design and Privacy.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="oo-design-and-privacy"&gt;
+&lt;h2&gt;OO Design and Privacy&lt;/h2&gt;
 &lt;p&gt;In C++, the interface
 lived in the .hpp files, separated from the implementations in .cpp files.  In
 Java, the interface could be declared separately, but is usually deduced from
 the class definition.  The idea is that any implementation which supports the
 interface can be checked by the compiler.  The static analysis of compatibility
 somehow provides improved quality.&lt;/p&gt;
-&lt;p&gt;As a
-practical matter, however, the potential quality of static checking doesn't
+&lt;p&gt;As a practical matter, however, the potential quality of static checking doesn't
 really work out  very well.  While C++ detects a wide variety of errors, it only
 does this if everything is recompiled.  In the event of dynamically linked
 components (.DLL's or .SO's), however, problems can't be detected until there's
 a run-time problem.  Similarly, Java class problems may not be detected until
-class load time -- leading to run-time errors for compatibility
-issues.&lt;/p&gt;
+class load time -- leading to run-time errors for compatibility issues.&lt;/p&gt;
 &lt;p&gt;In Python, the only detection
 is run-time.  Therefore, in a very practical sense, Python error detection is
 simpler and more regular.  Every design mistake is detected via run-time
 exception handling.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;References and Objects.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references-and-objects"&gt;
+&lt;h2&gt;References and Objects&lt;/h2&gt;
 &lt;p&gt;One new concept that
 experienced programmers struggle with is the &amp;quot;everything's a reference&amp;quot; Python
 viewpoint.  For C++ programmers, this can be confusing.  For Java programmers,
 however, there is less confusion because Java has two very neat buckets:
 primitive and reference types.  The primitive types behave enough like reference
-types that the distinction can be made largely
-transparent.&lt;/p&gt;
+types that the distinction can be made largely transparent.&lt;/p&gt;
 &lt;p&gt;In Python, I haven't seem
 much confusion.  I attribute this to working with people who didn't know C++ in
 the first place.  Lacking a confusing concept, they were perfectly comfortable
@@ -1692,7 +1684,9 @@ with this &amp;quot;object&amp;quot; vs. &amp;quot;variable&amp;quot; distinctio
 to an object, and objects last precisely as long as they have referencing
 variables.  It's very neat and very simple.  The idea of other mechanisms isn't
 worth discussing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Overloaded Functions.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overloaded-functions"&gt;
+&lt;h2&gt;Overloaded Functions&lt;/h2&gt;
 &lt;p&gt;The third point had two
 related issues; the first is the lack of overloaded functions.  Overloaded
 functions can be valuable, but can also be confusing.  When a function has
@@ -1704,18 +1698,17 @@ of alternate formulations for parameters.  Having optional parameters in Python
 gives us the same advantages of overloading function names to provide optional
 or alternate parameters.  Having a single function makes it much harder to
 create an overloaded function that has the same name but different semantics.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Function Signatures.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="function-signatures"&gt;
+&lt;h2&gt;Function Signatures&lt;/h2&gt;
 &lt;p&gt;Here's the hidden
 fourth point: &amp;quot;I expect to know (in a C++ sense) what is going in and what is
 coming out, and if I don't get that right then the program/complier complains.&amp;quot;
 This is only partially true.  Indeed, it's only true in a kind of superficial
-way.  For example, when I call Java's
-math.sqrt(-1.0),
+way.  For example, when I call Java's &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;math.sqrt(-1.0)&lt;/span&gt;&lt;/tt&gt;,
 I've provided data that's correct as far as the compiler is concerned, but still
 not really correct.&lt;/p&gt;
-&lt;p&gt;The compile-time
-checking of function signatures isn't really terribly effective at preventing
-errors.&lt;/p&gt;
+&lt;p&gt;The compile-time checking of function signatures isn't really terribly effective at preventing errors.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;In SOAP implementation, the function signature
 is restated in WSDL.  The Schema or DTD can add or remove constraints, leading
@@ -1732,23 +1725,23 @@ matching is sufficient, and run-time error checking is often done badly or not
 at all.  In Python, run-time checking is the norm, and can't be
 overlooked.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;The Legacy Bias.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Our experience colors our
-perceptions.  How do we get past our bias?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-legacy-bias"&gt;
+&lt;h2&gt;The Legacy Bias&lt;/h2&gt;
+&lt;p&gt;Our experience colors our perceptions.  How do we get past our bias?&lt;/p&gt;
 &lt;p&gt;Here's a good version of a
 relevant &lt;a class="reference external" href="http://mornmeet.blogspot.com/2006/11/introduction-to-zen.html"&gt;Koan&lt;/a&gt; .  You can learn more effectively if you
 have a &amp;quot;&lt;a class="reference external" href="http://sfzc.org/Pages/Library/zmbm.html"&gt;Beginner's Mind&lt;/a&gt; &amp;quot;.    In this case, the baggage
 of problems in C++ became complaints about gaps in Python.&lt;/p&gt;
-&lt;p&gt;They aren't gaps or problems in
-Python.  They are just differences.&lt;/p&gt;
-&lt;p&gt;Here's what's most important:
-&lt;strong&gt;Teaching Programming requires Beginner's Mind&lt;/strong&gt;.  I don't think you can teach programming
+&lt;p&gt;They aren't gaps or problems in Python.  They are just differences.&lt;/p&gt;
+&lt;p&gt;Here's what's most important: &lt;strong&gt;Teaching Programming requires Beginner's Mind&lt;/strong&gt;.
+I don't think you can teach programming
 without revisiting the newbie programmer's fundamental confusion of what they
 say at compile time and what happens at run time.  I don't think
 compare-and-contrast between programming languages is appropriate.   I think
 that it's more important to treat each programming language as a fresh exercise,
-using the language to implement the desired algorithms and data
-structures.&lt;/p&gt;
+using the language to implement the desired algorithms and data structures.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>A Productivity Conundrum (Revised)</title><link href="https://slott56.github.io/2006_10_09-a_productivity_conundrum_revised.html" rel="alternate"></link><published>2006-10-09T10:24:00-04:00</published><updated>2006-10-09T10:24:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-10-09:/2006_10_09-a_productivity_conundrum_revised.html</id><summary type="html">&lt;p&gt;In one case, the prospect had 7 interlocked
 databases, and wanted to do a technology upgrade.  In other cases, the numbers
 was larger (up to 30, I think) but the problem was the same.&lt;/p&gt;
@@ -1768,7 +1761,8 @@ them.&lt;/p&gt;
 grew the tangle of databases organically.  Each situation is a series of
 short-sighted decisions that didn't reach a tipping point until it was a massive
 problem.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Failure of Foresight.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="failure-of-foresight"&gt;
+&lt;h2&gt;Failure of Foresight&lt;/h2&gt;
 &lt;p&gt;How did they get so far afoul of a
 good, simple, usable database architecture?  This is the important question, and
 I think, holds the key to understanding a lot of the cost and complexity that
@@ -1783,13 +1777,14 @@ complexity.&lt;/p&gt;
 causes, this decision was made the same way each time it came up.  Every
 opportunity to simplify was replaced with an increase in
 complexity.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;What Changed?&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-changed"&gt;
+&lt;h2&gt;What Changed?&lt;/h2&gt;
 &lt;p&gt;Why do they now ask for help in
 simplifying?  it's hard to say and I'm reluctant to ask.  Generally, I get hints
 like &amp;quot;it finally got too complex&amp;quot; or &amp;quot;it finally won't scale&amp;quot; or &amp;quot;someone left&amp;quot;
 or &amp;quot;someone new came on board.&amp;quot;  But I think these aren't the whole story, I
-think they're excuses; or perhaps
-apologies.&lt;/p&gt;
+think they're excuses; or perhaps apologies.&lt;/p&gt;
 &lt;p&gt;They ask for help because
 re-engineering all those short-term-expedient decisions is really hard to do.
 Faced with large and complex data structures, you don't really know where to
@@ -1799,8 +1794,7 @@ seems to agree, since each person has a different area of
 expertise.&lt;/p&gt;
 &lt;p&gt;My suggestions are pretty
 consistent:  &amp;quot;Pick a high-value business process and rework just that.&amp;quot;  It will
-ripple through the database, but it won't touch everything that's
-wrong.&lt;/p&gt;
+ripple through the database, but it won't touch everything that's wrong.&lt;/p&gt;
 &lt;p&gt;I discourage looking at the
 problem too broadly.  If you try to encompass everything in general, you often
 wind up doing nothing in particular.  Infinitely broad is the same as infinitely
@@ -1811,17 +1805,17 @@ single pass.  While they know it can't be done, they still hold out hope that I
 can help them do it.&lt;/p&gt;
 &lt;p&gt;Interestingly, I
 get complaints when I talk about the incremental approach.  &amp;quot;If we do things in
-pieces, we end up with more of the same.&amp;quot;  I can only
-agree.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Recognizing Short-Term Thinking.&lt;/strong&gt;&lt;/p&gt;
+pieces, we end up with more of the same.&amp;quot;  I can only agree.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recognizing-short-term-thinking"&gt;
+&lt;h2&gt;Recognizing Short-Term Thinking&lt;/h2&gt;
 &lt;p&gt;It seems like people are
 looking for a way to manage complexity.  The first technique -- re-engineer the
 world -- doesn't work.  They want me to sprinkle Faerie Dust™ on their
 approach.  I can't see how to do everything any quicker than they are already
 doing.  While I -- personally -- can design pretty quickly, it doesn't do an
 organization any good, because an organization works at the median speed,
-leaving slower people confused and faster people
-frustrated.&lt;/p&gt;
+leaving slower people confused and faster people frustrated.&lt;/p&gt;
 &lt;p&gt;When I suggest they tackle
 complexity incrementally, they can only complain about one of two things.  The
 first is an indictment of incremental thinking and the second is an indictment
@@ -1829,12 +1823,10 @@ of &amp;quot;extra&amp;quot; work.&lt;/p&gt;
 &lt;p&gt;Incremental thinking
 seems to get conflated with short-term thinking, and both are treated with
 contempt.  Short-term thinking created the mess.  Incremental thinking cannot --
-in any obvious way -- improve on the
-situation.&lt;/p&gt;
+in any obvious way -- improve on the situation.&lt;/p&gt;
 &lt;p&gt;Any effort to manage a huge
 effort appears like &amp;quot;extra&amp;quot; work.  We all know that when we are up to our ass in
-alligators, we can't waste time draining the
-swamp.&lt;/p&gt;
+alligators, we can't waste time draining the swamp.&lt;/p&gt;
 &lt;p&gt;This brings us to the third key
 point:  viewed from a distance, these are both the responses of people crippled
 by short-term thinking.  An incremental approach is an opportunity for
@@ -1842,7 +1834,9 @@ short-term decisions to ruin the design.  Extra work is a short-term cost that
 we can't afford.  Therefore, I think the first issue is to recognize the
 difference between short-term thinking and incremental
 thinking.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;My Burden.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="my-burden"&gt;
+&lt;h2&gt;My Burden&lt;/h2&gt;
 &lt;p&gt;It looks like I have two
 burdens.  First, to find a tidy metaphor for incremental thinking; a metaphor
 that clears up the difference between short-term decisions and long-term,
@@ -1856,20 +1850,22 @@ they've been doing hasn't been working.  I've got to pose the question in  way
 that makes them say that their current approach can't work.  However, we have to
 move beyond the trivial &amp;quot;not working&amp;quot; into the more substantive, &amp;quot;what
 constitutes 'working' for you?&amp;quot;&lt;/p&gt;
-&lt;p&gt;I
-suspect that asking them to define qualities or parameters of a better approach
+&lt;p&gt;I suspect that asking them to define qualities or parameters of a better approach
 might change the simple refusals into more useful, ongoing conversations.  We're
 trying to stop organic growth, we're trying to manage complexity and we're
 trying to grow long-term value in stages.  However, not everyone is ready to
 give up on things that didn't work.  I think my obligation is to get them ready
 to give up on the old ways before offering them something new.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Addendum.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="addendum"&gt;
+&lt;h2&gt;Addendum&lt;/h2&gt;
 &lt;p&gt;No
 sooner do I post this than I see a related note in a post in &lt;a class="reference external" href="http://agiletesting.blogspot.com/"&gt;Agile
 Testing&lt;/a&gt; , &amp;quot;&lt;a class="reference external" href="http://agiletesting.blogspot.com/2006/10/90-9-1-rule-and-building-open-source.html"&gt;The 90-9-1 rule and building an open source
 community&lt;/a&gt;  &amp;quot;.  This note had a helpful-looking book title:&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.amazon.com/Fearless-Change-Patterns-Introducing-Ideas/dp/0201741571"&gt;Fearless Change: Patterns for Introducing New Ideas&lt;/a&gt; .  I found this to be a helpful
 coincidence.  Clearly, I need help introducing change.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Ways in which learning can be A Bad Thing™</title><link href="https://slott56.github.io/2006_08_31-ways_in_which_learning_can_be_a_bad_thingtm.html" rel="alternate"></link><published>2006-08-31T17:54:00-04:00</published><updated>2006-08-31T17:54:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-31:/2006_08_31-ways_in_which_learning_can_be_a_bad_thingtm.html</id><summary type="html">&lt;p&gt;Once I learned C++, all my C programming became
 poor-man's OO.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -2032,30 +2028,42 @@ exposing a piece of OO design seems to fit this &amp;quot;effortful study&amp;qu
 niche.&lt;/p&gt;
 &lt;p&gt;The next step is to rewrite
 parts of the introduction, and change the sales pitch.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Control Break Reporting</title><link href="https://slott56.github.io/2006_02_06-control_break_reporting.html" rel="alternate"></link><published>2006-02-06T23:49:00-05:00</published><updated>2006-02-06T23:49:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-02-06:/2006_02_06-control_break_reporting.html</id><summary type="html">&lt;p&gt;Control Break Reporting is a design pattern that
+</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Control Break Reporting</title><link href="https://slott56.github.io/2006_02_06-control_break_reporting.html" rel="alternate"></link><published>2006-02-06T23:49:00-05:00</published><updated>2006-02-06T23:49:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-02-06:/2006_02_06-control_break_reporting.html</id><summary type="html">&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p class="last"&gt;This referred to the old Active State Programmers Network, ASPN,
+Python Cookbook.
+The code has been moved to the ActiveState Code site.
+Likely, the fact that it's Python 2 means it is no longer online.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Control Break Reporting is a design pattern that
+has been around since the earliest …&lt;/p&gt;</summary><content type="html">&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p class="last"&gt;This referred to the old Active State Programmers Network, ASPN,
+Python Cookbook.
+The code has been moved to the ActiveState Code site.
+Likely, the fact that it's Python 2 means it is no longer online.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Control Break Reporting is a design pattern that
 has been around since the earliest days of business applications.  It solves the
 problem of producing a report on nested (or hierarchical) data, the kind often
 found in a chart of accounts.&lt;/p&gt;
-&lt;p&gt;The
-result of control break reporting is a properly nested …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Control Break Reporting is a design pattern that
-has been around since the earliest days of business applications.  It solves the
-problem of producing a report on nested (or hierarchical) data, the kind often
-found in a chart of accounts.&lt;/p&gt;
-&lt;p&gt;The
-result of control break reporting is a properly nested set of reports, each of
+&lt;p&gt;The result of &amp;quot;control break&amp;quot; reporting is a properly nested set of reports, each of
 which has localized subtotals.  The details add up to a deeply nested subtotal.
 The subtotals add up to higher and higher level totals, and the top-level totals
 add to a grand total.&lt;/p&gt;
-&lt;p&gt;The classical
-algorithm for control break reporting, however, tends to hide the basic
+&lt;p&gt;When the hierarchical key values change from one record to the next,
+this is called a &amp;quot;break&amp;quot; in the controlling keys for a subsection.
+At this break in control, emit a sub-total appropriate to the level of the keys showing the change.&lt;/p&gt;
+&lt;p&gt;The classical algorithm for &amp;quot;control break&amp;quot; reporting, however, tends to hide the basic
 hierarchy under a welter of details about keys and totals and subtotals.  It
 can't produce &amp;quot;heading&amp;quot; totals or counts, only footing totals or counts.  As
 soon as you want additional features, you may as well ditch the classical
 algorithm.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Problem is the Sort&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="the-problem-is-the-sort"&gt;
+&lt;h2&gt;The Problem is the Sort&lt;/h2&gt;
 &lt;p&gt;The most important thing I
-dislike about the classical control break algorithm is the sort that's required.
-Sorting is an expensive operation.  Rarely does a control break report show all
+dislike about the classical &amp;quot;control break&amp;quot; algorithm is the sort that's required.
+Sorting is an expensive operation.  Rarely does a &amp;quot;control break&amp;quot; report show all
 of the detail with all of the nested totals, so why should I sort all that data
 only to produce higher-level
 subtotals?&lt;/p&gt;
@@ -2072,7 +2080,9 @@ few levels of summary data.  Her shift supervisors want the details for their
 specific times and production areas.    No one wants ALL of the data.  If no one
 wants all of the data, why sort all of
 it?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Data is Dimensional&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-data-is-dimensional"&gt;
+&lt;h2&gt;The Data is Dimensional&lt;/h2&gt;
 &lt;p&gt;Most of the interesting
 reporting problems have a combination of two features: dimensions and
 hierarchies.  The basic numeric measurements (dollars, hours, pounds, pallets,
@@ -2098,14 +2108,14 @@ complex relationships within a dimension.  For example, the calendar has weeks
 and months, but months don't fall on nice weekly boundaries.  Similarly, our USA
 office may have many regions in a single country, but our European office may
 combine several countries in a region.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Solution is a Mapping&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The right way to handle
-Control Break reporting in Python is through a design pattern that is a
+&lt;/div&gt;
+&lt;div class="section" id="the-solution-is-a-mapping"&gt;
+&lt;h2&gt;The Solution is a Mapping&lt;/h2&gt;
+&lt;p&gt;The right way to handle &amp;quot;Control Break&amp;quot; reporting in Python is through a design pattern that is a
 variation on the Index or the Inverted Database.  I prefer to call it the
 Dimensional Map, because that's a better clue as to how it
 works.&lt;/p&gt;
-&lt;p&gt;Let's look at the data we have
-in the ASPN example:&lt;/p&gt;
+&lt;p&gt;Let's look at the data we have in the ASPN example:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 records = [(&amp;quot;branch1&amp;quot;,  &amp;quot;sales1&amp;quot;, 100),
            (&amp;quot;branch1&amp;quot;,  &amp;quot;sales1&amp;quot;, 50),
@@ -2122,8 +2132,7 @@ dollars.  We can then traverse these nested maps to write the report we want to
 see, correctly labeled with headers and footers.  We can, without too much extra
 work. have totals in the header as well as the footer.  I'll leave that as an
 exercise.&lt;/p&gt;
-&lt;p&gt;It works like
-this:&lt;/p&gt;
+&lt;p&gt;It works like this:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 branchMap= {}
 for branch, person, dollars in records:
@@ -2152,9 +2161,10 @@ hard-wired for this simple two-dimensional analysis.  It doesn't take too much
 cut-and-paste to expand this to the desired number of levels.  It isn't,
 however, the most general solution.  For that, we need a better class
 design.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Expanding On The Pattern&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The real problem with
-Control Break reporting is the recursion.  Any level of the report (except the
+&lt;/div&gt;
+&lt;div class="section" id="expanding-on-the-pattern"&gt;
+&lt;h2&gt;Expanding On The Pattern&lt;/h2&gt;
+&lt;p&gt;The real problem with Control Break reporting is the recursion.  Any level of the report (except the
 numeric facts) is a recursive structure: it contains a Map of the next lower
 level of detail.  We can define a class, Dimension, which does two things for
 us.&lt;/p&gt;
@@ -2174,18 +2184,15 @@ deeply-nested item is the basic Fact.  This leads to programs that fit the
 recursive model of a number of dimensions, terminated by a single
 fact.&lt;/p&gt;
 &lt;p&gt;To keep the classes polymorphic,
-both Dimension and Fact must implement an
-append() method
-that loads data and a
-report() method
+both Dimension and Fact must implement an &lt;tt class="docutils literal"&gt;append()&lt;/tt&gt; method
+that loads data and a &lt;tt class="docutils literal"&gt;report()&lt;/tt&gt; method
 that produces the final report on the data.&lt;/p&gt;
 &lt;p&gt;Further, to keep this example simple,
 we'll make each object a combination of data and meta-data.  The data is the
 mapping of key to details or the list of facts.  The metadata is the column name
 and the relationship with the lower-level dimensions.  The metadata is a
 universal truth about the data.&lt;/p&gt;
-&lt;p&gt;We
-have multiple instances of each object: there are multiple branches and multiple
+&lt;p&gt;We have multiple instances of each object: there are multiple branches and multiple
 people.  We'll need to create additional collections to hold the data.  We'll do
 this by cloning the object definition.  There's a better way to do this by
 separating the metadata from the actual detailed numeric data, but that is a
@@ -2249,13 +2256,14 @@ for row in records:
     analysis.append( row )
 &lt;/pre&gt;
 &lt;p&gt;Reporting, similarly, relies on the
-recursive structure of Dimension objects nested within Dimension
-objects.&lt;/p&gt;
+recursive structure of Dimension objects nested within Dimension objects.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 analysis.report()
 print analysis.total
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;More Generalization&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="more-generalization"&gt;
+&lt;h2&gt;More Generalization&lt;/h2&gt;
 &lt;p&gt;Since some people
 are uncomfortable with the recursion, and would prefer this to use a flat list
 of Dimension and Fact objects.  This flat list can be used with explicit
@@ -2273,6 +2281,7 @@ detail.&lt;/p&gt;
 meta-data from the real application data would shift the complexity around.  It
 would make some of this simpler, but it would introduce more classes into the
 solution.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Multi-Lingual Solutions: Explore in Python, Implement in Java</title><link href="https://slott56.github.io/2005_11_02-multi_lingual_solutions_explore_in_python_implement_in_java.html" rel="alternate"></link><published>2005-11-02T00:51:00-05:00</published><updated>2005-11-02T00:51:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-11-02:/2005_11_02-multi_lingual_solutions_explore_in_python_implement_in_java.html</id><summary type="html">&lt;p&gt;I like Python for exploring unknown data [&lt;a class="reference external" href="https://slott56.github.io/2005_10_22-one_more_cool_thing_about_python_is.html"&gt;One More Cool Thing About Python&lt;/a&gt; ].&lt;/p&gt;
 &lt;p&gt;Anthony B. Coates [&lt;a class="reference external" href="http://kontrawize.blogs.com/kontrawize/"&gt;Homepage&lt;/a&gt; ] notes &amp;quot;I
 tried Python for a while for similar reasons. However, in my case I was a bit
@@ -2324,7 +2333,8 @@ What forms of badness are represented where data does not meet the
 ideal?&lt;/p&gt;
 &lt;p&gt;So, how do we analyze?  We can't
 throw it into Excel.  We can barely open the file in Textpad.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Python to the rescue.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="python-to-the-rescue"&gt;
+&lt;h2&gt;Python to the rescue&lt;/h2&gt;
 &lt;p&gt;While the final application
 must be delivered in Java, Java's a terrible way to analyze unknown data.  We
 would have a cycle of write, debug, build, test, run and scratch head over a
@@ -2361,62 +2371,7 @@ hierarchy that isn't really correct because it's too expensive to
 change.&lt;/p&gt;
 &lt;p&gt;And when we're done, we can
 simply translate to Java.  I like this Python thing, it works.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Competition</title><link href="https://slott56.github.io/2005_10_07-competition.html" rel="alternate"></link><published>2005-10-07T11:02:00-04:00</published><updated>2005-10-07T11:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-07:/2005_10_07-competition.html</id><summary type="html">&lt;p&gt;Here's the wikipedia list of competing
-titles.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.techbooksforfree.com/perlpython.shtml"&gt;Free downloads of Python books&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.byteofpython.info/"&gt;A Byte of Python&lt;/a&gt;   is a beginner's book on
-Python.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.greenteapress.com/thinkpython/"&gt;How to
-Think Like a Computer Scientist: Learning with Python&lt;/a&gt;   is an
-introduction to function-based programming constructs using Python - free
-download available or hardcopy may be purchased. (ISBN …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here's the wikipedia list of competing
-titles.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.techbooksforfree.com/perlpython.shtml"&gt;Free downloads of Python books&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.byteofpython.info/"&gt;A Byte of Python&lt;/a&gt;   is a beginner's book on
-Python.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.greenteapress.com/thinkpython/"&gt;How to
-Think Like a Computer Scientist: Learning with Python&lt;/a&gt;   is an
-introduction to function-based programming constructs using Python - free
-download available or hardcopy may be purchased. (ISBN
-0971677506)&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.gnosis.cx/TPiP/"&gt;Text Processing in
-Python&lt;/a&gt;   by David Mertz is an intermediate Python book, available both
-online for free and for money from Addison-Wesley. (ISBN
-0321112547)&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/Dive_into_Python"&gt;Dive
-into Python&lt;/a&gt;   demonstrates clever and useful Python paradigms for
-readers who know how to program already. It is available online, or hardcopy may
-be purchased.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.fbeedle.com/99-6.html"&gt;Python
-Programming: An Introduction to Computer Science&lt;/a&gt;   by John Zelle is an
-introduction to programming using Python, and is suitable for beginning
-programmers.&lt;/p&gt;
-&lt;p&gt;The Python.org web
-site also has a list of books:&lt;/p&gt;
-&lt;p&gt;Learning
-Python Mark Lutz, David Ascher&lt;/p&gt;
-&lt;p&gt;The Quick
-Python Book Daryl Harms, Kenneth
-McDonald&lt;/p&gt;
-&lt;p&gt;Learn to Program Using Python Alan
-Gauld&lt;/p&gt;
-&lt;p&gt;Programming Python (Second Edition)
-Mark Lutz&lt;/p&gt;
-&lt;p&gt;Programming With Python Tim Altom
-with Mitch Chapman,&lt;/p&gt;
-&lt;p&gt;Python Developer's
-Handbook Andre Lessa&lt;/p&gt;
-&lt;p&gt;Python How to Program
-Harvey M Deitel, Paul J Deitel, Jonathan Liperi, Ben
-Wiedermann&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Python Programming for the absolute beginner Michael Dawson&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Practical Python Magnus Lie
-Hetland&lt;/p&gt;
-&lt;p&gt;Computer Programming is Fun! David
-Handy&lt;/p&gt;
-&lt;p&gt;The absolute beginner entry is
-kind of disappointing.  Well, I finish what I have and see what I can
-sell.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>How does Python stack up?</title><link href="https://slott56.github.io/2005_10_07-how_does_python_stack_up.html" rel="alternate"></link><published>2005-10-07T03:34:00-04:00</published><updated>2005-10-07T03:34:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-07:/2005_10_07-how_does_python_stack_up.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://pjhyett.com/articles/2005/10/06/why-hasnt-anything-changed-since-the-50s"&gt;PJHyett&lt;/a&gt; asks&lt;/p&gt;
 &lt;p&gt;Why is it that selling points of
 newer langauges are features that Lisp had decades ago? Java has garbage
@@ -2467,24 +2422,4 @@ business.&lt;/p&gt;
 programming, but a more serious attempt to maximize the value from that
 programming, we'd have fewer languages, fewer bugs, less maintenance and
 support.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Building Skills in Python</title><link href="https://slott56.github.io/2005_03_21-building_skills_in_python.html" rel="alternate"></link><published>2005-03-21T22:06:00-05:00</published><updated>2005-03-21T22:06:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-03-21:/2005_03_21-building_skills_in_python.html</id><summary type="html">&lt;p&gt;I originally wrote this in Appleworks.
-Easy, easy, easy.  However, it was also free from semantic
-markup.&lt;/p&gt;
-&lt;p&gt;It took 3 months to
-convert from Appleworks to DocBook, edit, and clean up the presentation.  I also
-fixed the outline and revamped the material to upgrade it to Python 2.3.&lt;/p&gt;
-&lt;p&gt;Whew …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I originally wrote this in Appleworks.
-Easy, easy, easy.  However, it was also free from semantic
-markup.&lt;/p&gt;
-&lt;p&gt;It took 3 months to
-convert from Appleworks to DocBook, edit, and clean up the presentation.  I also
-fixed the outline and revamped the material to upgrade it to Python 2.3.&lt;/p&gt;
-&lt;p&gt;Whew.&lt;/p&gt;
-&lt;p&gt;Cover art doesn't look great,
-but it works for now.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>Building Skills in Object-Oriented Design</title><link href="https://slott56.github.io/2005_01_26-building_skills_in_object_oriented_design.html" rel="alternate"></link><published>2005-01-26T02:17:00-05:00</published><updated>2005-01-26T02:17:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-01-26:/2005_01_26-building_skills_in_object_oriented_design.html</id><content type="html">&lt;p&gt;I've just published my &lt;a class="reference external" href="http://www.itmaybeahack.com/homepage/books/oodesign.html"&gt;Building Skills In Object-Oriented Design&lt;/a&gt;.
-Available under a Creative Commons License.&lt;/p&gt;
-&lt;p&gt;Still some issues with
-FO formatting.  I haven't spent time on title-page templates, or on getting
-rules into tables properly.&lt;/p&gt;
 </content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry></feed>

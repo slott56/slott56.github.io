@@ -37,13 +37,12 @@ alternative formulations:
 
 
 
-In essence the
-question has a hidden assertion: Stored procedures are handy, but we need to
-justify them.
+In essence the question has a hidden assertion: Stored procedures are handy, but we need to justify them.
 
 
 
-**Bad Business.** 
+Bad Business
+------------
 
 
 
@@ -51,8 +50,7 @@ Stored procedures, like
 AJAX, are an accident waiting to happen.  The ideal is that AJAX is pure
 presentation and stored procedures are pure persistence.  As a practical matter,
 bleed-through is inevitable.  As soon as the line is crossed, that piece of code
-becomes a costly stumbling block that prevents change and
-adaptation.
+becomes a costly stumbling block that prevents change and adaptation.
 
 
 
@@ -62,15 +60,13 @@ application, the biding between JSP and JavaBean makes some kinds of changes
 more difficult than others.  If the JSP expands to include any business logic at
 all, the changes to the business rules either spread between application and
 presentation (doubling the cost), or we stop making changes to the presentation
-because it's too complex to
-change.
+because it's too complex to change.
 
 
 
 When we bury business rules in
 stored procedures, we also slow down the pace of change.  We are stopped from
-making logical database changes because of the impact on our stored
-procedures.
+making logical database changes because of the impact on our stored procedures.
 
 
 
@@ -82,7 +78,8 @@ Stored procedures are short-term fun with long-term costs.
 
 
 
-**Worst-Case Scenario.** 
+Worst-Case Scenario
+-------------------
 
 
 
@@ -91,8 +88,7 @@ worst-case scenario.  Some non-thinker declares that the each person will have
 home phone, work phone, mobile phone, fax and email, and that's the end of it. 
 One will be marked "preferred".  This is clearly unsuitable for a lot of CRM
 purposes because it ignores people who share email addresses, and the use of
-instant messenger as a preferred
-channel.
+instant messenger as a preferred channel.
 
 
 
@@ -102,14 +98,12 @@ to create a person with five (5) points of contact, assuring that the email
 address is the unique "natural key".  The GUI designer lays out five fields and
 assembles a bunch of widgets to validate the various data types and assure each
 is unique.  The application developer validates each field before passing it to
-a stored procedure, and assures that all five form a unique
-combination.
+a stored procedure, and assures that all five form a unique combination.
 
 
 
-Clearly, everyone's wrong
-about some nuance, but it's suddenly very difficult to make changes.  Each has
-encapsulated a business assumption into code where it doesn't belong. 
+Clearly, everyone's wrong about some nuance, but it's suddenly very difficult to make changes.
+Each has encapsulated a business assumption into code where it doesn't belong.
 
 
 
@@ -118,8 +112,7 @@ Unit tests will likely work, since the
 most common scenario for use lies at the intersection of the nuanced rules. 
 However, as soon as we make a change, we uncover problems.  Worst, of course,
 the problems are not in our code, but in someone else's code, and we can't quite
-pinpoint the problem.  Things just don't work
-right.
+pinpoint the problem.  Things just don't work right.
 
 
 
@@ -132,7 +125,8 @@ feature?
 
 
 
-**A Better Case.** 
+A Better Case
+-------------
 
 
 
@@ -146,8 +140,7 @@ immutable features of that layer.
 
 
 
-The
-persistence layer is focused on just making business entities persistent.  Other
+The persistence layer is focused on just making business entities persistent.  Other
 features of the entity, like natural keys, are outside the database's realm. 
 Similarly, relationships have a low-level representation (as a link or foreign
 key), but any other constraint (cardinality, optionality, etc.) isn't part of
@@ -162,15 +155,13 @@ there are limits to what can be done meaningfully, and what is subject to change
 without notice.  Data types (i.e., email address, telephone number) don't
 change.  Other rules regarding uniqueness, identity, cardinality and even
 optionality, aren't enduring features of the presentation.  They're business
-relationships that can (and will)
-change.
+relationships that can (and will) change.
 
 
 
 AJAX and Stored Procedures both
 have the potential to thwart change, making them costly.  The cost of adaptation
-to new business requirements must be factored in to the design of every
-layer.
+to new business requirements must be factored in to the design of every layer.
 
 
 

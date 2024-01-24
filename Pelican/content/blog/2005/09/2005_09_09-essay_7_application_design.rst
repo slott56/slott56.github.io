@@ -33,21 +33,21 @@ stand-alone application.  This may be a fat-client application that runs on a
 desktop, or a web application accessed through the browser.  An application
 typicall has five layers or tiers:
 
--   **View** .  The presentation of data to the users,
+-   **View**.  The presentation of data to the users,
     or other interfaces.
 
--   **Control** .  The sequence of activities or state
+-   **Control**.  The sequence of activities or state
     changes to manage interaction.
 
--   **Model** .  The underlying data model that the
+-   **Model**.  The underlying data model that the
     application manipulates.  This is optimized for interaction, and may differ from
     the persistent data structure.
 
--   **Access** .  The mechanism for acquiring
+-   **Access**.  The mechanism for acquiring
     persistent data.  This may be CORBA, JDBC or other access
     mechanism.
 
--   **Persistence** .  The mechanism of persistence. 
+-   **Persistence**.  The mechanism of persistence.
     This may be the file system or the
     RDBMS.
 

@@ -119,68 +119,50 @@ S.Lott -- Software Architect            </a>
 as Smalltalk's Beck Test framework <a class="reference external" href="http://www.xprogramming.com/testfram.htm">http://www.xprogramming.com/testfram.htm</a>.  It evolved to the JUnit <a class="reference external" href="http://www.junit.org/index.htm">http://www.junit.org/index.htm</a>&gt;`_ `  &lt;<a class="reference external" href="http://www.junit.org/index.htm%22%20target=%22NewWindow">http://www.junit.org/index.htm%22%20target=%22NewWindow</a>
 framework for Java.  Beck defined four repeated patterns of unit testing
 software, covered in a previous posting &lt;{filename}/blog/2005/11/2005_11_05-compare_and_contrast_round_1.rst&gt;.</p>
-<p>Nose, TestOOB, test.py
-(and TestGears) are significant revisions to the
-<strong>Test Suite</strong>  and
-<strong>Test Runner</strong>  parts of the unit test patterns.
-Additionally, these tools make efforts to implement the
-<strong>Diagnostics</strong>
-pattern, also.</p>
-<p>The
-<strong>Fixture</strong>
+<p><tt class="docutils literal">Nose</tt>, <tt class="docutils literal">TestOOB</tt>, <tt class="docutils literal">test.py</tt>
+(and <tt class="docutils literal">TestGears</tt>) are significant revisions to the
+<strong>Test Suite</strong>  and <strong>Test Runner</strong>  parts of the unit test patterns.
+Additionally, these tools make efforts to implement the <strong>Diagnostics</strong> pattern, also.</p>
+<p>The <strong>Fixture</strong>
 is implied by the context in which the tests are discovered.  Nose can locate
 package, module and function tests; it uses TestCase class definitions, also.
 TestOOB and test.py sit more squarely on unittest, with the resulting focus on
 module-level testing.</p>
-<p>In TestOOB and
-test.py, the
-<strong>TestCase</strong>
+<p>In <tt class="docutils literal">TestOOB</tt> and <tt class="docutils literal">test.py</tt>, the <strong>TestCase</strong>
 class plus a flexible regular expressions or glob expression defines the test
 cases.  test.py looks for packages of tests, using the path name of the package,
-as well as the module name.  In Nose, the
-<strong>TestCase</strong>
+as well as the module name.  In <tt class="docutils literal">Nose</tt>, the <strong>TestCase</strong>
 class can be used for compatibility, but this is not required; Nose will match a
 regular expression to locate tests.</p>
-<p>The
-<strong>Results Check</strong>  in nose can be done via the existing
-assert statement.  Nose, pleasantly handles the &quot;test which throws an exception&quot;
-case: a test function that exits normally is a &quot;pass&quot;.  An
-AssertionError
-exception is a test failure; any other exception is an error.  Since TestOOB and
-test.py sit on
-unittest, they
-depend on the complex set of assert methods, and the fail
-method.</p>
-<p>The
-<strong>Test Suite</strong>  is implied by the collection of TestCase
-instances with the expected name forms in TestOOB.  In Nose and test.py, it is
+<p>The <strong>Results Check</strong>  in <tt class="docutils literal">nose</tt> can be done via the existing
+<tt class="docutils literal">assert</tt> statement.  <tt class="docutils literal">Nose</tt>, pleasantly handles the &quot;test which throws an exception&quot;
+case: a test function that exits normally is a &quot;pass&quot;.  An <tt class="docutils literal">AssertionError</tt>
+exception is a test failure; any other exception is an error.  Since <tt class="docutils literal">TestOOB</tt> and
+<tt class="docutils literal">test.py</tt> sit on <tt class="docutils literal">unittest</tt>, they
+depend on the complex set of assert methods, and the <tt class="docutils literal">fail()</tt> method.</p>
+<p>The <strong>Test Suite</strong>  is implied by the collection of <tt class="docutils literal">TestCase</tt>
+instances with the expected name forms in <tt class="docutils literal">TestOOB</tt>.  In <tt class="docutils literal">Nose</tt> and <tt class="docutils literal">test.py</tt>, it is
 the collection of modules, functions and methods with names that have the
 expected forms.  Both cases make powerful use of Python introspection to track
 down the tests.</p>
-<p>The
-<strong>Test Runner</strong>  in nose can be a stand-alone
-nosetests
-program, or you can import nose;
-nose.main().  In the case of TestOOB, we have a
-testoob
-program, or we can import testoob;
-testoob.main().    Nose has an interesting
-integration with Python distutils/setuptools.  It adds a new &quot;test&quot; verb to
-setup.py.  The test.py main program has a large number of options to fine-tune
+<p>The <strong>Test Runner</strong>  in nose can be a stand-alone <tt class="docutils literal">nosetests</tt>
+program, or you can <tt class="docutils literal">import nose; nose.main()</tt>.
+In the case of <tt class="docutils literal">TestOOB</tt>, we have a <tt class="docutils literal">testoob</tt>
+program, or we can <cite>import testoob; testoob.main()`</cite>.
+<tt class="docutils literal">Nose</tt> has an interesting
+integration with Python <tt class="docutils literal">distutils/setuptools</tt>.  It adds a new &quot;test&quot; verb to
+<tt class="docutils literal">setup.py</tt>.  The <tt class="docutils literal">test.py</tt> main program has a large number of options to fine-tune
 which tests are run</p>
-<p>Nose supports the
-<strong>Diagnostics</strong>
+<p><tt class="docutils literal">Nose</tt> supports the <strong>Diagnostics</strong>
 with output capture and a simple flag for producing additional details.
-TestOOB, in certain environments, will produce color output; it produces an XML
-test report as well as HTML test reports.  TestOOB can launch the Python
-debugger as well as log failing assertions in detail.  test.py can run
-pychecker, do tracing and refcount checking as part of the
-diagnostics.</p>
-<p>TestOOB has some
-additional features for repeating and controlling the timing of the tests.
+<tt class="docutils literal">TestOOB</tt>, in certain environments, will produce color output; it produces an XML
+test report as well as HTML test reports.  <tt class="docutils literal">TestOOB</tt> can launch the Python
+debugger as well as log failing assertions in detail.  <tt class="docutils literal">test.py</tt> can run
+<tt class="docutils literal">pychecker</tt>, do tracing and refcount checking as part of the diagnostics.</p>
+<p><tt class="docutils literal">TestOOB</tt> has some additional features for repeating and controlling the timing of the tests.
 While this is not sufficient to prove that an application lacks the kind of race
 condition that makes it behave poorly; it can help to provide some confidence
-for load testing.  Similarly, test.py includes features for looping tests to
+for load testing.  Similarly, <tt class="docutils literal">test.py</tt> includes features for looping tests to
 look for memory leaks and race conditions.</p>
 
             </div>
@@ -1015,11 +997,11 @@ look for memory leaks and race conditions.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1027,7 +1009,7 @@ look for memory leaks and race conditions.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1091,7 +1073,7 @@ look for memory leaks and race conditions.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1103,15 +1085,11 @@ look for memory leaks and race conditions.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

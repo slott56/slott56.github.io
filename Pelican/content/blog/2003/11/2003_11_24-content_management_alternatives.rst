@@ -9,9 +9,7 @@ Content Management Alternatives
 
 
 
-
-
-::
+A Comment:
 
     >I'm not sure what the issue is,
     >and why "simple content manager" needs definition.
@@ -26,8 +24,8 @@ Content Management Alternatives
     I finally have some rules of thumb to select
     between them.
 
+And
 
-::
 
     >Since word searches are fast and almost free,
     >it seems odd for you to exclude it

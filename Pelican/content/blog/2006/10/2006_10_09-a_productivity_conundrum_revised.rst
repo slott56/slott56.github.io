@@ -39,7 +39,8 @@ problem.
 
 
 
-**Failure of Foresight.** 
+Failure of Foresight
+--------------------
 
 
 
@@ -67,7 +68,8 @@ complexity.
 
 
 
-**What Changed?** 
+What Changed?
+-------------
 
 
 
@@ -75,8 +77,7 @@ Why do they now ask for help in
 simplifying?  it's hard to say and I'm reluctant to ask.  Generally, I get hints
 like "it finally got too complex" or "it finally won't scale" or "someone left"
 or "someone new came on board."  But I think these aren't the whole story, I
-think they're excuses; or perhaps
-apologies.
+think they're excuses; or perhaps apologies.
 
 
 
@@ -92,8 +93,7 @@ expertise.
 
 My suggestions are pretty
 consistent:  "Pick a high-value business process and rework just that."  It will
-ripple through the database, but it won't touch everything that's
-wrong.
+ripple through the database, but it won't touch everything that's wrong.
 
 
 
@@ -113,12 +113,12 @@ can help them do it.
 
 Interestingly, I
 get complaints when I talk about the incremental approach.  "If we do things in
-pieces, we end up with more of the same."  I can only
-agree.
+pieces, we end up with more of the same."  I can only agree.
 
 
 
-**Recognizing Short-Term Thinking.** 
+Recognizing Short-Term Thinking
+-------------------------------
 
 
 
@@ -128,8 +128,7 @@ world -- doesn't work.  They want me to sprinkle Faerie Dust™ on their
 approach.  I can't see how to do everything any quicker than they are already
 doing.  While I -- personally -- can design pretty quickly, it doesn't do an
 organization any good, because an organization works at the median speed,
-leaving slower people confused and faster people
-frustrated.
+leaving slower people confused and faster people frustrated.
 
 
 
@@ -143,15 +142,13 @@ of "extra" work.
 Incremental thinking
 seems to get conflated with short-term thinking, and both are treated with
 contempt.  Short-term thinking created the mess.  Incremental thinking cannot --
-in any obvious way -- improve on the
-situation.
+in any obvious way -- improve on the situation.
 
 
 
 Any effort to manage a huge
 effort appears like "extra" work.  We all know that when we are up to our ass in
-alligators, we can't waste time draining the
-swamp.
+alligators, we can't waste time draining the swamp.
 
 
 
@@ -165,7 +162,8 @@ thinking.
 
 
 
-**My Burden.** 
+My Burden
+---------
 
 
 
@@ -188,8 +186,7 @@ constitutes 'working' for you?"
 
 
 
-I
-suspect that asking them to define qualities or parameters of a better approach
+I suspect that asking them to define qualities or parameters of a better approach
 might change the simple refusals into more useful, ongoing conversations.  We're
 trying to stop organic growth, we're trying to manage complexity and we're
 trying to grow long-term value in stages.  However, not everyone is ready to
@@ -199,7 +196,8 @@ to give up on the old ways before offering them something new.
 
 
 
-**Addendum.** 
+Addendum
+--------
 
 
 

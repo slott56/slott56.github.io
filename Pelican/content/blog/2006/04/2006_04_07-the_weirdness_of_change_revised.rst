@@ -56,7 +56,8 @@ again?
 
 
 
-**Is All Change Disruptive?** 
+Is All Change Disruptive?
+-------------------------
 
 
 
@@ -92,11 +93,12 @@ cancelled.
 
 
 
-**User-Initiated Change** 
+User-Initiated Change
+----------------------
 
 
 
-One comment http://www.haloscan.com/comments/slott/E20060405120217/#85108 points at my lack of clarity here.
+One comment points at my lack of clarity here.
 "Change implies questioning ones assumptions. Even if we can get users to do
 that, we still have to actually get them to do the hard work of making changes."
 This quote reveals that the topic (user-initiated change) wasn't clearly
@@ -104,11 +106,9 @@ articulated.
 
 
 
-Change can -- eventually
--- result in an IT project being cancelled.  Good things happened, but the
+Change can -- eventually -- result in an IT project being cancelled.  Good things happened, but the
 project only catalyzed the change, and wasn't really part of it.  Since this is
-user-initiated change, the comment doesn't apply.  The user's
-**did** 
+user-initiated change, the comment doesn't apply.  The user's **did**
 change their assumptions, and took on the hard work of making a change. 
 
 
@@ -123,8 +123,7 @@ hobby.
 
 Avoiding change can either lead
 to the cancellation of a project, or -- worse -- grumpiness with the result. 
-The comment ("even if we can get users to do that") appears to stem from IT is
-**forcing** 
+The comment ("even if we can get users to do that") appears to stem from IT is **forcing**
 change on users, a situation that makes no sense at all.  If we're in the
 situation where users won't question their assumptions, then we have to ask
 progressively more disruptive questions until they elect to
@@ -132,7 +131,8 @@ change.
 
 
 
-**Tangent: Refusing to Change** 
+Tangent: Refusing to Change
+---------------------------
 
 
 

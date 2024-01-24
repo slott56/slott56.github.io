@@ -38,9 +38,8 @@ detail.
 
 
 
-**Use Cases** .  The definition of a use case (An Actor
-interacting with a System to create business value) tells me that a use case is
-**business** 
+**Use Cases**.  The definition of a use case (An Actor
+interacting with a System to create business value) tells me that a use case is **business**
 focused, and anything more detailed is more of an operating scenario. This
 leaves us with two levels of operating scenarios: business-level and
 user-interaction-level. However, the context is now much more clear. Business
@@ -59,7 +58,7 @@ multiple use cases.
 
 
 
-**User Interaction** .  There appears to be a tangled
+**User Interaction**.  There appears to be a tangled
 hierarchy between use cases and GUI design. We know that use cases should come
 first, and GUI design should be based on use cases. However, it often appears
 that the use cases need to presuppose some GUI in order to step through the
@@ -69,8 +68,7 @@ Something has to come first.
 
 
 
-This
-situation often indicates that the use cases aren't business focused in the
+This situation often indicates that the use cases aren't business focused in the
 first place, but technology focused. People who can't write their use cases
 without sketching the GUI have conflated business value and software
 implementation. They need to step back and define the value creation first. Then

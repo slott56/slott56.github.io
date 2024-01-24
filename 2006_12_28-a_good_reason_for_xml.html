@@ -115,15 +115,13 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>I harp on
-<strong>Design Goal 6</strong>  in the <a class="reference external" href="http://www.w3.org/TR/2006/REC-xml-20060816/">XML 1.0
+                <p>I harp on <strong>Design Goal 6</strong>  in the <a class="reference external" href="http://www.w3.org/TR/2006/REC-xml-20060816/">XML 1.0
 Standard</a> , &quot;XML documents should be human-legible and reasonably
 clear&quot;.  In Kontrawize, the response is XML editors help meet this design goal.
 &quot;There are plenty of good XML-aware editors around, some of which are free.&quot;
 While true, I think this violates the spirit of the standard, while adhering
 only to the letter of the law.</p>
-<p>If we
-allow tools to mediate &quot;human-legible and reasonably clear&quot;, then too many
+<p>If we allow tools to mediate &quot;human-legible and reasonably clear&quot;, then too many
 things meet this standard.  We could provide a bunch of SQL DDL and DML and
 claim that it was a reasonably clear document.  Then, we can also claim that an
 MS-Word .DOC file is reasonably clear because we have a copy of
@@ -137,17 +135,15 @@ from one of these origins:</p>
 <ul class="simple">
 <li>Dependence on a script tool.</li>
 <li>Parsing ease.</li>
-<li>XML semantic richness (i.e., how well it
-describes the problem).</li>
+<li>XML semantic richness (i.e., how well it describes the problem).</li>
 </ul>
 <p>It is clear
 that dependence on a tool isn't the reason for second-class status: we're
 allowed to use tools to make XML legible; we're equally allowed to use tools to
-process the XML or script.  What's left are the
-<strong>Parsing ease</strong>  and
-<strong>Semantic richness</strong>  advantages of
+process the XML or script.  What's left are the <strong>Parsing ease</strong>  and <strong>Semantic richness</strong>  advantages of
 XML.</p>
-<p><strong>Parsing Ease.</strong></p>
+<div class="section" id="parsing-ease">
+<h2>Parsing Ease</h2>
 <p>This is an interesting point.
 Especially in light of this posting: &quot;<a class="reference external" href="http://blogs.tedneward.com/2005/08/22/When+Do+You+Use+XML+Again.aspx">When do you use XML, again?</a> &quot; where the use of
 XML was principally for the parsing ease.  This is -- in a way -- a little
@@ -163,14 +159,13 @@ language, you get the parser and substantial libraries also for free.  For
 non-script-based DSL, you don't get a handy
 parser.</p>
 <p>Here's the bonus for me: my
-definition is part of the application.  The definitions aren't
-<em>input</em>
+definition is part of the application.  The definitions aren't <em>input</em>
 to an application which reads, parses, and then performs some functionality
-based on the input.   The definitions
-<em>are</em>
-the application, essentially a specialization of the framework, directly
+based on the input.   The definitions <em>are</em> the application, essentially a specialization of the framework, directly
 executable.</p>
-<p><strong>Semantic Depth.</strong></p>
+</div>
+<div class="section" id="semantic-depth">
+<h2>Semantic Depth</h2>
 <p>Indeed, one of the strong
 points of script-based tools is the data structure that describes targets,
 dependencies and actions is often a simple bunch of object creation statements.
@@ -186,14 +181,18 @@ describes static web content where HTML files are built from <a class="reference
 templates.  It also describes a Data Warehouse load where logs and exception
 reports are built from source application extracts.</p>
 <p>In short, an SCons script-based
-control file has the same semantics as an XML non-script-based control
-file.</p>
-<p><strong>What I Learned.</strong></p>
+control file has the same semantics as an XML non-script-based control file.</p>
+</div>
+<div class="section" id="what-i-learned">
+<h2>What I Learned</h2>
 <p>The &quot;XML is First Class&quot;
 seems to mean that XML has an independent, widely-agreed-to existence, separate
 from a language community.  From this I learned that there are a number of
 dimensions of comparison:</p>
-<p><strong>Tool Complexity</strong></p>
+</div>
+<div class="section" id="tool-complexity">
+<h2>Tool Complexity</h2>
+<p>The tool complexity for each language can be described as follows:</p>
 <ul class="simple">
 <li>XML has moderately high tool complexity.
 The parsers are already built, but everything else has to be built and some kind
@@ -204,10 +203,12 @@ parsers have to be written, and everything else has to be built and some kind of
 relationship with the DSL worked out.</li>
 <li>Python (or Ruby) has low tool complexity.
 The parser is built, and everything else is just a library, extended by the
-&quot;control&quot;
-file.</li>
+&quot;control&quot; file.</li>
 </ul>
-<p><strong>Clarity</strong></p>
+</div>
+<div class="section" id="clarity">
+<h2>Clarity</h2>
+<p>The clarity of each language has the following description:</p>
 <ul class="simple">
 <li>XML has moderately low clarity.  Yes, we
 can use tools, but I think that's a fussy letter of the law interpretation.
@@ -221,7 +222,10 @@ object definitions match the problem domain precisely and a little bit of
 syntactic sugar can lead to a nicely readable control
 file.</li>
 </ul>
-<p><strong>Extensibility</strong></p>
+</div>
+<div class="section" id="extensibility">
+<h2>Extensibility</h2>
+<p>Each language's extensibility is distinct:</p>
 <ul class="simple">
 <li>XML is -- technically -- extensible.
 However, since we're tied to our application, we have two kinds of extensions.
@@ -234,15 +238,14 @@ Tool Complexity consideration slows us down here.  While we'd like to add
 extensions, the parsing complexity is often a barrier to novel
 applications.</li>
 <li>Python (or Ruby) has the data as
-first-class language constructs.  The control file is actually
-<em>in</em>
+first-class language constructs.  The control file is actually <em>in</em>
 the Python language.  It is -- in a very real sense -- an extension built into
-the
-framework.</li>
+the framework.</li>
 </ul>
-<p><strong>Recommendations.</strong></p>
-<p>For
-my money, the low complexity, good clarity and immediate extensibility of a
+</div>
+<div class="section" id="recommendations">
+<h2>Recommendations</h2>
+<p>For my money, the low complexity, good clarity and immediate extensibility of a
 scripting solution is an award-winning technology application.  The XML solution
 runs a distant second, and a purpose-built DSL has little to offer.  The reason
 a purpose-built DSL is dead last is because &quot;clarity&quot; isn't worth much.  As
@@ -254,16 +257,16 @@ on the ants</a> &quot; (referencing &quot;<a class="reference external" href="ht
 1.1: Build Java with Ruby</a> &quot; thread), and Kontrawize's &quot;<a class="reference external" href="http://kontrawize.blogs.com/kontrawize/2006/12/xml_is_first_cl.html">XML is first class, scripting languages are second
 class</a> &quot; the lessons are similar.</p>
 <ul class="simple">
-<li><strong>Don't choose XML uncritically</strong> .  It has to be an optimal
+<li><strong>Don't choose XML uncritically</strong>.  It has to be an optimal
 solution to the problems we actually have.  Otherwise, it's just technology, and
 technology can be a barrier between users and their problems.</li>
-<li><strong>Don't defend XML uncritically</strong> .  The eight low-value reasons in
+<li><strong>Don't defend XML uncritically</strong>.  The eight low-value reasons in
 &quot;<a class="reference external" href="https://slott56.github.io/2006_12_23-xml_one_ring_to_rule_them_all.html">XML
 - One Ring to Rule them All...</a> &quot; are little more than uncritical
 justification for a decision that seems to have been made somewhere else in the
 organization.  Kontrawize provides a good reason for using XML, but for this
 application domain, I still think I can see some gaps in his logic.</li>
-<li><strong>Don't overuse XML</strong> .  As a Data Warehouse hack, I've spent too
+<li><strong>Don't overuse XML</strong>.  As a Data Warehouse hack, I've spent too
 long debating the &quot;XML as our middleware&quot; issue.  XML isn't needed when there is
 a lot of data and the relationships among the application programs is reasonably
 intimate.  In in-house data warehousing, too much XML is just no-value overhead.
@@ -280,6 +283,7 @@ XML documents.  Sigh.  All that XML parsing and marshaling will paralyze
 processing.  We'll get nothing done -- the heaviest CPU user will be Xalan, and
 our disks will be tied up with terabytes of XML source files that create mere
 gigabytes of usable database.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1113,11 +1117,11 @@ gigabytes of usable database.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1125,7 +1129,7 @@ gigabytes of usable database.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1189,7 +1193,7 @@ gigabytes of usable database.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1201,15 +1205,11 @@ gigabytes of usable database.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

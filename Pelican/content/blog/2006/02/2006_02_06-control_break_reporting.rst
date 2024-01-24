@@ -8,6 +8,12 @@ Control Break Reporting
 :status: published
 
 
+..  note::
+
+    This referred to the old Active State Programmers Network, ASPN,
+    Python Cookbook.
+    The code has been moved to the ActiveState Code site.
+    Likely, the fact that it's Python 2 means it is no longer online.
 
 
 
@@ -18,16 +24,19 @@ found in a chart of accounts.
 
 
 
-The
-result of control break reporting is a properly nested set of reports, each of
+The result of "control break" reporting is a properly nested set of reports, each of
 which has localized subtotals.  The details add up to a deeply nested subtotal. 
 The subtotals add up to higher and higher level totals, and the top-level totals
 add to a grand total.
 
 
+When the hierarchical key values change from one record to the next,
+this is called a "break" in the controlling keys for a subsection.
+At this break in control, emit a sub-total appropriate to the level of the keys showing the change.
 
-The classical
-algorithm for control break reporting, however, tends to hide the basic
+
+
+The classical algorithm for "control break" reporting, however, tends to hide the basic
 hierarchy under a welter of details about keys and totals and subtotals.  It
 can't produce "heading" totals or counts, only footing totals or counts.  As
 soon as you want additional features, you may as well ditch the classical
@@ -35,13 +44,14 @@ algorithm.
 
 
 
-**The Problem is the Sort** 
+The Problem is the Sort
+-----------------------
 
 
 
 The most important thing I
-dislike about the classical control break algorithm is the sort that's required.
-Sorting is an expensive operation.  Rarely does a control break report show all
+dislike about the classical "control break" algorithm is the sort that's required.
+Sorting is an expensive operation.  Rarely does a "control break" report show all
 of the detail with all of the nested totals, so why should I sort all that data
 only to produce higher-level
 subtotals?
@@ -67,7 +77,8 @@ it?
 
 
 
-**The Data is Dimensional** 
+The Data is Dimensional
+-----------------------
 
 
 
@@ -109,20 +120,19 @@ combine several countries in a region.
 
 
 
-**The Solution is a Mapping** 
+The Solution is a Mapping
+-------------------------
 
 
 
-The right way to handle
-Control Break reporting in Python is through a design pattern that is a
+The right way to handle "Control Break" reporting in Python is through a design pattern that is a
 variation on the Index or the Inverted Database.  I prefer to call it the
 Dimensional Map, because that's a better clue as to how it
 works.
 
 
 
-Let's look at the data we have
-in the ASPN example:
+Let's look at the data we have in the ASPN example:
 
 
 
@@ -150,8 +160,7 @@ exercise.
 
 
 
-It works like
-this:
+It works like this:
 
 
 
@@ -191,12 +200,12 @@ design.
 
 
 
-**Expanding On The Pattern** 
+Expanding On The Pattern
+-------------------------
 
 
 
-The real problem with
-Control Break reporting is the recursion.  Any level of the report (except the
+The real problem with Control Break reporting is the recursion.  Any level of the report (except the
 numeric facts) is a recursive structure: it contains a Map of the next lower
 level of detail.  We can define a class, Dimension, which does two things for
 us. 
@@ -222,10 +231,8 @@ fact.
 
 
 To keep the classes polymorphic,
-both Dimension and Fact must implement an
-append() method
-that loads data and a
-report() method
+both Dimension and Fact must implement an ``append()`` method
+that loads data and a ``report()`` method
 that produces the final report on the data. 
 
 
@@ -239,8 +246,7 @@ universal truth about the data.
 
 
 
-We
-have multiple instances of each object: there are multiple branches and multiple
+We have multiple instances of each object: there are multiple branches and multiple
 people.  We'll need to create additional collections to hold the data.  We'll do
 this by cloning the object definition.  There's a better way to do this by
 separating the metadata from the actual detailed numeric data, but that is a
@@ -320,8 +326,7 @@ key.
 
 
 Reporting, similarly, relies on the
-recursive structure of Dimension objects nested within Dimension
-objects.
+recursive structure of Dimension objects nested within Dimension objects.
 
 
 
@@ -334,7 +339,8 @@ objects.
 
 
 
-**More Generalization** 
+More Generalization
+--------------------
 
 
 

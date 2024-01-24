@@ -12,14 +12,14 @@ Over-Solving the Problem or When your architect is a DBA...
 
 
 R. Lucente shared an email with me that included
-`Cary
-Millsap's <http://www.hotsos.com>`_   Volume Theorem.
+`Cary Millsap's <http://www.hotsos.com>`_   Volume Theorem.
 
 
 
 
-*Theorem* :
-**No human wants to see more than 10 rows. Ever.** 
+*Theorem*:
+
+    **No human wants to see more than 10 rows. Ever.**
 
 
 
@@ -31,8 +31,7 @@ inflexible.
 
 
 
-Why do we end up with this
-situation?
+Why do we end up with this situation?
 
 
 
@@ -52,7 +51,8 @@ good.
 
 
 
-**The RDBMS-as-Reliable-Message-Queue design pattern.** 
+The RDBMS-as-Reliable-Message-Queue design pattern
+---------------------------------------------------
 
 
 
@@ -65,45 +65,40 @@ it's free with our OS; we take it for granted.
 
 
 
-So what features do we get from the
-RDBMS As Message Queue?
+So what features do we get from the RDBMS As Message Queue?
 
 
 
-1. 
-**Reliability** .
-The RDBMS has logs and rollback space and carefully designed algorithms to
-assure that dirty cache storage is written to disk quickly.   Why not just write
-a file or two to different devices?  Isn't that multiple-device write what's
-going on under the hood in the
-RDBMS?
+1.  **Reliability**.
+    The RDBMS has logs and rollback space and carefully designed algorithms to
+    assure that dirty cache storage is written to disk quickly.   Why not just write
+    a file or two to different devices?  Isn't that multiple-device write what's
+    going on under the hood in the RDBMS?
 
 
 
-2. 
-**Scalability** .
-Multiple writers or multiple readers can share the RDBMS.  Multiple writers is
-easily handled by multiples files in a directory.  Multiple readers is easily
-handled by isolating the state information that describes "next transaction"
-from the multiple processes which execute individual
-transactions.
+2.  **Scalability**.
+    Multiple writers or multiple readers can share the RDBMS.  Multiple writers is
+    easily handled by multiples files in a directory.  Multiple readers is easily
+    handled by isolating the state information that describes "next transaction"
+    from the multiple processes which execute individual
+    transactions.
 
 
 
-3. 
-**Recoverability** .
-When the transaction is finished, we can update the record in the RDBMS to show
-that it's complete.  Why?  To promote a reliable restart in the event of a
-crash; that way we won't reprocess queued transactions.  Why not write a second
-file of completed transaction id's?  At startup, read and locate transactions
-that are in the queue but not in the completed transaction file.  It can't take
-more than a second or so to write an updated, unprocessed transaction queue, and
-then be up and processing
-again.
+3.  **Recoverability**.
+    When the transaction is finished, we can update the record in the RDBMS to show
+    that it's complete.  Why?  To promote a reliable restart in the event of a
+    crash; that way we won't reprocess queued transactions.  Why not write a second
+    file of completed transaction id's?  At startup, read and locate transactions
+    that are in the queue but not in the completed transaction file.  It can't take
+    more than a second or so to write an updated, unprocessed transaction queue, and
+    then be up and processing
+    again.
 
 
-
-**Why did the RDBMS win out over simple files?** 
+Why did the RDBMS win out over simple files?
+---------------------------------------------
 
 
 
@@ -112,14 +107,12 @@ theory is that architecture depends on the project manager.  It's all about the
 manager's level of comprehension of the technology choices, their level of trust
 in their information sources and their involvement in the project.   It has
 little to do with applying technology to solve a problem -- unless the PM
-actually makes an effort to be involved, comprehend the alternatives, and have a
-trusted source of technology
-directions.
+actually makes an effort to (1) be involved, (2) comprehend the alternatives, and (3) have a
+trusted source of technology directions.
 
 
 
-I've been undermined by all
-three.  
+I've been undermined by all three.
 
 
 
@@ -150,7 +143,8 @@ enough.
 
 
 
-**Don't Over Solve.** 
+Don't Over Solve
+----------------
 
 
 
@@ -166,8 +160,8 @@ simpler.
 
 But how do we know in advance
 which is better: RDBMS-As-Message-Queue or File-As-Message-Queue?  The decision
-is easy to make.  It depends on answering the following question:
-**are we are over-solving the problem?** 
+is easy to make.
+It depends on answering the following question: **are we are over-solving the problem?**
 
 
 

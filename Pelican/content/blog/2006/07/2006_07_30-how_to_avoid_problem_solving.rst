@@ -19,22 +19,19 @@ we're just too lazy (or negligent) to make an effort.
 
 
 
-Here's how it plays
-out.
+Here's how it plays out.
 
 
 
-**User:  "I need a workflow solution."** 
+**User**:  "I need a workflow solution."
 
 
 
-**IT Person:  "Great, I'll find one and install it.  We use [X] brand infrastructure components, I'll locate something compatible."  Fill in Sun, IBM, Oracle or Microsoft for [X].** 
+**IT Person**:  "Great, I'll find one and install it.  We use [X] brand infrastructure components, I'll locate something compatible."  Fill in Sun, IBM, Oracle or Microsoft for [X].
 
 
 
-Note the things
-that are missing from the previous -- and all-too-typical --
-conversation:
+Note the things that are missing from the previous -- and all-too-typical -- conversation:
 
 -   Who has a problem?
 
@@ -66,16 +63,15 @@ context.
 
 
 
-The consequence is the
-following:
+The consequence is the following:
 
 
 
-**User:  "I need a workflow solution."** 
+**User**:  "I need a workflow solution."
 
 
 
-**IT Person:  "We already installed one and you didn't use it.  So we installed a different one and you didn't use that either.  What does it take to make you happy?"** 
+**IT Person**:  "We already installed one and you didn't use it.  So we installed a different one and you didn't use that either.  What does it take to make you happy?"
 
 
 
@@ -114,8 +110,7 @@ and Y2 to work around that bug.
 
 
 
-"No one
-would ever do that," you say.  Which is far from true.  There are a million
+"No one would ever do that," you say.  Which is far from true.  There are a million
 reasons why people do this every day.  System X is a legacy, it's an investment
 that we must preserve, it's too expensive to fix, we don't know what the bug
 really is, it's a packaged product, it's someone else's problem, it's slated for
@@ -124,8 +119,7 @@ sickening.
 
 
 
-Second, we note that the
-results of Y1 and Y2 aren't quite right, so we institute manual procedures to
+Second, we note that the results of Y1 and Y2 aren't quite right, so we institute manual procedures to
 check Y1 and Y2.  These are complex and error-prone procedures.  Our defect rate
 is reduced in one area, but increased in others.  Note that adding process to
 correct another process, means we're losing ground
@@ -133,21 +127,18 @@ here.
 
 
 
-So we decide to add a workflow
-solution to make sure that the manual repairs for Y1 and Y2 is executed
-flawlessly.
+So we decide to add a workflow solution to make sure that the manual repairs for Y1 and Y2 is executed flawlessly.
 
 
 
-**Wait!  Hold the phone!** 
+Wait!  Hold the phone!
+----------------------
 
 
 
-We have a *bug* 
-in X.  We have *incorrect* 
-fixes in Y.  We have *incomplete* 
-manual procedures to fix the problems in Y that fix the problems in X.  We're
-now going to canonize this whole mess with a workflow product, W.  Adding
+We have a *bug* in X.  We have *incorrect* fixes in Y.
+We have *incomplete* manual procedures to fix the problems in Y that fix the problems in X.
+We're now going to canonize this whole mess with a workflow product, W.  Adding
 software only serves to compact this aggregate into expensive, complex
 coprolite.  
 
@@ -161,8 +152,7 @@ processing.
 
 
 
-What were we doing in the
-first place?
+What were we doing in the first place?
 
 
 
@@ -177,13 +167,11 @@ problems in X.)
 
 
 
-How can we reduce the
-cost of this mess?  Easy.  
+How can we reduce the cost of this mess?  Easy.
 
 
 
-The
-standard answer is to write more software.  Replace the whole thing with a new
+The standard answer is to write more software.  Replace the whole thing with a new
 application that enshrines the bug in X and the workarounds in Y.  The
 maintenance cost of a solution developed in house is negligible.  If not zero,
 it's always acceptable.  As a consultant, I'm often involved in empire-spreading
@@ -192,8 +180,7 @@ small number of FTE's.
 
 
 
-How does this
-avoid work?  It keeps us from the tedious process of understanding the actors
+How does this avoid work?  It keeps us from the tedious process of understanding the actors
 and the use cases.  We know that's just fluff.
 
 

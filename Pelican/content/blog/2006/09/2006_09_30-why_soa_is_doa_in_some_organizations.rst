@@ -9,8 +9,8 @@ Why SOA is DOA in some organizations
 
 
 
-See `The hubris of calendrical calculations <{filename}/2006/08/2006_08_07-the_hubris_of_calendrical_calculations.rst>`_.
-And `Calendrical Calculations, Part 2 <2006/08/2006_08_20-calendar_calculations_part_2.rst>`_.
+See `The hubris of calendrical calculations <{filename}/blog/2006/08/2006_08_07-the_hubris_of_calendrical_calculations.rst>`_.
+And `Calendrical Calculations, Part 2 <{filename}/blog/2006/08/2006_08_20-calendar_calculations_part_2.rst>`_.
 
 "Here are the exact words from the client when I
 suggested using the "official calendar": I’m aware of other systems having

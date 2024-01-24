@@ -11,9 +11,7 @@ Deprecating Dynamic Languages (or Scripting Systems)
 
 
 
-Holub discards the currently popular dynamic
-languages with a scathing
-comment:
+Holub discards the currently popular dynamic languages with a scathing comment:
 
 
 
@@ -24,8 +22,7 @@ into runtime is worth your time if you consider reliability to be important; I
 don’t care how fast its adherents allege you can throw together a program.
 You don’t measure productivity improvements solely by looking at a
 reduction in the lines-of-code-written-per-day numbers, even if these statistics
-are
-trustworthy."
+are trustworthy."
 
 
 
@@ -33,8 +30,7 @@ Scathing.
 
 
 
-Besides
-failing to mention Python, he misses two important points: 
+Besides failing to mention Python, he misses two important points:
 
 1.  Language #3 on the `TPCI <http://www.tiobe.com/tpci.htm>`_   is
     Visual Basic.  He quotes the description of `Scala <http://scala.epfl.ch/docu/>`_  (so
@@ -50,24 +46,20 @@ failing to mention Python, he misses two important points:
     add up to a pool of languages as popular as Java.  Perhaps Holub's missed
     something interesting about dynamic languages.  
 
-3.  What's the
-    real clincher here?  If dynamic languages are
-    "too Wild West to be
-    trustworthy" why are they so popular? 
+3.  What's the real clincher here?  If dynamic languages are
+    "too Wild West to be trustworthy" why are they so popular?
 
 
 
 
-**Misconceptions.** 
+Misconceptions
+--------------
 
 
 
-Dynamic
-languages aren't about the "lines-of-code-written-per-day numbers".  They're
+Dynamic languages aren't about the "lines-of-code-written-per-day numbers".  They're
 about the lines-of-code-written-to-do-something-useful numbers.  I find non-OO
-programming tedious because
-*everything* 
-is long-winded.  I find type-safe OO programming to be far better, but some
+programming tedious because *everything* is long-winded.  I find type-safe OO programming to be far better, but some
 things can get still get long-winded.  To be properly type-safe, portable,
 generic and explicit in Java means -- sometimes -- a lot of code which doesn't
 really do very much.  A lot of the Java framework elements lead to programs
@@ -88,18 +80,17 @@ wouldn't be found until run-time.
 
 
 
-**A Value Proposition.** 
+A Value Proposition
+-------------------
 
 
 
 What makes dynamic
 languages so popular?  Clearly, they fill a need.  I think that the need is
 `mutability <{filename}/blog/2005/09/2005_09_18-essay_14_mutability_analysis.rst>`_ .
-I don't think it's effective to
-package everything into static, compiled, type-safe Java applications.  Some
-things require more flexibility.  We can use shell scripts, or XML-configuration
-files of Ant class definitions, but we need last-minute, fine-tuning,
-flexibility.
+I don't think it's effective to package everything into static, compiled, type-safe Java applications.
+Some things require more flexibility.  We can use shell scripts, or XML-configuration
+files of Ant class definitions, but we need last-minute, fine-tuning, flexibility.
 
 
 
@@ -111,8 +102,7 @@ our application software with her handshake on the 18th green at her
 country-club.  Since the software will be broken by business policy changes, we
 can either plan for change -- and use a scripting language -- or fight against
 the change.  Claiming that it will take months to rewrite the application is --
-in effect -- fighting against the
-change.
+in effect -- fighting against the change.
 
 
 
@@ -121,15 +111,13 @@ software changes, the users hold the trump cards: Excel and Access.  If you
 can't build it in Java RIGHT NOW, they will build some non-sensical manual
 procedure with desktop tools.  When you're ready to build it in Java, they've
 implemented a Byzantine process and trained the rest of the department; now they
-demand that your application implement their bizarre
-behavior.
+demand that your application implement their bizarre behavior.
 
 
 
 I prefer to embrace dynamic
 languages, give them a place at the table, and control their use very closely. 
-That way, I don't have to fight change, but can be the agent of
-change.
+That way, I don't have to fight change, but can be the agent of change.
 
 
 

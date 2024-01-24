@@ -18,7 +18,7 @@ Northeast Education and Research (NEAR) net.  This was Delphi internet,
 character-mode, 9600 baud.  I used Mac classic and an external modem.  It was
 primitive, but effective.
 
-Back in 96
+Back in '96
 or thereabouts, Delphi closed down their dial-up service, and switched their
 customers to Mindspring.  I continued to use a Delphi.com email address until
 they stopped that service also.  When Delphi folded up shop entirely (in 98?), I
@@ -32,9 +32,7 @@ and a road-runner account.  Basically I could keep my Mindspring web site for
 under $60 per year, even though I didn't make much use of their dial-up service.
 
 
-Now that I'm paying for a
-**.mac** 
-site, it's hard to justify keeping the Mindspring site running.  So, I've
+Now that I'm paying for a ``.mac`` site, it's hard to justify keeping the Mindspring site running.  So, I've
 restructured my site slightly, moved it to .mac.  The final step is to replace
 the old site with a much of meta tags that redirect back to the .mac
 site.

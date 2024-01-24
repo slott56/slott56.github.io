@@ -11,7 +11,7 @@ Offshoring and Short-Term Thinking
 
 
 
-A comment on `Offshoring Shows How Valuable Code Is <{filename}/2006/03/2006_03_20-making_pdfs_with_and_without_xsl_fo_revised.rst>`_ floored me: "Another answer [to the 'what
+A comment on `Offshoring Shows How Valuable Code Is <{filename}/blog/2006/03/2006_03_20-making_pdfs_with_and_without_xsl_fo_revised.rst>`_ floored me: "Another answer [to the 'what
 do you value?' question] could be to show cost reduction for the quarter. Its
 the old short term thinking to make Wall Street
 happy."
@@ -30,9 +30,8 @@ disagrees.
 Let's assume the comment is
 challenging my conclusion (code captures corporate knowledge, and should be
 treated as something of value).   In which case, the comment means that it's
-possible that short term cost containment is
-**more** 
-valuable than the knowledge capture.  Okay.  That's what everyone who is using
+possible that short term cost containment is **more** valuable than the knowledge capture.
+Okay.  That's what everyone who is using
 cheap off-shore development resources is already saying. 
 
 

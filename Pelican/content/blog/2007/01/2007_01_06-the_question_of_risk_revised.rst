@@ -18,8 +18,7 @@ management."
 
 
 
-Why is risk
-uninteresting?
+Why is risk uninteresting?
 
 
 
@@ -45,7 +44,7 @@ I think any discussion of risk has to
 be separated into bad management and actual unplannable events.  The unplannable
 events are
 **real** 
-risks like heart disease, cancer, stroke or motor vehicle accidents.  Almost
+risks like heart disease, cancer, stroke, or motor vehicle accidents.  Almost
 everything else that can go wrong is little more than bad
 management.
 

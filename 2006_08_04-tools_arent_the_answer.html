@@ -115,83 +115,65 @@ S.Lott -- Software Architect            </a>
                 <p>See <a class="reference external" href="http://jroller.com/page/cpurdy">/dev/null</a> 's post &quot;<a class="reference external" href="http://jroller.com/page/cpurdy?entry=and_the_braindead_award_goes">And the Braindead Award goes to...</a> &quot; for an
 interesting tale of things that turn up in spite of 100% test
 coverage.</p>
-<p>Here's the
-recap:</p>
+<p>Here's the recap:</p>
 <ol class="arabic simple">
 <li>They have 100% test coverage.</li>
 <li>Yet, they uncovered an error in an abstract superclass.</li>
 </ol>
-<p>How is this possible?  How
-was it possible to turn up an untested method in spite of 100% test
+<p>How is this possible?  How was it possible to turn up an untested method in spite of 100% test
 coverage?</p>
 <p>There's a technicality in
 Java that makes some things hard to test.  In this case, a method
-(isEmpty()) was
-overridden in each subclass.  You can't really test abstract superclasses very
+(<tt class="docutils literal">isEmpty()</tt>) was overridden in each subclass.  You can't really test abstract superclasses very
 well, you can only test concrete subclasses.  The superclass method was never
 used by any concrete subclass, and was never
 tested.</p>
 <p>So, was the 100% coverage claim
 correct?  Here's one comment: &quot;Clearly you did NOT have 100% test coverage,
 otherwise that error would have been caught.&quot;</p>
-<p>However, I disagree.  I think they
-<strong>did</strong>  test
-every API that was implemented.</p>
-<p>That
-one overridden API could only be tested by creating a concrete subclass with the
+<p>However, I disagree.  I think they <strong>did</strong>  test every API that was implemented.</p>
+<p>That one overridden API could only be tested by creating a concrete subclass with the
 purpose of testing superclass methods.   This subclass would be a contrived
 beast this isn't deliverable, and only exists because someone concocted it to
 exercise the superclass methods.</p>
 <p>Someone would have to understand the
-design well enough to build the necessary
-<strong>Proxy</strong>
-classes.  This sounds suspiciously complex for any test coverage tool to tangle
-with.</p>
-<p><strong>How would they know?</strong></p>
+design well enough to build the necessary <strong>Proxy</strong> classes.
+This sounds suspiciously complex for any test coverage tool to tangle with.</p>
+<div class="section" id="how-would-they-know">
+<h2>How would they know?</h2>
 <p>How would they know that a
 method was always overridden?  What test coverage tool does that analysis?
 Indeed, who knew that analysis even needed to be done in the first
 place?</p>
-<p>&quot;I believe that we (as an
-industry) can get to Zero Defect Software, but do we actually have the tools to
-get there today?&quot;  is Purdy's rhetorical
-question.</p>
-<p>I think the tools can
-<em>never</em>
+<p>&quot;I believe that we (as an industry) can get to Zero Defect Software, but do we actually have the tools to
+get there today?&quot;  is Purdy's rhetorical question.</p>
+<p>I think the tools can <em>never</em>
 exist to provide the kind of 100% coverage he's looking for.  Why not?  Why
 can't we build a perfect unit test tool that absolutely proves our software
 works?</p>
-<p>The root problem is that we
-can't create an automated proof our software works.  By prove, I mean absolute,
-iron-bound, 100% proof of correctness.  Why not?  We can't create an automated
-proof of loop termination.</p>
-<p>Assume
-that HP/Mercury wrote a utility called
-&quot;terminates()&quot;
-which returned
-True if a given
-function would terminate.  Assume I wrote a function,
-whistle() which
-plays a MIDI file using samples of tea-kettle whistles.  Then I wrote this unit
-test:</p>
+<p>The root problem is that we can't create an automated proof our software works.
+By prove, I mean absolute, iron-bound, 100% proof of correctness.</p>
+<p>Why not?  We can't create an automated proof of loop termination.</p>
+<p>Assume that HP/Mercury wrote a utility called <tt class="docutils literal">terminates()</tt>
+which returned True if a given
+function would terminate.
+Assume I wrote a function, <tt class="docutils literal">whistle()</tt> which
+plays a MIDI file using samples of tea-kettle whistles.
+Then I wrote this unit test:</p>
 <pre class="literal-block">
 def test_whistler():
     while terminates( test_whistler ):
         whistle( &quot;stars_and_stripes.mid&quot; )
 </pre>
-<p>What does
-this do?  If the
-terminates()
-function thinks that
-test_whistler()
-will terminate, it has to loop forever.
-Contradiction.
-Therefore, this
-terminates()
-function can't exist.</p>
-<p><strong>If they can't know, what can they do?</strong></p>
-<p>Since
-absolute proof can't exist, what can we do?  It has to involve much more than
+<p>What does this do?
+If the <tt class="docutils literal">terminates()</tt> function thinks that <tt class="docutils literal">test_whistler()</tt>
+will terminate, it has to loop forever.</p>
+<p>Contradiction.</p>
+<p>Therefore, this <tt class="docutils literal">terminates()</tt> function can't exist.</p>
+</div>
+<div class="section" id="if-they-can-t-know-what-can-they-do">
+<h2>If they can't know, what can they do?</h2>
+<p>Since absolute proof can't exist, what can we do?  It has to involve much more than
 tools.  It's about people, process, tools, funding and
 organization.</p>
 <p>People have to care about
@@ -215,10 +197,11 @@ card.</p>
 <p>Tools are least important.  Good
 tools help, but it's the people and the processes that make a
 difference.</p>
-<p><strong>What they did right.</strong></p>
-<p>Purdy found the defect.
-Therefore, a process worked.  It's hard to say which process, but something
-worked.</p>
+</div>
+<div class="section" id="what-they-did-right">
+<h2>What they did right</h2>
+<p>Purdy found the defect. Therefore, a process worked.
+It's hard to say which process, but something worked.</p>
 <p>Purdy says &quot;... we carefully
 designed, implemented, tested (100% API coverage!), reviewed, and it still
 slipped through&quot; which isn't quite correct.  It didn't slip through.  An
@@ -230,6 +213,7 @@ additional review process is important, and should be added to their current
 practices.</p>
 <p>I say that what they're
 doing worked, and they should do more of it.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1063,11 +1047,11 @@ doing worked, and they should do more of it.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1075,7 +1059,7 @@ doing worked, and they should do more of it.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1139,7 +1123,7 @@ doing worked, and they should do more of it.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1151,15 +1135,11 @@ doing worked, and they should do more of it.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

@@ -141,15 +141,13 @@ at IT.  I'll paraphrase slightly.</p>
 <li>Schedule (&quot;when&quot;)</li>
 <li>Value (&quot;why&quot;)</li>
 </ul>
-<p>Data is first.  Why?  Because
-it's the only thing that matters.</p>
-<p>Do
-I have any evidence of this, outside the Zachman framework?  Here's some other
-anecdotal evidence: &quot;Data Processing&quot;, &quot;Data Structures and Algorithms&quot;.  Data's
-always first.</p>
-<p>Now, let's look at some
-real evidence.</p>
-<p><strong>Real Evidence.</strong></p>
+<p>Data is first.  Why?  Because it's the only thing that matters.</p>
+<p>Do I have any evidence of this, outside the Zachman framework?  Here's some other
+anecdotal evidence: &quot;Data Processing&quot;, &quot;Data Structures and Algorithms&quot;.
+Data's always first.</p>
+<p>Now, let's look at some real evidence.</p>
+<div class="section" id="real-evidence">
+<h2>Real Evidence</h2>
 <p>First, let's look at any
 SDLC methodology.  They have big sections on &quot;data conversion&quot;.  Why?</p>
 <p>Let's think.  We're writing software
@@ -157,15 +155,13 @@ to apply new (or different) processing to our data.  We often want to preserve
 our data, but not our legacy processing.  Indeed, preserving data so important,
 that it becomes a first-class goal in a methodology.  Preserving functionality
 (through analysis and reverse engineering) may or may not be important.  It is
-rarely a huge, visible part of any
-methodology.</p>
+rarely a huge, visible part of any methodology.</p>
 <p>Second, let's look at
 non-IT people.  They preserve files, documents, and content very carefully.  And
 they process this precious data with the most slip-shod manual steps.  People
 will have massive spreadsheets on the shared &quot;H:&quot; drive, which anyone can touch.
 Why allow other members of the department to touch it?  Because processing is
-just processing.  Data, however, is the reason the organization
-exists.</p>
+just processing.  Data, however, is the reason the organization exists.</p>
 <p>Third, let's look outside IT at
 our regulatory context.  The IRS doesn't ask how you deposited the money, or how
 you signed the receipts to spend the money.  The IRS wants to see the records of
@@ -173,10 +169,10 @@ the transactions, not the process for executing the transactions.  You can tell
 the auditor that you turned the clipboard around three times, clicked the pen
 twice, and signed with a single flourish.  They want to see the receipt: the
 thing, the data.</p>
-<p><strong>Data Model Variants.</strong></p>
-<p>A variant data model with
-a common code base has a number of serious
-issues.</p>
+</div>
+<div class="section" id="data-model-variants">
+<h2>Data Model Variants</h2>
+<p>A variant data model with a common code base has a number of serious issues.</p>
 <p>First -- and foremost -- it
 puts processing ahead of data.  Therefore, it's just the wrong thing to do.  The
 processing comes and goes, but the data endures forever.  So, a common data
@@ -194,7 +190,9 @@ change?</p>
 wants software version 3.2 and 4.1 to be the same code base.  This is clearly
 silly.  Therefore, there must have been another, deeper
 question.</p>
-<p><strong>Options and Extensions.</strong></p>
+</div>
+<div class="section" id="options-and-extensions">
+<h2>Options and Extensions</h2>
 <p>I couldn't make sense
 out of the question, so I asked what was really going on.  The response -- while
 murky -- appears to indicate that there are two more-or-less parallel
@@ -212,26 +210,25 @@ It appears as if the minor variation made the two structures appear to be
 irreconcilably different.  The molehill of &quot;one optional table&quot; grew to the
 mountain of &quot;no common data
 model&quot;.</p>
-<p><strong>The Real Question.</strong></p>
+</div>
+<div class="section" id="the-real-question">
+<h2>The Real Question</h2>
 <p>The real request, then,
 appears to be this: discuss 'a common code base with an optional table' .  Or,
-phrased as a question: &quot;how do I cope with an optional
-table?&quot;</p>
+phrased as a question: &quot;how do I cope with an optional table?&quot;</p>
 <p>Databases are full of optional
 features like indexes, triggers and constraints.  These can be added or deleted
 without any change to a working application program.  Tables and columns,
 however, are different: they must exist for our programs to bind properly.  So,
 we have two flavors of optionality in RDBMS world: truly optional, and
 present-but-not-used optional.</p>
-<p>Optional
-features are a touchy subject.  How does the software know that something is
+<p>Optional features are a touchy subject.  How does the software know that something is
 optional?  Clearly, the software must have some kind of configuration
 information.  Often, these configuration options are poorly chosen.  In the case
 where a single optional table turned into &quot;no common data model&quot;, I have
 suspicions that the configuration of optional features will be equally
 confusing.</p>
-<p>There are several
-steps:</p>
+<p>There are several steps:</p>
 <ol class="arabic simple">
 <li>Don't turn an insignificant optional feature
 into a &quot;no common data model&quot; situation.  Inflating the problem made it
@@ -253,8 +250,8 @@ management &quot;pressure&quot; to &quot;produce&quot; something, stop anyway.  
 describing as management &quot;pressure&quot; is entirely your own response to your
 environment.</li>
 </ol>
-<p>Stop coding and repeat
-after me:  &quot;I can't code until I understand all the data.&quot;</p>
+<p>Stop coding and repeat after me:  &quot;I can't code until I understand all the data.&quot;</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1088,11 +1085,11 @@ after me:  &quot;I can't code until I understand all the data.&quot;</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1100,7 +1097,7 @@ after me:  &quot;I can't code until I understand all the data.&quot;</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1164,7 +1161,7 @@ after me:  &quot;I can't code until I understand all the data.&quot;</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1176,15 +1173,11 @@ after me:  &quot;I can't code until I understand all the data.&quot;</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

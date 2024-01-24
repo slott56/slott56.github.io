@@ -124,44 +124,36 @@ twenty-minute application, they walk a fine line.  The minimalist approach to
 software development can be viewed from two opposing points of
 view.</p>
 <ol class="arabic simple">
-<li>Small is
-<strong>good</strong>
-because there aren't many use cases, and over-engineering each use case doesn't
+<li>Small is <strong>good</strong> because there aren't many use cases, and over-engineering each use case doesn't
 add enough value.   Build something cheap using the defaults and built-ins.
 Value comes from using it as soon as possible.</li>
-<li>Small is
-<strong>bad</strong>
-because there isn't enough control to prevent the users from abusing the
+<li>Small is <strong>bad</strong> because there isn't enough control to prevent the users from abusing the
 application.  You must tightly constrain their use so it conforms to
 expectations irrespective of what they might do wrong.  Value comes from control
 over the users.</li>
 </ol>
 <p>Clearly, there's a
 middle ground that balances cheap development with enough control to assure
-compliance with the quality
-objectives.</p>
-<p><strong>Battleground</strong> .</p>
-<p>This
-conflict is played out daily, and is often surfaced when we try to implement
+compliance with the quality objectives.</p>
+<div class="section" id="battleground">
+<h2>Battleground</h2>
+<p>This conflict is played out daily, and is often surfaced when we try to implement
 something &quot;big&quot; like a data warehouse.  The daily cheap vs. control conflict is
 a kind of political and philosophical battleground, where strange positions
 arise.</p>
-<p>IT people, as a class, seem to
-crave control.  &quot;We can't give the user's ad-hoc access to the data,&quot; I was
-told.</p>
-<p>&quot;Why not?&quot; I asked.  &quot;It's their
-data.&quot;</p>
-<p>&quot;You don't know our users,&quot; they
-said.  The implication was that their users were particularly malicious and
+<p>IT people, as a class, seem to crave control.
+&quot;We can't give the user's ad-hoc access to the data,&quot; I was told.</p>
+<p>&quot;Why not?&quot; I asked.  &quot;It's their data.&quot;</p>
+<p>&quot;You don't know our users,&quot; they said.
+The implication was that their users were particularly malicious and
 couldn't be trusted.</p>
-<p>&quot;Do they extract
-data and put it into spreadsheets?&quot; I
-asked.</p>
-<p>This lead to a firestorm of
-complaining.  Of course they put stuff in spreadsheets.  Of course, they
-massaged it.  It just proves that they can't be trusted with something simple,
+<p>&quot;Do they extract data and put it into spreadsheets?&quot; I asked.</p>
+<p>This lead to a firestorm of complaining.  Of course they put stuff in spreadsheets.
+Of course, they massaged it.  It just proves that they can't be trusted with something simple,
 flexible and open.</p>
-<p><strong>Or does it prove that?</strong></p>
+</div>
+<div class="section" id="or-does-it-prove-that">
+<h2>Or does it prove that?</h2>
 <p>My position was that
 users work around an application because the app imposes
 <em>too much</em>  control.  In the effort to implement
@@ -174,52 +166,42 @@ detailed knowledge of what is really done on a daily basis, the business analyst
 writes a detailed workflow.  Users (or user management) with similar gaps work
 to &quot;tighten&quot; the workflow to control things, eliminating any possibility of
 non-compliant behavior.</p>
-<p>Then, when
-the special cases are finally located (or the planned change occurs), the
+<p>Then, when the special cases are finally located (or the planned change occurs), the
 software has imposed too many of the wrong kinds of controls.  It requires
 rework or replacement.</p>
-<p><strong>Why is control bad?</strong></p>
-<p>Control,
-<em>per se</em> , isn't bad.  What's bad is inflexible,
+</div>
+<div class="section" id="why-is-control-bad">
+<h2>Why is control bad?</h2>
+<p>Control, <em>per se</em> , isn't bad.  What's bad is inflexible,
 unrealistic control.  In many cases, it is merely an illusion of control, since
 we can download to a spreadsheet and work around the controls anyway.</p>
 <p>What's more valuable than control is
 transparency.  We really need to know the who-what-when-where-how-why of each
-business event.  The bulk of application software
-<strong>should</strong>
+business event.  The bulk of application software <strong>should</strong>
 be nothing more than structuring the details for easy analysis.</p>
-<p>Generally, the complex piece is the
-<em>what</em>
+<p>Generally, the complex piece is the <em>what</em>
 part of the problem.  When we're implementing a small application to prevent the
 help desk from being flooded &lt;{filename}/blog/2006/01/2006_01_20-stating_the_problem.rst&gt; with activation requests, we have to avoid
 the urge to build bewilderingly complex workflows and data structures.  The
 context of the work is an activation request -- it has a few relevant attributes
--- the real
-<em>what</em>
-of the work is a review, an approve, a deny, a question, an answer, that kind of
+-- the real <em>what</em> of the work is a review, an approve, a deny, a question, an answer, that kind of
 thing.</p>
 <p>Both things (the activation
 request and the various activities that lead to approval or denial) can be made
 simple.  Once stripped down to the bare data elements, the 20-minute design
-discipline can be applied to build the smallest application that captures the
-<strong>Information</strong> ,
-the
-<strong>Decision</strong>
-and the
-<strong>Action</strong> .</p>
-<p><strong>What if I need control?</strong></p>
-<p>If you really need
-control, you have to reward the behavior you want to see.  A generous software
+discipline can be applied to build the smallest application that
+captures the <strong>Information</strong>, the <strong>Decision</strong> and the <strong>Action</strong>.</p>
+</div>
+<div class="section" id="what-if-i-need-control">
+<h2>What if I need control?</h2>
+<p>If you really need control, you have to reward the behavior you want to see.  A generous software
 development budget doesn't give you any useful level of control if you don't
 have the rewards in place.</p>
-<p>The saddest
-thing is a reward system (either formal or cultural) that reinforces behavior
+<p>The saddest thing is a reward system (either formal or cultural) that reinforces behavior
 that is obviously not compliant with the design of the software.</p>
 <p>I hear this kind of thing: &quot;Those
-labor records can't be reconciled correctly, so we do that manually in a
-spreadsheet.&quot;</p>
-<p>This means that the
-people are rewarded for &quot;reconciling&quot; those labor records in a way that the
+labor records can't be reconciled correctly, so we do that manually in a spreadsheet.&quot;</p>
+<p>This means that the people are rewarded for &quot;reconciling&quot; those labor records in a way that the
 application software doesn't support.  Why are they rewarded for this?  Why
 doesn't the software do this correctly?  As you dig into this, the executives
 claim it isn't happening, or shouldn't be happening.  The people doing it,
@@ -235,6 +217,7 @@ flexibility.</p>
 control and removing features to improve flexibility.  This is hard to do, but
 really serves the users in the best possible way.  I applaud looking for the 20
 minute solution.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1068,11 +1051,11 @@ minute solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1080,7 +1063,7 @@ minute solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1144,7 +1127,7 @@ minute solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1156,15 +1139,11 @@ minute solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

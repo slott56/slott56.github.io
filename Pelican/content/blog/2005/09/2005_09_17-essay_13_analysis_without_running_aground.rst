@@ -36,7 +36,8 @@ the analysis exercise. The process has the following steps:
 
 
 
-**Background** 
+Background
+----------
 
 
 
@@ -61,9 +62,7 @@ occur."
 
 
 
-Warning:
-user manipulation in
-process.
+Warning: user manipulation in process.
 
 
 
@@ -104,7 +103,8 @@ process.
 
 
 
-**1. Problem Description** 
+1. Problem Description
+----------------------
 
 
 
@@ -126,11 +126,13 @@ successful.
 
 
 
-**Potential Difficulties** 
+Potential Difficulties
+----------------------
 
 
 
-**Dry Shoals** 
+Dry Shoals
+~~~~~~~~~~
 
 
 
@@ -162,7 +164,8 @@ useful.
 
 
 
-**The Orinoco Flow** 
+The Orinoco Flow
+~~~~~~~~~~~~~~~~~
 
 
 
@@ -194,7 +197,8 @@ again.
 
 
 
-**Edge of the World** 
+Edge of the World
+~~~~~~~~~~~~~~~~~
 
 
 
@@ -222,7 +226,8 @@ now.
 
 
 
-**2. Nouns and Verbs** 
+2. Nouns and Verbs
+------------------
 
 
 
@@ -270,7 +275,8 @@ steps.
 
 
 
-**3. Use Cases** 
+3. Use Cases
+------------
 
 
 
@@ -348,7 +354,8 @@ draft.
 
 
 
-**4. Solution Summary** 
+4. Solution Summary
+-------------------
 
 
 
@@ -370,7 +377,8 @@ problem?
 
 
 
-**5. Iterate** 
+5. Iterate
+-----------
 
 
 
@@ -393,7 +401,8 @@ away.
 
 
 
-**Objective** 
+Objective
+---------
 
 
 

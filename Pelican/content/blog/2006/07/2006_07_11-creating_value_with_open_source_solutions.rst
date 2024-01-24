@@ -23,8 +23,7 @@ untrustworthy, risky, etc., etc.
 
 
 
-My
-argument that "you have the source" means nothing to CP, since any commercial
+My argument that "you have the source" means nothing to CP, since any commercial
 license also has a complex source-escrow clause that -- he claims -- provides
 the same level of assurance.  Unless, of course, your commercial package is no
 longer officially supported, then all bets are off.  But somehow, lawyers will
@@ -40,7 +39,8 @@ stagnates?
 
 
 
-**Rewarding Innovation** 
+Rewarding Innovation
+--------------------
 
 
 
@@ -62,7 +62,8 @@ issues.
 
 
 
-**Corporate IT Rewards** 
+Corporate IT Rewards
+--------------------
 
 
 
@@ -75,9 +76,7 @@ a big win, all the way around.
 
 
 
-But how
-can corporate IT reward an open source community or the
-authors?
+But how can corporate IT reward an open source community or the authors?
 
 
 
@@ -100,12 +99,13 @@ project.
 
 
 
-**What About Money?** 
+What About Money?
+------------------
 
 
 
-Money is always a good
-thing.  Some open source authors have day jobs because their open source project
+Money is always a good thing.
+Some open source authors have day jobs because their open source project
 is so valuable.  A company is willing to put up with time spent nurturing an
 open source community, in order to maximize the value from the open source
 project. 
@@ -127,7 +127,8 @@ community.
 
 
 
-**Conflicts and Shifts** 
+Conflicts and Shifts
+---------------------
 
 
 
@@ -139,21 +140,19 @@ contributions.
 
 
 
-Perhaps, however, as
-open source use matures, the economics will
-shift.
+Perhaps, however, as open source use matures, the economics will shift.
 
 
 
 Currently, we have two ways of
 using open source components.
 
-1.  **Blind Trust** .  We download it, use it, and hope that
+1.  **Blind Trust**.  We download it, use it, and hope that
     the rest of the community has thoroughly vetted the project.  This is the way
     most organizations use products like Apache or Linux.  They just download it and
     use it without giving it much more thought than that.
 
-#.  **Healthy Respect** .  We download it, put it through an
+#.  **Healthy Respect**.  We download it, put it through an
     acceptance test cycle, and determine that it is fit for purpose and can be used
     in our in-house solutions.
 
@@ -164,45 +163,41 @@ many war stories where people find that open source was expensive, perhaps
 because of the support required.  This is not a third scenario, because it leads
 to open source being banned or deprecated.  Once consequence of an official
 position against open sources is that it forces the organization to use PERL,
-Apache and Linux in **Blind Trust** 
-mode.
+Apache and Linux in **Blind Trust** mode.
 
 
 
-Using Open Source software in
-**Healthy Respect**  mode means that we put OS projects
+Using Open Source software in **Healthy Respect**  mode means that we put OS projects
 through the same processes we put our in-house solutions.
 
--   **Configuration Management** .  Rather than simply downloading
+-   **Configuration Management**.  Rather than simply downloading
     blindly, someone is in charge of a subversion (or CVS) repository for the latest
     and greatest, the official, the development and the testing releases of open
     source packages.  This person can create value in the OS community by validating
     the releases.
 
--   **Testing** .  Rather than implementing blindly,
+-   **Testing**.  Rather than implementing blindly,
     someone has specific use cases, and conducts performance, integration, and
     functional tests.  This person can create value in the OS community by reporting
     bugs.
 
--   **Patching** .  Rather than deprecating OS
+-   **Patching**.  Rather than deprecating OS
     software, someone can look into the problem, and determine if it is fixable and
     how to share the fix.
 
--   **Extending** .  Perhaps the most valuable
+-   **Extending**.  Perhaps the most valuable
     contribution from a mature organization is the extensions and new directions for
     an open source project.
 
 
 
-All of these
-quality-related activities feed back to the open source community.  But more
+All of these quality-related activities feed back to the open source community.  But more
 importantly, the people being paid to do this work, are being paid to create and
 maintain open source projects.
 
 
 
-This
-mature use of open source puts a solid, predictable, corporate-friendly reward
+This mature use of open source puts a solid, predictable, corporate-friendly reward
 structure in place.  Once people are paid to contribute, the "business risks"
 are eliminated; eliminated in the sense that being able to explain the reward
 structure to lawyers and accountants reduces the sillier objections to open

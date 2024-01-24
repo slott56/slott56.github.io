@@ -67,7 +67,8 @@ server.
 
 
 
-**Content** 
+Content
+--------
 
 
 
@@ -80,7 +81,8 @@ views.
 
 
 
-**Process** 
+Process
+-------
 
 
 
@@ -99,11 +101,13 @@ consequences and being prepared to refine solutions and consequences as the
 forces are more fully understood.  The process is iterative, and may cycle
 several times to arrive at an acceptable solution.
 
-**A metaphor** .  An architecture begins as a
-chemical solution.  Decisions act as a nucleus for crystalization.  A software
-incompatibility is a fault, and a different decision must be used as anucleus
-for crystalization.  When the solution crystalizes fault-free, this is an
-acceptable architecture.
+..  note:: A metaphor
+
+    An architecture begins as a
+    chemical solution.  Decisions act as a nucleus for crystalization.  A software
+    incompatibility is a fault, and a different decision must be used as anucleus
+    for crystalization.  When the solution crystalizes fault-free, this is an
+    acceptable architecture.
 
 
 
@@ -156,7 +160,8 @@ scratch.
 
 
 
-**Standards** 
+Standards
+---------
 
 
 

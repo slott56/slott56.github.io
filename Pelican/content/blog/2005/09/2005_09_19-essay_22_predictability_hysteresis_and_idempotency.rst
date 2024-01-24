@@ -13,18 +13,18 @@ Essay 22 - Predictability, Hysteresis and Idempotency
 
 It can be said that software is 'non-linear and
 time variant. ... The output is definitely not just a function of the current
-input.' (`bloki <http://rlucente.bloki.com/forum/messages-index.jsp?fid=65820&tid=120824#forum-message1127163619932jbullock>`_ ).
+input.'
 
 
 
-While
-possibly true in one sense, that understanding has to conflate a number of
-things into "software", and makes it very difficult to take action to improve
+Whilepossibly true in one sense, the described understanding has to conflate a number of
+things into "software". The conflation makes it very difficult to take action to improve
 predictability.
 
 
 
-**Hysteresis and Idempotency** 
+Hysteresis and Idempotency
+--------------------------
 
 
 
@@ -79,7 +79,8 @@ a bug.  Period.
 
 
 
-**Software (Ideal) vs. Computer System (real)** 
+Software (Ideal) vs. Computer System (real)
+-------------------------------------------
 
 
 
@@ -108,7 +109,9 @@ into a hierarchy)
 
 
 
-**Ideal Software** 
+Ideal Software
+--------------
+
 
 -   **Designed Behavior**
 
@@ -122,7 +125,8 @@ into a hierarchy)
     intended; the extent to which it fails can be called
     **Design Noise** .
 
-**Real Software** 
+Real Software
+-------------
 
 -   **•Designed Behavior**
 
@@ -136,9 +140,7 @@ into a hierarchy)
 
     A computer system (hardware+software)
     match against the required or intended behavior depends on both
-    **Design Noise**  and
-    **Implementation Noise**.
-
+    **Design Noise**  and **Implementation Noise**.
 
 
 **Design Noise**  is all about process.  A good process
@@ -149,7 +151,6 @@ have no process, you cannot hope to control design noise.  Indeed, the very
 reason for defining a process at all is to identify sources of design noise by
 having a repeatable work effort and
 deliverable.
-
 
 
 **Implementation Noise**  is all about tools.  You can, with
@@ -164,18 +165,14 @@ effect.
 
 
 
-**Controls** 
+Controls
+--------
 
 
-
-Control
-Design Noise with process and reviews of work products. 
+Control Design Noise with process and reviews of work products.
 
 
-
-
-Control Implementation Noise with
-tools to automate testing.
+Control Implementation Noise with tools to automate testing.
 
 
 

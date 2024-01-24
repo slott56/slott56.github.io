@@ -504,11 +504,11 @@ that we are unlikely to have a single access dimension for a
 </content><category term="News"></category><category term="news"></category></entry><entry><title>Dynamic Languages and Corporate IT's Objections</title><link href="https://slott56.github.io/2006_08_29-dynamic_languages_and_corporate_its_objections.html" rel="alternate"></link><published>2006-08-29T17:57:00-04:00</published><updated>2006-08-29T17:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-29:/2006_08_29-dynamic_languages_and_corporate_its_objections.html</id><summary type="html">&lt;p&gt;Since most of these new-fangled dynamic languages
 are open-source, we have a a strange artificial barrier to considering the right
 solution for our problems.  This barrier is &amp;quot;No Open Source&amp;quot; policy, usually
-framed as &lt;strong&gt;We'll Use Open Source Over My Dead Body&lt;/strong&gt; ™.  It has to be examined
+framed as &lt;strong&gt;We'll Use Open Source Over My Dead Body&lt;/strong&gt;™.  It has to be examined
 carefully from several …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Since most of these new-fangled dynamic languages
 are open-source, we have a a strange artificial barrier to considering the right
 solution for our problems.  This barrier is &amp;quot;No Open Source&amp;quot; policy, usually
-framed as &lt;strong&gt;We'll Use Open Source Over My Dead Body&lt;/strong&gt; ™.  It has to be examined
+framed as &lt;strong&gt;We'll Use Open Source Over My Dead Body&lt;/strong&gt;™.  It has to be examined
 carefully from several points of view:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Most organizations already have considerable
@@ -527,15 +527,11 @@ sue.  What if our in-house software doesn't work?  Somehow that's different: our
 in-house QA doesn't apply to source we got for
 free?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;If we can get past the &amp;quot;dynamic
-languages are open source&amp;quot;, then we can move on to more interesting
-issues.&lt;/p&gt;
-&lt;p&gt;Taft gets to the issues,
-eventually, when he lifts up two objections that have a little more substance.
-Taft, however, ran out of words before getting to the real crux of these
-objections.&lt;/p&gt;
+&lt;p&gt;If we can get past the &amp;quot;dynamic languages are open source&amp;quot;, then we can move on to more interesting issues.&lt;/p&gt;
+&lt;p&gt;Taft gets to the issues, eventually, when he lifts up two objections that have a little more substance.
+Taft, however, ran out of words before getting to the real crux of these objections.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;strong&gt;Imperative Programming is Dead&lt;/strong&gt; .  &amp;quot;Anders Hejlsberg, a Microsoft software
+&lt;li&gt;&lt;strong&gt;Imperative Programming is Dead&lt;/strong&gt;.  &amp;quot;Anders Hejlsberg, a Microsoft software
 architect in Redmond, Wash., and father of C#, said the days are numbered for
 imperative programming&amp;quot;.  As with other such pronouncements, this is premature.
 After all, procedural programming persists in spite of object-oriented
@@ -544,18 +540,17 @@ it depends on automatic optimizers.  Since automated proofs of correctness don't
 exist in general, I'm &lt;a class="reference external" href="https://slott56.github.io/2006_03_01-c_microsoft_and_hegemony.html"&gt;suspicious&lt;/a&gt;  that there are pretty severe limits
 on optimizations that can be successfully applied to support declarative
 programming.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dynamic Languages Don't Scale&lt;/strong&gt; .  &amp;quot;Cedric Beust, an engineer at Google,
+&lt;li&gt;&lt;strong&gt;Dynamic Languages Don't Scale&lt;/strong&gt;.  &amp;quot;Cedric Beust, an engineer at Google,
 in Mountain View, Calif., said, &amp;quot;Dynamic languages suffer from some inherent
 limitations that make them inadequate for 'large software.'&amp;quot;  There are two
 issues here: performance and error prevention.  Both of these issues lead us to
 some interesting conclusions, and some appropriate uses for dynamic
 languages.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Dynamic Languages Don't Perform Well.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This is a
-straw-man argument; it misses the point by attacking something irrelevant.  Yes,
-dynamic languages are not optimized as well by the compiler as dynamic
-languages.&lt;/p&gt;
+&lt;div class="section" id="dynamic-languages-don-t-perform-well"&gt;
+&lt;h2&gt;Dynamic Languages Don't Perform Well&lt;/h2&gt;
+&lt;p&gt;This is a straw-man argument; it misses the point by attacking something irrelevant.
+Yes, dynamic languages are not optimized as well by the compiler as dynamic languages.&lt;/p&gt;
 &lt;p&gt;However, the point is to
 leverage this, and partition the architecture into the stable bits, and the
 flexible bits.  I can see a spectrum of &lt;a class="reference external" href="https://slott56.github.io/2005_09_18-essay_14_mutability_analysis.html"&gt;mutability&lt;/a&gt;  based on the nature of the
@@ -564,38 +559,37 @@ compile the heck out of it, and get it optimized so that it runs really fast.
 For the poorly-defined or inherently flexible requirements, use a dynamic
 language.  Expect change, and implement it
 appropriately.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Dynamic Languages Don't Prevent Enough Errors.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dynamic-languages-don-t-prevent-enough-errors"&gt;
+&lt;h2&gt;Dynamic Languages Don't Prevent Enough Errors&lt;/h2&gt;
 &lt;p&gt;I'm not completely sold on
 the value of static type checking in languages like Java, C, C++ (and Ada for
 that matter).  Here's what I observe: a programmer who has a vague notion that a
 variable has a numeric type, but can't identify the correct numeric subtype; he
 spends hours doing an empirical survey of all numeric types to see which one
 will compile.&lt;/p&gt;
-&lt;p&gt;This isn't &lt;em&gt;design&lt;/em&gt;
-in the usual sense of the word.  The software will have the first numeric type
+&lt;p&gt;This isn't &lt;em&gt;design&lt;/em&gt; in the usual sense of the word.  The software will have the first numeric type
 which compiled, right, wrong or indifferent.  We don't know if that's the right
 type, or merely an acceptable supertype of the right type.  Static type checking
-hasn't really prevented the eventual error from
-occurring.&lt;/p&gt;
-&lt;p&gt;Another scenario, less
-common, but more problematic, is the
-&lt;strong&gt;Type-Hierarchy-Meta-Framework Most General Declaration&lt;/strong&gt; ™ where we have created a
+hasn't really prevented the eventual error from occurring.&lt;/p&gt;
+&lt;p&gt;Another scenario, less common, but more problematic, is the
+&lt;strong&gt;Type-Hierarchy-Meta-Framework Most General Declaration&lt;/strong&gt;™ where we have created a
 hierarchy of interfaces, abstract superclasses, and other declarative malarky to
 try and unify two relatively dissimilar things into a common structure.  Perhaps
-they should have used a &lt;strong&gt;Façade&lt;/strong&gt;
-design, but instead they aimed for a too-complex static type
+they should have used a &lt;strong&gt;Façade&lt;/strong&gt; design, but instead they aimed for a too-complex static type
 declaration.&lt;/p&gt;
 &lt;p&gt;This is a case of too much
 design, rather than too little.  However, static type checking has introduced
 problems rather than solved them.&lt;/p&gt;
-&lt;p&gt;Just
-to beat this topic to death, our SQL data bindings are always dynamic.  After
+&lt;p&gt;Just to beat this topic to death, our SQL data bindings are always dynamic.  After
 all, there's no strong relationship between our statically compiled Java
 application and our relational database.  The Java type checking, while
 internally consistent, doesn't have to match the database.  Indeed, seemingly
 innocuous DB changes can lead to type compatibility problems and run-time
 crashes in Java.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing Dynamic Languages.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="introducing-dynamic-languages"&gt;
+&lt;h2&gt;Introducing Dynamic Languages&lt;/h2&gt;
 &lt;p&gt;I think the upshot of Taft's article is the following pieces of advice:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Introduce a dynamic language in a way
@@ -614,15 +608,12 @@ abstractions and cruddy syntax.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I think the most important thing we can do is to look at a dynamic language as the
 shell on steroids.&lt;/p&gt;
-</content><category term="News"></category><category term="news"></category></entry><entry><title>Deprecating Dynamic Languages (or Scripting Systems)</title><link href="https://slott56.github.io/2006_08_23-deprecating_dynamic_languages_or_scripting_systems.html" rel="alternate"></link><published>2006-08-23T11:05:00-04:00</published><updated>2006-08-23T11:05:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-23:/2006_08_23-deprecating_dynamic_languages_or_scripting_systems.html</id><summary type="html">&lt;p&gt;Holub discards the currently popular dynamic
-languages with a scathing
-comment:&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="News"></category><category term="news"></category></entry><entry><title>Deprecating Dynamic Languages (or Scripting Systems)</title><link href="https://slott56.github.io/2006_08_23-deprecating_dynamic_languages_or_scripting_systems.html" rel="alternate"></link><published>2006-08-23T11:05:00-04:00</published><updated>2006-08-23T11:05:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-23:/2006_08_23-deprecating_dynamic_languages_or_scripting_systems.html</id><summary type="html">&lt;p&gt;Holub discards the currently popular dynamic languages with a scathing comment:&lt;/p&gt;
 &lt;p&gt;&amp;quot;And not scripting
 systems (I’m reluctant to call them languages) like PHP and Ruby, which
 are too Wild West to be trustworthy. No language that moves compile-time bugs
-into runtime is worth your time if you consider reliability …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Holub discards the currently popular dynamic
-languages with a scathing
-comment:&lt;/p&gt;
+into runtime is worth your time if you consider reliability …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Holub discards the currently popular dynamic languages with a scathing comment:&lt;/p&gt;
 &lt;p&gt;&amp;quot;And not scripting
 systems (I’m reluctant to call them languages) like PHP and Ruby, which
 are too Wild West to be trustworthy. No language that moves compile-time bugs
@@ -630,11 +621,9 @@ into runtime is worth your time if you consider reliability to be important; I
 don’t care how fast its adherents allege you can throw together a program.
 You don’t measure productivity improvements solely by looking at a
 reduction in the lines-of-code-written-per-day numbers, even if these statistics
-are
-trustworthy.&amp;quot;&lt;/p&gt;
+are trustworthy.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Scathing.&lt;/p&gt;
-&lt;p&gt;Besides
-failing to mention Python, he misses two important points:&lt;/p&gt;
+&lt;p&gt;Besides failing to mention Python, he misses two important points:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Language #3 on the &lt;a class="reference external" href="http://www.tiobe.com/tpci.htm"&gt;TPCI&lt;/a&gt;   is
 Visual Basic.  He quotes the description of &lt;a class="reference external" href="http://scala.epfl.ch/docu/"&gt;Scala&lt;/a&gt;  (so
@@ -648,18 +637,14 @@ is language #1.&lt;/li&gt;
 languages (PHP, Perl, Python and Javascript).  In aggregate, dynamic languages
 add up to a pool of languages as popular as Java.  Perhaps Holub's missed
 something interesting about dynamic languages.&lt;/li&gt;
-&lt;li&gt;What's the
-real clincher here?  If dynamic languages are
-&amp;quot;too Wild West to be
-trustworthy&amp;quot; why are they so popular?&lt;/li&gt;
+&lt;li&gt;What's the real clincher here?  If dynamic languages are
+&amp;quot;too Wild West to be trustworthy&amp;quot; why are they so popular?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Misconceptions.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Dynamic
-languages aren't about the &amp;quot;lines-of-code-written-per-day numbers&amp;quot;.  They're
+&lt;div class="section" id="misconceptions"&gt;
+&lt;h2&gt;Misconceptions&lt;/h2&gt;
+&lt;p&gt;Dynamic languages aren't about the &amp;quot;lines-of-code-written-per-day numbers&amp;quot;.  They're
 about the lines-of-code-written-to-do-something-useful numbers.  I find non-OO
-programming tedious because
-&lt;em&gt;everything&lt;/em&gt;
-is long-winded.  I find type-safe OO programming to be far better, but some
+programming tedious because &lt;em&gt;everything&lt;/em&gt; is long-winded.  I find type-safe OO programming to be far better, but some
 things can get still get long-winded.  To be properly type-safe, portable,
 generic and explicit in Java means -- sometimes -- a lot of code which doesn't
 really do very much.  A lot of the Java framework elements lead to programs
@@ -673,15 +658,15 @@ even type-safe, compiled languages can harbor hard-to-locate bugs.  Indeed,
 having spent the last decade helping people do Java programming, I've seen a lot
 of bad design written into both the code and the unit tests.  Bad design that
 wouldn't be found until run-time.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A Value Proposition.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-value-proposition"&gt;
+&lt;h2&gt;A Value Proposition&lt;/h2&gt;
 &lt;p&gt;What makes dynamic
 languages so popular?  Clearly, they fill a need.  I think that the need is
 &lt;a class="reference external" href="https://slott56.github.io/2005_09_18-essay_14_mutability_analysis.html"&gt;mutability&lt;/a&gt; .
-I don't think it's effective to
-package everything into static, compiled, type-safe Java applications.  Some
-things require more flexibility.  We can use shell scripts, or XML-configuration
-files of Ant class definitions, but we need last-minute, fine-tuning,
-flexibility.&lt;/p&gt;
+I don't think it's effective to package everything into static, compiled, type-safe Java applications.
+Some things require more flexibility.  We can use shell scripts, or XML-configuration
+files of Ant class definitions, but we need last-minute, fine-tuning, flexibility.&lt;/p&gt;
 &lt;p&gt;Flexibility is something
 we can try to build into our software.  But sadly, our users are far more clever
 (or devious) than we are and will push right past the envelope.  Every executive
@@ -690,19 +675,17 @@ our application software with her handshake on the 18th green at her
 country-club.  Since the software will be broken by business policy changes, we
 can either plan for change -- and use a scripting language -- or fight against
 the change.  Claiming that it will take months to rewrite the application is --
-in effect -- fighting against the
-change.&lt;/p&gt;
+in effect -- fighting against the change.&lt;/p&gt;
 &lt;p&gt;When it comes to application
 software changes, the users hold the trump cards: Excel and Access.  If you
 can't build it in Java RIGHT NOW, they will build some non-sensical manual
 procedure with desktop tools.  When you're ready to build it in Java, they've
 implemented a Byzantine process and trained the rest of the department; now they
-demand that your application implement their bizarre
-behavior.&lt;/p&gt;
+demand that your application implement their bizarre behavior.&lt;/p&gt;
 &lt;p&gt;I prefer to embrace dynamic
 languages, give them a place at the table, and control their use very closely.
-That way, I don't have to fight change, but can be the agent of
-change.&lt;/p&gt;
+That way, I don't have to fight change, but can be the agent of change.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="News"></category><category term="news"></category></entry><entry><title>Apple and Flexibility</title><link href="https://slott56.github.io/2006_08_07-apple_and_flexibility.html" rel="alternate"></link><published>2006-08-07T23:21:00-04:00</published><updated>2006-08-07T23:21:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-08-07:/2006_08_07-apple_and_flexibility.html</id><summary type="html">&lt;p&gt;&amp;quot;But Apple, stubbornly hanging on to its need to
 control the user experience, creates meshed hardware and software systems that
 deprive businesses of the flexibility to find the best balance of hardware,

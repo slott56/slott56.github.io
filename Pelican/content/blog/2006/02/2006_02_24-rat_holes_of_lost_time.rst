@@ -79,7 +79,7 @@ sooner?
 
 
 
-**Perceptual Narrowing** .  Pursuing non-problems and
+**Perceptual Narrowing**.  Pursuing non-problems and
 non-solutions are two examples of "Perceptual Narrowing".  We think that our
 activity is important.  However, a little reflection reveals that it can't lead
 to success.  The sooner we can see that we are not going to be successful, the
@@ -96,8 +96,7 @@ stop?
 
 
 
-**Strategies** .
-Pursuing a non-solution can be prevented by setting more than one mind to the
+**Strategies**. Pursuing a non-solution can be prevented by setting more than one mind to the
 activity.  Exposing your thinking in pairs often separates rat-holes from viable
 paths toward a solution.  The process of "talking it through" forces some
 justification and some focus on the core
@@ -123,7 +122,7 @@ problems and irrelevant details.
 
 
 
-**Cutting the Gordian Knot** .  One technique that can be applied to
+**Cutting the Gordian Knot**.  One technique that can be applied to
 sorting out the problem from the non-problem, and the solution from the
 non-solution is a multiple-step process.  Taking multiple steps is a way to
 expose the thinking at the end of each step, providing some reflection, feedback
@@ -148,7 +147,7 @@ investment.
 
 
 
-**On Your Own** .  But what do you do when you're solving a
+**On Your Own**.  But what do you do when you're solving a
 small problem, by yourself, in your cubicle?  The same discipline applies.  Big
 formal documents, of course, are a waste of time.  However, a "journal" or
 "blog" of problems, alternatives and solutions is just what the doctor
@@ -156,8 +155,7 @@ ordered.
 
 
 
-Programming -- as I claimed at
-the outset -- is knowledge capture.  If you can't write, you can't code.  You
+Programming -- as I claimed at the outset -- is knowledge capture.  If you can't write, you can't code.  You
 don't have to write well.  But you have to be able to write in a variety of
 languages.  Svenska, Engelska, Python, Java, SQL, XML, HTML, JSP, are all just
 part of the job.  
@@ -173,7 +171,7 @@ time?
 
 
 
-**Faulty Assumptions** .  The discipline of writing may be
+**Faulty Assumptions**.  The discipline of writing may be
 the best way to surface improper assumptions.  How?  The answer is references. 
 A footnote is what separates a fact from an assumption.  Preventing faulty
 assumptions may be the way to prevent the perceptual narrowing that leads us

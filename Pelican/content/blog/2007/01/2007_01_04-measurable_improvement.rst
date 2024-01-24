@@ -11,8 +11,7 @@ Measurable Improvement
 
 
 
-Here's what I
-observed.
+Here's what I observed.
 
 
 
@@ -34,8 +33,7 @@ consultants, we have to observe the business in operation for a few months,
 product roll-outs, training, everything that impacts
 performance."
 
-Customer:  "We have $100,000 to
-spend."
+Customer:  "We have $100,000 to spend."
 
 
 

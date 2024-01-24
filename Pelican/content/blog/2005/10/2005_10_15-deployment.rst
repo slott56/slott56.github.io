@@ -24,33 +24,30 @@ requirements.
 
 
 
-**Content** 
+Content
+--------
 
 
 
-UML
-diagrams for
-deployment.
+UML diagrams for deployment.
 
 
 
-**Process** 
+Process
+-------
 
 
 
-There
-is a great deal of variability, based on the
-architecture.
+There is a great deal of variability, based on the architecture.
 
 
 
-**Standards** 
+Standards
+---------
 
 
 
-All
-components have a processor, all processors have one or more
-components.
+All components have a processor, all processors have one or more components.
 
 
 

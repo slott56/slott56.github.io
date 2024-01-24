@@ -32,33 +32,29 @@ integration.
 
 
 
-**Content** 
+Content
+-------
 
 
 
-Final
-software.  Typically source, plus executable form.  This of course, varies with
-language.
+Final software.  Typically source, plus executable form.  This of course, varies with language.
 
 
 
-UML diagrams for packages and
-components.
+UML diagrams for packages and components.
 
 
 
-Either UML diagrams or
-narratives describing the packaging and installation
-procedures.
+Either UML diagrams or narratives describing the packaging and installation procedures.
 
 
 
-**Process** 
+Process
+--------
 
 
 
-For
-each architectural component, create a detailed design of all classes required
+For each architectural component, create a detailed design of all classes required
 to implement the component.
 
 1.  Define the overall responsibilities and
@@ -87,17 +83,15 @@ to implement the component.
 Construct the source. 
 Stick to widely used standards.  Read open source projects for examples. 
 Consider the use of literate programming tools to merge design and source into a
-single
-document.
+single document.
 
 
 
-**Standards** 
+Standards
 
 
 
-Trace
-back to architectural components and requirements.  Every class belongs to a
+Trace back to architectural components and requirements.  Every class belongs to a
 package, every package has one or more classes.  Each component is built from
 packages of classes.  Each package contributes to one or more
 components.

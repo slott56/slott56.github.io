@@ -11,43 +11,42 @@ The Power of Static HTML
 
 
 
-**PROBLEM** 
+PROBLEM
+-------
 
 
 
-I
-need to display my product catalog according to a number of dimensions but the
+I need to display my product catalog according to a number of dimensions but the
 data changes slowly and isn't very complex.  Is a relational database and a web
 application really appropriate?  Or can I get away with something
 simpler?
 
 
 
-**CONTEXT** 
+CONTEXT
+--------
 
 
 
-Some
-small product catalogs evolve slowly.  A detailed data model exists, including a
+Some small product catalogs evolve slowly.  A detailed data model exists, including a
 relational database implementation. 
 
 
 
 
-**FORCES** 
+FORCES
+-------
 
 
 
-On
-the one hand, we have a complete relational database.  However, the traditional
+On the one hand, we have a complete relational database.  However, the traditional
 RDBMS Query capability isn't very valuable when each result set only has a few
 rows.  A pin-point query actually makes product comparisons
 difficult.
 
 
 
-On one hand, a sophisticated
-search can produce a page with a list of related products.  However, for the
+On one hand, a sophisticated search can produce a page with a list of related products.  However, for the
 relevant dimensions, a relevant set of search results can all be computed and
 stored statically with the content.  While a user might go outside these
 pre-comuted indexes, it is an unlikely accident.  Further, the catalog is not
@@ -56,29 +55,27 @@ dimensions.
 
 
 
-**SOLUTION** 
+SOLUTION
+--------
 
 
 
-Static
-HTML can represent the entire catalog.  You don't really need an active
+Static HTML can represent the entire catalog.  You don't really need an active
 application to do searches.
 
 
 
-Each
-dimension of presentation (by product family, by designer, by size, by cost,
-whatever) can be a separate index
-page.
+Each dimension of presentation (by product family, by designer, by size, by cost,
+whatever) can be a separate index page.
 
 
 
-**CONSEQUENCE** 
+CONSEQUENCE
+------------
 
 
 
-The
-catalog has to be modeled using a dimensional star schema.  This may require
+The catalog has to be modeled using a dimensional star schema.  This may require
 some minor changes to the database that maintains the master
 catalog.
 

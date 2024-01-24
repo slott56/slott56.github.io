@@ -126,35 +126,26 @@ S.Lott -- Software Architect            </a>
                 </div>
                 <p>First, let's pick the conclusion out of the
 middle: &quot;However, the computation for the first and last business day of the
-month is trivial. So, just codify
-this.&quot;</p>
+month is trivial. So, just codify this.&quot;</p>
 <p>Since we still lack any usable
-context, we're struggling with the definition of basic terms.  Is this the
-<em>calendar</em>
-month, or the
-<em>fiscal</em>
-period that overlaps with that calendar month?  The first business day of a
-<em>fiscal</em>
+context, we're struggling with the definition of basic terms.
+Is this the <em>calendar</em> month, or the <em>fiscal</em> period that overlaps with that calendar month?
+The first business day of a <em>fiscal</em>
 period that includes a random date in January could very well be Monday,
 December 31st of the previous year.</p>
-<p>The
-statement was made; to interpret it, we have to guess at the underlying
+<p>The statement was made; to interpret it, we have to guess at the underlying
 assumptions that make it appear true to the poster.</p>
 <ol class="arabic simple">
-<li>They're talking
-<em>calendar</em>
-month, not fiscal period.  Why, on earth, would anyone mix the calendar and the
+<li>They're talking <em>calendar</em> month, not fiscal period.  Why, on earth, would anyone mix the calendar and the
 fiscal periods?  How, precisely does &quot;business day&quot; apply to a calendar month,
 which is separate from a fiscal period?  Any given calendar month may have one,
 two or three relevant fiscal periods.  Since the terminology appears
 contradictory, we'll set this aside as unlikely.  January 2 and January 31 could
 belong to different fiscal periods and have different &quot;first business day&quot;
 definitions.</li>
-<li>They're talking about
-<em>fiscal</em>
+<li>They're talking about <em>fiscal</em>
 period, not calendar month.  However, the original question behind the <a class="reference external" href="https://slott56.github.io/2006_08_07-the_hubris_of_calendrical_calculations.html">Hubris post</a>  had to do with using the built in
-RDBMS calculation methods, which are for
-<em>calendar</em>
+RDBMS calculation methods, which are for <em>calendar</em>
 months, not fiscal periods.  So, we can't be talking about fiscal periods if
 we're also talking about RDBMS calendar functions.</li>
 <li>They're talking about fiscal period, and have
@@ -162,52 +153,50 @@ conflated it with calendar month, not realizing there's a difference.  This must
 be the case.</li>
 </ol>
 <p>What we appear to have
-is the argument that (1) the
-<em>fiscal</em>
-&quot;first business day&quot; can be calculated from the
-<em>calendar</em>
-functions in the RDBMS in spite of the date being defined for a
-<em>fiscal</em>
-period; and (2) this calculation is simpler that looking up the correct date in
-the G/L calendar.</p>
-<p>Since this argument
-only makes sense if we presume that fiscal period and calendar month are the
-same thing, I can't believe a word of it.  Indeed, I find it
-alarming.</p>
-<p>I'd need to see some context
--- to define the terms -- and then some code.  And, of course, the appropriate
-business policy that gives me a reason to believe the code is more reliable and
+is the argument that</p>
+<ol class="arabic simple">
+<li>the <em>fiscal</em> &quot;first business day&quot; can be calculated from the
+<em>calendar</em> functions in the RDBMS in spite of the date being defined for a <em>fiscal</em>
+period; and</li>
+<li>this calculation is simpler that looking up the correct date in
+the G/L calendar.</li>
+</ol>
+<p>Since this argument only makes sense if we presume that fiscal period and calendar month are the
+same thing, I can't believe a word of it.  Indeed, I find it alarming.</p>
+<p>I'd need to see some context -- to define the terms -- and then some code.
+And, of course, the appropriate business policy that gives me a reason to believe the code is more reliable and
 correct than the manually-prepared calendar.</p>
-<p><strong>Conclusion</strong>: Calendar Calculations involve hubris that stems from conflating calendar and fiscal periods.</p>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p><strong>Calendar Calculations involve hubris that stems from conflating calendar and fiscal periods</strong>.</p>
 <p>For the second part, let
-me rearrange the posting as follows.  &quot;Banking holidays have to be loaded into a
+me rearrange the posting as follows.</p>
+<blockquote>
+&quot;Banking holidays have to be loaded into a
 table. The rules to compute the banking holidays are too complex and change.
-[<em>snip</em> ]
+[<em>snip</em>]
 Why is it more efficient to have a human on a yearly basis compute the first and
 last business day of the month. It has to be done on a yearly basis because the
-banking holidays change on a yearly basis.
-&quot;</p>
-<p>This is something that I can't fully
-understand.  It appears to be the following three points: (1) calendar
+banking holidays change on a yearly basis.&quot;</blockquote>
+<p>This is something that I can't fully understand.
+It appears to be the following three points: (1) calendar
 definition is manual, (2) some of the manual work has to be persisted in a
 table, (3) other parts of the manual work should not be persisted in a table.</p>
-<p>To the person posting, points 2 and 3
-aren't a contradiction.  Somehow, they've got a secret assumption that resolves
-the above craziness.  I can only guess.</p>
+<p>To the person posting, points 2 and 3 aren't a contradiction.
+Somehow, they've got a secret assumption that resolves the above craziness.
+I can only guess.</p>
 <ol class="arabic simple">
 <li>The fiscal periods don't apply.  See the above
 analysis: somehow we're supposed to get &quot;first business day&quot; from the calendar
 without knowing anything about fiscal periods.</li>
 <li>Either the bank holiday definitions or the
-fiscal period definitions don't wind up in the persisted G/L calendar; it
-<em>must</em>
+fiscal period definitions don't wind up in the persisted G/L calendar; it <em>must</em>
 be calculated.</li>
 <li>The person working on the calendar doesn't
 know the fiscal period starting dates, even though they have to allocate the
 bank holidays into fiscal periods.</li>
 </ol>
-<p>It's
-pretty pointless to guess what the unspoken assumptions are.  However, there is
+<p>It's pretty pointless to guess what the unspoken assumptions are.  However, there is
 clearly a lot of confusion on what information is already available and why it
 shouldn't be treated as a value that can reliably be calculated.</p>
 <p>Recomputing will -- unconditionally --
@@ -218,27 +207,33 @@ doesn't have all of this information, it can't produce the same result.</p>
 controls and audits that would have to be in place to assure that this calendar
 calculation really worked in production.  We'd have to have some control for the
 calculation rules, and a log of results to be sure we did it correctly.  Since
-the benchmark data against which we're basing our controls is
-<em>manual</em> ,
+the benchmark data against which we're basing our controls is <em>manual</em>,
 what do we use for an ongoing audit?
-<em>Compare the calculation against the manual data?</em>   Hello?  Isn't the manual data
+<em>Compare the calculation against the manual data?</em></p>
+<p>Hello?</p>
+<p>Isn't the manual data
 the answer in the first place?  Why are we recomputing the controls we're using?
-Why not just load them and be done with
-it?</p>
-<p><strong>Conclusion</strong>:  Calendar
+Why not just load them and be done with it?</p>
+</div>
+<div class="section" id="conclusion-1">
+<h2>Conclusion</h2>
+<p>Calendar
 Calculations involve ignorance of <a class="reference external" href="http://www.amazon.com/gp/product/0471153370/">The
 Data Warehouse Toolkit</a> .  This may be
 unintentional, but the ignorance can be cleared up on page 7 and page 32.  About
 four pages of
 reading.</p>
-<p><strong>Consequence</strong>:
-Any calendar calculation module based on the confusion between calendar and
+</div>
+<div class="section" id="consequence">
+<h2>Consequence</h2>
+<p>Any calendar calculation module based on the confusion between calendar and
 fiscal period will have bugs.  It will diverge from other bank calendars.  It
 will require almost endless maintenance, and provide essentially no value for
 the effort involved.</p>
 <p>As near as I can
-tell, Calendar Computations are <strong>An Attractive Time Sink</strong> ™:  a nuisance, a
-source of errors and cost.</p>
+tell, Calendar Computations are <strong>An Attractive Time Sink</strong>™:
+a nuisance, a source of errors and cost.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1072,11 +1067,11 @@ source of errors and cost.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1084,7 +1079,7 @@ source of errors and cost.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1148,7 +1143,7 @@ source of errors and cost.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1160,15 +1155,11 @@ source of errors and cost.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

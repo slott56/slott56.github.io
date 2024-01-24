@@ -20,7 +20,8 @@ intended?"
 
 
 
-**Precise Numeric Relations.** 
+Precise Numeric Relations
+-------------------------
 
 
 
@@ -35,11 +36,9 @@ configuring.
 
 
 
-I find that this "a
-software design should be fully quantifiable" approach leads to some common
+I find that this "a software design should be fully quantifiable" approach leads to some common
 management mistakes.  Principally, it overlooks that fact that software
-engineering isn't like most other forms of engineering because
-*construction* 
+engineering isn't like most other forms of engineering because *construction*
 is essentially free.
 
 -   The final, complete, detailed design is
@@ -66,26 +65,23 @@ behaviors.
 
 
 
-1.  Mismanagers presume they
-can (and will) gather complete knowledge of the problem, the solution and the
-technology at design time.  This complete knowledge can only be gathered if we
-have software in place that we can base our measurements and models on.  But if
-we have this software, and it provides a complete, accurate model, why are we
-programming?  If it works so well that it is the basis for quantified judgement,
-why not just use it? 
+1.  Mismanagers presume they can (and will) gather complete knowledge of the problem, the solution and the
+    technology at design time.
+    This complete knowledge can only be gathered if we
+    have software in place that we can base our measurements and models on.  But if
+    we have this software, and it provides a complete, accurate model, why are we
+    programming?  If it works so well that it is the basis for quantified judgement,
+    why not just use it?
 
 
 
-2.  Mismanagers
-presume we have repeatable task execution while doing software development.  In
-manufacturing and construction, the foremen and general contractors look at
-repeated execution of tasks, which is unlike the one-off world of software
-development.  When we perform tasks repeatedly, we gain a quantitative model. 
-In software, we build it once and clone it many times.  If you have a detailed
-model of the tasks involved in construction, you must be
-*rewriting* 
-the same software on which your model is
-based.
+2.  Mismanagers presume we have repeatable task execution while doing software development.
+    In manufacturing and construction, the foremen and general contractors look at
+    repeated execution of tasks, which is unlike the one-off world of software
+    development.  When we perform tasks repeatedly, we gain a quantitative model.
+    In software, we build it once and clone it many times.  If you have a detailed
+    model of the tasks involved in construction, you must be *rewriting*
+    the same software on which your model is sbased.
 
 
 
@@ -99,12 +95,12 @@ Ignorance http://www.computer.org/portal/site/software/menuitem.538c87f5131e2624
 
 
 
-**Before Coding Began.** 
+Before Coding Began
+--------------------
 
 
 
-My second complaint
--- and this is more subtle -- is the question of "before the coding began." 
+My second complaint -- and this is more subtle -- is the question of "before the coding began."
 This bothers me because it implies a strict "all-design-before-any-code" world
 view.  This kind of world view often looks with suspicion on prototypes and
 experiments.  This kind of "analyze the design on paper" management style is
@@ -114,8 +110,7 @@ mistakes.
 
 
 
-Without getting all Agile
-http://agilemanifesto.org/,
+Without getting all Agile http://agilemanifesto.org/,
 it's important to note that the time before the coding begins is the time before
 the project begins.  During the earliest of scope-defining phases, there is room
 for prototypes and mock-ups that involve code, and may actually be
@@ -129,8 +124,7 @@ hellish complexity because of the huge spread in orders of magnitude (from bits
 to gigabytes, often 10 orders of magnitude) and from nanoseconds to 168 hours
 each week (another dozen orders of magnitude).  Simulation, modeling,
 incremental development and testing, and reengineering are part of the software
-development process.  All of this involves
-coding.
+development process.  All of this involves coding.
 
 
 
@@ -142,8 +136,7 @@ area, you're looking at code.
 
 
 
-The twin
-mistakes of "fully quantifiable" and "before coding began" are impediments to
+The twin mistakes of "fully quantifiable" and "before coding began" are impediments to
 good software development.  They can't be looked at as desirable features of a
 software engineering process.  If we aim for fully quantifiable, we have to
 ignore the fact that the cost for software is all design cost.  One consequent

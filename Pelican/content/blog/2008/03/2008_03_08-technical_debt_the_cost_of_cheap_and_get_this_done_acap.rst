@@ -25,12 +25,11 @@ We inherited some software from a client that we're going to maintain and enhanc
 
 
 
-**Aside**
+..  important:: Aside
+
     [Every time my company and a client have this kind of "support us, please; sell additional customers if it helps" conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the "who gets revenue from the sale" question by adopting what we call the "GPL Business Model" (`GPL V3 Section 4 <http://www.gnu.org/copyleft/gpl.html#section4>`_ ).  Source is free, support is where we make the money.
 
-
-
-Services are where the money is.  It's the 21st century, there will always be free software that does more-or-less the same thing.  You can't compete on price of the initial sale.  You can only compete on the thing which is not a commodity -- skills.]
+    Services are where the money is.  It's the 21st century, there will always be free software that does more-or-less the same thing.  You can't compete on price of the initial sale.  You can only compete on the thing which is not a commodity -- skills.]
 
 
 
@@ -43,7 +42,8 @@ The problem we're going to have is the distribution and support of a VB app that
 
 
 
-**Another Aside**: 
+..  important:: Another Aside
+
     [``A is not NULL AndAlso A != " "`` is the problem.  The inverse is ``A is NULL OrElse A = " "``.  Any other variation on these two is a common logic error.  For example, ``A is not NULL OrElse A != " "`` doesn't do anything useful.]
 
 

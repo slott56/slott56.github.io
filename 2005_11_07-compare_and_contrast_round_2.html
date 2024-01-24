@@ -120,38 +120,29 @@ as Smalltalk's Beck Test framework <a class="reference external" href="http://ww
 It evolved to the JUnit <a class="reference external" href="http://www.junit.org/index.htm%22%20target=%22NewWindow">http://www.junit.org/index.htm%22%20target=%22NewWindow</a>
 framework for Java.  Beck defined four repeated patterns of unit testing
 software, covered in a previous posting &lt;{filename}/blog/2005/11/2005_11_05-compare_and_contrast_round_1.rst&gt;.</p>
-<p>An
-additional pattern that py.test introduces is the
-<strong>Diagnostics</strong>
+<p>An additional pattern that py.test introduces is the <strong>Diagnostics</strong>
 pattern.  This is a useful traceback or cached output.  To make it useful, it is
 presented only for failing tests, and elides repetition in the event of
-recursions that lead to stack
-overflows.</p>
-<p>py.test seems to deliver
-most of the Beck-defined features.</p>
+recursions that lead to stack overflows.</p>
+<p><tt class="docutils literal">py.test</tt> seems to deliver most of the Beck-defined features.</p>
 <p>The Fixture is created by offering a
 number of setup/teardown functions, either at the module level (for a module or
 class) or within a class.</p>
-<p>The Test
-Case is a module, class or function with an appropriate name.  Either
-<tt class="docutils literal">test_</tt> or
-<tt class="docutils literal">Test_</tt> as a
-prefix is sufficient to define a test
-case.</p>
+<p>The Test Case is a module, class or function with an appropriate name.  Either
+<tt class="docutils literal">test_</tt> or <tt class="docutils literal">Test_</tt> as a
+prefix is sufficient to define a test case.</p>
 <p>The Results Check uses ordinary
 asserts and a special
-py.test.raises
+<tt class="docutils literal">py.test.raises()</tt>
 function to cover all the bases.  Personally, I prefer the JUnit approach to
 catching the expected exception and calling the
-fail() method
-for everything else.</p>
+<tt class="docutils literal">fail()</tt> method for everything else.</p>
 <p>The Suite is
 developed by implication through Python's powerful introspection: everything
 that looks like a test -- at the package, module and class level -- is a
 candidate.  A regular expression can pick names, plus other global conditions
 can be examined to further refine the test protocols.</p>
-<p>The Runner is a stand-alone
-py.test program
+<p>The Runner is a stand-alone <tt class="docutils literal">py.test</tt> program
 that locates the tests, executes them and produces a log.  Further, it produces
 Diagnostics focused on the failing tests.</p>
 
@@ -987,11 +978,11 @@ Diagnostics focused on the failing tests.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -999,7 +990,7 @@ Diagnostics focused on the failing tests.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1063,7 +1054,7 @@ Diagnostics focused on the failing tests.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1075,15 +1066,11 @@ Diagnostics focused on the failing tests.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

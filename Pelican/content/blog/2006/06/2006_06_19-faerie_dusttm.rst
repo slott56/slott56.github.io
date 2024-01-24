@@ -11,9 +11,7 @@ Faerie Dust™
 
 
 
-Here's how to recognize a
-**Faerie Dust**
-request:
+Here's how to recognize a **Faerie Dust** request:
 
 
 

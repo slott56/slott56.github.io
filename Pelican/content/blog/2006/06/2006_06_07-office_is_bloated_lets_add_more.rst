@@ -21,13 +21,11 @@ menus."
 
 Ugh.  It's bloated, so we'll
 add features to conceal the bloat.  Great approach.  Feed the obese, hand anvils
-to the drowning, throw gasoline on the
-fire.
+to the drowning, throw gasoline on the fire.
 
 
 
-Why do we buy
-this?
+Why do we buy this?
 
 
 
@@ -40,8 +38,7 @@ company's IT department.
 
 I wish that
 "Big IT" (the architects in Fortune 500 companies) would survey users and
-examine documents to find out what
-**really** 
+examine documents to find out what **really**
 happens with users of MS-Office products.  I suspect the 80-20 rule would apply
 and they'd see the following:
 
@@ -76,17 +73,13 @@ use.
 
 When they went to the hidden and
 optional menu items, I was already baffled by the complexity of the product. 
-When they put functions that
-**only** 
-appear when you right click the right UI element, I hated it.  Now, they've had
-to do away with their menu structure altogether because they won't fix the root
-cause (bloat) and instead elect to add to
-it.
+When they put functions that **only** appear when you right click the right UI element, I hated it.
+Now, they've had to do away with their menu structure altogether because they won't fix the root
+cause (bloat) and instead elect to add to it.
 
 
 
-Here's the
-bottom-line.
+Here's the bottom-line.
 
 **If the menu structure isn't obvious, you're working with the wrong metaphors.** 
 

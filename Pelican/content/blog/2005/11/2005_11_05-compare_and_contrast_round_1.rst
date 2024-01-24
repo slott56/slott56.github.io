@@ -10,8 +10,8 @@ Compare and Contrast (round 1)
 
 
 
-
-**Some Basis for Comparison** 
+Some Basis for Comparison
+-------------------------
 
 
 
@@ -22,8 +22,7 @@ software:
 
 
 
-The
-**Fixture** .
+The **Fixture**.
 The thing we are testing; a class or possibly a set of instances of a given
 class, or possibly something even larger.  If we are testing more than one class
 at a time, we aren't really "unit" testing.  So the fixture often includes stubs
@@ -31,8 +30,7 @@ for missing classes.
 
 
 
-The
-**Test Case** .  A predictable reaction of the fixture. 
+The **Test Case**.  A predictable reaction of the fixture.
 This should either work or fail.  It can, of course also raise one of those
 egregious, unchecked-for errors that indicate fairly serious problems in a
 preliminary piece of software.  Or, it may indicate something that was badly
@@ -41,15 +39,11 @@ the regression test suite.
 
 
 
-The
-**Results Check** .  A specific assertion about the
-fixture's results.
+The **Results Check**.  A specific assertion about the fixture's results.
 
 
 
-The
-**Test Suite** . A collection of
-TestCases.
+The **Test Suite**. A collection of TestCases.
 
 
 
@@ -62,11 +56,12 @@ correctly.
 
 
 
-**Legacy Frameworks** 
+Legacy Frameworks
+-----------------
 
 
 
-unittest delivers all
+``unittest`` delivers all
 the Beck-defined features.  It should, it is the indirect descendant of the
 original framework.  Having JUnit as an ancestor, however, leads to some clunky
 non-Pythonic features.  In particular, Python features that Java lacks are
@@ -75,7 +70,7 @@ functions.
 
 
 
-doctest has an odd fit with
+``doctest`` has an odd fit with
 the Beck framework.  The fixture isn't well defined; since doctest has a
 module-centric view, a shallow copy of the module globals are given to each
 test, making the module globals the fixture.  Each Case and Results Check is
@@ -85,14 +80,13 @@ structure.
 
 
 
-unittest isn't terribly
+``unittest`` isn't terribly
 Pythonic.  Doctest is module-focused, not class focused, and doesn't treat the
 notion of fixture very well.  
 
 
 
-IMO,
-module-based testing is a more useful level of unit testing.  Individual
+IMO, module-based testing is a more useful level of unit testing.  Individual
 classes, while important, rarely make sense in a vacuum.  All of the test
 harness and stub classes required to test just one class seems like too much
 unproductive work.  When the architecture changes, I may have to change a class
@@ -102,7 +96,7 @@ the unit testing framework.
 
 
 Next Up,
-py.test, nose and testgears.  Later, TestOOB and Sancho.
+``py.test``, ``nose`` and ``testgears``.  Later, ``TestOOB`` and ``Sancho``.
 
 
 

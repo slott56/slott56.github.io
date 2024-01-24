@@ -134,33 +134,33 @@ have to relax your previous ideas and accept some new ones.  The &quot;incomplet
 implementation had to do with the lack of a C++ or Java-style formal separation
 between interface and implementation.  It isn't that the formalized interface is
 missing, but that it's moved around a bit.</p>
-<p><strong>OO Design and Privacy.</strong></p>
+<div class="section" id="oo-design-and-privacy">
+<h2>OO Design and Privacy</h2>
 <p>In C++, the interface
 lived in the .hpp files, separated from the implementations in .cpp files.  In
 Java, the interface could be declared separately, but is usually deduced from
 the class definition.  The idea is that any implementation which supports the
 interface can be checked by the compiler.  The static analysis of compatibility
 somehow provides improved quality.</p>
-<p>As a
-practical matter, however, the potential quality of static checking doesn't
+<p>As a practical matter, however, the potential quality of static checking doesn't
 really work out  very well.  While C++ detects a wide variety of errors, it only
 does this if everything is recompiled.  In the event of dynamically linked
 components (.DLL's or .SO's), however, problems can't be detected until there's
 a run-time problem.  Similarly, Java class problems may not be detected until
-class load time -- leading to run-time errors for compatibility
-issues.</p>
+class load time -- leading to run-time errors for compatibility issues.</p>
 <p>In Python, the only detection
 is run-time.  Therefore, in a very practical sense, Python error detection is
 simpler and more regular.  Every design mistake is detected via run-time
 exception handling.</p>
-<p><strong>References and Objects.</strong></p>
+</div>
+<div class="section" id="references-and-objects">
+<h2>References and Objects</h2>
 <p>One new concept that
 experienced programmers struggle with is the &quot;everything's a reference&quot; Python
 viewpoint.  For C++ programmers, this can be confusing.  For Java programmers,
 however, there is less confusion because Java has two very neat buckets:
 primitive and reference types.  The primitive types behave enough like reference
-types that the distinction can be made largely
-transparent.</p>
+types that the distinction can be made largely transparent.</p>
 <p>In Python, I haven't seem
 much confusion.  I attribute this to working with people who didn't know C++ in
 the first place.  Lacking a confusing concept, they were perfectly comfortable
@@ -168,7 +168,9 @@ with this &quot;object&quot; vs. &quot;variable&quot; distinction.  A variable i
 to an object, and objects last precisely as long as they have referencing
 variables.  It's very neat and very simple.  The idea of other mechanisms isn't
 worth discussing.</p>
-<p><strong>Overloaded Functions.</strong></p>
+</div>
+<div class="section" id="overloaded-functions">
+<h2>Overloaded Functions</h2>
 <p>The third point had two
 related issues; the first is the lack of overloaded functions.  Overloaded
 functions can be valuable, but can also be confusing.  When a function has
@@ -180,18 +182,17 @@ of alternate formulations for parameters.  Having optional parameters in Python
 gives us the same advantages of overloading function names to provide optional
 or alternate parameters.  Having a single function makes it much harder to
 create an overloaded function that has the same name but different semantics.</p>
-<p><strong>Function Signatures.</strong></p>
+</div>
+<div class="section" id="function-signatures">
+<h2>Function Signatures</h2>
 <p>Here's the hidden
 fourth point: &quot;I expect to know (in a C++ sense) what is going in and what is
 coming out, and if I don't get that right then the program/complier complains.&quot;
 This is only partially true.  Indeed, it's only true in a kind of superficial
-way.  For example, when I call Java's
-math.sqrt(-1.0),
+way.  For example, when I call Java's <tt class="docutils literal"><span class="pre">math.sqrt(-1.0)</span></tt>,
 I've provided data that's correct as far as the compiler is concerned, but still
 not really correct.</p>
-<p>The compile-time
-checking of function signatures isn't really terribly effective at preventing
-errors.</p>
+<p>The compile-time checking of function signatures isn't really terribly effective at preventing errors.</p>
 <ol class="arabic simple">
 <li>In SOAP implementation, the function signature
 is restated in WSDL.  The Schema or DTD can add or remove constraints, leading
@@ -208,23 +209,23 @@ matching is sufficient, and run-time error checking is often done badly or not
 at all.  In Python, run-time checking is the norm, and can't be
 overlooked.</li>
 </ol>
-<p><strong>The Legacy Bias.</strong></p>
-<p>Our experience colors our
-perceptions.  How do we get past our bias?</p>
+</div>
+<div class="section" id="the-legacy-bias">
+<h2>The Legacy Bias</h2>
+<p>Our experience colors our perceptions.  How do we get past our bias?</p>
 <p>Here's a good version of a
 relevant <a class="reference external" href="http://mornmeet.blogspot.com/2006/11/introduction-to-zen.html">Koan</a> .  You can learn more effectively if you
 have a &quot;<a class="reference external" href="http://sfzc.org/Pages/Library/zmbm.html">Beginner's Mind</a> &quot;.    In this case, the baggage
 of problems in C++ became complaints about gaps in Python.</p>
-<p>They aren't gaps or problems in
-Python.  They are just differences.</p>
-<p>Here's what's most important:
-<strong>Teaching Programming requires Beginner's Mind</strong>.  I don't think you can teach programming
+<p>They aren't gaps or problems in Python.  They are just differences.</p>
+<p>Here's what's most important: <strong>Teaching Programming requires Beginner's Mind</strong>.
+I don't think you can teach programming
 without revisiting the newbie programmer's fundamental confusion of what they
 say at compile time and what happens at run time.  I don't think
 compare-and-contrast between programming languages is appropriate.   I think
 that it's more important to treat each programming language as a fresh exercise,
-using the language to implement the desired algorithms and data
-structures.</p>
+using the language to implement the desired algorithms and data structures.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1058,11 +1059,11 @@ structures.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1070,7 +1071,7 @@ structures.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1134,7 +1135,7 @@ structures.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1146,15 +1147,11 @@ structures.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

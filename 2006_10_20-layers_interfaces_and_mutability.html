@@ -144,13 +144,11 @@ this:</p>
 <p>The debate is whether the UI should
 see both the Data Access and the BizLogic, and the Data Access object references
 the Biz Object.</p>
-<p>So instead
-of</p>
+<p>So instead of</p>
 <pre class="literal-block">
 myBizObject.Save()
 </pre>
-<p>you
-have</p>
+<p>you have</p>
 <pre class="literal-block">
 DataAccess.Save(myBizObject)
 </pre>
@@ -160,15 +158,15 @@ object cannot ask for another business object required for processing, since the
 business layer does not know of the existence of the data
 access.&quot;</p>
 </blockquote>
-<p><strong>What's the real problem?</strong></p>
+<div class="section" id="what-s-the-real-problem">
+<h2>What's the real problem?</h2>
 <p>We could look at this as
 &quot;how do the layer communicate?&quot; but that's can become too broad.  It doesn't
 focus on intent, but folds in technology choices, and allows us to wring our
 hands over kinds of side issues.</p>
 <p>We
 should look at much of what has been written about the <a class="reference external" href="http://java.sun.com/blueprints/patterns/MVC.html">Model-View-Controller</a>  (MVC) design pattern.
-We'll return to this after looking at layers in
-general.</p>
+We'll return to this after looking at layers in general.</p>
 <p>I think that it's helpful to
 reframe the question as “What are the appropriate bindings between
 layers?”  This allows us to focus on cohesive design within a layer
@@ -176,14 +174,14 @@ and bindings between layers.  For basics on this topic, see <a class="reference 
 To Be Used in Decomposing Systems into Modules</a> , by D. L. Parnas.
 Additional terms, Coupling and Cohesion were introduced by Constantine and
 Yourdon in Structured Design: Fundamentals of a Discipline of Computer Program
-and Systems Design.  I like Binding instead of
-Coupling.</p>
+and Systems Design.  I like Binding instead of Coupling.</p>
 <p>As we go forward, we’ll
 have to further reframe the question again into “What is an appropriate
 interface design, and how is it separated from the implementation?”
-However, for now, we'll just look at the binding between
-layers.</p>
-<p><strong>Architectural Bindings.</strong></p>
+However, for now, we'll just look at the binding between layers.</p>
+</div>
+<div class="section" id="architectural-bindings">
+<h2>Architectural Bindings</h2>
 <p>Usage is bound to
 UI.  We know that, and we want that.  We want the users to think of the
 application as the UI and nothing more.  The supporting implementation is none
@@ -200,7 +198,8 @@ problem.  We want an appropriate level of binding: tight enough to assure
 things work without tying up too many resources in endless layers of
 meta-programming; loose enough that we can make changes without breaking too
 much.</p>
-<p>I'm a fan of <a class="reference external" href="https://slott56.github.io/2005_09_18-essay_14_mutability_analysis.html">Mutability Analysis</a> ; let’s look at what
+<p>I'm a fan of <a class="reference external" href="https://slott56.github.io/2005_09_18-essay_14_mutability_analysis.html">Mutability Analysis</a> ;
+let’s look at what
 the potential mutations are:</p>
 <ol class="arabic simple">
 <li>UI changes should be isolated from the
@@ -232,7 +231,9 @@ implementation.</p>
 one layer's implementation to another layer's interface.  This is the secret
 sauce that allows our bindings to remain
 flexible.</p>
-<p><strong>Technology Implications.</strong></p>
+</div>
+<div class="section" id="technology-implications">
+<h2>Technology Implications</h2>
 <p>Generally, we want
 some immunity from technology changes, as well as data or processing
 changes.  That’s why we often add a Data Access layer.  Its
@@ -240,8 +241,7 @@ purpose is to make the business logic immune to changes in the technology that
 implements the data model.  Sadly, the interface to the data storage layer
 isn’t completely standardized, so we create a Façade (a data access
 layer) to wrap the variability up and isolate it.  It creates a relatively
-fixed interface in spite of product
-variability.</p>
+fixed interface in spite of product variability.</p>
 <p>If we use X-windows (or
 Mac OS <a class="reference external" href="http://developer.apple.com/cocoa/">Cocoa</a> , or Java <a class="reference external" href="http://java.sun.com/products/jfc/">SWING</a> ,
 or a browser), we can have immunity from the software which implements our
@@ -249,8 +249,7 @@ UI.  Folks don’t often pursue this as hotly as they pursue the data
 access independence.  I’m not sure why, but many people are willing
 to marry the MS-Windows proprietary UI but not marry SQL/Server. The
 interface between UI and Processing isn’t treated with the same respect as
-the interface between Processing and
-Data.</p>
+the interface between Processing and Data.</p>
 <p>So, the Data Access layer is
 really there to isolate processing from database technology.  It’s
 not really part of our essential “who”, “what”,
@@ -263,28 +262,28 @@ also have an Object-Relational mapping layer.  This sublayer is above the
 data access layer, but below the rest of the processing layer.  It provides
 the mappings between RDBMS and actual objects as used by the application.
 This, too, is best looked at as a sublayer on part processing and not part of
-the persistent RDBMS storage
-model.</p>
-<p><strong>The Struts Example.</strong></p>
+the persistent RDBMS storage model.</p>
+</div>
+<div class="section" id="the-struts-example">
+<h2>The Struts Example</h2>
 <p>A good example of the
 UI-Processing-Persistence separation is the implementation of <a class="reference external" href="http://struts.apache.org/">Struts</a> .  In
 Struts, there is a separation among the layers, and a pleasant test to assure
-that the separation has been implemented
-properly.</p>
+that the separation has been implemented properly.</p>
 <p>The Struts UI layer is built
 with simple JSP's (read ASP if you don't know Java.)  The UI displays Java Beans
 that may have been created by an Object-Relational mapper (and really live in
 the database) or they may be containers of validation errors that were created
 by the processing layer.  The UI doesn’t know and can't know; they're all
-just beans.  It displays beans and produces beans from filled-in
-forms.</p>
+just beans.  It displays beans and produces beans from filled-in forms.</p>
 <p>The Struts UI will have
 considerable programming logic, but this is merely presentation gloss, not
 substantial processing.  For example, pluralizing words, formatting dates and
 numbers, handling variant form layouts or optional fields are all appropriate
-ways to improve presentation without bleeding through into providing real
-processing.</p>
-<p><strong>The Django Example.</strong></p>
+ways to improve presentation without bleeding through into providing real processing.</p>
+</div>
+<div class="section" id="the-django-example">
+<h2>The Django Example</h2>
 <p>As a second example, we
 can look at <a class="reference external" href="http://www.djangoproject.com/">Django</a>  framework.  They distinguish between a
 number of layers.  The low-level RDBMS is wrapped with an access layer (the
@@ -302,24 +301,23 @@ of layering is moot.</p>
 the picture, Django implement the &quot;Control&quot; of MVC in the URL dispatcher.  It's
 a very elegant solution.  Struts has to coexist with the Servlet API's.  Django,
 on the other hand, doesn't need to make this legacy interface visible.</p>
-<p><strong>Recommendation.</strong></p>
-<p>So,
-what should the UI bind to?  Should it bind to Processing, or can it bind
+</div>
+<div class="section" id="recommendation">
+<h2>Recommendation</h2>
+<p>So, what should the UI bind to?  Should it bind to Processing, or can it bind
 to Data Access?</p>
 <p>The answer was hinted
 at above, when I mentioned “bleed-through”.  When the
 processing details bleed up into the UI, this breaks the isolation rules.
 Here's the acid test:  we know the isolation rules are broken because we
 can’t just change the implementation of the business processing without
-also locating the bleed-through cases and fixing the
-UI.</p>
-<p>For
-example, the business layer is supposed to validate some user inputs.
+also locating the bleed-through cases and fixing the UI.</p>
+<p>For example, the business layer is supposed to validate some user inputs.
 However, the UI developer wrote a JSP (or Ajax or ASP) thingy that did some of
 the validation.  They were creating a “rich” user interface.
 When the business rule changes, however, we find that the JSP (or Ajax or ASP)
 interface component isn’t doing the right validation any more.
-That’s <strong>A Bad Thing</strong> ™, and a direct consequence of
+That’s <strong>A Bad Thing</strong>™, and a direct consequence of
 processing rules being implemented -- whole or in part -- in the UI
 layer.</p>
 <p>When too much processing bleeds
@@ -334,13 +332,13 @@ value.</p>
 when the UI looks directly at the Data Access layer.  Specifically, a data
 model change now leads directly to a UI change in addition to the expected
 processing change.  This ripple effect of a data model change is
-<strong>A Bad Thing</strong> ™, and it's the exact thing we were
+<strong>A Bad Thing</strong>™, and it's the exact thing we were
 trying to avoid when we broke things into layers in the first
 place.</p>
-<p><strong>Consequences.</strong></p>
-<p>One
-of the consequences of this is the clear isolation of
-<strong>all</strong>
+</div>
+<div class="section" id="consequences">
+<h2>Consequences</h2>
+<p>One of the consequences of this is the clear isolation of <strong>all</strong>
 processing into a processing layer.  The UI becomes thinner, and the
 database can also become thinner.</p>
 <p>The UI merely displays beans.  Any
@@ -366,7 +364,9 @@ processing design to use objects in memory, we can often work out ways to do
 much less SQL.  And, if we really want to push the envelope, we can resort to
 ETL processing outside the
 RDBMS.</p>
-<p><strong>Root Causes.</strong></p>
+</div>
+<div class="section" id="root-causes">
+<h2>Root Causes</h2>
 <p>It looks like there are two
 causes for this question, both of which need to be addressed in order to keep
 separation between layers.</p>
@@ -378,8 +378,7 @@ API's.</li>
 processing into the RDBMS, blurring the line, and making it unclear where the
 processing is in the first place.</li>
 </ol>
-<p>If UI
-layer developers want more API's, the processing layer folks should be ready,
+<p>If UI layer developers want more API's, the processing layer folks should be ready,
 willing and able to provide them.  This requires an adaptable style of work,
 with fairly high levels of cooperation.  They need to be on the same team,
 working for the same manager.  If it takes more than spinning around in your
@@ -402,6 +401,7 @@ procedure through the Access layer.  It looks silly because it is.  However,
 since the Processing was split up into multiple locations, a single, unified API
 must be defined to preserve the intent of the Processing-Database interface and
 allow implementation changes without breakage.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1235,11 +1235,11 @@ allow implementation changes without breakage.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1247,7 +1247,7 @@ allow implementation changes without breakage.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1311,7 +1311,7 @@ allow implementation changes without breakage.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1323,15 +1323,11 @@ allow implementation changes without breakage.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

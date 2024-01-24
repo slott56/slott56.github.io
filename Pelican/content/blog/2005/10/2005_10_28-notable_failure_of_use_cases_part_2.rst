@@ -11,11 +11,10 @@ Notable Failure of Use Cases - Part 2
 
 
 
-**Context** 
+Context
+-------
 
-The
-company,
-*H* , is
+The company, *H*, is
 a large, well-established financial services firm.  In order to meet regulatory
 reporting requirements, they elected to build a data warehouse that would
 integrate information from 40 applications to feed an application that would
@@ -31,17 +30,16 @@ cases.
 
 
 
-**Problems** 
+Problems
+---------
 
-The
-use cases, while partially narrative in form, were not interactive and were
+The use cases, while partially narrative in form, were not interactive and were
 dominated by processing details, including algorithms, database structures, and
 processing components.
 
 
 
-The operational
-processing focus reached the point where the sequence of application programs
+The operational processing focus reached the point where the sequence of application programs
 that was run during a particular production cycle was written up as a “use
 case”.  This sequence involved no user interaction, no decision-making, no
 confirmation, nor any controls for stopping or restarting.  The business value
@@ -52,8 +50,7 @@ implementation.
 
 
 
-There were many gaps in
-the use cases.  One notable gap was the absence of any mechanism for validating
+There were many gaps in the use cases.  One notable gap was the absence of any mechanism for validating
 changes to the processing rules encoded in the database.  Lacking any defined
 user interaction, the processing steps presumed that the rules appeared as if by
 magic -- all consistent, complete and correct -- and were then processed through
@@ -61,8 +58,7 @@ an elaborate pipeline of programs.
 
 
 
-When
-it was discovered that user rules did not appear in a final, perfect form, the
+When it was discovered that user rules did not appear in a final, perfect form, the
 error handling and rerun processing immediately devolved into a quagmire of
 ad-hoc steps and procedures.  Precisely the thing use case analysis is supposed
 to prevent.  The use cases had not addressed interaction with users, but instead

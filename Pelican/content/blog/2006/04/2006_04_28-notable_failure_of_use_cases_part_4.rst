@@ -27,8 +27,7 @@ system.
 
 
 
-What went
-wrong?
+What went wrong?
 
 
 
@@ -46,12 +45,12 @@ value" part of the equation is often a show-stopper.  In an earlier experience
 with end-user use-case writing, we spent four hours discussing what "business
 value" really means.  Time and energy get expended in pursuing what I call an
 "attractive sink" <{filename}/blog/2005/10/2005_10_31-notable_failure_of_use_cases_part_3.rst> that isn't really  of any value at all.
-One of those sinks is the "**Technology Workaround** ", another is the
-"**Reviews and Approvals** ".
+One of those sinks is the "**Technology Workaround**", another is the "**Reviews and Approvals**".
 
 
 
-**Documenting the Technology.** 
+Documenting the Technology
+---------------------------
 
 
 
@@ -73,8 +72,7 @@ Really.
 
 
 
-And
-what was the business value?  Somewhere in the word "processing" was some kind
+And what was the business value?  Somewhere in the word "processing" was some kind
 of algorithm that actually created something of business value.  This was -- to
 the author -- so obvious that it didn't bear repeating in the use case
 document.
@@ -111,19 +109,18 @@ still wasn't the "aha" moment.
 
 
 
-The
-"aha" moment came when they finally realized that IT would have proposed this
+The "aha" moment came when they finally realized that IT would have proposed this
 from the very beginning if they'd only described the problem instead of
 insisting on this particular solution.  To get to the "aha" moment, we had to
 review the various conversations that led to the implementation of the technical
 work-arounds.  As they recapitulated the conversation, I provided the color
 commentary from IT's point of view.  Mostly with comments like "why do they need
-that?" and "we don't know what problem this solves, but the users are demanding
-it."
+that?" and "we don't know what problem this solves, but the users are demanding it."
 
 
 
-**Documenting Reviews.** 
+Documenting Reviews
+-------------------
 
 
 
@@ -131,8 +128,7 @@ Many manual operations
 exist to check the results of other manual operations.  There are two reasons
 for this:
 
-1.  The manual operation is
-    error-prone.
+1.  The manual operation is error-prone.
 
 #.  The manual operation is governed by rules
     which are murky, incomplete, or too complex for one person to
@@ -144,14 +140,14 @@ We cope with this by
 defining business processes with numerous reviews and approvals.  In many cases,
 the reviews are legacy operations to prevent a recurrence of of some
 particularly visible mistake.  In these cases, the manual operations that we are
-describing don't *create value* , they prevent loss, which is not quite
+describing don't *create value*, they prevent loss, which is not quite
 the same thing.  
 
 
 
 We see the effects of
 these kinds of processes when the users document their off-line meetings,
-notifications; the **Reviews and Approvals** .  They are capturing details for the
+notifications; the **Reviews and Approvals**.  They are capturing details for the
 things that are happening among human beings without support from an automated
 system.   
 
@@ -186,15 +182,15 @@ participation?
 
 
 
-The more interesting
-question -- omitted from the use case -- was what happens when someone vetoes
+The more interesting question -- omitted from the use case -- was what happens when someone vetoes
 the decision.  If all five don't approve, then what?  How are people notified? 
 What is the interaction?  Has it ever happened?  What did people do? 
 
 
 
 
-**What can we do?** 
+What can we do?
+---------------
 
 
 
@@ -206,7 +202,7 @@ we're trying to eliminate?
 
 
 In the case
-of documenting the **Technology Workarounds** , it's a hard habit to break.  Many
+of documenting the **Technology Workarounds**, it's a hard habit to break.  Many
 -- too many -- people think the business analysis job is to translate the
 business problem into IT techno-speak.  In doing this, they generally presume a
 solution to a poorly-framed problem, and then document all kinds of irrelevant
@@ -230,8 +226,7 @@ can help develop the skill of isolating underlying problems.
 
 
 
-In the case of documenting the
-**Reviews and Approvals** , it's difficult to separate the
+In the case of documenting the **Reviews and Approvals**, it's difficult to separate the
 business process from the business value created by the process.  However, with
 some training and practice, it's possible to distinguish between the cook, the
 toast, and the toaster used to prepare the
@@ -257,12 +252,12 @@ toast.
 
 
 
-**Consequences.** 
+Consequences
+-------------
 
 
 
-One
-consequence of getting away from technology workarounds is that many, many
+One consequence of getting away from technology workarounds is that many, many
 things get questioned.  This, ultimately, is a good thing.  However, it does
 lead to some frustration as people locate the boundaries of what can be
 questioned, and what cannot be

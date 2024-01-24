@@ -115,18 +115,20 @@ S.Lott -- Software Architect            </a>
                 <p>See Martin Fowler's essay on <a class="reference external" href="http://www.martinfowler.com/bliki/TechnicalDebt.html">Technical Debt</a> .  Also see Steve McConnell's thoughts &lt;<a class="reference external" href="http://blogs.construx.com/blogs/stevemcc/archive/2007/11/01/technical-debt-2.aspx">http://blogs.construx.com/blogs/stevemcc/archive/2007/11/01/technical-debt-2.aspx</a>.</p>
 <p>We can use Agile techniques to get things done ASAP and ACAP (As Soon As Possible and As Cheap As Possible).  However, we still need to make clear the volume of work we're likely to encounter before we have a usable product.  And we have to clarify the <strong>Cost of Cheap™</strong>  -- better known as Technical Debt.</p>
 <p>We inherited some software from a client that we're going to maintain and enhance.  Further, we're considering ways to distribute it to some other prospective customers  The Use Cases are spot on a big, clear business problem.  The opportunities for solving this problem are huge.</p>
-<dl class="docutils">
-<dt><strong>Aside</strong></dt>
-<dd>[Every time my company and a client have this kind of &quot;support us, please; sell additional customers if it helps&quot; conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the &quot;who gets revenue from the sale&quot; question by adopting what we call the &quot;GPL Business Model&quot; (<a class="reference external" href="http://www.gnu.org/copyleft/gpl.html#section4">GPL V3 Section 4</a> ).  Source is free, support is where we make the money.</dd>
-</dl>
-<p>Services are where the money is.  It's the 21st century, there will always be free software that does more-or-less the same thing.  You can't compete on price of the initial sale.  You can only compete on the thing which is not a commodity -- skills.]</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Aside</p>
+<p>[Every time my company and a client have this kind of &quot;support us, please; sell additional customers if it helps&quot; conversation in the past, it always falls apart on the licensing and sale of the intellectual property.  In this instance, we've finally moved off the &quot;who gets revenue from the sale&quot; question by adopting what we call the &quot;GPL Business Model&quot; (<a class="reference external" href="http://www.gnu.org/copyleft/gpl.html#section4">GPL V3 Section 4</a> ).  Source is free, support is where we make the money.</p>
+<p class="last">Services are where the money is.  It's the 21st century, there will always be free software that does more-or-less the same thing.  You can't compete on price of the initial sale.  You can only compete on the thing which is not a commodity -- skills.]</p>
+</div>
 <div class="section" id="change-to-the-architecture">
 <h2>Change to the Architecture</h2>
 <p>The problem we're going to have is the distribution and support of a VB app that was designed only for in-house deployment.  It isn't designed for debugging, support, configuration or even testing.  It doesn't have any unit test cases of any kind.  Indeed, there are bugs that can be spotted through simple inspection.</p>
-<dl class="docutils">
-<dt><strong>Another Aside</strong>:</dt>
-<dd>[<tt class="docutils literal">A is not NULL AndAlso A != &quot; &quot;</tt> is the problem.  The inverse is <tt class="docutils literal">A is NULL OrElse A = &quot; &quot;</tt>.  Any other variation on these two is a common logic error.  For example, <tt class="docutils literal">A is not NULL OrElse A != &quot; &quot;</tt> doesn't do anything useful.]</dd>
-</dl>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Another Aside</p>
+<p class="last">[<tt class="docutils literal">A is not NULL AndAlso A != &quot; &quot;</tt> is the problem.  The inverse is <tt class="docutils literal">A is NULL OrElse A = &quot; &quot;</tt>.  Any other variation on these two is a common logic error.  For example, <tt class="docutils literal">A is not NULL OrElse A != &quot; &quot;</tt> doesn't do anything useful.]</p>
+</div>
 <p>I'd rather not mess around with remote desktop support for widely distributed communities of users.  It's really hard to do that, and it isn't a skill we have a lot of.  I'd rather provide this in a SaaS model.  We run a central sever farm, if you must have a desktop deployment, we build desktop apps that use our SaaS web services.</p>
 <p>One of the reasons the customer is handing it over to us is because they'd rather have a web-based deployment.  They can't easily convert it from desktop to web, so they're asking us to do that as part of our taking control of the application.  There's that technical debt piling up and preventing progress.</p>
 <p>However, almost every part of VB program is intimately tied to the VB desktop GUI processing.  Even the essential algorithms are full of bonus code to update the display or change the highlights on buttons or check boxes.</p>
@@ -987,11 +989,11 @@ S.Lott -- Software Architect            </a>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -999,7 +1001,7 @@ S.Lott -- Software Architect            </a>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1063,7 +1065,7 @@ S.Lott -- Software Architect            </a>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1075,15 +1077,11 @@ S.Lott -- Software Architect            </a>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

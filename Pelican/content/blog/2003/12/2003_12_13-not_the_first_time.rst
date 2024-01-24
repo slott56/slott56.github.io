@@ -11,12 +11,11 @@ Not the first time...
 
 
 
-**From an email I got recently, lightly edited.  Responses to follow.** 
+From an email I got recently, lightly edited.  Responses to follow
 
 
 
-**Problem**:
-The data layer of application architecture must be flexible enough to adapt to
+**Problem**: The data layer of application architecture must be flexible enough to adapt to
 virtually any new data-driven functional requirement demanded by today's
 client..right...well to support such adaptability in client deployments, the
 data model must allow almost arbitrary categorizations and groupings of data
@@ -54,7 +53,7 @@ thinking:
 
 
 
-**Benefits**:
+**Benefits**
 
 1.  Both data and events are naturally modeled in a similar structure:
     XML
@@ -70,7 +69,7 @@ thinking:
 
 
 
-**Weaknesses**:
+**Weaknesses**
 
 1.  No interactive debugging tools. However this could be mitigated by extensive
     debug logging by the application

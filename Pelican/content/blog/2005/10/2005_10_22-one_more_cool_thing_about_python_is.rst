@@ -46,7 +46,8 @@ throw it into Excel.  We can barely open the file in Textpad.
 
 
 
-**Python to the rescue.** 
+Python to the rescue
+---------------------
 
 
 

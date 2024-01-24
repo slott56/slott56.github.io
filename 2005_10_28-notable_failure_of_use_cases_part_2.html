@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="architecture,software design" />
-        <meta name="description" content="Context The company, H , is a large, well-established financial services firm. In order to meet regulatory reporting requirements, they elected to build a data warehouse that would integrate information from 40 applications to feed an application that would produce the regulatory reports. H put together a team of business analysts …" />
+        <meta name="description" content="Context The company, H, is a large, well-established financial services firm. In order to meet regulatory reporting requirements, they elected to build a data warehouse that would integrate information from 40 applications to feed an application that would produce the regulatory reports. H put together a team of business analysts …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Notable Failure of Use Cases - Part 2"/>
         <meta property="og:url" content="https://slott56.github.io/2005_10_28-notable_failure_of_use_cases_part_2.html"/>
-        <meta property="og:description" content="Context The company, H , is a large, well-established financial services firm. In order to meet regulatory reporting requirements, they elected to build a data warehouse that would integrate information from 40 applications to feed an application that would produce the regulatory reports. H put together a team of business analysts …"/>
+        <meta property="og:description" content="Context The company, H, is a large, well-established financial services firm. In order to meet regulatory reporting requirements, they elected to build a data warehouse that would integrate information from 40 applications to feed an application that would produce the regulatory reports. H put together a team of business analysts …"/>
         <meta property="article:published_time" content="2005-10-28" />
             <meta property="article:section" content="Architecture & Design" />
             <meta property="article:tag" content="architecture" />
@@ -115,10 +115,9 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Context</strong></p>
-<p>The
-company,
-<em>H</em> , is
+                <div class="section" id="context">
+<h2>Context</h2>
+<p>The company, <em>H</em>, is
 a large, well-established financial services firm.  In order to meet regulatory
 reporting requirements, they elected to build a data warehouse that would
 integrate information from 40 applications to feed an application that would
@@ -128,13 +127,13 @@ reports.</p>
 end-users to determine the use cases, and document these.  Training consisted of
 a half-day presentation on use
 cases.</p>
-<p><strong>Problems</strong></p>
-<p>The
-use cases, while partially narrative in form, were not interactive and were
+</div>
+<div class="section" id="problems">
+<h2>Problems</h2>
+<p>The use cases, while partially narrative in form, were not interactive and were
 dominated by processing details, including algorithms, database structures, and
 processing components.</p>
-<p>The operational
-processing focus reached the point where the sequence of application programs
+<p>The operational processing focus reached the point where the sequence of application programs
 that was run during a particular production cycle was written up as a “use
 case”.  This sequence involved no user interaction, no decision-making, no
 confirmation, nor any controls for stopping or restarting.  The business value
@@ -142,14 +141,12 @@ for this &quot;use case&quot; was identical with the business value proposition 
 overall application; meaning that no additional information was supplied.
 Indeed, this simply described the
 implementation.</p>
-<p>There were many gaps in
-the use cases.  One notable gap was the absence of any mechanism for validating
+<p>There were many gaps in the use cases.  One notable gap was the absence of any mechanism for validating
 changes to the processing rules encoded in the database.  Lacking any defined
 user interaction, the processing steps presumed that the rules appeared as if by
 magic -- all consistent, complete and correct -- and were then processed through
 an elaborate pipeline of programs.</p>
-<p>When
-it was discovered that user rules did not appear in a final, perfect form, the
+<p>When it was discovered that user rules did not appear in a final, perfect form, the
 error handling and rerun processing immediately devolved into a quagmire of
 ad-hoc steps and procedures.  Precisely the thing use case analysis is supposed
 to prevent.  The use cases had not addressed interaction with users, but instead
@@ -174,6 +171,7 @@ in data volume, but as a reduction in processing scope.  The users demanded a
 complete proof-of-concept demonstration plus parallel testing to assure that the
 predicates produced the same results irrespective of their position in the
 pipeline.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1007,11 +1005,11 @@ pipeline.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1019,7 +1017,7 @@ pipeline.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1083,7 +1081,7 @@ pipeline.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1095,15 +1093,11 @@ pipeline.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

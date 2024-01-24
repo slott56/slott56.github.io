@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="news" />
-        <meta name="description" content="Since most of these new-fangled dynamic languages are open-source, we have a a strange artificial barrier to considering the right solution for our problems. This barrier is &#34;No Open Source&#34; policy, usually framed as We&#39;ll Use Open Source Over My Dead Body ™. It has to be examined carefully from several …" />
+        <meta name="description" content="Since most of these new-fangled dynamic languages are open-source, we have a a strange artificial barrier to considering the right solution for our problems. This barrier is &#34;No Open Source&#34; policy, usually framed as We&#39;ll Use Open Source Over My Dead Body™. It has to be examined carefully from several …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Dynamic Languages and Corporate IT&#39;s Objections"/>
         <meta property="og:url" content="https://slott56.github.io/2006_08_29-dynamic_languages_and_corporate_its_objections.html"/>
-        <meta property="og:description" content="Since most of these new-fangled dynamic languages are open-source, we have a a strange artificial barrier to considering the right solution for our problems. This barrier is &#34;No Open Source&#34; policy, usually framed as We&#39;ll Use Open Source Over My Dead Body ™. It has to be examined carefully from several …"/>
+        <meta property="og:description" content="Since most of these new-fangled dynamic languages are open-source, we have a a strange artificial barrier to considering the right solution for our problems. This barrier is &#34;No Open Source&#34; policy, usually framed as We&#39;ll Use Open Source Over My Dead Body™. It has to be examined carefully from several …"/>
         <meta property="article:published_time" content="2006-08-29" />
             <meta property="article:section" content="News" />
             <meta property="article:tag" content="news" />
@@ -115,7 +115,7 @@ S.Lott -- Software Architect            </a>
                 <p>Since most of these new-fangled dynamic languages
 are open-source, we have a a strange artificial barrier to considering the right
 solution for our problems.  This barrier is &quot;No Open Source&quot; policy, usually
-framed as <strong>We'll Use Open Source Over My Dead Body</strong> ™.  It has to be examined
+framed as <strong>We'll Use Open Source Over My Dead Body</strong>™.  It has to be examined
 carefully from several points of view:</p>
 <ol class="arabic simple">
 <li>Most organizations already have considerable
@@ -134,15 +134,11 @@ sue.  What if our in-house software doesn't work?  Somehow that's different: our
 in-house QA doesn't apply to source we got for
 free?</li>
 </ol>
-<p>If we can get past the &quot;dynamic
-languages are open source&quot;, then we can move on to more interesting
-issues.</p>
-<p>Taft gets to the issues,
-eventually, when he lifts up two objections that have a little more substance.
-Taft, however, ran out of words before getting to the real crux of these
-objections.</p>
+<p>If we can get past the &quot;dynamic languages are open source&quot;, then we can move on to more interesting issues.</p>
+<p>Taft gets to the issues, eventually, when he lifts up two objections that have a little more substance.
+Taft, however, ran out of words before getting to the real crux of these objections.</p>
 <ol class="arabic simple">
-<li><strong>Imperative Programming is Dead</strong> .  &quot;Anders Hejlsberg, a Microsoft software
+<li><strong>Imperative Programming is Dead</strong>.  &quot;Anders Hejlsberg, a Microsoft software
 architect in Redmond, Wash., and father of C#, said the days are numbered for
 imperative programming&quot;.  As with other such pronouncements, this is premature.
 After all, procedural programming persists in spite of object-oriented
@@ -151,18 +147,17 @@ it depends on automatic optimizers.  Since automated proofs of correctness don't
 exist in general, I'm <a class="reference external" href="https://slott56.github.io/2006_03_01-c_microsoft_and_hegemony.html">suspicious</a>  that there are pretty severe limits
 on optimizations that can be successfully applied to support declarative
 programming.</li>
-<li><strong>Dynamic Languages Don't Scale</strong> .  &quot;Cedric Beust, an engineer at Google,
+<li><strong>Dynamic Languages Don't Scale</strong>.  &quot;Cedric Beust, an engineer at Google,
 in Mountain View, Calif., said, &quot;Dynamic languages suffer from some inherent
 limitations that make them inadequate for 'large software.'&quot;  There are two
 issues here: performance and error prevention.  Both of these issues lead us to
 some interesting conclusions, and some appropriate uses for dynamic
 languages.</li>
 </ol>
-<p><strong>Dynamic Languages Don't Perform Well.</strong></p>
-<p>This is a
-straw-man argument; it misses the point by attacking something irrelevant.  Yes,
-dynamic languages are not optimized as well by the compiler as dynamic
-languages.</p>
+<div class="section" id="dynamic-languages-don-t-perform-well">
+<h2>Dynamic Languages Don't Perform Well</h2>
+<p>This is a straw-man argument; it misses the point by attacking something irrelevant.
+Yes, dynamic languages are not optimized as well by the compiler as dynamic languages.</p>
 <p>However, the point is to
 leverage this, and partition the architecture into the stable bits, and the
 flexible bits.  I can see a spectrum of <a class="reference external" href="https://slott56.github.io/2005_09_18-essay_14_mutability_analysis.html">mutability</a>  based on the nature of the
@@ -171,38 +166,37 @@ compile the heck out of it, and get it optimized so that it runs really fast.
 For the poorly-defined or inherently flexible requirements, use a dynamic
 language.  Expect change, and implement it
 appropriately.</p>
-<p><strong>Dynamic Languages Don't Prevent Enough Errors.</strong></p>
+</div>
+<div class="section" id="dynamic-languages-don-t-prevent-enough-errors">
+<h2>Dynamic Languages Don't Prevent Enough Errors</h2>
 <p>I'm not completely sold on
 the value of static type checking in languages like Java, C, C++ (and Ada for
 that matter).  Here's what I observe: a programmer who has a vague notion that a
 variable has a numeric type, but can't identify the correct numeric subtype; he
 spends hours doing an empirical survey of all numeric types to see which one
 will compile.</p>
-<p>This isn't <em>design</em>
-in the usual sense of the word.  The software will have the first numeric type
+<p>This isn't <em>design</em> in the usual sense of the word.  The software will have the first numeric type
 which compiled, right, wrong or indifferent.  We don't know if that's the right
 type, or merely an acceptable supertype of the right type.  Static type checking
-hasn't really prevented the eventual error from
-occurring.</p>
-<p>Another scenario, less
-common, but more problematic, is the
-<strong>Type-Hierarchy-Meta-Framework Most General Declaration</strong> ™ where we have created a
+hasn't really prevented the eventual error from occurring.</p>
+<p>Another scenario, less common, but more problematic, is the
+<strong>Type-Hierarchy-Meta-Framework Most General Declaration</strong>™ where we have created a
 hierarchy of interfaces, abstract superclasses, and other declarative malarky to
 try and unify two relatively dissimilar things into a common structure.  Perhaps
-they should have used a <strong>Façade</strong>
-design, but instead they aimed for a too-complex static type
+they should have used a <strong>Façade</strong> design, but instead they aimed for a too-complex static type
 declaration.</p>
 <p>This is a case of too much
 design, rather than too little.  However, static type checking has introduced
 problems rather than solved them.</p>
-<p>Just
-to beat this topic to death, our SQL data bindings are always dynamic.  After
+<p>Just to beat this topic to death, our SQL data bindings are always dynamic.  After
 all, there's no strong relationship between our statically compiled Java
 application and our relational database.  The Java type checking, while
 internally consistent, doesn't have to match the database.  Indeed, seemingly
 innocuous DB changes can lead to type compatibility problems and run-time
 crashes in Java.</p>
-<p><strong>Introducing Dynamic Languages.</strong></p>
+</div>
+<div class="section" id="introducing-dynamic-languages">
+<h2>Introducing Dynamic Languages</h2>
 <p>I think the upshot of Taft's article is the following pieces of advice:</p>
 <ul class="simple">
 <li>Introduce a dynamic language in a way
@@ -221,6 +215,7 @@ abstractions and cruddy syntax.</li>
 </ul>
 <p>I think the most important thing we can do is to look at a dynamic language as the
 shell on steroids.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1054,11 +1049,11 @@ shell on steroids.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1066,7 +1061,7 @@ shell on steroids.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1130,7 +1125,7 @@ shell on steroids.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1142,15 +1137,11 @@ shell on steroids.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

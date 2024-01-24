@@ -13,37 +13,35 @@ Refactoring and Unit Testing
 
 I do a fair amount of manual refactoring.  I've
 used WebSphere Studio (Eclipse) to do some automated refactoring, so I have some
-experience in using IDE's which exploit Java's static
-type-checking.
+experience in using IDE's which exploit Java's static type-checking.
 
 
 
 However, the question of
 type checking in a dynamic language is interesting.  I don't use a sophisticated
 IDE for Python development.  So, I have limited experience using an IDE to do
-refactoring in a dynamic
-language.
+refactoring in a dynamic language.
 
 
 
-However, JB notes "I'm having
-some heartburn about hierarchical
-type
+However, JB notes
 
-systems as a way of determining 1)
-conformability and 2) managing commitments
-of
+    "I'm having
+    some heartburn about hierarchical type
+    systems as a way of determining 1)
+    conformability and 2) managing commitments of
+    semantically equivalent behavior.
 
-semantically equivalent behavior. ...
-Seems a constraining way
+    ...
 
-to do it, to me, not
-that I have a better alternative at the
-moment."
-
+    Seems a constraining way to do it, to me, not
+    that I have a better alternative at the
+    moment."
 
 
-**Duck Typing.** 
+
+Duck Typing
+-----------
 
 
 
@@ -63,8 +61,7 @@ completely apply.
 
 
 For these reasons,
-refactoring in Python is one potentially complex
-problem.
+refactoring in Python is one potentially complex problem.
 
 
 
@@ -72,19 +69,18 @@ From what I understand of
 Ruby, you can override a class method without creating a subclass, essentially
 redefining a base class in some obscure way.  This gives me the willies because
 it makes refactoring a problem without any sensible boundaries.  Maybe I'm
-misunderstanding Ruby, and have this
-wrong.
+misunderstanding Ruby, and have this wrong.
 
 
 
-**Essential Use Cases.** 
+Essential Use Cases
+-------------------
 
 
 
 The principal refactoring
 use case involves moving a common method up the inheritance hierarchy.  As a
-practical matter, this does happen once in a
-while.
+practical matter, this does happen once in a while.
 
 
 
@@ -94,50 +90,33 @@ subclass hierarchy.
 
 
 
-The fringe use case
-is a variation on the theme of
-SubClass1.methodA
-looking a lot like
-Subclass2.methodA,
-but they're not the same.  There are two interesting
-cases.
+The fringe use case is a variation on the theme of ``SubClass1.methodA``
+looking a lot like ``Subclass2.methodA``,
+but they're not the same.  There are two interesting cases.
+
+-   ``SC1.mA()`` is a superset of ``SC2.mA()``.
+    All of ``SC2.mA()`` `gets refactored up, and ``SC1.mA()``
+    overrides it to add features.
+
+-   ``SC1.mA()`` overlaps with ``SC2.mA()``.
+    Some common functionality has to get extracted, moved up the hierarchy;
+    ``SC1.mA()`` and ``SC2.mA()`` are rebuilt around this common kernel.
+
+-   ``SC1.mA()`` has no usable relationship with ``SC2.mA()``.
+    What now?  In some cases, a complete change in design may be called for.  The mere
+    presence of this situation is diagnostic of the designer having missed
+    something.
 
 
 
-SC1.mA()
-is a superset of
-SC2.mA().  All
-of SC2.mA()
-gets refactored up, and SC1.mA()
-overrides it to add
-features.
-
-SC1.mA()
-overlaps with
-SC2.mA().  Some
-common functionality has to get extracted, moved up the hierarchy;
-SC1.mA() and
-SC2.mA() are
-rebuilt around this common
-kernel.
-
-SC1.mA()
-has no usable relationship with
-SC2.mA().  What
-now?  In some cases, a complete change in design may be called for.  The mere
-presence of this situation is diagnostic of the designer having missed
-something.
-
-
-
-**Beyond the Fringe.** 
+Beyond the Fringe
+------------------
 
 
 
 Outside the fringe of
-ordinary refactoring are the **New Design Pattern** ™ situations.  Mostly, these are
-**Strategy** 
-situations, where what looks -- initially -- like a variant method grows into a
+ordinary refactoring are the **New Design Pattern**\ ™ situations.  Mostly, these are
+**Strategy** situations, where what looks -- initially -- like a variant method grows into a
 different approach as we learn more about the
 solution.
 
@@ -153,29 +132,24 @@ surface.
 
 
 
-At this point, we realize we
-need a
-**Strategy** 
-hierarchy to contain the variant algorithms, not a hierarchy of ordinary
+At this point, we realize we need a
+**Strategy** hierarchy to contain the variant algorithms, not a hierarchy of ordinary
 Entities.  How does refactoring work here, where we're moving the functionality
 out of a class hierarchy into a different class hierarchy?  Is this even
-refactoring, or is it the more general case of
-redesign?
+refactoring, or is it the more general case of redesign?
 
 
 
 It doesn't feel like
 refactoring because  we aren't shuffling methods up and down the class
 hierarchy.  In Python, the Duck Typing means we don't actually need a proper
-hierarchy for the
-**Strategy** 
-class definitions.  Consequently, we're free to make significant structural
-changes that I don't think an IDE can ever help
-with.
+hierarchy for the **Strategy** class definitions.  Consequently, we're free to make significant structural
+changes that I don't think an IDE can ever help with.
 
 
 
-**Across the Spectrum.** 
+Across the Spectrum
+-------------------
 
 
 
@@ -196,16 +170,14 @@ semantic information.
 
 
 
-There are parts
-of design (and redesign) that are hard.  I think anyone would agree that the
+There are parts of design (and redesign) that are hard.  I think anyone would agree that the
 earliest phases of noodling around about a problem are done without benefit of
 an IDE or formal semantics.  When the design is merely conceptual, tools can't
 help.
 
 
 
-I think refactoring includes a
-very broad spectrum.  At one end, things are essentially mechanical; at the
+I think refactoring includes a very broad spectrum.  At one end, things are essentially mechanical; at the
 other end things, are completely conceptual.  This isn't really a problem that
 needs a solution; it doesn't need tools.  It's part of the game of moving from a
 good idea to software.  Some parts of the good idea don't have formal semantics.
@@ -214,20 +186,18 @@ applied.
 
 
 
-In the case of Python, I
-suspect that IDE support for refactoring could only be feeble at best.  The
+In the case of Python, I suspect that IDE support for refactoring could only be feeble at best.  The
 mechanical end of the spectrum is so easy that tools aren't required.   At the
-conceptual end of the spectrum, tools don't help in the first
-place.
+conceptual end of the spectrum, tools don't help in the first place.
 
 
 
-**The Middle Ground.** 
+The Middle Ground
+-----------------
 
 
 
-One might argue that
-simple, mechanical refactoring can be aided by the presence of static type
+One might argue that simple, mechanical refactoring can be aided by the presence of static type
 declarations.  However, my experience is that this covers only the most mundane
 of the refactoring use cases.  In Python, we just move the method around. 
 
@@ -258,7 +228,8 @@ automating.
 
 
 
-**The Formal Specification.** 
+The Formal Specification
+------------------------
 
 
 
@@ -270,13 +241,11 @@ to refactor the changed design.
 
 
 
-JB's
-formality would be a nice thing to capture.  If every statement had a proper
+JB's formality would be a nice thing to capture.  If every statement had a proper
 precondition and postcondition, then we could prove almost anything about our
 software except whether or not the loops actually terminated.  (That can't be
 formally proven in a system with the same expressive power as software, it
-requires more sophisticated logical
-tools.)
+requires more sophisticated logical tools.)
 
 
 
@@ -289,12 +258,12 @@ that allows you to write a "for all"; from this you can built a "there exists".
 
 
 
-I'm not sure how helpful formal
-assertions would be.
+I'm not sure how helpful formal assertions would be.
 
 
 
-**Pragmatic Refactoring.** 
+Pragmatic Refactoring
+---------------------
 
 
 
@@ -309,8 +278,7 @@ handy to assure a complete job.
 
 
 
-In
-Python, breaking the whole thing down as part of a redesign is so much simpler. 
+In Python, breaking the whole thing down as part of a redesign is so much simpler.
 We don't have the artifice of "interface" to keep to a single inheritance model
 with static type checking across multiple aspects of a class.  We just move the
 methods around.  We have multiple inheritance, and we don't need formal
@@ -324,8 +292,7 @@ specification for a Java program.  I can tweak and tinker, optimizing
 performance and simplifying without the rigid formality of Java.  Adding proper
 class hierarchies and turning multiple inheritance into single+interface
 inheritance is typically a pretty easy transformation.  Since I knew I was
-aiming at Java in the first place, I avoided Pythonisms that don't
-translate.
+aiming at Java in the first place, I avoided Pythonisms that don't translate.
 
 
 
@@ -335,12 +302,12 @@ find it easier to work with a proper inheritance hierarchy, one that has
 explicit Not Implemented exceptions to mark the place-holders.  I like to have a
 tidy interface definition so that I can document the interface.  This additional
 material makes refactoring slightly more complex, but could help an automated
-tool do some useful method matching among
-classes.
+tool do some useful method matching among classes.
 
 
 
-**The Final Test.** 
+The Final Test
+---------------
 
 
 
@@ -349,8 +316,7 @@ tests, refactoring is impossible.  Even in Java, with a swanky IDE that checks
 everything, you still have potential problems which are uncheckable.  In
 particular, a mis-named subclass method cannot be detected except by "near-miss"
 fuzzy-matching rules that will almost always work and will have false-positives.
-Only unit testing can locate this
-situation.
+Only unit testing can locate this situation.
 
 
 
@@ -358,8 +324,7 @@ Unit testing absolutely is a
 stand-in for things the compiler can't check.  You can portray the heavy use of
 unit testing as a negative ("the compiler can't be trusted") or as a pragmatic
 approach to verifying the things you can't formally state.  All of the
-assertions in the world won't find a spelling
-mistake.
+assertions in the world won't find a spelling mistake.
 
 
 
@@ -371,9 +336,8 @@ of tests.
 
 
 
-Since the IDE can't register
-intent very well, it isn't a complete solution.  In the case of redesign, it
-isn't even very helpful.
+Since the IDE can't register intent very well, it isn't a complete solution.
+In the case of redesign, it isn't even very helpful.
 
 
 

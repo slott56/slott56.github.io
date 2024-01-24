@@ -21,7 +21,7 @@ The OS and Virtualization territory is already staked out.  Not sure this will b
 
 
 
-Enterprise applications (CRM, ERP, BI) are scary.  Scary because these are purchased by CIO's.  CIO's are herd animals and -- of course -- an open source enterprise package will *never*  be acceptable.  Reason: `who do you sue <{filename}/blog/2006/11/2006_11_27-who_do_you_sue.rst>`_ ?
+Enterprise applications (CRM, ERP, BI) are scary.  Scary because these are purchased by CIO's.  CIO's are herd animals and -- of course -- an open source enterprise package will *never*  be acceptable.
 
 
 

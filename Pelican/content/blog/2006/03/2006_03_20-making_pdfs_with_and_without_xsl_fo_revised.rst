@@ -25,7 +25,8 @@ suitable?
 
 
 
-**XSL:FO Products** 
+XSL:FO Products
+---------------
 
 
 
@@ -34,8 +35,7 @@ available at XMLSoftware.com http://www.xmlsoftware.com/xslfo.html.
 
 
 
-The
-core list of tools include the following:
+The core list of tools include the following:
 
 -   Adobe seems to own this space; they offer
     XSL:FO processing tools in a wide variety of forms.  Further, they have an
@@ -50,8 +50,7 @@ core list of tools include the following:
     **XSL Formatter**  product that seems to be widely
     regarded.
 
--   RenderX http://www.renderx.com/ offers the
-    **XEP** 
+-   RenderX http://www.renderx.com/ offers the **XEP**
     product that does this job well.
 
 -   Chive http://www.chive.com/ has their Apoc product, which is a .Net
@@ -76,14 +75,11 @@ core list of tools include the following:
 
 
 A nice comparison between the
-market-leaders
-**XEP**  and
-**XSL Formatter**  is available at XSLT.com http://www.xslt.com/html/xsl-list/2002-04/msg00227.html.
+market-leaders **XEP**  and **XSL Formatter**  is available at XSLT.com http://www.xslt.com/html/xsl-list/2002-04/msg00227.html.
 
 
 
-Beyond
-these tools, Altova has a product http://www.altova.com/dev_portal_xslfo.html%22%20target=%22NewWindow
+Beyond these tools, Altova has a product http://www.altova.com/dev_portal_xslfo.html%22%20target=%22NewWindow
 to help design the XSL that controls document production.
 
 
@@ -103,7 +99,7 @@ the problem.
 
 
 
-**Additional Thoughts.**  The real question, however, is why
+**Additional Thoughts**.  The real question, however, is why
 XSL:FO?  There are lots of products that produce PDF files.  We have to look at
 the real purpose behind the task.  For converting DocBook files, the stylesheets
 and XSL:FO components fit into a very nice processing pipeline that is driven by
@@ -135,9 +131,7 @@ the advantage of minimizing knowledge of XSL:FO.
 
 
 
-Existing
-Markup.  In this case, existing markup languages are
-leveraged.
+Existing Markup.  In this case, existing markup languages are leveraged.
 
 1.  Template processing.  Use an existing template
     engine (Velocity, Cheetah or similar) that uses a letter template in a

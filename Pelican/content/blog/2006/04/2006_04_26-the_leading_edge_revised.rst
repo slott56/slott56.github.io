@@ -11,13 +11,12 @@ The Leading Edge (Revised)
 
 
 
-**Is Now the Time?** 
+Is Now the Time?
+----------------
 
 
 
-First, and foremost, Open
-Source solutions are growing
-rapidly.
+First, and foremost, Open Source solutions are growing rapidly.
 
 
 
@@ -47,19 +46,18 @@ and technologies.
 
 
 
-Bottom line on point #1, "is now the time...",  is a resounding
-**yes** , now
-is the time.
+Bottom line on point #1, "is now the time...",  is a resounding **yes** , now is the time.
 
 
 
-**How Far Ahead Of Your Customers Do You Want To Be?** 
+How Far Ahead Of Your Customers Do You Want To Be?
+---------------------------------------------------
 
 
 
 This quote has me puzzled: "you
-don't want to get too far ahead of your customers".  It's an interesting point
-of view.  
+don't want to get too far ahead of your customers".
+It's an interesting point of view.
 
 
 
@@ -97,19 +95,16 @@ wouldn't sell.  Why should a lawn service offer to install a `MowBot <http://www
 
 
 
-The comment suggests that I wouldn't
-want to even make that kind of
-offer.
+The comment suggests that I wouldn't want to even make that kind of offer.
 
 
 
-**How is Corporate IT like lawn care?** 
+How is Corporate IT like lawn care?
+-----------------------------------
 
 
 
-Actually, there are a
-number of interesting parallels between Corporate IT and a Lawn Care
-Service.
+Actually, there are a number of interesting parallels between Corporate IT and a Lawn Care Service.
 
 
 
@@ -129,9 +124,9 @@ scratch.
 
 
 Can we leverage are lawns as
-for-profit parts of our home/business? 
-**Wait!**  
-That's where the parallel falls down.  Indeed, that's the problem I have with
+for-profit parts of our home/business? **Wait!**
+That's where the parallel falls down.
+Indeed, that's the problem I have with
 the whole "...you don't want to get too far ahead of your customers" point. 
 
 
@@ -139,21 +134,21 @@ the whole "...you don't want to get too far ahead of your customers" point.
 
 If we aren't offering novel,
 high-value, low-risk solutions to our IT customers, what are we saying?  We're
-saying that IT isn't about
-*value* ,
-it's about *status quo* .  Keeping the status quo isn't a
-marketplace opportunity.  It's a defensive position in response to some kind of
-threat.
+saying that IT isn't about *value* ,
+it's about *status quo*.
+Keeping the status quo isn't a marketplace opportunity.
+It's a defensive position in response to some kind of threat.
 
 
 
-**What Can You Sell?** 
+What Can You Sell?
+-------------------
 
 
 
 One reason for a defensive
-position is fear of failure.  An additional comment http://www.haloscan.com/comments/slott/E20060426151515/#91487 suggest that I shouldn't whine because my
-low-end customers can't afford a RoboMow.  It appears to mean that I should not
+position is fear of failure.  A commenter suggested that I shouldn't whine because my
+low-end customers can't afford a RoboMow.  This comment appears to mean that I should not
 expect to sell high-end products to low-end customers.
 
 
@@ -178,27 +173,24 @@ technology.
 
 While the comment says to
 stop whining about failing to sell, it raises the question of "what will you
-actually sell?"  The answer is that I won't sell
-*anything* 
-if I don't make an offer.  
+actually sell?"  The answer is that I won't sell *anything* if I don't make an offer.
 
 
 
-I have two
-choices: wait for customer demand or make an offer.  If I don't make a new
+I have two choices: wait for customer demand or make an offer.  If I don't make a new
 technology offer, I'll never grow beyond low-bidding for lawn care services.  If
 I do make an offer of new technology, I may have materially changed the game for
 the customers who are ready.
 
 
 
-Why would
-I not make the offer of new technology?  
+Why would I not make the offer of new technology?
 
 
 
 
-**So What's the Threat?** 
+So What's the Threat?
+---------------------
 
 
 

@@ -45,15 +45,16 @@ design.
 
 
 
-**What Happened?** 
+What Happened?
+--------------
 
 
 
 It's hard to say why
 software is Strategic when it's being acquired and customized, but non-strategic
-for the rest of it's service life.  I've heard it described as
-**Executive ADD** ™: an inability to focus.  This means
-that every shiny new idea wind up with the label "Strategic" so that it's
+for the rest of it's service life.  I've heard it described as **Executive ADD**\ ™:
+an inability to focus.
+This means that every shiny new idea wind up with the label "Strategic" so that it's
 acceptable to pour resources into it. 
 
 
@@ -69,21 +70,18 @@ thing.
 
 What causes this flip-flopping? 
 I think there are several reasons, all of which stem from a feeling that
-**Software is Omniscient** .  Once we install it, it will so
+**Software is Omniscient**.  Once we install it, it will so
 regulate and structure our work-life that nothing bad will ever happen.  Once
-we've tested it, it cannot be misused, it's a
-**Thing of Beauty and A Joy Forever** .
+we've tested it, it cannot be misused, it's a **Thing of Beauty and A Joy Forever**.
 
 
 
-Clearly,
-**Executive ADD** ™ is caused by the failure to see how
+Clearly, **Executive ADD**\ ™ is caused by the failure to see how
 people abuse and mistreat software.  
 
 
 
-I
-often see examples of the `Third Christmas Club Problem <{filename}/blog/2005/09/2005_09_17-essay_13_analysis_without_running_aground.rst>`_ : there's a field
+I often see examples of the `Third Christmas Club Problem <{filename}/blog/2005/09/2005_09_17-essay_13_analysis_without_running_aground.rst>`_ : there's a field
 that isn't currently in use, so we can put data in there.  Sometimes we'll find
 that our business entity has multiple state changes, but only one status code,
 so end users invent new status codes to reflect combinations of the various
@@ -91,7 +89,8 @@ states.
 
 
 
-**Invisible Abuse.** 
+Invisible Abuse
+---------------
 
 
 
@@ -111,25 +110,21 @@ spring immediately to mind.
 
 
 
-What we wind up with is a
-perception that "Strategic" software is a
-**Fire and Forget**  proposition.  Once installed, it runs
-on autopilot forever.  The complexities are inherent in the business, and the
+What we wind up with is a perception that "Strategic" software is a **Fire and Forget**  proposition.
+Once installed, it runs on autopilot forever.  The complexities are inherent in the business, and the
 details are boring (or complex), so we'll never be 100% rock-solid sure that the
-software is being used
-properly.
+software is being used properly.
 
 
 
-**Choices.** 
+Choices
+-------
 
 
 
-We
-have really two choices: (1) treat strategic software like any other strategic
+We have really two choices: (1) treat strategic software like any other strategic
 asset and work to improve it, or (2) don't call it strategic unless it really is
-the centerpiece of the business for the next few
-years.
+the centerpiece of the business for the next few years.
 
 
 
@@ -143,21 +138,19 @@ technology.
 
 
 
-If it's merely
-business-critical, it's something you install, and then assign a maintainer to
+If it's merely business-critical, it's something you install, and then assign a maintainer to
 apply bug fixes.  It isn't a differentiator; indeed, all your competitors may
 have the same thing.  The vendor-supplied upgrades will be dutifully installed
-as
-necessary.
+as necessary.
 
 
 
-**Customization.** 
+Customization
+-------------
 
 
 
-Where
-does customization fit into this stark dichotomy?  There is really only one
+Where does customization fit into this stark dichotomy?  There is really only one
 proper role for customization, and that's to transform commodity software into
 strategic software.  If the customizations are strategic, then they are
 visionary and a differentiator, a source of ongoing value creation.  Someone

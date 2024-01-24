@@ -117,25 +117,25 @@ S.Lott -- Software Architect            </a>
                 </div>
                 <p>I do a fair amount of manual refactoring.  I've
 used WebSphere Studio (Eclipse) to do some automated refactoring, so I have some
-experience in using IDE's which exploit Java's static
-type-checking.</p>
+experience in using IDE's which exploit Java's static type-checking.</p>
 <p>However, the question of
 type checking in a dynamic language is interesting.  I don't use a sophisticated
 IDE for Python development.  So, I have limited experience using an IDE to do
-refactoring in a dynamic
-language.</p>
-<p>However, JB notes &quot;I'm having
-some heartburn about hierarchical
-type</p>
-<p>systems as a way of determining 1)
-conformability and 2) managing commitments
-of</p>
-<p>semantically equivalent behavior. ...
-Seems a constraining way</p>
-<p>to do it, to me, not
+refactoring in a dynamic language.</p>
+<p>However, JB notes</p>
+<blockquote>
+<p>&quot;I'm having
+some heartburn about hierarchical type
+systems as a way of determining 1)
+conformability and 2) managing commitments of
+semantically equivalent behavior.</p>
+<p>...</p>
+<p>Seems a constraining way to do it, to me, not
 that I have a better alternative at the
 moment.&quot;</p>
-<p><strong>Duck Typing.</strong></p>
+</blockquote>
+<div class="section" id="duck-typing">
+<h2>Duck Typing</h2>
 <p>Since Python relies on
 <a class="reference external" href="http://en.wikipedia.org/wiki/Duck_typing">Duck
 Typing</a> , refactoring takes on an interesting new dimension.  We aren't
@@ -145,55 +145,42 @@ now able to -- well -- put a method just about anywhere.</p>
 simple, single-inheritance model, the &quot;hierarchical&quot; type system doesn't
 completely apply.</p>
 <p>For these reasons,
-refactoring in Python is one potentially complex
-problem.</p>
+refactoring in Python is one potentially complex problem.</p>
 <p>From what I understand of
 Ruby, you can override a class method without creating a subclass, essentially
 redefining a base class in some obscure way.  This gives me the willies because
 it makes refactoring a problem without any sensible boundaries.  Maybe I'm
-misunderstanding Ruby, and have this
-wrong.</p>
-<p><strong>Essential Use Cases.</strong></p>
+misunderstanding Ruby, and have this wrong.</p>
+</div>
+<div class="section" id="essential-use-cases">
+<h2>Essential Use Cases</h2>
 <p>The principal refactoring
 use case involves moving a common method up the inheritance hierarchy.  As a
-practical matter, this does happen once in a
-while.</p>
+practical matter, this does happen once in a while.</p>
 <p>An additional text-book
 refactoring use case arises when we're adding or removing whole methods in the
 subclass hierarchy.</p>
-<p>The fringe use case
-is a variation on the theme of
-SubClass1.methodA
-looking a lot like
-Subclass2.methodA,
-but they're not the same.  There are two interesting
-cases.</p>
-<p>SC1.mA()
-is a superset of
-SC2.mA().  All
-of SC2.mA()
-gets refactored up, and SC1.mA()
-overrides it to add
-features.</p>
-<p>SC1.mA()
-overlaps with
-SC2.mA().  Some
-common functionality has to get extracted, moved up the hierarchy;
-SC1.mA() and
-SC2.mA() are
-rebuilt around this common
-kernel.</p>
-<p>SC1.mA()
-has no usable relationship with
-SC2.mA().  What
-now?  In some cases, a complete change in design may be called for.  The mere
+<p>The fringe use case is a variation on the theme of <tt class="docutils literal">SubClass1.methodA</tt>
+looking a lot like <tt class="docutils literal">Subclass2.methodA</tt>,
+but they're not the same.  There are two interesting cases.</p>
+<ul class="simple">
+<li><tt class="docutils literal">SC1.mA()</tt> is a superset of <tt class="docutils literal">SC2.mA()</tt>.
+All of <tt class="docutils literal">SC2.mA()</tt> <cite>gets refactored up, and ``SC1.mA()`</cite>
+overrides it to add features.</li>
+<li><tt class="docutils literal">SC1.mA()</tt> overlaps with <tt class="docutils literal">SC2.mA()</tt>.
+Some common functionality has to get extracted, moved up the hierarchy;
+<tt class="docutils literal">SC1.mA()</tt> and <tt class="docutils literal">SC2.mA()</tt> are rebuilt around this common kernel.</li>
+<li><tt class="docutils literal">SC1.mA()</tt> has no usable relationship with <tt class="docutils literal">SC2.mA()</tt>.
+What now?  In some cases, a complete change in design may be called for.  The mere
 presence of this situation is diagnostic of the designer having missed
-something.</p>
-<p><strong>Beyond the Fringe.</strong></p>
+something.</li>
+</ul>
+</div>
+<div class="section" id="beyond-the-fringe">
+<h2>Beyond the Fringe</h2>
 <p>Outside the fringe of
-ordinary refactoring are the <strong>New Design Pattern</strong> ™ situations.  Mostly, these are
-<strong>Strategy</strong>
-situations, where what looks -- initially -- like a variant method grows into a
+ordinary refactoring are the <strong>New Design Pattern</strong>™ situations.  Mostly, these are
+<strong>Strategy</strong> situations, where what looks -- initially -- like a variant method grows into a
 different approach as we learn more about the
 solution.</p>
 <p>Consider a pair of ordinary
@@ -203,23 +190,19 @@ difference is one algorithm.  This can be done through inheritance, but
 sometimes that variant algorithm is only the tip of the iceberg, and there is
 more variability just below the
 surface.</p>
-<p>At this point, we realize we
-need a
-<strong>Strategy</strong>
-hierarchy to contain the variant algorithms, not a hierarchy of ordinary
+<p>At this point, we realize we need a
+<strong>Strategy</strong> hierarchy to contain the variant algorithms, not a hierarchy of ordinary
 Entities.  How does refactoring work here, where we're moving the functionality
 out of a class hierarchy into a different class hierarchy?  Is this even
-refactoring, or is it the more general case of
-redesign?</p>
+refactoring, or is it the more general case of redesign?</p>
 <p>It doesn't feel like
 refactoring because  we aren't shuffling methods up and down the class
 hierarchy.  In Python, the Duck Typing means we don't actually need a proper
-hierarchy for the
-<strong>Strategy</strong>
-class definitions.  Consequently, we're free to make significant structural
-changes that I don't think an IDE can ever help
-with.</p>
-<p><strong>Across the Spectrum.</strong></p>
+hierarchy for the <strong>Strategy</strong> class definitions.  Consequently, we're free to make significant structural
+changes that I don't think an IDE can ever help with.</p>
+</div>
+<div class="section" id="across-the-spectrum">
+<h2>Across the Spectrum</h2>
 <p>One potential problem
 with this is captured in the comment that &quot;[the compiler] can’t help but
 see your code as a pile of text&quot;.  By extension, then, the IDE can't do anything
@@ -230,26 +213,23 @@ information available to the compiler (or the IDE) isn't of much value until
 you've finished.  Nothing helps you when you're in the middle of this.  Until
 the semantic information exists, no IDE can help you manage and maintain the
 semantic information.</p>
-<p>There are parts
-of design (and redesign) that are hard.  I think anyone would agree that the
+<p>There are parts of design (and redesign) that are hard.  I think anyone would agree that the
 earliest phases of noodling around about a problem are done without benefit of
 an IDE or formal semantics.  When the design is merely conceptual, tools can't
 help.</p>
-<p>I think refactoring includes a
-very broad spectrum.  At one end, things are essentially mechanical; at the
+<p>I think refactoring includes a very broad spectrum.  At one end, things are essentially mechanical; at the
 other end things, are completely conceptual.  This isn't really a problem that
 needs a solution; it doesn't need tools.  It's part of the game of moving from a
 good idea to software.  Some parts of the good idea don't have formal semantics.
 Eventually, when formal semantics exist, tools can be
 applied.</p>
-<p>In the case of Python, I
-suspect that IDE support for refactoring could only be feeble at best.  The
+<p>In the case of Python, I suspect that IDE support for refactoring could only be feeble at best.  The
 mechanical end of the spectrum is so easy that tools aren't required.   At the
-conceptual end of the spectrum, tools don't help in the first
-place.</p>
-<p><strong>The Middle Ground.</strong></p>
-<p>One might argue that
-simple, mechanical refactoring can be aided by the presence of static type
+conceptual end of the spectrum, tools don't help in the first place.</p>
+</div>
+<div class="section" id="the-middle-ground">
+<h2>The Middle Ground</h2>
+<p>One might argue that simple, mechanical refactoring can be aided by the presence of static type
 declarations.  However, my experience is that this covers only the most mundane
 of the refactoring use cases.  In Python, we just move the method around.</p>
 <p>In Python, there's a double whammy:
@@ -266,27 +246,28 @@ spot certain kinds of obvious mismatches in number of arguments vs. parameters.<
 committing to specific semantics, we see something even more profound.  It goes
 way beyond what even Java is capable of checking or
 automating.</p>
-<p><strong>The Formal Specification.</strong></p>
+</div>
+<div class="section" id="the-formal-specification">
+<h2>The Formal Specification</h2>
 <p>JB is asking for a
 level beyond syntax, beyond type matching and off into &quot;intent&quot;.  JB appears to
 be looking for formal assertions of preconditions and postconditions that he can
 use to determine how to redesign methods to make them refactorable, and then how
 to refactor the changed design.</p>
-<p>JB's
-formality would be a nice thing to capture.  If every statement had a proper
+<p>JB's formality would be a nice thing to capture.  If every statement had a proper
 precondition and postcondition, then we could prove almost anything about our
 software except whether or not the loops actually terminated.  (That can't be
 formally proven in a system with the same expressive power as software, it
-requires more sophisticated logical
-tools.)</p>
+requires more sophisticated logical tools.)</p>
 <p>Since Java and Python have
 added additional markers (annotations and decorators) JB's assertions could be
 captured, to an extent.  You'd have to implement a simple &quot;for all&quot; and &quot;there
 exists&quot; predicate, but Python has a nice reduce that can be paired with a lambda
 that allows you to write a &quot;for all&quot;; from this you can built a &quot;there exists&quot;.</p>
-<p>I'm not sure how helpful formal
-assertions would be.</p>
-<p><strong>Pragmatic Refactoring.</strong></p>
+<p>I'm not sure how helpful formal assertions would be.</p>
+</div>
+<div class="section" id="pragmatic-refactoring">
+<h2>Pragmatic Refactoring</h2>
 <p>When working in the
 center of the refactoring use cases, IDE aids are helpful.  When working at the
 fringe, they're just visual noise.  Indeed, when redesigning something, I have
@@ -295,8 +276,7 @@ it's checking for errors using obsolete type information.  When I've broken the
 whole thing down into a workbench full of parts, the semantic checks aren't even
 meaningful.  Once I get it put back together again, automated checking can be
 handy to assure a complete job.</p>
-<p>In
-Python, breaking the whole thing down as part of a redesign is so much simpler.
+<p>In Python, breaking the whole thing down as part of a redesign is so much simpler.
 We don't have the artifice of &quot;interface&quot; to keep to a single inheritance model
 with static type checking across multiple aspects of a class.  We just move the
 methods around.  We have multiple inheritance, and we don't need formal
@@ -307,38 +287,36 @@ specification for a Java program.  I can tweak and tinker, optimizing
 performance and simplifying without the rigid formality of Java.  Adding proper
 class hierarchies and turning multiple inheritance into single+interface
 inheritance is typically a pretty easy transformation.  Since I knew I was
-aiming at Java in the first place, I avoided Pythonisms that don't
-translate.</p>
+aiming at Java in the first place, I avoided Pythonisms that don't translate.</p>
 <p>While it's true that we
 don't need Java's formality in Python, much of that formality is helpful.  I
 find it easier to work with a proper inheritance hierarchy, one that has
 explicit Not Implemented exceptions to mark the place-holders.  I like to have a
 tidy interface definition so that I can document the interface.  This additional
 material makes refactoring slightly more complex, but could help an automated
-tool do some useful method matching among
-classes.</p>
-<p><strong>The Final Test.</strong></p>
+tool do some useful method matching among classes.</p>
+</div>
+<div class="section" id="the-final-test">
+<h2>The Final Test</h2>
 <p>Without appropriate unit
 tests, refactoring is impossible.  Even in Java, with a swanky IDE that checks
 everything, you still have potential problems which are uncheckable.  In
 particular, a mis-named subclass method cannot be detected except by &quot;near-miss&quot;
 fuzzy-matching rules that will almost always work and will have false-positives.
-Only unit testing can locate this
-situation.</p>
+Only unit testing can locate this situation.</p>
 <p>Unit testing absolutely is a
 stand-in for things the compiler can't check.  You can portray the heavy use of
 unit testing as a negative (&quot;the compiler can't be trusted&quot;) or as a pragmatic
 approach to verifying the things you can't formally state.  All of the
-assertions in the world won't find a spelling
-mistake.</p>
+assertions in the world won't find a spelling mistake.</p>
 <p>Worse, your formal
 declarations (post-condition assertions or type definitions) could just as
 easily be wrong.  A tidy formal proof with a wrong piece of logic will derive an
 incorrect program.  A misspelled class name may compile, but still fail a suite
 of tests.</p>
-<p>Since the IDE can't register
-intent very well, it isn't a complete solution.  In the case of redesign, it
-isn't even very helpful.</p>
+<p>Since the IDE can't register intent very well, it isn't a complete solution.
+In the case of redesign, it isn't even very helpful.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1172,11 +1150,11 @@ isn't even very helpful.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1184,7 +1162,7 @@ isn't even very helpful.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1248,7 +1226,7 @@ isn't even very helpful.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1260,15 +1238,11 @@ isn't even very helpful.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

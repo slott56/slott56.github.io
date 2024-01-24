@@ -66,26 +66,24 @@ predictability http://www.joelonsoftware.com/design/1stDraft/03.html.
 
 
 
-**The API Bottleneck.** 
+The API Bottleneck
+------------------
 
 
 
 My problem may be
 that I see the really innovative stuff in the LAMP (Linux, Apache, MySQL,
-Python/PHP/Perl) or MARS (MySQL, Apache, Rails, Solaris) worlds first.  If it is
-viable, it moves into Windows.  One example is the sophisticated FFMPEG http://ffmpeg.sourceforge.net/index.php application suite, which doesn't seem to
+Python/PHP/Perl) or MARS (MySQL, Apache, Rails, Solaris) worlds first.
+If it is viable, it moves into Windows.
+One example is the sophisticated FFMPEG http://ffmpeg.sourceforge.net/index.php application suite, which doesn't seem to
 be a Windows innovation.
 
 
 
-This is not to
-say that the open source world
-*owns* 
+This is not to say that the open source world *owns*
 innovation.  Good stuff arises first in Windows, also, but it is generally not
 so envelope-pushing.  In Windows, you can create a nice application, but you'd
-be hard pressed to create a new
-*kind* 
-of application.
+be hard pressed to create a new *kind* of application.
 
 
 
@@ -115,12 +113,12 @@ solutions.
 
 
 
-**Standards.** 
+Standards
+---------
 
 
 
-As
-a tangent, I notice that library definitions in Python are filled with "doesn't
+As a tangent, I notice that library definitions in Python are filled with "doesn't
 work the same in Windows."  To me, this implies that there's a right way, a
 wrong way, and a Windows way.  While it may be popular and easy-to-use, it seems
 to have problems.  
@@ -136,8 +134,7 @@ innovation in this arena.
 
 
 
-On the other
-hand, it could be simply that I watch the LAMP community more closely than the
+On the other hand, it could be simply that I watch the LAMP community more closely than the
 Windows community.
 
 

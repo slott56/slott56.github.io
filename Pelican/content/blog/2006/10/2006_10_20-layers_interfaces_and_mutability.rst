@@ -20,8 +20,6 @@ question:
     the basic way the UI, Business Logic, and Data Access layers
     communicate.
 
-
-
     My experience has been
     that the UI talks to the BizLogic, and the BizLogic maps between itself and the
     Data Access layer.. like
@@ -30,29 +28,21 @@ question:
     ::
         UI -> BizLogic -> Data Access -> DB
 
-
-
     The debate is whether the UI should
     see both the Data Access and the BizLogic, and the Data Access object references
     the Biz Object.
 
-
-
-    So instead
-    of
+    So instead of
 
     ::
 
         myBizObject.Save()
 
-    you
-    have
+    you have
 
     ::
 
         DataAccess.Save(myBizObject)
-
-
 
     In my view
     there are a few flaws with this approach, not the least being that the business
@@ -62,7 +52,8 @@ question:
 
 
 
-**What's the real problem?** 
+What's the real problem?
+------------------------
 
 
 
@@ -75,8 +66,7 @@ hands over kinds of side issues.
 
 We
 should look at much of what has been written about the `Model-View-Controller <http://java.sun.com/blueprints/patterns/MVC.html>`_  (MVC) design pattern.
-We'll return to this after looking at layers in
-general.
+We'll return to this after looking at layers in general.
 
 
 
@@ -87,20 +77,19 @@ and bindings between layers.  For basics on this topic, see `On the Criteria
 To Be Used in Decomposing Systems into Modules <http://www.acm.org/classics/may96/>`_ , by D. L. Parnas.
 Additional terms, Coupling and Cohesion were introduced by Constantine and
 Yourdon in Structured Design: Fundamentals of a Discipline of Computer Program
-and Systems Design.  I like Binding instead of
-Coupling.
+and Systems Design.  I like Binding instead of Coupling.
 
 
 
 As we go forward, we’ll
 have to further reframe the question again into “What is an appropriate
 interface design, and how is it separated from the implementation?” 
-However, for now, we'll just look at the binding between
-layers.
+However, for now, we'll just look at the binding between layers.
 
 
 
-**Architectural Bindings.** 
+Architectural Bindings
+----------------------
 
 
 
@@ -129,7 +118,8 @@ much.
 
 
 
-I'm a fan of `Mutability Analysis <{filename}/blog/2005/09/2005_09_18-essay_14_mutability_analysis.rst>`_ ; let’s look at what
+I'm a fan of `Mutability Analysis <{filename}/blog/2005/09/2005_09_18-essay_14_mutability_analysis.rst>`_ ;
+let’s look at what
 the potential mutations are:
 
 1.  UI changes should be isolated from the
@@ -172,7 +162,8 @@ flexible.
 
 
 
-**Technology Implications.** 
+Technology Implications
+-----------------------
 
 
 
@@ -183,8 +174,7 @@ purpose is to make the business logic immune to changes in the technology that
 implements the data model.  Sadly, the interface to the data storage layer
 isn’t completely standardized, so we create a Façade (a data access
 layer) to wrap the variability up and isolate it.  It creates a relatively
-fixed interface in spite of product
-variability.
+fixed interface in spite of product variability.
 
 
 
@@ -195,8 +185,7 @@ UI.  Folks don’t often pursue this as hotly as they pursue the data
 access independence.  I’m not sure why, but many people are willing
 to marry the MS-Windows proprietary UI but not marry SQL/Server. The
 interface between UI and Processing isn’t treated with the same respect as
-the interface between Processing and
-Data.
+the interface between Processing and Data.
 
 
 
@@ -215,20 +204,19 @@ also have an Object-Relational mapping layer.  This sublayer is above the
 data access layer, but below the rest of the processing layer.  It provides
 the mappings between RDBMS and actual objects as used by the application. 
 This, too, is best looked at as a sublayer on part processing and not part of
-the persistent RDBMS storage
-model.
+the persistent RDBMS storage model.
 
 
 
-**The Struts Example.** 
+The Struts Example
+------------------
 
 
 
 A good example of the
 UI-Processing-Persistence separation is the implementation of `Struts <http://struts.apache.org/>`_ .  In
 Struts, there is a separation among the layers, and a pleasant test to assure
-that the separation has been implemented
-properly.
+that the separation has been implemented properly.
 
 
 
@@ -237,8 +225,7 @@ with simple JSP's (read ASP if you don't know Java.)  The UI displays Java Beans
 that may have been created by an Object-Relational mapper (and really live in
 the database) or they may be containers of validation errors that were created
 by the processing layer.  The UI doesn’t know and can't know; they're all
-just beans.  It displays beans and produces beans from filled-in
-forms.
+just beans.  It displays beans and produces beans from filled-in forms.
 
 
 
@@ -246,12 +233,12 @@ The Struts UI will have
 considerable programming logic, but this is merely presentation gloss, not
 substantial processing.  For example, pluralizing words, formatting dates and
 numbers, handling variant form layouts or optional fields are all appropriate
-ways to improve presentation without bleeding through into providing real
-processing. 
+ways to improve presentation without bleeding through into providing real processing.
 
 
 
-**The Django Example.** 
+The Django Example
+-------------------
 
 
 
@@ -283,12 +270,12 @@ on the other hand, doesn't need to make this legacy interface visible.
 
 
 
-**Recommendation.** 
+Recommendation
+--------------
 
                                                                                                                                                 
 
-So,
-what should the UI bind to?  Should it bind to Processing, or can it bind
+So, what should the UI bind to?  Should it bind to Processing, or can it bind
 to Data Access?
 
 
@@ -298,18 +285,16 @@ at above, when I mentioned “bleed-through”.  When the
 processing details bleed up into the UI, this breaks the isolation rules. 
 Here's the acid test:  we know the isolation rules are broken because we
 can’t just change the implementation of the business processing without
-also locating the bleed-through cases and fixing the
-UI.
+also locating the bleed-through cases and fixing the UI.
 
  
 
-For
-example, the business layer is supposed to validate some user inputs. 
+For example, the business layer is supposed to validate some user inputs.
 However, the UI developer wrote a JSP (or Ajax or ASP) thingy that did some of
 the validation.  They were creating a “rich” user interface. 
 When the business rule changes, however, we find that the JSP (or Ajax or ASP)
 interface component isn’t doing the right validation any more. 
-That’s **A Bad Thing** ™, and a direct consequence of
+That’s **A Bad Thing**\ ™, and a direct consequence of
 processing rules being implemented -- whole or in part -- in the UI
 layer.
 
@@ -330,19 +315,18 @@ You break your isolation rules
 when the UI looks directly at the Data Access layer.  Specifically, a data
 model change now leads directly to a UI change in addition to the expected
 processing change.  This ripple effect of a data model change is
-**A Bad Thing** ™, and it's the exact thing we were
+**A Bad Thing**\ ™, and it's the exact thing we were
 trying to avoid when we broke things into layers in the first
 place.
 
  
 
-**Consequences.** 
+Consequences
+------------
 
  
 
-One
-of the consequences of this is the clear isolation of
-**all** 
+One of the consequences of this is the clear isolation of **all**
 processing into a processing layer.  The UI becomes thinner, and the
 database can also become thinner. 
 
@@ -381,7 +365,8 @@ RDBMS.
 
 
 
-**Root Causes.** 
+Root Causes
+-----------
 
 
 
@@ -399,8 +384,7 @@ separation between layers.
 
 
 
-If UI
-layer developers want more API's, the processing layer folks should be ready,
+If UI layer developers want more API's, the processing layer folks should be ready,
 willing and able to provide them.  This requires an adaptable style of work,
 with fairly high levels of cooperation.  They need to be on the same team,
 working for the same manager.  If it takes more than spinning around in your

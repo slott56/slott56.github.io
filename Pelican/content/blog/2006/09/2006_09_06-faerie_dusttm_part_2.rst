@@ -11,49 +11,37 @@ Faerie Dust™ - Part 2
 
 
 
-Here's another symptom of a
-**Request for Faerie Dust** ™:
+Here's another symptom of a **Request for Faerie Dust**\ ™:
 
-
-
-A
-proposal that includes (1) analysis, (2) proof-of-concept, and (3) a plan for a
-solution.
+A proposal that includes (1) analysis, (2) proof-of-concept, and (3) a plan for a solution.
 
 
 
 Sounds sensible, doesn't it? 
-Study it, prove that you can solve it, and write the complete plan to solve
-it.
+Study it, prove that you can solve it, and write the complete plan to solve it.
 
 
 
-Sounded sensible to me, until I had
-to write the plan.
+Sounded sensible to me, until I had to write the plan.
 
 
 
 Let's say we spend 3
 weeks meeting the users, figuring out what's wrong, brainstorming root causes. 
 What, then, will the problem turn out to be?  And what, precisely are we
-supposed to propose
-*now* 
-before having actually done the
-analysis?
+supposed to propose *now* before having actually done the analysis?
 
 
 
 Before we do the analysis, we
 can't rationally plan a POC or even set a budget for a POC.  Indeed, we can't
-even be sure that a POC is
-needed.
+even be sure that a POC is needed.
 
 
 
 Unless -- and this is my thesis
 -- the problem is already firmly in someone's mind, and they want me to sprinkle
-Faerie Dust on the known problem to make it go
-away.
+Faerie Dust on the known problem to make it go away.
 
 
 
@@ -82,10 +70,7 @@ information designers, authors, trainers or users.  How do we propose that work?
 
 
 
-And how do we know -- without doing
-the analysis -- what we
-*are* 
-proposing for the POC?
+And how do we know -- without doing the analysis -- what we *are* proposing for the POC?
 
 
 

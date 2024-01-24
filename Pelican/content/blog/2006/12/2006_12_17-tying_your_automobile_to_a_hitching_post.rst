@@ -38,7 +38,8 @@ missing, but that it's moved around a bit.
 
 
 
-**OO Design and Privacy.** 
+OO Design and Privacy
+---------------------
 
 
 
@@ -51,14 +52,12 @@ somehow provides improved quality.
 
 
 
-As a
-practical matter, however, the potential quality of static checking doesn't
+As a practical matter, however, the potential quality of static checking doesn't
 really work out  very well.  While C++ detects a wide variety of errors, it only
 does this if everything is recompiled.  In the event of dynamically linked
 components (.DLL's or .SO's), however, problems can't be detected until there's
 a run-time problem.  Similarly, Java class problems may not be detected until
-class load time -- leading to run-time errors for compatibility
-issues.
+class load time -- leading to run-time errors for compatibility issues.
 
 
 
@@ -69,7 +68,8 @@ exception handling.
 
 
 
-**References and Objects.** 
+References and Objects
+----------------------
 
 
 
@@ -78,8 +78,7 @@ experienced programmers struggle with is the "everything's a reference" Python
 viewpoint.  For C++ programmers, this can be confusing.  For Java programmers,
 however, there is less confusion because Java has two very neat buckets:
 primitive and reference types.  The primitive types behave enough like reference
-types that the distinction can be made largely
-transparent.
+types that the distinction can be made largely transparent.
 
 
 
@@ -93,7 +92,8 @@ worth discussing.
 
 
 
-**Overloaded Functions.** 
+Overloaded Functions
+--------------------
 
 
 
@@ -116,7 +116,8 @@ create an overloaded function that has the same name but different semantics.
 
 
 
-**Function Signatures.** 
+Function Signatures
+-------------------
 
 
 
@@ -124,16 +125,13 @@ Here's the hidden
 fourth point: "I expect to know (in a C++ sense) what is going in and what is
 coming out, and if I don't get that right then the program/complier complains." 
 This is only partially true.  Indeed, it's only true in a kind of superficial
-way.  For example, when I call Java's
-math.sqrt(-1.0),
+way.  For example, when I call Java's ``math.sqrt(-1.0)``,
 I've provided data that's correct as far as the compiler is concerned, but still
 not really correct.  
 
 
 
-The compile-time
-checking of function signatures isn't really terribly effective at preventing
-errors.
+The compile-time checking of function signatures isn't really terribly effective at preventing errors.
 
 1.  In SOAP implementation, the function signature
     is restated in WSDL.  The Schema or DTD can add or remove constraints, leading
@@ -154,11 +152,11 @@ errors.
 
 
 
-**The Legacy Bias.** 
+The Legacy Bias
+---------------
 
 
-Our experience colors our
-perceptions.  How do we get past our bias?
+Our experience colors our perceptions.  How do we get past our bias?
 
 
 
@@ -170,20 +168,18 @@ of problems in C++ became complaints about gaps in Python.
 
 
 
-They aren't gaps or problems in
-Python.  They are just differences. 
+They aren't gaps or problems in Python.  They are just differences.
 
 
 
 
-Here's what's most important: 
-**Teaching Programming requires Beginner's Mind**.  I don't think you can teach programming
+Here's what's most important: **Teaching Programming requires Beginner's Mind**.
+I don't think you can teach programming
 without revisiting the newbie programmer's fundamental confusion of what they
 say at compile time and what happens at run time.  I don't think
 compare-and-contrast between programming languages is appropriate.   I think
 that it's more important to treat each programming language as a fresh exercise,
-using the language to implement the desired algorithms and data
-structures.
+using the language to implement the desired algorithms and data structures.
 
 
 

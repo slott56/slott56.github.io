@@ -20,29 +20,30 @@ architectures.
 
 
 Is Gestation overhead? 
-Is it a mistake?  How do we budget for it?  What, exactly, is
-it?
+Is it a mistake?
+How do we budget for it?
+What, exactly, is it?
 
 
 
 Let's compare.
 
--   **Zero order ignorance: Lack of ignorance** .  Purdy describes this as "the more
+-   **Zero order ignorance: Lack of ignorance**.  Purdy describes this as "the more
     one understands a problem, the more likely one is to precisely predict its
     implementation cost in terms of time".
 
--   **First order ignorance: Lack of knowledge** .  This is manifested by the
+-   **First order ignorance: Lack of knowledge**.  This is manifested by the
     distinction Purdy makes: "Some implementation unknowns are at most minor
     speed-bumps, while others can be major project de-railers."  If all you need is
     some additional knowledge, it's a speed-bump.
 
--   **Second order ignorance: Lack of awareness** ... You are unaware that you have
+-   **Second order ignorance: Lack of awareness**. You are unaware that you have
     first order ignorance.  Purdy notes that "architectural timeline slippage could
     be of completely off-the-scale proportions".  Clearly, if you aren't aware of
     your ignorance, you have this off-the-scale phenomena of trying all kinds of
     things just to discover what you don't know.
 
--   **Third order ignorance: Lack of process** ... You don’t know how to
+-   **Third order ignorance: Lack of process**. You don’t know how to
     discover ignorance.  Purdy reminds us that "An application architecture is not
     fully gestated until the architect can visualize the implementation, and explain
     the architecture to the implementation team clearly enough that they can
@@ -56,24 +57,22 @@ Let's compare.
 
 I've tried (and failed)
 to lift this situation up to customers for just about every project I've been
-involved in since people started calling me an architect in the
-mid-90's.
+involved in since people started calling me an architect in the mid-90's.
 
 
 
-**War Stories.** 
+War Stories
+-----------
 
 
 
-I've tried to put in a
-project phase for "validating the architecture" or something similar.  I would
-try to allocate time to build skills in the processes, technology, management
+I've tried to put in a project phase for "validating the architecture" or something similar.
+I would try to allocate time to build skills in the processes, technology, management
 and governance issues.  
 
 
 
-In one case,
-they had already bought everything, and felt that their DBA would somehow handle
+In one case, they had already bought everything, and felt that their DBA would somehow handle
 all of the learning.  I wasn't sure when or how, since we hadn't written the
 application software.  We would be -- essentially -- learning as we went.  We'd
 originally planned to use one set of tools, and then upgraded to the next set of
@@ -85,8 +84,7 @@ ground the project to a halt.
 
 
 
-In one
-case, there just wasn't time to shake out an architecture.  The customer
+In one case, there just wasn't time to shake out an architecture.  The customer
 demanded (repeatedly) that I produce a reliable, definite, indisputable
 architecture from thin air.  They wanted to talk about L2 cache and memory bus
 options.  I wanted to get a half-dozen servers and a storage array up and
@@ -99,14 +97,12 @@ Eventually, common-sense prevailed and we talked them into commodity servers.
 
 
 
-[As an aside, their CEO had to tell
-their CIO to stop badgering me.  The CIO kept repeating the phrase, "I expected
-you to give me a recommendation."  And I kept saying "I'm recommending a
-half-dozen servers and a storage array."  The CIO would claim that it was too
-breezy and informal, and he expected a recommendation, and around we went.  More
-than once I asked the CIO what else he wanted, and we would begin at the "I
-expected you to give me a recommendation" part again.
-]
+[As an aside, their CEO had to tell their CIO to stop badgering me.
+The CIO kept repeating the phrase, "I expected you to give me a recommendation."
+And I kept saying "I'm recommending a half-dozen servers and a storage array."
+The CIO would claim that it was too breezy and informal, and he expected a recommendation, and around we went.
+More than once I asked the CIO what else he wanted, and we would begin at the "I
+expected you to give me a recommendation" part again.]
 
 
 
@@ -129,8 +125,7 @@ claiming that it was done "all the time" lead to a schedule which presumed a
 90-day hardware acquire, setup, install, test, secure, and transition to
 operations.  Followed immediately by software installation, testing and
 production roll-out.  Clearly, if there was anything we were unaware of, the
-whole house of cards would
-collapse.
+whole house of cards would collapse.
 
 
 
@@ -141,8 +136,7 @@ instance-to-instance copies?
 
 
 
-Worse,
-how could anyone be aware that business rules might blow up from 100 rows to
+Worse, how could anyone be aware that business rules might blow up from 100 rows to
 9,000 rows?  I couldn't believe it, and didn't even know that users could
 concoct 9,000 business rules.  I couldn't imagine putting additional time in the
 plan for that kind of thing.  The software, of course, didn't run very
@@ -151,20 +145,21 @@ effectively when applying 9,000 more-or-less random rules to the input.
 
 
 
-**Managing Ignorance.** 
+Managing Ignorance
+-------------------
 
 
 
-Gestation is a good way
-to manage ignorance.  If everything isn't rock-solid and well-understood by the
+Gestation is a good way to manage ignorance.
+If everything isn't rock-solid and well-understood by the
 developers, don't plan on getting anything done by a given due
 date.
 
 
 
 But how can we get started if we
-need to understand "everything" before starting?  Excellent
-conundrum.
+need to understand "everything" before starting?
+Excellent conundrum.
 
 
 
@@ -198,15 +193,12 @@ stories above reflect that fantasy.
 
 As a practical matter, we can do
 something more proactive.  For in-house development, nothing is a surprise.  The
-users, and the IT folks
-*are* 
-talking, and the architects can be engaged in this conversation.  In some
-organizations, this conversation is made difficult by charge-back accounting,
+users, and the IT folks *are* talking, and the architects can be engaged in this conversation.
+In some organizations, this conversation is made difficult by charge-back accounting,
 but everyone knows how to sand-bag the charge-backs and accumulate enough time
 to hold forward-looking conversations.  This is a kind of 3rd-order solution;
 it's an informal process (hated by the controllers, but essential for success)
-that hopes to prevent 2nd-order ignorance from derailing a
-project.
+that hopes to prevent 2nd-order ignorance from derailing a project.
 
 
 
@@ -217,25 +209,24 @@ J2EE, for example) and as long we have deep expertise, this can work out.
 However, our customers rarely have the same depth (or experience) we do, they
 often insist on something unique, essentially forcing 2nd-order ignorance on us.
 We can decline the work, hope for the best, or try to educate the customer on
-the value of waiting -- investing in risk
-reduction.
+the value of waiting -- investing in risk reduction.
 
 
 
-**The Bottom Line.** 
+The Bottom Line
+----------------
 
 
 
 Until we are aware of all the
 knowledge we need, we can't commit to a timeline.   If we recognize that a
 gestation period is required for all architectural change, how do we pay for
-this?  What is the value of
-gestation?
+this?
+What is the value of gestation?
 
 
 
-We can monetize gestation. 
-The dollar value is measured in risk dollars.  
+We can monetize gestation. The dollar value is measured in risk dollars.
 
 -   **No Gestation** .  We'll need a huge risk budget to
     work around 2nd-order ignorance.  Indeed, Purdy's lesson learned is that we are
@@ -259,8 +250,8 @@ palatable phrase than "validating the architecture."
 
 
 
-Doing a "validation" or a "proof of
-concept" may appear silly when planners have already selected the architecture. 
+Doing a "validation" or a "proof of concept" may appear silly when planners have
+already selected the architecture.
 Indeed, I had a customer insist that I write a test plan for Oracle's backup and
 recovery.  What -- precisely -- am I testing?  And if it fails the test, what
 does that do to the product they already purchased, installed, and built the
@@ -268,8 +259,7 @@ application around?
 
 
 
-Proposing a "risk
-reduction" (or "due diligence") to locate sources of 2nd-order ignorance, may
+Proposing a "risk reduction" (or "due diligence") to locate sources of 2nd-order ignorance, may
 seem like good business.
 
 

@@ -92,18 +92,14 @@ evade it, and pervert it.
 
 
 
-One
-**ignores** 
-it by pretending a problem statement isn't required.  This is the most blatant
+One **ignores** it by pretending a problem statement isn't required.  This is the most blatant
 denial of the value.  A specification of the solution will do.  Lacking any
 definition of success, scope creep or dissatisfaction are
 inevitable.
 
 
 
-One
-**evades** 
-it by acknowledging that there may be some potential value, but assigning all
+One **evades** it by acknowledging that there may be some potential value, but assigning all
 other activities a higher priority.  This is a more subtle denial of the value,
 but the effect is the same: the tacit assumption of a problem means unclear or
 divergent definitions of success, which leads to scope creep or dissatisfaction
@@ -111,9 +107,7 @@ or both.
 
 
 
-One
-**perverts** 
-it by twisting around the meaning of "problem" to include solution-oriented
+One **perverts** it by twisting around the meaning of "problem" to include solution-oriented
 concepts.  In this case, we're urged to write very complex "problem" statements
 that include technology and business constraints "so they won't be forgotten"
 during the process of solving the problem.  This is absurd.  The technology

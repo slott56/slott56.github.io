@@ -11,20 +11,16 @@ The Cost (and Benefit) of Open Source
 
 
 
-I've had this conversation more than
-once.
+I've had this conversation more than once.
 
 
 
-Me: "We can download something
-like `POI <http://jakarta.apache.org/poi/>`_  to read the Excel™ files.  Or I can
-spend months writing something."
+Me: "We can download something like `POI <http://jakarta.apache.org/poi/>`_  to read the Excel™ files.
+Or I can spend months writing something."
 
 
 
-Them: 
-"We have a policy against open source
-software."
+Them: "We have a policy against open source software."
 
 
 
@@ -32,60 +28,36 @@ Me:  "Do you use `Apache <http://www.apache.org/>`_ ?"
 
 
 
-Them:
-"That's different."
+Them: "That's different."
 
 
 
-Me:  "How so?  Be
-specific in enumerating every difference between open-source Apache and
-open-source POI."
+Me:  "How so?  Be specific in enumerating every difference between open-source Apache and open-source POI."
 
 
 
-Them:  "Fine, but
-what about..."
+Them:  A whole firehose of "Fine, but what about..."
 
 
 
 1.  Bugs? 
 
-
-
-
-Me: "Your software is a paragon of
-virtue?"
-
-
+Me: "Your software is a paragon of virtue?"
 
 2.  Viruses and Malware?
 
-
-
-Me: "The other 1,000 users
-will have found it and fixed it."
-
-
+Me: "The other 1,000 users will have found it and fixed it."
 
 3.  Support?
 
-
-
-Me: "You have their source. 
-You have my source.  I'm leaving, eventually, you
-know."
-
-
+Me: "You have their source. You have my source.  I'm leaving, eventually, you know."
 
 4.  Licensing?
-
-
 
 Me:  "`Here <http://www.apache.org/licenses/LICENSE-2.0>`_ ."
 
 
-
-**Varieties of Discomfort** .  This conversation is really
+**Varieties of Discomfort**.  This conversation is really
 about discomfort with software where the focus is squarely on maintenance,
 adaptation, integration and support.  The bottom line on discomfort is this:
 "Who do you sue when something goes wrong?" 
@@ -113,85 +85,70 @@ cost and benefit.
 
 This plays out into
 the question "Is it really about replacement or is it about where new
-development will be done?" http://www.haloscan.com/comments/slott/E20060422103757/#89360.  This question is still way off target,
-since it provides a
-*strategy* 
+development will be done?"
+This question is still way off target, since it provides a *strategy*
 for conversion.  While a strategic direction (replace vs. evolve) might be a
 nice thing to have, you can't establish a direction until after you address the
 underlying discomfort issue.  Clearly, I can't say this enough times: it isn't
-about
-*converting* 
-to open source.  That implies were converting
-*from* 
-something, and reduces the conversation to strange either-or
-situations.
+about *converting*
+to open source.  That implies were converting *from*
+something, and reduces the conversation to strange either-or situations.
 
 
 
-**Buy vs. Build** .  Tony notes http://www.haloscan.com/comments/slott/E20060422103757/#89484 that the real point is the minute
+**Buy vs. Build**.  A comment notes  that the real point is the minute
 incremental cost in deploying open source software.  The incremental cost of
 another *license to use*  is zero.  Support costs do rise with
 number of desktops served.  Indeed, the costs of open source are often
 comparable to proprietary software, but they're in-house costs.  The point is
 that we can move beyond the tangential conversations about your level of
-discomfort by focusing on two things:
-**cost**  and
-**benefit** .
+discomfort by focusing on two things: **cost**  and **benefit**.
 
 
 
-A
-focus on cost and benefit (and the tiny incremental cost of increasing your
-usage) leads to the following:  **What's the best approach to acquiring the needed software?**   We used to call this question the
+A focus on cost and benefit (and the tiny incremental cost of increasing your
+usage) leads to the following:  **What's the best approach to acquiring the needed software?**
+We used to call this question the
 "Buy vs. Build" decision.  However, it's expanded into the following bewildering
 spectrum of choices:
 
--   **Buy and Customize.** Possibly the least effective solution: begin
+-   **Buy and Customize**. Possibly the least effective solution: begin
     with a standardized commercial product, then customize it so that it cannot be
     supported, maintained or enhanced.  
 
--   **Buy** .  Possibly the lowest risk solution: 
+-   **Buy**.  Possibly the lowest risk solution:
     purchase something standardized from a commercial vendor.
 
--   **Build** .  In this case, we want something
+-   **Build**.  In this case, we want something
     totally unique, and hope we have the technical chops.  Emphasis on the
-    *hope* ;
-    not all organizations are structured to do development well.  Indeed, some IT
+    *hope*; not all organizations are structured to do development well.  Indeed, some IT
     organizations seemed to be intentionally structured to do development
     poorly.
 
--   **Build by someone else** .  The strange world of "we want the
+-   **Build by someone else**.  The strange world of "we want the
     software, but not the collateral learnings that come from building the
     software."  Possibly even the worse situation of "we feel the process is more
     important than most of the products." ../C1076854706/E20060325113712.html
 
--   **Download** .  Possibly the most effective
+-   **Download**.  Possibly the most effective
     solution: download it.  Want to customize it?  While still a bad idea, it's more
     possible here than with something you
     purchased.
 
 
 
-**Readiness Test** .  I think there are two elements of
-readiness to implement open source
+**Readiness Test**.  I think there are two elements of readiness to implement open source
 solutions.
 
-
-
 1.  Desperation.
-
-
 
 2.  Focus.
 
 
 
-If you are
-**desperate** 
-to have your problem solved, you don't quibble about who you will sue.  When
+If you are **desperate** to have your problem solved, you don't quibble about who you will sue.  When
 I've had the frustrating tangential conversations focusing on discomfort, part
-of the reason is that the customer isn't truly desperate to
-*solve* 
+of the reason is that the customer isn't truly desperate to *solve*
 a business problem.  Instead, they're busy implementing large and complex
 application software, usually by building it from scratch.  They're proud of
 their software development capabilities, and bypassing programmers by
@@ -200,18 +157,16 @@ do.
 
 
 
-If you are
-**focused** 
+If you are **focused**
 on solving a problem, you can rationally evaluate the fit between a software
 solution and the problem.  If you are doing something else, you have a million
-other considerations that spin the conversation away from
-*problem* -*and* -*solution* 
+other considerations that spin the conversation away from *problem-and-solution*
 toward strategy, tactics, operational considerations, who do we sue, and other
 tangents.
 
 
 
-**Ramp Up** .  With all "new" directions, introducing a
+**Ramp Up**.  With all "new" directions, introducing a
 new set of tools must be done incrementally.  It must be focused on solving a
 problem where the customer is desperate.  Adding POI, for example, solved an
 immediate problem.  We had to talk it to death, but the policy against open
@@ -263,7 +218,7 @@ databases.]
 
 
 
-**No Pain No Gain** .  The cost and benefit of Open Source is
+**No Pain No Gain**.  The cost and benefit of Open Source is
 only apparent if you have a specific problem to solve.  The derailing tangent
 conversations about "converting" and the "value proposition" seem to happen when
 discomfort with the approach is larger than the discomfort of the problem
@@ -272,12 +227,10 @@ over solution strategies.
 
 
 
-Consequently,
-my real question is more fundamental.  It's not "why adopt open source?" nor is
-it "how do we adopt open source?"  My question is "Are we ready to
-**support** 
-open source when (a) it solves our customer's problems and (b) they're ready to
-adopt?"
+Consequently, my real question is more fundamental.  It's not "why adopt open source?" nor is
+it "how do we adopt open source?"
+My question is "Are we ready to **support** open source
+when (a) it solves our customer's problems and (b) they're ready to adopt?"
 
 
 

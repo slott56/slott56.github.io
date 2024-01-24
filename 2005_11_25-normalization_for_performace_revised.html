@@ -127,7 +127,8 @@ S.Lott -- Software Architect            </a>
                 <p>Perhaps this is heresy.  Perhaps it merely shows
 that the orthodox may be focused on short-term delivery, not long-term
 value.</p>
-<p><strong>CONTEXT AND PROBLEM</strong></p>
+<div class="section" id="context-and-problem">
+<h2>CONTEXT AND PROBLEM</h2>
 <p>The client has a table we
 could describe as following the M.E.S.S. -- Multiple Entity Sub-Species --
 design pattern.  The hallmarks of this design are a large number of optional
@@ -157,19 +158,16 @@ allocation in the RDBMS.  Before too long we have highly fragmented storage.  In
 the case of Oracle, we have row chaining.   This fragmentation and chaining is a
 performance burden with a number of candidate
 solutions.</p>
-<p>How do we prevent storage
-fragmentation and the associated
-slow-down?</p>
-<p><strong>FORCES</strong></p>
-<p>We
-can attempt to prevent fragmentation.  On the one hand, an ounce of prevention
+<p>How do we prevent storage fragmentation and the associated slow-down?</p>
+</div>
+<div class="section" id="forces">
+<h2>FORCES</h2>
+<p>We can attempt to prevent fragmentation.  On the one hand, an ounce of prevention
 has a historical ROI of 1600%.  On the other hand, this is radical surgery to
 our way of looking at the problem.  It means one of two approaches: a higher
 degree of normalization or pre-allocating storage.  We can easily pre-allocate
-storage by using data types like
-CHAR(<em>x</em> )
-which often pre-allocates all
-x positions.
+storage by using data types like <tt class="docutils literal">CHAR(x)</tt>
+which often pre-allocates all x positions.
 In this case, our rows will never change size when null fields are replaced with
 data.  On the other hand, our rows wind up as gigantic objects; we can rarely
 fit them within a database block of 4096 characters, making this approach
@@ -193,8 +191,7 @@ use of null.  Another approach is to decompose each subclass into distinct
 tables.  This makes the processing more complex, since a number of tables must
 be used, leading to a number of similar programs that differ in a few column
 names and a table name.</p>
-<p>A third
-choice is to mirror the sub-species inheritance in the table design.  A core
+<p>A third choice is to mirror the sub-species inheritance in the table design.  A core
 table contains the superclass attributes: those features which are truly common
 (or very nearly common) to all subclasses.  Other tables contain subclass-unique
 attributes and are joined to the core table as needed by specific applications.
@@ -202,8 +199,7 @@ When we look at this design closely, we often see that the core table attributes
 are not really CREEP-style attributes: they are remarkable stable values.  Rows
 go into the core table and stay in one place; minimizing fragmentation in the
 normal course of events.</p>
-<p>The second of
-the intertwined issues is the CREEP problem: we keep tacking features onto this
+<p>The second of the intertwined issues is the CREEP problem: we keep tacking features onto this
 entity, some of which may not attributes in the narrow sense that attributes
 should be understood.  By narrow, we mean the third normal form definition that
 each attribute depends on the key and nothing but the key.  What we find is that
@@ -211,9 +207,10 @@ some attributes are part of a data tuple that has a timestamp, an actor's name,
 a comment string, and possibly an official event or condition.  This is clearly
 a subsidiary entity, not a cluster of related columns in the &quot;prospect&quot;
 entity.</p>
-<p><strong>SOLUTION</strong></p>
-<p>When
-we find MESS tables that also implement CREEP, the best solution is to properly
+</div>
+<div class="section" id="solution">
+<h2>SOLUTION</h2>
+<p>When we find MESS tables that also implement CREEP, the best solution is to properly
 normalize the table into a number of distinct entities.  The MESS sub-species
 should be split apart based on the commonality of the attributes.  A few
 optional columns can help create an intellectually manageable number of tables.
@@ -232,9 +229,10 @@ attribute.</p>
 <p>In this case, adding events,
 conditions, situations, and the like merely adds another kind of event to the
 event fact table.  This is merely a row in the event-type dimension.</p>
-<p><strong>CONSEQUENCES</strong></p>
-<p>Normalizing
-the MESS table to separate the sub-species adds tables to the database.  The new
+</div>
+<div class="section" id="consequences">
+<h2>CONSEQUENCES</h2>
+<p>Normalizing the MESS table to separate the sub-species adds tables to the database.  The new
 tables, however, are not as sparse.  Further, the separation of data elements
 will tend to reduce fragmentation of the data.  Updates will often be focused on
 a sub-entity, moving around rows in a smaller and more densely-packed
@@ -251,6 +249,7 @@ have to be rewritten to use the core table plus a sub-entity table.  Generally,
 this is done by defining application-specific views to conceal the join and
 leave the original program largely unchanged, except for a rename of the
 original table to the view of more properly normalized tables.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1084,11 +1083,11 @@ original table to the view of more properly normalized tables.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1096,7 +1095,7 @@ original table to the view of more properly normalized tables.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1160,7 +1159,7 @@ original table to the view of more properly normalized tables.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1172,15 +1171,11 @@ original table to the view of more properly normalized tables.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

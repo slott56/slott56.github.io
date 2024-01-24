@@ -35,9 +35,9 @@ bad.
 
 
 This also means that I have old
-computers laying around.  The current
-`home network <http://www.itmaybeahack.com/homepage/steve/homenetwork.html>`_  update
-shows an embarrassing surplus of home computers.  Here's one plan.
+computers laying around.  The current home network shows an embarrassing surplus of home computers.
+
+Here's one plan:
 
 1.  Ditch the old `slot-loading iMac <http://lowendmac.com/imacs/blue.shtml>`_.
     It has a 10Gb drive, is G3 PPC, and S L O W.  It's land-fill
@@ -49,9 +49,7 @@ shows an embarrassing surplus of home computers.  Here's one plan.
     my resume from Hypercard.
 
 3.  Start making more use of the MacBook that I
-    had to buy as part of the $1,503.65
-    `Coffee and MacBook <{filename}/blog/2006/11/2006_11_20-coffee_and_a_macbook.rst>`_
-    experience.
+    had to buy as part of the $1,503.65 replacement for a MacBook one of my kids spilled coffee into.
 
 
 

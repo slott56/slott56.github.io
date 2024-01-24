@@ -45,7 +45,6 @@ Big. Mistake. (See `Big Mistakes`_, below.)
 From about 2004 to 2006 (maybe)
 there was  service called "Bloki", which offered blogging and forum capabilities.
 That was super-helpful because you could edit on-line.
-See `BLOKI.com <{filename}/blog/2004/01/2004_01_20-blokicom.rst>`_.
 
 Big.  Mistake. (See `Big Mistakes`_, below.)
 

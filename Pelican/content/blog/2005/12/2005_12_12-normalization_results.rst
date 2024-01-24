@@ -87,7 +87,8 @@ join has a performance penalty of 68% to 131%.
 
 
 
-**Bottom Line** 
+Bottom Line
+------------
 
 
 
@@ -111,8 +112,7 @@ of failure during defragmentation.
 
 
 
-A
-semi-normalized design does not endure the same level of fragmentation as a
+A semi-normalized design does not endure the same level of fragmentation as a
 denormalized MESS design.  Since it uses a 1:1 join instead of a 1:m join, the
 performance is generally quite good.  Further, change can often be isolated to
 the extension table, offering some protection from devastating change.  The rate
@@ -121,8 +121,7 @@ also quite low.
 
 
 
-The management overview
-is this:
+The management overview is this:
 
 -   Normalization is slow, but low
     maintenance and easy to enhance.

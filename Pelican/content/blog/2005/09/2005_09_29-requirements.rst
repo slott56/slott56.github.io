@@ -28,23 +28,20 @@ named by the use cases.
 
 
 
-A **use case** 
-defines an actor's interactions with the system and how those interactions
+A **use case** defines an actor's interactions with the system and how those interactions
 produce business value. There are many templates for use cases. Simpler is
 better.
 
 
 
-An **actor**  is
-a person or an automated interface, external to the system.  An actor has goals
+An **actor**  is a person or an automated interface, external to the system.  An actor has goals
 behind their interactions with the system.  These goals define the business
 value the actor creates through their interaction with the
 system.
 
 
 
-The **system** 
-is the hardware, software or procedures (or combination) under consideration. 
+The **system** is the hardware, software or procedures (or combination) under consideration.
 When doing use case analysis, the system is a "black box" or "tool" with which
 the actors interact.  Further steps in the process will decompose this black
 box.  That activity has to wait until the system, as a whole, has been
@@ -62,8 +59,7 @@ system.
 
 
 The uses cases form "functional
-requirements" - things the system will
-*do*.
+requirements" - things the system will *do*.
 The constraints form "non-functional requirements" - other attributes of the
 system. The non-functional requirements should be organized according to the SEI
 `Quality Measures Taxonomy <http://www.sei.cmu.edu/str/taxonomies/view_qm.html>`_.
@@ -90,12 +86,11 @@ following; for information see the `Zachman framework <http://www.zifa.com/>`_.
 
 
 
-**Content** 
+Content
+--------
 
 
-
-The
-activity of analysis can create three models of the business problem.  Each
+The activity of analysis can create three models of the business problem.  Each
 model has a different point of view, but describe the same value-creating
 activities.
 
@@ -112,7 +107,8 @@ activities.
 
 
 
-**Process** 
+Process
+-------
 
 
 
@@ -163,11 +159,10 @@ through the
 process.
 
 Standards
+---------
 
 
-
-Requirements
-must be finite, definite and effective.
+Requirements must be finite, definite and effective.
 
 -   Finite means that they are measuable or
     quantitative.
@@ -182,8 +177,7 @@ must be finite, definite and effective.
 
 
 
-Risk. Failure to
-define the problem typically leads to a premature effort to define a
+Risk. Failure to define the problem typically leads to a premature effort to define a
 solution.
 
 

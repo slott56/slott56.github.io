@@ -23,7 +23,8 @@ overloading.
 
 
 
-**Lambda Introspection**
+Lambda Introspection
+--------------------
 
 `Dejavu  <http://projects.amor.org/dejavu>`_
 It primarily uses a generic `Data Mapper <http://www.martinfowler.com/eaaCatalog/dataMapper.html>`_  architecture.  It is more of an OODB
@@ -35,7 +36,8 @@ a complete ORM.
 
 
 
-**Operator Overloading** 
+Operator Overloading
+--------------------
 
 `SQLObject  <http://sqlobject.org/>`_  This is
 a very complete ORM, cast in the some mold as
@@ -54,7 +56,8 @@ queries.
 
 
 
-**Non-Introspective Approaches** 
+Non-Introspective Approaches
+----------------------------
 
 
 `Django <http://www.djangoproject.com/>`_ , for example, encodes attributes and
@@ -88,7 +91,8 @@ level.
 
 
 
-**Garden-Variety Relational Access** 
+Garden-Variety Relational Access
+--------------------------------
 
 All of these modules
 provide the standard `DB-API <http://www.python.org/dev/peps/pep-0249/>`_  (PEP 249) interface to a SQL database.
@@ -143,10 +147,10 @@ modules.
 
 
 
-**Recommendations** 
+Recommendations
+----------------
 
-Rule
-1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
+Rule 1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
 relational store, focus on Python for processing.  Stored Procedures and
 Triggers are a product-specific mine-field.  Once the model passes unit tests,
 move to another RDBMS that supports concurrent

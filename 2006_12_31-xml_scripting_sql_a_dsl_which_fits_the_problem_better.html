@@ -136,14 +136,11 @@ documentation, etc.&quot;</li>
 wandered a bit from the initial subject -- lame justification for XML -- and
 moved into a compare-and-contrast between Ant and SCons.  This is probably not
 the best consequence of the initial posting because we're on course for shoal
-waters.  I'll press on and return to the potential ramifications,
-below.</p>
-<p>What is a good approach for
-defining a build system that allows us to plug in this kind of extension or
-add-on?</p>
-<p><strong>XML.</strong></p>
-<p>If
-we have an Ant-style XML database of targets, dependencies and actions, then
+waters.  I'll press on and return to the potential ramifications, below.</p>
+<p>What is a good approach for defining a build system that allows us to plug in this kind of extension or add-on?</p>
+<div class="section" id="xml">
+<h2>XML</h2>
+<p>If we have an Ant-style XML database of targets, dependencies and actions, then
 it's a matter of using XSLT to transform that database into a nice-looking
 report.  XHTML is a fine output medium, and this can work well.  XSLT isn't fun
 to write, but tools like <a class="reference external" href="http://www.altova.com/products/xmlspy/xml_editor.html">XML Spy</a>  or <a class="reference external" href="http://www.philo.de/xmledit/">Open XML
@@ -160,22 +157,21 @@ more complex, we have to understand the XML tags as something more than tags.
 We need to build internal objects that represent the targets, sources,
 processing scripts and dependencies before any complex analysis can be done.
 We note that this internal representation is exactly the script-language
-solution in
-SCons.</p>
-<p><strong>SQL.</strong></p>
+solution in SCons.</p>
+</div>
+<div class="section" id="sql">
+<h2>SQL</h2>
 <p>First,
 there aren't a lot of database-centric build tools.  Traditionally, SQL
 processing involved heavy-weight programming with client programs and database
 servers.  With <a class="reference external" href="http://www.sqlite.org/">SQLite</a> , this heavyweight architecture is no
 longer a necessary feature of a solution.  In this case, reporting is a snap: a
-SQL SELECT
-statement will -- generally -- produce the desired report.</p>
+<tt class="docutils literal">SQL SELECT</tt> statement will -- generally -- produce the desired report.</p>
 <p>Unfortunately, most build rules
 involve transitive dependencies, and computing the complete transitive closure
 in SQL is a pain in the ass.  Therefore, a more complex report requires a short
 piece of programming to extract all of the transitive relationships into a
-single &quot;<a class="reference external" href="http://www.google.com/search?q=hierarchy+bridge+table">hierarchy bridge
-table</a> &quot;.</p>
+single &quot;<a class="reference external" href="http://www.google.com/search?q=hierarchy+bridge+table">hierarchy bridge table</a> &quot;.</p>
 <p>An alternative is to
 use <a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a>  or similar to do a pleasant
 object-relational mapping.  This makes the SQL relational information into an
@@ -183,97 +179,80 @@ object representation of the targets, sources, processing scripts and
 dependencies.   We note that this object representation is exactly the
 script-language solution in
 SCons.</p>
-<p><strong>Domain Specific Language (DSL).</strong></p>
-<p>The original <a class="reference external" href="http://www.gnu.org/software/make/">GNU
-Make</a>  syntax is the DSL replaced by Ant's XML.  This isn't terribly
-difficult to parse, but lacks some of the nuanced expressive power of the newer
+</div>
+<div class="section" id="domain-specific-language-dsl">
+<h2>Domain Specific Language (DSL)</h2>
+<p>The original <a class="reference external" href="http://www.gnu.org/software/make/">GNU Make</a>  syntax is the DSL replaced by Ant's XML.
+This isn't terribly difficult to parse, but lacks some of the nuanced expressive power of the newer
 XML notation.  Writing a report from this isn't easy, either.  You have to read
 it, parse it, analyze it to determine the relationships, and then write the
-report.  Fairly icky, and more complex than XSLT or
-SQL.</p>
-<p>Further, this involves creating an
-&quot;internal&quot; representation of the source information.  The DSL text
+report.  Fairly icky, and more complex than XSLT or SQL.</p>
+<p>Further, this involves creating an &quot;internal&quot; representation of the source information.  The DSL text
 representation isn't very usable by itself:  reporting isn't simple XSLT-style
 rewriting of the input file.  The DSL must be parsed into objects which
 represent targets, sources, processing scripts and dependencies before any
 useful analysis or reporting can be done.   We note that this internal
 representation is exactly the script-language solution in
 SCons.</p>
-<p><strong>Scripting Language (e.g. Python).</strong></p>
-<p>At this point, it should
-be clear where this is headed.</p>
-<p>The
-point of XML, SQL or a DSL is to put a persistent text representation around
+</div>
+<div class="section" id="scripting-language-e-g-python">
+<h2>Scripting Language (e.g. Python)</h2>
+<p>At this point, it should be clear where this is headed.</p>
+<p>The point of XML, SQL or a DSL is to put a persistent text representation around
 objects which represent targets, sources, processing scripts and dependencies.
 SCons allows us to represent these objects in the Python language.  Since the
 Python interpreter directly manipulates these objects, we don't have to do very
 much additional work for reporting or other
 analysis.</p>
-<p>We have two choices for
-producing reports from SCons information.</p>
+<p>We have two choices for producing reports from SCons information.</p>
 <ol class="arabic simple">
 <li>Extend the SCons framework (most likely the
-Node class) to
-add reporting methods to the object definitions.  We would then write a new main
+Node class) to add reporting methods to the object definitions.  We would then write a new main
 program, which (after loading the SCons control file) invoked the reporting
-methods.  Some of this may already be present in the
-Node.explain()
-method.</li>
-<li>Create a subclass of the SCons
-Visitor which
+methods.  Some of this may already be present in the <tt class="docutils literal">Node.explain()</tt> method.</li>
+<li>Create a subclass of the SCons <tt class="docutils literal">Visitor</tt> which
 produces the desired report.  We would then write a new main program, which
-(after loading the SCons control file) creates our new
-Visitor
-subclass and executed
-it.</li>
+(after loading the SCons control file) creates our new <tt class="docutils literal">Visitor</tt> subclass and executes it.</li>
 </ol>
-<p><strong>Compare and Contrast.</strong></p>
-<p>For XML, we have XSLT as
-a query language and Xalan to interpret the XSLT
-program.</p>
-<p>For SQL, we have the SELECT
-statement.  We can use our desired database (SQLite, for example) to interpret
-the SQL program, producing the
-output.</p>
+</div>
+<div class="section" id="compare-and-contrast">
+<h2>Compare and Contrast</h2>
+<p>For XML, we have XSLT as a query language and Xalan to interpret the XSLT program.</p>
+<p>For SQL, we have the <tt class="docutils literal">SELECT</tt> statement.
+We can use our desired database (SQLite, for example) to interpret
+the SQL program, producing the output.</p>
 <p>For a DSL, we generally don't
 have much in the line of query and reporting tools.  We have to write
-everything, and this is generally
-ineffective.</p>
+everything, and this is generally ineffective.</p>
 <p>For Python and SCons, the
 build control file is -- in effect -- an application program.  Reporting is just
 another method or another subclass of Visitor.  The build control file and the
 reporting feature of the build system are really just one extended
 thing.</p>
-<p><strong>Consequences.</strong></p>
-<p>Here's
-where the shoal water lies: there aren't any real consequences.  Many (too many)
+</div>
+<div class="section" id="consequences">
+<h2>Consequences</h2>
+<p>Here's where the shoal water lies: there aren't any real consequences.  Many (too many)
 people assume that the consequence of a compare-and-contrast is that
-<strong>One is Best, All Others Are Bad</strong> ™.  This conclusion further implies
+<strong>One is Best, All Others Are Bad</strong>™.  This conclusion further implies
 that everyone with the Non-Best solution should do an
-<strong>Immediate Upgrade</strong> ™ to the One Best Solution.</p>
-<p>You often hear the following: &quot;If your
-solution is so much better why doesn't everyone use it?&quot;  Or, even worse, &quot;If
-you agree that my solution is better than yours, you should immediately convert
+<strong>Immediate Upgrade</strong>™ to the One Best Solution.</p>
+<p>You often hear the following:
+&quot;If your solution is so much better why doesn't everyone use it?&quot;
+Or, even worse, &quot;If you agree that my solution is better than yours, you should immediately convert
 to my solution.&quot;</p>
-<p>The idea that
-<strong>Everyone Must Adopt the Best Solution</strong>  is wrong because politics trumps
+<p>The idea that <strong>Everyone Must Adopt the Best Solution</strong>  is wrong because politics trumps
 technology.  A good technical solution is often a political non-starter.  VHS
 was a lousy format for video tapes, and Beta was superior in every technical
 aspect.  Yet, VHS was preferred by consumers.  The preference was non-technical;
 &quot;political&quot; for lack of a better word.  Windows is largely a dreadful operating
 system; yet there it is.</p>
-<p>There's no
-reason to abandon Ant.  It's a close second to SCons.  What is important is to
-have a
-<em>good</em>
-reason for using Ant, not one of the
-<em>lame</em>
-reasons I cataloged in &quot;<a class="reference external" href="https://slott56.github.io/2006_12_23-xml_one_ring_to_rule_them_all.html">XML - One Ring to Rule them
-All...</a> &quot;.</p>
-<p>What then is the
-value of this kind of compare-and-contrast?  Locating the right reason for using
-XML.  If it's political, say so.  Don't make up lame reasons.  Understand the
-real reasons.</p>
+<p>There's no reason to abandon Ant.  It's a close second to SCons.  What is important is to
+have a <em>good</em> reason for using Ant, not one of the <em>lame</em> reasons I cataloged
+in &quot;<a class="reference external" href="https://slott56.github.io/2006_12_23-xml_one_ring_to_rule_them_all.html">XML - One Ring to Rule them All...</a> &quot;.</p>
+<p>What then is the value of this kind of compare-and-contrast?  Locating the right reason for using
+XML.  If it's political, say so.  Don't make up lame reasons.  Understand the real reasons.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1107,11 +1086,11 @@ real reasons.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1119,7 +1098,7 @@ real reasons.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1183,7 +1162,7 @@ real reasons.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1195,15 +1174,11 @@ real reasons.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

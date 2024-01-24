@@ -58,7 +58,8 @@ skills.
 
 
 
-**The Curtain Rises** 
+The Curtain Rises
+-----------------
 
 
 
@@ -85,15 +86,15 @@ problems.
 
 
 
-Management's solution:
-**This Requires Software** ™.   Note that we haven't stated
+Management's solution: **This Requires Software**\ ™.   Note that we haven't stated
 a problem, or really talked rationally about candidate solutions.  We've leaped
 past all of the thinking and picked the latest and greatest buzzword; in this
-case, **Data Warehouse** .
+case, **Data Warehouse**.
 
 
 
-**The First Act** 
+The First Act
+-------------
 
 
 
@@ -121,8 +122,7 @@ drafted a project charter that amounts to the following:
 
 
 
-Note that
-the real problem (incorrect labor reports) is tangential -- almost irrelevant --
+Note that the real problem (incorrect labor reports) is tangential -- almost irrelevant --
 to the project charter.  We've managed to refocus from the real problem to some
 technical thing that we *hope*
 will solve the problem.  We can't prove anything, since we leapt past problem
@@ -134,8 +134,7 @@ There are two branches in the road: Contractors or Staff.
 
 
 
-There's a
-hiring freeze (or we can't justify hiring more staff), and we have to bring in
+There's a hiring freeze (or we can't justify hiring more staff), and we have to bring in
 Contractors.  
 
 -   If we're disciplined, we require a
@@ -173,7 +172,8 @@ We hire someone, and explain the situation.  They're happy to have a job.
 
 
 
-**The Second Act** 
+The Second Act
+--------------
 
 
 
@@ -198,8 +198,7 @@ fired the contractors or reassigned the staff.  After being lied to, they left.
 We are forced to bring in more
 contractors (or more staff) to address performance.  We describe the half-baked
 data warehouse.  We describe the situation.  Neither add up to a "problem" with
-a "solution".  Instead, it is a rapidly worsening
-"situation".
+a "solution".  Instead, it is a rapidly worsening "situation".
 
 
 
@@ -246,7 +245,8 @@ solution.
 
 
 
-**The Third Act** 
+The Third Act
+--------------
 
 
 
@@ -258,14 +258,13 @@ asked them to do.
 
 
 
-We have, in essence
-asked them to be something, and then devalued that thing.  They quit.  We create
-turnover by creating a situation in which people cannot
-succeed.
+We have, in essence asked them to be something, and then devalued that thing.  They quit.  We create
+turnover by creating a situation in which people cannot succeed.
 
 
 
-**We can't fix it** 
+We can't fix it
+---------------
 
 
 
@@ -289,7 +288,7 @@ scope.  Wrong scope happens for two reasons.
     away with "scope", we do away with "scope creep".  This is -- superficially --
     ridiculous.  However, after reading an `Agile Manifesto <http://agilemanifesto.org/>`_  and looking at Agile
     methodologies, part of the reason Agile techniques work is because the static,
-    fixed, **Grand and Glorious Greater Scope** , is set aside for something more
+    fixed, **Grand and Glorious Greater Scope**, is set aside for something more
     realistic and useful.
 
 2.  Defining the wrong scope.  If we must have a
@@ -305,18 +304,22 @@ We define the wrong scope for a number of reasons.
 -   We're afraid of "point solutions".  Why
     solve this one problem?  That's a lot of money.  Why can't we solve something
     more general, and get more bang for our buck? 
-    *We don't want to solve the "labor hours problem", that's too specific.  We want to solve all data reconciliation problems.* 
+
+    *We don't want to solve the "labor hours problem", that's too specific.  We want to solve all data reconciliation problems.*
 
 -   We're afraid of "naming names". 
     Identifying a specific problem can result in embarrassment, termination or legal
-    action.  *The labor hour reporting involves subcontractors behaving badly, or it involves purchasing behaving badly.  Some of it could -- actually -- be illegal.* 
+    action.
+
+    *The labor hour reporting involves subcontractors behaving badly, or it involves purchasing behaving badly.  Some of it could -- actually -- be illegal.*
 
 -   We're afraid of "root causes". 
     Identifying the root cause of a problem can require a lot of cooperative work,
     and may put us in the position of naming names.  If we focus on the technology,
     not the organization, we don't have to do as much work, and we don't run the
     risk of embarrassing (or angering) someone important. 
-    *If we locate the real reason for contractors misreporting their hours, it may involve incomplete work planning or incomplete task assignments.  It may involve rotten communication with our subcontractors at any of a large number of organizational touch-points.* 
+
+    *If we locate the real reason for contractors misreporting their hours, it may involve incomplete work planning or incomplete task assignments.  It may involve rotten communication with our subcontractors at any of a large number of organizational touch-points.*
 
 -   We're afraid of "becoming a target".  If
     we're very specific, someone else may fix the problem another, cheaper way and
@@ -324,17 +327,20 @@ We define the wrong scope for a number of reasons.
     and lawyers can spring out of the woodwork, split hairs, and prove that our
     specific problem never existed in the first place.  Either way, we're an
     embarrassing nay-sayer, describing problems that are already solved or never
-    existed as described.  *After writing an RFP, the manager of purchasing may fix the touch-point, providing better and more complete information to the contractors.  Or, a legal-eagle may say the the definition of "labor hour input" is incorrect, and "input" doesn't happen when they enter the hours, but when the hours are accepted.  The "incorrect" situation happens "before input".  The problem is reframed into something new.* 
+    existed as described.
+
+    *After writing an RFP, the manager of purchasing may fix the touch-point, providing better and more complete information to the contractors.  Or, a legal-eagle may say the the definition of "labor hour input" is incorrect, and "input" doesn't happen when they enter the hours, but when the hours are accepted.  The "incorrect" situation happens "before input".  The problem is reframed into something new.*
 
 
 
-**The Illusion of Control** 
+The Illusion of Control
+------------------------
 
 
 
 What do these things have
-in common?  Most of these are about the
-**Illusion of Control** .   When we wring our hands over the
+in common?  Most of these are about the **Illusion of Control**.
+When we wring our hands over the
 cost of a point solution, we're really admitting that (a) the problem isn't that
 valuable and (b) we can't find a fix with a cost commensurate with the value. 
 Who wants to admit that they can't control what's going on?  When we avoid names
@@ -352,14 +358,14 @@ creating IT turnover.
 
 
 
-Turnover isn't
-part-and-parcel of IT.  Nor is scope creep.  It's all just failure to focus on
+Turnover isn't part-and-parcel of IT.  Nor is scope creep.  It's all just failure to focus on
 the actual problem.  It's really our feeble efforts to maintain the Illusion of
 Control.
 
 
 
-**What do we do?** 
+What do we do?
+--------------
 
 
 

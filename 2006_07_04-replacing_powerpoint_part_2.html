@@ -124,16 +124,11 @@ Thanks for the heads up.</p>
 Slidy</a> , but didn't find <a class="reference external" href="http://docutils.sourceforge.net/docs/user/slide-shows.html">DocUtils + S5</a> .  S5 is simpler and does less than
 Slidy.  RST markup is far easier to cope with than HTML.  This looks like a
 powerful and simple solution.</p>
-<p>Indeed, a
-LEO outline which produces RST directly (via an <tt class="docutils literal">&#64;file</tt>
-directive) for use by
-rst2s5.py is a
-piece of cake.   Similarly, a small change to
-rst2s5.py could
-create an
-rst2slidy.py,
-also.</p>
-<p><strong>Better Integration</strong></p>
+<p>Indeed, a LEO outline which produces RST directly (via an <tt class="docutils literal">&#64;file</tt> directive)
+for use by <tt class="docutils literal">rst2s5.py</tt> is a piece of cake.
+Similarly, a small change to <tt class="docutils literal">rst2s5.py</tt> could create an <tt class="docutils literal">rst2slidy.py</tt>, also.</p>
+<div class="section" id="better-integration">
+<h2>Better Integration</h2>
 <p>The next step, however,
 is more subtle.  We have a number of choices of integration between DocUtils, S5
 and Leo.  These choices stem directly from two prominent features of this
@@ -146,12 +141,10 @@ the module level, directly marrying DocUtils into Leo.</li>
 involve too much more than an appropriate
 import.</li>
 </ol>
-<p>There
-are a mountain of alternatives:</p>
+<p>There are a mountain of alternatives:</p>
 <ul class="simple">
 <li>Leo's RST3 plug-in can produce HTML.  It
-would be nice to make
-rst2s5.py
+would be nice to make <tt class="docutils literal">rst2s5.py</tt>
 unnecessary, since the DocUtils parsing is already embedded in Leo.  However,
 RST3 would have to produce <tt class="docutils literal">&lt;div <span class="pre">class=&quot;slide&quot;&gt;</span></tt> in addition to <tt class="docutils literal">&lt;h1&gt;</tt>
 tags.</li>
@@ -160,21 +153,17 @@ produces HTML more directly focused on S5's .js and .css.  This could produce
 the required <tt class="docutils literal">&lt;div&gt;</tt> tags.</li>
 <li>A simple plug-in that produces a pure RST
 text file, transforming headlines into RST section headers.  This could be run
-through
-rst2s5.py,
+through <tt class="docutils literal">rst2s5.py</tt>,
 leading to a tidy way to produce slides from an outline.</li>
 <li>Either of the two plug-ins could be
 designed to use HTML markup instead of RST.  This would be slightly simpler in
 one sense (eliminating RST), but less usable.</li>
-<li>A simple
-<tt class="docutils literal">&#64;file</tt> directive
-which produces an RST file that is post-processed by
-rst2s5.py.
+<li>A simple <tt class="docutils literal">&#64;file</tt> directive
+which produces an RST file that is post-processed by <tt class="docutils literal">rst2s5.py</tt>.
 This is doubly wasteful.  First, the RST3 plug-in integrates DocUtils; why use
 an external application?  Secondly, this requires the bodies be forced to match
 the headlines, wasting the headline information.</li>
-<li>A simple
-<tt class="docutils literal">&#64;file</tt> directive
+<li>A simple  <tt class="docutils literal">&#64;file</tt> directive
 which produces an HTML file, directly focused on S5.  This requires that the
 content be entirely in the bodies, making the headlines unimportant.  This is
 wasteful.</li>
@@ -197,12 +186,13 @@ PythonPoint (and Bruce/pyGame if we went that route).  XSLT puts the focus on
 the superficial integration available via XML representation of the underlying
 objects.  A needless level of indirection in the open source
 world.</p>
-<p><strong>Making the Choice</strong></p>
+</div>
+<div class="section" id="making-the-choice">
+<h2>Making the Choice</h2>
 <p>What makes the most sense?
 The choice has to be consistent with the advice to build as little as possible.
 More important, the choice has to be consistent with the problem (replacing
-powerpoint) and the actual use
-cases.</p>
+powerpoint) and the actual use cases.</p>
 <ol class="arabic simple">
 <li>Edit the material.  Hence
 Leo: it's fun to use an outliner to build
@@ -221,9 +211,9 @@ versions of the pages or something.
 :-(</li>
 </ol>
 <p>The above analysis makes a strong
-case for integrating PythonPoint into Leo, and creating a PDF from that.  A
-distant second is DocUtils
-rst2s5.py.</p>
+case for integrating PythonPoint into Leo, and creating a PDF from that.
+A distant second is DocUtils <tt class="docutils literal">rst2s5.py</tt>.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1057,11 +1047,11 @@ rst2s5.py.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1069,7 +1059,7 @@ rst2s5.py.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1133,7 +1123,7 @@ rst2s5.py.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1145,15 +1135,11 @@ rst2s5.py.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

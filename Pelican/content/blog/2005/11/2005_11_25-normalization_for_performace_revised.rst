@@ -17,7 +17,8 @@ value.
 
 
 
-**CONTEXT AND PROBLEM** 
+CONTEXT AND PROBLEM
+---------------------
 
 
 
@@ -62,25 +63,21 @@ solutions.
 
 
 
-How do we prevent storage
-fragmentation and the associated
-slow-down?
+How do we prevent storage fragmentation and the associated slow-down?
 
 
 
-**FORCES** 
+FORCES
+-------
 
 
 
-We
-can attempt to prevent fragmentation.  On the one hand, an ounce of prevention
+We can attempt to prevent fragmentation.  On the one hand, an ounce of prevention
 has a historical ROI of 1600%.  On the other hand, this is radical surgery to
 our way of looking at the problem.  It means one of two approaches: a higher
 degree of normalization or pre-allocating storage.  We can easily pre-allocate
-storage by using data types like
-CHAR(*x* )
-which often pre-allocates all
-x positions. 
+storage by using data types like ``CHAR(x)``
+which often pre-allocates all x positions.
 In this case, our rows will never change size when null fields are replaced with
 data.  On the other hand, our rows wind up as gigantic objects; we can rarely
 fit them within a database block of 4096 characters, making this approach
@@ -113,8 +110,7 @@ names and a table name.
 
 
 
-A third
-choice is to mirror the sub-species inheritance in the table design.  A core
+A third choice is to mirror the sub-species inheritance in the table design.  A core
 table contains the superclass attributes: those features which are truly common
 (or very nearly common) to all subclasses.  Other tables contain subclass-unique
 attributes and are joined to the core table as needed by specific applications. 
@@ -125,8 +121,7 @@ normal course of events.
 
 
 
-The second of
-the intertwined issues is the CREEP problem: we keep tacking features onto this
+The second of the intertwined issues is the CREEP problem: we keep tacking features onto this
 entity, some of which may not attributes in the narrow sense that attributes
 should be understood.  By narrow, we mean the third normal form definition that
 each attribute depends on the key and nothing but the key.  What we find is that
@@ -137,12 +132,12 @@ entity.
 
 
 
-**SOLUTION** 
+SOLUTION
+----------
 
 
 
-When
-we find MESS tables that also implement CREEP, the best solution is to properly
+When we find MESS tables that also implement CREEP, the best solution is to properly
 normalize the table into a number of distinct entities.  The MESS sub-species
 should be split apart based on the commonality of the attributes.  A few
 optional columns can help create an intellectually manageable number of tables. 
@@ -171,12 +166,12 @@ event fact table.  This is merely a row in the event-type dimension.
 
 
 
-**CONSEQUENCES** 
+CONSEQUENCES
+------------
 
 
 
-Normalizing
-the MESS table to separate the sub-species adds tables to the database.  The new
+Normalizing the MESS table to separate the sub-species adds tables to the database.  The new
 tables, however, are not as sparse.  Further, the separation of data elements
 will tend to reduce fragmentation of the data.  Updates will often be focused on
 a sub-entity, moving around rows in a smaller and more densely-packed

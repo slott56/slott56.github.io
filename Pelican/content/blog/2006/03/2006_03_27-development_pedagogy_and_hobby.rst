@@ -28,7 +28,7 @@ interventions.
 
 
 
-**Comments.** A comment http://www.haloscan.com/comments/slott/E20060223203608/#77978 suggests that software development can be
+**Comments.** A comment suggests that software development can be
 done for pedagogical purposes, listing two examples.  I wasn't sure how to take
 this because pedagogy and software development aren't the same thing.  They're
 both "programming" exercises, but they have very different purposes.  If we're
@@ -37,19 +37,17 @@ pedagogy?
 
 
 
-I'm not sure what --
-precisely -- the comment meant, but I can see this from the comment: I didn't
+I'm not sure what -- precisely -- the comment meant, but I can see this from the comment: I didn't
 make the distinction clear enough.  So, here's a summary that may clarify
 things.  
 
--   Software development builds **software** .
+-   Software development builds **software**.
 
 -   Pedagogical exercises build **skills**  in software development.
 
 
 
-My point
-remains that building software to solve a problem can involve pursuing
+My point remains that building software to solve a problem can involve pursuing
 technology that would never actually solve the problem, or pursuing a solution
 in a way it isn't really viable.  By a non-viable solution, I mean that it lacks
 the quality attributes necessary to make it valuable. 
@@ -57,14 +55,12 @@ the quality attributes necessary to make it valuable.
 
 
 
-The comment notes that pedagogical
-exercises come in a variety of forms:
+The comment notes that pedagogical exercises come in a variety of forms:
 
 -   Learning the language.
 
 -   Learning the libraries (I think this is
-    what "demo a certain ability"
-    means).
+    what "demo a certain ability" means).
 
 
 
@@ -95,8 +91,7 @@ There are still higher-level things we need to learn.
 
 Beyond pedagogy, there's also
 the hobby of programming, which is yet another very bothersome thing
-masquerading as software
-development.
+masquerading as software development.
 
 
 
@@ -109,7 +104,7 @@ this hair.
 
 
 
-**Practice makes Permanent.** The craft or sullen art of
+**Practice makes Permanent**. The craft or sullen art of
 programming can be applied to a number of situations.  Software development is
 the one I'm interested in because that's where the cost and value are.  Skill
 building is tangential to my original post, but it does lead to the following
@@ -128,15 +123,13 @@ change control and documentation.
 
 
 
-So,
-let's take the comment as meaning that "pedagogy can have rat-holes, too."  That
-seems as good an interpretation as
-any.
+So, let's take the comment as meaning that "pedagogy can have rat-holes, too."
+That seems as good an interpretation as any.
 
 
 
-We make permanent what we
-practice.  If we have shoddy pedagogical practices, the skills we build are
+We make permanent what we practice.
+If we have shoddy pedagogical practices, the skills we build are
 shoddy skills.  Practice only makes perfect if we are practicing perfect things.
 If we are practicing the wrong things, we will build poor skills and make those
 non-skills permanent personal
@@ -144,13 +137,12 @@ liabilities.
 
 
 
-If pedagogy has rat-holes,
-how do we manage those rat-holes? 
+If pedagogy has rat-holes, how do we manage those rat-holes?
 
 
 
 
-**Learning to Capture Knowledge.**   The answer is the same.  When we
+**Learning to Capture Knowledge**.   The answer is the same.  When we
 learn to program (or learn the libraries, layers, leasts and largests), we are
 focused on knowledge capture and using that captured knowledge appropriately. 
 We need to keep our heads out of the rat-holes and look at our
@@ -181,10 +173,8 @@ language nuances.
 We could, for
 example, dive into rat-holes to exploit things we don't understand fully;
 perhaps the buzzwords appealed to us.  Design patterns are notorious for giving
-us large hammers that make every problem look like a nail.  We could go
-**State** -happy,
-or
-**Strategy** -happy,
+us large hammers that make every problem look like a nail.
+We could go **State** -happy, or **Strategy** -happy,
 and have an application with a useless level of flexibility.  Indeed, this is a
 common indictment of OO programming: it's too complex for simple problems.  I
 think this is true because of the rat-hole of design
@@ -210,7 +200,7 @@ problem?
 
 
 
-**Course Corrections.** The most important course correction comes
+**Course Corrections**. The most important course correction comes
 from having a goal.  If we are developing software, we have a goal.  If we are
 learning, we have to establish goals, or we're doomed to chasing around in the
 rat-warrens.  If, on the other hand, this is a hobby, goals don't matter -- code

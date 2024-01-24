@@ -11,11 +11,10 @@ Three Arguments for Using the Hammer
 
 
 
-When we're
-**Holding the Hammer** , everything's a nail.  There are a
-number of supporting arguments for this.  I won't beat down the
-**All Those Features** ™ decision-making pattern again.
-That, and some part of **Tomorrow's Dollars Don't Exist** ™ decision-making pattern are
+When we're **Holding the Hammer**, everything's a nail.  There are a
+number of supporting arguments for this.
+I won't beat down the **All Those Features**\ ™ decision-making pattern again.
+That, and some part of **Tomorrow's Dollars Don't Exist**\ ™ decision-making pattern are
 in "`Is it Over-Solving or Exploiting
 Technology? <{filename}/blog/2006/07/2006_07_21-is_it_over_solving_or_exploiting_technology.rst>`_ "
 
@@ -30,12 +29,9 @@ limited."
 
 
 Clearly, we agree that the
-basic **Tomorrow's Dollars Don't Exist** ™ management pattern is flawed.  
-My point is that
-**all**  of
-the cost -- no matter how limited -- is money that's wasted.  Limited is still
-non-zero, and I find all cost to be
-objectionable.
+basic **Tomorrow's Dollars Don't Exist**\ ™ management pattern is flawed.
+My point is that **all**  of the cost -- no matter how limited -- is money that's wasted.
+Limited is still non-zero, and I find all cost to be objectionable.
 
 
 
@@ -49,28 +45,21 @@ transactions.
 
 
 
-The real issue is that
-**all**  of
-the costs associated with applying the RDBMS to transient data are
-wasted.
+The real issue is that **all**  of
+the costs associated with applying the RDBMS to transient data are wasted.
 
 
 
-Here's the nub of the
-**It's Already Here** ™ decision
-pattern.
+Here's the nub of the **It's Already Here**\ ™ decision pattern.
 
 
 
-"Since it exists in the
-organization already ... The app requiring queuing does not live in a
-vacuum."
+"Since it exists in the organization already ... The app requiring queuing does not live in a vacuum."
 
 
 
-True, we're making
-*additional* 
-use of the RDBMS.  We have the organization and the skills to make use of the
+True, we're making *additional* use of the RDBMS.
+We have the organization and the skills to make use of the
 RDBMS.  However, we will wind up canonizing many worthless features into
 essential parts of the solution architecture. 
 

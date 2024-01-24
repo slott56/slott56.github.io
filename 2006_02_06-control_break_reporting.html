@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="books,building skills,#python" />
-        <meta name="description" content="Control Break Reporting is a design pattern that has been around since the earliest days of business applications. It solves the problem of producing a report on nested (or hierarchical) data, the kind often found in a chart of accounts. The result of control break reporting is a properly nested …" />
+        <meta name="description" content="Note This referred to the old Active State Programmers Network, ASPN, Python Cookbook. The code has been moved to the ActiveState Code site. Likely, the fact that it&#39;s Python 2 means it is no longer online. Control Break Reporting is a design pattern that has been around since the earliest …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Control Break Reporting"/>
         <meta property="og:url" content="https://slott56.github.io/2006_02_06-control_break_reporting.html"/>
-        <meta property="og:description" content="Control Break Reporting is a design pattern that has been around since the earliest days of business applications. It solves the problem of producing a report on nested (or hierarchical) data, the kind often found in a chart of accounts. The result of control break reporting is a properly nested …"/>
+        <meta property="og:description" content="Note This referred to the old Active State Programmers Network, ASPN, Python Cookbook. The code has been moved to the ActiveState Code site. Likely, the fact that it&#39;s Python 2 means it is no longer online. Control Break Reporting is a design pattern that has been around since the earliest …"/>
         <meta property="article:published_time" content="2006-02-06" />
             <meta property="article:section" content="Books" />
             <meta property="article:tag" content="books" />
@@ -118,25 +118,34 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Control Break Reporting is a design pattern that
+                <div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This referred to the old Active State Programmers Network, ASPN,
+Python Cookbook.
+The code has been moved to the ActiveState Code site.
+Likely, the fact that it's Python 2 means it is no longer online.</p>
+</div>
+<p>Control Break Reporting is a design pattern that
 has been around since the earliest days of business applications.  It solves the
 problem of producing a report on nested (or hierarchical) data, the kind often
 found in a chart of accounts.</p>
-<p>The
-result of control break reporting is a properly nested set of reports, each of
+<p>The result of &quot;control break&quot; reporting is a properly nested set of reports, each of
 which has localized subtotals.  The details add up to a deeply nested subtotal.
 The subtotals add up to higher and higher level totals, and the top-level totals
 add to a grand total.</p>
-<p>The classical
-algorithm for control break reporting, however, tends to hide the basic
+<p>When the hierarchical key values change from one record to the next,
+this is called a &quot;break&quot; in the controlling keys for a subsection.
+At this break in control, emit a sub-total appropriate to the level of the keys showing the change.</p>
+<p>The classical algorithm for &quot;control break&quot; reporting, however, tends to hide the basic
 hierarchy under a welter of details about keys and totals and subtotals.  It
 can't produce &quot;heading&quot; totals or counts, only footing totals or counts.  As
 soon as you want additional features, you may as well ditch the classical
 algorithm.</p>
-<p><strong>The Problem is the Sort</strong></p>
+<div class="section" id="the-problem-is-the-sort">
+<h2>The Problem is the Sort</h2>
 <p>The most important thing I
-dislike about the classical control break algorithm is the sort that's required.
-Sorting is an expensive operation.  Rarely does a control break report show all
+dislike about the classical &quot;control break&quot; algorithm is the sort that's required.
+Sorting is an expensive operation.  Rarely does a &quot;control break&quot; report show all
 of the detail with all of the nested totals, so why should I sort all that data
 only to produce higher-level
 subtotals?</p>
@@ -153,7 +162,9 @@ few levels of summary data.  Her shift supervisors want the details for their
 specific times and production areas.    No one wants ALL of the data.  If no one
 wants all of the data, why sort all of
 it?</p>
-<p><strong>The Data is Dimensional</strong></p>
+</div>
+<div class="section" id="the-data-is-dimensional">
+<h2>The Data is Dimensional</h2>
 <p>Most of the interesting
 reporting problems have a combination of two features: dimensions and
 hierarchies.  The basic numeric measurements (dollars, hours, pounds, pallets,
@@ -179,14 +190,14 @@ complex relationships within a dimension.  For example, the calendar has weeks
 and months, but months don't fall on nice weekly boundaries.  Similarly, our USA
 office may have many regions in a single country, but our European office may
 combine several countries in a region.</p>
-<p><strong>The Solution is a Mapping</strong></p>
-<p>The right way to handle
-Control Break reporting in Python is through a design pattern that is a
+</div>
+<div class="section" id="the-solution-is-a-mapping">
+<h2>The Solution is a Mapping</h2>
+<p>The right way to handle &quot;Control Break&quot; reporting in Python is through a design pattern that is a
 variation on the Index or the Inverted Database.  I prefer to call it the
 Dimensional Map, because that's a better clue as to how it
 works.</p>
-<p>Let's look at the data we have
-in the ASPN example:</p>
+<p>Let's look at the data we have in the ASPN example:</p>
 <pre class="literal-block">
 records = [(&quot;branch1&quot;,  &quot;sales1&quot;, 100),
            (&quot;branch1&quot;,  &quot;sales1&quot;, 50),
@@ -203,8 +214,7 @@ dollars.  We can then traverse these nested maps to write the report we want to
 see, correctly labeled with headers and footers.  We can, without too much extra
 work. have totals in the header as well as the footer.  I'll leave that as an
 exercise.</p>
-<p>It works like
-this:</p>
+<p>It works like this:</p>
 <pre class="literal-block">
 branchMap= {}
 for branch, person, dollars in records:
@@ -233,9 +243,10 @@ hard-wired for this simple two-dimensional analysis.  It doesn't take too much
 cut-and-paste to expand this to the desired number of levels.  It isn't,
 however, the most general solution.  For that, we need a better class
 design.</p>
-<p><strong>Expanding On The Pattern</strong></p>
-<p>The real problem with
-Control Break reporting is the recursion.  Any level of the report (except the
+</div>
+<div class="section" id="expanding-on-the-pattern">
+<h2>Expanding On The Pattern</h2>
+<p>The real problem with Control Break reporting is the recursion.  Any level of the report (except the
 numeric facts) is a recursive structure: it contains a Map of the next lower
 level of detail.  We can define a class, Dimension, which does two things for
 us.</p>
@@ -255,18 +266,15 @@ deeply-nested item is the basic Fact.  This leads to programs that fit the
 recursive model of a number of dimensions, terminated by a single
 fact.</p>
 <p>To keep the classes polymorphic,
-both Dimension and Fact must implement an
-append() method
-that loads data and a
-report() method
+both Dimension and Fact must implement an <tt class="docutils literal">append()</tt> method
+that loads data and a <tt class="docutils literal">report()</tt> method
 that produces the final report on the data.</p>
 <p>Further, to keep this example simple,
 we'll make each object a combination of data and meta-data.  The data is the
 mapping of key to details or the list of facts.  The metadata is the column name
 and the relationship with the lower-level dimensions.  The metadata is a
 universal truth about the data.</p>
-<p>We
-have multiple instances of each object: there are multiple branches and multiple
+<p>We have multiple instances of each object: there are multiple branches and multiple
 people.  We'll need to create additional collections to hold the data.  We'll do
 this by cloning the object definition.  There's a better way to do this by
 separating the metadata from the actual detailed numeric data, but that is a
@@ -330,13 +338,14 @@ for row in records:
     analysis.append( row )
 </pre>
 <p>Reporting, similarly, relies on the
-recursive structure of Dimension objects nested within Dimension
-objects.</p>
+recursive structure of Dimension objects nested within Dimension objects.</p>
 <pre class="literal-block">
 analysis.report()
 print analysis.total
 </pre>
-<p><strong>More Generalization</strong></p>
+</div>
+<div class="section" id="more-generalization">
+<h2>More Generalization</h2>
 <p>Since some people
 are uncomfortable with the recursion, and would prefer this to use a flat list
 of Dimension and Fact objects.  This flat list can be used with explicit
@@ -354,6 +363,7 @@ detail.</p>
 meta-data from the real application data would shift the complexity around.  It
 would make some of this simpler, but it would introduce more classes into the
 solution.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1187,11 +1197,11 @@ solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1199,7 +1209,7 @@ solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1263,7 +1273,7 @@ solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1275,15 +1285,11 @@ solution.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

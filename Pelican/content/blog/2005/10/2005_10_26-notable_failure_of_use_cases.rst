@@ -11,11 +11,10 @@ Notable Failure of Use Cases
 
 
 
-**Context** 
+Context
+--------
 
-The
-company,
-*W* , is
+The company, *W*, is
 an e-business startup with a successful, profitable business operation.  They
 were using a mixture of PCs and small servers from various sources to conduct
 business.  They had a base of customers, a positive cash-flow and investment
@@ -24,8 +23,7 @@ dollars.
 
 
 
-*W* 
-contacted two large software and services companies for proposals to build a
+*W* contacted two large software and services companies for proposals to build a
 complete web-based solution to replace the ad-hoc mixture of software and
 outside services that formed the current operation.  The total bill for
 development was over $10M from each vendor.  The job was beyond their investors
@@ -35,8 +33,7 @@ developers.
 
 
 
-*W* 
-came to us with a document, prepared by one of the vendors, which was an
+*W* came to us with a document, prepared by one of the vendors, which was an
 architecture and blueprint for the system to be developed.  It contained a
 number of “use cases”; we were contracted to prioritize the use
 cases, and deliver the required functionality
@@ -44,10 +41,10 @@ incrementally.
 
 
 
-**Problems** 
+Problems
+----------
 
-The
-initial set of use cases were not narrative in form; they did not contain
+The initial set of use cases were not narrative in form; they did not contain
 sequences of interactions between an actor and the system to create business
 value.  In all but a few cases, they were bulleted lists of features, data
 elements, business rules, constraints, and implementation hints.  The most
@@ -57,9 +54,7 @@ application.
 
 
 
-Further, the description
-of the various login scenarios provided by
-*W* 
+Further, the description of the various login scenarios provided by *W*
 implied some additional use cases not present in the documentation.  This
 quality problem, plus the egregious focus on login, indicated some kind of rush
 to create a deliverable, even thought it was
@@ -76,10 +71,8 @@ details.
 
 
 One consequence of the project
-history was that
-*W*  was
-firmly committed to the document.  It appeared that
-*W*  had
+history was that *W*  was
+firmly committed to the document.  It appeared that *W*  had
 spent considerable time and effort with their vendor arriving at the “use
 case” descriptions.  They considered the document to be of considerable
 value, even though we found it an opaque summary of features without any usable
@@ -101,10 +94,10 @@ business.
 
 
 
-**Conclusion** 
+Conclusion
+------------
 
-We
-note that while there were numerous personnel and management issues, there is
+We note that while there were numerous personnel and management issues, there is
 also a problem with the use case technique.  The use case issue is that users
 often cannot focus on the business problem, they will either describe a specific
 solution or speak hypothetically about potential
@@ -122,8 +115,7 @@ not need to be specified.
 
 
 
-Our
-preference is to simply state the user’s level of access as a precondition
+Our preference is to simply state the user’s level of access as a precondition
 for all use cases, and leave it out of the business description entirely.  We
 feel that authentication, by itself, does not create business
 value.

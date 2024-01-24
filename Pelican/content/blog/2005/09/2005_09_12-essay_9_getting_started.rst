@@ -16,22 +16,19 @@ doing architecture or even design)?
 
 
 
-The
-important thing is to recognize the
-*what* 
-vs.
-*how* 
-distinction.  Following Pressman's advice, we note a whole waterfall of
-*what* 's
-and
-*how* 's.
-It breaks down something like the following four phases.  For information on
+The important thing is to recognize the
+*what* vs. *how* distinction.
+Following Pressman's advice, we note a whole waterfall of
+*what* 's and *how* 's.
+It breaks down something like the following four phases.
+For information on
 techniques for Inception and Elaboration ("Analysis"), see Essay 13, "`Analysis Without Running Aground <{filename}/blog/2005/09/2005_09_17-essay_13_analysis_without_running_aground.rst>`_ ", for
 guidance.
 
 
 
-**Inception** 
+Inception
+---------
 
 
 
@@ -62,7 +59,8 @@ system.
 
 
 
-**Elaboration** 
+Elaboration
+-----------
 
 
 
@@ -91,7 +89,8 @@ goals.
 
 
 
-**Design (Architecture)** 
+Design (Architecture)
+---------------------
 
 
 
@@ -115,34 +114,31 @@ interactions.
 
 
 
-**Construction** 
+Construction
+------------
 
 
 
-**Detailed Design** 
+Detailed Design
+~~~~~~~~~~~~~~~
 
 
 
 The detailed design accepts
-the architecture as the
-"*what* "
-and determines
-"*how* "
+the architecture as the "*what*" and determines "*how*"
 each component must be constructed to achieve the architectural goals (which
 achieve the UC goals, which achieve the BUC
 goals).
 
 
 
-**Programming** 
+Programming
+~~~~~~~~~~~
 
 
 
 Programming
-moves down the
-*what-how* 
-tree to the final level of determing
-*how* 
+moves down the *what-how* tree to the final level of determing *how*
 to implement the design.  Generally, the design should provide enough guidance
 in selection of fine-grained data structures and algorithms.  If it does not,
 the architectural goals (or even high-level goals) should supply the missing

@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="architecture,software design,complexity" />
-        <meta name="description" content="R. Lucente shared an email with me that included Cary Millsap&#39;s Volume Theorem. Theorem : No human wants to see more than 10 rows. Ever. Which caused me to wonder why anyone would ever use an RDBMS as a slow, complex, high-overhead message queue. I&#39;ve seen it done several times, and …" />
+        <meta name="description" content="R. Lucente shared an email with me that included Cary Millsap&#39;s Volume Theorem. Theorem: No human wants to see more than 10 rows. Ever. Which caused me to wonder why anyone would ever use an RDBMS as a slow, complex, high-overhead message queue. I&#39;ve seen it done several times, and …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Over-Solving the Problem or When your architect is a DBA..."/>
         <meta property="og:url" content="https://slott56.github.io/2006_06_20-over_solving_the_problem_or_when_your_architect_is_a_dba.html"/>
-        <meta property="og:description" content="R. Lucente shared an email with me that included Cary Millsap&#39;s Volume Theorem. Theorem : No human wants to see more than 10 rows. Ever. Which caused me to wonder why anyone would ever use an RDBMS as a slow, complex, high-overhead message queue. I&#39;ve seen it done several times, and …"/>
+        <meta property="og:description" content="R. Lucente shared an email with me that included Cary Millsap&#39;s Volume Theorem. Theorem: No human wants to see more than 10 rows. Ever. Which caused me to wonder why anyone would ever use an RDBMS as a slow, complex, high-overhead message queue. I&#39;ve seen it done several times, and …"/>
         <meta property="article:published_time" content="2006-06-20" />
             <meta property="article:section" content="Architecture & Design" />
             <meta property="article:tag" content="architecture" />
@@ -119,17 +119,16 @@ S.Lott -- Software Architect            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>R. Lucente shared an email with me that included
-<a class="reference external" href="http://www.hotsos.com">Cary
-Millsap's</a>   Volume Theorem.</p>
-<p><em>Theorem</em> :
-<strong>No human wants to see more than 10 rows. Ever.</strong></p>
+<a class="reference external" href="http://www.hotsos.com">Cary Millsap's</a>   Volume Theorem.</p>
+<p><em>Theorem</em>:</p>
+<blockquote>
+<strong>No human wants to see more than 10 rows. Ever.</strong></blockquote>
 <p>Which caused me to wonder why
 anyone would ever use an RDBMS as a slow, complex, high-overhead message queue.
 I've seen it done several times, and in all cases, it was considered A Bad Thing
 after it had been in production for a while.  Either it was slow or it was
 inflexible.</p>
-<p>Why do we end up with this
-situation?</p>
+<p>Why do we end up with this situation?</p>
 <p>I had a DBA tell me that the
 user registration application shouldn't directly update the LDAP server.
 Instead, the users should be placed in the database, where Oracle's DIPTEST
@@ -140,30 +139,27 @@ sin.</p>
 <p>It turns out that there are some
 things DIPTEST can't do.  The database-centric philosophy did us more harm than
 good.</p>
-<p><strong>The RDBMS-as-Reliable-Message-Queue design pattern.</strong></p>
+<div class="section" id="the-rdbms-as-reliable-message-queue-design-pattern">
+<h2>The RDBMS-as-Reliable-Message-Queue design pattern</h2>
 <p>We use the RDBMS as a
 message queue for the same reason we use it as a front-end to the LDAP server.
 The RDBMS is the biggest, most expensive, most visible and most central
 persistence mechanism we see.  We can't or don't see the file system, because
 it's free with our OS; we take it for granted.</p>
-<p>So what features do we get from the
-RDBMS As Message Queue?</p>
-<p>1.
-<strong>Reliability</strong> .
+<p>So what features do we get from the RDBMS As Message Queue?</p>
+<ol class="arabic simple">
+<li><strong>Reliability</strong>.
 The RDBMS has logs and rollback space and carefully designed algorithms to
 assure that dirty cache storage is written to disk quickly.   Why not just write
 a file or two to different devices?  Isn't that multiple-device write what's
-going on under the hood in the
-RDBMS?</p>
-<p>2.
-<strong>Scalability</strong> .
+going on under the hood in the RDBMS?</li>
+<li><strong>Scalability</strong>.
 Multiple writers or multiple readers can share the RDBMS.  Multiple writers is
 easily handled by multiples files in a directory.  Multiple readers is easily
 handled by isolating the state information that describes &quot;next transaction&quot;
 from the multiple processes which execute individual
-transactions.</p>
-<p>3.
-<strong>Recoverability</strong> .
+transactions.</li>
+<li><strong>Recoverability</strong>.
 When the transaction is finished, we can update the record in the RDBMS to show
 that it's complete.  Why?  To promote a reliable restart in the event of a
 crash; that way we won't reprocess queued transactions.  Why not write a second
@@ -171,18 +167,19 @@ file of completed transaction id's?  At startup, read and locate transactions
 that are in the queue but not in the completed transaction file.  It can't take
 more than a second or so to write an updated, unprocessed transaction queue, and
 then be up and processing
-again.</p>
-<p><strong>Why did the RDBMS win out over simple files?</strong></p>
+again.</li>
+</ol>
+</div>
+<div class="section" id="why-did-the-rdbms-win-out-over-simple-files">
+<h2>Why did the RDBMS win out over simple files?</h2>
 <p>My current
 theory is that architecture depends on the project manager.  It's all about the
 manager's level of comprehension of the technology choices, their level of trust
 in their information sources and their involvement in the project.   It has
 little to do with applying technology to solve a problem -- unless the PM
-actually makes an effort to be involved, comprehend the alternatives, and have a
-trusted source of technology
-directions.</p>
-<p>I've been undermined by all
-three.</p>
+actually makes an effort to (1) be involved, (2) comprehend the alternatives, and (3) have a
+trusted source of technology directions.</p>
+<p>I've been undermined by all three.</p>
 <p>No involvement means that the
 client DBA's opinion carries more weight than mine.  Until things don't work,
 and then the DBA can easily recast their insistence as a suggestion or a
@@ -201,7 +198,9 @@ it's just learning.)  I'm talking about the extreme case of making the decision
 to do X, backing down on that decision because X really is a bad idea, then
 reinstating the decision to do X because the alternative isn't trusted
 enough.</p>
-<p><strong>Don't Over Solve.</strong></p>
+</div>
+<div class="section" id="don-t-over-solve">
+<h2>Don't Over Solve</h2>
 <p>Millsap's point is really
 important.  It's about the people -- the actors, the use cases, the information,
 decisions and actions.  If we are solving their problem, then we can make
@@ -211,14 +210,15 @@ cheaper.  A file or two would have been
 simpler.</p>
 <p>But how do we know in advance
 which is better: RDBMS-As-Message-Queue or File-As-Message-Queue?  The decision
-is easy to make.  It depends on answering the following question:
-<strong>are we are over-solving the problem?</strong></p>
+is easy to make.
+It depends on answering the following question: <strong>are we are over-solving the problem?</strong></p>
 <p>We're over-solving the
 problem when the RDBMS-As-Message-Queue has added features like locking,
 rollbacks, schema management, and -- worst of all -- ad-hoc query capability.
 We don't need these features, so why are they here?  We only need a couple of
 files.  So, just build readers and writers for a couple of files and be
 done.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1052,11 +1052,11 @@ done.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1064,7 +1064,7 @@ done.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1128,7 +1128,7 @@ done.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1140,15 +1140,11 @@ done.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

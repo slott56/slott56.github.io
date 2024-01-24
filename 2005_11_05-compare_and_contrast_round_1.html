@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="#python,unit testing" />
-        <meta name="description" content="Some Basis for Comparison The object-oriented unit testing framework began as Smalltalk&#39;s Beck Test framework http://www.xprogramming.com/testfram.htm. It evolved to the JUnit http://www.junit.org/index.htm framework for Java. Beck defined four repeated patterns of unit testing software: The Fixture . The thing we are …" />
+        <meta name="description" content="Some Basis for Comparison The object-oriented unit testing framework began as Smalltalk&#39;s Beck Test framework http://www.xprogramming.com/testfram.htm. It evolved to the JUnit http://www.junit.org/index.htm framework for Java. Beck defined four repeated patterns of unit testing software: The Fixture. The thing we are …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Compare and Contrast (round 1)"/>
         <meta property="og:url" content="https://slott56.github.io/2005_11_05-compare_and_contrast_round_1.html"/>
-        <meta property="og:description" content="Some Basis for Comparison The object-oriented unit testing framework began as Smalltalk&#39;s Beck Test framework http://www.xprogramming.com/testfram.htm. It evolved to the JUnit http://www.junit.org/index.htm framework for Java. Beck defined four repeated patterns of unit testing software: The Fixture . The thing we are …"/>
+        <meta property="og:description" content="Some Basis for Comparison The object-oriented unit testing framework began as Smalltalk&#39;s Beck Test framework http://www.xprogramming.com/testfram.htm. It evolved to the JUnit http://www.junit.org/index.htm framework for Java. Beck defined four repeated patterns of unit testing software: The Fixture. The thing we are …"/>
         <meta property="article:published_time" content="2005-11-05" />
             <meta property="article:section" content="Python" />
             <meta property="article:tag" content="#python" />
@@ -115,62 +115,59 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>Some Basis for Comparison</strong></p>
+                <div class="section" id="some-basis-for-comparison">
+<h2>Some Basis for Comparison</h2>
 <p>The object-oriented unit
 testing framework began as Smalltalk's Beck Test framework <a class="reference external" href="http://www.xprogramming.com/testfram.htm">http://www.xprogramming.com/testfram.htm</a>.  It evolved to the JUnit <a class="reference external" href="http://www.junit.org/index.htm">http://www.junit.org/index.htm</a>
 framework for Java.  Beck defined four repeated patterns of unit testing
 software:</p>
-<p>The
-<strong>Fixture</strong> .
+<p>The <strong>Fixture</strong>.
 The thing we are testing; a class or possibly a set of instances of a given
 class, or possibly something even larger.  If we are testing more than one class
 at a time, we aren't really &quot;unit&quot; testing.  So the fixture often includes stubs
 for missing classes.</p>
-<p>The
-<strong>Test Case</strong> .  A predictable reaction of the fixture.
+<p>The <strong>Test Case</strong>.  A predictable reaction of the fixture.
 This should either work or fail.  It can, of course also raise one of those
 egregious, unchecked-for errors that indicate fairly serious problems in a
 preliminary piece of software.  Or, it may indicate something that was badly
 damaged during maintenance and is now raising errors instead of simply failing
 the regression test suite.</p>
-<p>The
-<strong>Results Check</strong> .  A specific assertion about the
-fixture's results.</p>
-<p>The
-<strong>Test Suite</strong> . A collection of
-TestCases.</p>
+<p>The <strong>Results Check</strong>.  A specific assertion about the fixture's results.</p>
+<p>The <strong>Test Suite</strong>. A collection of TestCases.</p>
 <p>JUnit and unittest add a
 <strong>Test Runner</strong>  pattern, also.  This the top-level
 component that uses a Test Suite to create test results by executing each Test
 Case, assuring that each Results Check worked.  The Test Runner can also assure
 that any Fixture Setup and Teardown is done
 correctly.</p>
-<p><strong>Legacy Frameworks</strong></p>
-<p>unittest delivers all
+</div>
+<div class="section" id="legacy-frameworks">
+<h2>Legacy Frameworks</h2>
+<p><tt class="docutils literal">unittest</tt> delivers all
 the Beck-defined features.  It should, it is the indirect descendant of the
 original framework.  Having JUnit as an ancestor, however, leads to some clunky
 non-Pythonic features.  In particular, Python features that Java lacks are
 ignored, including modules and free-standing
 functions.</p>
-<p>doctest has an odd fit with
+<p><tt class="docutils literal">doctest</tt> has an odd fit with
 the Beck framework.  The fixture isn't well defined; since doctest has a
 module-centric view, a shallow copy of the module globals are given to each
 test, making the module globals the fixture.  Each Case and Results Check is
 encoded in a docstring, usually by a cut and paste from an interactive testing
 session.  The test suite is implied by the module
 structure.</p>
-<p>unittest isn't terribly
+<p><tt class="docutils literal">unittest</tt> isn't terribly
 Pythonic.  Doctest is module-focused, not class focused, and doesn't treat the
 notion of fixture very well.</p>
-<p>IMO,
-module-based testing is a more useful level of unit testing.  Individual
+<p>IMO, module-based testing is a more useful level of unit testing.  Individual
 classes, while important, rarely make sense in a vacuum.  All of the test
 harness and stub classes required to test just one class seems like too much
 unproductive work.  When the architecture changes, I may have to change a class
 definition as well as the test harness classes that stand in for this class in
 the unit testing framework.</p>
 <p>Next Up,
-py.test, nose and testgears.  Later, TestOOB and Sancho.</p>
+<tt class="docutils literal">py.test</tt>, <tt class="docutils literal">nose</tt> and <tt class="docutils literal">testgears</tt>.  Later, <tt class="docutils literal">TestOOB</tt> and <tt class="docutils literal">Sancho</tt>.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1004,11 +1001,11 @@ py.test, nose and testgears.  Later, TestOOB and Sancho.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1016,7 +1013,7 @@ py.test, nose and testgears.  Later, TestOOB and Sancho.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1080,7 +1077,7 @@ py.test, nose and testgears.  Later, TestOOB and Sancho.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1092,15 +1089,11 @@ py.test, nose and testgears.  Later, TestOOB and Sancho.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

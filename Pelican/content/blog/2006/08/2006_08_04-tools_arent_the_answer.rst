@@ -17,8 +17,7 @@ coverage.
 
 
 
-Here's the
-recap:
+Here's the recap:
 
 1.  They have 100% test coverage.
 
@@ -26,16 +25,14 @@ recap:
 
 
 
-How is this possible?  How
-was it possible to turn up an untested method in spite of 100% test
+How is this possible?  How was it possible to turn up an untested method in spite of 100% test
 coverage?
 
 
 
 There's a technicality in
 Java that makes some things hard to test.  In this case, a method
-(isEmpty()) was
-overridden in each subclass.  You can't really test abstract superclasses very
+(``isEmpty()``) was overridden in each subclass.  You can't really test abstract superclasses very
 well, you can only test concrete subclasses.  The superclass method was never
 used by any concrete subclass, and was never
 tested.
@@ -49,14 +46,11 @@ otherwise that error would have been caught."
 
 
 
-However, I disagree.  I think they
-**did**  test
-every API that was implemented.   
+However, I disagree.  I think they **did**  test every API that was implemented.
 
 
 
-That
-one overridden API could only be tested by creating a concrete subclass with the
+That one overridden API could only be tested by creating a concrete subclass with the
 purpose of testing superclass methods.   This subclass would be a contrived
 beast this isn't deliverable, and only exists because someone concocted it to
 exercise the superclass methods. 
@@ -65,14 +59,13 @@ exercise the superclass methods.
 
 
 Someone would have to understand the
-design well enough to build the necessary
-**Proxy** 
-classes.  This sounds suspiciously complex for any test coverage tool to tangle
-with.
+design well enough to build the necessary **Proxy** classes.
+This sounds suspiciously complex for any test coverage tool to tangle with.
 
 
 
-**How would they know?** 
+How would they know?
+--------------------
 
 
 
@@ -83,37 +76,31 @@ place?
 
 
 
-"I believe that we (as an
-industry) can get to Zero Defect Software, but do we actually have the tools to
-get there today?"  is Purdy's rhetorical
-question.
+"I believe that we (as an industry) can get to Zero Defect Software, but do we actually have the tools to
+get there today?"  is Purdy's rhetorical question.
 
 
 
-I think the tools can
-*never* 
+I think the tools can *never*
 exist to provide the kind of 100% coverage he's looking for.  Why not?  Why
 can't we build a perfect unit test tool that absolutely proves our software
 works?
 
 
 
-The root problem is that we
-can't create an automated proof our software works.  By prove, I mean absolute,
-iron-bound, 100% proof of correctness.  Why not?  We can't create an automated
-proof of loop termination.  
+The root problem is that we can't create an automated proof our software works.
+By prove, I mean absolute, iron-bound, 100% proof of correctness.
+
+Why not?  We can't create an automated proof of loop termination.
 
 
 
-Assume
-that HP/Mercury wrote a utility called
-"terminates()"
-which returned
-True if a given
-function would terminate.  Assume I wrote a function,
-whistle() which
-plays a MIDI file using samples of tea-kettle whistles.  Then I wrote this unit
-test:
+Assume that HP/Mercury wrote a utility called ``terminates()``
+which returned True if a given
+function would terminate.
+Assume I wrote a function, ``whistle()`` which
+plays a MIDI file using samples of tea-kettle whistles.
+Then I wrote this unit test:
 
 ::
 
@@ -123,25 +110,22 @@ test:
 
 
 
-What does
-this do?  If the
-terminates()
-function thinks that
-test_whistler()
+What does this do?
+If the ``terminates()`` function thinks that ``test_whistler()``
 will terminate, it has to loop forever.  
+
 Contradiction.
-Therefore, this
-terminates()
-function can't exist.
+
+Therefore, this ``terminates()`` function can't exist.
 
 
 
-**If they can't know, what can they do?** 
+If they can't know, what can they do?
+-------------------------------------
 
 
 
-Since
-absolute proof can't exist, what can we do?  It has to involve much more than
+Since absolute proof can't exist, what can we do?  It has to involve much more than
 tools.  It's about people, process, tools, funding and
 organization.
 
@@ -180,13 +164,13 @@ difference.
 
 
 
-**What they did right.** 
+What they did right
+-------------------
 
 
 
-Purdy found the defect. 
-Therefore, a process worked.  It's hard to say which process, but something
-worked.
+Purdy found the defect. Therefore, a process worked.
+It's hard to say which process, but something worked.
 
 
 

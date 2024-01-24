@@ -136,64 +136,60 @@ stored procedures?</li>
 <li>How can we implement a <a class="reference external" href="https://slott56.github.io/2006_10_11-absurdity_consistent_code_and_inconsistent_data_structures.html">common code base without a consistent data
 model</a> ?</li>
 </ul>
-<p>In essence the
-question has a hidden assertion: Stored procedures are handy, but we need to
-justify them.</p>
-<p><strong>Bad Business.</strong></p>
+<p>In essence the question has a hidden assertion: Stored procedures are handy, but we need to justify them.</p>
+<div class="section" id="bad-business">
+<h2>Bad Business</h2>
 <p>Stored procedures, like
 AJAX, are an accident waiting to happen.  The ideal is that AJAX is pure
 presentation and stored procedures are pure persistence.  As a practical matter,
 bleed-through is inevitable.  As soon as the line is crossed, that piece of code
-becomes a costly stumbling block that prevents change and
-adaptation.</p>
+becomes a costly stumbling block that prevents change and adaptation.</p>
 <p>When we bury business rules
 in the front-end, we slow down the pace of change.  Even in a simple STRUTS
 application, the biding between JSP and JavaBean makes some kinds of changes
 more difficult than others.  If the JSP expands to include any business logic at
 all, the changes to the business rules either spread between application and
 presentation (doubling the cost), or we stop making changes to the presentation
-because it's too complex to
-change.</p>
+because it's too complex to change.</p>
 <p>When we bury business rules in
 stored procedures, we also slow down the pace of change.  We are stopped from
-making logical database changes because of the impact on our stored
-procedures.</p>
+making logical database changes because of the impact on our stored procedures.</p>
 <p>The convenience items like
 AJAX and stored procedures turn out to be bad business from IT's perspective.
 While AJAX is fun for the users, stored procedures are invisible to the users.
 Stored procedures are short-term fun with long-term costs.</p>
-<p><strong>Worst-Case Scenario.</strong></p>
+</div>
+<div class="section" id="worst-case-scenario">
+<h2>Worst-Case Scenario</h2>
 <p>Think about this kind of
 worst-case scenario.  Some non-thinker declares that the each person will have
 home phone, work phone, mobile phone, fax and email, and that's the end of it.
 One will be marked &quot;preferred&quot;.  This is clearly unsuitable for a lot of CRM
 purposes because it ignores people who share email addresses, and the use of
-instant messenger as a preferred
-channel.</p>
+instant messenger as a preferred channel.</p>
 <p>The DB designer puts five (5)
 fields in the database for communication channels; they write stored procedures
 to create a person with five (5) points of contact, assuring that the email
 address is the unique &quot;natural key&quot;.  The GUI designer lays out five fields and
 assembles a bunch of widgets to validate the various data types and assure each
 is unique.  The application developer validates each field before passing it to
-a stored procedure, and assures that all five form a unique
-combination.</p>
-<p>Clearly, everyone's wrong
-about some nuance, but it's suddenly very difficult to make changes.  Each has
-encapsulated a business assumption into code where it doesn't belong.</p>
+a stored procedure, and assures that all five form a unique combination.</p>
+<p>Clearly, everyone's wrong about some nuance, but it's suddenly very difficult to make changes.
+Each has encapsulated a business assumption into code where it doesn't belong.</p>
 <p>Unit tests will likely work, since the
 most common scenario for use lies at the intersection of the nuanced rules.
 However, as soon as we make a change, we uncover problems.  Worst, of course,
 the problems are not in our code, but in someone else's code, and we can't quite
-pinpoint the problem.  Things just don't work
-right.</p>
+pinpoint the problem.  Things just don't work right.</p>
 <p>No one can disentangle this
 without forcing a rewrite that eliminates features.  Who wants to eliminate
 features?  If we're going eliminate features, we might was well just throw away
 the whole GUI or Database (pick one).  Why do we have a rich GUI or Database
 (pick one) if we're not going to make full use of every
 feature?</p>
-<p><strong>A Better Case.</strong></p>
+</div>
+<div class="section" id="a-better-case">
+<h2>A Better Case</h2>
 <p>A Better Case is for GUI
 designers to make generic, reusable widgets.  The phrases &quot;Application-neutral&quot;
 or &quot;application-agnostic&quot; are too weak.  They have to be openly antagonistic to
@@ -201,8 +197,7 @@ any particular application.  The power of HTML and SQL is that they are so
 neutral as to be irritating.  In a similar way, we need to carefully partition
 our application into layers which are loosely coupled and only reflect the truly
 immutable features of that layer.</p>
-<p>The
-persistence layer is focused on just making business entities persistent.  Other
+<p>The persistence layer is focused on just making business entities persistent.  Other
 features of the entity, like natural keys, are outside the database's realm.
 Similarly, relationships have a low-level representation (as a link or foreign
 key), but any other constraint (cardinality, optionality, etc.) isn't part of
@@ -214,12 +209,11 @@ there are limits to what can be done meaningfully, and what is subject to change
 without notice.  Data types (i.e., email address, telephone number) don't
 change.  Other rules regarding uniqueness, identity, cardinality and even
 optionality, aren't enduring features of the presentation.  They're business
-relationships that can (and will)
-change.</p>
+relationships that can (and will) change.</p>
 <p>AJAX and Stored Procedures both
 have the potential to thwart change, making them costly.  The cost of adaptation
-to new business requirements must be factored in to the design of every
-layer.</p>
+to new business requirements must be factored in to the design of every layer.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1053,11 +1047,11 @@ layer.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1065,7 +1059,7 @@ layer.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1129,7 +1123,7 @@ layer.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1141,15 +1135,11 @@ layer.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

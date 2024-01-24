@@ -115,45 +115,47 @@ S.Lott -- Software Architect            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><strong>PROBLEM</strong></p>
-<p>I
-need to display my product catalog according to a number of dimensions but the
+                <div class="section" id="problem">
+<h2>PROBLEM</h2>
+<p>I need to display my product catalog according to a number of dimensions but the
 data changes slowly and isn't very complex.  Is a relational database and a web
 application really appropriate?  Or can I get away with something
 simpler?</p>
-<p><strong>CONTEXT</strong></p>
-<p>Some
-small product catalogs evolve slowly.  A detailed data model exists, including a
+</div>
+<div class="section" id="context">
+<h2>CONTEXT</h2>
+<p>Some small product catalogs evolve slowly.  A detailed data model exists, including a
 relational database implementation.</p>
-<p><strong>FORCES</strong></p>
-<p>On
-the one hand, we have a complete relational database.  However, the traditional
+</div>
+<div class="section" id="forces">
+<h2>FORCES</h2>
+<p>On the one hand, we have a complete relational database.  However, the traditional
 RDBMS Query capability isn't very valuable when each result set only has a few
 rows.  A pin-point query actually makes product comparisons
 difficult.</p>
-<p>On one hand, a sophisticated
-search can produce a page with a list of related products.  However, for the
+<p>On one hand, a sophisticated search can produce a page with a list of related products.  However, for the
 relevant dimensions, a relevant set of search results can all be computed and
 stored statically with the content.  While a user might go outside these
 pre-comuted indexes, it is an unlikely accident.  Further, the catalog is not
 too complex; fixed lists will facilitated navigation through simplified of the
 dimensions.</p>
-<p><strong>SOLUTION</strong></p>
-<p>Static
-HTML can represent the entire catalog.  You don't really need an active
+</div>
+<div class="section" id="solution">
+<h2>SOLUTION</h2>
+<p>Static HTML can represent the entire catalog.  You don't really need an active
 application to do searches.</p>
-<p>Each
-dimension of presentation (by product family, by designer, by size, by cost,
-whatever) can be a separate index
-page.</p>
-<p><strong>CONSEQUENCE</strong></p>
-<p>The
-catalog has to be modeled using a dimensional star schema.  This may require
+<p>Each dimension of presentation (by product family, by designer, by size, by cost,
+whatever) can be a separate index page.</p>
+</div>
+<div class="section" id="consequence">
+<h2>CONSEQUENCE</h2>
+<p>The catalog has to be modeled using a dimensional star schema.  This may require
 some minor changes to the database that maintains the master
 catalog.</p>
 <p>The catalog has to be
 transformed into a number of parallel index structures.  This is an interesting
 little programming problem in its own right.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -987,11 +989,11 @@ little programming problem in its own right.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -999,7 +1001,7 @@ little programming problem in its own right.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1063,7 +1065,7 @@ little programming problem in its own right.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1075,15 +1077,11 @@ little programming problem in its own right.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

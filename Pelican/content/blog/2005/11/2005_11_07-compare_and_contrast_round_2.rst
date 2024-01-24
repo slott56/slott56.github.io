@@ -19,18 +19,14 @@ software, covered in a previous posting <{filename}/blog/2005/11/2005_11_05-comp
 
 
 
-An
-additional pattern that py.test introduces is the
-**Diagnostics** 
+An additional pattern that py.test introduces is the **Diagnostics**
 pattern.  This is a useful traceback or cached output.  To make it useful, it is
 presented only for failing tests, and elides repetition in the event of
-recursions that lead to stack
-overflows.
+recursions that lead to stack overflows.
 
 
 
-py.test seems to deliver
-most of the Beck-defined features. 
+``py.test`` seems to deliver most of the Beck-defined features.
 
 
 
@@ -41,22 +37,18 @@ class) or within a class.
 
 
 
-The Test
-Case is a module, class or function with an appropriate name.  Either
-``test_`` or
-``Test_`` as a
-prefix is sufficient to define a test
-case.
+The Test Case is a module, class or function with an appropriate name.  Either
+``test_`` or ``Test_`` as a
+prefix is sufficient to define a test case.
 
 
 
 The Results Check uses ordinary
 asserts and a special
-py.test.raises
+``py.test.raises()``
 function to cover all the bases.  Personally, I prefer the JUnit approach to
 catching the expected exception and calling the
-fail() method
-for everything else.
+``fail()`` method for everything else.
 
 
 
@@ -69,8 +61,7 @@ can be examined to further refine the test protocols.
 
 
 
-The Runner is a stand-alone
-py.test program
+The Runner is a stand-alone ``py.test`` program
 that locates the tests, executes them and produces a log.  Further, it produces
 Diagnostics focused on the failing tests.  
 

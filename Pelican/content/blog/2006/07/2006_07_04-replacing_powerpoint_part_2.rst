@@ -23,19 +23,14 @@ powerful and simple solution.
 
 
 
-Indeed, a
-LEO outline which produces RST directly (via an ``@file``
-directive) for use by
-rst2s5.py is a
-piece of cake.   Similarly, a small change to
-rst2s5.py could
-create an
-rst2slidy.py,
-also.
+Indeed, a LEO outline which produces RST directly (via an ``@file`` directive)
+for use by ``rst2s5.py`` is a piece of cake.
+Similarly, a small change to ``rst2s5.py`` could create an ``rst2slidy.py``, also.
 
 
 
-**Better Integration** 
+Better Integration
+-------------------
 
 
 
@@ -54,12 +49,10 @@ technology stack:
 
 
 
-There
-are a mountain of alternatives:
+There are a mountain of alternatives:
 
 -   Leo's RST3 plug-in can produce HTML.  It
-    would be nice to make
-    rst2s5.py
+    would be nice to make ``rst2s5.py``
     unnecessary, since the DocUtils parsing is already embedded in Leo.  However,
     RST3 would have to produce ``<div class="slide">`` in addition to ``<h1>``
     tags.
@@ -70,24 +63,20 @@ are a mountain of alternatives:
 
 -   A simple plug-in that produces a pure RST
     text file, transforming headlines into RST section headers.  This could be run
-    through
-    rst2s5.py,
+    through ``rst2s5.py``,
     leading to a tidy way to produce slides from an outline.
 
 -   Either of the two plug-ins could be
     designed to use HTML markup instead of RST.  This would be slightly simpler in
     one sense (eliminating RST), but less usable.
 
--   A simple
-    ``@file`` directive
-    which produces an RST file that is post-processed by
-    rst2s5.py. 
+-   A simple ``@file`` directive
+    which produces an RST file that is post-processed by ``rst2s5.py``.
     This is doubly wasteful.  First, the RST3 plug-in integrates DocUtils; why use
     an external application?  Secondly, this requires the bodies be forced to match
     the headlines, wasting the headline information.
 
--   A simple
-    ``@file`` directive
+-   A simple  ``@file`` directive
     which produces an HTML file, directly focused on S5.  This requires that the
     content be entirely in the bodies, making the headlines unimportant.  This is
     wasteful.
@@ -118,15 +107,15 @@ world.
 
 
 
-**Making the Choice** 
+Making the Choice
+------------------
 
 
 
 What makes the most sense? 
 The choice has to be consistent with the advice to build as little as possible. 
 More important, the choice has to be consistent with the problem (replacing
-powerpoint) and the actual use
-cases.
+powerpoint) and the actual use cases.
 
 
 
@@ -158,9 +147,8 @@ cases.
 
 
 The above analysis makes a strong
-case for integrating PythonPoint into Leo, and creating a PDF from that.  A
-distant second is DocUtils
-rst2s5.py. 
+case for integrating PythonPoint into Leo, and creating a PDF from that.
+A distant second is DocUtils ``rst2s5.py``.
 
 
 

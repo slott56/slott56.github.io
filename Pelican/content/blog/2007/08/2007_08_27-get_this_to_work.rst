@@ -171,22 +171,22 @@ Let's look at the outcomes.
 
 
 
-**We get something to "work" on time.**
+-   **We get something to "work" on time.**
     They hate us forever because we weren't up to the task, and only their constant nagging made the thing work.
 
 
 
-**We get something to "work" after the deadline.**
+-   **We get something to "work" after the deadline.**
     They hate us forever because we didn't make the date.
 
 
 
-**We get something that almost "works" by the deadline.**
+-   **We get something that almost "works" by the deadline.**
     They hate us forever because they have to think about what actually matters in this application.
 
 
 
-**We give up now.**
+-   **We give up now.**
     They hate us forever for not even trying.
 
 

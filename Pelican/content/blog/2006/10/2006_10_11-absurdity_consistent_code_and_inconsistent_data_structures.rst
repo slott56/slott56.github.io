@@ -48,24 +48,22 @@ at IT.  I'll paraphrase slightly.
 
 
 
-Data is first.  Why?  Because
-it's the only thing that matters.  
+Data is first.  Why?  Because it's the only thing that matters.
 
 
 
-Do
-I have any evidence of this, outside the Zachman framework?  Here's some other
-anecdotal evidence: "Data Processing", "Data Structures and Algorithms".  Data's
-always first.
+Do I have any evidence of this, outside the Zachman framework?  Here's some other
+anecdotal evidence: "Data Processing", "Data Structures and Algorithms".
+Data's always first.
 
 
 
-Now, let's look at some
-real evidence.
+Now, let's look at some real evidence.
 
 
 
-**Real Evidence.** 
+Real Evidence
+--------------
 
 
 
@@ -80,8 +78,7 @@ to apply new (or different) processing to our data.  We often want to preserve
 our data, but not our legacy processing.  Indeed, preserving data so important,
 that it becomes a first-class goal in a methodology.  Preserving functionality
 (through analysis and reverse engineering) may or may not be important.  It is
-rarely a huge, visible part of any
-methodology.
+rarely a huge, visible part of any methodology.
 
 
 
@@ -90,8 +87,7 @@ non-IT people.  They preserve files, documents, and content very carefully.  And
 they process this precious data with the most slip-shod manual steps.  People
 will have massive spreadsheets on the shared "H:" drive, which anyone can touch.
 Why allow other members of the department to touch it?  Because processing is
-just processing.  Data, however, is the reason the organization
-exists.
+just processing.  Data, however, is the reason the organization exists.
 
 
 
@@ -105,13 +101,12 @@ thing, the data.
 
 
 
-**Data Model Variants.** 
+Data Model Variants
+-------------------
 
 
 
-A variant data model with
-a common code base has a number of serious
-issues.
+A variant data model with a common code base has a number of serious issues.
 
 
 
@@ -141,7 +136,8 @@ question.
 
 
 
-**Options and Extensions.** 
+Options and Extensions
+----------------------
 
 
 
@@ -172,14 +168,14 @@ model".
 
 
 
-**The Real Question.** 
+The Real Question
+-----------------
 
 
 
 The real request, then,
 appears to be this: discuss 'a common code base with an optional table' .  Or,
-phrased as a question: "how do I cope with an optional
-table?"
+phrased as a question: "how do I cope with an optional table?"
 
 
 
@@ -192,8 +188,7 @@ present-but-not-used optional.
 
 
 
-Optional
-features are a touchy subject.  How does the software know that something is
+Optional features are a touchy subject.  How does the software know that something is
 optional?  Clearly, the software must have some kind of configuration
 information.  Often, these configuration options are poorly chosen.  In the case
 where a single optional table turned into "no common data model", I have
@@ -202,8 +197,7 @@ confusing.
 
 
 
-There are several
-steps:
+There are several steps:
 
 1.  Don't turn an insignificant optional feature
     into a "no common data model" situation.  Inflating the problem made it
@@ -230,8 +224,7 @@ steps:
 
 
 
-Stop coding and repeat
-after me:  "I can't code until I understand all the data."
+Stop coding and repeat after me:  "I can't code until I understand all the data."
 
 
 

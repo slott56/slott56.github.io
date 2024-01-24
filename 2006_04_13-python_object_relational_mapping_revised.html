@@ -121,14 +121,17 @@ provided some info on Py3K and Python Introspection <a class="reference external
 me, the interesting part was his summary of Object-Relational Mapping.  Mr.
 Bicking identifies two broad approaches: lambda introspection and operator
 overloading.</p>
-<p><strong>Lambda Introspection</strong></p>
+<div class="section" id="lambda-introspection">
+<h2>Lambda Introspection</h2>
 <p><a class="reference external" href="http://projects.amor.org/dejavu">Dejavu</a>
 It primarily uses a generic <a class="reference external" href="http://www.martinfowler.com/eaaCatalog/dataMapper.html">Data Mapper</a>  architecture.  It is more of an OODB
 backed by a relational store.</p>
 <p><a class="reference external" href="http://subway.python-hosting.com/wiki/SQLComp">SQLComp</a>  The make_query method examines a lambda
 containing a list comprehension to create SQL.  This is only queries, and isn't
 a complete ORM.</p>
-<p><strong>Operator Overloading</strong></p>
+</div>
+<div class="section" id="operator-overloading">
+<h2>Operator Overloading</h2>
 <p><a class="reference external" href="http://sqlobject.org/">SQLObject</a>  This is
 a very complete ORM, cast in the some mold as
 Django.</p>
@@ -141,7 +144,9 @@ is an older ORM with a few data types but a very &quot;naked&quot; use of overlo
 operators to perform queries.  Unlike the lambda overloading, the class provides
 operators that are set operations for
 queries.</p>
-<p><strong>Non-Introspective Approaches</strong></p>
+</div>
+<div class="section" id="non-introspective-approaches">
+<h2>Non-Introspective Approaches</h2>
 <p><a class="reference external" href="http://www.djangoproject.com/">Django</a> , for example, encodes attributes and
 operators as keyword parameters to methods.  It doesn't look inside the Python
 code, but parses the keywords.</p>
@@ -162,7 +167,9 @@ an object-relational mapper.  It depends on <a class="reference external" href="
 Python wiki page on <a class="reference external" href="http://wiki.python.org/moin/HigherLevelDatabaseProgramming">Higher Level Database Programming</a>   has
 additional notes and products that are high
 level.</p>
-<p><strong>Garden-Variety Relational Access</strong></p>
+</div>
+<div class="section" id="garden-variety-relational-access">
+<h2>Garden-Variety Relational Access</h2>
 <p>All of these modules
 provide the standard <a class="reference external" href="http://www.python.org/dev/peps/pep-0249/">DB-API</a>  (PEP 249) interface to a SQL database.</p>
 <p>The most visible access layer product
@@ -194,9 +201,10 @@ interface</p>
 <p>The Python wiki page on <a class="reference external" href="http://wiki.python.org/moin/DatabaseInterfaces">Database Interfaces</a>  also has a list of these
 product-specific access
 modules.</p>
-<p><strong>Recommendations</strong></p>
-<p>Rule
-1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
+</div>
+<div class="section" id="recommendations">
+<h2>Recommendations</h2>
+<p>Rule 1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
 relational store, focus on Python for processing.  Stored Procedures and
 Triggers are a product-specific mine-field.  Once the model passes unit tests,
 move to another RDBMS that supports concurrent
@@ -214,6 +222,7 @@ OR-Mapping because they are OLAP-like.  For some loading, aggregation and
 extraction, use direct SQL drivers for the chosen product.  For the large-volume
 fact-oriented loads, use the vendor-supplied bulk loader.  Portability is not
 your concern.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -1047,11 +1056,11 @@ your concern.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (7)
+          <a href="https://slott56.github.io/posts/2007/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2007 (6)
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (11)
+          <a href="https://slott56.github.io/posts/2007/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2007 (9)
           </a>
         </li>
         <li class="list-group-item">
@@ -1059,7 +1068,7 @@ your concern.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (8)
+          <a href="https://slott56.github.io/posts/2007/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2007 (7)
           </a>
         </li>
         <li class="list-group-item">
@@ -1123,7 +1132,7 @@ your concern.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (14)
+          <a href="https://slott56.github.io/posts/2005/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2005 (13)
           </a>
         </li>
         <li class="list-group-item">
@@ -1135,15 +1144,11 @@ your concern.</p>
           </a>
         </li>
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2005/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2005 (1)
-          </a>
-        </li>
-        <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2004/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2004 (2)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2004/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2004 (1)
           </a>
         </li>
         <li class="list-group-item">

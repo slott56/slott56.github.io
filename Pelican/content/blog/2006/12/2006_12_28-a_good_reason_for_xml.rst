@@ -11,8 +11,7 @@ A Good Reason for XML
 
 
 
-I harp on
-**Design Goal 6**  in the `XML 1.0
+I harp on **Design Goal 6**  in the `XML 1.0
 Standard <http://www.w3.org/TR/2006/REC-xml-20060816/>`_ , "XML documents should be human-legible and reasonably
 clear".  In Kontrawize, the response is XML editors help meet this design goal. 
 "There are plenty of good XML-aware editors around, some of which are free." 
@@ -21,8 +20,7 @@ only to the letter of the law.
 
 
 
-If we
-allow tools to mediate "human-legible and reasonably clear", then too many
+If we allow tools to mediate "human-legible and reasonably clear", then too many
 things meet this standard.  We could provide a bunch of SQL DDL and DML and
 claim that it was a reasonably clear document.  Then, we can also claim that an
 MS-Word .DOC file is reasonably clear because we have a copy of
@@ -41,22 +39,20 @@ from one of these origins:
 
 -   Parsing ease.
 
--   XML semantic richness (i.e., how well it
-    describes the problem).
+-   XML semantic richness (i.e., how well it describes the problem).
 
 
 
 It is clear
 that dependence on a tool isn't the reason for second-class status: we're
 allowed to use tools to make XML legible; we're equally allowed to use tools to
-process the XML or script.  What's left are the
-**Parsing ease**  and
-**Semantic richness**  advantages of
+process the XML or script.  What's left are the **Parsing ease**  and **Semantic richness**  advantages of
 XML.
 
 
 
-**Parsing Ease.** 
+Parsing Ease
+------------
 
 
 
@@ -81,17 +77,15 @@ parser.
 
 
 Here's the bonus for me: my
-definition is part of the application.  The definitions aren't
-*input* 
+definition is part of the application.  The definitions aren't *input*
 to an application which reads, parses, and then performs some functionality
-based on the input.   The definitions
-*are* 
-the application, essentially a specialization of the framework, directly
+based on the input.   The definitions *are* the application, essentially a specialization of the framework, directly
 executable.
 
 
 
-**Semantic Depth.** 
+Semantic Depth
+--------------
 
 
 
@@ -117,12 +111,12 @@ reports are built from source application extracts.
 
 
 In short, an SCons script-based
-control file has the same semantics as an XML non-script-based control
-file.
+control file has the same semantics as an XML non-script-based control file.
 
 
 
-**What I Learned.** 
+What I Learned
+--------------
 
 
 
@@ -133,7 +127,10 @@ dimensions of comparison:
 
 
 
-**Tool Complexity** 
+Tool Complexity
+---------------
+
+The tool complexity for each language can be described as follows:
 
 -   XML has moderately high tool complexity. 
     The parsers are already built, but everything else has to be built and some kind
@@ -146,12 +143,14 @@ dimensions of comparison:
 
 -   Python (or Ruby) has low tool complexity.
     The parser is built, and everything else is just a library, extended by the
-    "control"
-    file.
+    "control" file.
 
 
 
-**Clarity** 
+Clarity
+-------
+
+The clarity of each language has the following description:
 
 -   XML has moderately low clarity.  Yes, we
     can use tools, but I think that's a fussy letter of the law interpretation. 
@@ -169,7 +168,10 @@ dimensions of comparison:
 
 
 
-**Extensibility** 
+Extensibility
+-------------
+
+Each language's extensibility is distinct:
 
 -   XML is -- technically -- extensible. 
     However, since we're tied to our application, we have two kinds of extensions.  
@@ -184,20 +186,18 @@ dimensions of comparison:
     applications.
 
 -   Python (or Ruby) has the data as
-    first-class language constructs.  The control file is actually
-    *in* 
+    first-class language constructs.  The control file is actually *in*
     the Python language.  It is -- in a very real sense -- an extension built into
-    the
-    framework.
+    the framework.
 
 
 
-**Recommendations.** 
+Recommendations
+----------------
 
 
 
-For
-my money, the low complexity, good clarity and immediate extensibility of a
+For my money, the low complexity, good clarity and immediate extensibility of a
 scripting solution is an award-winning technology application.  The XML solution
 runs a distant second, and a purpose-built DSL has little to offer.  The reason
 a purpose-built DSL is dead last is because "clarity" isn't worth much.  As
@@ -212,18 +212,18 @@ on the ants <http://koti.welho.com/jpakaste/blog/stamp_out_the_ants.html%22%20ta
 1.1: Build Java with Ruby <http://www.theserverside.com/news/thread.tss?thread_id=42923%22%20target=%22NewWindow>`_ " thread), and Kontrawize's "`XML is first class, scripting languages are second
 class <http://kontrawize.blogs.com/kontrawize/2006/12/xml_is_first_cl.html>`_ " the lessons are similar.
 
--   **Don't choose XML uncritically** .  It has to be an optimal
+-   **Don't choose XML uncritically**.  It has to be an optimal
     solution to the problems we actually have.  Otherwise, it's just technology, and
     technology can be a barrier between users and their problems.
 
--   **Don't defend XML uncritically** .  The eight low-value reasons in
+-   **Don't defend XML uncritically**.  The eight low-value reasons in
     "`XML
     - One Ring to Rule them All... <{filename}/blog/2006/12/2006_12_23-xml_one_ring_to_rule_them_all.rst>`_ " are little more than uncritical
     justification for a decision that seems to have been made somewhere else in the
     organization.  Kontrawize provides a good reason for using XML, but for this
     application domain, I still think I can see some gaps in his logic.
 
--   **Don't overuse XML** .  As a Data Warehouse hack, I've spent too
+-   **Don't overuse XML**.  As a Data Warehouse hack, I've spent too
     long debating the "XML as our middleware" issue.  XML isn't needed when there is
     a lot of data and the relationships among the application programs is reasonably
     intimate.  In in-house data warehousing, too much XML is just no-value overhead.

@@ -11,7 +11,8 @@ After Perl, what? (Revised)
 
 
 
-**The Problem.** 
+The Problem
+-----------
 
 
 
@@ -23,16 +24,14 @@ http://www.gadgetopia.com/post/1919 and Freshmeat http://freshmeat.net/articles/
 
 
 
-Further,
-Perl 6 is caught up in political wrangling of the first magnitude.  There's the
+Further, Perl 6 is caught up in political wrangling of the first magnitude.  There's the
 Larry Wall camp (Apocalypses), Curl, Lua, Monkey, Ponie and Parrot.  And there's
 further opinions like Rindolf http://vipe.technion.ac.il/~shlomif/rindolf/%22%20target=%22NewWindow.
 
 
 
-Perhaps
-most limiting, Perl isn't a hotbed of application frameworks [`Thanks <http://www.haloscan.com/comments/slott/E20060126195803/#66236>`_ ].  Products include `Catalyst <http://catalyst.perl.org/>`_  and
-`Maypole <http://maypole.perl.org/>`_ .
+Perhaps most limiting, Perl isn't a hotbed of application frameworks [`Thanks <http://www.haloscan.com/comments/slott/E20060126195803/#66236>`_ ].
+Products include `Catalyst <http://catalyst.perl.org/>`_  and `Maypole <http://maypole.perl.org/>`_ .
 Perl suffers from being one of the first scripting extensions to Apache,
 consequently innovation was focused elsewhere.  Java, PHP, Python and Ruby all
 have the advantage of many sophisticated frameworks that minimize the
@@ -41,7 +40,8 @@ language.
 
 
 
-**Some Choices.** 
+Some Choices
+-------------
 
 
 
@@ -50,7 +50,8 @@ ongoing use, and the future of Perl is cloudy, we should probably think about
 moving on to another language.  So step one is the following
 advice:
 
-**Ditch Perl.** 
+Ditch Perl
+-----------
 
 
 
@@ -68,8 +69,7 @@ Finally, there's always Java.
 
 
 
-Here's
-a chart http://www.jvoegele.com/software/langcomp.html that provides some head-to-head comparison
+Here's a chart http://www.jvoegele.com/software/langcomp.html that provides some head-to-head comparison
 among these languages.  One issue, of course, is that languages express ideas,
 and the world of software is big:  too big for a single language.  There is no
 one-language "right" answer.  This isn't a trick question.  We're going to look
@@ -78,7 +78,8 @@ work.
 
 
 
-**The One True Language.** 
+The One True Language
+---------------------
 
 
 
@@ -114,7 +115,8 @@ are just too wordy.
 
 
 
-**The Domain.** 
+The Domain
+----------
 
 
 
@@ -147,7 +149,8 @@ language.
 
 
 
-**Some Quality Factors** 
+Some Quality Factors
+----------------------
 
 
 
@@ -158,27 +161,22 @@ rapidly.
 
 
 
-1.  Model-View-Controller
-separation.  The data model, the HTML view, and the controls must be
-separated.
+1.  Model-View-Controller separation.  The data model, the HTML view, and the controls must be
+    separated.
 
 2.  Object-Relational Mapping with
-Persistence.  We should be able to bury our SQL in mapping rules.  Ideally, it's
-generated seamlessly and silently.
+    Persistence.  We should be able to bury our SQL in mapping rules.  Ideally, it's
+    generated seamlessly and silently.
 
-3. 
-RDBMS-agnostic.  Any of the MySQL, Postgres, SQLite products (or any of the
-expensive, commercial products) should be
-supported.
+3.  RDBMS-agnostic.  Any of the MySQL, Postgres, SQLite products (or any of the expensive, commercial products) should be
+    supported.
 
-4.  Web best-practices:  session
-management, POST-redirect-GET, validation and quoting to prevent SQL/Shell
-command injections, etc.
+4.  Web best-practices:  session management, POST-redirect-GET, validation and quoting to prevent SQL/Shell
+    command injections, etc.
 
 
 
-Additionally,
-the number of skilled people is important.  Here is the TIOBE programming
+Additionally, the number of skilled people is important.  Here is the TIOBE programming
 community index http://www.tiobe.com/tpci.htm for the languages we're looking at.  We'll
 discard C and C++ as being unsuitable for web applications:  Python does the
 same processing as C (or C++) without the endless (and error-prone) drudgery of
@@ -205,11 +203,11 @@ proprietary products and have a cost which exceeds their real value.
 
 (off the list): **Ruby** 
 
-**Java** 
-
-
 Java
-is totally dominated by J2EE (Tomcat, JBoss, etc.) as the application framework.
+----
+
+
+Java is totally dominated by J2EE (Tomcat, JBoss, etc.) as the application framework.
 Apache Struts http://struts.apache.org/ or Spring http://www.springframework.org/ put
 an MVC framework on top of J2EE.  Toplink, JDO and Hibernate are choices for the
 Object-Relational Mapping http://c2.com/cgi-bin/wiki?ObjectRelationalMapping and Persistence.  Plus, there are
@@ -252,25 +250,20 @@ programmer.
 
 
 
-**PHP** 
-
-
-
 PHP
-has over 40 individual frameworks http://www.phpwact.org/php/mvc_frameworks, http://dmoz.org/Computers/Programming/Languages/PHP/Scripts/Frameworks/.  How to penetrate the clutter?  There is
+-----
+
+
+
+PHP has over 40 individual frameworks http://www.phpwact.org/php/mvc_frameworks, http://dmoz.org/Computers/Programming/Languages/PHP/Scripts/Frameworks/.  How to penetrate the clutter?  There is
 no quick answer.  Just looking at PHP content management http://dmoz.org/Computers/Programming/Languages/PHP/Scripts/Content_Management/ turns up a huge list.  Some sorting is
 available at CMS Matrix http://www.cmsmatrix.org/.  However, LinuxWorld http://linux.sys-con.com/read/86022.htm has selected two that merit serious
-consideration: 
-**Mambo** 
-http://www.mamboserver.com/
-and
-**phpWebsite** 
-http://phpwebsite.appstate.edu/.
+consideration: **Mambo** http://www.mamboserver.com/
+and **phpWebsite** http://phpwebsite.appstate.edu/.
 
 
 
-When
-I first looked at PHP (five years ago, in 2000), the language looked like a
+When I first looked at PHP (five years ago, in 2000), the language looked like a
 clutter of features, and a seemingly-endless library of functions.  While it's
 nice to have all those functions, I would have appreciated a few packages and
 modules to break them into more meaningful chunks.  More important to me would
@@ -288,8 +281,7 @@ has the same basic complexity.
 
 
 
-While
-PHP has class definitions, Mambo doesn't emphasize OO-style examples.  On the
+While PHP has class definitions, Mambo doesn't emphasize OO-style examples.  On the
 other hand, phpWebsite, does seem to land on the OO feature set.  The list of
 object-oriented MVC frameworks http://www.google.com/search?q=php+object-oriented+framework shows how important it is to promote reuse
 and simplification using
@@ -297,7 +289,8 @@ objects.
 
 
 
-**Python** 
+Python
+-------
 
 
 
@@ -306,25 +299,22 @@ has over 30 frameworks http://wiki.python.org/moin/WebProgramming.  The question
 ready and reasonably complete?  The answer is to look at frameworks which build
 complete content-management solutions.  These can then be tailored for on-line
 shopping or any other purpose.  This is a shorter list http://wiki.python.org/moin/ContentManagementSystems including the following:
-**Zope** 
-http://www.zope.org/,
-**Nevow** 
-http://divmod.org/projects/nevow,
-**Webware** 
-http://www.webwareforpython.org/ and
-**Django** 
-http://www.djangoproject.com/.
+
+-   **Zope** http://www.zope.org/,
+
+-   **Nevow** http://divmod.org/projects/nevow,
+
+-   **Webware** http://www.webwareforpython.org/,
+
+-   **Django** http://www.djangoproject.com/.
 
 
 
-With
-Python, the object-orientation isn't mandatory, but is almost universal, unlike
-PHP or Perl.
+With Python, the object-orientation isn't mandatory, but is almost universal, unlike PHP or Perl.
 
 
 
-Zope takes a very
-interesting approach to creating content as an assembly of elements.  The
+Zope takes a very interesting approach to creating content as an assembly of elements.  The
 interaction between the Zope DB, the various page templating tools, and the
 Python programming language works out very nicely.  Zope is not a rehashing of
 other technologies, but a clean and unique approach to web presentation.  In
@@ -333,8 +323,7 @@ programmer) do so little.
 
 
 
-Django is a
-little more conventional.  It has an explicit Model, View, Controller separation
+Django is a little more conventional.  It has an explicit Model, View, Controller separation
 and leans on Struts (to an extent).  It has an easy-to-live-with templating
 language, full Python programming, and a sophisticated set of built-in
 capabilities.  It has a model definition capability that takes some getting used
@@ -343,8 +332,7 @@ be made to work nicely.
 
 
 
-Nevow's
-approach to mixing Python programming and template insertion makes use of some
+Nevow's approach to mixing Python programming and template insertion makes use of some
 slightly extended HTML syntax.  This has the pleasant consequence of allowing
 someone to design pages in largely "pure" HTML, then slap a few special purpose
 tag attributes into things like ``<span>`` tags, to provide a linkage with
@@ -353,8 +341,7 @@ the presentation.
 
 
 
-WebWare has a Servlet
-engine (like J2EE web applications), it also has Kid and PSP's, which are
+WebWare has a Servlet engine (like J2EE web applications), it also has Kid and PSP's, which are
 PHP-like (or JSP-like) template pages with Python code inserted.  Consequently,
 you can use the WebKit servlets and KidKit template pages to build a very robust
 Struts-like
@@ -362,7 +349,8 @@ application.
 
 
 
-**Ruby** 
+Ruby
+----
 
 
 
@@ -373,8 +361,7 @@ features and the Rails web application framework is very powerful.  Ruby (like
 Python) embodies a DRY - Don't Repeat Yourself - philosophy.  There aren't a lot
 of external configuration files and additional descriptive material.  The Ruby
 language (like Python) includes enough introspection that the code can examine
-itself to do the various mappings from HTML Form to Object to Relational
-row.
+itself to do the various mappings from HTML Form to Object to Relational row.
 
 
 
@@ -387,12 +374,12 @@ unmaintainable.
 
 
 
-**Action Plan** 
+Action Plan
+------------
 
 
 
-Look closely at PHP and Python
-for a Perl replacement.  Each framework has a "style" or "flavor" that is
+Look closely at PHP and Python for a Perl replacement.  Each framework has a "style" or "flavor" that is
 difficult to summarize.  However, once experienced, it is either compelling or
 confusing.  There's a lot of room for researching and there's a fine line
 between researching and hang-wringing.  Here's the
@@ -401,62 +388,59 @@ plan.
 
 
 1.  Download PHP.  Take a few
-weeks and write some small demo programs in PHP to see how it works, and how
-well it fits your mind-set.
+    weeks and write some small demo programs in PHP to see how it works, and how
+    well it fits your mind-set.
 
 
 
-2. 
-Download Python.  Take a few weeks and write some small demo programs in
+2.  Download Python.  Take a few weeks and write some small demo programs in
 Python.
 
 
 
-3.  Make the first (and
-toughest) decision: PHP or Python.  PHP will probably be more familiar to a
-procedural Perl programming.  Python's object-orientation may be hard to fathom.
-In the long run, OO allows you to create far more sophisticated programs.  But
-it can be a difficult programming style to
-learn.
+3.  Make the first (and toughest) decision: PHP or Python.  PHP will probably be more familiar to a
+    procedural Perl programming.  Python's object-orientation may be hard to fathom.
+    In the long run, OO allows you to create far more sophisticated programs.  But
+    it can be a difficult programming style to
+    learn.
 
 
 
 4.  Once you've chosen a
-language, you can then choose a framework.  Download an appropriate combination
-of Mambo, PHPWebSite, Django, Nevow, WebWare, and Zope. 
+    language, you can then choose a framework.  Download an appropriate combination
+    of Mambo, PHPWebSite, Django, Nevow, WebWare, and Zope.
 
 
 
 
 5.  Do the tutorials for the products
-you've downloaded.  You may, at this time, rethink your language choice, and
-decide to try the other language and the other frameworks.  However, stick to
-the tutorials so that you can minimize your investment in technologies that you
-won't make serious use of.  In some cases, the documentation of the tutorial may
-be enough to provide you a hint that the approach doesn't resonate well with
-your mental model of web
-applications.
+    you've downloaded.  You may, at this time, rethink your language choice, and
+    decide to try the other language and the other frameworks.  However, stick to
+    the tutorials so that you can minimize your investment in technologies that you
+    won't make serious use of.  In some cases, the documentation of the tutorial may
+    be enough to provide you a hint that the approach doesn't resonate well with
+    your mental model of web
+    applications.
 
 
 
-6.  Convert something
-small, safe and reliable to the chosen framework.  You will make mistakes.  It
-won't be easy.
+6.  Convert something small, safe and reliable to the chosen framework.  You will make mistakes.  It
+    won't be easy.
 
 
 
 7.  Convert something
-else small, safe and reliable.  Rework your mistakes in the previous
-conversion.
+    else small, safe and reliable.  Rework your mistakes in the previous
+    conversion.
 
 
 
-**Conclusion** 
+Conclusion
+----------
 
 
 
-Perl's
-opacity makes Perl it's own problem.  It's great to write in, but awful to
+Perl's opacity makes Perl it's own problem.  It's great to write in, but awful to
 maintain.  Replacing Perl is hard -- you can stick with procedural programming
 and choose PHP, or you can make a decision to exploit the power of objects and
 choose Python.  You can leverage large, expensive, commercial products and
@@ -464,8 +448,7 @@ choose Java, also.
 
 
 
-More important is
-the choice of web application frameworks.  The idea of a framework is to
+More important is the choice of web application frameworks.  The idea of a framework is to
 structure the application and leverage existing code from other projects as much
 as possible.  This is the big win in replacing Perl: exploiting
 well-thought-out, next-generation frameworks for web applications.

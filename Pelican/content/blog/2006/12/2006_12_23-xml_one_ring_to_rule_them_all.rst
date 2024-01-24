@@ -14,60 +14,46 @@ XML - One Ring to Rule them All...
 The XML folks seem to have a number of
 points:
 
--   Ant already works.   Complexity be
-    damned.
+-   Ant already works.   Complexity be damned.
 
--   XML is fine for everything that's not
-    Java.  Except SQL.  And CSS.
+-   XML is fine for everything that's not Java.  Except SQL.  And CSS.
 
--   Ant is "already" part of the technology
-    stack, and it uses XML.  Anything better isn't already there. 
+-   Ant is "already" part of the technology stack, and it uses XML.  Anything better isn't already there.
 
--   Everyone already knows XML.  They can't
-    learning anything new.  Learning something simpler is the same as learning
-    something new: impossible.
+-   Everyone already knows XML.  They can't learn anything new.
+    Learning something simpler is the same as learning something new: impossible.
 
--   XML is established.  New technology isn't
-    established.
+-   XML is established.  New technology isn't established.
 
--   Scripting doesn't add value.  If you need
-    scripts, write them in XML or Java.
+-   Scripting doesn't add value.  If you need scripts, write them in XML or Java.
 
--   I already know XML.   Something simpler
-    no longer helps.
+-   I already know XML.   Something simpler no longer helps.
 
--   A bad non-XML solution is worse than any
-    XML solution.  XML will never become an opaque legacy
-    technology.
+-   A bad non-XML solution is worse than any XML solution.
+    XML will never become an opaque legacy technology.
 
 
 
-I think the above
-summarizes the value proposition for XML-based Ant as a build tool.  The point
-against Ant and XML was repeated many times and in many slightly different
-forms:
+I think the above summarizes the value proposition for XML-based Ant as a build tool.
+The point against Ant and XML was repeated many times and in many slightly different forms:
 
 
 
-"Wouldn't be nice to have an
-higher level way to describe an application build, instead of just working at
-the assembler level ?
+    "Wouldn't be nice to have an higher level way to describe an application build, instead of just working at
+    the assembler level ?
+
+    Something like
+    being able to describe what a module is (for my application), what a deliverable
+    is, what a release is, etc etc ?"
 
 
 
-Something like
-being able to describe what a module is (for my application), what a deliverable
-is, what a release is, etc etc
-?"
+The Value of a DSL
+------------------
 
 
 
-**The Value of a DSL.** 
-
-
-
-This seems to be the key
-point: DSL's work because they force us to do two things.
+This seems to be the key point: DSL's work because they force us to do two things.
 
 -   Define the objective.
 
@@ -76,22 +62,19 @@ point: DSL's work because they force us to do two things.
 
 
 
-In
-many cases, the "objective" is a combination of static definitions and dynamic
+In many cases, the "objective" is a combination of static definitions and dynamic
 actions.  That sounds completely congruent with object-oriented programming. 
 Since we often need flexibility in our implementation, that sounds like
 object-oriented scripting.
 
 
 
-I'm
-completely enamored of tools like `SCons <http://www.scons.org/>`_   where I can use a fairly
+I'm completely enamored of tools like `SCons <http://www.scons.org/>`_   where I can use a fairly
 natural-like language, not an opaque and artificial language.  `SMK <http://home.gna.org/smk/>`_  is cut from
 the same cloth.  Your dependencies, actions, repositories, targets, etc., are
 first-class objects.  Your configuration file simply populates those objects in
 a handy, clear notation like Python.  Your desired actions emerge from the
-interactions of the object's
-methods.
+interactions of the object's methods.
 
 
 
@@ -101,7 +84,8 @@ be touched by people.
 
 
 
-**Design Goal 6.** 
+Design Goal 6
+-------------
 
 
 
@@ -125,8 +109,7 @@ include music, mathematical notation and most programming-related text.  Music
 is backed by a mountain of convention and required training: it isn't
 self-explanatory.  However, many nuances of placement on the page, font, etc.,
 have deep meanings.  Music notation is essentially all markup and very few
-non-markup natural language
-elements.
+non-markup natural language elements.
 
 
 
@@ -150,7 +133,8 @@ created.
 
 
 
-**XML's Strong Suit.** 
+XML's Strong Suit
+-----------------
 
 
 

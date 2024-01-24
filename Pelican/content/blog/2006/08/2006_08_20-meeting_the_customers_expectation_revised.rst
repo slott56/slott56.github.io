@@ -20,7 +20,8 @@ identified.
 
 
 
-**Unbounded Specifications.** 
+Unbounded Specifications
+------------------------
 
 
 
@@ -35,15 +36,13 @@ then you supply an estimate."
 
 
 
-So what
-was their going-in expectation?  Did they expect to discover their documentation
+So what was their going-in expectation?  Did they expect to discover their documentation
 was non-existent or incomplete?  Clearly not; no one calls and says "would you
 QA our Request for Proposal?"  
 
 
 
-They
-must have thought that their specifications were complete and usable and that we
+They must have thought that their specifications were complete and usable and that we
 would thank them and provide an estimate.  Why did they think this?  They don't
 seem to have a lot of internal discipline in the first place; it must be that
 they rarely involve outsiders; they must be so used to clever people who fully
@@ -52,21 +51,22 @@ world.
 
 
 
-Is the customer's expectation
-wrong?  By definition, it isn't wrong -- we should sell what the customer is
+Is the customer's expectation wrong?
+By definition, it isn't wrong -- we should sell what the customer is
 asking to buy.  How can we satisfy this customer's expectations?  How can we
 breeze in and create software without a well-bounded
 specification?
 
 
 
-**The Problem Doesn't Matter.** 
+The Problem Doesn't Matter
+--------------------------
 
 
 
 The customer wants
-a simple program to do [Y], but [Y] is nearly incomprehensible.  So, we ask for
-the problem which is being solved, or the context in which the software might be
+a simple program to do [Y], but [Y] is nearly incomprehensible.
+So, we ask for the problem which is being solved, or the context in which the software might be
 used.  There's a fork in this road: either they refuse to provide it, or they
 game the problem.  We'll look at the refusal path, since that's quite
 common.
@@ -90,8 +90,7 @@ involves so many unknowns and unknowables that it clearly becomes silly, even to
 them.  They can't provide start dates, or test data, or a tool set.  Perhaps
 they don't have hardware or infrastructure.  They may be vague on the users, or
 who will ultimately control the software.  All they have is a deadline which
-cannot be missed, and the specification for
-[Y].
+cannot be missed, and the specification for [Y].
 
 
 
@@ -103,11 +102,10 @@ solved.
 
 
 
-In other cases, the answer is a
-curt, "We've already thought about that, and this is optimal."  And that's the
-end of it.  They've already thought it through.  However -- and this is the
-interesting point -- they can't (or won't) articulate it.  Maybe they think that
-compartmentalizing the solution prevents any one person from seeing the overall
+In other cases, the answer is a curt, "We've already thought about that, and this is optimal."
+And that's the end of it.  They've already thought it through.
+However -- and this is the interesting point -- they can't (or won't) articulate it.
+Maybe they think that compartmentalizing the solution prevents any one person from seeing the overall
 pattern and doing something malicious.  Maybe they're just domineering and feel
 that dribbling out information puts them in
 control.
@@ -133,18 +131,17 @@ make it solve the business problem.
 
 
 
-How
-can we satisfy this customer's expectations?  How can we breeze in and create
+How can we satisfy this customer's expectations?  How can we breeze in and create
 software when they won't state the business problem that it solves?  Clearly, we
 can play this game by becoming Talmudic scholars, scrutinizing every word,
 writing a pile of assumptions and looking out for violations of those
 assumptions.  Is this what the customer really wants?  Or do they want the
-unstated problem solved, irrespective of the non-solution specified in
-[Y]?
+unstated problem solved, irrespective of the non-solution specified in [Y]?
 
 
 
-**Find A Problem for Our Solution.** 
+Find A Problem for Our Solution
+--------------------------------
 
 
 
@@ -183,7 +180,8 @@ solution?
 
 
 
-**Strategies for Coping.** 
+Strategies for Coping
+---------------------
 
 
 
@@ -196,14 +194,13 @@ choice?
 
 
 
-Customer Education is
-challenging.  Their expectation is that they are right.  They write software. 
-**They Know What They're Doing** ™.
+Customer Education is challenging.
+Their expectation is that they are right.
+They write software. **They Know What They're Doing**\ ™.
 
 
 
-How
-do we sell into unbounded specifications?  Essentially, we have to ease into it
+How do we sell into unbounded specifications?  Essentially, we have to ease into it
 with them.  An Agile strategy can let us build something quickly, and charge for
 each working deliverable.  However, this is "pay as you go," which leaves some
 executives confused about how much the whole project will
@@ -211,23 +208,23 @@ cost.
 
 
 
-How do we sell when the problem
-doesn't matter?  Again, an Agile approach may help them see that their
+How do we sell when the problem doesn't matter?
+Again, an Agile approach may help them see that their
 specification was way off base.  As we engage with real users, however, and
 uncover the real problem, what happens next will be called "scope creep", and
 the project will be cancelled.
 
 
 
-How do
-we sell when we're looking for a problem that fits their chosen solution?  When
-the problem isn't solved by the chosen technology, an Agile approach will
+How do we sell when we're looking for a problem that fits their chosen solution?
+When the problem isn't solved by the chosen technology, an Agile approach will
 immediately get stopped because it looks like scope creep.  While unpleasant,
 this is necessary.
 
 
 
-**The Agile Dilemma.** 
+The Agile Dilemma
+-----------------
 
 
 
@@ -241,8 +238,7 @@ the available money.
 
 
 
-Worse, any
-number you name -- especially when they say "we won't hold you to it, we just
+Worse, any number you name -- especially when they say "we won't hold you to it, we just
 need a number" -- becomes the price, and nothing can change that.  A reduction
 in scope means you lied about the initial estimate to get more money than it was
 worth.  An increase in budget to add features means you lied about the initial
@@ -251,7 +247,8 @@ orders.
 
 
 
-**Scope and Budget.** 
+Scope and Budget
+----------------
 
 
 
@@ -288,15 +285,15 @@ question.
 
 
 
-**Engaging Usefully.** 
+Engaging Usefully
+-----------------
 
 
 
 It's really hard to
-engage usefully.  If we give a "let's start with 8 weeks at
-*x* K$,
-we have to explain what they get for their
-*x* K$. 
+engage usefully.
+If we give a "let's start with 8 weeks at *x* K$,"
+we have to explain what they get for their *x* K$.
 Now we're back to explaining why no scope, no problem, or a movable problem are
 serious issues.  And we look bad for not being able to take their murky
 statements and make crystal-clear prognostications about what we'll have done in
@@ -320,8 +317,7 @@ we got paid.
 
 
 
-If the problem's
-flexible, then the business context and problem statement in the SOW are either
+If the problem's flexible, then the business context and problem statement in the SOW are either
 wrong to begin with, or immediately become wrong.  But who wants to replan the
 entire project every time we redefine the problem to fit the technology?  The
 technology isn't changing, so we should just press on with the implementation. 
@@ -330,46 +326,42 @@ least we got paid.
 
 
 
-**Cancellation is Always Bad.** 
+Cancellation is Always Bad
+--------------------------
 
 
 
-Sadly, we predicted
-*x* K$
+Sadly, we predicted *x* K$
 in revenue, but a project cancellation counts against us.  Wall Street penalizes
 us for falling short of our revenue predictions.  Just as badly, a project
-extension to actually
-*solve* 
+extension to actually *solve*
 the underlying problem (distinct from providing the deliverables they asked for)
 means that we can't predict our revenues correctly.  In short, any scope change
-is -- for a consulting firm -- **Wall Street Death** ™.
+is -- for a consulting firm -- **Wall Street Death**\ ™.
 
 
 
-So,
-while it gets us engaged and gets us some revenue, it's wholly unsatisfying to
+So, while it gets us engaged and gets us some revenue, it's wholly unsatisfying to
 meet the customers where they are and offer them what they want.  I'd much
-rather offer them what they
-need.
+rather offer them what they need.
 
 
 
-**You Can't Always Get...** 
+You Can't Always Get...
+------------------------
 
 
-
-When they want [X], [Y] or
-[Z], their expectation is clear.  They expect us to provide what they want.  In
-the same way that they pull up to their local fast food joint and say "I want a
+When they want [X], [Y] or [Z], their expectation is clear.
+They expect us to provide what they want.
+In the same way that they pull up to their local fast food joint and say "I want a
 new Bentley."
 
 
 
-Here's the fantasy.  You
-have a problem you can state ("I'm hungry", "I'm not at the beach").  You pick a
+Here's the fantasy.
+You have a problem you can state ("I'm hungry", "I'm not at the beach").  You pick a
 product, you engage a vendor to provide a product that you think will solve your
-problem.  If your problem isn't solved, you still have the
-product.
+problem.  If your problem isn't solved, you still have the product.
 
 
 
@@ -378,21 +370,21 @@ is that you aren't at the beach, and you buy a car, and still can't get to the
 beach, at least you still have the car.  If your problem is that your hungry,
 and you buy a burger, and are still hungry, well, you're still hungry.  I
 suppose you could complain about the burger, but you don't possess the burger as
-a tangible asset the way you possess the
-car.
+a tangible asset the way you possess the car.
 
 
 
-**Services and The Real World.** 
+Services and The Real World
+---------------------------
 
 
 
 For services, the fantasy
 transaction almost never happens, even in the non-software ("real") world.  When
 you engage for services (i.e., lawn-mowing or a manicure), you often contract
-for the service
-*without* 
-stating your real problem.  You may contract a lawn service, but your real
+for the service *without* stating your real problem.
+
+You may contract a lawn service, but your real
 problem is weeds, not tall grass.  You may contract a manicurist, but your real
 problem is a lousy social life because you hang around with nerds, not because
 your fingernails are shabby-looking.  And when the problem's not solved, you
@@ -404,8 +396,7 @@ So, you ask
 for an estimate from the lawn service: "how much will this cost?"  And she has
 no clue what you are talking about.  Sure, she can mow it, but it's a tangle of
 weeds: you need it tilled under, fertilized and re-seeded.  No matter how much
-she mows it, it will still look like
-crap.
+she mows it, it will still look like crap.
 
 
 
@@ -418,8 +409,7 @@ satisfied.
 
 
 
-Is the customer's
-expectation wrong?  By definition, it isn't wrong -- we should sell what the
+Is the customer's expectation wrong?  By definition, it isn't wrong -- we should sell what the
 customer is asking to buy.  Or, perhaps the customer's expectation really is
 wrong, after all.  If we can't solve the customer's problem, the customer is in
 denial, and we need to apply some more serious consumer therapy, rather than
@@ -428,32 +418,28 @@ right.
 
 
 
-**Solving Problems.** 
+Solving Problems
+----------------
 
 
 
-The problem with solving
-problems is that it's a vague service offering.  "We solve lawn problems", has a
-smidgen of focus, but it still doesn't bracket precisely which problems they'll
+The problem with solving problems is that it's a vague service offering.
+"We solve lawn problems", has a smidgen of focus, but it still doesn't bracket precisely which problems they'll
 tackle and which they won't.  "We solve social-life problems" is even worse. 
 Sure, fingernail polish is part of the social contract, but the offer is way too
 broad to be believed.
 
 
 
-What's left? 
-Educating the customer.  All of the "this is what I want" meetings -- where the
+What's left? Educating the customer.  All of the "this is what I want" meetings -- where the
 customer has a specification, and we're expected to ask questions and prepare an
 estimate -- ought to be preceded by at least two earlier meetings: 
-**This Is Our Approach** , and
-**What Is Your Problem?** .  The first meeting is pure sales. 
-The second meeting is free
-consulting.
+First, **This Is Our Approach**, and second **What Is Your Problem?**.
+The first meeting is pure sales. The second meeting is free consulting.
 
 
 
-During
-**This Is Our Approach** , we lay it out as clearly as we can. 
+During **This Is Our Approach**, we lay it out as clearly as we can.
 You have a problem, and your users must tell us the problem.  You may have a
 preferred solution, and we'd love to hear it.  But, be prepared to demonstrate
 how your solution fits your problem, and what you need from us.  And if you
@@ -463,8 +449,7 @@ want.
 
 
 
-During
-**What Is Your Problem?** , real business users will describe
+During **What Is Your Problem?**, real business users will describe
 the business problem; you'll then tell us about your solution, how the solution
 fits the problem, and what you need from us.  This is a QA session -- in essence
 we will QA your Request for a Proposal.   If there are disconnects, questions,
@@ -485,12 +470,13 @@ propose and get a "No"; the decision is more nuanced, and boiling it down to a
 
 
 
-**Selling It.** 
+Selling It
+----------
 
 
 
-Is this harsh?  Yes.  Will it
-sell?  Probably not.  Will it prevent bad customer relationships?  Absolutely. 
+Is this harsh?  Yes.  Will it sell?  Probably not.
+Will it prevent bad customer relationships?  Absolutely.
 We'll only engage with customers who are willing to solve problems, and who will
 recognize the value of solving the problem rather than building
 software.

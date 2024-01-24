@@ -2158,23 +2158,6 @@ mapping.&lt;/p&gt;
 &lt;p&gt;The graceful elegance of
 &lt;strong&gt;Python's Mapping Indexed By A Tuple™&lt;/strong&gt;  (MXT) can really prevent a lot of
 brain-cramping bugs.&lt;/p&gt;
-</content><category term="Python"></category><category term="#python"></category><category term="database"></category></entry><entry><title>More Dimensional Model Implementations</title><link href="https://slott56.github.io/2007_03_03-more_dimensional_model_implementations.html" rel="alternate"></link><published>2007-03-03T00:59:00-05:00</published><updated>2007-03-03T00:59:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-03-03:/2007_03_03-more_dimensional_model_implementations.html</id><summary type="html">&lt;p&gt;The ActiveWarehouse project dates from
-10/23/2006.&lt;/p&gt;
-&lt;p&gt;I submitted a really
-similar article to &lt;a class="reference external" href="http://www.ddj.com/"&gt;DDJ&lt;/a&gt;  in September.  I heard nothing and I don't
-like to nag, so I let it drop.  Although last time I nagged, the article was
-sprung free from where it had been spiked and wound …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The ActiveWarehouse project dates from
-10/23/2006.&lt;/p&gt;
-&lt;p&gt;I submitted a really
-similar article to &lt;a class="reference external" href="http://www.ddj.com/"&gt;DDJ&lt;/a&gt;  in September.  I heard nothing and I don't
-like to nag, so I let it drop.  Although last time I nagged, the article was
-sprung free from where it had been spiked and wound up on the web site.  I
-figured this article wasn't up to snuff, so I rewrote it for PyCon.  I submitted
-it to PyCon on 10/10, with a pretty complete
-outline.&lt;/p&gt;
-&lt;p&gt;And then, wonderfully, someone
-else does almost the same thing in Ruby.  I guess I was on the right
-path.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category></entry><entry><title>What a Data Warehouse Can Never Do</title><link href="https://slott56.github.io/2007_01_12-what_a_data_warehouse_can_never_do.html" rel="alternate"></link><published>2007-01-12T14:40:00-05:00</published><updated>2007-01-12T14:40:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-12:/2007_01_12-what_a_data_warehouse_can_never_do.html</id><summary type="html">&lt;p&gt;In one form, the question is &amp;quot;How do we handle
 the [X] transaction in the warehouse?&amp;quot;  Another form of the question is &amp;quot;What do
 we do when [Y] changes?&amp;quot;   The third form is less clear, but essentially the
@@ -2368,31 +2351,30 @@ warehouse.  Change happens in the SoR.  The warehouse merely captures the effect
 of that change.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category></entry><entry><title>Refactoring and Unit Testing</title><link href="https://slott56.github.io/2006_10_11-refactoring_and_unit_testing.html" rel="alternate"></link><published>2006-10-11T00:19:00-04:00</published><updated>2006-10-11T00:19:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-10-11:/2006_10_11-refactoring_and_unit_testing.html</id><summary type="html">&lt;p&gt;I do a fair amount of manual refactoring.  I've
 used WebSphere Studio (Eclipse) to do some automated refactoring, so I have some
-experience in using IDE's which exploit Java's static
-type-checking.&lt;/p&gt;
+experience in using IDE's which exploit Java's static type-checking.&lt;/p&gt;
 &lt;p&gt;However, the question of
 type checking in a dynamic language is interesting.  I don't use a sophisticated
 IDE for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I do a fair amount of manual refactoring.  I've
 used WebSphere Studio (Eclipse) to do some automated refactoring, so I have some
-experience in using IDE's which exploit Java's static
-type-checking.&lt;/p&gt;
+experience in using IDE's which exploit Java's static type-checking.&lt;/p&gt;
 &lt;p&gt;However, the question of
 type checking in a dynamic language is interesting.  I don't use a sophisticated
 IDE for Python development.  So, I have limited experience using an IDE to do
-refactoring in a dynamic
-language.&lt;/p&gt;
-&lt;p&gt;However, JB notes &amp;quot;I'm having
-some heartburn about hierarchical
-type&lt;/p&gt;
-&lt;p&gt;systems as a way of determining 1)
-conformability and 2) managing commitments
-of&lt;/p&gt;
-&lt;p&gt;semantically equivalent behavior. ...
-Seems a constraining way&lt;/p&gt;
-&lt;p&gt;to do it, to me, not
+refactoring in a dynamic language.&lt;/p&gt;
+&lt;p&gt;However, JB notes&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I'm having
+some heartburn about hierarchical type
+systems as a way of determining 1)
+conformability and 2) managing commitments of
+semantically equivalent behavior.&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;p&gt;Seems a constraining way to do it, to me, not
 that I have a better alternative at the
 moment.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Duck Typing.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="duck-typing"&gt;
+&lt;h2&gt;Duck Typing&lt;/h2&gt;
 &lt;p&gt;Since Python relies on
 &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Duck_typing"&gt;Duck
 Typing&lt;/a&gt; , refactoring takes on an interesting new dimension.  We aren't
@@ -2402,55 +2384,42 @@ now able to -- well -- put a method just about anywhere.&lt;/p&gt;
 simple, single-inheritance model, the &amp;quot;hierarchical&amp;quot; type system doesn't
 completely apply.&lt;/p&gt;
 &lt;p&gt;For these reasons,
-refactoring in Python is one potentially complex
-problem.&lt;/p&gt;
+refactoring in Python is one potentially complex problem.&lt;/p&gt;
 &lt;p&gt;From what I understand of
 Ruby, you can override a class method without creating a subclass, essentially
 redefining a base class in some obscure way.  This gives me the willies because
 it makes refactoring a problem without any sensible boundaries.  Maybe I'm
-misunderstanding Ruby, and have this
-wrong.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Essential Use Cases.&lt;/strong&gt;&lt;/p&gt;
+misunderstanding Ruby, and have this wrong.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="essential-use-cases"&gt;
+&lt;h2&gt;Essential Use Cases&lt;/h2&gt;
 &lt;p&gt;The principal refactoring
 use case involves moving a common method up the inheritance hierarchy.  As a
-practical matter, this does happen once in a
-while.&lt;/p&gt;
+practical matter, this does happen once in a while.&lt;/p&gt;
 &lt;p&gt;An additional text-book
 refactoring use case arises when we're adding or removing whole methods in the
 subclass hierarchy.&lt;/p&gt;
-&lt;p&gt;The fringe use case
-is a variation on the theme of
-SubClass1.methodA
-looking a lot like
-Subclass2.methodA,
-but they're not the same.  There are two interesting
-cases.&lt;/p&gt;
-&lt;p&gt;SC1.mA()
-is a superset of
-SC2.mA().  All
-of SC2.mA()
-gets refactored up, and SC1.mA()
-overrides it to add
-features.&lt;/p&gt;
-&lt;p&gt;SC1.mA()
-overlaps with
-SC2.mA().  Some
-common functionality has to get extracted, moved up the hierarchy;
-SC1.mA() and
-SC2.mA() are
-rebuilt around this common
-kernel.&lt;/p&gt;
-&lt;p&gt;SC1.mA()
-has no usable relationship with
-SC2.mA().  What
-now?  In some cases, a complete change in design may be called for.  The mere
+&lt;p&gt;The fringe use case is a variation on the theme of &lt;tt class="docutils literal"&gt;SubClass1.methodA&lt;/tt&gt;
+looking a lot like &lt;tt class="docutils literal"&gt;Subclass2.methodA&lt;/tt&gt;,
+but they're not the same.  There are two interesting cases.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;SC1.mA()&lt;/tt&gt; is a superset of &lt;tt class="docutils literal"&gt;SC2.mA()&lt;/tt&gt;.
+All of &lt;tt class="docutils literal"&gt;SC2.mA()&lt;/tt&gt; &lt;cite&gt;gets refactored up, and ``SC1.mA()`&lt;/cite&gt;
+overrides it to add features.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;SC1.mA()&lt;/tt&gt; overlaps with &lt;tt class="docutils literal"&gt;SC2.mA()&lt;/tt&gt;.
+Some common functionality has to get extracted, moved up the hierarchy;
+&lt;tt class="docutils literal"&gt;SC1.mA()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;SC2.mA()&lt;/tt&gt; are rebuilt around this common kernel.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;SC1.mA()&lt;/tt&gt; has no usable relationship with &lt;tt class="docutils literal"&gt;SC2.mA()&lt;/tt&gt;.
+What now?  In some cases, a complete change in design may be called for.  The mere
 presence of this situation is diagnostic of the designer having missed
-something.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Beyond the Fringe.&lt;/strong&gt;&lt;/p&gt;
+something.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="beyond-the-fringe"&gt;
+&lt;h2&gt;Beyond the Fringe&lt;/h2&gt;
 &lt;p&gt;Outside the fringe of
-ordinary refactoring are the &lt;strong&gt;New Design Pattern&lt;/strong&gt; ™ situations.  Mostly, these are
-&lt;strong&gt;Strategy&lt;/strong&gt;
-situations, where what looks -- initially -- like a variant method grows into a
+ordinary refactoring are the &lt;strong&gt;New Design Pattern&lt;/strong&gt;™ situations.  Mostly, these are
+&lt;strong&gt;Strategy&lt;/strong&gt; situations, where what looks -- initially -- like a variant method grows into a
 different approach as we learn more about the
 solution.&lt;/p&gt;
 &lt;p&gt;Consider a pair of ordinary
@@ -2460,23 +2429,19 @@ difference is one algorithm.  This can be done through inheritance, but
 sometimes that variant algorithm is only the tip of the iceberg, and there is
 more variability just below the
 surface.&lt;/p&gt;
-&lt;p&gt;At this point, we realize we
-need a
-&lt;strong&gt;Strategy&lt;/strong&gt;
-hierarchy to contain the variant algorithms, not a hierarchy of ordinary
+&lt;p&gt;At this point, we realize we need a
+&lt;strong&gt;Strategy&lt;/strong&gt; hierarchy to contain the variant algorithms, not a hierarchy of ordinary
 Entities.  How does refactoring work here, where we're moving the functionality
 out of a class hierarchy into a different class hierarchy?  Is this even
-refactoring, or is it the more general case of
-redesign?&lt;/p&gt;
+refactoring, or is it the more general case of redesign?&lt;/p&gt;
 &lt;p&gt;It doesn't feel like
 refactoring because  we aren't shuffling methods up and down the class
 hierarchy.  In Python, the Duck Typing means we don't actually need a proper
-hierarchy for the
-&lt;strong&gt;Strategy&lt;/strong&gt;
-class definitions.  Consequently, we're free to make significant structural
-changes that I don't think an IDE can ever help
-with.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Across the Spectrum.&lt;/strong&gt;&lt;/p&gt;
+hierarchy for the &lt;strong&gt;Strategy&lt;/strong&gt; class definitions.  Consequently, we're free to make significant structural
+changes that I don't think an IDE can ever help with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="across-the-spectrum"&gt;
+&lt;h2&gt;Across the Spectrum&lt;/h2&gt;
 &lt;p&gt;One potential problem
 with this is captured in the comment that &amp;quot;[the compiler] can’t help but
 see your code as a pile of text&amp;quot;.  By extension, then, the IDE can't do anything
@@ -2487,26 +2452,23 @@ information available to the compiler (or the IDE) isn't of much value until
 you've finished.  Nothing helps you when you're in the middle of this.  Until
 the semantic information exists, no IDE can help you manage and maintain the
 semantic information.&lt;/p&gt;
-&lt;p&gt;There are parts
-of design (and redesign) that are hard.  I think anyone would agree that the
+&lt;p&gt;There are parts of design (and redesign) that are hard.  I think anyone would agree that the
 earliest phases of noodling around about a problem are done without benefit of
 an IDE or formal semantics.  When the design is merely conceptual, tools can't
 help.&lt;/p&gt;
-&lt;p&gt;I think refactoring includes a
-very broad spectrum.  At one end, things are essentially mechanical; at the
+&lt;p&gt;I think refactoring includes a very broad spectrum.  At one end, things are essentially mechanical; at the
 other end things, are completely conceptual.  This isn't really a problem that
 needs a solution; it doesn't need tools.  It's part of the game of moving from a
 good idea to software.  Some parts of the good idea don't have formal semantics.
 Eventually, when formal semantics exist, tools can be
 applied.&lt;/p&gt;
-&lt;p&gt;In the case of Python, I
-suspect that IDE support for refactoring could only be feeble at best.  The
+&lt;p&gt;In the case of Python, I suspect that IDE support for refactoring could only be feeble at best.  The
 mechanical end of the spectrum is so easy that tools aren't required.   At the
-conceptual end of the spectrum, tools don't help in the first
-place.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Middle Ground.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;One might argue that
-simple, mechanical refactoring can be aided by the presence of static type
+conceptual end of the spectrum, tools don't help in the first place.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-middle-ground"&gt;
+&lt;h2&gt;The Middle Ground&lt;/h2&gt;
+&lt;p&gt;One might argue that simple, mechanical refactoring can be aided by the presence of static type
 declarations.  However, my experience is that this covers only the most mundane
 of the refactoring use cases.  In Python, we just move the method around.&lt;/p&gt;
 &lt;p&gt;In Python, there's a double whammy:
@@ -2523,27 +2485,28 @@ spot certain kinds of obvious mismatches in number of arguments vs. parameters.&
 committing to specific semantics, we see something even more profound.  It goes
 way beyond what even Java is capable of checking or
 automating.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Formal Specification.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-formal-specification"&gt;
+&lt;h2&gt;The Formal Specification&lt;/h2&gt;
 &lt;p&gt;JB is asking for a
 level beyond syntax, beyond type matching and off into &amp;quot;intent&amp;quot;.  JB appears to
 be looking for formal assertions of preconditions and postconditions that he can
 use to determine how to redesign methods to make them refactorable, and then how
 to refactor the changed design.&lt;/p&gt;
-&lt;p&gt;JB's
-formality would be a nice thing to capture.  If every statement had a proper
+&lt;p&gt;JB's formality would be a nice thing to capture.  If every statement had a proper
 precondition and postcondition, then we could prove almost anything about our
 software except whether or not the loops actually terminated.  (That can't be
 formally proven in a system with the same expressive power as software, it
-requires more sophisticated logical
-tools.)&lt;/p&gt;
+requires more sophisticated logical tools.)&lt;/p&gt;
 &lt;p&gt;Since Java and Python have
 added additional markers (annotations and decorators) JB's assertions could be
 captured, to an extent.  You'd have to implement a simple &amp;quot;for all&amp;quot; and &amp;quot;there
 exists&amp;quot; predicate, but Python has a nice reduce that can be paired with a lambda
 that allows you to write a &amp;quot;for all&amp;quot;; from this you can built a &amp;quot;there exists&amp;quot;.&lt;/p&gt;
-&lt;p&gt;I'm not sure how helpful formal
-assertions would be.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pragmatic Refactoring.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I'm not sure how helpful formal assertions would be.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pragmatic-refactoring"&gt;
+&lt;h2&gt;Pragmatic Refactoring&lt;/h2&gt;
 &lt;p&gt;When working in the
 center of the refactoring use cases, IDE aids are helpful.  When working at the
 fringe, they're just visual noise.  Indeed, when redesigning something, I have
@@ -2552,8 +2515,7 @@ it's checking for errors using obsolete type information.  When I've broken the
 whole thing down into a workbench full of parts, the semantic checks aren't even
 meaningful.  Once I get it put back together again, automated checking can be
 handy to assure a complete job.&lt;/p&gt;
-&lt;p&gt;In
-Python, breaking the whole thing down as part of a redesign is so much simpler.
+&lt;p&gt;In Python, breaking the whole thing down as part of a redesign is so much simpler.
 We don't have the artifice of &amp;quot;interface&amp;quot; to keep to a single inheritance model
 with static type checking across multiple aspects of a class.  We just move the
 methods around.  We have multiple inheritance, and we don't need formal
@@ -2564,38 +2526,36 @@ specification for a Java program.  I can tweak and tinker, optimizing
 performance and simplifying without the rigid formality of Java.  Adding proper
 class hierarchies and turning multiple inheritance into single+interface
 inheritance is typically a pretty easy transformation.  Since I knew I was
-aiming at Java in the first place, I avoided Pythonisms that don't
-translate.&lt;/p&gt;
+aiming at Java in the first place, I avoided Pythonisms that don't translate.&lt;/p&gt;
 &lt;p&gt;While it's true that we
 don't need Java's formality in Python, much of that formality is helpful.  I
 find it easier to work with a proper inheritance hierarchy, one that has
 explicit Not Implemented exceptions to mark the place-holders.  I like to have a
 tidy interface definition so that I can document the interface.  This additional
 material makes refactoring slightly more complex, but could help an automated
-tool do some useful method matching among
-classes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Final Test.&lt;/strong&gt;&lt;/p&gt;
+tool do some useful method matching among classes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-final-test"&gt;
+&lt;h2&gt;The Final Test&lt;/h2&gt;
 &lt;p&gt;Without appropriate unit
 tests, refactoring is impossible.  Even in Java, with a swanky IDE that checks
 everything, you still have potential problems which are uncheckable.  In
 particular, a mis-named subclass method cannot be detected except by &amp;quot;near-miss&amp;quot;
 fuzzy-matching rules that will almost always work and will have false-positives.
-Only unit testing can locate this
-situation.&lt;/p&gt;
+Only unit testing can locate this situation.&lt;/p&gt;
 &lt;p&gt;Unit testing absolutely is a
 stand-in for things the compiler can't check.  You can portray the heavy use of
 unit testing as a negative (&amp;quot;the compiler can't be trusted&amp;quot;) or as a pragmatic
 approach to verifying the things you can't formally state.  All of the
-assertions in the world won't find a spelling
-mistake.&lt;/p&gt;
+assertions in the world won't find a spelling mistake.&lt;/p&gt;
 &lt;p&gt;Worse, your formal
 declarations (post-condition assertions or type definitions) could just as
 easily be wrong.  A tidy formal proof with a wrong piece of logic will derive an
 incorrect program.  A misspelled class name may compile, but still fail a suite
 of tests.&lt;/p&gt;
-&lt;p&gt;Since the IDE can't register
-intent very well, it isn't a complete solution.  In the case of redesign, it
-isn't even very helpful.&lt;/p&gt;
+&lt;p&gt;Since the IDE can't register intent very well, it isn't a complete solution.
+In the case of redesign, it isn't even very helpful.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Python OODB (Revised)</title><link href="https://slott56.github.io/2006_06_20-python_oodb_revised.html" rel="alternate"></link><published>2006-06-20T10:35:00-04:00</published><updated>2006-06-20T10:35:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-06-20:/2006_06_20-python_oodb_revised.html</id><summary type="html">&lt;p&gt;Simple object persistence (i.e., serialization to
 a file system) is what pickle, marshal and shelve
 do.&lt;/p&gt;
@@ -2668,22 +2628,26 @@ provided some info on Py3K and Python Introspection &lt;a class="reference exter
 me, the interesting part was his summary of Object-Relational Mapping.  Mr.
 Bicking identifies two broad approaches: lambda introspection and operator
 overloading.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lambda Introspection&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="lambda-introspection"&gt;
+&lt;h2&gt;Lambda Introspection&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://projects.amor.org/dejavu"&gt;Dejavu&lt;/a&gt;
-It primarily uses …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ian Bicking: A Blog &lt;a class="reference external" href="http://blog.ianbicking.org/"&gt;http://blog.ianbicking.org/&lt;/a&gt;,
+It primarily uses …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Ian Bicking: A Blog &lt;a class="reference external" href="http://blog.ianbicking.org/"&gt;http://blog.ianbicking.org/&lt;/a&gt;,
 provided some info on Py3K and Python Introspection &lt;a class="reference external" href="http://blog.ianbicking.org/introspecting-expressions-in-py3k.html"&gt;http://blog.ianbicking.org/introspecting-expressions-in-py3k.html&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For
 me, the interesting part was his summary of Object-Relational Mapping.  Mr.
 Bicking identifies two broad approaches: lambda introspection and operator
 overloading.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lambda Introspection&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="lambda-introspection"&gt;
+&lt;h2&gt;Lambda Introspection&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://projects.amor.org/dejavu"&gt;Dejavu&lt;/a&gt;
 It primarily uses a generic &lt;a class="reference external" href="http://www.martinfowler.com/eaaCatalog/dataMapper.html"&gt;Data Mapper&lt;/a&gt;  architecture.  It is more of an OODB
 backed by a relational store.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://subway.python-hosting.com/wiki/SQLComp"&gt;SQLComp&lt;/a&gt;  The make_query method examines a lambda
 containing a list comprehension to create SQL.  This is only queries, and isn't
 a complete ORM.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Operator Overloading&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="operator-overloading"&gt;
+&lt;h2&gt;Operator Overloading&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://sqlobject.org/"&gt;SQLObject&lt;/a&gt;  This is
 a very complete ORM, cast in the some mold as
 Django.&lt;/p&gt;
@@ -2696,7 +2660,9 @@ is an older ORM with a few data types but a very &amp;quot;naked&amp;quot; use o
 operators to perform queries.  Unlike the lambda overloading, the class provides
 operators that are set operations for
 queries.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Non-Introspective Approaches&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="non-introspective-approaches"&gt;
+&lt;h2&gt;Non-Introspective Approaches&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://www.djangoproject.com/"&gt;Django&lt;/a&gt; , for example, encodes attributes and
 operators as keyword parameters to methods.  It doesn't look inside the Python
 code, but parses the keywords.&lt;/p&gt;
@@ -2717,7 +2683,9 @@ an object-relational mapper.  It depends on &lt;a class="reference external" hre
 Python wiki page on &lt;a class="reference external" href="http://wiki.python.org/moin/HigherLevelDatabaseProgramming"&gt;Higher Level Database Programming&lt;/a&gt;   has
 additional notes and products that are high
 level.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Garden-Variety Relational Access&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="garden-variety-relational-access"&gt;
+&lt;h2&gt;Garden-Variety Relational Access&lt;/h2&gt;
 &lt;p&gt;All of these modules
 provide the standard &lt;a class="reference external" href="http://www.python.org/dev/peps/pep-0249/"&gt;DB-API&lt;/a&gt;  (PEP 249) interface to a SQL database.&lt;/p&gt;
 &lt;p&gt;The most visible access layer product
@@ -2749,9 +2717,10 @@ interface&lt;/p&gt;
 &lt;p&gt;The Python wiki page on &lt;a class="reference external" href="http://wiki.python.org/moin/DatabaseInterfaces"&gt;Database Interfaces&lt;/a&gt;  also has a list of these
 product-specific access
 modules.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Recommendations&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Rule
-1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
+&lt;/div&gt;
+&lt;div class="section" id="recommendations"&gt;
+&lt;h2&gt;Recommendations&lt;/h2&gt;
+&lt;p&gt;Rule 1.  Do development with SQLite.  Why? Eschew Features.  Focus on RDBMS for
 relational store, focus on Python for processing.  Stored Procedures and
 Triggers are a product-specific mine-field.  Once the model passes unit tests,
 move to another RDBMS that supports concurrent
@@ -2769,6 +2738,7 @@ OR-Mapping because they are OLAP-like.  For some loading, aggregation and
 extraction, use direct SQL drivers for the chosen product.  For the large-volume
 fact-oriented loads, use the vendor-supplied bulk loader.  Portability is not
 your concern.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category></entry><entry><title>Agile Testing Goodies from PyCon 2006</title><link href="https://slott56.github.io/2006_02_27-agile_testing_goodies_from_pycon_2006.html" rel="alternate"></link><published>2006-02-27T11:26:00-05:00</published><updated>2006-02-27T11:26:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-02-27:/2006_02_27-agile_testing_goodies_from_pycon_2006.html</id><summary type="html">&lt;p&gt;A number of testing frameworks were used.  The
 Agile Testing tutorial provides a path through the toolsets, showing what you
 can do, and how you should do it.&lt;/p&gt;
@@ -2794,61 +2764,42 @@ Testing:  [&lt;a class="reference external" href="http://www.idyll.org/~t/www-to
 Interaction Testing:  [&lt;a class="reference external" href="http://www.openqa.org/selenium/"&gt;Selenium&lt;/a&gt; ] and PAMIE &lt;a class="reference external" href="http://pamie.sourceforge.net/"&gt;http://pamie.sourceforge.net/&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Literate
 Testing:  [&lt;a class="reference external" href="http://www.python.org/doc/lib/module-doctest.html"&gt;doctest&lt;/a&gt; ] and epydoc &lt;a class="reference external" href="http://epydoc.sourceforge.net/"&gt;http://epydoc.sourceforge.net/&lt;/a&gt;.&lt;/p&gt;
-</content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>testresources</title><link href="https://slott56.github.io/2005_12_26-testresources.html" rel="alternate"></link><published>2005-12-26T13:57:00-05:00</published><updated>2005-12-26T13:57:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-12-26:/2005_12_26-testresources.html</id><summary type="html">&lt;p&gt;testresources' &lt;a class="reference external" href="http://www.robertcollins.net/unittest/testresources/"&gt;http://www.robertcollins.net/unittest/testresources/&lt;/a&gt;
-purpose appears to be to manage the resources used by a test
-suite.&lt;/p&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>testresources</title><link href="https://slott56.github.io/2005_12_26-testresources.html" rel="alternate"></link><published>2005-12-26T13:57:00-05:00</published><updated>2005-12-26T13:57:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-12-26:/2005_12_26-testresources.html</id><summary type="html">&lt;p&gt;&lt;tt class="docutils literal"&gt;testresources&lt;/tt&gt; &lt;a class="reference external" href="http://www.robertcollins.net/unittest/testresources/"&gt;http://www.robertcollins.net/unittest/testresources/&lt;/a&gt;
+purpose appears to be to manage the resources used by a test suite.&lt;/p&gt;
 &lt;p&gt;Adding this resource management
 context extends the &lt;strong&gt;Test Suite&lt;/strong&gt;  to optimize tests around the resources.
 This can reshuffle the TestCases to minimize SetUp's.  This can be useful in
-contexts where …&lt;/p&gt;</summary><content type="html">&lt;p&gt;testresources' &lt;a class="reference external" href="http://www.robertcollins.net/unittest/testresources/"&gt;http://www.robertcollins.net/unittest/testresources/&lt;/a&gt;
-purpose appears to be to manage the resources used by a test
-suite.&lt;/p&gt;
+contexts where …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;tt class="docutils literal"&gt;testresources&lt;/tt&gt; &lt;a class="reference external" href="http://www.robertcollins.net/unittest/testresources/"&gt;http://www.robertcollins.net/unittest/testresources/&lt;/a&gt;
+purpose appears to be to manage the resources used by a test suite.&lt;/p&gt;
 &lt;p&gt;Adding this resource management
 context extends the &lt;strong&gt;Test Suite&lt;/strong&gt;  to optimize tests around the resources.
 This can reshuffle the TestCases to minimize SetUp's.  This can be useful in
-contexts where the
-&lt;strong&gt;Fixture&lt;/strong&gt;
-includes
-&lt;strong&gt;Singletons&lt;/strong&gt;
-or expensive resources.&lt;/p&gt;
-&lt;p&gt;While
-interesting, this package bends one of the common definitions of Unit Testing.
-If there is a complex resource dependency, the
-&lt;strong&gt;Fixture&lt;/strong&gt;
+contexts where the &lt;strong&gt;Fixture&lt;/strong&gt; includes &lt;strong&gt;Singletons&lt;/strong&gt; or expensive resources.&lt;/p&gt;
+&lt;p&gt;While interesting, this package bends one of the common definitions of Unit Testing.
+If there is a complex resource dependency, the &lt;strong&gt;Fixture&lt;/strong&gt;
 being tested isn't really isolated.  This pushes beyond isolated unit testing
-with
-&lt;strong&gt;Mock&lt;/strong&gt;
-objects into integration testing with real objects and real
+with &lt;strong&gt;Mock&lt;/strong&gt; objects into integration testing with real objects and real
 interfaces.&lt;/p&gt;
 &lt;p&gt;One can make the case that
-&amp;quot;unit&amp;quot; is intentionally vague; the Beck definitions refer to a
-&lt;strong&gt;Fixture&lt;/strong&gt;
+&amp;quot;unit&amp;quot; is intentionally vague; the Beck definitions refer to a &lt;strong&gt;Fixture&lt;/strong&gt;
 as the design pattern.  This could be a class, module or package, depending on
 your willingness to abstract.  I agree that &amp;quot;unit&amp;quot; does not necessarily mean
 class.  However, I do think that &amp;quot;unit&amp;quot; means isolated from other
 components.&lt;/p&gt;
-&lt;p&gt;testresources seems
+&lt;p&gt;&lt;tt class="docutils literal"&gt;testresources&lt;/tt&gt; seems
 specifically designed for integration test, not unit test.  I think it is
 miscategorized, and belongs to an unidentified species of products: integration
 testing frameworks.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>SubUnit</title><link href="https://slott56.github.io/2005_12_20-subunit.html" rel="alternate"></link><published>2005-12-20T18:36:00-05:00</published><updated>2005-12-20T18:36:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-12-20:/2005_12_20-subunit.html</id><summary type="html">&lt;p&gt;SubUnit's &lt;a class="reference external" href="http://www.robertcollins.net/unittest/subunit/"&gt;http://www.robertcollins.net/unittest/subunit/&lt;/a&gt; purpose appears to be to manage testing
 via subprocesses.&lt;/p&gt;
-&lt;p&gt;Consequently, it can
-run external tests not in Python, it can fork a subprocess to manage the Fixture
+&lt;p&gt;Consequently, it can run external tests not in Python, it can fork a subprocess to manage the Fixture
 in an isolated process.&lt;/p&gt;
-&lt;p&gt;Adding this
-subprocess execution context extends the
-&lt;strong&gt;Test Runner&lt;/strong&gt;  implementation of the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;SubUnit's &lt;a class="reference external" href="http://www.robertcollins.net/unittest/subunit/"&gt;http://www.robertcollins.net/unittest/subunit/&lt;/a&gt; purpose appears to be to manage testing
+&lt;p&gt;Adding this subprocess execution context extends the &lt;strong&gt;Test Runner&lt;/strong&gt;  implementation of the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;SubUnit's &lt;a class="reference external" href="http://www.robertcollins.net/unittest/subunit/"&gt;http://www.robertcollins.net/unittest/subunit/&lt;/a&gt; purpose appears to be to manage testing
 via subprocesses.&lt;/p&gt;
-&lt;p&gt;Consequently, it can
-run external tests not in Python, it can fork a subprocess to manage the Fixture
+&lt;p&gt;Consequently, it can run external tests not in Python, it can fork a subprocess to manage the Fixture
 in an isolated process.&lt;/p&gt;
-&lt;p&gt;Adding this
-subprocess execution context extends the
-&lt;strong&gt;Test Runner&lt;/strong&gt;  implementation of the built-in
-unittest
-module.  This can be useful in contexts where the Fixture includes
-&lt;strong&gt;Singletons&lt;/strong&gt;
+&lt;p&gt;Adding this subprocess execution context extends the &lt;strong&gt;Test Runner&lt;/strong&gt;  implementation of the built-in
+&lt;tt class="docutils literal"&gt;unittest&lt;/tt&gt; module.  This can be useful in contexts where the Fixture includes &lt;strong&gt;Singletons&lt;/strong&gt;
 or connection pools or other per-process design features.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Twisted Trial</title><link href="https://slott56.github.io/2005_12_15-twisted_trial.html" rel="alternate"></link><published>2005-12-15T17:10:00-05:00</published><updated>2005-12-15T17:10:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-12-15:/2005_12_15-twisted_trial.html</id><summary type="html">&lt;p&gt;Trial is not really a stand-alone unit test
 framework.  It is an extension to unittest focused on the testing needs for the
@@ -2889,68 +2840,50 @@ software …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The object-oriente
 as Smalltalk's Beck Test framework &lt;a class="reference external" href="http://www.xprogramming.com/testfram.htm"&gt;http://www.xprogramming.com/testfram.htm&lt;/a&gt;.  It evolved to the JUnit &lt;a class="reference external" href="http://www.junit.org/index.htm"&gt;http://www.junit.org/index.htm&lt;/a&gt;&amp;gt;`_ `  &amp;lt;&lt;a class="reference external" href="http://www.junit.org/index.htm%22%20target=%22NewWindow"&gt;http://www.junit.org/index.htm%22%20target=%22NewWindow&lt;/a&gt;
 framework for Java.  Beck defined four repeated patterns of unit testing
 software, covered in a previous posting &amp;lt;{filename}/blog/2005/11/2005_11_05-compare_and_contrast_round_1.rst&amp;gt;.&lt;/p&gt;
-&lt;p&gt;Nose, TestOOB, test.py
-(and TestGears) are significant revisions to the
-&lt;strong&gt;Test Suite&lt;/strong&gt;  and
-&lt;strong&gt;Test Runner&lt;/strong&gt;  parts of the unit test patterns.
-Additionally, these tools make efforts to implement the
-&lt;strong&gt;Diagnostics&lt;/strong&gt;
-pattern, also.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Fixture&lt;/strong&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt;
+(and &lt;tt class="docutils literal"&gt;TestGears&lt;/tt&gt;) are significant revisions to the
+&lt;strong&gt;Test Suite&lt;/strong&gt;  and &lt;strong&gt;Test Runner&lt;/strong&gt;  parts of the unit test patterns.
+Additionally, these tools make efforts to implement the &lt;strong&gt;Diagnostics&lt;/strong&gt; pattern, also.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Fixture&lt;/strong&gt;
 is implied by the context in which the tests are discovered.  Nose can locate
 package, module and function tests; it uses TestCase class definitions, also.
 TestOOB and test.py sit more squarely on unittest, with the resulting focus on
 module-level testing.&lt;/p&gt;
-&lt;p&gt;In TestOOB and
-test.py, the
-&lt;strong&gt;TestCase&lt;/strong&gt;
+&lt;p&gt;In &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt;, the &lt;strong&gt;TestCase&lt;/strong&gt;
 class plus a flexible regular expressions or glob expression defines the test
 cases.  test.py looks for packages of tests, using the path name of the package,
-as well as the module name.  In Nose, the
-&lt;strong&gt;TestCase&lt;/strong&gt;
+as well as the module name.  In &lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt;, the &lt;strong&gt;TestCase&lt;/strong&gt;
 class can be used for compatibility, but this is not required; Nose will match a
 regular expression to locate tests.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Results Check&lt;/strong&gt;  in nose can be done via the existing
-assert statement.  Nose, pleasantly handles the &amp;quot;test which throws an exception&amp;quot;
-case: a test function that exits normally is a &amp;quot;pass&amp;quot;.  An
-AssertionError
-exception is a test failure; any other exception is an error.  Since TestOOB and
-test.py sit on
-unittest, they
-depend on the complex set of assert methods, and the fail
-method.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Test Suite&lt;/strong&gt;  is implied by the collection of TestCase
-instances with the expected name forms in TestOOB.  In Nose and test.py, it is
+&lt;p&gt;The &lt;strong&gt;Results Check&lt;/strong&gt;  in &lt;tt class="docutils literal"&gt;nose&lt;/tt&gt; can be done via the existing
+&lt;tt class="docutils literal"&gt;assert&lt;/tt&gt; statement.  &lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt;, pleasantly handles the &amp;quot;test which throws an exception&amp;quot;
+case: a test function that exits normally is a &amp;quot;pass&amp;quot;.  An &lt;tt class="docutils literal"&gt;AssertionError&lt;/tt&gt;
+exception is a test failure; any other exception is an error.  Since &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt; sit on &lt;tt class="docutils literal"&gt;unittest&lt;/tt&gt;, they
+depend on the complex set of assert methods, and the &lt;tt class="docutils literal"&gt;fail()&lt;/tt&gt; method.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Test Suite&lt;/strong&gt;  is implied by the collection of &lt;tt class="docutils literal"&gt;TestCase&lt;/tt&gt;
+instances with the expected name forms in &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt;.  In &lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt;, it is
 the collection of modules, functions and methods with names that have the
 expected forms.  Both cases make powerful use of Python introspection to track
 down the tests.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Test Runner&lt;/strong&gt;  in nose can be a stand-alone
-nosetests
-program, or you can import nose;
-nose.main().  In the case of TestOOB, we have a
-testoob
-program, or we can import testoob;
-testoob.main().    Nose has an interesting
-integration with Python distutils/setuptools.  It adds a new &amp;quot;test&amp;quot; verb to
-setup.py.  The test.py main program has a large number of options to fine-tune
+&lt;p&gt;The &lt;strong&gt;Test Runner&lt;/strong&gt;  in nose can be a stand-alone &lt;tt class="docutils literal"&gt;nosetests&lt;/tt&gt;
+program, or you can &lt;tt class="docutils literal"&gt;import nose; nose.main()&lt;/tt&gt;.
+In the case of &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt;, we have a &lt;tt class="docutils literal"&gt;testoob&lt;/tt&gt;
+program, or we can &lt;cite&gt;import testoob; testoob.main()`&lt;/cite&gt;.
+&lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt; has an interesting
+integration with Python &lt;tt class="docutils literal"&gt;distutils/setuptools&lt;/tt&gt;.  It adds a new &amp;quot;test&amp;quot; verb to
+&lt;tt class="docutils literal"&gt;setup.py&lt;/tt&gt;.  The &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt; main program has a large number of options to fine-tune
 which tests are run&lt;/p&gt;
-&lt;p&gt;Nose supports the
-&lt;strong&gt;Diagnostics&lt;/strong&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;Nose&lt;/tt&gt; supports the &lt;strong&gt;Diagnostics&lt;/strong&gt;
 with output capture and a simple flag for producing additional details.
-TestOOB, in certain environments, will produce color output; it produces an XML
-test report as well as HTML test reports.  TestOOB can launch the Python
-debugger as well as log failing assertions in detail.  test.py can run
-pychecker, do tracing and refcount checking as part of the
-diagnostics.&lt;/p&gt;
-&lt;p&gt;TestOOB has some
-additional features for repeating and controlling the timing of the tests.
+&lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt;, in certain environments, will produce color output; it produces an XML
+test report as well as HTML test reports.  &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt; can launch the Python
+debugger as well as log failing assertions in detail.  &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt; can run
+&lt;tt class="docutils literal"&gt;pychecker&lt;/tt&gt;, do tracing and refcount checking as part of the diagnostics.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt; has some additional features for repeating and controlling the timing of the tests.
 While this is not sufficient to prove that an application lacks the kind of race
 condition that makes it behave poorly; it can help to provide some confidence
-for load testing.  Similarly, test.py includes features for looping tests to
+for load testing.  Similarly, &lt;tt class="docutils literal"&gt;test.py&lt;/tt&gt; includes features for looping tests to
 look for memory leaks and race conditions.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Compare and Contrast (round 2)</title><link href="https://slott56.github.io/2005_11_07-compare_and_contrast_round_2.html" rel="alternate"></link><published>2005-11-07T17:50:00-05:00</published><updated>2005-11-07T17:50:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-11-07:/2005_11_07-compare_and_contrast_round_2.html</id><summary type="html">&lt;p&gt;The object-oriented unit testing framework began
 as Smalltalk's Beck Test framework &lt;a class="reference external" href="http://www.xprogramming.com/testfram.htm%22%20target=%22NewWindow"&gt;http://www.xprogramming.com/testfram.htm%22%20target=%22NewWindow&lt;/a&gt;.
@@ -2961,103 +2894,91 @@ as Smalltalk's Beck Test framework &lt;a class="reference external" href="http:/
 It evolved to the JUnit &lt;a class="reference external" href="http://www.junit.org/index.htm%22%20target=%22NewWindow"&gt;http://www.junit.org/index.htm%22%20target=%22NewWindow&lt;/a&gt;
 framework for Java.  Beck defined four repeated patterns of unit testing
 software, covered in a previous posting &amp;lt;{filename}/blog/2005/11/2005_11_05-compare_and_contrast_round_1.rst&amp;gt;.&lt;/p&gt;
-&lt;p&gt;An
-additional pattern that py.test introduces is the
-&lt;strong&gt;Diagnostics&lt;/strong&gt;
+&lt;p&gt;An additional pattern that py.test introduces is the &lt;strong&gt;Diagnostics&lt;/strong&gt;
 pattern.  This is a useful traceback or cached output.  To make it useful, it is
 presented only for failing tests, and elides repetition in the event of
-recursions that lead to stack
-overflows.&lt;/p&gt;
-&lt;p&gt;py.test seems to deliver
-most of the Beck-defined features.&lt;/p&gt;
+recursions that lead to stack overflows.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;py.test&lt;/tt&gt; seems to deliver most of the Beck-defined features.&lt;/p&gt;
 &lt;p&gt;The Fixture is created by offering a
 number of setup/teardown functions, either at the module level (for a module or
 class) or within a class.&lt;/p&gt;
-&lt;p&gt;The Test
-Case is a module, class or function with an appropriate name.  Either
-&lt;tt class="docutils literal"&gt;test_&lt;/tt&gt; or
-&lt;tt class="docutils literal"&gt;Test_&lt;/tt&gt; as a
-prefix is sufficient to define a test
-case.&lt;/p&gt;
+&lt;p&gt;The Test Case is a module, class or function with an appropriate name.  Either
+&lt;tt class="docutils literal"&gt;test_&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;Test_&lt;/tt&gt; as a
+prefix is sufficient to define a test case.&lt;/p&gt;
 &lt;p&gt;The Results Check uses ordinary
 asserts and a special
-py.test.raises
+&lt;tt class="docutils literal"&gt;py.test.raises()&lt;/tt&gt;
 function to cover all the bases.  Personally, I prefer the JUnit approach to
 catching the expected exception and calling the
-fail() method
-for everything else.&lt;/p&gt;
+&lt;tt class="docutils literal"&gt;fail()&lt;/tt&gt; method for everything else.&lt;/p&gt;
 &lt;p&gt;The Suite is
 developed by implication through Python's powerful introspection: everything
 that looks like a test -- at the package, module and class level -- is a
 candidate.  A regular expression can pick names, plus other global conditions
 can be examined to further refine the test protocols.&lt;/p&gt;
-&lt;p&gt;The Runner is a stand-alone
-py.test program
+&lt;p&gt;The Runner is a stand-alone &lt;tt class="docutils literal"&gt;py.test&lt;/tt&gt; program
 that locates the tests, executes them and produces a log.  Further, it produces
 Diagnostics focused on the failing tests.&lt;/p&gt;
-</content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Compare and Contrast (round 1)</title><link href="https://slott56.github.io/2005_11_05-compare_and_contrast_round_1.html" rel="alternate"></link><published>2005-11-05T20:21:00-05:00</published><updated>2005-11-05T20:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-11-05:/2005_11_05-compare_and_contrast_round_1.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Some Basis for Comparison&lt;/strong&gt;&lt;/p&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Compare and Contrast (round 1)</title><link href="https://slott56.github.io/2005_11_05-compare_and_contrast_round_1.html" rel="alternate"></link><published>2005-11-05T20:21:00-05:00</published><updated>2005-11-05T20:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-11-05:/2005_11_05-compare_and_contrast_round_1.html</id><summary type="html">&lt;div class="section" id="some-basis-for-comparison"&gt;
+&lt;h2&gt;Some Basis for Comparison&lt;/h2&gt;
 &lt;p&gt;The object-oriented unit
 testing framework began as Smalltalk's Beck Test framework &lt;a class="reference external" href="http://www.xprogramming.com/testfram.htm"&gt;http://www.xprogramming.com/testfram.htm&lt;/a&gt;.  It evolved to the JUnit &lt;a class="reference external" href="http://www.junit.org/index.htm"&gt;http://www.junit.org/index.htm&lt;/a&gt;
 framework for Java.  Beck defined four repeated patterns of unit testing
 software:&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Fixture&lt;/strong&gt; .
-The thing we are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Some Basis for Comparison&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Fixture&lt;/strong&gt;.
+The thing we are …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="some-basis-for-comparison"&gt;
+&lt;h2&gt;Some Basis for Comparison&lt;/h2&gt;
 &lt;p&gt;The object-oriented unit
 testing framework began as Smalltalk's Beck Test framework &lt;a class="reference external" href="http://www.xprogramming.com/testfram.htm"&gt;http://www.xprogramming.com/testfram.htm&lt;/a&gt;.  It evolved to the JUnit &lt;a class="reference external" href="http://www.junit.org/index.htm"&gt;http://www.junit.org/index.htm&lt;/a&gt;
 framework for Java.  Beck defined four repeated patterns of unit testing
 software:&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Fixture&lt;/strong&gt; .
+&lt;p&gt;The &lt;strong&gt;Fixture&lt;/strong&gt;.
 The thing we are testing; a class or possibly a set of instances of a given
 class, or possibly something even larger.  If we are testing more than one class
 at a time, we aren't really &amp;quot;unit&amp;quot; testing.  So the fixture often includes stubs
 for missing classes.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Test Case&lt;/strong&gt; .  A predictable reaction of the fixture.
+&lt;p&gt;The &lt;strong&gt;Test Case&lt;/strong&gt;.  A predictable reaction of the fixture.
 This should either work or fail.  It can, of course also raise one of those
 egregious, unchecked-for errors that indicate fairly serious problems in a
 preliminary piece of software.  Or, it may indicate something that was badly
 damaged during maintenance and is now raising errors instead of simply failing
 the regression test suite.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Results Check&lt;/strong&gt; .  A specific assertion about the
-fixture's results.&lt;/p&gt;
-&lt;p&gt;The
-&lt;strong&gt;Test Suite&lt;/strong&gt; . A collection of
-TestCases.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Results Check&lt;/strong&gt;.  A specific assertion about the fixture's results.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Test Suite&lt;/strong&gt;. A collection of TestCases.&lt;/p&gt;
 &lt;p&gt;JUnit and unittest add a
 &lt;strong&gt;Test Runner&lt;/strong&gt;  pattern, also.  This the top-level
 component that uses a Test Suite to create test results by executing each Test
 Case, assuring that each Results Check worked.  The Test Runner can also assure
 that any Fixture Setup and Teardown is done
 correctly.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Legacy Frameworks&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;unittest delivers all
+&lt;/div&gt;
+&lt;div class="section" id="legacy-frameworks"&gt;
+&lt;h2&gt;Legacy Frameworks&lt;/h2&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;unittest&lt;/tt&gt; delivers all
 the Beck-defined features.  It should, it is the indirect descendant of the
 original framework.  Having JUnit as an ancestor, however, leads to some clunky
 non-Pythonic features.  In particular, Python features that Java lacks are
 ignored, including modules and free-standing
 functions.&lt;/p&gt;
-&lt;p&gt;doctest has an odd fit with
+&lt;p&gt;&lt;tt class="docutils literal"&gt;doctest&lt;/tt&gt; has an odd fit with
 the Beck framework.  The fixture isn't well defined; since doctest has a
 module-centric view, a shallow copy of the module globals are given to each
 test, making the module globals the fixture.  Each Case and Results Check is
 encoded in a docstring, usually by a cut and paste from an interactive testing
 session.  The test suite is implied by the module
 structure.&lt;/p&gt;
-&lt;p&gt;unittest isn't terribly
+&lt;p&gt;&lt;tt class="docutils literal"&gt;unittest&lt;/tt&gt; isn't terribly
 Pythonic.  Doctest is module-focused, not class focused, and doesn't treat the
 notion of fixture very well.&lt;/p&gt;
-&lt;p&gt;IMO,
-module-based testing is a more useful level of unit testing.  Individual
+&lt;p&gt;IMO, module-based testing is a more useful level of unit testing.  Individual
 classes, while important, rarely make sense in a vacuum.  All of the test
 harness and stub classes required to test just one class seems like too much
 unproductive work.  When the architecture changes, I may have to change a class
 definition as well as the test harness classes that stand in for this class in
 the unit testing framework.&lt;/p&gt;
 &lt;p&gt;Next Up,
-py.test, nose and testgears.  Later, TestOOB and Sancho.&lt;/p&gt;
+&lt;tt class="docutils literal"&gt;py.test&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;nose&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;testgears&lt;/tt&gt;.  Later, &lt;tt class="docutils literal"&gt;TestOOB&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Sancho&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry><entry><title>Python Unit Testing Frameworks (v3)</title><link href="https://slott56.github.io/2005_11_02-python_unit_testing_frameworks_v3.html" rel="alternate"></link><published>2005-11-02T00:12:00-05:00</published><updated>2005-11-02T00:12:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-11-02:/2005_11_02-python_unit_testing_frameworks_v3.html</id><summary type="html">&lt;p&gt;Ned Batchelder : Blog [&lt;a class="reference external" href="http://www.nedbatchelder.com/blog/index.html"&gt;http://www.nedbatchelder.com/blog/index.html&lt;/a&gt; ] identifies no less than 6 unit testing
 frameworks for Python [&lt;a class="reference external" href="http://www.nedbatchelder.com/blog/200510.html#e20051025T070731"&gt;http://www.nedbatchelder.com/blog/200510.html#e20051025T070731&lt;/a&gt; ] and [&lt;a class="reference external" href="http://www.nedbatchelder.com/blog/200411.html#e20041120T185622"&gt;http://www.nedbatchelder.com/blog/200411.html#e20041120T185622&lt;/a&gt; ].&lt;/p&gt;
 &lt;p&gt;TestGears

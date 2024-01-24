@@ -21,7 +21,8 @@ control".
 
 
 
-**Context** 
+Context
+-------
 
 
 
@@ -29,7 +30,8 @@ When the portal goes live, 10,000 people will want accounts.
 
 
 
-**Problem** 
+Problem
+--------
 
 
 
@@ -54,12 +56,12 @@ less.
 
 
 
-**Forces** 
+Forces
+------
 
 
 
-On
-the one hand, we could hire a suitably-sized help desk staff for the week or so
+On the one hand, we could hire a suitably-sized help desk staff for the week or so
 that the desk will be flooded with account open requests.  10,000 requests
 spread over 40 hours will be 250/hour, 4 each minute.  The calls aren't trivial,
 we need to establish identity of the users, each call will take 5 minutes or
@@ -85,8 +87,7 @@ remote security, and the help desk.
 
 
 
-We
-can't email people their passwords.  Direct mail, while possible, is also
+We can't email people their passwords.  Direct mail, while possible, is also
 expensive.  Further, direct mail is relatively removed from the high-tech image
 of the portal.  This is marketing, and a high-tech portal needs a high-tech
 registration process so that people can fully embrace this as central to their
@@ -94,36 +95,31 @@ work-life.
 
 
 
-Some remote sites have LDAP
-servers that we can interrogate to establish identity.  Some, however, do not,
-and will require a more manual
-process.
+Some remote sites have LDAP servers that we can interrogate to establish identity.  Some, however, do not,
+and will require a more manual process.
 
 
 
-**Conclusion** 
+Conclusion
+----------
 
 
 
-All
-of the various forces and nuances of the problem don't change the fundamental
+All of the various forces and nuances of the problem don't change the fundamental
 problem.  There's something people can't do.  They can't establish identify and
 create accounts for 10,000 users in the space of a week.  All of the other
-forces that shape the solution don't change the
-problem.
+forces that shape the solution don't change the problem.
 
 
 
 Now, folding in my technology
-choices (J2EE, JDBC, Struts/JSF, etc.) doesn't change the
-problem.
+choices (J2EE, JDBC, Struts/JSF, etc.) doesn't change the problem.
 
 
 
 Adding features (logging the
 interactions with the help desk, integrating with other LDAP servers,
-bulk-loading people with existing accounts) doesn't change the
-problem.
+bulk-loading people with existing accounts) doesn't change the problem.
 
 
 

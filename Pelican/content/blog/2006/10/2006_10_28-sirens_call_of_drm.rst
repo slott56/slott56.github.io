@@ -22,8 +22,7 @@ goal."
 
 
 
-I suppose, for a number of
-values of "could", this is true. 
+I suppose, for a number of values of "could", this is true.
 
 
 
@@ -39,8 +38,7 @@ of.
 
 
 
-In short, DRM can't be made to
-work.
+In short, DRM can't be made to work.
 
 
 
@@ -52,7 +50,8 @@ made to work.
 
 
 
-**Two Specific Scenarios.** 
+Two Specific Scenarios
+----------------------
 
 
 
@@ -86,11 +85,9 @@ individuals into your protection scheme.  Employees -- at least in principle --
 are trustworthy.  Except the ones you have to fire for criminal activity on
 company property.  Non-employees must be untrustworthy, requiring them to be
 vetted as if they were prospective employees: background checks, interviews,
-photo ID checks, immigration paperwork, etc.  All of which
-*inhibits* 
+photo ID checks, immigration paperwork, etc.  All of which *inhibits*
 potentially valuable use of the intellectual property by increasing the cost of
-access -- possibly to an unacceptable
-level.
+access -- possibly to an unacceptable level.
 
 
 

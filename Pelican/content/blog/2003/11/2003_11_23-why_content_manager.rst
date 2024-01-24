@@ -9,9 +9,7 @@ Why Content Manager?
 
 
 
-
-
-::
+A Question:
 
     >> A while back you mentioned the following book
     >>
@@ -31,8 +29,6 @@ following:
 "But, you don't need a
 database, SQL, or other stuff for simple content
 management."
-
-::
 
     
     > Can we attempt to define "simple".    

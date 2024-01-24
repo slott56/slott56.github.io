@@ -1,6 +1,7 @@
 AUTHOR = 'S.Lott'
 SITENAME = 'S.Lott -- Software Architect'
 SITEURL = ''
+MASTODON_CLAIM = 'https://fosstodon.org/@slott56'
 
 PATH = 'content'
 

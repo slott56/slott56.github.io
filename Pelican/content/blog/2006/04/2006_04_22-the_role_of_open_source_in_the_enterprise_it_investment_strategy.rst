@@ -11,15 +11,12 @@ The Role of Open Source in the Enterprise IT Investment Strategy
 
 
 
-My point -- always -- is that I'm not here to
-**convert** 
-anyone.  I'm just here to respond to the need for open source consulting
-skills.
+My point -- always -- is that I'm not here to **convert** anyone.
+I'm just here to respond to the need for open source consulting skills.
 
 
 
-As a parallel example, TH
-explained (at length) that there was NO earthly reason to retire a perfectly
+As a parallel example, TH explained (at length) that there was NO earthly reason to retire a perfectly
 good IBM z-series mainframe.  The z-series represents cheap, reliable,
 predictable, high-value, paid-for, processing power.  My point to him is not
 that I have a better business model, or that I have a compelling argument for
