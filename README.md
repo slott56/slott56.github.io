@@ -32,7 +32,6 @@ pelican-themes -i ~/Documents/Writing/Blogs/pelican-themes/pelican-bootstrap3
 
 Update `pelicanconf.py` to include `THEME=pelican-bootstrap3`
 
-Edit 
 
 ## Updates
 
@@ -46,7 +45,10 @@ Test with
 pelican --autoreload --listen
 ```
 
-Or `make devserver`
+Or `make devserver`.
+
+If the site can't be served by the devserver, it means a file has a bad slug, and is 
+creating a ``.html`` file. Read this file to find this bad entry with the bad slug.
 
 Publish with
 

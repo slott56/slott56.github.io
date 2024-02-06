@@ -138,24 +138,22 @@ attributes.</p>
 <p>Here are the five top-level
 categories:</p>
 <ul class="simple">
-<li>Need Satisfaction.  In short, does it
-work?  Does it solve the problem in the first place?</li>
-<li>Performance.  Here is where the classical
-memory and time considerations are evaluated.</li>
-<li>Maintenance.  How easy is it to
-fix?</li>
-<li>Adaptive.  How easy is it to extend or
-port?</li>
-<li>Organizational.  How expensive is it?  Do
-we have the skills?</li>
+<li>Need Satisfaction.
+In short, does it work?  Does it solve the problem in the first place?</li>
+<li>Performance.
+Here is where the classical memory and time considerations are evaluated.</li>
+<li>Maintenance.
+How easy is it to fix?</li>
+<li>Adaptive.
+How easy is it to extend or port?</li>
+<li>Organizational.
+How expensive is it?  Do we have the skills?</li>
 </ul>
-<p>The SEI taxonomy
-has 16 subcategories, enough to cover all the bases.  For me, this is the final
-word on quality, and I haven't seen anything better than
-this.</p>
-<p><strong>Understandability.</strong></p>
-<p>Under
-&quot;Maintenance&quot;, there's a subcategory of &quot;Understandability&quot;, which includes four
+<p>The SEI taxonomy has 16 subcategories, enough to cover all the bases.  For me, this is the final
+word on quality, and I haven't seen anything better than this.</p>
+<div class="section" id="understandability">
+<h2>Understandability</h2>
+<p>Under &quot;Maintenance&quot;, there's a subcategory of &quot;Understandability&quot;, which includes four
 lower-level metrics:</p>
 <ul class="simple">
 <li>Complexity</li>
@@ -175,25 +173,18 @@ implementation is &quot;better&quot;.  They provide a workable definition of
 &quot;understandable&quot; that -- to an extent -- is free from subjective complaints
 about someone else's coding style.</p>
 <ul class="simple">
-<li>Halstead Length = total number of
-variable occurrences plus total number of method calls, operators, and (in
-Python) function calls.  How long is the component, not in lines of code, but in
+<li>Halstead Length = total number of variable occurrences plus total number of method calls, operators,
+and (in Python) function calls.
+How long is the component, not in lines of code, but in
 things the program represents and things the program does?</li>
-<li>Halstead Volume = number of
-<em>distinct</em>
-variables plus
-<em>distinct</em>
-methods, operators and functions.  Often a much smaller number than the length.
+<li>Halstead Volume = number of <em>distinct</em> variables plus <em>distinct</em> methods, operators and functions.
+Often a much smaller number than the length.
 This is &quot;volume&quot; in the sense of how many distinct things do you have to keep in
 your head to understand it; it's the brain volume tied up in working on the
 program.</li>
-<li>McCabe Complexity = number of nested
-<strong>if</strong> ,
-<strong>while</strong>
-and <strong>for</strong>
-statements.  In the case of Python
-<strong>elif</strong>
-constructs, these count, also.  Statements at the &quot;top-level&quot; of a method or
+<li>McCabe Complexity = number of nested <strong>if</strong>, <strong>while</strong>, and <strong>for</strong> statements.
+In the case of Python <strong>elif</strong> constructs, these count, also.
+Statements at the &quot;top-level&quot; of a method or
 function don't count, only the nested ones.  Yes, you can finesse this score to
 zero with a lot of small methods, that would be the whole point.</li>
 <li>Total source lines of code.  If you want,
@@ -202,52 +193,34 @@ three categories: the Javadoc (or docstring) comments, the &quot;other&quot; com
 the remaining code.  The Javadoc (or docstring) comments have to be taken as
 seriously as the code itself.</li>
 </ul>
-<p>These can
-be combined into a single score, but that defeats the purpose of looking at the
+<p>These can be combined into a single score, but that defeats the purpose of looking at the
 code and evaluating it based on the textual complexity (the Halstead metrics)
 and the structural complexity (the McCabe)
 metric.</p>
-<p><strong>The Evils of If-Statements.</strong></p>
+</div>
+<div class="section" id="the-evils-of-if-statements">
+<h2>The Evils of If-Statements</h2>
 <p>I find that my own
-quick-and-dirty McCabe metric works well in evaluating complex.  I count
-<strong>if</strong> -statements.
-In my experience, little good comes from
-<strong>if</strong> -statements.
+quick-and-dirty McCabe metric works well in evaluating complex.
+I count <strong>if</strong> -statements.
+In my experience, little good comes from <strong>if</strong> -statements.
 Each one needs to be scrutinized carefully and justified as essential.</p>
-<p>Generally, every one of the cool
-design patterns in the <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>
-book can be replaced with an amazingly poor cluster of rotten, unmanageable
-<strong>if</strong> -statements.
-In particular,
-<strong>State</strong> ,
-<strong>Command</strong>
-and
-<strong>Strategy</strong>
-are often bollixed up into a horrifying morass of
+<p>Generally, every one of the cool design patterns in the <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>
+book can be replaced with an amazingly poor cluster of rotten, unmanageable <strong>if</strong> -statements.
+In particular, <strong>State</strong> , <strong>Command</strong>, and <strong>Strategy</strong> are often bollixed up into a horrifying morass of
 iffiness.</p>
-<p>Here's the
-conversation:</p>
-<p><strong>Customer</strong> :
-&quot;Make it do 'X', not 'Y', in this
-situation.&quot;</p>
-<p><strong>Me</strong> :
-&quot;What does that mean?  Why is this situation
-unique?&quot;</p>
-<p><strong>Customer</strong> :
-&quot;That doesn't matter; there's no underlying meaning.  It's just an
-<strong>if</strong> -statement.&quot;</p>
+<p>Here's the conversation:</p>
+<p><strong>Customer</strong>: &quot;Make it do 'X', not 'Y', in this situation.&quot;</p>
+<p><strong>Me</strong>: &quot;What does that mean?  Why is this situation unique?&quot;</p>
+<p><strong>Customer</strong>: &quot;That doesn't matter; there's no underlying meaning.  It's just an <strong>if</strong> -statement.&quot;</p>
 <p>Everything
-has meaning.  There's no such thing as &quot;just an
-<strong>if</strong> -statement&quot;.
+has meaning.  There's no such thing as &quot;just an <strong>if</strong> -statement&quot;.
 Generally, the things we think of as &quot;conditions&quot; are not last-minute decisions
 in the middle of an algorithm.  They are starting conditions that describe what
-objects we should be created in the first place.  Most
-<strong>if</strong> -statements
-belong in some sort of
-<strong>Factory</strong>
-or
-<strong>Builder</strong> :
+objects we should be created in the first place.
+Most <strong>if</strong> -statements belong in some sort of <strong>Factory</strong> or <strong>Builder</strong>:
 they have deep and pervasive meaning.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -317,9 +290,6 @@ they have deep and pervasive meaning.</p>
     <li class="list-group-item">
       <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
     </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
   </ul>
 </li>
 <!-- End Sidebar/Links -->
@@ -328,6 +298,10 @@ they have deep and pervasive meaning.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2023 (3)
           </a>
@@ -1199,7 +1173,7 @@ they have deep and pervasive meaning.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 S.Lott
+         <div class="col-xs-10">&copy; 2024 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

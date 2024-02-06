@@ -146,7 +146,8 @@ having some pretty fancy calculations and feedback. We could replace them with a
 web application that had enough AJAX to be similar to the <a class="reference external" href="http://docs.google.com/">Google Docs</a>  spreadsheet: it would
 provide a rich user interface, and the data would be centrally
 located.</p>
-<p><strong>Collaboration and Consolidation.</strong></p>
+<div class="section" id="collaboration-and-consolidation">
+<h2>Collaboration and Consolidation</h2>
 <p>In this case, the
 collaboration is more than just consolidation.  While the proximate problem is
 consolidation, we quickly uncovered additional use cases.  There are at least
@@ -164,7 +165,9 @@ simple consolidation.  The superficial collaborative task is only the tip of a
 larger iceberg of use cases for the spreadsheets.  What is a technology choice
 that supports consolidation, but preserves the other use
 cases?</p>
-<p><strong>Excel Extraction.</strong></p>
+</div>
+<div class="section" id="excel-extraction">
+<h2>Excel Extraction</h2>
 <p>Some managers make
 extensive use of the original spreadsheet functionality; the spreadsheet's
 native use cases are essential to the enterprise.  In addition to the
@@ -184,8 +187,7 @@ of spreadsheets they can consolidate without a lot of study and reverse
 engineering.  They need to prevent
 tinkering.</li>
 </ul>
-<p>We have a spectrum of
-platform alternatives.</p>
+<p>We have a spectrum of platform alternatives.</p>
 <ul class="simple">
 <li>Excel.  We can write gloriously complex
 macros and VB scripts and embed them in the spreadsheet.  This makes them large,
@@ -210,7 +212,9 @@ and pattern-matching.  However, this can't even make good use of the .NET API's,
 but must work around a number of tragic
 limitations.</li>
 </ul>
-<p><strong>A Show Stopper.</strong></p>
+</div>
+<div class="section" id="a-show-stopper">
+<h2>A Show Stopper</h2>
 <p>Here's a potential
 show-stopper for the web alternative, &quot;<a class="reference external" href="http://support.microsoft.com/kb/257757">Considerations for service-side
 Automation of Office</a> &quot;:  &quot;Microsoft does not currently recommend, and
@@ -219,8 +223,7 @@ unattended, non-interactive client application or component (including ASP,
 DCOM, and NT Services), because Office may exhibit unstable behavior and/or
 deadlock when run in this environment.&quot;</p>
 <p>Ouch.</p>
-<p>The
-web application could have had a pretty nifty overview:</p>
+<p>The web application could have had a pretty nifty overview:</p>
 <ol class="arabic simple">
 <li>The Director creates a new template and
 populates it with the most recent plan and the actual performance information.
@@ -233,43 +236,39 @@ planning.</li>
 <li>The Analysts have all of the Manager's uploads
 to consolidate and report on.</li>
 </ol>
-<p>The
-end-user experience would be slightly different than today's mass-emailing
+<p>The end-user experience would be slightly different than today's mass-emailing
 frenzy.  There'd be a nice collaboration web site for upload and download.  The
 upload would validate and provide feedback as part of the upload
 process.</p>
-<p>It appears that we can't make
-this work very easily.</p>
-<p><strong>Desktop and Excel Platforms.</strong></p>
-<p>I'm not a big
-fan of the desktop as a platform.  Primarily, I hate the configuration
-management problem: who has what version of the
-application.</p>
-<p>&quot;But there are tools to
-help.&quot;</p>
+<p>It appears that we can't make this work very easily.</p>
+</div>
+<div class="section" id="desktop-and-excel-platforms">
+<h2>Desktop and Excel Platforms</h2>
+<p>I'm not a big fan of the desktop as a platform.  Primarily, I hate the configuration
+management problem: who has what version of the application.</p>
+<p>&quot;But there are tools to help.&quot;</p>
 <p>While true, desktop deployment
 tools merely plaster over the essential problem:  the people who &quot;control&quot; the
 desktop aren't very disciplined.  We can only make desktop software work as part
 of a total lock-down of the end-user's computer.  Since the client doesn't do
 this (and won't for this one business application), we can't really make use of
 the desktop as a platform.</p>
-<p>Excel is a
-viable programming platform.  However, it, too is prone to getting out of
+<p>Excel is a viable programming platform.  However, it, too is prone to getting out of
 control.  The current 20-plus-tab monstrosity is packed full of macros and VB
 modules and doesn't work reliably.  In addition to bugs, people can easily add
 inter-workbook links to documents on their C: drive and in their Windows TEMP
 directory.  The whole thing rapidly spins out of control when we try to make use
 of the clever features of Excel.  We need something simpler and more
 reliable.</p>
-<p><strong>Enter POI and XML.</strong></p>
+</div>
+<div class="section" id="enter-poi-and-xml">
+<h2>Enter POI and XML</h2>
 <p>We can exploit two
-technologies to make a simple, reliable web-based solution.  First, we have
-<a class="reference external" href="http://jakarta.apache.org/poi/">Jakarta
-POI</a> , which allows us to read Excel files directly.  This is pleasant,
+technologies to make a simple, reliable web-based solution.
+First, we have <a class="reference external" href="http://jakarta.apache.org/poi/">Jakarta POI</a> , which allows us to read Excel files directly.  This is pleasant,
 and the HSSF reliably picks apart a spreadsheet.  Second, we can use XML
 versions of the spreadsheets, making them readable by <a class="reference external" href="http://sax.sourceforge.net/">SAX</a>  or <a class="reference external" href="http://xerces.apache.org/">Xerces</a> .</p>
-<p>Here's
-the overall Compiler design pattern, and how we would implement it:</p>
+<p>Here's the overall Compiler design pattern, and how we would implement it:</p>
 <ul class="simple">
 <li>Lexical scanning is done by POI or SAX.
 From this, we get a sequence of tokens which are Worksheets, Rows and
@@ -288,7 +287,9 @@ transform and load operations.  These will lead to the consolidated data.  We
 can then cough out the next generation template, or a reporting pivot table, or
 simply redirect the user to a typical data warehouse reporting
 portal.</p>
-<p><strong>Spreadsheet as Syntax.</strong></p>
+</div>
+<div class="section" id="spreadsheet-as-syntax">
+<h2>Spreadsheet as Syntax</h2>
 <p>This leaves us with the
 spreadsheet document filling an interesting role in this processing.  Rather
 than being an active platform, the spreadsheet is downgraded to a mostly passive
@@ -310,9 +311,10 @@ as easy to implement because most RE processing software works with individual
 characters.  We would need to write a RE matcher as a <a class="reference external" href="http://en.wikipedia.org/wiki/Nondeterministic_Finite_State_Machine">non-deterministic finite automaton</a>  that worked
 with Cells and Rows instead of
 characters.</p>
-<p><strong>Solution Outline.</strong></p>
-<p>Here's a fun kind of
-solution.  It works best if the spreadsheets are pared down to just the input
+</div>
+<div class="section" id="solution-outline">
+<h2>Solution Outline</h2>
+<p>Here's a fun kind of solution.  It works best if the spreadsheets are pared down to just the input
 sections with just enough calculation and history to facilitate creating
 high-quality plans.  From the current spreadsheets, we would delete the various
 tabs that are simply reporting and consolidation within the
@@ -330,18 +332,15 @@ managers use.  The only practical difference between an analyst and a manager is
 the breadth of information which is visible.  A manager can see their plan, an
 analyst can see multiple plans.</li>
 </ol>
-<p>The
-upload process uses a SAX application to parse, validate, extract, transform and
+<p>The upload process uses a SAX application to parse, validate, extract, transform and
 load the spreadsheet.  In the (all-too-common) situation where the spreadsheet
 doesn't parse successfully, there are two kinds of feedback:</p>
 <ul class="simple">
-<li>An error page in the web
-application.</li>
-<li>A revised spreadsheet with a different
-style for the erroneous section.</li>
+<li>An error page in the web application.</li>
+<li>A revised spreadsheet with a different style for the erroneous section.</li>
 </ul>
-<p>We'll
-come back to spreadsheet as syntax in future posts.</p>
+<p>We'll come back to spreadsheet as syntax in future posts.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -411,9 +410,6 @@ come back to spreadsheet as syntax in future posts.</p>
     <li class="list-group-item">
       <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
     </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
   </ul>
 </li>
 <!-- End Sidebar/Links -->
@@ -422,6 +418,10 @@ come back to spreadsheet as syntax in future posts.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2023 (3)
           </a>
@@ -1293,7 +1293,7 @@ come back to spreadsheet as syntax in future posts.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 S.Lott
+         <div class="col-xs-10">&copy; 2024 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

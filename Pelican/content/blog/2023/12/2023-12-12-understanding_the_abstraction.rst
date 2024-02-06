@@ -3,7 +3,7 @@ Understanding the Abstraction -- matplotlib Edition
 
 :date: 2023-12-12 08:01
 :tags: language,semantics
-:slug: 2023_12_12-understanding_the_abstraction
+:slug: 2023-12-12-understanding_the_abstraction
 :category: Python
 :status: published
 

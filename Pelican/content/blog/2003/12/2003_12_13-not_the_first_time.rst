@@ -52,8 +52,8 @@ thinking:
 
 
 
-
-**Benefits**
+Benefits
+--------
 
 1.  Both data and events are naturally modeled in a similar structure:
     XML
@@ -69,7 +69,8 @@ thinking:
 
 
 
-**Weaknesses**
+Weaknesses
+------------
 
 1.  No interactive debugging tools. However this could be mitigated by extensive
     debug logging by the application

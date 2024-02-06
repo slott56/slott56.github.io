@@ -38,13 +38,12 @@ create a usable representation, often called an `abstract syntax tree <http://en
 
 
 
-**Layers of Meaning.** 
+Layers of Meaning
+-----------------
 
 
 
-Compounding the essential
-parsing problem are the number of layers of syntax that we have to work
-with:
+Compounding the essential parsing problem are the number of layers of syntax that we have to work with:
 
 -   XML.  XML lexical analysis locates tags,
     and punctuation, building up a document object model of Nodes, Elements and
@@ -92,7 +91,8 @@ purposes.
 
 
 
-**Basic SAX Parsing.** 
+Basic SAX Parsing
+-----------------
 
 
 
@@ -142,12 +142,10 @@ structure.
 
 
 
-To use this
-DOMContentHandler
+To use this ``DOMContentHandler``
 we have to create a SAX parser and initiate
 parsing on an input source.  Note that this creates a generic DOM object, which
-we have to examine to locate the spreadsheet
-structure.
+we have to examine to locate the spreadsheet structure.
 
 
 
@@ -166,7 +164,8 @@ structure.
 
 
 
-**The Spreadsheet Object Model (SSOM)** 
+The Spreadsheet Object Model (SSOM)
+-----------------------------------
 
 
 
@@ -179,40 +178,35 @@ generators.
 
 
 
-First, we'll need class
-definitions for the various spreadsheet entities we're going to deal
-with:
+First, we'll need class definitions for the various spreadsheet entities we're going to deal with:
 
--   Style.  The spreadsheet style
+-   **Style**.  The spreadsheet style
     information is spread through a number of tags and attributes.  Most of the tag
     values are single-occurence elements and the list-oriented
-    getElementsByTagName()
-    and
-    getAttribute()
+    ``getElementsByTagName()`` and ``getAttribute()``
     aren't the most convenient API. 
 
--   **Workbook** .  The Workbook is a collection of
+-   **Workbook**.  The Workbook is a collection of
     Styles, Names, and "SupBook" references to external files.  It is also a
     collection of Worksheets.
 
--   **WorkbookLink** .  This is the Path information of
+-   **WorkbookLink**.  This is the Path information of
     a "SupBook" reference in a Workbook.
 
--   **Worksheet** .  A Worksheet is essentially a
+-   **Worksheet**.  A Worksheet is essentially a
     container for Rows.  It can also be looked at as a container for columns, but we
     won't often need to make use of this representation.  Unlike the pure XML model,
     which is row-oriented, our spreadsheet object model can include additional
     indexing.
 
--   **Row** .  A Row is a container for
-    Cells.
+-   **Row**.  A Row is a container for Cells.
 
--   **Cell** .  A Cell has a number of attributes:
+-   **Cell**.  A Cell has a number of attributes:
     data, an optional formula, and an optional style.  We'll need these to parse the
     spreadsheet document.  We can safely ignore any other attributes of a
     cell.
 
--   **WorksheetReference** .  This is an reference
+-   **WorksheetReference**.  This is an reference
     embedded in a formula.  These references are usually a subset of the "SubBook"
     references.
 
@@ -237,7 +231,8 @@ Cell.
 
 
 
-**Generating SSOM Objects.** 
+Generating SSOM Objects
+-----------------------
 
 
 
@@ -266,8 +261,7 @@ contained in the parent Workbook.
 
 Our final application can use this
 method something like the following.  This snippet looks for worksheets named
-"Assumptions", and examines only those pages of a
-Workbook.
+"Assumptions", and examines only those pages of a Workbook.
 
 
 
@@ -316,7 +310,8 @@ work with in our next level of parsing.
 
 
 
-**Business Process Objects.** 
+Business Process Objects
+------------------------
 
 
 
@@ -378,19 +373,16 @@ meaning.
 
 
 
-Since iterators maintain state, we can
-use the iterator to implement a very clean
-**Skip The Headers**  design pattern.  The first
-"for row in
-rowIter" loop will process rows until we find the
-last of the "overhead" rows.  The second "for
-row in rowIter" loop will process the remaining
-rows; we skip blank rows and rows that contain
-examples.
+Since iterators maintain state, we can use the iterator to implement a very clean **Skip The Headers**  design pattern.
+The first ``for row in rowIter`` loop will process rows until we find the
+last of the "overhead" rows.
+The second ``for row in rowIter`` loop will process the remaining
+rows; we skip blank rows and rows that contain examples.
 
 
 
-**Essential Business Entities.** 
+Essential Business Entities
+----------------------------
 
 
 

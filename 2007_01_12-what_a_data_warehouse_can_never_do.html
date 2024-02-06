@@ -125,9 +125,9 @@ that superficially cover change management, but we're not really talking about
 Kimball's <strong>Slowly Changing Dimension</strong>  (SCD) design pattern.  It turns out,
 we're talking about something more subtle and
 confusing.</p>
-<p><strong>System of Record.</strong></p>
-<p>The real questions are
-<strong>System of Record</strong>  (SoR) questions.  In short, each
+<div class="section" id="system-of-record">
+<h2>System of Record</h2>
+<p>The real questions are <strong>System of Record</strong>  (SoR) questions.  In short, each
 question is a version of &quot;Where's the authoritative copy, and how do I keep it
 current?&quot;</p>
 <ul class="simple">
@@ -146,9 +146,10 @@ be made in the SoR.  This is similar to the &quot;changes to [Y]&quot; question,
 a different point of view on what data is and why it
 exists.</li>
 </ul>
-<p>We'll look at these questions
-in a bit of depth.</p>
-<p><strong>Transactions in the Warehouse.</strong></p>
+<p>We'll look at these questions in a bit of depth.</p>
+</div>
+<div class="section" id="transactions-in-the-warehouse">
+<h2>Transactions in the Warehouse</h2>
 <p>When someone asks
 about the &quot;[X] transaction,&quot; they're often summarizing a business process.  In
 general, every business process is either informal, or formalized.  Informal
@@ -161,25 +162,19 @@ SoR.  When there's one SoR, life is good.  The transaction happens in some
 system (SAP, Oracle, QuickBooks, Aptiva, etc.)  It propagates through the
 organization through ordinary Enterprise Application Integration (EAI)
 techniques.  It winds up in the warehouse through ordinary
-Extract-Transform-Load (ETL)
-processing.</p>
+Extract-Transform-Load (ETL) processing.</p>
 <p>When there are multiple
-SoR's, we have some challenges.  Sometimes, the relationship is
-<em>horizontal</em> :
+SoR's, we have some challenges.  Sometimes, the relationship is <em>horizontal</em>:
 two peer business units have separate sources for similar data.  One unit has
 SAP, the other has Aptiva.  This means that there may be common data which must
 be conformed into a warehouse dimension.  So far, so good.</p>
-<p>Sometimes the relationship between
-SoR's is
-<em>vertical</em> :
+<p>Sometimes the relationship between SoR's is <em>vertical</em>:
 the parent company uses SAP, the subsidiary uses Great Plains.   This means that
 there may be contradictions between the views of the common data.  When data is
 moved up from the subsidiary, it may be aggregated: business entities are
 elided, and the data is difficult (or impossible) to
 conform.</p>
-<p>Sometimes the relationship
-between SoR's is
-<em>psychotic</em> .
+<p>Sometimes the relationship between SoR's is <em>psychotic</em>.
 This often leads to a badly-chosen SoR.  A single organization can have the same
 data in two applications and neither can be trusted to be the SoR.  They may
 have customer data in Siebel and JDE, and the data is different, and can only be
@@ -190,16 +185,16 @@ processes to reflect that.</p>
 there are no transactions in the warehouse.  Transactions happen in the SoR, and
 the results of those transactions are applied to the warehouse.  You must pick
 an SoR.</p>
-<p><strong>Change in the Warehouse.</strong></p>
-<p>Sometimes, there is no
-System of Record.  There are two common cases: the data is maintained manually,
+</div>
+<div class="section" id="change-in-the-warehouse">
+<h2>Change in the Warehouse</h2>
+<p>Sometimes, there is no System of Record.  There are two common cases: the data is maintained manually,
 and the data is maintained through a cryptic transaction buried in the legacy
 reporting application.  When data is maintained manually, we have a rather
 difficult <strong>Master Data Management</strong>  (MDM) issue because we don't have
 an official SoR.  We're often in a bad position, here, because we're forced to
 stop data warehouse development work to put a SoR in place.  This extra work can
-be hard to justify; managers say &quot;we never needed a system for that before, why
-now?&quot;</p>
+be hard to justify; managers say &quot;we never needed a system for that before, why now?&quot;</p>
 <p>The answer is simple, but
 unpleasant.  &quot;It never worked before, either.&quot;  People put in data warehouses
 because their legacy reporting tools are incorrect or inconsistent.  One root
@@ -207,7 +202,7 @@ cause of errors is lack of a public, well-understood truth because of manual or
 informal changes.</p>
 <p>The cryptic
 transaction is the worst thing to ferret out.  Let's say we have two
-applications, B and C which each do parts of a business function.  Further, each
+applications, B and C, which each do parts of a business function.  Further, each
 has it's little quirks, and we periodically must reconcile B and C's results
 against each other.  How do we do this reconciliation when the two applications
 are largely disjoint except where they have to be
@@ -222,9 +217,10 @@ the SoR.</p>
 <p>In summary, change in the
 warehouse is limited to a historical snapshot of change in the SoR.  Change
 happens in the SoR, and the results of the changes are applied to the warehouse.
-You must pick an
-SoR.</p>
-<p><strong>Maintenance in the Warehouse.</strong></p>
+You must pick an SoR.</p>
+</div>
+<div class="section" id="maintenance-in-the-warehouse">
+<h2>Maintenance in the Warehouse</h2>
 <p>The question of
 maintaining data in the warehouse usually stems from a warehouse design which
 involves something more complex than simple facts and dimensions.  Generally, a
@@ -254,32 +250,23 @@ maintain the bridge table.</p>
 <p>In summary,
 maintenance in the warehouse is limited to loading a historical snapshot of the
 relationships in the SoR.  Maintenance happens in the SoR, and the results of
-the maintenance are applied to the warehouse.  You must depend on an
-SoR.</p>
-<p><strong>Bridge Tables Maintenance.</strong></p>
+the maintenance are applied to the warehouse.  You must depend on an SoR.</p>
+</div>
+<div class="section" id="bridge-tables-maintenance">
+<h2>Bridge Tables Maintenance</h2>
 <p>There are several
 varieties of Bridge Tables.  We'll address hierarchy, since it seems to lead to
 the most confusion.  We'll touch on minidimension and outrigger tables, also,
-since the same design pattern applies to
-those.</p>
+since the same design pattern applies to those.</p>
 <p>The essential worry about
 hierarchies stems from the fact that a hierarchy bridge table can have many more
-rows than the  dimension it bridges.  Generally, it's an
-<em>n</em> log(<em>n</em> )
-kind of multiplication, where
-log(<em>n</em> )
-is an estimate of the depth of the
-hierarchy.</p>
+rows than the  dimension it bridges.  Generally, it's an <span class="formula"><i>n</i>log(<i>n</i>)</span>
+kind of multiplication, where <span class="formula">log(<i>n</i>)</span> is an estimate of the depth of the hierarchy.</p>
 <p>As a practical matter,
 moving one child to another parent is a single row change in the original data.
-However, the expansion in the bridge table means that
-2*d*
-rows will change, where
-<em>d</em>  is
-the depth of the node in the hierarchy.  For some reason, this is
-intimidating.</p>
-<p>There are two
-solutions:</p>
+However, the expansion in the bridge table means that <span class="formula">2<i>d</i></span> rows will change, where <span class="formula"><i>d</i></span> is
+the depth of the node in the hierarchy.  For some reason, this is intimidating.</p>
+<p>There are two solutions:</p>
 <ul class="simple">
 <li>Reload the entire bridge table with each
 source change.  This is easy to implement but slow.  If you use SCD change
@@ -297,10 +284,12 @@ minidimensions and outriggers, which are based on subsets of a dimension.  The
 lazy approach is to rebuild these each time the dimension changes.  A slightly
 more efficient approach is to derive just the changed rows from the changes in
 the dimension.</p>
-<p><strong>Bottom Line.</strong></p>
-<p>Change doesn't happen in the
-warehouse.  Change happens in the SoR.  The warehouse merely captures the effect
-of that change.</p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
+<p>Change doesn't happen in the warehouse.  Change happens in the SoR.
+The warehouse merely captures the effect of that change.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -370,9 +359,6 @@ of that change.</p>
     <li class="list-group-item">
       <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
     </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
   </ul>
 </li>
 <!-- End Sidebar/Links -->
@@ -381,6 +367,10 @@ of that change.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2023 (3)
           </a>
@@ -1252,7 +1242,7 @@ of that change.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 S.Lott
+         <div class="col-xs-10">&copy; 2024 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

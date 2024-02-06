@@ -116,17 +116,15 @@ S.Lott -- Software Architect            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>We have a spectrum of interesting needs, and a
-corresponding spectrum of solutions.  Here's one dimension: the structured-ness
-view.</p>
+corresponding spectrum of solutions.  Here's one dimension: the structured-ness view.</p>
 <ol class="arabic simple">
 <li>Highly structured data.</li>
-<li>Semi-structured data, or the &quot;mixed content
-model&quot;.  We can further subdivide this into content which is &quot;naturally&quot;
+<li>Semi-structured data, or the &quot;mixed content model&quot;.
+We can further subdivide this into content which is &quot;naturally&quot;
 hierarchical, and a good fit for XML, and data which is relational and a poor
 fit.</li>
 </ol>
-<p>Another dimension is the
-&quot;imperative/declarative&quot; dimension, which is orthogonal to the structured
+<p>Another dimension is the &quot;imperative/declarative&quot; dimension, which is orthogonal to the structured
 dimension.  We've got, consequently, four easy-to-see kinds of data
 representation needs:</p>
 <table border="1" class="docutils">
@@ -145,14 +143,14 @@ representation needs:</p>
 </table>
 <p>Each of these is exemplified by different
 languages in practice.  However, some people will argue that XML is appropriate
-to all of them, practical considerations be
-d****d.</p>
-<p><strong>Highly-Structured, Declarative Data.</strong></p>
+to all of them, practical considerations be d****d.</p>
+<div class="section" id="highly-structured-declarative-data">
+<h2>Highly-Structured, Declarative Data</h2>
 <p>This is the
 sweet-spot for the relational model of data.  The representation for relational
 data is a series of DDL statements (for the schema) and INSERT statements (for
-the data).  JSON does this well; in some cases better.
-Better?</p>
+the data).  JSON does this well; in some cases better.</p>
+<p>Better?</p>
 <p>Let's look at an example.  Say
 we have an application that needs to get the total of the most recent order for
 a given customer.  In XML parlance, we have to locate <tt class="docutils literal">&lt;order&gt;</tt> elements for
@@ -163,10 +161,7 @@ complex, and the available XML API's don't support our application very directly
 at all.</p>
 <p>McGrath's point appears to be
 that the API's support XML parsing, but not structured information processing.
-We can't just use something as clear as
-get_total_value(),
-or even
-get_value('total').</p>
+We can't just use something as clear as <tt class="docutils literal">get_total_value()</tt>, or even <tt class="docutils literal"><span class="pre">get_value('total')</span></tt>.</p>
 <p>If we have a complete DTD (or XSD),
 then each piece of data has a tag, and each tag is reachable by an XPATH query.
 However, our application program API's aren't -- typically -- wordy XPATH
@@ -174,10 +169,12 @@ queries.  Our API's are simple object methods.  We can, of course, embed the
 XPATH query in an object wrapper, but that seems to be a huge burden.  Couldn't
 we match our data representation to our processing needs in the first
 place?</p>
-<p><strong>Highly-Structured, Imperative Data.</strong></p>
+</div>
+<div class="section" id="highly-structured-imperative-data">
+<h2>Highly-Structured, Imperative Data</h2>
 <p>I thrashed around
-in this space in &quot;<a class="reference external" href="https://slott56.github.io/2007_01_02-clarifying_xmls_strengths.html">Clarifying XML's Strengths</a> .&quot;  When there's
-imperative information (i.e., scripts) we're wandering away from XML's sweet
+in this space in &quot;<a class="reference external" href="https://slott56.github.io/2007_01_02-clarifying_xmls_strengths.html">Clarifying XML's Strengths</a> .&quot;
+When there's imperative information (i.e., scripts) we're wandering away from XML's sweet
 spot and wandering into a place where Python or a Domain-Specific Language (DSL)
 might be more helpful.  While some people argue the fine points of Ant vs.
 Maven, they seem to miss the point that Ant has imperative elements written in
@@ -197,14 +194,14 @@ of sense.  We can supplement this with some additional syntax to create a DSL
 that includes Python, JavaScript or Jelly.  Fundamentally, we're matching our
 processing with our data
 representation.</p>
-<p><strong>Semi-Structured, Declarative.</strong></p>
-<p>Here is the XML
-sweet-spot.  The data is a &quot;mixed content&quot; model with untagged text in addition
+</div>
+<div class="section" id="semi-structured-declarative">
+<h2>Semi-Structured, Declarative</h2>
+<p>Here is the XML sweet-spot.  The data is a &quot;mixed content&quot; model with untagged text in addition
 to tagged values.  Here, the XML API's aren't really in the way, because the
 data requires some interpretation.  Some processing rules must be applied by an
 application program.</p>
-<p>This is -- to
-some people -- anathema, because it implies that the XML document isn't complete
+<p>This is -- to some people -- anathema, because it implies that the XML document isn't complete
 and stand-alone.  They prefer to think XML is inherently complete, and don't
 want to consider the situation where XML lacks information required to interpret
 the content.</p>
@@ -221,7 +218,9 @@ script (which requires a shell) and a SQL document (which requires a database)
 are treated.  You must marry data and processing; further, the data
 representation ought to be appropriate to the kind of processing which is being
 done.</p>
-<p><strong>Hierarchies and Relations.</strong></p>
+</div>
+<div class="section" id="hierarchies-and-relations">
+<h2>Hierarchies and Relations</h2>
 <p>We can further fine-tune
 our semi-structured considerations.  Some data is naturally hierarchical; we can
 create an outline from the information.  If it is perfectly hierarchical, we can
@@ -245,9 +244,10 @@ this example has &quot;project plans&quot; which are often semi-structured.  So 
 have a good XML fit, and we don't have a good relational fit, either.  At this
 point, some kind of special-purpose DSL may help.  Or, we have to merely use the
 XML to get the data into a proper object model for processing.</p>
-<p><strong>Semi-Structured, Imperative.</strong></p>
-<p>Wait, isn't
-sem-structured, imperative content the very features which characterizes a
+</div>
+<div class="section" id="semi-structured-imperative">
+<h2>Semi-Structured, Imperative</h2>
+<p>Wait, isn't semi-structured, imperative content the very features which characterizes a
 programming language?  Yes.  We wouldn't want to switch Python's elegant syntax
 for a pure XML rendering of the same application
 programming.</p>
@@ -257,22 +257,22 @@ programming.</p>
 &lt;suite&gt;
 
 &lt;docstring&gt;&lt;block&gt;round(n[,m=0])
--&amp;gt; round n to m positions.&lt;/block
-&gt;&lt;block&gt;...&lt;/block&gt;...&lt;/docstring&gt;
+-&amp;gt; round n to m positions.
+&lt;/block&gt;&lt;block&gt;...&lt;/block&gt;...
+&lt;/docstring&gt;
 
-&lt;statement
-name=&quot;if&quot;&gt;&lt;expression&gt;...&lt;/expression&gt;&lt;suite&gt;...&lt;/suite&gt;&lt;/statement&gt;
+&lt;statement name=&quot;if&quot;&gt;&lt;expression&gt;...&lt;/expression&gt;&lt;suite&gt;...&lt;/suite&gt;&lt;/statement&gt;
 
-&lt;statement
-name=&quot;return&quot;&gt;&lt;expression&gt;...&lt;/expression&gt;&lt;/statement&gt;
+&lt;statement name=&quot;return&quot;&gt;&lt;expression&gt;...&lt;/expression&gt;&lt;/statement&gt;
 
 &lt;/suite&gt;
 
 &lt;/function&gt;
 </pre>
-<p>No
-thanks.</p>
-<p><strong>Bottom Line.</strong></p>
+<p>No thanks.</p>
+</div>
+<div class="section" id="bottom-line">
+<h2>Bottom Line</h2>
 <p>We need to select a data
 representation that is appropriate for our data processing needs.  We can't
 waste time wringing our hands and saying that there's no way to anticipate all
@@ -287,19 +287,16 @@ processing.  Over-generalizing (i.e., force-fitting XML to every problem) leads
 to inefficient and ineffective solutions.  McGrath lifts up the specific issue
 of finding a meaningful piece of data, rather than the value associated with a
 tag obscured by an XPATH query.</p>
-<p>I've
-got an example of the obscurity created by XML:  &quot;<a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html">Spreadsheet as Syntax</a> &quot; shows a multi-step
+<p>I've got an example of the obscurity created by XML:  &quot;<a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html">Spreadsheet as Syntax</a> &quot; shows a multi-step
 transformation, which includes transforming XML into a spreadsheet document
 object model (SSDOM) before doing anything useful.  The raw XML is rather quite
 complex and obscure.  The SSDOM isn't half as bad.  The SSDOM allows us to use a
-simple
-get_style_name()
-notation to examine the content in a meaningful
-way.</p>
+simple <tt class="docutils literal">get_style_name()</tt> notation to examine the content in a meaningful way.</p>
 <p>Until I read McGrath's piece, I
 didn't know why my solution appeared so clunky.  Now I see that it's a
 consequence of the XML API's being focused merely on parsing.  What I did isn't
 wrong or even clunky, it's essential.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -369,9 +366,6 @@ wrong or even clunky, it's essential.</p>
     <li class="list-group-item">
       <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
     </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
   </ul>
 </li>
 <!-- End Sidebar/Links -->
@@ -380,6 +374,10 @@ wrong or even clunky, it's essential.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2023 (3)
           </a>
@@ -1251,7 +1249,7 @@ wrong or even clunky, it's essential.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 S.Lott
+         <div class="col-xs-10">&copy; 2024 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

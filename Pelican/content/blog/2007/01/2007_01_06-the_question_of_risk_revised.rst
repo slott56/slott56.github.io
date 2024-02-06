@@ -22,9 +22,9 @@ Why is risk uninteresting?
 
 
 
-First, the seeds (Chad
-Fowler's "`The
-Big Rewrite <http://chadfowler.com/2006/12/27/the-big-rewrite%22%20target=%22NewWindow>`_ ", and CodeCraft, "`To
+First, the seeds (Chad Fowler's "`The
+Big Rewrite <http://chadfowler.com/2006/12/27/the-big-rewrite%22%20target=%22NewWindow>`_ ",
+and CodeCraft, "`To
 Rewrite or not to rewrite, that is the question <http://codecraft.info/index.php/archives/69/%22%20target=%22NewWindow>`_ ") don't mention
 risk.
 
@@ -42,9 +42,7 @@ thing that might not turn out as planned.
 
 I think any discussion of risk has to
 be separated into bad management and actual unplannable events.  The unplannable
-events are
-**real** 
-risks like heart disease, cancer, stroke, or motor vehicle accidents.  Almost
+events are **real** risks like heart disease, cancer, stroke, or motor vehicle accidents.  Almost
 everything else that can go wrong is little more than bad
 management.
 
@@ -59,26 +57,24 @@ that's dead wrong for software.
 
 
 
-There
-are many lists of specific risk factors.  The Visual FoxPro Wiki, for example,
+There are many lists of specific risk factors.  The Visual FoxPro Wiki, for example,
 has a Software Development Risk Factors http://fox.wikis.com/wc.dll?Wiki~SoftwareDevelopmentRiskFactors~VFP  page that's
-handy.  Here is the heart of the problem:
-**failing to address risks as discrete kinds of mistakes** .  Almost all of the things we see
-as software risks are just bad management, each a kind of failure to cope with
+handy.
+Here is the heart of the problem: **failing to address risks as discrete kinds of mistakes** .
+Almost all of the things we see as software risks are just bad management, each a kind of failure to cope with
 ignorance.  I believe that, like an `architecture <{filename}/blog/2006/08/2006_08_22-a_new_architecture_involves_ignorance.rst>`_ , software development involves
 strategies to manage ignorance.
 
 
 
-[The
-worst conversations are the "we don't know what we don't know, anything could
+[The worst conversations are the "we don't know what we don't know, anything could
 happen" conversations.  Those are exasperating.  You do, in fact, have tangible
-risk models and lists of risk factors, better termed "potential
-problems."]
+risk models and lists of risk factors, better termed "potential problems."]
 
 
 
-**Software Risks are Different.** 
+Software Risks are Different
+----------------------------
 
 
 
@@ -91,8 +87,8 @@ value.
 
 
 
-From the old `Max Headroom TV series <http://en.wikipedia.org/wiki/Max_Headroom_(TV_series)>`_ , I learned,
-"**There are no failed experiments, only more data** ."  This appears to be a paraphrase
+From the old `Max Headroom TV series <http://en.wikipedia.org/wiki/Max_Headroom_(TV_series)>`_ ,
+I learned, "**There are no failed experiments, only more data**."  This appears to be a paraphrase
 of a quote from R. Buckminster Fuller, but I can't find a reference to Fuller's
 original quote.
 
@@ -111,9 +107,7 @@ loss.
 
 In software development, a
 "failure" isn't like a classical "loss": you still learned something, and the
-thing you learned
-**is**  of
-real value.  You may think that you only learned that you can't deliver 10
+thing you learned **is**  of real value.  You may think that you only learned that you can't deliver 10
 person-years of software in 1/2 a person-year.  But your requirements, designs,
 and partial solutions all have real, tangible value, and can be reworked into
 something.  The team that remains grew in experience, management gained some
@@ -122,7 +116,8 @@ something.
 
 
 
-**But the Labor was Wasted.** 
+But the Labor was Wasted
+-------------------------
 
 
 
@@ -162,19 +157,15 @@ requirements?
 
 
 
-**What Not To Do.** 
+What Not To Do
+--------------
 
 
 
-A software development risk
-isn't a risk of a
-**loss** . 
-It doesn't have a win
-*vs.* 
-loss potential the way we see it in a simple expected-value calculation.   It's
-just an unexpected outcome.  Or, more precisely, an outcome with a value that
-isn't commensurate with the
-cost.
+A software development risk isn't a risk of a **loss**.
+It doesn't have a win *vs.* loss potential the way we see it in a simple expected-value calculation.
+It's just an unexpected outcome.  Or, more precisely, an outcome with a value that
+isn't commensurate with the cost.
 
 
 
@@ -200,13 +191,13 @@ strategy.
 
 
 
-Don't waste time on the odds
-of "$#!+ Happens" and take action to prevent "$#!+ From
-Happening."
+Don't waste time on the odds of "$#!+ Happens".
+Take action to prevent "$#!+ From Happening."
 
 
 
-**Project Strategies.** 
+Project Strategies
+------------------
 
 
 
@@ -223,9 +214,7 @@ preventable.
 You shell out money to
 prevent problems.  Having done that, you can set aside contingency money to
 recover if something doesn't go according to plan.  Since this is software,
-there's
-**always**  a
-kind of recovery available; something of value can be retained. 
+there's **always**  a kind of recovery available; something of value can be retained.
 
 
 
@@ -256,15 +245,15 @@ meet the expectations.
 
 
 This leads us to
-two kinds of project problems: **planning for failure** , and
-**mismanaging ignorance** .  Both of these are labeled "risk",
-but they're not random "$#!+ Happens".  They're not like ramming a `submerged shipping container <http://www.oceannavigator.com/article.php?a=1008>`_  and losing your
-boat.  They're management dumbosity (a cross between dumbness and
-pomposity.)
+two kinds of project problems: **planning for failure**, and **mismanaging ignorance**.
+Both of these are labeled "risk", but they're not random "$#!+ Happens".
+They're not like ramming a `submerged shipping container <http://www.oceannavigator.com/article.php?a=1008>`_  and losing your
+boat.  They're management dumbosity (a cross between dumbness and pomposity.)
 
 
 
-**Planning for Failure.** 
+Planning for Failure
+--------------------
 
 
 
@@ -273,21 +262,19 @@ from "To Rewrite..": "Do you honestly believe that if you rewrote it without
 adding any features the resulting code would be 33% smaller than the current
 code?"  If you can't simplify during the rewrite, then you've assured that you
 will not achieve the desired simplification, and reduction in maintenance cost. 
-Your plan --
-**not**  to
-simplify -- won't meet anyone's expectation of a better product after the
+Your plan -- **not**  to simplify -- won't meet anyone's expectation of a better product after the
 rewrite.
 
 
 
 This isn't risk.  This is dumb
 management.  Someone specifically planned to fail.  They may even write the plan
--- the plan that won't achieve the desired simplification -- down in glorious
-detail.
+-- the plan that won't achieve the desired simplification -- down in glorious detail.
 
 
 
-**Failing to Manage Ignorance.** 
+Failing to Manage Ignorance
+---------------------------
 
 
 
@@ -316,25 +303,23 @@ canceling the project.
 
 
 
-**Bottom Line.** 
+Bottom Line
+-----------
 
 
 
-The usual sense of "risk"
-doesn't exist for software development projects.  Unless you take "risk" as a
-synonym for bad management.  
+The usual sense of "risk" doesn't exist for software development projects.
+Unless you take "risk" as a synonym for bad management.
 
 
 
-Yes, bad
-things can happen that are not foreseeable.  However, for a software development
+Yes, bad things can happen that are not foreseeable.  However, for a software development
 project they are the same as they are for throwing a party with the same number
 of people.  They risks are microscopic, and involve things like "heart disease",
 "cancer", "stroke", "motor vehicle accident" that you'd find any `leading
 cause of death <http://www.cdc.gov/nchs/fastats/lcod.htm>`_  or `odds of
 dying <http://www.nsc.org/lrs/statinfo/odds.htm>`_  table.  (Note that the top three killers are diseases often
-managed by life-style
-changes.)
+managed by life-style changes.)
 
 
 
@@ -342,8 +327,7 @@ Projects don't "fail" in a
 broad and vague way.  Managers either create a plan that can never meet
 expectations or they create a plan that doesn't manage ignorance.  Then they
 execute that plan until someone with budget authority realizes that the plan
-isn't producing value commensurate with the
-cost.
+isn't producing value commensurate with the cost.
 
 
 

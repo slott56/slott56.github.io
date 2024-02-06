@@ -55,11 +55,7 @@ of this discussion doesn't apply to other problem domains.
 
 
 I found these to be typical
-of many technology decisions:
-**Incumbency** ,
-**False Dichotomies** ,
-**Inflated Opportunity Cost** , a flat-out
-**Misrepresentation** 
+of many technology decisions: **Incumbency**, **False Dichotomies**, **Inflated Opportunity Cost**, a flat-out **Misrepresentation**
 are the essence of these arguments for
 XML.
 
@@ -74,7 +70,8 @@ simplification.
 
 
 
-**Declarative vs. Imperative Knowledge Representation.** 
+Declarative vs. Imperative Knowledge Representation
+---------------------------------------------------
 
 
 
@@ -89,10 +86,7 @@ algorithms.
 
 
 We have two strategies for
-knowledge representation:
-*declarative* 
-and
-*imperative* .
+knowledge representation: *declarative* and *imperative*.
 This is sometimes called the "What vs. How" distinction.  We can declare what we
 want -- the desired end-state -- and leave it to our collection of algorithms to
 reason out how it gets done; the tool derives the imperative steps to get there.
@@ -111,8 +105,10 @@ more.
 
 
 
-`GNU
-Make <http://www.gnu.org/software/make/>`_ , `Ant <http://ant.apache.org/>`_ , `SCons <http://www.scons.org/>`_ , `Raven <http://raven.rubyforge.org/>`_ , `Maven <http://maven.apache.org/>`_ , etc., have two explicit purposes: to
+`GNU Make <http://www.gnu.org/software/make/>`_ , `Ant <http://ant.apache.org/>`_ ,
+`SCons <http://www.scons.org/>`_ ,
+`Raven <http://raven.rubyforge.org/>`_ ,
+`Maven <http://maven.apache.org/>`_ , etc., have two explicit purposes: to
 minimize recompilation, and automate the myriad of packaging steps required by
 our deployment architectures.  They have grown, however to embrace an additional
 requirement: represent metadata about the software being built.  This additional
@@ -122,7 +118,8 @@ build tools?
 
 
 
-**The Preference for Declarative Knowledge.** 
+The Preference for Declarative Knowledge
+----------------------------------------
 
 
 
@@ -148,13 +145,12 @@ file.
 This declarative ideal can be met
 a number of ways:
 
--   **Ant or Maven (XML).**   Typically mostly declarative, because
-    it isn't much of a scripting language.  When we use a tool like `Jelly <http://jakarta.apache.org/commons/jelly/>`_ , as Maven does, then it isn't
-    **purely** 
+-   **Ant or Maven (XML)**.   Typically mostly declarative, because
+    it isn't much of a scripting language.  When we use a tool like `Jelly <http://jakarta.apache.org/commons/jelly/>`_ , as Maven does, then it isn't **purely**
     declarative.  The existence of Jelly adds imperative knowledge to a declarative
     knowledge.
 
--   **SQL.**   Purely declarative.  Most RDBMS vendors
+-   **SQL**.   Purely declarative.  Most RDBMS vendors
     have added imperative components: triggers, stored procedures, etc.  But,
     lacking these extensions, `SQLite <http://www.sqlite.org/>`_  meets the declarative idea.  It isn't
     however, much used for this sort of thing.  Who wants to code their sources,
@@ -162,7 +158,7 @@ a number of ways:
     INSERT
     statements.
 
--   **GNU Make (DSL).**   Less declarative than others.  GNU
+-   **GNU Make (DSL)**.   Less declarative than others.  GNU
     Make, specifically, allows extensive shell script programming.  For this reason,
     a makefile can
     become a painful morass of scripts rather than a tidy definition of what should
@@ -172,19 +168,19 @@ a number of ways:
     control files tend to be dominated by scripts, however, because it's often
     simpler than writing a complete declarative control file.
 
--   **SCons (Python).**   Mostly declarative.  In SCons, the
+-   **SCons (Python)**.   Mostly declarative.  In SCons, the
     bulk of the control file is purely declarative.  Scripting, rather than being in
     some additional language like Jelly, we simply use Python for any
     non-declarative features.
 
 
 
-**Murky Ant vs. Maven Issue.** 
+Murky Ant vs. Maven Issue
+-------------------------
 
 
 
-While
-declarative knowledge has all the advantages, here's an interesting quote:
+While declarative knowledge has all the advantages, here's an interesting quote:
 "Imperative tools (whether based on XML ala Ant or a "real" scripting language
 ala Raven) are inevitably going to be less productive than a declarative tool,
 and this was a large part of the reason I switched from Ant to Maven some years
@@ -192,28 +188,24 @@ ago."  This is a bit confusing.
 
 
 
-This
-quote sounds like Ant is more imperative than Maven, and therefore less
+This quote sounds like Ant is more imperative than Maven, and therefore less
 desirable.   However, I'm confused because of the following:
 
--   Ant and Maven both use XML, which is
-    largely declarative.
+-   Ant and Maven both use XML, which is largely declarative.
 
--   Maven has Jelly, which adds imperative
-    features.
+-   Maven has Jelly, which adds imperative features.
 
 
 
-If anything, I'd think that
-Maven would be
-*less* 
+If anything, I'd think that Maven would be *less*
 declarative.  Clearly, I'm missing something.  Likely, I don't understand enough
 of the DTD (or Schema) for Maven to see how it is more declarative in spite of
 the inclusion of Jelly.
 
 
 
-**Bottom Line.** 
+Bottom Line
+------------
 
 
 
@@ -240,8 +232,7 @@ GNU/Make DSL is imperative heavy.
 
 
 
-The
-Ant vs. Maven distinction still needs some clarification.  However, the
+The Ant vs. Maven distinction still needs some clarification.  However, the
 preference for a declarative knowledge representation makes compelling sense. 
 XML's best for representing declarative knowledge.
 

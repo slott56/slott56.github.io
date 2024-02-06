@@ -15,13 +15,13 @@ In "`It's Strategic -- but it's not -- but it was -- now it's a
 burden <{filename}/blog/2006/09/2006_09_08-its_strategic_but_its_not_but_it_was_now_its_a_burden.rst>`_ ", I rambled about the situation I encounter on a regular basis.
 Here's a Haiku that captures the situation.
 
-**Please Replace It** 
+    **Please Replace It**
 
-*It's heavily customized,* 
+    *It's heavily customized,*
 
-*We can't install an upgrade,* 
+    *We can't install an upgrade,*
 
-*We don't dare touch it.* 
+    *We don't dare touch it.*
 
 
 
@@ -50,7 +50,8 @@ per year forever.
 
 
 
-**Investment Strategy.** 
+Investment Strategy
+-------------------
 
 
 
@@ -88,7 +89,8 @@ undervalues itself when competing internally for investment dollars.
 
 
 
-**My Question.** 
+My Question
+------------
 
 
 

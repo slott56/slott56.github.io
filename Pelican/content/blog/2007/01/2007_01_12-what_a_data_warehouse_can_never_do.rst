@@ -27,12 +27,12 @@ confusing.
 
 
 
-**System of Record.** 
+System of Record
+----------------
 
 
 
-The real questions are
-**System of Record**  (SoR) questions.  In short, each
+The real questions are **System of Record**  (SoR) questions.  In short, each
 question is a version of "Where's the authoritative copy, and how do I keep it
 current?"
 
@@ -55,12 +55,12 @@ current?"
 
 
 
-We'll look at these questions
-in a bit of depth.
+We'll look at these questions in a bit of depth.
 
 
 
-**Transactions in the Warehouse.** 
+Transactions in the Warehouse
+-----------------------------
 
 
 
@@ -79,14 +79,12 @@ SoR.  When there's one SoR, life is good.  The transaction happens in some
 system (SAP, Oracle, QuickBooks, Aptiva, etc.)  It propagates through the
 organization through ordinary Enterprise Application Integration (EAI)
 techniques.  It winds up in the warehouse through ordinary
-Extract-Transform-Load (ETL)
-processing.
+Extract-Transform-Load (ETL) processing.
 
 
 
 When there are multiple
-SoR's, we have some challenges.  Sometimes, the relationship is
-*horizontal* :
+SoR's, we have some challenges.  Sometimes, the relationship is *horizontal*:
 two peer business units have separate sources for similar data.  One unit has
 SAP, the other has Aptiva.  This means that there may be common data which must
 be conformed into a warehouse dimension.  So far, so good. 
@@ -94,9 +92,7 @@ be conformed into a warehouse dimension.  So far, so good.
 
 
 
-Sometimes the relationship between
-SoR's is
-*vertical* :
+Sometimes the relationship between SoR's is *vertical*:
 the parent company uses SAP, the subsidiary uses Great Plains.   This means that
 there may be contradictions between the views of the common data.  When data is
 moved up from the subsidiary, it may be aggregated: business entities are
@@ -105,9 +101,7 @@ conform.
 
 
 
-Sometimes the relationship
-between SoR's is
-*psychotic* .
+Sometimes the relationship between SoR's is *psychotic*.
 This often leads to a badly-chosen SoR.  A single organization can have the same
 data in two applications and neither can be trusted to be the SoR.  They may
 have customer data in Siebel and JDE, and the data is different, and can only be
@@ -124,19 +118,18 @@ an SoR.
 
 
 
-**Change in the Warehouse.** 
+Change in the Warehouse
+-----------------------
 
 
 
-Sometimes, there is no
-System of Record.  There are two common cases: the data is maintained manually,
+Sometimes, there is no System of Record.  There are two common cases: the data is maintained manually,
 and the data is maintained through a cryptic transaction buried in the legacy
 reporting application.  When data is maintained manually, we have a rather
 difficult **Master Data Management**  (MDM) issue because we don't have
 an official SoR.  We're often in a bad position, here, because we're forced to
 stop data warehouse development work to put a SoR in place.  This extra work can
-be hard to justify; managers say "we never needed a system for that before, why
-now?"
+be hard to justify; managers say "we never needed a system for that before, why now?"
 
 
 
@@ -150,7 +143,7 @@ informal changes.
 
 The cryptic
 transaction is the worst thing to ferret out.  Let's say we have two
-applications, B and C which each do parts of a business function.  Further, each
+applications, B and C, which each do parts of a business function.  Further, each
 has it's little quirks, and we periodically must reconcile B and C's results
 against each other.  How do we do this reconciliation when the two applications
 are largely disjoint except where they have to be
@@ -171,12 +164,12 @@ the SoR.
 In summary, change in the
 warehouse is limited to a historical snapshot of change in the SoR.  Change
 happens in the SoR, and the results of the changes are applied to the warehouse.
-You must pick an
-SoR.
+You must pick an SoR.
 
 
 
-**Maintenance in the Warehouse.** 
+Maintenance in the Warehouse
+----------------------------
 
 
 
@@ -221,47 +214,37 @@ maintain the bridge table.
 In summary,
 maintenance in the warehouse is limited to loading a historical snapshot of the
 relationships in the SoR.  Maintenance happens in the SoR, and the results of
-the maintenance are applied to the warehouse.  You must depend on an
-SoR.
+the maintenance are applied to the warehouse.  You must depend on an SoR.
 
 
 
-**Bridge Tables Maintenance.** 
+Bridge Tables Maintenance
+-------------------------
 
 
 
 There are several
 varieties of Bridge Tables.  We'll address hierarchy, since it seems to lead to
 the most confusion.  We'll touch on minidimension and outrigger tables, also,
-since the same design pattern applies to
-those.
+since the same design pattern applies to those.
 
 
 
 The essential worry about
 hierarchies stems from the fact that a hierarchy bridge table can have many more
-rows than the  dimension it bridges.  Generally, it's an
-*n* log(*n* )
-kind of multiplication, where
-log(*n* )
-is an estimate of the depth of the
-hierarchy.
+rows than the  dimension it bridges.  Generally, it's an :math:`n \log(n)`
+kind of multiplication, where :math:`\log(n)` is an estimate of the depth of the hierarchy.
 
 
 
 As a practical matter,
 moving one child to another parent is a single row change in the original data. 
-However, the expansion in the bridge table means that
-2*d* 
-rows will change, where
-*d*  is
-the depth of the node in the hierarchy.  For some reason, this is
-intimidating.
+However, the expansion in the bridge table means that :math:`2d` rows will change, where :math:`d` is
+the depth of the node in the hierarchy.  For some reason, this is intimidating.
 
 
 
-There are two
-solutions:
+There are two solutions:
 
 -   Reload the entire bridge table with each
     source change.  This is easy to implement but slow.  If you use SCD change
@@ -286,13 +269,13 @@ the dimension.
 
 
 
-**Bottom Line.** 
+Bottom Line
+-----------
 
 
 
-Change doesn't happen in the
-warehouse.  Change happens in the SoR.  The warehouse merely captures the effect
-of that change.
+Change doesn't happen in the warehouse.  Change happens in the SoR.
+The warehouse merely captures the effect of that change.
 
 
 

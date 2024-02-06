@@ -45,7 +45,8 @@ located.
 
 
 
-**Collaboration and Consolidation.** 
+Collaboration and Consolidation
+-------------------------------
 
 
 
@@ -75,7 +76,8 @@ cases?
 
 
 
-**Excel Extraction.** 
+Excel Extraction
+-----------------
 
 
 
@@ -105,8 +107,7 @@ balance between two opposing forces.
 
 
 
-We have a spectrum of
-platform alternatives.
+We have a spectrum of platform alternatives.
 
 -   Excel.  We can write gloriously complex
     macros and VB scripts and embed them in the spreadsheet.  This makes them large,
@@ -135,7 +136,8 @@ platform alternatives.
 
 
 
-**A Show Stopper.** 
+A Show Stopper
+--------------
 
 
 
@@ -154,8 +156,7 @@ Ouch.
 
 
 
-The
-web application could have had a pretty nifty overview:
+The web application could have had a pretty nifty overview:
 
 1.  The Director creates a new template and
     populates it with the most recent plan and the actual performance information. 
@@ -172,32 +173,28 @@ web application could have had a pretty nifty overview:
 
 
 
-The
-end-user experience would be slightly different than today's mass-emailing
+The end-user experience would be slightly different than today's mass-emailing
 frenzy.  There'd be a nice collaboration web site for upload and download.  The
 upload would validate and provide feedback as part of the upload
 process.
 
 
 
-It appears that we can't make
-this work very easily.
+It appears that we can't make this work very easily.
 
 
 
-**Desktop and Excel Platforms.** 
+Desktop and Excel Platforms
+----------------------------
 
 
 
-I'm not a big
-fan of the desktop as a platform.  Primarily, I hate the configuration
-management problem: who has what version of the
-application.
+I'm not a big fan of the desktop as a platform.  Primarily, I hate the configuration
+management problem: who has what version of the application.
 
 
 
-"But there are tools to
-help."  
+"But there are tools to help."
 
 
 
@@ -210,8 +207,7 @@ the desktop as a platform.
 
 
 
-Excel is a
-viable programming platform.  However, it, too is prone to getting out of
+Excel is a viable programming platform.  However, it, too is prone to getting out of
 control.  The current 20-plus-tab monstrosity is packed full of macros and VB
 modules and doesn't work reliably.  In addition to bugs, people can easily add
 inter-workbook links to documents on their C: drive and in their Windows TEMP
@@ -221,21 +217,20 @@ reliable.
 
 
 
-**Enter POI and XML.** 
+Enter POI and XML
+-----------------
 
 
 
 We can exploit two
-technologies to make a simple, reliable web-based solution.  First, we have
-`Jakarta
-POI <http://jakarta.apache.org/poi/>`_ , which allows us to read Excel files directly.  This is pleasant,
+technologies to make a simple, reliable web-based solution.
+First, we have `Jakarta POI <http://jakarta.apache.org/poi/>`_ , which allows us to read Excel files directly.  This is pleasant,
 and the HSSF reliably picks apart a spreadsheet.  Second, we can use XML
 versions of the spreadsheets, making them readable by `SAX <http://sax.sourceforge.net/>`_  or `Xerces <http://xerces.apache.org/>`_ .
 
 
 
-Here's
-the overall Compiler design pattern, and how we would implement it:
+Here's the overall Compiler design pattern, and how we would implement it:
 
 -   Lexical scanning is done by POI or SAX. 
     From this, we get a sequence of tokens which are Worksheets, Rows and
@@ -260,7 +255,8 @@ portal.
 
 
 
-**Spreadsheet as Syntax.** 
+Spreadsheet as Syntax
+---------------------
 
 
 
@@ -299,12 +295,12 @@ characters.
 
 
 
-**Solution Outline.** 
+Solution Outline
+-----------------
 
 
 
-Here's a fun kind of
-solution.  It works best if the spreadsheets are pared down to just the input
+Here's a fun kind of solution.  It works best if the spreadsheets are pared down to just the input
 sections with just enough calculation and history to facilitate creating
 high-quality plans.  From the current spreadsheets, we would delete the various
 tabs that are simply reporting and consolidation within the
@@ -326,21 +322,17 @@ spreadsheet.
 
 
 
-The
-upload process uses a SAX application to parse, validate, extract, transform and
+The upload process uses a SAX application to parse, validate, extract, transform and
 load the spreadsheet.  In the (all-too-common) situation where the spreadsheet
 doesn't parse successfully, there are two kinds of feedback:
 
--   An error page in the web
-    application.
+-   An error page in the web application.
 
--   A revised spreadsheet with a different
-    style for the erroneous section.
+-   A revised spreadsheet with a different style for the erroneous section.
 
 
 
-We'll
-come back to spreadsheet as syntax in future posts.
+We'll come back to spreadsheet as syntax in future posts.
 
 
 

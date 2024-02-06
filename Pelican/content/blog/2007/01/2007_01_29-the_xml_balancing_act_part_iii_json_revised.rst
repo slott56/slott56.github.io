@@ -12,20 +12,18 @@ The XML Balancing Act - Part III, JSON (Revised)
 
 
 We have a spectrum of interesting needs, and a
-corresponding spectrum of solutions.  Here's one dimension: the structured-ness
-view.
+corresponding spectrum of solutions.  Here's one dimension: the structured-ness view.
 
 1.  Highly structured data.
 
-#.  Semi-structured data, or the "mixed content
-    model".  We can further subdivide this into content which is "naturally"
+#.  Semi-structured data, or the "mixed content model".
+    We can further subdivide this into content which is "naturally"
     hierarchical, and a good fit for XML, and data which is relational and a poor
     fit.
 
 
 
-Another dimension is the
-"imperative/declarative" dimension, which is orthogonal to the structured
+Another dimension is the "imperative/declarative" dimension, which is orthogonal to the structured
 dimension.  We've got, consequently, four easy-to-see kinds of data
 representation needs:
 
@@ -45,12 +43,12 @@ representation needs:
 
 Each of these is exemplified by different
 languages in practice.  However, some people will argue that XML is appropriate
-to all of them, practical considerations be
-d****d.
+to all of them, practical considerations be d****d.
 
 
 
-**Highly-Structured, Declarative Data.** 
+Highly-Structured, Declarative Data
+-----------------------------------
 
 
 
@@ -58,6 +56,7 @@ This is the
 sweet-spot for the relational model of data.  The representation for relational
 data is a series of DDL statements (for the schema) and INSERT statements (for
 the data).  JSON does this well; in some cases better. 
+
 Better?
 
 
@@ -75,10 +74,7 @@ at all.
 
 McGrath's point appears to be
 that the API's support XML parsing, but not structured information processing. 
-We can't just use something as clear as
-get_total_value(),
-or even
-get_value('total'). 
+We can't just use something as clear as ``get_total_value()``, or even ``get_value('total')``.
 
 
 
@@ -93,13 +89,14 @@ place?
 
 
 
-**Highly-Structured, Imperative Data.** 
+Highly-Structured, Imperative Data
+-----------------------------------
 
 
 
 I thrashed around
-in this space in "`Clarifying XML's Strengths <{filename}/blog/2007/01/2007_01_02-clarifying_xmls_strengths.rst>`_ ."  When there's
-imperative information (i.e., scripts) we're wandering away from XML's sweet
+in this space in "`Clarifying XML's Strengths <{filename}/blog/2007/01/2007_01_02-clarifying_xmls_strengths.rst>`_ ."
+When there's imperative information (i.e., scripts) we're wandering away from XML's sweet
 spot and wandering into a place where Python or a Domain-Specific Language (DSL)
 might be more helpful.  While some people argue the fine points of Ant vs.
 Maven, they seem to miss the point that Ant has imperative elements written in
@@ -128,20 +125,19 @@ representation.
 
 
 
-**Semi-Structured, Declarative.** 
+Semi-Structured, Declarative
+----------------------------
 
 
 
-Here is the XML
-sweet-spot.  The data is a "mixed content" model with untagged text in addition
+Here is the XML sweet-spot.  The data is a "mixed content" model with untagged text in addition
 to tagged values.  Here, the XML API's aren't really in the way, because the
 data requires some interpretation.  Some processing rules must be applied by an
 application program.  
 
 
 
-This is -- to
-some people -- anathema, because it implies that the XML document isn't complete
+This is -- to some people -- anathema, because it implies that the XML document isn't complete
 and stand-alone.  They prefer to think XML is inherently complete, and don't
 want to consider the situation where XML lacks information required to interpret
 the content.
@@ -167,7 +163,8 @@ done.
 
 
 
-**Hierarchies and Relations.** 
+Hierarchies and Relations
+-------------------------
 
 
 
@@ -208,12 +205,12 @@ XML to get the data into a proper object model for processing.
 
 
 
-**Semi-Structured, Imperative.** 
+Semi-Structured, Imperative
+---------------------------
 
 
 
-Wait, isn't
-sem-structured, imperative content the very features which characterizes a
+Wait, isn't semi-structured, imperative content the very features which characterizes a
 programming language?  Yes.  We wouldn't want to switch Python's elegant syntax
 for a pure XML rendering of the same application
 programming.
@@ -225,14 +222,13 @@ programming.
     <suite>
     
     <docstring><block>round(n[,m=0])
-    -&gt; round n to m positions.</block
-    ><block>...</block>...</docstring>
+    -&gt; round n to m positions.
+    </block><block>...</block>...
+    </docstring>
     
-    <statement
-    name="if"><expression>...</expression><suite>...</suite></statement>
+    <statement name="if"><expression>...</expression><suite>...</suite></statement>
     
-    <statement
-    name="return"><expression>...</expression></statement>
+    <statement name="return"><expression>...</expression></statement>
     
     </suite>
     
@@ -240,12 +236,12 @@ programming.
     
 
 
-No
-thanks.
+No thanks.
 
 
 
-**Bottom Line.** 
+Bottom Line
+------------
 
 
 
@@ -269,15 +265,11 @@ tag obscured by an XPATH query.
 
 
 
-I've
-got an example of the obscurity created by XML:  "`Spreadsheet as Syntax <{filename}/blog/2007/01/2007_01_25-spreadsheet_as_syntax.rst>`_ " shows a multi-step
+I've got an example of the obscurity created by XML:  "`Spreadsheet as Syntax <{filename}/blog/2007/01/2007_01_25-spreadsheet_as_syntax.rst>`_ " shows a multi-step
 transformation, which includes transforming XML into a spreadsheet document
 object model (SSDOM) before doing anything useful.  The raw XML is rather quite
 complex and obscure.  The SSDOM isn't half as bad.  The SSDOM allows us to use a
-simple
-get_style_name()
-notation to examine the content in a meaningful
-way.
+simple ``get_style_name()`` notation to examine the content in a meaningful way.
 
 
 

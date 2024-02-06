@@ -8727,10 +8727,9 @@ analysis&lt;/a&gt; .  A lexical scanner will break the stream of input character
 into discrete tokens.  The syntax analysis looks at the stream of tokens to
 create a usable representation, often called an &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Abstract_syntax_tree"&gt;abstract syntax tree&lt;/a&gt;
 (AST).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Layers of Meaning.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Compounding the essential
-parsing problem are the number of layers of syntax that we have to work
-with:&lt;/p&gt;
+&lt;div class="section" id="layers-of-meaning"&gt;
+&lt;h2&gt;Layers of Meaning&lt;/h2&gt;
+&lt;p&gt;Compounding the essential parsing problem are the number of layers of syntax that we have to work with:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;XML.  XML lexical analysis locates tags,
 and punctuation, building up a document object model of Nodes, Elements and
@@ -8765,7 +8764,9 @@ business entities, however, can present a more complex problem.  Business
 Entities often exist as dimensions in a star schema, leading us toward
 conforming the BPO's into a data warehouse for analysis
 purposes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Basic SAX Parsing.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="basic-sax-parsing"&gt;
+&lt;h2&gt;Basic SAX Parsing&lt;/h2&gt;
 &lt;p&gt;The Python SAX and DOM
 libraries can be used to build a complete DOM from an XML document.  For our
 purposes, we'll elide some features which aren't a common part of parsing
@@ -8804,12 +8805,10 @@ class DOMContentHandler( xml.sax.ContentHandler ):
         &amp;quot;&amp;quot;&amp;quot;Returns the DOM object.&amp;quot;&amp;quot;&amp;quot;
         return self.document
 &lt;/pre&gt;
-&lt;p&gt;To use this
-DOMContentHandler
+&lt;p&gt;To use this &lt;tt class="docutils literal"&gt;DOMContentHandler&lt;/tt&gt;
 we have to create a SAX parser and initiate
 parsing on an input source.  Note that this creates a generic DOM object, which
-we have to examine to locate the spreadsheet
-structure.&lt;/p&gt;
+we have to examine to locate the spreadsheet structure.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 class XMLParser( FileParser ):
     &amp;quot;&amp;quot;&amp;quot;SAX2 parsing of entire DOM.&amp;quot;&amp;quot;&amp;quot;
@@ -8820,41 +8819,38 @@ class XMLParser( FileParser ):
         myReader= xml.sax.parse( self.file, handler )
         self.xmlDoc= handler.getDocument()
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;The Spreadsheet Object Model (SSOM)&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-spreadsheet-object-model-ssom"&gt;
+&lt;h2&gt;The Spreadsheet Object Model (SSOM)&lt;/h2&gt;
 &lt;p&gt;The low-level DOM structure
 is a large collection of Element and Text Nodes with Attribute values.   It's
 much more pleasant to work with proper Worksheet, Row and Cell objects.  We can
 condense the DOM into something more usable through a fairly simple algorithm
 that makes good use of Python's
 generators.&lt;/p&gt;
-&lt;p&gt;First, we'll need class
-definitions for the various spreadsheet entities we're going to deal
-with:&lt;/p&gt;
+&lt;p&gt;First, we'll need class definitions for the various spreadsheet entities we're going to deal with:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Style.  The spreadsheet style
+&lt;li&gt;&lt;strong&gt;Style&lt;/strong&gt;.  The spreadsheet style
 information is spread through a number of tags and attributes.  Most of the tag
 values are single-occurence elements and the list-oriented
-getElementsByTagName()
-and
-getAttribute()
+&lt;tt class="docutils literal"&gt;getElementsByTagName()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;getAttribute()&lt;/tt&gt;
 aren't the most convenient API.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Workbook&lt;/strong&gt; .  The Workbook is a collection of
+&lt;li&gt;&lt;strong&gt;Workbook&lt;/strong&gt;.  The Workbook is a collection of
 Styles, Names, and &amp;quot;SupBook&amp;quot; references to external files.  It is also a
 collection of Worksheets.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;WorkbookLink&lt;/strong&gt; .  This is the Path information of
+&lt;li&gt;&lt;strong&gt;WorkbookLink&lt;/strong&gt;.  This is the Path information of
 a &amp;quot;SupBook&amp;quot; reference in a Workbook.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Worksheet&lt;/strong&gt; .  A Worksheet is essentially a
+&lt;li&gt;&lt;strong&gt;Worksheet&lt;/strong&gt;.  A Worksheet is essentially a
 container for Rows.  It can also be looked at as a container for columns, but we
 won't often need to make use of this representation.  Unlike the pure XML model,
 which is row-oriented, our spreadsheet object model can include additional
 indexing.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Row&lt;/strong&gt; .  A Row is a container for
-Cells.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cell&lt;/strong&gt; .  A Cell has a number of attributes:
+&lt;li&gt;&lt;strong&gt;Row&lt;/strong&gt;.  A Row is a container for Cells.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cell&lt;/strong&gt;.  A Cell has a number of attributes:
 data, an optional formula, and an optional style.  We'll need these to parse the
 spreadsheet document.  We can safely ignore any other attributes of a
 cell.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;WorksheetReference&lt;/strong&gt; .  This is an reference
+&lt;li&gt;&lt;strong&gt;WorksheetReference&lt;/strong&gt;.  This is an reference
 embedded in a formula.  These references are usually a subset of the &amp;quot;SubBook&amp;quot;
 references.&lt;/li&gt;
 &lt;/ul&gt;
@@ -8871,7 +8867,9 @@ given row of a given sheet, we can provide a pleasant method in the Workbook
 class to locate the Sheet, delegating the row and cell lookup.  Within Worksheet
 we can locate the requested Row, and within Row we locate the requested
 Cell.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Generating SSOM Objects.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="generating-ssom-objects"&gt;
+&lt;h2&gt;Generating SSOM Objects&lt;/h2&gt;
 &lt;p&gt;We can handle the creation
 of SSOM objects via Python generators.  Here's a method that yields the
 top-level Worksheet instances.  It also assures that each Worksheet is properly
@@ -8889,8 +8887,7 @@ def nextSheet( self ):
 &lt;/pre&gt;
 &lt;p&gt;Our final application can use this
 method something like the following.  This snippet looks for worksheets named
-&amp;quot;Assumptions&amp;quot;, and examines only those pages of a
-Workbook.&lt;/p&gt;
+&amp;quot;Assumptions&amp;quot;, and examines only those pages of a Workbook.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 parse= ssDOM.XMLParser( file(aFile,'r') )
     doc= parse.getWorkbook()
@@ -8923,7 +8920,9 @@ def nextRow( self ):
                 yield aRow
                 self.rowNumber += 1
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Business Process Objects.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="business-process-objects"&gt;
+&lt;h2&gt;Business Process Objects&lt;/h2&gt;
 &lt;p&gt;Once we've got Rows, Cells
 and Worksheets, we can then do useful analysis of the resulting spreadsheet to
 locate the user's inputs.  As one example, we'll peel the assumptions off the
@@ -8968,16 +8967,14 @@ for ws in parse.nextSheet():
                 a= Assumption( area, txt, w_fk )
                 print a
 &lt;/pre&gt;
-&lt;p&gt;Since iterators maintain state, we can
-use the iterator to implement a very clean
-&lt;strong&gt;Skip The Headers&lt;/strong&gt;  design pattern.  The first
-&amp;quot;for row in
-rowIter&amp;quot; loop will process rows until we find the
-last of the &amp;quot;overhead&amp;quot; rows.  The second &amp;quot;for
-row in rowIter&amp;quot; loop will process the remaining
-rows; we skip blank rows and rows that contain
-examples.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Essential Business Entities.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Since iterators maintain state, we can use the iterator to implement a very clean &lt;strong&gt;Skip The Headers&lt;/strong&gt;  design pattern.
+The first &lt;tt class="docutils literal"&gt;for row in rowIter&lt;/tt&gt; loop will process rows until we find the
+last of the &amp;quot;overhead&amp;quot; rows.
+The second &lt;tt class="docutils literal"&gt;for row in rowIter&lt;/tt&gt; loop will process the remaining
+rows; we skip blank rows and rows that contain examples.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="essential-business-entities"&gt;
+&lt;h2&gt;Essential Business Entities&lt;/h2&gt;
 &lt;p&gt;Our Business Process
 Object may be the essential business entity or it may only be selected
 attributes of a more complex entity.  In this case, the Assumption object that
@@ -8988,6 +8985,7 @@ spreadsheet.&lt;/p&gt;
 individual BPO's, we can accrete enough information to reconstruct the business
 model which is implemented as a spreadsheet.   Extracting the parameters from
 this model is the heart of what our spreadsheet parser is doing.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="spreadsheet"></category></entry><entry><title>The Problem with Spreadsheets</title><link href="https://slott56.github.io/2007_01_23-the_problem_with_spreadsheets.html" rel="alternate"></link><published>2007-01-23T11:13:00-05:00</published><updated>2007-01-23T11:13:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-23:/2007_01_23-the_problem_with_spreadsheets.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2005_09_27-essay_102_when_a_column_is_not_a_column.html"&gt;When a Column is Not a Column&lt;/a&gt; &amp;quot; for a rant on
 failed attempts to scale spreadsheets up into relational databases.  Bottom
 Line:  A spreadsheet column is rarely an RDBMS column.  Often the SS column's
@@ -9013,7 +9011,8 @@ having some pretty fancy calculations and feedback. We could replace them with a
 web application that had enough AJAX to be similar to the &lt;a class="reference external" href="http://docs.google.com/"&gt;Google Docs&lt;/a&gt;  spreadsheet: it would
 provide a rich user interface, and the data would be centrally
 located.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Collaboration and Consolidation.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="collaboration-and-consolidation"&gt;
+&lt;h2&gt;Collaboration and Consolidation&lt;/h2&gt;
 &lt;p&gt;In this case, the
 collaboration is more than just consolidation.  While the proximate problem is
 consolidation, we quickly uncovered additional use cases.  There are at least
@@ -9031,7 +9030,9 @@ simple consolidation.  The superficial collaborative task is only the tip of a
 larger iceberg of use cases for the spreadsheets.  What is a technology choice
 that supports consolidation, but preserves the other use
 cases?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Excel Extraction.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="excel-extraction"&gt;
+&lt;h2&gt;Excel Extraction&lt;/h2&gt;
 &lt;p&gt;Some managers make
 extensive use of the original spreadsheet functionality; the spreadsheet's
 native use cases are essential to the enterprise.  In addition to the
@@ -9051,8 +9052,7 @@ of spreadsheets they can consolidate without a lot of study and reverse
 engineering.  They need to prevent
 tinkering.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;We have a spectrum of
-platform alternatives.&lt;/p&gt;
+&lt;p&gt;We have a spectrum of platform alternatives.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Excel.  We can write gloriously complex
 macros and VB scripts and embed them in the spreadsheet.  This makes them large,
@@ -9077,7 +9077,9 @@ and pattern-matching.  However, this can't even make good use of the .NET API's,
 but must work around a number of tragic
 limitations.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;A Show Stopper.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-show-stopper"&gt;
+&lt;h2&gt;A Show Stopper&lt;/h2&gt;
 &lt;p&gt;Here's a potential
 show-stopper for the web alternative, &amp;quot;&lt;a class="reference external" href="http://support.microsoft.com/kb/257757"&gt;Considerations for service-side
 Automation of Office&lt;/a&gt; &amp;quot;:  &amp;quot;Microsoft does not currently recommend, and
@@ -9086,8 +9088,7 @@ unattended, non-interactive client application or component (including ASP,
 DCOM, and NT Services), because Office may exhibit unstable behavior and/or
 deadlock when run in this environment.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Ouch.&lt;/p&gt;
-&lt;p&gt;The
-web application could have had a pretty nifty overview:&lt;/p&gt;
+&lt;p&gt;The web application could have had a pretty nifty overview:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;The Director creates a new template and
 populates it with the most recent plan and the actual performance information.
@@ -9100,43 +9101,39 @@ planning.&lt;/li&gt;
 &lt;li&gt;The Analysts have all of the Manager's uploads
 to consolidate and report on.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The
-end-user experience would be slightly different than today's mass-emailing
+&lt;p&gt;The end-user experience would be slightly different than today's mass-emailing
 frenzy.  There'd be a nice collaboration web site for upload and download.  The
 upload would validate and provide feedback as part of the upload
 process.&lt;/p&gt;
-&lt;p&gt;It appears that we can't make
-this work very easily.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Desktop and Excel Platforms.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;I'm not a big
-fan of the desktop as a platform.  Primarily, I hate the configuration
-management problem: who has what version of the
-application.&lt;/p&gt;
-&lt;p&gt;&amp;quot;But there are tools to
-help.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It appears that we can't make this work very easily.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="desktop-and-excel-platforms"&gt;
+&lt;h2&gt;Desktop and Excel Platforms&lt;/h2&gt;
+&lt;p&gt;I'm not a big fan of the desktop as a platform.  Primarily, I hate the configuration
+management problem: who has what version of the application.&lt;/p&gt;
+&lt;p&gt;&amp;quot;But there are tools to help.&amp;quot;&lt;/p&gt;
 &lt;p&gt;While true, desktop deployment
 tools merely plaster over the essential problem:  the people who &amp;quot;control&amp;quot; the
 desktop aren't very disciplined.  We can only make desktop software work as part
 of a total lock-down of the end-user's computer.  Since the client doesn't do
 this (and won't for this one business application), we can't really make use of
 the desktop as a platform.&lt;/p&gt;
-&lt;p&gt;Excel is a
-viable programming platform.  However, it, too is prone to getting out of
+&lt;p&gt;Excel is a viable programming platform.  However, it, too is prone to getting out of
 control.  The current 20-plus-tab monstrosity is packed full of macros and VB
 modules and doesn't work reliably.  In addition to bugs, people can easily add
 inter-workbook links to documents on their C: drive and in their Windows TEMP
 directory.  The whole thing rapidly spins out of control when we try to make use
 of the clever features of Excel.  We need something simpler and more
 reliable.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Enter POI and XML.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="enter-poi-and-xml"&gt;
+&lt;h2&gt;Enter POI and XML&lt;/h2&gt;
 &lt;p&gt;We can exploit two
-technologies to make a simple, reliable web-based solution.  First, we have
-&lt;a class="reference external" href="http://jakarta.apache.org/poi/"&gt;Jakarta
-POI&lt;/a&gt; , which allows us to read Excel files directly.  This is pleasant,
+technologies to make a simple, reliable web-based solution.
+First, we have &lt;a class="reference external" href="http://jakarta.apache.org/poi/"&gt;Jakarta POI&lt;/a&gt; , which allows us to read Excel files directly.  This is pleasant,
 and the HSSF reliably picks apart a spreadsheet.  Second, we can use XML
 versions of the spreadsheets, making them readable by &lt;a class="reference external" href="http://sax.sourceforge.net/"&gt;SAX&lt;/a&gt;  or &lt;a class="reference external" href="http://xerces.apache.org/"&gt;Xerces&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;Here's
-the overall Compiler design pattern, and how we would implement it:&lt;/p&gt;
+&lt;p&gt;Here's the overall Compiler design pattern, and how we would implement it:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Lexical scanning is done by POI or SAX.
 From this, we get a sequence of tokens which are Worksheets, Rows and
@@ -9155,7 +9152,9 @@ transform and load operations.  These will lead to the consolidated data.  We
 can then cough out the next generation template, or a reporting pivot table, or
 simply redirect the user to a typical data warehouse reporting
 portal.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Spreadsheet as Syntax.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="spreadsheet-as-syntax"&gt;
+&lt;h2&gt;Spreadsheet as Syntax&lt;/h2&gt;
 &lt;p&gt;This leaves us with the
 spreadsheet document filling an interesting role in this processing.  Rather
 than being an active platform, the spreadsheet is downgraded to a mostly passive
@@ -9177,9 +9176,10 @@ as easy to implement because most RE processing software works with individual
 characters.  We would need to write a RE matcher as a &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Nondeterministic_Finite_State_Machine"&gt;non-deterministic finite automaton&lt;/a&gt;  that worked
 with Cells and Rows instead of
 characters.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Solution Outline.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Here's a fun kind of
-solution.  It works best if the spreadsheets are pared down to just the input
+&lt;/div&gt;
+&lt;div class="section" id="solution-outline"&gt;
+&lt;h2&gt;Solution Outline&lt;/h2&gt;
+&lt;p&gt;Here's a fun kind of solution.  It works best if the spreadsheets are pared down to just the input
 sections with just enough calculation and history to facilitate creating
 high-quality plans.  From the current spreadsheets, we would delete the various
 tabs that are simply reporting and consolidation within the
@@ -9197,18 +9197,15 @@ managers use.  The only practical difference between an analyst and a manager is
 the breadth of information which is visible.  A manager can see their plan, an
 analyst can see multiple plans.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The
-upload process uses a SAX application to parse, validate, extract, transform and
+&lt;p&gt;The upload process uses a SAX application to parse, validate, extract, transform and
 load the spreadsheet.  In the (all-too-common) situation where the spreadsheet
 doesn't parse successfully, there are two kinds of feedback:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;An error page in the web
-application.&lt;/li&gt;
-&lt;li&gt;A revised spreadsheet with a different
-style for the erroneous section.&lt;/li&gt;
+&lt;li&gt;An error page in the web application.&lt;/li&gt;
+&lt;li&gt;A revised spreadsheet with a different style for the erroneous section.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;We'll
-come back to spreadsheet as syntax in future posts.&lt;/p&gt;
+&lt;p&gt;We'll come back to spreadsheet as syntax in future posts.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="spreadsheet"></category></entry><entry><title>Measurable Improvement</title><link href="https://slott56.github.io/2007_01_04-measurable_improvement.html" rel="alternate"></link><published>2007-01-04T11:27:00-05:00</published><updated>2007-01-04T11:27:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-04:/2007_01_04-measurable_improvement.html</id><summary type="html">&lt;p&gt;Here's what I observed.&lt;/p&gt;
 &lt;p&gt;Customer:  &amp;quot;Our business
 performance isn't what we want.  We think some of our intranet is no
@@ -9284,24 +9281,22 @@ attributes.&lt;/p&gt;
 &lt;p&gt;Here are the five top-level
 categories:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Need Satisfaction.  In short, does it
-work?  Does it solve the problem in the first place?&lt;/li&gt;
-&lt;li&gt;Performance.  Here is where the classical
-memory and time considerations are evaluated.&lt;/li&gt;
-&lt;li&gt;Maintenance.  How easy is it to
-fix?&lt;/li&gt;
-&lt;li&gt;Adaptive.  How easy is it to extend or
-port?&lt;/li&gt;
-&lt;li&gt;Organizational.  How expensive is it?  Do
-we have the skills?&lt;/li&gt;
+&lt;li&gt;Need Satisfaction.
+In short, does it work?  Does it solve the problem in the first place?&lt;/li&gt;
+&lt;li&gt;Performance.
+Here is where the classical memory and time considerations are evaluated.&lt;/li&gt;
+&lt;li&gt;Maintenance.
+How easy is it to fix?&lt;/li&gt;
+&lt;li&gt;Adaptive.
+How easy is it to extend or port?&lt;/li&gt;
+&lt;li&gt;Organizational.
+How expensive is it?  Do we have the skills?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The SEI taxonomy
-has 16 subcategories, enough to cover all the bases.  For me, this is the final
-word on quality, and I haven't seen anything better than
-this.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Understandability.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Under
-&amp;quot;Maintenance&amp;quot;, there's a subcategory of &amp;quot;Understandability&amp;quot;, which includes four
+&lt;p&gt;The SEI taxonomy has 16 subcategories, enough to cover all the bases.  For me, this is the final
+word on quality, and I haven't seen anything better than this.&lt;/p&gt;
+&lt;div class="section" id="understandability"&gt;
+&lt;h2&gt;Understandability&lt;/h2&gt;
+&lt;p&gt;Under &amp;quot;Maintenance&amp;quot;, there's a subcategory of &amp;quot;Understandability&amp;quot;, which includes four
 lower-level metrics:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Complexity&lt;/li&gt;
@@ -9321,25 +9316,18 @@ implementation is &amp;quot;better&amp;quot;.  They provide a workable definitio
 &amp;quot;understandable&amp;quot; that -- to an extent -- is free from subjective complaints
 about someone else's coding style.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Halstead Length = total number of
-variable occurrences plus total number of method calls, operators, and (in
-Python) function calls.  How long is the component, not in lines of code, but in
+&lt;li&gt;Halstead Length = total number of variable occurrences plus total number of method calls, operators,
+and (in Python) function calls.
+How long is the component, not in lines of code, but in
 things the program represents and things the program does?&lt;/li&gt;
-&lt;li&gt;Halstead Volume = number of
-&lt;em&gt;distinct&lt;/em&gt;
-variables plus
-&lt;em&gt;distinct&lt;/em&gt;
-methods, operators and functions.  Often a much smaller number than the length.
+&lt;li&gt;Halstead Volume = number of &lt;em&gt;distinct&lt;/em&gt; variables plus &lt;em&gt;distinct&lt;/em&gt; methods, operators and functions.
+Often a much smaller number than the length.
 This is &amp;quot;volume&amp;quot; in the sense of how many distinct things do you have to keep in
 your head to understand it; it's the brain volume tied up in working on the
 program.&lt;/li&gt;
-&lt;li&gt;McCabe Complexity = number of nested
-&lt;strong&gt;if&lt;/strong&gt; ,
-&lt;strong&gt;while&lt;/strong&gt;
-and &lt;strong&gt;for&lt;/strong&gt;
-statements.  In the case of Python
-&lt;strong&gt;elif&lt;/strong&gt;
-constructs, these count, also.  Statements at the &amp;quot;top-level&amp;quot; of a method or
+&lt;li&gt;McCabe Complexity = number of nested &lt;strong&gt;if&lt;/strong&gt;, &lt;strong&gt;while&lt;/strong&gt;, and &lt;strong&gt;for&lt;/strong&gt; statements.
+In the case of Python &lt;strong&gt;elif&lt;/strong&gt; constructs, these count, also.
+Statements at the &amp;quot;top-level&amp;quot; of a method or
 function don't count, only the nested ones.  Yes, you can finesse this score to
 zero with a lot of small methods, that would be the whole point.&lt;/li&gt;
 &lt;li&gt;Total source lines of code.  If you want,
@@ -9348,52 +9336,34 @@ three categories: the Javadoc (or docstring) comments, the &amp;quot;other&amp;q
 the remaining code.  The Javadoc (or docstring) comments have to be taken as
 seriously as the code itself.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;These can
-be combined into a single score, but that defeats the purpose of looking at the
+&lt;p&gt;These can be combined into a single score, but that defeats the purpose of looking at the
 code and evaluating it based on the textual complexity (the Halstead metrics)
 and the structural complexity (the McCabe)
 metric.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Evils of If-Statements.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-evils-of-if-statements"&gt;
+&lt;h2&gt;The Evils of If-Statements&lt;/h2&gt;
 &lt;p&gt;I find that my own
-quick-and-dirty McCabe metric works well in evaluating complex.  I count
-&lt;strong&gt;if&lt;/strong&gt; -statements.
-In my experience, little good comes from
-&lt;strong&gt;if&lt;/strong&gt; -statements.
+quick-and-dirty McCabe metric works well in evaluating complex.
+I count &lt;strong&gt;if&lt;/strong&gt; -statements.
+In my experience, little good comes from &lt;strong&gt;if&lt;/strong&gt; -statements.
 Each one needs to be scrutinized carefully and justified as essential.&lt;/p&gt;
-&lt;p&gt;Generally, every one of the cool
-design patterns in the &lt;em&gt;Design Patterns: Elements of Reusable Object-Oriented Software&lt;/em&gt;
-book can be replaced with an amazingly poor cluster of rotten, unmanageable
-&lt;strong&gt;if&lt;/strong&gt; -statements.
-In particular,
-&lt;strong&gt;State&lt;/strong&gt; ,
-&lt;strong&gt;Command&lt;/strong&gt;
-and
-&lt;strong&gt;Strategy&lt;/strong&gt;
-are often bollixed up into a horrifying morass of
+&lt;p&gt;Generally, every one of the cool design patterns in the &lt;em&gt;Design Patterns: Elements of Reusable Object-Oriented Software&lt;/em&gt;
+book can be replaced with an amazingly poor cluster of rotten, unmanageable &lt;strong&gt;if&lt;/strong&gt; -statements.
+In particular, &lt;strong&gt;State&lt;/strong&gt; , &lt;strong&gt;Command&lt;/strong&gt;, and &lt;strong&gt;Strategy&lt;/strong&gt; are often bollixed up into a horrifying morass of
 iffiness.&lt;/p&gt;
-&lt;p&gt;Here's the
-conversation:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Customer&lt;/strong&gt; :
-&amp;quot;Make it do 'X', not 'Y', in this
-situation.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt; :
-&amp;quot;What does that mean?  Why is this situation
-unique?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Customer&lt;/strong&gt; :
-&amp;quot;That doesn't matter; there's no underlying meaning.  It's just an
-&lt;strong&gt;if&lt;/strong&gt; -statement.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Here's the conversation:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Customer&lt;/strong&gt;: &amp;quot;Make it do 'X', not 'Y', in this situation.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;: &amp;quot;What does that mean?  Why is this situation unique?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Customer&lt;/strong&gt;: &amp;quot;That doesn't matter; there's no underlying meaning.  It's just an &lt;strong&gt;if&lt;/strong&gt; -statement.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Everything
-has meaning.  There's no such thing as &amp;quot;just an
-&lt;strong&gt;if&lt;/strong&gt; -statement&amp;quot;.
+has meaning.  There's no such thing as &amp;quot;just an &lt;strong&gt;if&lt;/strong&gt; -statement&amp;quot;.
 Generally, the things we think of as &amp;quot;conditions&amp;quot; are not last-minute decisions
 in the middle of an algorithm.  They are starting conditions that describe what
-objects we should be created in the first place.  Most
-&lt;strong&gt;if&lt;/strong&gt; -statements
-belong in some sort of
-&lt;strong&gt;Factory&lt;/strong&gt;
-or
-&lt;strong&gt;Builder&lt;/strong&gt; :
+objects we should be created in the first place.
+Most &lt;strong&gt;if&lt;/strong&gt; -statements belong in some sort of &lt;strong&gt;Factory&lt;/strong&gt; or &lt;strong&gt;Builder&lt;/strong&gt;:
 they have deep and pervasive meaning.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="management"></category></entry><entry><title>Hidden Costs of "Convenience"</title><link href="https://slott56.github.io/2006_12_12-hidden_costs_of_convenience.html" rel="alternate"></link><published>2006-12-12T16:19:00-05:00</published><updated>2006-12-12T16:19:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-12-12:/2006_12_12-hidden_costs_of_convenience.html</id><summary type="html">&lt;p&gt;This is an important topic.  I've blogged on the
 layers issue before (&amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2006_10_20-layers_interfaces_and_mutability.html"&gt;Layers, Interfaces and Mutabilty&lt;/a&gt; &amp;quot;), and this
 AJAX issue is a great additional

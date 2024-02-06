@@ -141,10 +141,9 @@ analysis</a> .  A lexical scanner will break the stream of input characters
 into discrete tokens.  The syntax analysis looks at the stream of tokens to
 create a usable representation, often called an <a class="reference external" href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</a>
 (AST).</p>
-<p><strong>Layers of Meaning.</strong></p>
-<p>Compounding the essential
-parsing problem are the number of layers of syntax that we have to work
-with:</p>
+<div class="section" id="layers-of-meaning">
+<h2>Layers of Meaning</h2>
+<p>Compounding the essential parsing problem are the number of layers of syntax that we have to work with:</p>
 <ul class="simple">
 <li>XML.  XML lexical analysis locates tags,
 and punctuation, building up a document object model of Nodes, Elements and
@@ -179,7 +178,9 @@ business entities, however, can present a more complex problem.  Business
 Entities often exist as dimensions in a star schema, leading us toward
 conforming the BPO's into a data warehouse for analysis
 purposes.</p>
-<p><strong>Basic SAX Parsing.</strong></p>
+</div>
+<div class="section" id="basic-sax-parsing">
+<h2>Basic SAX Parsing</h2>
 <p>The Python SAX and DOM
 libraries can be used to build a complete DOM from an XML document.  For our
 purposes, we'll elide some features which aren't a common part of parsing
@@ -218,12 +219,10 @@ class DOMContentHandler( xml.sax.ContentHandler ):
         &quot;&quot;&quot;Returns the DOM object.&quot;&quot;&quot;
         return self.document
 </pre>
-<p>To use this
-DOMContentHandler
+<p>To use this <tt class="docutils literal">DOMContentHandler</tt>
 we have to create a SAX parser and initiate
 parsing on an input source.  Note that this creates a generic DOM object, which
-we have to examine to locate the spreadsheet
-structure.</p>
+we have to examine to locate the spreadsheet structure.</p>
 <pre class="literal-block">
 class XMLParser( FileParser ):
     &quot;&quot;&quot;SAX2 parsing of entire DOM.&quot;&quot;&quot;
@@ -234,41 +233,38 @@ class XMLParser( FileParser ):
         myReader= xml.sax.parse( self.file, handler )
         self.xmlDoc= handler.getDocument()
 </pre>
-<p><strong>The Spreadsheet Object Model (SSOM)</strong></p>
+</div>
+<div class="section" id="the-spreadsheet-object-model-ssom">
+<h2>The Spreadsheet Object Model (SSOM)</h2>
 <p>The low-level DOM structure
 is a large collection of Element and Text Nodes with Attribute values.   It's
 much more pleasant to work with proper Worksheet, Row and Cell objects.  We can
 condense the DOM into something more usable through a fairly simple algorithm
 that makes good use of Python's
 generators.</p>
-<p>First, we'll need class
-definitions for the various spreadsheet entities we're going to deal
-with:</p>
+<p>First, we'll need class definitions for the various spreadsheet entities we're going to deal with:</p>
 <ul class="simple">
-<li>Style.  The spreadsheet style
+<li><strong>Style</strong>.  The spreadsheet style
 information is spread through a number of tags and attributes.  Most of the tag
 values are single-occurence elements and the list-oriented
-getElementsByTagName()
-and
-getAttribute()
+<tt class="docutils literal">getElementsByTagName()</tt> and <tt class="docutils literal">getAttribute()</tt>
 aren't the most convenient API.</li>
-<li><strong>Workbook</strong> .  The Workbook is a collection of
+<li><strong>Workbook</strong>.  The Workbook is a collection of
 Styles, Names, and &quot;SupBook&quot; references to external files.  It is also a
 collection of Worksheets.</li>
-<li><strong>WorkbookLink</strong> .  This is the Path information of
+<li><strong>WorkbookLink</strong>.  This is the Path information of
 a &quot;SupBook&quot; reference in a Workbook.</li>
-<li><strong>Worksheet</strong> .  A Worksheet is essentially a
+<li><strong>Worksheet</strong>.  A Worksheet is essentially a
 container for Rows.  It can also be looked at as a container for columns, but we
 won't often need to make use of this representation.  Unlike the pure XML model,
 which is row-oriented, our spreadsheet object model can include additional
 indexing.</li>
-<li><strong>Row</strong> .  A Row is a container for
-Cells.</li>
-<li><strong>Cell</strong> .  A Cell has a number of attributes:
+<li><strong>Row</strong>.  A Row is a container for Cells.</li>
+<li><strong>Cell</strong>.  A Cell has a number of attributes:
 data, an optional formula, and an optional style.  We'll need these to parse the
 spreadsheet document.  We can safely ignore any other attributes of a
 cell.</li>
-<li><strong>WorksheetReference</strong> .  This is an reference
+<li><strong>WorksheetReference</strong>.  This is an reference
 embedded in a formula.  These references are usually a subset of the &quot;SubBook&quot;
 references.</li>
 </ul>
@@ -285,7 +281,9 @@ given row of a given sheet, we can provide a pleasant method in the Workbook
 class to locate the Sheet, delegating the row and cell lookup.  Within Worksheet
 we can locate the requested Row, and within Row we locate the requested
 Cell.</p>
-<p><strong>Generating SSOM Objects.</strong></p>
+</div>
+<div class="section" id="generating-ssom-objects">
+<h2>Generating SSOM Objects</h2>
 <p>We can handle the creation
 of SSOM objects via Python generators.  Here's a method that yields the
 top-level Worksheet instances.  It also assures that each Worksheet is properly
@@ -303,8 +301,7 @@ def nextSheet( self ):
 </pre>
 <p>Our final application can use this
 method something like the following.  This snippet looks for worksheets named
-&quot;Assumptions&quot;, and examines only those pages of a
-Workbook.</p>
+&quot;Assumptions&quot;, and examines only those pages of a Workbook.</p>
 <pre class="literal-block">
 parse= ssDOM.XMLParser( file(aFile,'r') )
     doc= parse.getWorkbook()
@@ -337,7 +334,9 @@ def nextRow( self ):
                 yield aRow
                 self.rowNumber += 1
 </pre>
-<p><strong>Business Process Objects.</strong></p>
+</div>
+<div class="section" id="business-process-objects">
+<h2>Business Process Objects</h2>
 <p>Once we've got Rows, Cells
 and Worksheets, we can then do useful analysis of the resulting spreadsheet to
 locate the user's inputs.  As one example, we'll peel the assumptions off the
@@ -382,16 +381,14 @@ for ws in parse.nextSheet():
                 a= Assumption( area, txt, w_fk )
                 print a
 </pre>
-<p>Since iterators maintain state, we can
-use the iterator to implement a very clean
-<strong>Skip The Headers</strong>  design pattern.  The first
-&quot;for row in
-rowIter&quot; loop will process rows until we find the
-last of the &quot;overhead&quot; rows.  The second &quot;for
-row in rowIter&quot; loop will process the remaining
-rows; we skip blank rows and rows that contain
-examples.</p>
-<p><strong>Essential Business Entities.</strong></p>
+<p>Since iterators maintain state, we can use the iterator to implement a very clean <strong>Skip The Headers</strong>  design pattern.
+The first <tt class="docutils literal">for row in rowIter</tt> loop will process rows until we find the
+last of the &quot;overhead&quot; rows.
+The second <tt class="docutils literal">for row in rowIter</tt> loop will process the remaining
+rows; we skip blank rows and rows that contain examples.</p>
+</div>
+<div class="section" id="essential-business-entities">
+<h2>Essential Business Entities</h2>
 <p>Our Business Process
 Object may be the essential business entity or it may only be selected
 attributes of a more complex entity.  In this case, the Assumption object that
@@ -402,6 +399,7 @@ spreadsheet.</p>
 individual BPO's, we can accrete enough information to reconstruct the business
 model which is implemented as a spreadsheet.   Extracting the parameters from
 this model is the heart of what our spreadsheet parser is doing.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -471,9 +469,6 @@ this model is the heart of what our spreadsheet parser is doing.</p>
     <li class="list-group-item">
       <a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a>
     </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
   </ul>
 </li>
 <!-- End Sidebar/Links -->
@@ -482,6 +477,10 @@ this model is the heart of what our spreadsheet parser is doing.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2023/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2023 (3)
           </a>
@@ -1353,7 +1352,7 @@ this model is the heart of what our spreadsheet parser is doing.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 S.Lott
+         <div class="col-xs-10">&copy; 2024 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

@@ -158,7 +158,7 @@ Objectively, this isn't all bad. Python, also, has functional programming featur
 &lt;p&gt;When to use bash?&lt;/p&gt;
 &lt;p&gt;Use bash you need to launch a Python script. A bash script should be little more than an alias for a program written in a language that offers unit testing.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="shell"></category><category term="bash"></category><category term="unit-testing"></category></entry><entry><title>Understanding the Abstraction -- matplotlib Edition</title><link href="https://slott56.github.io/2023_12_12-understanding_the_abstraction.html" rel="alternate"></link><published>2023-12-12T08:01:00-05:00</published><updated>2023-12-12T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-12:/2023_12_12-understanding_the_abstraction.html</id><summary type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
+</content><category term="Python"></category><category term="shell"></category><category term="bash"></category><category term="unit-testing"></category></entry><entry><title>Understanding the Abstraction -- matplotlib Edition</title><link href="https://slott56.github.io/2023-12-12-understanding_the_abstraction.html" rel="alternate"></link><published>2023-12-12T08:01:00-05:00</published><updated>2023-12-12T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-12:/2023-12-12-understanding_the_abstraction.html</id><summary type="html">&lt;p&gt;I wasted three days because I refused to get a grip on how &lt;a class="reference external" href="https://matplotlib.org"&gt;matplotlib&lt;/a&gt; &lt;strong&gt;really&lt;/strong&gt; works.&lt;/p&gt;
 &lt;p&gt;Most of the time, folks like me are happy and successful using the &lt;a class="reference external" href="https://matplotlib.org/stable/api/pyplot_summary.html"&gt;pyplot&lt;/a&gt; module.
 The &lt;a class="reference external" href="https://matplotlib.org/stable/users/explain/quick_start.html"&gt;Quickstart&lt;/a&gt; provides brilliant, working
 examples.&lt;/p&gt;
@@ -2173,9 +2173,9 @@ that superficially cover change management, but we're not really talking about
 Kimball's &lt;strong&gt;Slowly Changing Dimension&lt;/strong&gt;  (SCD) design pattern.  It turns out,
 we're talking about something more subtle and
 confusing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;System of Record.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The real questions are
-&lt;strong&gt;System of Record&lt;/strong&gt;  (SoR) questions.  In short, each
+&lt;div class="section" id="system-of-record"&gt;
+&lt;h2&gt;System of Record&lt;/h2&gt;
+&lt;p&gt;The real questions are &lt;strong&gt;System of Record&lt;/strong&gt;  (SoR) questions.  In short, each
 question is a version of &amp;quot;Where's the authoritative copy, and how do I keep it
 current?&amp;quot;&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -2194,9 +2194,10 @@ be made in the SoR.  This is similar to the &amp;quot;changes to [Y]&amp;quot; q
 a different point of view on what data is and why it
 exists.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;We'll look at these questions
-in a bit of depth.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Transactions in the Warehouse.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We'll look at these questions in a bit of depth.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="transactions-in-the-warehouse"&gt;
+&lt;h2&gt;Transactions in the Warehouse&lt;/h2&gt;
 &lt;p&gt;When someone asks
 about the &amp;quot;[X] transaction,&amp;quot; they're often summarizing a business process.  In
 general, every business process is either informal, or formalized.  Informal
@@ -2209,25 +2210,19 @@ SoR.  When there's one SoR, life is good.  The transaction happens in some
 system (SAP, Oracle, QuickBooks, Aptiva, etc.)  It propagates through the
 organization through ordinary Enterprise Application Integration (EAI)
 techniques.  It winds up in the warehouse through ordinary
-Extract-Transform-Load (ETL)
-processing.&lt;/p&gt;
+Extract-Transform-Load (ETL) processing.&lt;/p&gt;
 &lt;p&gt;When there are multiple
-SoR's, we have some challenges.  Sometimes, the relationship is
-&lt;em&gt;horizontal&lt;/em&gt; :
+SoR's, we have some challenges.  Sometimes, the relationship is &lt;em&gt;horizontal&lt;/em&gt;:
 two peer business units have separate sources for similar data.  One unit has
 SAP, the other has Aptiva.  This means that there may be common data which must
 be conformed into a warehouse dimension.  So far, so good.&lt;/p&gt;
-&lt;p&gt;Sometimes the relationship between
-SoR's is
-&lt;em&gt;vertical&lt;/em&gt; :
+&lt;p&gt;Sometimes the relationship between SoR's is &lt;em&gt;vertical&lt;/em&gt;:
 the parent company uses SAP, the subsidiary uses Great Plains.   This means that
 there may be contradictions between the views of the common data.  When data is
 moved up from the subsidiary, it may be aggregated: business entities are
 elided, and the data is difficult (or impossible) to
 conform.&lt;/p&gt;
-&lt;p&gt;Sometimes the relationship
-between SoR's is
-&lt;em&gt;psychotic&lt;/em&gt; .
+&lt;p&gt;Sometimes the relationship between SoR's is &lt;em&gt;psychotic&lt;/em&gt;.
 This often leads to a badly-chosen SoR.  A single organization can have the same
 data in two applications and neither can be trusted to be the SoR.  They may
 have customer data in Siebel and JDE, and the data is different, and can only be
@@ -2238,16 +2233,16 @@ processes to reflect that.&lt;/p&gt;
 there are no transactions in the warehouse.  Transactions happen in the SoR, and
 the results of those transactions are applied to the warehouse.  You must pick
 an SoR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Change in the Warehouse.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Sometimes, there is no
-System of Record.  There are two common cases: the data is maintained manually,
+&lt;/div&gt;
+&lt;div class="section" id="change-in-the-warehouse"&gt;
+&lt;h2&gt;Change in the Warehouse&lt;/h2&gt;
+&lt;p&gt;Sometimes, there is no System of Record.  There are two common cases: the data is maintained manually,
 and the data is maintained through a cryptic transaction buried in the legacy
 reporting application.  When data is maintained manually, we have a rather
 difficult &lt;strong&gt;Master Data Management&lt;/strong&gt;  (MDM) issue because we don't have
 an official SoR.  We're often in a bad position, here, because we're forced to
 stop data warehouse development work to put a SoR in place.  This extra work can
-be hard to justify; managers say &amp;quot;we never needed a system for that before, why
-now?&amp;quot;&lt;/p&gt;
+be hard to justify; managers say &amp;quot;we never needed a system for that before, why now?&amp;quot;&lt;/p&gt;
 &lt;p&gt;The answer is simple, but
 unpleasant.  &amp;quot;It never worked before, either.&amp;quot;  People put in data warehouses
 because their legacy reporting tools are incorrect or inconsistent.  One root
@@ -2255,7 +2250,7 @@ cause of errors is lack of a public, well-understood truth because of manual or
 informal changes.&lt;/p&gt;
 &lt;p&gt;The cryptic
 transaction is the worst thing to ferret out.  Let's say we have two
-applications, B and C which each do parts of a business function.  Further, each
+applications, B and C, which each do parts of a business function.  Further, each
 has it's little quirks, and we periodically must reconcile B and C's results
 against each other.  How do we do this reconciliation when the two applications
 are largely disjoint except where they have to be
@@ -2270,9 +2265,10 @@ the SoR.&lt;/p&gt;
 &lt;p&gt;In summary, change in the
 warehouse is limited to a historical snapshot of change in the SoR.  Change
 happens in the SoR, and the results of the changes are applied to the warehouse.
-You must pick an
-SoR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Maintenance in the Warehouse.&lt;/strong&gt;&lt;/p&gt;
+You must pick an SoR.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="maintenance-in-the-warehouse"&gt;
+&lt;h2&gt;Maintenance in the Warehouse&lt;/h2&gt;
 &lt;p&gt;The question of
 maintaining data in the warehouse usually stems from a warehouse design which
 involves something more complex than simple facts and dimensions.  Generally, a
@@ -2302,32 +2298,23 @@ maintain the bridge table.&lt;/p&gt;
 &lt;p&gt;In summary,
 maintenance in the warehouse is limited to loading a historical snapshot of the
 relationships in the SoR.  Maintenance happens in the SoR, and the results of
-the maintenance are applied to the warehouse.  You must depend on an
-SoR.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bridge Tables Maintenance.&lt;/strong&gt;&lt;/p&gt;
+the maintenance are applied to the warehouse.  You must depend on an SoR.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bridge-tables-maintenance"&gt;
+&lt;h2&gt;Bridge Tables Maintenance&lt;/h2&gt;
 &lt;p&gt;There are several
 varieties of Bridge Tables.  We'll address hierarchy, since it seems to lead to
 the most confusion.  We'll touch on minidimension and outrigger tables, also,
-since the same design pattern applies to
-those.&lt;/p&gt;
+since the same design pattern applies to those.&lt;/p&gt;
 &lt;p&gt;The essential worry about
 hierarchies stems from the fact that a hierarchy bridge table can have many more
-rows than the  dimension it bridges.  Generally, it's an
-&lt;em&gt;n&lt;/em&gt; log(&lt;em&gt;n&lt;/em&gt; )
-kind of multiplication, where
-log(&lt;em&gt;n&lt;/em&gt; )
-is an estimate of the depth of the
-hierarchy.&lt;/p&gt;
+rows than the  dimension it bridges.  Generally, it's an &lt;span class="formula"&gt;&lt;i&gt;n&lt;/i&gt;log(&lt;i&gt;n&lt;/i&gt;)&lt;/span&gt;
+kind of multiplication, where &lt;span class="formula"&gt;log(&lt;i&gt;n&lt;/i&gt;)&lt;/span&gt; is an estimate of the depth of the hierarchy.&lt;/p&gt;
 &lt;p&gt;As a practical matter,
 moving one child to another parent is a single row change in the original data.
-However, the expansion in the bridge table means that
-2*d*
-rows will change, where
-&lt;em&gt;d&lt;/em&gt;  is
-the depth of the node in the hierarchy.  For some reason, this is
-intimidating.&lt;/p&gt;
-&lt;p&gt;There are two
-solutions:&lt;/p&gt;
+However, the expansion in the bridge table means that &lt;span class="formula"&gt;2&lt;i&gt;d&lt;/i&gt;&lt;/span&gt; rows will change, where &lt;span class="formula"&gt;&lt;i&gt;d&lt;/i&gt;&lt;/span&gt; is
+the depth of the node in the hierarchy.  For some reason, this is intimidating.&lt;/p&gt;
+&lt;p&gt;There are two solutions:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Reload the entire bridge table with each
 source change.  This is easy to implement but slow.  If you use SCD change
@@ -2345,10 +2332,12 @@ minidimensions and outriggers, which are based on subsets of a dimension.  The
 lazy approach is to rebuild these each time the dimension changes.  A slightly
 more efficient approach is to derive just the changed rows from the changes in
 the dimension.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bottom Line.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Change doesn't happen in the
-warehouse.  Change happens in the SoR.  The warehouse merely captures the effect
-of that change.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bottom-line"&gt;
+&lt;h2&gt;Bottom Line&lt;/h2&gt;
+&lt;p&gt;Change doesn't happen in the warehouse.  Change happens in the SoR.
+The warehouse merely captures the effect of that change.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category></entry><entry><title>Refactoring and Unit Testing</title><link href="https://slott56.github.io/2006_10_11-refactoring_and_unit_testing.html" rel="alternate"></link><published>2006-10-11T00:19:00-04:00</published><updated>2006-10-11T00:19:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-10-11:/2006_10_11-refactoring_and_unit_testing.html</id><summary type="html">&lt;p&gt;I do a fair amount of manual refactoring.  I've
 used WebSphere Studio (Eclipse) to do some automated refactoring, so I have some
 experience in using IDE's which exploit Java's static type-checking.&lt;/p&gt;

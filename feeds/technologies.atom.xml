@@ -56206,24 +56206,21 @@ produces files which go through my Xalan technology stack.&lt;/li&gt;
 &lt;p&gt;So far, the XXE solution is
 marvelous.&lt;/p&gt;
 </content><category term="Technologies"></category><category term="books"></category><category term="docbook"></category><category term="xml"></category></entry><entry><title>The XML Balancing Act - Part III, JSON (Revised)</title><link href="https://slott56.github.io/2007_01_29-the_xml_balancing_act_part_iii_json_revised.html" rel="alternate"></link><published>2007-01-29T15:03:00-05:00</published><updated>2007-01-29T15:03:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-29:/2007_01_29-the_xml_balancing_act_part_iii_json_revised.html</id><summary type="html">&lt;p&gt;We have a spectrum of interesting needs, and a
-corresponding spectrum of solutions.  Here's one dimension: the structured-ness
-view.&lt;/p&gt;
+corresponding spectrum of solutions.  Here's one dimension: the structured-ness view.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Highly structured data.&lt;/li&gt;
-&lt;li&gt;Semi-structured data, or the &amp;quot;mixed content
-model&amp;quot;.  We can further subdivide this into content which is &amp;quot;naturally&amp;quot;
+&lt;li&gt;Semi-structured data, or the &amp;quot;mixed content model&amp;quot;.
+We can further subdivide this into content which is &amp;quot;naturally&amp;quot;
 hierarchical, and a good fit for XML, and data which is …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;We have a spectrum of interesting needs, and a
-corresponding spectrum of solutions.  Here's one dimension: the structured-ness
-view.&lt;/p&gt;
+corresponding spectrum of solutions.  Here's one dimension: the structured-ness view.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Highly structured data.&lt;/li&gt;
-&lt;li&gt;Semi-structured data, or the &amp;quot;mixed content
-model&amp;quot;.  We can further subdivide this into content which is &amp;quot;naturally&amp;quot;
+&lt;li&gt;Semi-structured data, or the &amp;quot;mixed content model&amp;quot;.
+We can further subdivide this into content which is &amp;quot;naturally&amp;quot;
 hierarchical, and a good fit for XML, and data which is relational and a poor
 fit.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Another dimension is the
-&amp;quot;imperative/declarative&amp;quot; dimension, which is orthogonal to the structured
+&lt;p&gt;Another dimension is the &amp;quot;imperative/declarative&amp;quot; dimension, which is orthogonal to the structured
 dimension.  We've got, consequently, four easy-to-see kinds of data
 representation needs:&lt;/p&gt;
 &lt;table border="1" class="docutils"&gt;
@@ -56242,14 +56239,14 @@ representation needs:&lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;Each of these is exemplified by different
 languages in practice.  However, some people will argue that XML is appropriate
-to all of them, practical considerations be
-d****d.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Highly-Structured, Declarative Data.&lt;/strong&gt;&lt;/p&gt;
+to all of them, practical considerations be d****d.&lt;/p&gt;
+&lt;div class="section" id="highly-structured-declarative-data"&gt;
+&lt;h2&gt;Highly-Structured, Declarative Data&lt;/h2&gt;
 &lt;p&gt;This is the
 sweet-spot for the relational model of data.  The representation for relational
 data is a series of DDL statements (for the schema) and INSERT statements (for
-the data).  JSON does this well; in some cases better.
-Better?&lt;/p&gt;
+the data).  JSON does this well; in some cases better.&lt;/p&gt;
+&lt;p&gt;Better?&lt;/p&gt;
 &lt;p&gt;Let's look at an example.  Say
 we have an application that needs to get the total of the most recent order for
 a given customer.  In XML parlance, we have to locate &lt;tt class="docutils literal"&gt;&amp;lt;order&amp;gt;&lt;/tt&gt; elements for
@@ -56260,10 +56257,7 @@ complex, and the available XML API's don't support our application very directly
 at all.&lt;/p&gt;
 &lt;p&gt;McGrath's point appears to be
 that the API's support XML parsing, but not structured information processing.
-We can't just use something as clear as
-get_total_value(),
-or even
-get_value('total').&lt;/p&gt;
+We can't just use something as clear as &lt;tt class="docutils literal"&gt;get_total_value()&lt;/tt&gt;, or even &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;get_value('total')&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;If we have a complete DTD (or XSD),
 then each piece of data has a tag, and each tag is reachable by an XPATH query.
 However, our application program API's aren't -- typically -- wordy XPATH
@@ -56271,10 +56265,12 @@ queries.  Our API's are simple object methods.  We can, of course, embed the
 XPATH query in an object wrapper, but that seems to be a huge burden.  Couldn't
 we match our data representation to our processing needs in the first
 place?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Highly-Structured, Imperative Data.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="highly-structured-imperative-data"&gt;
+&lt;h2&gt;Highly-Structured, Imperative Data&lt;/h2&gt;
 &lt;p&gt;I thrashed around
-in this space in &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2007_01_02-clarifying_xmls_strengths.html"&gt;Clarifying XML's Strengths&lt;/a&gt; .&amp;quot;  When there's
-imperative information (i.e., scripts) we're wandering away from XML's sweet
+in this space in &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2007_01_02-clarifying_xmls_strengths.html"&gt;Clarifying XML's Strengths&lt;/a&gt; .&amp;quot;
+When there's imperative information (i.e., scripts) we're wandering away from XML's sweet
 spot and wandering into a place where Python or a Domain-Specific Language (DSL)
 might be more helpful.  While some people argue the fine points of Ant vs.
 Maven, they seem to miss the point that Ant has imperative elements written in
@@ -56294,14 +56290,14 @@ of sense.  We can supplement this with some additional syntax to create a DSL
 that includes Python, JavaScript or Jelly.  Fundamentally, we're matching our
 processing with our data
 representation.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Semi-Structured, Declarative.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Here is the XML
-sweet-spot.  The data is a &amp;quot;mixed content&amp;quot; model with untagged text in addition
+&lt;/div&gt;
+&lt;div class="section" id="semi-structured-declarative"&gt;
+&lt;h2&gt;Semi-Structured, Declarative&lt;/h2&gt;
+&lt;p&gt;Here is the XML sweet-spot.  The data is a &amp;quot;mixed content&amp;quot; model with untagged text in addition
 to tagged values.  Here, the XML API's aren't really in the way, because the
 data requires some interpretation.  Some processing rules must be applied by an
 application program.&lt;/p&gt;
-&lt;p&gt;This is -- to
-some people -- anathema, because it implies that the XML document isn't complete
+&lt;p&gt;This is -- to some people -- anathema, because it implies that the XML document isn't complete
 and stand-alone.  They prefer to think XML is inherently complete, and don't
 want to consider the situation where XML lacks information required to interpret
 the content.&lt;/p&gt;
@@ -56318,7 +56314,9 @@ script (which requires a shell) and a SQL document (which requires a database)
 are treated.  You must marry data and processing; further, the data
 representation ought to be appropriate to the kind of processing which is being
 done.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hierarchies and Relations.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hierarchies-and-relations"&gt;
+&lt;h2&gt;Hierarchies and Relations&lt;/h2&gt;
 &lt;p&gt;We can further fine-tune
 our semi-structured considerations.  Some data is naturally hierarchical; we can
 create an outline from the information.  If it is perfectly hierarchical, we can
@@ -56342,9 +56340,10 @@ this example has &amp;quot;project plans&amp;quot; which are often semi-structur
 have a good XML fit, and we don't have a good relational fit, either.  At this
 point, some kind of special-purpose DSL may help.  Or, we have to merely use the
 XML to get the data into a proper object model for processing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Semi-Structured, Imperative.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Wait, isn't
-sem-structured, imperative content the very features which characterizes a
+&lt;/div&gt;
+&lt;div class="section" id="semi-structured-imperative"&gt;
+&lt;h2&gt;Semi-Structured, Imperative&lt;/h2&gt;
+&lt;p&gt;Wait, isn't semi-structured, imperative content the very features which characterizes a
 programming language?  Yes.  We wouldn't want to switch Python's elegant syntax
 for a pure XML rendering of the same application
 programming.&lt;/p&gt;
@@ -56354,22 +56353,22 @@ programming.&lt;/p&gt;
 &amp;lt;suite&amp;gt;
 
 &amp;lt;docstring&amp;gt;&amp;lt;block&amp;gt;round(n[,m=0])
--&amp;amp;gt; round n to m positions.&amp;lt;/block
-&amp;gt;&amp;lt;block&amp;gt;...&amp;lt;/block&amp;gt;...&amp;lt;/docstring&amp;gt;
+-&amp;amp;gt; round n to m positions.
+&amp;lt;/block&amp;gt;&amp;lt;block&amp;gt;...&amp;lt;/block&amp;gt;...
+&amp;lt;/docstring&amp;gt;
 
-&amp;lt;statement
-name=&amp;quot;if&amp;quot;&amp;gt;&amp;lt;expression&amp;gt;...&amp;lt;/expression&amp;gt;&amp;lt;suite&amp;gt;...&amp;lt;/suite&amp;gt;&amp;lt;/statement&amp;gt;
+&amp;lt;statement name=&amp;quot;if&amp;quot;&amp;gt;&amp;lt;expression&amp;gt;...&amp;lt;/expression&amp;gt;&amp;lt;suite&amp;gt;...&amp;lt;/suite&amp;gt;&amp;lt;/statement&amp;gt;
 
-&amp;lt;statement
-name=&amp;quot;return&amp;quot;&amp;gt;&amp;lt;expression&amp;gt;...&amp;lt;/expression&amp;gt;&amp;lt;/statement&amp;gt;
+&amp;lt;statement name=&amp;quot;return&amp;quot;&amp;gt;&amp;lt;expression&amp;gt;...&amp;lt;/expression&amp;gt;&amp;lt;/statement&amp;gt;
 
 &amp;lt;/suite&amp;gt;
 
 &amp;lt;/function&amp;gt;
 &lt;/pre&gt;
-&lt;p&gt;No
-thanks.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bottom Line.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No thanks.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bottom-line"&gt;
+&lt;h2&gt;Bottom Line&lt;/h2&gt;
 &lt;p&gt;We need to select a data
 representation that is appropriate for our data processing needs.  We can't
 waste time wringing our hands and saying that there's no way to anticipate all
@@ -56384,19 +56383,16 @@ processing.  Over-generalizing (i.e., force-fitting XML to every problem) leads
 to inefficient and ineffective solutions.  McGrath lifts up the specific issue
 of finding a meaningful piece of data, rather than the value associated with a
 tag obscured by an XPATH query.&lt;/p&gt;
-&lt;p&gt;I've
-got an example of the obscurity created by XML:  &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html"&gt;Spreadsheet as Syntax&lt;/a&gt; &amp;quot; shows a multi-step
+&lt;p&gt;I've got an example of the obscurity created by XML:  &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html"&gt;Spreadsheet as Syntax&lt;/a&gt; &amp;quot; shows a multi-step
 transformation, which includes transforming XML into a spreadsheet document
 object model (SSDOM) before doing anything useful.  The raw XML is rather quite
 complex and obscure.  The SSDOM isn't half as bad.  The SSDOM allows us to use a
-simple
-get_style_name()
-notation to examine the content in a meaningful
-way.&lt;/p&gt;
+simple &lt;tt class="docutils literal"&gt;get_style_name()&lt;/tt&gt; notation to examine the content in a meaningful way.&lt;/p&gt;
 &lt;p&gt;Until I read McGrath's piece, I
 didn't know why my solution appeared so clunky.  Now I see that it's a
 consequence of the XML API's being focused merely on parsing.  What I did isn't
 wrong or even clunky, it's essential.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="xml"></category></entry><entry><title>Technology Refresh</title><link href="https://slott56.github.io/2007_01_04-technology_refresh.html" rel="alternate"></link><published>2007-01-04T19:03:00-05:00</published><updated>2007-01-04T19:03:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-04:/2007_01_04-technology_refresh.html</id><summary type="html">&lt;p&gt;First, I'm a pack-rat; I worry about deleting
 something valuable.  Specifically, I worry about orphaned files because the
 application software is no longer supported or the media is
@@ -56471,11 +56467,7 @@ XML solution.  XML will never become an opaque legacy
 technology.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I found these to be typical
-of many technology decisions:
-&lt;strong&gt;Incumbency&lt;/strong&gt; ,
-&lt;strong&gt;False Dichotomies&lt;/strong&gt; ,
-&lt;strong&gt;Inflated Opportunity Cost&lt;/strong&gt; , a flat-out
-&lt;strong&gt;Misrepresentation&lt;/strong&gt;
+of many technology decisions: &lt;strong&gt;Incumbency&lt;/strong&gt;, &lt;strong&gt;False Dichotomies&lt;/strong&gt;, &lt;strong&gt;Inflated Opportunity Cost&lt;/strong&gt;, a flat-out &lt;strong&gt;Misrepresentation&lt;/strong&gt;
 are the essence of these arguments for
 XML.&lt;/p&gt;
 &lt;p&gt;There is, however, a good value
@@ -56484,7 +56476,8 @@ essential part of the problem and any solution.  In &amp;quot;&lt;a class="refer
 &amp;quot;Semantic Richness&amp;quot;, that is, &amp;quot;how well it describes the problem.&amp;quot;  This isn't
 really very good, and another comment challenged this glib
 simplification.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Declarative vs. Imperative Knowledge Representation.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="declarative-vs-imperative-knowledge-representation"&gt;
+&lt;h2&gt;Declarative vs. Imperative Knowledge Representation&lt;/h2&gt;
 &lt;p&gt;The big issue in
 software-world is knowledge representation.  Ant or SCons have some
 sophistication because they have two levels of knowledge representation: a
@@ -56493,10 +56486,7 @@ Generally, we capture knowledge about building a program and represent it in the
 control file.  We don't tinker much with the knowledge embodied in the
 algorithms.&lt;/p&gt;
 &lt;p&gt;We have two strategies for
-knowledge representation:
-&lt;em&gt;declarative&lt;/em&gt;
-and
-&lt;em&gt;imperative&lt;/em&gt; .
+knowledge representation: &lt;em&gt;declarative&lt;/em&gt; and &lt;em&gt;imperative&lt;/em&gt;.
 This is sometimes called the &amp;quot;What vs. How&amp;quot; distinction.  We can declare what we
 want -- the desired end-state -- and leave it to our collection of algorithms to
 reason out how it gets done; the tool derives the imperative steps to get there.
@@ -56509,15 +56499,19 @@ implemented one back in the early '80's that ran in Univac's Exec-8, using
 really ancient and obscure software tools.  The purpose then -- as it is now --
 is to recompile just enough and no
 more.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.gnu.org/software/make/"&gt;GNU
-Make&lt;/a&gt; , &lt;a class="reference external" href="http://ant.apache.org/"&gt;Ant&lt;/a&gt; , &lt;a class="reference external" href="http://www.scons.org/"&gt;SCons&lt;/a&gt; , &lt;a class="reference external" href="http://raven.rubyforge.org/"&gt;Raven&lt;/a&gt; , &lt;a class="reference external" href="http://maven.apache.org/"&gt;Maven&lt;/a&gt; , etc., have two explicit purposes: to
+&lt;p&gt;&lt;a class="reference external" href="http://www.gnu.org/software/make/"&gt;GNU Make&lt;/a&gt; , &lt;a class="reference external" href="http://ant.apache.org/"&gt;Ant&lt;/a&gt; ,
+&lt;a class="reference external" href="http://www.scons.org/"&gt;SCons&lt;/a&gt; ,
+&lt;a class="reference external" href="http://raven.rubyforge.org/"&gt;Raven&lt;/a&gt; ,
+&lt;a class="reference external" href="http://maven.apache.org/"&gt;Maven&lt;/a&gt; , etc., have two explicit purposes: to
 minimize recompilation, and automate the myriad of packaging steps required by
 our deployment architectures.  They have grown, however to embrace an additional
 requirement: represent metadata about the software being built.  This additional
 requirement is captured in &amp;quot;&lt;a class="reference external" href="http://kontrawize.blogs.com/kontrawize/2006/12/xml_is_first_cl.html"&gt;XML is first class, scripting languages are second
 class&lt;/a&gt; &amp;quot;.  How do we report or analyze the information captured in our
 build tools?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Preference for Declarative Knowledge.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-preference-for-declarative-knowledge"&gt;
+&lt;h2&gt;The Preference for Declarative Knowledge&lt;/h2&gt;
 &lt;p&gt;Declarative
 knowledge representation is, clearly, preferred.  &amp;quot;Imperative tools (whether
 based on XML ala Ant or a &amp;quot;real&amp;quot; scripting language ala Raven) are inevitably
@@ -56533,19 +56527,18 @@ file.&lt;/p&gt;
 &lt;p&gt;This declarative ideal can be met
 a number of ways:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;Ant or Maven (XML).&lt;/strong&gt;   Typically mostly declarative, because
-it isn't much of a scripting language.  When we use a tool like &lt;a class="reference external" href="http://jakarta.apache.org/commons/jelly/"&gt;Jelly&lt;/a&gt; , as Maven does, then it isn't
-&lt;strong&gt;purely&lt;/strong&gt;
+&lt;li&gt;&lt;strong&gt;Ant or Maven (XML)&lt;/strong&gt;.   Typically mostly declarative, because
+it isn't much of a scripting language.  When we use a tool like &lt;a class="reference external" href="http://jakarta.apache.org/commons/jelly/"&gt;Jelly&lt;/a&gt; , as Maven does, then it isn't &lt;strong&gt;purely&lt;/strong&gt;
 declarative.  The existence of Jelly adds imperative knowledge to a declarative
 knowledge.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SQL.&lt;/strong&gt;   Purely declarative.  Most RDBMS vendors
+&lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt;.   Purely declarative.  Most RDBMS vendors
 have added imperative components: triggers, stored procedures, etc.  But,
 lacking these extensions, &lt;a class="reference external" href="http://www.sqlite.org/"&gt;SQLite&lt;/a&gt;  meets the declarative idea.  It isn't
 however, much used for this sort of thing.  Who wants to code their sources,
 targets and processing steps as a bunch of SQL
 INSERT
 statements.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;GNU Make (DSL).&lt;/strong&gt;   Less declarative than others.  GNU
+&lt;li&gt;&lt;strong&gt;GNU Make (DSL)&lt;/strong&gt;.   Less declarative than others.  GNU
 Make, specifically, allows extensive shell script programming.  For this reason,
 a makefile can
 become a painful morass of scripts rather than a tidy definition of what should
@@ -56554,34 +56547,32 @@ makefile can be
 built.  However, this is difficult to analyze and write reports.  GNU Make
 control files tend to be dominated by scripts, however, because it's often
 simpler than writing a complete declarative control file.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SCons (Python).&lt;/strong&gt;   Mostly declarative.  In SCons, the
+&lt;li&gt;&lt;strong&gt;SCons (Python)&lt;/strong&gt;.   Mostly declarative.  In SCons, the
 bulk of the control file is purely declarative.  Scripting, rather than being in
 some additional language like Jelly, we simply use Python for any
 non-declarative features.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Murky Ant vs. Maven Issue.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;While
-declarative knowledge has all the advantages, here's an interesting quote:
+&lt;/div&gt;
+&lt;div class="section" id="murky-ant-vs-maven-issue"&gt;
+&lt;h2&gt;Murky Ant vs. Maven Issue&lt;/h2&gt;
+&lt;p&gt;While declarative knowledge has all the advantages, here's an interesting quote:
 &amp;quot;Imperative tools (whether based on XML ala Ant or a &amp;quot;real&amp;quot; scripting language
 ala Raven) are inevitably going to be less productive than a declarative tool,
 and this was a large part of the reason I switched from Ant to Maven some years
 ago.&amp;quot;  This is a bit confusing.&lt;/p&gt;
-&lt;p&gt;This
-quote sounds like Ant is more imperative than Maven, and therefore less
+&lt;p&gt;This quote sounds like Ant is more imperative than Maven, and therefore less
 desirable.   However, I'm confused because of the following:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Ant and Maven both use XML, which is
-largely declarative.&lt;/li&gt;
-&lt;li&gt;Maven has Jelly, which adds imperative
-features.&lt;/li&gt;
+&lt;li&gt;Ant and Maven both use XML, which is largely declarative.&lt;/li&gt;
+&lt;li&gt;Maven has Jelly, which adds imperative features.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If anything, I'd think that
-Maven would be
-&lt;em&gt;less&lt;/em&gt;
+&lt;p&gt;If anything, I'd think that Maven would be &lt;em&gt;less&lt;/em&gt;
 declarative.  Clearly, I'm missing something.  Likely, I don't understand enough
 of the DTD (or Schema) for Maven to see how it is more declarative in spite of
 the inclusion of Jelly.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bottom Line.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bottom-line"&gt;
+&lt;h2&gt;Bottom Line&lt;/h2&gt;
 &lt;p&gt;It's clear that purely
 declarative knowledge is ideal.  It's also just as clear that imperative
 knowledge is essential to success.&lt;/p&gt;
@@ -56595,10 +56586,10 @@ the more we see different mixtures of declarative vs. imperative knowledge
 representation techniques.  XML is imperative light (even with jelly),
 Python/SCons is declarative with easy addition of imperative scripts, the
 GNU/Make DSL is imperative heavy.&lt;/p&gt;
-&lt;p&gt;The
-Ant vs. Maven distinction still needs some clarification.  However, the
+&lt;p&gt;The Ant vs. Maven distinction still needs some clarification.  However, the
 preference for a declarative knowledge representation makes compelling sense.
 XML's best for representing declarative knowledge.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="xml"></category></entry><entry><title>XML - Scripting - SQL - a DSL: which fits the problem better?</title><link href="https://slott56.github.io/2006_12_31-xml_scripting_sql_a_dsl_which_fits_the_problem_better.html" rel="alternate"></link><published>2006-12-31T04:46:00-05:00</published><updated>2006-12-31T04:46:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2006-12-31:/2006_12_31-xml_scripting_sql_a_dsl_which_fits_the_problem_better.html</id><summary type="html">&lt;p&gt;I read &amp;quot;&lt;a class="reference external" href="http://koti.welho.com/jpakaste/blog/stamp_out_the_ants.html"&gt;Stamp on
 the ants&lt;/a&gt; &amp;quot;, which lead me to write &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2006_12_23-xml_one_ring_to_rule_them_all.html"&gt;XML - One Ring to Rule them All...&lt;/a&gt; &amp;quot; because I'd
 seem some remarkably lame justification for XML.  I saw an interesting response
@@ -57646,7 +57637,8 @@ should first be represented as XML to capture the data structure. Of course this
 XML could be converted to whatever format required by the
 client&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="benefits"&gt;
+&lt;h2&gt;Benefits&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Both data and events are naturally modeled in a similar structure:
 XML&lt;/li&gt;
@@ -57657,7 +57649,9 @@ events&lt;/li&gt;
 for both incoming client requests and outgoing response allow clean client
 independence.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Weaknesses&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="weaknesses"&gt;
+&lt;h2&gt;Weaknesses&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;No interactive debugging tools. However this could be mitigated by extensive
 debug logging by the application
@@ -57669,6 +57663,7 @@ object oriented.&lt;/li&gt;
 hurdles would not be enforced by the interpreter but possibly with superb coding
 discipline.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="technologies"></category><category term="xml"></category></entry><entry><title>Good-bye Old Mac</title><link href="https://slott56.github.io/2003_12_01-good_bye_old_mac.html" rel="alternate"></link><published>2003-12-01T02:08:00-05:00</published><updated>2003-12-01T02:08:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2003-12-01:/2003_12_01-good_bye_old_mac.html</id><summary type="html">&lt;p&gt;Mac #1 was a 1986 128K Mac, later
 upgraded to 1M Mac Plus, with external everything.  Eventually a 70Mb SCSI hard
 drive.  Bundled up with another just like it, it sold on eBay for shipping + a
