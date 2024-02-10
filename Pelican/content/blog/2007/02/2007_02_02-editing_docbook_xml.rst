@@ -21,8 +21,7 @@ even less of a market for that.
 
 
 
-There
-may be no market for a book on programming, but I teach programming.  I've
+There may be no market for a book on programming, but I teach programming.  I've
 taught programming in C, Ada, Java, PL/SQL, COBOL and Python.  So, I have a
 pretty standard approach to programming, into which I plug the language.  It
 works very well, and capturing the approach in a book was
@@ -30,8 +29,7 @@ helpful.
 
 
 
-Then I re-discovered DocBook
-markup.  I say rediscovered because in the mid-90's, I learned SGML, and was
+Then I re-discovered DocBook markup.  I say rediscovered because in the mid-90's, I learned SGML, and was
 aware of DocBook.  I'd ignored it partly because there wasn't any affordable
 tooling, but also because SGML is a pain in the ass to write.  SGML isn't as
 painful as XML, but the differences are microscopic when compared with WYSIWYG
@@ -39,7 +37,8 @@ AppleWorks.
 
 
 
-**Enter LEO.** 
+Enter LEO
+---------
 
 
 
@@ -76,7 +75,8 @@ it.
 
 
 
-**DocBook is Code.** 
+DocBook is Code
+---------------
 
 
 
@@ -109,7 +109,8 @@ baffling.
 
 
 
-**DocBook 5.** 
+DocBook 5
+---------
 
 
 
@@ -139,8 +140,7 @@ editing solutions that look far nicer than my LEO-based technology stack.  The
 
 
 
-So far, the XXE solution is
-marvelous.
+So far, the XXE solution is marvelous.
 
 
 

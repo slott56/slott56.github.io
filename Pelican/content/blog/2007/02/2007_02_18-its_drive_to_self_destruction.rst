@@ -20,13 +20,12 @@ IT.
 
 
 
-**Phase 1, Hubris.** 
+Phase 1, Hubris
+---------------
 
 
 
-During the
-**Hubris** 
-phase, projects are undertaken which boggle the mind.  CIO's, swayed by reading
+During the **Hubris** phase, projects are undertaken which boggle the mind.  CIO's, swayed by reading
 books and magazine articles believe that they can make any kind of project work.
 The CIO's job is to promote anything that makes sense.  In order to justify this
 approach, the impact of each project must be
@@ -42,8 +41,7 @@ more central and sweeping.
 
 
 
-The
-focused conversion of data from old applications to the new application gets
+The focused conversion of data from old applications to the new application gets
 circumvented by extensive customization, extension and interfaces.  Highly
 optimized in-house software is supplanted.  Rather than replace strange,
 non-standard processes with processes that fit the off-the-shelf software, the
@@ -72,15 +70,13 @@ project.
 
 
 
-There's something good about
-the
-**Hubris** 
-phase: programmers get to program.  However, the grandiose projects wind up
-failing.
+There's something good about the **Hubris** phase: programmers get to program.
+However, the grandiose projects wind up failing.
 
 
 
-**Root Cause.** 
+Root Cause
+----------
 
 
 
@@ -97,11 +93,9 @@ The business
 value proposition for software has to be boiled down to something so pithy and
 in incontrovertible that a hands-off executive can remember it and repeat it
 when asked.  It helps to position the business value like this:
-*[X] is broken; installing software fixes [X]* .  It helps to be sure that each
-executive can describe exactly how
-*[X]* 
-is broken, so they know what will be
-fixed.
+*[X] is broken; installing software fixes [X]* .
+It helps to be sure that each executive can describe exactly how *[X]*
+is broken, so they know what will be fixed.
 
 
 
@@ -123,20 +117,17 @@ the whole project will (and should) be cancelled.
 
 
 Once a hubristic project is cancelled,
-the organization chills down to a
-**Conciliation** 
-phase.
+the organization chills down to a **Conciliation** phase.
 
 
 
-**Around the Edges.** 
+Around the Edges
+----------------
 
 
 
 When an organization
-operates in the
-**Hubris** 
-phase, there is often a main, resource-hogging project, and many small,
+operates in the **Hubris** phase, there is often a main, resource-hogging project, and many small,
 around-the-edges projects.  The smaller projects are also mismanaged in a way
 that cripples the organization.  They are managed by a process of
 **Descope and Drop into Production** ™ (DDP).  In this phase, a
@@ -151,8 +142,7 @@ application is now a burden on the organization.  For the entire life of the
 application, someone will be fiddling with it, doing ad-hoc work, fixing broken
 data, rerunning programs with patches and hacks.  The cumulative effort spent on
 "maintenance" and "support" will exceed the effort to put permanent fixes in
-place.  However, maintenance is paid for with
-**Next Year's Dollars** ™ (NYD), which don't really
+place.  However, maintenance is paid for with **Next Year's Dollars** ™ (NYD), which don't really
 count.
 
 
@@ -165,13 +155,12 @@ lite", when they could be writing real software.
 
 
 
-**Phase 2, Conciliation.** 
+Phase 2, Conciliation
+---------------------
 
 
 
-During the
-**Conciliation** 
-phase, all projects must be meticulously cost-justified.  CIO's humbled by
+During the **Conciliation** phase, all projects must be meticulously cost-justified.  CIO's humbled by
 earlier failures (or hired to replace a failed CIO) believe that most projects
 are doomed to fail.  The CIO's job is to prevent anything that involves risk. 
 In order to justify this approach, the impact of each project must be
@@ -179,8 +168,7 @@ meticulously measured.
 
 
 
-Extensive ROI
-analysis and score-carding are the order of the day.  This reaches a level of
+Extensive ROI analysis and score-carding are the order of the day.  This reaches a level of
 absurdity when ordinary Business Analysis to justify IT changes has to be
 justified.  We have mini-projects to create the budget for the analysis and
 planning to create the budget for the first phase of some initiative.  In order
@@ -211,9 +199,7 @@ within the enterprise.
 
 
 
-In the
-**Conciliation** 
-phase, programmers don't program.  At best, they integrate.  The most common
+In the **Conciliation** phase, programmers don't program.  At best, they integrate.  The most common
 situation, however, is the programmers become glorified operators; they run
 queries and extracts for the users.  They manually correct problems because of
 incomplete or poorly-integrated software.  Rewrites and repair can't be
@@ -222,12 +208,12 @@ day.
 
 
 
-**The Desktop Solution.** 
+The Desktop Solution
+--------------------
 
 
 
-In the conciliation
-phase, few things can be approved, so end-users are forced to work with desktop
+In the conciliation phase, few things can be approved, so end-users are forced to work with desktop
 tools like Excel and Access.  IT can't (or won't) respond to user requests for
 automation, so the users become power Excel hacks, learn Access or hire an
 Access hack to kludge something together.  The desktop is there, why not use
@@ -239,12 +225,12 @@ Desktop products don't scale well;
 the solutions are often little better than
 **Personal Programming Projects** ™ (PPP) applied to enterprise
 information assets.  To improve these solutions, the users often beg for someone
-to **Scale Our Spreadsheet**  (SOS).  It's a plea for help, and
-it goes unrecognized.
+to **Scale Our Spreadsheet**  (SOS).  It's a plea for help, and it goes unrecognized.
 
 
 
-**The Tipping Point.** 
+The Tipping Point
+-----------------
 
 
 
@@ -257,13 +243,12 @@ only, and nothing new is possible.
 
 
 
-Once
-we can't afford change, we've devolved to the level of maximum
-entropy.
+Once we can't afford change, we've devolved to the level of maximum entropy.
 
 
 
-**Phase 3, Maximum Entropy.** 
+Phase 3, Maximum Entropy
+------------------------
 
 
 
@@ -276,8 +261,7 @@ lesser of a number of evils.
 
 
 
-There are
-a number of reasons why entropy is maximized:
+There are a number of reasons why entropy is maximized:
 
 #.  All software is interconnected.  There's no
     focus, no nucleus, no easily identifiable "architecture", "data flow" or "system
@@ -307,7 +291,8 @@ a number of reasons why entropy is maximized:
 
 
 
-**Consequences of Entropy.** 
+Consequences of Entropy
+-----------------------
 
 
 
@@ -334,38 +319,30 @@ goo <http://en.wikipedia.org/wiki/Grey_goo>`_  of IT.
 
 
 
-**The Conversation.** 
+The Conversation
+----------------
 
 
 
-I listen to
-conversations that go like
-this.
+I listen to conversations that go like this.
 
 
 
-Business:  We need to fix X
-(order entry, order value analysis,
-etc.)
+**Business**:  We need to fix X (order entry, order value analysis, etc.)
 
-
-
-IT:  Problem X is based on
+**IT**:  Problem X is based on
 software S1, S2 and S3, which are unique to each division.  Your problem, X, is
-really only part of divisions 1 and 2, so you can't impact division
-3.
+really only part of divisions 1 and 2, so you can't impact division 3.
 
 
 
-Business:  What if I we all use
-S3?
+**Business**:  What if we all use S3?
 
 
 
-IT:  It doesn't scale, we can't
+**IT**:  It doesn't scale, we can't
 support it, the licensing is complex, we don't have the hardware, our skills
-aren't current, it isn't strategic, it isn't compatible with
-R2.
+aren't current, it isn't strategic, it isn't compatible with R2.
 
 
 
@@ -380,7 +357,8 @@ software.
 
 
 
-**A Solution.** 
+A Solution
+----------
 
 
 
@@ -412,7 +390,8 @@ manageable packages.
 
 
 
-**The In-House Subsidiary.** 
+The In-House Subsidiary
+-----------------------
 
 
 
@@ -443,48 +422,42 @@ end-users.
 
 
 
-**The Advantage of Distance.** 
+The Advantage of Distance
+--------------------------
 
 
 
-We'll separate
-programmers into two groups: our developers and our operations support folks. 
-By separating the developers we do several
-things:
+We'll separate programmers into two groups: our developers and our operations support folks.
+By separating the developers we do several things:
 
 
 
 1.  We lift the developers out
-of the grey goo of the **Maximum Entropy**  phase, and give them a way to effect
-change.  Rather than micro-managing hellishly complex tangles of requirements,
-we let them cut the Gordian knot by proposing a solution which they can build
-and maintain.  We assign operation support programmers to migrate the data to
-this solution, handling any integration and operation.  We keep a firm hand on
-the tiller to prevent the operations folks from creating complex applications
-under the rubric of creating an
-interface.
+    of the grey goo of the **Maximum Entropy**  phase, and give them a way to effect
+    change.  Rather than micro-managing hellishly complex tangles of requirements,
+    we let them cut the Gordian knot by proposing a solution which they can build
+    and maintain.  We assign operation support programmers to migrate the data to
+    this solution, handling any integration and operation.  We keep a firm hand on
+    the tiller to prevent the operations folks from creating complex applications
+    under the rubric of creating an
+    interface.
 
 
 
-2.  We end the
-second-guessing of the
-**Conciliation** 
-phase.  The programmers own the solution; they create it, they maintain it. 
-Most importantly, they are able to extend it.  Projects aren't cut off at 10
-months because managers are bored.  Projects become products, which can have a
-long, productive life.
+2.  We end the second-guessing of the **Conciliation**
+    phase.  The programmers own the solution; they create it, they maintain it.
+    Most importantly, they are able to extend it.  Projects aren't cut off at 10
+    months because managers are bored.  Projects become products, which can have a
+    long, productive life.
 
 
 
-3.  We prevent
-the pitfalls of
-**Hubris** . 
-The software developers have to create a product which solves a business
-problem.  They are, like any vendor, responsible for competing against similar
-products, and positioning their solution.  They have to provide pithy,
-intelligible summaries.  They can't hide inside IT as just another cost of doing
-business.
-
+3.  We prevent the pitfalls of **Hubris** phase.
+    The software developers have to create a product which solves a business
+    problem.  They are, like any vendor, responsible for competing against similar
+    products, and positioning their solution.  They have to provide pithy,
+    intelligible summaries.  They can't hide inside IT as just another cost of doing
+    business.
 
 
 They can't (initially)
@@ -495,8 +468,6 @@ will keep a development organization running.  Each individual product fee would
 be competitive on the open market.
 
 
-
-
 Since the programmers are --
 technically -- outside the main IT organization, they turn over source for IT to
 compile, build and install.  In this respect, they are now competing against
@@ -505,7 +476,8 @@ very, very high.
 
 
 
-**Next Steps.** 
+Next Steps
+----------
 
 
 

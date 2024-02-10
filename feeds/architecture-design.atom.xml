@@ -8642,7 +8642,8 @@ focused on quantitative errors, where an answer is demonstrably wrong.  In &lt;a
 qualitative errors, but the discussion is limited to &amp;quot;jamming&amp;quot; constants into a
 formula and duplicating values around the
 model.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Good Design.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="good-design"&gt;
+&lt;h2&gt;Good Design&lt;/h2&gt;
 &lt;p&gt;Spreadsheet design is
 essentially the same as other software design.  There are pretty
 well-established patterns, and a spreadsheet that follows well-established
@@ -8661,7 +8662,9 @@ document is useful for a final report.  A spreadsheet that looks like an input
 panel is useful for the input side of the document.  Mixing the inputs and the
 final report, while possible, isn't always the best
 strategy.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Spreadsheet as Document.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="spreadsheet-as-document"&gt;
+&lt;h2&gt;Spreadsheet as Document&lt;/h2&gt;
 &lt;p&gt;When we look at a &lt;a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html"&gt;spreadsheet as syntax&lt;/a&gt;  of a document for
 capturing input from people, then we have to pay close attention to
 user-interface design patterns.  In particular, most GUI's insist on labels
@@ -8669,43 +8672,39 @@ preceding input fields.  While this is largely taken for granted, anyone who has
 worked with a GUI builder knows that you have labels and input controls in an
 obvious juxtaposition.  Usually labels are to the left of controls, but
 sometimes they are above.&lt;/p&gt;
-&lt;p&gt;In
-spreadsheets, we see the strange and poorly-thought-out documents.  I think that
+&lt;p&gt;In spreadsheets, we see the strange and poorly-thought-out documents.  I think that
 a substantial number of &amp;quot;qualitative&amp;quot; errors can be stemmed with a few design
 guidelines.  Here's an example that could be used to train users in a better way
 to use spreadsheets.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Sheet 1 - Instructions&lt;/li&gt;
 &lt;li&gt;Sheet 2 - Assumptions and Constants&lt;/li&gt;
-&lt;li&gt;Sheet 3 to &lt;em&gt;n&lt;/em&gt;  -
-Inputs.  These sheets look like forms with labels and fields.  Some calculations
+&lt;li&gt;Sheet 3 to &lt;em&gt;n&lt;/em&gt; - Inputs.  These sheets look like forms with labels and fields.  Some calculations
 are possible, as an aid to data entry, but the final answer isn't
 here.&lt;/li&gt;
 &lt;li&gt;Sheet &lt;em&gt;n&lt;/em&gt; +1 to the end - Reports.  These sheets look like final documents.  The calculations
 depend on Assumptions and Inputs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;We
-can, with a little XML and Python, validate the overall design pattern.  We can
+&lt;p&gt;We can, with a little XML and Python, validate the overall design pattern.  We can
 locate constants in formulas, and improper references among
 spreadsheets.&lt;/p&gt;
-&lt;p&gt;Further, we can parse
-sheets 3 to
-&lt;em&gt;n&lt;/em&gt;  to
+&lt;p&gt;Further, we can parse sheets 3 to &lt;em&gt;n&lt;/em&gt;  to
 extract the meaningful user inputs and put them into a more sophisticated,
 controlled, persistent and widely-shared
 repository.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Hidden Model™&lt;/strong&gt; .&lt;/p&gt;
-&lt;p&gt;In
-a few cases, a spreadsheet has outputs that come from the inputs via a tangle of
+&lt;/div&gt;
+&lt;div class="section" id="the-hidden-model"&gt;
+&lt;h2&gt;The Hidden Model™&lt;/h2&gt;
+&lt;p&gt;In a few cases, a spreadsheet has outputs that come from the inputs via a tangle of
 intermediate results.  Often that tangle is a business model that started out as
 one tidy report and then expanded out of control (usually via copy and paste)
 into a number of related reports.&lt;/p&gt;
-&lt;p&gt;Good
-software design (i.e., the MVC pattern) tells us that we have two views of the
+&lt;p&gt;Good software design (i.e., the MVC pattern) tells us that we have two views of the
 underlying model.  We have the input parameters, we have a number of related
 reports.  Between the two, we have the model itself, often a pretty simple set
 of calculations.   The control is implicit in the way spreadsheets work; we just
 build the model and the views.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="spreadsheet"></category></entry><entry><title>Spreadsheet as Syntax</title><link href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html" rel="alternate"></link><published>2007-01-25T16:11:00-05:00</published><updated>2007-01-25T16:11:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-01-25:/2007_01_25-spreadsheet_as_syntax.html</id><summary type="html">&lt;p&gt;If we look at a spreadsheet as a document we can
 develop a parser that locates the user-supplied information in that document.
 Like any language, we'll have to treat some elements of the spreadsheet as pure

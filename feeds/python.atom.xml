@@ -1,5 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-12-19T08:01:00-05:00</updated><entry><title>More Reasons to Stop Bash-ing</title><link href="https://slott56.github.io/2023_12_19-more_reasons_to_stop_bashing.html" rel="alternate"></link><published>2023-12-19T08:01:00-05:00</published><updated>2023-12-19T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-19:/2023_12_19-more_reasons_to_stop_bashing.html</id><summary type="html">&lt;p&gt;There are many good reasons to use shell scripts.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-02-09T08:01:00-05:00</updated><entry><title>Functional Python and Lambdas</title><link href="https://slott56.github.io/2024-02-09-functional_python_and_lambdas.html" rel="alternate"></link><published>2024-02-09T08:01:00-05:00</published><updated>2024-02-09T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-02-09:/2024-02-09-functional_python_and_lambdas.html</id><summary type="html">&lt;p&gt;I saw a confusing post on &lt;a class="reference external" href="https://fosstodon.org"&gt;https://fosstodon.org&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I won't link to it, but I will quote it because it repeats some common misconceptions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+I have some iterator chain (in reality longer and more complex than this example).
+And now in one or more steps, I need to add …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;I saw a confusing post on &lt;a class="reference external" href="https://fosstodon.org"&gt;https://fosstodon.org&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I won't link to it, but I will quote it because it repeats some common misconceptions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+I have some iterator chain (in reality longer and more complex than this example).
+And now in one or more steps, I need to add an extra operator.
+Going from `foo.map(thing).filter(condition).reduce(collector)` to
+
+foo.map({
+  thing
+  if condition {
+      other_thing
+  }
+).reduce({
+  setup
+  collector
+  logger
+})
+
+The design of Python's iterators make this very hard.
+
+Because a lambda cannot easily contain multiple lines, conditions or statements.
+&lt;/pre&gt;
+&lt;p&gt;There are two unrelated misconceptions here. One's an minor error, the other is a nuanced design choice.
+We'll look at the minor error first, since it's a common misconception about Python lambdas.&lt;/p&gt;
+&lt;p&gt;And. I cover these in &lt;a class="reference external" href="https://www.amazon.com/Functional-Python-Programming-functional-expressive/dp/1803232579"&gt;Functional Python Programming&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="lambda-and-lines-of-code"&gt;
+&lt;h2&gt;Lambda and Lines of Code&lt;/h2&gt;
+&lt;p&gt;A Python lambda has a single &lt;strong&gt;expression&lt;/strong&gt;. This precludes any statements.&lt;/p&gt;
+&lt;p&gt;An expression must be complete on a single &lt;strong&gt;logical line&lt;/strong&gt; of code.
+Because of the way &lt;tt class="docutils literal"&gt;(&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;)&lt;/tt&gt; must balance, it can span multiple &lt;strong&gt;physical lines&lt;/strong&gt; of code.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+a = list(
+    map(
+        lambda x: (
+            (
+                3 * x + 1
+            )
+            if
+            (
+                x % 2 == 1
+            )
+            else
+            (
+                x // 2
+            )
+        ),
+        range(10)
+    )
+)
+&lt;/pre&gt;
+&lt;p&gt;A lambda can be quite long. Use &lt;tt class="docutils literal"&gt;(&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;)&lt;/tt&gt; to enclose it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="design-choices"&gt;
+&lt;h2&gt;Design Choices&lt;/h2&gt;
+&lt;p&gt;The Ruby &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;foo.map(m).filter(f).reduce(r)&lt;/span&gt;&lt;/tt&gt; has two renderings in Python.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Nested functions. This is bad, but we'll look at it.&lt;/li&gt;
+&lt;li&gt;Chains of generator expressions. I call them stacks. This is good.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let's take a concrete example, one that we can unit test.
+We'll look at it first as nested functions to see how bad it can be.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="nested-functions"&gt;
+&lt;h2&gt;Nested Functions&lt;/h2&gt;
+&lt;p&gt;Here's are two functions to generate some complicated data.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+hotpo = (
+    lambda x:
+        (x * 3 + 1) if (x % 2 == 1)
+        else (x // 2)
+)
+hotpo_run = (
+    lambda x, r:
+        r + [x] if x == 1
+        else hotpo_run(hotpo(x), r + [x])
+)
+&lt;/pre&gt;
+&lt;p&gt;These are two functions that we've defined as lambdas for no particularly good reason.&lt;/p&gt;
+&lt;p&gt;Let's use a mapping to compute a range of values.
+This is a bit like &lt;tt class="docutils literal"&gt;range(1, &lt;span class="pre"&gt;11).map(lambda...)&lt;/span&gt;&lt;/tt&gt; in Ruby.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+list(
+    map(
+        lambda n: hotpo_run(n, []),
+        range(1, 11)
+    )
+)
+&lt;/pre&gt;
+&lt;p&gt;We don't want the lists. We want the lengths of the lists.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+list(
+    map(len,
+        map(
+            lambda n: hotpo_run(n, []),
+            range(1, 11)
+        )
+    )
+)
+&lt;/pre&gt;
+&lt;p&gt;Not that it matters much, but let's add a filter.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+list(
+    filter(
+        lambda x: x &amp;gt; 0,
+        map(len,
+            map(
+                lambda n: hotpo_run(n, []),
+                range(1, 11)
+            )
+        )
+    )
+)
+&lt;/pre&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;BTW, the answer is &lt;tt class="docutils literal"&gt;[1, 2, 8, 3, 6, 9, 17, 4, 20, 7]&lt;/tt&gt;.&lt;/p&gt;
+&lt;p class="last"&gt;Without a cache of some kind. It takes quite a while to compute more than a few results.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Let's reduce this to find the largest value.&lt;/p&gt;
+&lt;p&gt;Clearly &lt;tt class="docutils literal"&gt;max()&lt;/tt&gt; will work, but, for the sake of matching the Ruby,
+let's build &lt;tt class="docutils literal"&gt;max()&lt;/tt&gt; as a &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from functools import reduce
+reduce(
+    lambda a, b: a if a &amp;gt; b else b,
+    filter(
+        lambda x: x &amp;gt; 0,
+        map(len,
+            map(
+                lambda n: hotpo_run(n, []),
+                range(1, 11)
+            )
+        )
+    )
+)
+&lt;/pre&gt;
+&lt;p&gt;The answer is 20. What's important is the function-application version of the Ruby.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Folks don't like reading the Python right-to-left.
+When you spread it into multiple lines it has to be read from bottom-to-top.
+Or maybe from inside to outside.
+This nested function version is not widely used.&lt;/p&gt;
+&lt;p&gt;We can do better with a stack of generator expressions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stacked-generators"&gt;
+&lt;h2&gt;Stacked Generators&lt;/h2&gt;
+&lt;p&gt;We'll start with the original two lambdas, &lt;tt class="docutils literal"&gt;hotpo()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;hotpo_run()&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+runs = map(
+        lambda n: hotpo_run(n, []),
+        range(1, 11)
+    )
+lengths = map(len, runs)
+positive = filter(lambda x: x &amp;gt; 0, lengths)
+maximum = reduce(
+    lambda a, b: a if a &amp;gt; b else b,
+    positive
+)
+&lt;/pre&gt;
+&lt;p&gt;This reads from start to finish in an understandable fashion.&lt;/p&gt;
+&lt;p&gt;We can easily add steps in the middle of this.&lt;/p&gt;
+&lt;p&gt;The downside of adding steps is the intermediate results have names.&lt;/p&gt;
+&lt;p&gt;When we want to insert a step, we have to &lt;strong&gt;also&lt;/strong&gt; modify the step after to
+use the new intermediate results.&lt;/p&gt;
+&lt;p&gt;The upside is the intermediate results have names. These describe
+what's going on. I really like this approach.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hey-wait"&gt;
+&lt;h2&gt;Hey, Wait&lt;/h2&gt;
+&lt;p&gt;Yes, this is related to the Collatz Conjecture.
+See &lt;a class="reference external" href="https://projecteuler.net/problem=14"&gt;https://projecteuler.net/problem=14&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The definition of the &lt;tt class="docutils literal"&gt;hotpo_run()&lt;/tt&gt; function isn't conducive to creating a cache.
+We can rewrite it, easily, into a function that builds a list from a single argument value.
+This works better with a cache.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from functools import cache
+hotpo_run = cache(
+    lambda x: [1] if x == 1 else [x] + hotpo_run(hotpo(x))
+)
+&lt;/pre&gt;
+&lt;p&gt;This necessitates a change to the pipeline to deal with the slightly different parameter
+signature for the &lt;tt class="docutils literal"&gt;hotpo_run()&lt;/tt&gt; function.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+runs = map(
+        hotpo_run,
+        range(1, 11)
+    )
+&lt;/pre&gt;
+&lt;p&gt;The rest is the same. Second verse same as the first verse.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+lengths = map(len, runs)
+positive = filter(lambda x: x &amp;gt; 0, lengths)
+maximum = reduce(
+    lambda a, b: a if a &amp;gt; b else b,
+    positive
+)
+&lt;/pre&gt;
+&lt;p&gt;This computes almost instantly.&lt;/p&gt;
+&lt;p&gt;What's important is the sequence of &lt;tt class="docutils literal"&gt;map()&lt;/tt&gt;-&lt;tt class="docutils literal"&gt;filter()&lt;/tt&gt;-&lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; functional operations
+is better expressed as a sequence of generator expression statements.
+I like to call it the &amp;quot;Stack of Generators&amp;quot; design pattern.
+It has much of the expressive power of Ruby, with all of the flexibility we desire.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;And yes, that's still not a solution to Euler 14.&lt;/p&gt;
+&lt;p&gt;Euler 14 wants this: &amp;quot;Which starting number, under one million, produces the longest chain?&amp;quot;.&lt;/p&gt;
+&lt;p&gt;We need to change the result of the &lt;tt class="docutils literal"&gt;runs&lt;/tt&gt; generator to be a (run, starting value) two-tuple.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+runs = ((hotpo_run(n), n) for n in range(1, 11))
+&lt;/pre&gt;
+&lt;p&gt;Or&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+runs = map(lambda n: (hotpo_run(n), n), range(1, 11))
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;lengths&lt;/tt&gt; generator needs to be modified to be &lt;tt class="docutils literal"&gt;lambda r_s: &lt;span class="pre"&gt;(len(r_s[0]),&lt;/span&gt; r_s[1])&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Drop the &lt;tt class="docutils literal"&gt;filter()&lt;/tt&gt;. It's only here to match the original conversation.&lt;/p&gt;
+&lt;p class="last"&gt;Replace the &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt; with a simpler &lt;tt class="docutils literal"&gt;max()&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="functional programming"></category><category term="functional python programming"></category></entry><entry><title>More Reasons to Stop Bash-ing</title><link href="https://slott56.github.io/2023_12_19-more_reasons_to_stop_bashing.html" rel="alternate"></link><published>2023-12-19T08:01:00-05:00</published><updated>2023-12-19T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-12-19:/2023_12_19-more_reasons_to_stop_bashing.html</id><summary type="html">&lt;p&gt;There are many good reasons to use shell scripts.
 Mostly, a script can be useful when it's an alias that launches an application.
 Beyond that, I have doubts.&lt;/p&gt;
 &lt;div class="section" id="bluf"&gt;

@@ -139,7 +139,8 @@ focused on quantitative errors, where an answer is demonstrably wrong.  In <a cl
 qualitative errors, but the discussion is limited to &quot;jamming&quot; constants into a
 formula and duplicating values around the
 model.</p>
-<p><strong>Good Design.</strong></p>
+<div class="section" id="good-design">
+<h2>Good Design</h2>
 <p>Spreadsheet design is
 essentially the same as other software design.  There are pretty
 well-established patterns, and a spreadsheet that follows well-established
@@ -158,7 +159,9 @@ document is useful for a final report.  A spreadsheet that looks like an input
 panel is useful for the input side of the document.  Mixing the inputs and the
 final report, while possible, isn't always the best
 strategy.</p>
-<p><strong>Spreadsheet as Document.</strong></p>
+</div>
+<div class="section" id="spreadsheet-as-document">
+<h2>Spreadsheet as Document</h2>
 <p>When we look at a <a class="reference external" href="https://slott56.github.io/2007_01_25-spreadsheet_as_syntax.html">spreadsheet as syntax</a>  of a document for
 capturing input from people, then we have to pay close attention to
 user-interface design patterns.  In particular, most GUI's insist on labels
@@ -166,43 +169,39 @@ preceding input fields.  While this is largely taken for granted, anyone who has
 worked with a GUI builder knows that you have labels and input controls in an
 obvious juxtaposition.  Usually labels are to the left of controls, but
 sometimes they are above.</p>
-<p>In
-spreadsheets, we see the strange and poorly-thought-out documents.  I think that
+<p>In spreadsheets, we see the strange and poorly-thought-out documents.  I think that
 a substantial number of &quot;qualitative&quot; errors can be stemmed with a few design
 guidelines.  Here's an example that could be used to train users in a better way
 to use spreadsheets.</p>
 <ul class="simple">
 <li>Sheet 1 - Instructions</li>
 <li>Sheet 2 - Assumptions and Constants</li>
-<li>Sheet 3 to <em>n</em>  -
-Inputs.  These sheets look like forms with labels and fields.  Some calculations
+<li>Sheet 3 to <em>n</em> - Inputs.  These sheets look like forms with labels and fields.  Some calculations
 are possible, as an aid to data entry, but the final answer isn't
 here.</li>
 <li>Sheet <em>n</em> +1 to the end - Reports.  These sheets look like final documents.  The calculations
 depend on Assumptions and Inputs.</li>
 </ul>
-<p>We
-can, with a little XML and Python, validate the overall design pattern.  We can
+<p>We can, with a little XML and Python, validate the overall design pattern.  We can
 locate constants in formulas, and improper references among
 spreadsheets.</p>
-<p>Further, we can parse
-sheets 3 to
-<em>n</em>  to
+<p>Further, we can parse sheets 3 to <em>n</em>  to
 extract the meaningful user inputs and put them into a more sophisticated,
 controlled, persistent and widely-shared
 repository.</p>
-<p><strong>The Hidden Model™</strong> .</p>
-<p>In
-a few cases, a spreadsheet has outputs that come from the inputs via a tangle of
+</div>
+<div class="section" id="the-hidden-model">
+<h2>The Hidden Model™</h2>
+<p>In a few cases, a spreadsheet has outputs that come from the inputs via a tangle of
 intermediate results.  Often that tangle is a business model that started out as
 one tidy report and then expanded out of control (usually via copy and paste)
 into a number of related reports.</p>
-<p>Good
-software design (i.e., the MVC pattern) tells us that we have two views of the
+<p>Good software design (i.e., the MVC pattern) tells us that we have two views of the
 underlying model.  We have the input parameters, we have a number of related
 reports.  Between the two, we have the model itself, often a pretty simple set
 of calculations.   The control is implicit in the way spreadsheets work; we just
 build the model and the views.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -281,7 +280,7 @@ build the model and the views.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (1)
+          <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (2)
           </a>
         </li>
         <li class="list-group-item">
