@@ -36,7 +36,7 @@ I'll start with the three "expressiveness" points.
 
 -   **Runtime**: Shell script interpreters are ubiquitous. True. Not a compelling argument, when we consider that bash scripts are untestable.
 
--   **Semantics**: There is a cognitive cost in converteing bash to Python. Correct. Easy to avoid by avoiding the confusing and opaque bash abstractions.
+-   **Semantics**: There is a cognitive cost in converting bash to Python. Correct. Easy to avoid by avoiding the confusing and opaque bash abstractions.
 
     -   The argument (again) starts from the notion that the bash abstraction is a standard against which other languages -- by virtue of being different -- aren't as good.
 

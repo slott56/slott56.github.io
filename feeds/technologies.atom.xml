@@ -288,7 +288,8 @@ PC's were an expensive luxury item. But the Macintosh was there to help us think
 The Fantasy Hero rules were a delight, and lead to many long, involved campaigns.&lt;/p&gt;
 &lt;p&gt;There's no overt OO programming to it (yet.) And, of course, Python has barely been invented.&lt;/p&gt;
 &lt;p&gt;But there's a down-side to the Hero Game System:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Accounting&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="accounting"&gt;
+&lt;h2&gt;Accounting&lt;/h2&gt;
 &lt;p&gt;The game requires a fairly scrupulous accounting of &amp;quot;Character Points&amp;quot;.
 Some are assigned at the outset. A hero, for example, may have a base budget of 75 points.
 Some are purchased by taking on disadvantages. For example Paranoia, or Hunted and Watched by Authorities,
@@ -303,7 +304,7 @@ are all designed properly?&lt;/p&gt;
 &lt;p&gt;Clearly, the answer is tools. Eventually, there will be OO design in here, I promise.
 We'll work through the history, though.&lt;/p&gt;
 &lt;div class="section" id="paper-and-pencil"&gt;
-&lt;h2&gt;Paper and Pencil&lt;/h2&gt;
+&lt;h3&gt;Paper and Pencil&lt;/h3&gt;
 &lt;p&gt;In the 90's, I played the game using actual paper spreadsheets. 3-column accounting pads to tally up base
 points, advantages, and limitations to compute the net points after adjustments.&lt;/p&gt;
 &lt;p&gt;After all, we're talking about table-top role-playing.
@@ -315,7 +316,7 @@ I remember the Mac+. I remember the iMac. In between the two was a slim pizza bo
 for gaming.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="software"&gt;
-&lt;h2&gt;Software&lt;/h2&gt;
+&lt;h3&gt;Software&lt;/h3&gt;
 &lt;p&gt;It didn't take too long to start using spreadsheet software. Appleworks. Then Clarisworks.&lt;/p&gt;
 &lt;p&gt;It's clunky, but the computations aren't complicated. It's just a lot of typing.&lt;/p&gt;
 &lt;p&gt;First, you have to be super-careful to type all the stuff from the rule books into the spreadsheet properly.&lt;/p&gt;
@@ -324,7 +325,7 @@ design offline, print, and use paper on game night to play.&lt;/p&gt;
 &lt;p&gt;Remember, it's a spreadsheet: it introduces as many problems as it solves.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="software-v2-hypercard"&gt;
-&lt;h2&gt;Software V2: Hypercard&lt;/h2&gt;
+&lt;h3&gt;Software V2: Hypercard&lt;/h3&gt;
 &lt;p&gt;HyperCard -- if you've never seen it -- isn't easy to understand.&lt;/p&gt;
 &lt;p&gt;With some work, I created cards for each power/skill/perk/talent/whatever.&lt;/p&gt;
 &lt;p&gt;I can use those cards to create new cards for a character with abilities, and references to powers, skills, talents, perks, whatever.&lt;/p&gt;
@@ -338,7 +339,7 @@ The pubishing involved spreadsheet formatting and some word-processing to tie it
 &lt;p&gt;But. All good things come to an end. 2004 was the end of Hypercard.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="software-v3-python-and-oop"&gt;
-&lt;h2&gt;Software V3: Python and OOP&lt;/h2&gt;
+&lt;h3&gt;Software V3: Python and OOP&lt;/h3&gt;
 &lt;p&gt;(See, I told you we'd get to OOP, eventually.)&lt;/p&gt;
 &lt;p&gt;When you consider the problem domain
 it's a classic Object-Oriented Programming problem.
@@ -380,7 +381,7 @@ This means the characters can format nicely for game night.&lt;/p&gt;
 But I could balance the books on my laptop to make sure their characters were legit.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="software-v4-python-3-and-type-hints"&gt;
-&lt;h2&gt;Software V4: Python 3 and Type Hints&lt;/h2&gt;
+&lt;h3&gt;Software V4: Python 3 and Type Hints&lt;/h3&gt;
 &lt;p&gt;So now it's 2023.&lt;/p&gt;
 &lt;p&gt;I don't play Hero games much anymore.
 In spite of not playing regularly,
@@ -393,8 +394,10 @@ I did this in the unlikely event I ever wind up playing this TTRPG again.&lt;/p&
 &lt;p&gt;Why?&lt;/p&gt;
 &lt;p&gt;Getting the type hints right revealed problems.
 There are two parts to why this took so much work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="section" id="type-hint-fundamentals"&gt;
-&lt;h3&gt;Type Hint Fundamentals&lt;/h3&gt;
+&lt;h2&gt;Type Hint Fundamentals&lt;/h2&gt;
 &lt;p&gt;One issue is in the way the various columns of a standard
 &amp;quot;Full Character Sheet&amp;quot; are formatted.
 The publication guidelines are for paper-and-pencil, hard-copy kind of adventure guides and campaing books.&lt;/p&gt;
@@ -412,7 +415,7 @@ in the first place: accounting.)&lt;/p&gt;
 &lt;p&gt;Thst's not all, though.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="use-case-issues"&gt;
-&lt;h3&gt;Use Case Issues&lt;/h3&gt;
+&lt;h2&gt;Use Case Issues&lt;/h2&gt;
 &lt;p&gt;The more fundamental issue was the conflation of &lt;tt class="docutils literal"&gt;Character | Gadget | Base | Vehicle&lt;/tt&gt;.
 This requires some care in writing type hints and doing OO design to make
 sure that any differences are essential differences in these classes of objects.&lt;/p&gt;
@@ -441,7 +444,7 @@ because there are advantages and disadvantages that are figured in.)&lt;/p&gt;
 lack a unifying abstraction or protocol. This needs to be fixed.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="oo-design-advice"&gt;
-&lt;h3&gt;OO Design Advice&lt;/h3&gt;
+&lt;h2&gt;OO Design Advice&lt;/h2&gt;
 &lt;p&gt;It's not at all clear this distinction between raw material and finished good &lt;strong&gt;needs&lt;/strong&gt; to be present.
 Superficially, it seems like everything's a &lt;tt class="docutils literal"&gt;Feature&lt;/tt&gt; and that's all we need to know.&lt;/p&gt;
 &lt;p&gt;The use cases for design based on raw materials are an unstated element of the rules.
@@ -454,10 +457,8 @@ understand the two kinds of design.&lt;/p&gt;
 &lt;p&gt;There are things that are essential, but are -- like the atmosphere -- so pervasive
 and invisble no one things to mention them.&lt;/p&gt;
 &lt;p&gt;There's more (of course.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;div class="section" id="software-v5-python-3"&gt;
-&lt;h2&gt;Software V5: Python 3&lt;/h2&gt;
+&lt;h3&gt;Software V5: Python 3&lt;/h3&gt;
 &lt;p&gt;Interactivity was part of HyperCard (and the spreadsheets that preceeded it.)&lt;/p&gt;
 &lt;p&gt;The Python 2 and Python 3 definitions of a Character was something
 I implemented as a simple script.
@@ -475,7 +476,7 @@ I can run the notebook to validate the budgets for all the various bad guys in t
 &lt;p&gt;I can write the supplemental stuff as Markdown. Right there. In the notebook.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="software-v6-adventure-books"&gt;
-&lt;h2&gt;Software V6: Adventure Books&lt;/h2&gt;
+&lt;h3&gt;Software V6: Adventure Books&lt;/h3&gt;
 &lt;p&gt;There's a very small, dedicated markeplace for Hero content.&lt;/p&gt;
 &lt;p&gt;(See &lt;a class="reference external" href="https://www.herogames.com"&gt;https://www.herogames.com&lt;/a&gt;, &lt;a class="reference external" href="https://www.patreon.com/hero_games"&gt;https://www.patreon.com/hero_games&lt;/a&gt;, and &lt;a class="reference external" href="https://roll20.net/compendium/HERO/BookIndex#content"&gt;https://roll20.net/compendium/HERO/BookIndex#content&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;While I'll never be a proper game author,
@@ -486,6 +487,7 @@ get a few bucks for an Adventurer's Club submission.&lt;/p&gt;
 to Python/Sphinx projects.
 While it might be fun to imagine publishing them to HeroGames or Roll20, they're based 4th ed out-of-date rules.
 So. It's a hobby project that pleases only me.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="patterns"></category><category term="python"></category><category term="games"></category></entry><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
 &lt;p&gt;This is tricky because -- well -- so many patterns appear and re-appear in software.
@@ -20625,10 +20627,9 @@ document-oriented database is not a good fit&amp;quot;&lt;/p&gt;
 of a long-running transaction that appeared to be mis-designed. I
 suggested that an improved design might be less complex and expensive
 than rewriting the API's and moving the data.&lt;/p&gt;
-&lt;div class="section" id="desire-to-utilize-relational-db"&gt;
-&lt;h2&gt;Desire to Utilize [Relational DB]&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;More Support Available for [Relational DB]&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Clearly, these last two are the real reasons. Everything above looks
+&lt;p&gt;&lt;strong&gt;Desire to Utilize [Relational DB]&lt;/strong&gt; and
+&lt;strong&gt;More Support Available for [Relational DB]&lt;/strong&gt;.
+Clearly, these last two are the real reasons. Everything above looks
 like post-hoc justification for the real issue.&lt;/p&gt;
 &lt;blockquote&gt;
 We're not sure we like Mongo.&lt;/blockquote&gt;
@@ -20638,7 +20639,6 @@ rationalization that can't be disputed.  The best I could do was to
 challenge the errors in the first three reasons so that everyone
 could be honest about the change. It's not technical. It's
 organizational.&lt;/p&gt;
-&lt;/div&gt;
 </content><category term="Technologies"></category><category term="mongodb"></category><category term="SQL"></category><category term="noSQL"></category></entry><entry><title>The GUI Problem</title><link href="https://slott56.github.io/2016_04_05-the_gui_problem.html" rel="alternate"></link><published>2016-04-05T08:00:00-04:00</published><updated>2016-04-05T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2016-04-05:/2016_04_05-the_gui_problem.html</id><summary type="html">&lt;p&gt;I write Microservices. And not-so-micro Services. API's.&lt;/p&gt;
 &lt;p&gt;I got this email recently.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -24856,8 +24856,8 @@ of Python Functions&lt;/a&gt;. We can use
 all three terms to describe a function. Two of them are relevant to
 common design questions in software. The third is a higher-order
 architectural consideration, and not really part of writing a function
-definition in Python.
-&lt;strong&gt;Idempotent&lt;/strong&gt; -- narrowly defined --  means that &lt;em&gt;f&lt;/em&gt;(&lt;em&gt;f&lt;/em&gt;(&lt;em&gt;x&lt;/em&gt;)) =
+definition in Python.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Idempotent&lt;/strong&gt; -- narrowly defined --  means that &lt;em&gt;f&lt;/em&gt;(&lt;em&gt;f&lt;/em&gt;(&lt;em&gt;x&lt;/em&gt;)) =
 &lt;em&gt;f&lt;/em&gt;(&lt;em&gt;x&lt;/em&gt;). In computer science, the meaning is stretched so that we can
 distinguish functions like random number generators from other
 functions. A random number generator (Python's random.random(), for
@@ -24865,68 +24865,68 @@ example) is &lt;strong&gt;not&lt;/strong&gt; idempotent. It returns a different 
 it's called. Many other functions are idempotent because they always
 return the same result given the same arguments. The functions in
 Python's os module are &lt;strong&gt;not&lt;/strong&gt; idempotent. The results change based on
-external events.
-&lt;strong&gt;Hysteresis&lt;/strong&gt; is memory of previous events. A random number generator
+external events.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hysteresis&lt;/strong&gt; is memory of previous events. A random number generator
 may have some hidden hysteresis so that it can return the next value in
 it's random sequence. Note that os.random() is explicitly based on
 /dev/random; it involves hysteresis where entropy is accumulated. A
 function that has an internal memoization cache has hysteresis; it will
 compute subsequent results more quickly after having memorized previous
-results.
-Most functions are simply idempotent and don't generally involve any
+results.&lt;/p&gt;
+&lt;p&gt;Most functions are simply idempotent and don't generally involve any
 hysteresis. The result value is a  &lt;strong&gt;fixed&lt;/strong&gt; mapping from the argument
-values.
-A memoization cache preserves idempotence while adding hysteresis. The
+values.&lt;/p&gt;
+&lt;p&gt;A memoization cache preserves idempotence while adding hysteresis. The
 functools.lru_cache decorator, for example, adds hysteresis to an
 otherwise idempotent function. The result value still reflects a fixed
-mapping.
-A random number generator cannot have idempotence; it will leverage
+mapping.&lt;/p&gt;
+&lt;p&gt;A random number generator cannot have idempotence; it will leverage
 hysteresis. We should think of a random number generator as an iterator
 through a sequence of numbers. Given a seed, the sequence is entirely
 fixed. Between any two numbers, it's very difficult to predict one from
-the other without also knowing the hidden seed value.
-&lt;strong&gt;Unrelated Concept&lt;/strong&gt;
-**
-&lt;strong&gt;We use idempotence and hysteresis to describe programming language
-features. These features are entirely **deterministic&lt;/strong&gt;.  There's no
+the other without also knowing the hidden seed value.&lt;/p&gt;
+&lt;div class="section" id="unrelated-concept"&gt;
+&lt;h2&gt;Unrelated Concept&lt;/h2&gt;
+&lt;p&gt;We use idempotence and hysteresis to describe programming language
+features. These features are entirely &lt;strong&gt;deterministic&lt;/strong&gt;.  There's no
 room for arbitrary, undefined, unpredictable behavior. Any
 non-determinism needs to be very tightly boxed in by otherwise
-deterministic programming constructs.
-When writing a Python function, we assume that the language is
+deterministic programming constructs.&lt;/p&gt;
+&lt;p&gt;When writing a Python function, we assume that the language is
 deterministic. Without this assumption, it's hard to conceive of what
 the language would be like. What if statements were executed out of the
-order we wrote them?
-External events -- interrupts and the like -- are &lt;strong&gt;non-deterministic&lt;/strong&gt;.
+order we wrote them?&lt;/p&gt;
+&lt;p&gt;External events -- interrupts and the like -- are &lt;strong&gt;non-deterministic&lt;/strong&gt;.
 They can happen at any time, with no relationship to what's going on
 inside the software world. Inside the software world, however, we expect
 that everything is deterministic. This means that a server must always
 cope with non-deterministic request ordering. Once request processing
 starts, however, we generally rely on essential non-deterministic
-software to process the results perfectly consistently.
-An important example of &lt;strong&gt;bounded non-determinism&lt;/strong&gt; is in Dijksta's
+software to process the results perfectly consistently.&lt;/p&gt;
+&lt;p&gt;An important example of &lt;strong&gt;bounded non-determinism&lt;/strong&gt; is in Dijksta's
 hypothetical programming language described in &lt;a class="reference external" href="http://www.amazon.com/Discipline-Programming-Edsger-W-Dijkstra/dp/013215871X"&gt;A Discipline of
 Programming&lt;/a&gt;.
 Here there is explicit non-determinism among the &amp;quot;elif&amp;quot; and &amp;quot;eldo&amp;quot;
 clauses. The selection among true alternatives was specifically
 non-deterministic. Indeed, an evil demon would always strive to select
 the worst possible choice. There was no &amp;quot;first one that's true&amp;quot; kind of
-silliness that would allow certain kind of logic errors to survive.
-A multiprocessing application leverages the OS to keep all processes
+silliness that would allow certain kind of logic errors to survive.&lt;/p&gt;
+&lt;p&gt;A multiprocessing application leverages the OS to keep all processes
 separate. Each process can then operate deterministically. Any
 non-determistic OS events are concealed from the process by the normal
-OS libraries that generally queue up events into buffers.
-A multithreaded application, however, has to use some kind of explicit
+OS libraries that generally queue up events into buffers.&lt;/p&gt;
+&lt;p&gt;A multithreaded application, however, has to use some kind of explicit
 synchronization to handle the inherent non-determinism of thread
 scheduling. Thread libraries make no guarantees about the exact sequence
 of operations between threads; the execution is non-deterministic
-between threads.
-For real fun, read about the non-deterministic memory write orders. The
+between threads.&lt;/p&gt;
+&lt;p&gt;For real fun, read about the non-deterministic memory write orders. The
 &lt;a class="reference external" href="https://software.intel.com/sites/products/documentation/doclib/iss/2013/inspector/lin/ug_docs/GUID-7202FDEF-0268-4966-A163-E9A08F734754.htm"&gt;Data
 Race&lt;/a&gt;
 article from Intel is illuminating. Google &amp;quot;non-deterministic memory
 write order&amp;quot; for interesting reading on how processors have gotten --
-perhaps -- too complex to be completely trustworthy.
-This is different, also, from &amp;quot;arbitrary.&amp;quot; A word that describes how the
+perhaps -- too complex to be completely trustworthy.&lt;/p&gt;
+&lt;p&gt;This is different, also, from &amp;quot;arbitrary.&amp;quot; A word that describes how the
 C language deals with constructs like a[i]= i++;. There are two
 unrelated state changes that happen in this statement. The order of
 those two things is best described as &amp;quot;arbitrary.&amp;quot; It's
@@ -24934,9 +24934,10 @@ those two things is best described as &amp;quot;arbitrary.&amp;quot; It's
 on the compiler and optimization settings, it will be entirely fixed. A
 function that uses these constructs could be &lt;strong&gt;idempotent&lt;/strong&gt;. However,
 the outcome can vary from compiler to compiler and optimization setting
-to optimization setting. This kind of thing is devoutly to be avoided.
-It's presence is a less-than-ideal language design choice; writing
+to optimization setting. This kind of thing is devoutly to be avoided.&lt;/p&gt;
+&lt;p&gt;It's presence is a less-than-ideal language design choice; writing
 software around a bad language feature is simply inexcusable.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="algorithm"></category><category term="#python"></category><category term="architecture"></category></entry><entry><title>Bottle vs. Flask vs. Django vs. a dozen others</title><link href="https://slott56.github.io/2015_01_29-bottle_vs_flask_vs_django_vs_a_dozen_others.html" rel="alternate"></link><published>2015-01-29T08:00:00-05:00</published><updated>2015-01-29T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2015-01-29:/2015_01_29-bottle_vs_flask_vs_django_vs_a_dozen_others.html</id><summary type="html">&lt;p&gt;There are times when a &amp;quot;micro framework&amp;quot; is actually useful. I wasn't
 easily convinced that this could be true. Big framework or die trying.
 Right?
@@ -25818,102 +25819,106 @@ When writing API's, it sometimes helps to have a small demo web site to
 show the API in a context that's easy to visualize. API's are sometimes
 abstract, and without an application to provide some context, it can be
 unclear why the path looks like that or why the JSON document has those
-fields.
-I want to emphasize the &amp;quot;small&amp;quot; part of the small demo. A small page or
+fields.&lt;/p&gt;
+&lt;p&gt;I want to emphasize the &amp;quot;small&amp;quot; part of the small demo. A small page or
 two with some HTML forms and a submit button. Really small.
 The &lt;strong&gt;actual&lt;/strong&gt; customer-facing apps (mobile, mobile web, and full web
 site) are being built by lots of other people. Not us. They're big. We
 build the API's (there are a lot) that support the data structures that
-support the processing that supports the user experience.
-Building fake mobile apps is right out. We're not going to lard on
+support the processing that supports the user experience.&lt;/p&gt;
+&lt;p&gt;Building fake mobile apps is right out. We're not going to lard on
 &lt;a class="reference external" href="https://developer.android.com/sdk/index.html?hl=i"&gt;Android SDK&lt;/a&gt; or
 &lt;a class="reference external" href="https://developer.apple.com/xcode/"&gt;Xcode&lt;/a&gt; development environments
-to our already overburdened laptops. We build backend API's.
-Building a fake mobile web or full web site is appealing. What makes it
+to our already overburdened laptops. We build backend API's.&lt;/p&gt;
+&lt;p&gt;Building a fake mobile web or full web site is appealing. What makes it
 complex is the UX folks are building everything in
 &lt;a class="reference external" href="https://angularjs.org/"&gt;Angular.js&lt;/a&gt;. If we want to properly
 implement a form, we would have to master Angular just to do a demo for
-the product owner.
-No thanks. Still too far afield for API developers. We're focused on
+the product owner.&lt;/p&gt;
+&lt;p&gt;No thanks. Still too far afield for API developers. We're focused on
 mongo and JSON and performance and scalability. Not Angular.js and the
-UX.
-What we want to do is build a small web server which runs just a few
+UX.&lt;/p&gt;
+&lt;p&gt;What we want to do is build a small web server which runs just a few
 pages plucked out of the UX demo code so that we can show how
 interactions with a web page put stuff in a database. And vice-versa:
-stuff in the database will show up on a web page.
-&amp;quot;Really?&amp;quot; we get asked. Some folks look askance at us for wanting to put
-a small demo site together.
-&amp;quot;Yes,&amp;quot; we answer. &amp;quot;Our product owner has a big vision and we're breaking
+stuff in the database will show up on a web page.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Really?&amp;quot; we get asked. Some folks look askance at us for wanting to put
+a small demo site together.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Yes,&amp;quot; we answer. &amp;quot;Our product owner has a big vision and we're breaking
 that into a bunch of little API's. It's not perfectly clear how we're
-building up to that vision.&amp;quot;
-It's not &lt;strong&gt;perfectly&lt;/strong&gt; clear how some of this work. Folks outside the
+building up to that vision.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It's not &lt;strong&gt;perfectly&lt;/strong&gt; clear how some of this work. Folks outside the
 scrum team have distracting questions. We want to have a page or two
 where we can fill in a form and click submit and stuff happens. This is
 far easier to explain than showing
 them &lt;a class="reference external" href="http://www.getpostman.com/"&gt;Postman&lt;/a&gt; or &lt;a class="reference external" href="http://www.soapui.org/"&gt;SoapUI&lt;/a&gt; and
-&lt;strong&gt;claiming&lt;/strong&gt; that this will support some user stories.
-And as we grow toward the epic, the workflow aspects of this will grow.
+&lt;strong&gt;claiming&lt;/strong&gt; that this will support some user stories.&lt;/p&gt;
+&lt;p&gt;And as we grow toward the epic, the workflow aspects of this will grow.
 The stuff that admin &amp;quot;A&amp;quot; does after user &amp;quot;U&amp;quot; has made an initial
 request. Or the stuff that internal user &amp;quot;I&amp;quot; does after external user
-&amp;quot;X&amp;quot; has done something. But really, it's just a few small web pages.
-Small.
-Imagine the demo. On laptop #1, we'll show user &amp;quot;X&amp;quot;. On laptop #2, we're
+&amp;quot;X&amp;quot; has done something. But really, it's just a few small web pages.&lt;/p&gt;
+&lt;p&gt;Small.&lt;/p&gt;
+&lt;p&gt;Imagine the demo. On laptop #1, we'll show user &amp;quot;X&amp;quot;. On laptop #2, we're
 running a Mongo shell to query what's in the db. On laptop #3 we're
 showing user &amp;quot;I&amp;quot;. The focus is really the API's. And how the API's add
-up to an epic collection of stories.
-&lt;strong&gt;Serving some HTML pages&lt;/strong&gt;
-Just to make it painful, we can't simply grab the demo web pages out of
+up to an epic collection of stories.&lt;/p&gt;
+&lt;div class="section" id="serving-some-html-pages"&gt;
+&lt;h2&gt;Serving some HTML pages&lt;/h2&gt;
+&lt;p&gt;Just to make it painful, we can't simply grab the demo web pages out of
 the UX team's SVN repository. Why not? First, it's an Angular app. We
 can't just grab some HTML and go. The demo pages are served via
 &lt;a class="reference external" href="http://nodejs.org/"&gt;node.js&lt;/a&gt; with &lt;a class="reference external" href="http://bower.io/"&gt;Bower&lt;/a&gt;, so
-it's not even clear (to us) what the &lt;strong&gt;complete&lt;/strong&gt; deployment looks like.
-So. We cheated. We took a screen shot. We trimmed the edges of the page
+it's not even clear (to us) what the &lt;strong&gt;complete&lt;/strong&gt; deployment looks like.&lt;/p&gt;
+&lt;p&gt;So. We cheated. We took a screen shot. We trimmed the edges of the page
 as .PNG files. We wrote our own form and cobbled in enough CSS to make
 it look close. We're not here to fake out the UX. We just want to enter
 some data and have it tickle our API. (Indeed, we have a &amp;quot;Not The Real
-Experience&amp;quot; on some pages.)
-Initially, some of the team members tried serving these small pages with
+Experience&amp;quot; on some pages.)&lt;/p&gt;
+&lt;p&gt;Initially, some of the team members tried serving these small pages with
 &lt;a class="reference external" href="http://www.oracle.com/technetwork/middleware/weblogic/overview/index.html"&gt;WebLogic&lt;/a&gt;.
 Then &lt;a class="reference external" href="http://www.eclipse.org/jetty/"&gt;Jetty&lt;/a&gt;. It's not bad. But it's
 Java. It takes forever to build and deploy something after a trivial
 change. There are a lot of moving parts even with Jetty, and not all of
-them are obvious.
-Since we're building &amp;quot;enterprise&amp;quot; API's, we're deeply enmeshed with
+them are obvious.&lt;/p&gt;
+&lt;p&gt;Since we're building &amp;quot;enterprise&amp;quot; API's, we're deeply enmeshed with
 every feature of the &lt;a class="reference external" href="http://projects.spring.io/spring-framework/"&gt;Spring
 Framework&lt;/a&gt;. Our
-STS/Eclipse environments are fat with add-ons and features.
-While the Spring Framework ideal is to allow a developer to focus on
+STS/Eclipse environments are fat with add-ons and features.&lt;/p&gt;
+&lt;p&gt;While the Spring Framework ideal is to allow a developer to focus on
 relevant details and have the irrelevant details handled automagically,
 the magic almost gets in the way. These are small applications that are
-little more than a few static pages with forms and a submit button.
-Spring can do it, of course. But we're often testing our the actual
+little more than a few static pages with forms and a submit button.&lt;/p&gt;
+&lt;p&gt;Spring can do it, of course. But we're often testing our the actual
 API's in a Jetty server (or two). If the demo site requires yet another
 instance of Jetty with yet another configuration, our ability to cope
-diminishes.
-How can we get back to small?
-&lt;strong&gt;Python and Bottle&lt;/strong&gt;
-Python has several web servers built-in. We can use
+diminishes.&lt;/p&gt;
+&lt;p&gt;How can we get back to small?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-and-bottle"&gt;
+&lt;h2&gt;Python and Bottle&lt;/h2&gt;
+&lt;p&gt;Python has several web servers built-in. We can use
 &lt;a class="reference external" href="https://docs.python.org/3/library/http.server.html"&gt;http.server&lt;/a&gt;. We
 can use &lt;a class="reference external" href="https://docs.python.org/3/library/wsgiref.html"&gt;wsgiref&lt;/a&gt;.
-Both of these are almost OK for what we want to do.
-We can do better with two small downloads:
+Both of these are almost OK for what we want to do.&lt;/p&gt;
+&lt;p&gt;We can do better with two small downloads:
 &lt;a class="reference external" href="http://bottlepy.org/docs/dev/index.html"&gt;Bottle&lt;/a&gt; and
 &lt;a class="reference external" href="http://jinja.pocoo.org/"&gt;Jinja2&lt;/a&gt;. With these, we can build simple
 HTML pages that show some data. We can build simple servers that collect
 form data, use
 &lt;a class="reference external" href="https://docs.python.org/3/library/http.client.html"&gt;http.client&lt;/a&gt; to
 make API requests, and write copious logging details. We can write
-little bottle apps that handle just GETs and POSTs simply.
-This is suitably small.
-We can share the module with the Bottle object and the HTML mock-up
+little bottle apps that handle just GETs and POSTs simply.&lt;/p&gt;
+&lt;p&gt;This is suitably small.&lt;/p&gt;
+&lt;p&gt;We can share the module with the Bottle object and the HTML mock-up
 pages. We can fire up the app in an instant on anyone's laptop, no
 matter what else they're running. We can tweak the server to adjust the
-logging or the API request or the form.
-We actually run the server from within Idle. Make a change and hit F5 to
+logging or the API request or the form.&lt;/p&gt;
+&lt;p&gt;We actually run the server from within Idle. Make a change and hit F5 to
 redeploy after a change. It's small. It's fast. And it doesn't involve
-the huge complexities associated with Java.
-Bottle doesn't do much. But what little it does do is a pretty tidy fit
+the huge complexities associated with Java.&lt;/p&gt;
+&lt;p&gt;Bottle doesn't do much. But what little it does do is a pretty tidy fit
 with tiny little demonstrations of super-simple HTML interactions.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="#python"></category><category term="bottle"></category><category term="jinja"></category><category term="java"></category></entry><entry><title>Scipy.optimization.anneal Problems</title><link href="https://slott56.github.io/2014_10_09-scipyoptimizationanneal_problems.html" rel="alternate"></link><published>2014-10-09T08:00:00-04:00</published><updated>2014-10-09T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2014-10-09:/2014_10_09-scipyoptimizationanneal_problems.html</id><summary type="html">&lt;div class="line-block"&gt;
 &lt;div class="line"&gt;Well, not really &amp;quot;problems&amp;quot; &lt;em&gt;per se&lt;/em&gt;. More of a strange kind of
 whining than a solvable problem.&lt;/div&gt;
@@ -27128,7 +27133,8 @@ write bad code too early. Or I was wasting time obsessing over
 performance issues.&lt;/p&gt;
 &lt;p&gt;No. I was preventing Einstellung. Avoiding Perceptual Narrowing.
 Avoiding &amp;quot;Calling a problems nails because I'm wielding the hammer.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The Relational Database as Hammer&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="the-relational-database-as-hammer"&gt;
+&lt;h2&gt;The Relational Database as Hammer&lt;/h2&gt;
 &lt;p&gt;I feel obligated to note that the relational database often becomes the
 hammer and all problems are then reduced to RDBMS/SQL nails. No matter
 what the problem is.&lt;/p&gt;
@@ -27147,6 +27153,7 @@ merely lower priority items in the queue.&lt;/p&gt;
 &lt;p&gt;Wouldn't a proper message queue have been cheaper and simpler?'
 Apparently not. Einstellung had set in. They had data. They had a
 database. What more is there?&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="design"></category><category term="object-oriented design"></category><category term="Einstellung Effect"></category></entry><entry><title>Wrestling with the Python shelve module</title><link href="https://slott56.github.io/2014_03_21-wrestling_with_the_python_shelve_module.html" rel="alternate"></link><published>2014-03-21T11:53:00-04:00</published><updated>2014-03-21T11:53:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2014-03-21:/2014_03_21-wrestling_with_the_python_shelve_module.html</id><summary type="html">&lt;p&gt;While wrestling with Python's shelve module, I ran across
 &lt;a class="reference external" href="http://acid.readthedocs.org/en/latest/"&gt;ACID&lt;/a&gt;. Interesting thoughts.
 Plus what appears to be the related Tumblr blog: &lt;a class="reference external" href="http://pythonsweetness.tumblr.com/?utm_campaign=SharedPost&amp;amp;utm_medium=Email&amp;amp;utm_source=TumblriOS"&gt;python
@@ -36140,7 +36147,8 @@ rewrite the plan to say &amp;quot;four&amp;quot; without changing the effort and
 duration.  Why ask me to change the plan?  A customer can only do
 what they &lt;strong&gt;know&lt;/strong&gt; to be the right thing.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Doing the Right Thing&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="doing-the-right-thing"&gt;
+&lt;h2&gt;Doing the Right Thing&lt;/h2&gt;
 &lt;p&gt;Let's return to that last point.  A customer project manager can only
 do what they absolutely &lt;strong&gt;know&lt;/strong&gt; is the right thing.  I can suggest
 all kinds of things.  If they're too new, too different, too
@@ -36178,7 +36186,9 @@ rework that part of the project to remove the offending component.&lt;/p&gt;
 subvert it.  Either not schedule them.  Or cancel them because there
 are &amp;quot;more important things to do.&amp;quot;  Or interrupt them to pull people
 out of them.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Overcoming the Confirmation Bias&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overcoming-the-confirmation-bias"&gt;
+&lt;h2&gt;Overcoming the Confirmation Bias&lt;/h2&gt;
 &lt;p&gt;I find the process of overcoming the confirmation bias to be tedious.
 Some people like the one-on-one &amp;quot;influencing&amp;quot; role.  It takes patience
 and time to overcome the confirmation bias so that the customer is
@@ -36188,6 +36198,7 @@ all the alternatives.&lt;/p&gt;
 &lt;p&gt;I've worked with folks who really relish this kind of thing.  Endless
 one-on-one meetings.  Lots of pre-meetings and post-meetings and
 reviews of drafts.  I suppose it's rewarding.  Sigh.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="doing-the-right-thing-is-this-a-relig"&gt;
 &lt;h2&gt;&amp;quot;Doing the Right Thing&amp;quot; Is this a relig...&lt;/h2&gt;
@@ -36251,12 +36262,14 @@ plus  &lt;strong&gt;many, many&lt;/strong&gt; others.&lt;/p&gt;
 error story.  The issue is that inheritance happens along an &amp;quot;axis&amp;quot; or
 &amp;quot;dimension&amp;quot; where the subclasses are at different points along that
 axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Data warehouse processing can involve a fair …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
+&lt;p&gt;Data warehouse processing can involve a fair …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Emphasis on the &amp;quot;More On&amp;quot; as in &amp;quot;Moron&amp;quot;.  This is a standard design
 error story.  The issue is that inheritance happens along an &amp;quot;axis&amp;quot; or
 &amp;quot;dimension&amp;quot; where the subclasses are at different points along that
 axis.  Multi-dimensional inheritance is an EPIC FAIL.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
 &lt;p&gt;Data warehouse processing can involve a fair amount of &amp;quot;big batch&amp;quot;
 programs.  Loading 40,000 rows of econometric data in a single swoop,
 updating dimensions and loading facts, for example.&lt;/p&gt;
@@ -36271,7 +36284,9 @@ current.)&lt;/li&gt;
 &lt;li&gt;Load.  Go through all the motions including a complete commit to the
 database and any filesystem changes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="problem"&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
 &lt;p&gt;What's the difference between the two modes?  Clearly, one is a
 subclass of the other.&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -36282,7 +36297,9 @@ the save method stubs with methods that do something useful.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Simple, right?&lt;/p&gt;
 &lt;p&gt;Wrong.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;What Doesn't Work&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-doesn-t-work"&gt;
+&lt;h2&gt;What Doesn't Work&lt;/h2&gt;
 &lt;p&gt;This design has a smell.  The smell is that we can't easily extend the
 overall processing to include an additional feature.&lt;/p&gt;
 &lt;p&gt;Why not?&lt;/p&gt;
@@ -36303,7 +36320,9 @@ methods for the new, extended Load.  Oops.&lt;/p&gt;
 &lt;p&gt;If we subclass Load to add the dimension or fact, we have a problem.
 We have to repeat the Validate stubs in the new extended Load to make
 it into a Validate.  Oops.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Recognizing Delegation&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recognizing-delegation"&gt;
+&lt;h2&gt;Recognizing Delegation&lt;/h2&gt;
 &lt;p&gt;It's difficult to predict inheritance vs. delegation design problems.&lt;/p&gt;
 &lt;p&gt;The hand-waving advice is to consider the &lt;em&gt;essential&lt;/em&gt; features of the
 object.  This isn't too helpful.  Often, we're so focused on the
@@ -36316,7 +36335,9 @@ problem of representation: JSON, XML, etc., should rely on delegation
 since this is never essential.  There's always another representation
 for data.  Representation is always independent of the object's
 essential internal state changes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Consequence&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="consequence"&gt;
+&lt;h2&gt;Consequence&lt;/h2&gt;
 &lt;p&gt;In my case, I've got about a dozen implementations using a clunky
 inheritance that had some copy-and-paste programming.  Oops.&lt;/p&gt;
 &lt;p&gt;I'm trying to reduce that technical debt by rewriting each to be a
@@ -36324,6 +36345,7 @@ proper delegation.  With good unit test coverage, there's no real
 technical risk.  Just tedious fixing the same mistake that I rushed
 into production twelve separate times.&lt;/p&gt;
 &lt;p&gt;Really.  Colossally dumb.&lt;/p&gt;
+&lt;/div&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="check-out-quot-composition-versus-inheritance-a"&gt;
 &lt;h2&gt;Check out &amp;amp;quot;Composition versus inheritance: A ...&lt;/h2&gt;
@@ -36350,19 +36372,21 @@ instantiate it as a component.&lt;/p&gt;
 &lt;p&gt;In general, problems like the above are exactly why inheritance,
 especially implementation inheritance, is a really bad idea. Composition
 avoids this problem entirely even if it requires more work on the part
-of the programmer.
-Your real problem is that 'Load' and 'Validate' aren't actually
+of the programmer.&lt;/p&gt;
+&lt;p&gt;Your real problem is that 'Load' and 'Validate' aren't actually
 subclasses of one another: they have different side-effects and
 therefore different invariants (one modifies the database, the other
 does not). The Liskov Substitution Principal tells us that classes with
-different invariants cannot be subclasses of one another.
-The bigger problem is that 'modifies the database' is an invariant that
+different invariants cannot be subclasses of one another.&lt;/p&gt;
+&lt;p&gt;The bigger problem is that 'modifies the database' is an invariant that
 not all code cares about. To support code that cares and code that does
-not care, one must inject an interface into the inheritance diagram:
-ETLProcessor (interface)
-|-OnlyValidate
-|-LoadForReal
-with 'ETLProcessor' explicitly noting that it is undefined whether the
+not care, one must inject an interface into the inheritance diagram:&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;ETLProcessor (interface)&lt;/div&gt;
+&lt;div class="line"&gt;|-OnlyValidate&lt;/div&gt;
+&lt;div class="line"&gt;|-LoadForReal&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;with 'ETLProcessor' explicitly noting that it is undefined whether the
 database is modified or not. This way, you can't have loads that don't
 actually load and validates that do load. ETLProcessor is still subject
 to the fragile base-class problem, but that's true of all inheritance
@@ -37143,7 +37167,8 @@ data is in a usable format: .CSV or .XSLX.&lt;/p&gt;
 fixed-format COBOL-style records.&lt;/p&gt;
 &lt;p&gt;Recently, we got a CSV-with-pipe that included 2 records with embedded
 &lt;tt class="docutils literal"&gt;\n&lt;/tt&gt; sequences in the middle of a CSV row of data.  Really.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Painful Elimination&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="section" id="painful-elimination"&gt;
+&lt;h2&gt;Painful Elimination&lt;/h2&gt;
 &lt;p&gt;There are two ways to &amp;quot;eliminate&amp;quot; this problem.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Subclass our input processing to handle this special CSV-with-pipe
@@ -37156,7 +37181,9 @@ configuration.&lt;/li&gt;
 nightmare because we touched the file.  We have to prove that we
 didn't disturb any other fields.  While not impossible, it becomes a
 very strange special case for this one-and-only file.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CSV Simplicity&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="csv-simplicity"&gt;
+&lt;h2&gt;CSV Simplicity&lt;/h2&gt;
 &lt;p&gt;The CSV module's epic simplicity makes it easy to work around this
 kind of goofy data.  Our subclass for this case had the following
 extra foolishness put in&lt;/p&gt;
@@ -37180,7 +37207,9 @@ def make_reader( self ):
 lines, we can (with a simple generator function) provide the necessary
 &amp;quot;iterator-over-lines&amp;quot;.&lt;/p&gt;
 &lt;p&gt;Delightful.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Apology&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="apology"&gt;
+&lt;h2&gt;Apology&lt;/h2&gt;
 &lt;p&gt;The murky-looking &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;row.rfind('&amp;quot;')&lt;/span&gt; &amp;gt;= &lt;span class="pre"&gt;len(row)-3&lt;/span&gt;&lt;/tt&gt; condition is one of
 those consequences of trying to find just a few irregular line endings
 in an otherwise regular file.  For CSV processing, files often have to
@@ -37192,6 +37221,7 @@ universal newline and &amp;quot;rb&amp;quot; mode, it's slightly easier to look 
 &lt;p&gt;We're hoping this is a one-time-only subclass that we can safely
 ignore in the future.  If hope is dashed, it's a distinct subclass, so
 it's easily reused and didn't break anything else.&lt;/p&gt;
+&lt;/div&gt;
 </content><category term="Technologies"></category><category term="csv"></category><category term="#python"></category></entry><entry><title>One of Those Things</title><link href="https://slott56.github.io/2011_07_26-one_of_those_things.html" rel="alternate"></link><published>2011-07-26T08:00:00-04:00</published><updated>2011-07-26T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2011-07-26:/2011_07_26-one_of_those_things.html</id><summary type="html">&lt;p&gt;Check out this question on Stack Overflow: &amp;quot;&lt;a class="reference external" href="http://stackoverflow.com/questions/6789230/python-replace-a-string-by-a-float-in-txt-file/6789735#6789735"&gt;Python: replace a string by
 a float in txt
 file&lt;/a&gt;&amp;quot;.&lt;/p&gt;

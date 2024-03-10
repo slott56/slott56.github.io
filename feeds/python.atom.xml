@@ -1,5 +1,455 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-02-09T08:01:00-05:00</updated><entry><title>Functional Python and Lambdas</title><link href="https://slott56.github.io/2024-02-09-functional_python_and_lambdas.html" rel="alternate"></link><published>2024-02-09T08:01:00-05:00</published><updated>2024-02-09T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-02-09:/2024-02-09-functional_python_and_lambdas.html</id><summary type="html">&lt;p&gt;I saw a confusing post on &lt;a class="reference external" href="https://fosstodon.org"&gt;https://fosstodon.org&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-03-10T08:01:00-04:00</updated><entry><title>DBLock Context Manager</title><link href="https://slott56.github.io/2024-03-10-dblock-context-manager.html" rel="alternate"></link><published>2024-03-10T08:01:00-04:00</published><updated>2024-03-10T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-03-10:/2024-03-10-dblock-context-manager.html</id><summary type="html">&lt;p&gt;Consider, for a moment, the &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; packages for storing things in a “database.”
+Built-in. Lightweight. The database is essentially a mapping from identifiers to objects.
+It can be quite nice.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; module directly puts Python objects in a file.
+It’s an ideal database structure for Python …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Consider, for a moment, the &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; packages for storing things in a “database.”
+Built-in. Lightweight. The database is essentially a mapping from identifiers to objects.
+It can be quite nice.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; module directly puts Python objects in a file.
+It’s an ideal database structure for Python, with relatively little overhead.&lt;/p&gt;
+&lt;p&gt;If you don’t like using &lt;tt class="docutils literal"&gt;pickle&lt;/tt&gt;, you can use the underlying &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; with something like Pydantic for class definitions.
+This means explicitly serializing a representation of object state as bytes before stuffing them into the &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt;-managed mapping.
+Pydantic class definitions can deserialize the bytes and recover the object's state.&lt;/p&gt;
+&lt;p&gt;With a little effort at designing keys, these provide a persistent mapping for arbitrarily complex objects.
+(Simple UUID's are nice, but sometimes it helps to provide a key with two parts: collection name and identifier.)&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;It lets you read and write objects without the complexity of an ORM layer and a SQL database.&lt;/p&gt;
+&lt;p&gt;This is often really helpful. But. What about concurrent writes in a multiprocessing context? The &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; page is clear:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The shelve module does not support concurrent read/write access to shelved objects. (Multiple simultaneous read accesses are safe.) When a program has a shelf open for writing, no other program should have it open for reading or writing. &lt;strong&gt;Unix file locking can be used to solve this&lt;/strong&gt;, but this differs across Unix versions and requires knowledge about the database implementation used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(Emphasis mine.) Okay. We get it; this is BYOL™  -- Bring Your Own Locking.&lt;/p&gt;
+&lt;p&gt;Which — it turns out — isn’t trivial.
+See &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Readers–writer_lock"&gt;https://en.wikipedia.org/wiki/Readers–writer_lock&lt;/a&gt; for information on multiple readers and single writers.&lt;/p&gt;
+&lt;div class="section" id="the-single-writer-locking-problem"&gt;
+&lt;h2&gt;The Single Writer Locking Problem&lt;/h2&gt;
+&lt;p&gt;We can use the &lt;tt class="docutils literal"&gt;fcntl&lt;/tt&gt; module to lock files. This module (and the Linux OS) offers exclusive locks and shared locks.&lt;/p&gt;
+&lt;p&gt;(For Windows folks, get a package like &lt;tt class="docutils literal"&gt;portalocker&lt;/tt&gt; or use the functions in &lt;tt class="docutils literal"&gt;pywin32&lt;/tt&gt;.)&lt;/p&gt;
+&lt;p&gt;The objectives are these:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Take out an exclusive lock for transactions that will update the database.&lt;/li&gt;
+&lt;li&gt;Take out a shared lock for transactions that read the database.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This Shared vs. Exclusive locking is elegant, but also habors a small problem.&lt;/p&gt;
+&lt;p&gt;Consider a web server. Each GET transaction acquires a shared lock, reads the data, prepares the response, and releases the shared lock. Because the shared lock prevents a writer from getting an exclusive lock, the data is untouched for the duration of the transaction.
+There's no possibility of data file corruption mid-transaction because of a concurrent write.&lt;/p&gt;
+&lt;p&gt;Each POST/PUT/PATCH/DELETE transaction acquires an exclusive lock, reads and writes the data, prepares a response, and releases the exclusive lock. This forces the writer to wait for readers to finish. It prevents any reader from seeing incomplete
+or uncreadable files.&lt;/p&gt;
+&lt;p&gt;The underlying &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; file is updated in one smooth, atomic event. Everyone sees the data in a consistent state at all times.&lt;/p&gt;
+&lt;p&gt;Yes, it's coarse-grained whole-database level locking. The point was to avoid the overheads of a huge SQL
+server. A RESTful service can read and write local files. Emphasis on the read. Why have a super-elaborate database server
+to provide rows and tables that have to be assembled into JSON documents? Maybe just read the JSON document from the database
+and reply with it.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;There's a problem: a parade of readers can prevent the writer from getting in.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;time&lt;/th&gt;
+&lt;th class="head"&gt;action&lt;/th&gt;
+&lt;th class="head"&gt;lock count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;T0&lt;/td&gt;
+&lt;td&gt;reader 1 starts&lt;/td&gt;
+&lt;td&gt;1 shared lock&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;
+&lt;td&gt;reader 2 starts&lt;/td&gt;
+&lt;td&gt;2 shared locks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T2&lt;/td&gt;
+&lt;td&gt;writer 3 waiting for an exclusive lock...&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T3&lt;/td&gt;
+&lt;td&gt;reader 2 finishes&lt;/td&gt;
+&lt;td&gt;1 shared lock&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T4&lt;/td&gt;
+&lt;td&gt;reader 4 starts&lt;/td&gt;
+&lt;td&gt;2 shared locks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T5&lt;/td&gt;
+&lt;td&gt;reader 1 finishes&lt;/td&gt;
+&lt;td&gt;1 shared lock&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And so it goes: a sequence of overlapping readers will starve the writer.
+This is called &lt;strong&gt;Livelock&lt;/strong&gt;, and — while rare — it’s not impossible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preventing-livelock"&gt;
+&lt;h2&gt;Preventing Livelock&lt;/h2&gt;
+&lt;p&gt;One algorithm for preventing livelock is to have a “pending writer queue” that the readers have to acknowledge.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Think of a velvet rope to get into the most exclusive club in town.&lt;/p&gt;
+&lt;p&gt;The writer talks to the bouncer, and the line of readers is stopped. No one gets in. Once the club is empty of readers, the writer is allowed in and has the place to themself. When they’re done writing, then they’re out of there, so the readers can crowd the place again.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is sometimes called the “preferred writer” solution. It’s unfair by design because many web requests are read requests; write requests are less common. Overall performance depends on getting any write out of the way as soon as possible.
+There are other variants that are more equitable, but also a bit more complicated.&lt;/p&gt;
+&lt;p&gt;To prevent livelock, we need some kind of shared queue to broadcast to all concurrent processes that there’s a writer waiting.&lt;/p&gt;
+&lt;p&gt;We can do this using two lock files:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A “queue” lock. This is always Exclusive. It's always acquired first. In effect, it's a one-element queue.&lt;/li&gt;
+&lt;li&gt;The “working” lock. The working lock is either Shared or Exclusive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The queue lock defines a mutual exclusion zone of code (called a &lt;em&gt;mutex&lt;/em&gt;) where at most one process is able to run.
+The idea is readers enter the mutex, get their shared working lock, and leave the mutex.
+Once they have their shared lock, they can loiter, doing whatever it is they need to do.&lt;/p&gt;
+&lt;p&gt;When a writer enters the mutex, they have to wait for their exclusive working lock before they leave the mutex.
+This stops the readers.&lt;/p&gt;
+&lt;p&gt;Here are some play-by-play views for a number of scenarios.&lt;/p&gt;
+&lt;div class="section" id="reader-following-readers"&gt;
+&lt;h3&gt;Reader following Readers&lt;/h3&gt;
+&lt;p&gt;Readers can get shared access freely.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;time&lt;/th&gt;
+&lt;th class="head"&gt;action&lt;/th&gt;
+&lt;th class="head"&gt;queue lock&lt;/th&gt;
+&lt;th class="head"&gt;working lock&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;T0&lt;/td&gt;
+&lt;td&gt;reader 1 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;
+&lt;td&gt;reader 2 waiting&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T2&lt;/td&gt;
+&lt;td&gt;reader 1 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T3&lt;/td&gt;
+&lt;td&gt;reader 1 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T4&lt;/td&gt;
+&lt;td&gt;reader 2 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T5&lt;/td&gt;
+&lt;td&gt;reader 2 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;2 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T6&lt;/td&gt;
+&lt;td&gt;reader 2 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;2 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T7&lt;/td&gt;
+&lt;td&gt;reader 1 release working&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T8&lt;/td&gt;
+&lt;td&gt;reader 2 release working&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And so it goes, readers acquiring and releasing working locks.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="reader-following-writer"&gt;
+&lt;h3&gt;Reader following Writer&lt;/h3&gt;
+&lt;p&gt;If there's a writer, the reader is forced to wait until
+the writer releases their exclusive lock.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;time&lt;/th&gt;
+&lt;th class="head"&gt;action&lt;/th&gt;
+&lt;th class="head"&gt;queue lock&lt;/th&gt;
+&lt;th class="head"&gt;working lock&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;T0&lt;/td&gt;
+&lt;td&gt;writer 1 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;
+&lt;td&gt;reader 2 waiting&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T2&lt;/td&gt;
+&lt;td&gt;writer 1 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T3&lt;/td&gt;
+&lt;td&gt;writer 1 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T4&lt;/td&gt;
+&lt;td&gt;reader 2 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T5&lt;/td&gt;
+&lt;td&gt;reader 2 waiting&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T7&lt;/td&gt;
+&lt;td&gt;writer 1 release working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T8&lt;/td&gt;
+&lt;td&gt;reader 2 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T9&lt;/td&gt;
+&lt;td&gt;reader 2 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T10&lt;/td&gt;
+&lt;td&gt;reader 2 release working&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Yes. Traffic will back up waiting for a writer.
+If this is a problem, then finer-grained locking is required.
+This can lead to the possibility of deadlocks; proceed with caution and consider sharding the data to avoid
+contention for locks,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="writer-following-reader"&gt;
+&lt;h3&gt;Writer following Reader&lt;/h3&gt;
+&lt;p&gt;If there's a reader, the writer is forced to wait before they
+can get their exclusive lock.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;col width="25%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;time&lt;/th&gt;
+&lt;th class="head"&gt;action&lt;/th&gt;
+&lt;th class="head"&gt;queue lock&lt;/th&gt;
+&lt;th class="head"&gt;working lock&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;T0&lt;/td&gt;
+&lt;td&gt;reader 1 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T1&lt;/td&gt;
+&lt;td&gt;write 2 waiting&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T2&lt;/td&gt;
+&lt;td&gt;reader 1 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T3&lt;/td&gt;
+&lt;td&gt;reader 1 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T4&lt;/td&gt;
+&lt;td&gt;writer 2 acquire queue&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T5&lt;/td&gt;
+&lt;td&gt;writer 2 waiting&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 sh&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T7&lt;/td&gt;
+&lt;td&gt;reader 1 release working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T8&lt;/td&gt;
+&lt;td&gt;writer 2 acquire working&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T9&lt;/td&gt;
+&lt;td&gt;writer 2 release queue&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;1 ex&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;T10&lt;/td&gt;
+&lt;td&gt;writer 2 release working&lt;/td&gt;
+&lt;td&gt;0 ex&lt;/td&gt;
+&lt;td&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Clearly, if there are a &lt;strong&gt;lot&lt;/strong&gt; of readers, the writer waits a long time
+for them &lt;strong&gt;all&lt;/strong&gt; to finish.
+Some more clever lock definitions permit an upper bound on the number of
+locks that can be acquired.&lt;/p&gt;
+&lt;p&gt;Our goal, however, is simplicity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-implementation"&gt;
+&lt;h2&gt;Python Implementation&lt;/h2&gt;
+&lt;p&gt;This is intended to be used with &lt;strong&gt;Flask&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from pathlib import Path
+from flask import Flask
+
+class DBLock:
+
+    def __init__(self, app: Flask | None = None) -&amp;gt; None:
+        if app:
+            self.init_app(app)
+
+    def init_app(self, app: Flask) -&amp;gt; None:
+        self.lock_path = Path(cast(str, app.config.get(&amp;quot;DB_LOCK_FILENAME&amp;quot;, &amp;quot;dblock&amp;quot;)))
+        self.queue_path = self.lock_path.with_suffix(&amp;quot;.dbqueue&amp;quot;)
+        self.thread_local = threading.local()
+&lt;/pre&gt;
+&lt;p&gt;This could be refactored to work outside a Flask-specific context.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;thread_local&lt;/tt&gt; storage is required to track each thread's unique open file handles.&lt;/p&gt;
+&lt;p&gt;The essence is acquiring a lock and releaing a lock.
+The &amp;quot;lock mode&amp;quot; is one the &lt;tt class="docutils literal"&gt;fcntl.LOCK_EX&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;fcntl.LOCK_SH&lt;/tt&gt; values.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def acquire(self, lock_mode: int) -&amp;gt; Self:
+    if &amp;quot;lock_file&amp;quot; not in self.thread_local.__dict__:
+        # Enter Queue Mutex to acquire a database lock.
+        queue_file = self.queue_path.open(&amp;quot;w+&amp;quot;)
+        fcntl.flock(queue_file, fcntl.LOCK_EX)
+        self.thread_local.lock_file = self.lock_path.open(&amp;quot;w+&amp;quot;)
+        fcntl.flock(self.thread_local.lock_file, lock_mode)
+        # Exit Queue Mutex. Permits another thread (or process) to acquire a lock.
+        fcntl.flock(queue_file, fcntl.LOCK_UN)
+    return self
+
+def release(self) -&amp;gt; None:
+    if &amp;quot;lock_file&amp;quot; in self.thread_local.__dict__:
+        fcntl.flock(self.thread_local.lock_file, fcntl.LOCK_UN)
+        self.thread_local.lock_file.close()
+        delattr(self.thread_local, &amp;quot;lock_file&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;The acquire and release are the algorithm described above.
+An exclusive lock defines a system-wide Mutex for &lt;strong&gt;all&lt;/strong&gt; threads and processes.
+The working lock is either shared or exclusive.&lt;/p&gt;
+&lt;p&gt;The cleanup on release undoes the lock, closes the file to release any OS resources,
+and also purges the &lt;tt class="docutils literal"&gt;thread_local&lt;/tt&gt; to make sure there's no confusion about the state.&lt;/p&gt;
+&lt;p&gt;Some useful overheads:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+close = release
+
+def is_locked(self) -&amp;gt; bool:
+    # print(f&amp;quot;is_locked: {self.thread_local.__dict__=}&amp;quot;)
+    return &amp;quot;lock_file&amp;quot; in self.thread_local.__dict__
+&lt;/pre&gt;
+&lt;p&gt;If we provide a &lt;tt class="docutils literal"&gt;close()&lt;/tt&gt; method, then the &lt;tt class="docutils literal"&gt;contextlib.closing()&lt;/tt&gt; context manager
+can be used.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;is_locked()&lt;/tt&gt; method can be helpful to know the state of the lock.
+It's far better to use the &lt;tt class="docutils literal"&gt;with&lt;/tt&gt; statement to define a context that eliminates any doubt.&lt;/p&gt;
+&lt;p&gt;While this can be used with &lt;tt class="docutils literal"&gt;contextlib&lt;/tt&gt; functions, it seems helpful to provide explicit context management.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def __enter__(self) -&amp;gt; Self:
+    return self
+
+def __exit__(
+    self,
+    exc_type: type[Exception],
+    exc_val: Exception,
+    exc_tb: TracebackException,
+) -&amp;gt; Literal[False]:
+    self.release()
+    return False
+&lt;/pre&gt;
+&lt;p&gt;And. Two convenience methods to avoid having to muck around with &lt;tt class="docutils literal"&gt;fcntl.LOCK_SH&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;fcntl.LOCK_EX&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def shared(self) -&amp;gt; Self:
+    &amp;quot;&amp;quot;&amp;quot;
+    Context manager, equivalent to::
+
+        with dblock.acquire(fcntl.LOCK_SH):
+            pass
+    &amp;quot;&amp;quot;&amp;quot;
+    self.acquire(fcntl.LOCK_SH)
+    return self
+
+def exclusive(self) -&amp;gt; Self:
+    &amp;quot;&amp;quot;&amp;quot;
+    Context manager, equivalent to::
+
+        with dblock.acquire(fcntl.LOCK_EX):
+            pass
+    &amp;quot;&amp;quot;&amp;quot;
+    self.acquire(fcntl.LOCK_EX)
+    return self
+&lt;/pre&gt;
+&lt;p&gt;The goal is to have relatively lightweight code like the following.&lt;/p&gt;
+&lt;p&gt;Some Flask app setup:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+dblock = DBLock()
+dblock.init_app(app)
+&lt;/pre&gt;
+&lt;p&gt;Within a GET view function:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+with dblock.shared():
+    with dbm.open(some_file) as db:
+        item = SomeClass.model_validate_json(db[your_key_here])
+&lt;/pre&gt;
+&lt;p&gt;Within a POST/PUT/PATCH/DELETE view function:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+with dblock.exclusive():
+    with dbm.open(some_file, flag='c') as db:
+        db[item.id] = item.model_dump_json().encode('utf-8')
+&lt;/pre&gt;
+&lt;p&gt;By acquiring an exclusive access lock, all changes will be saved reliably and predictably: an atomic state change.&lt;/p&gt;
+&lt;p&gt;And yes, the explicit &lt;tt class="docutils literal"&gt;model_validate_json()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;model_dump_json()&lt;/tt&gt; is wordy.
+I use a &lt;tt class="docutils literal"&gt;DB&lt;/tt&gt; class to conceals these details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We can use &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; as a dictionary-like repository of objects serialized as JSON.&lt;/p&gt;
+&lt;p&gt;We have the benefits of a fancy relational database without the overheads.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="database"></category><category term="dbm"></category><category term="shelve"></category><category term="multiprocessing"></category><category term="context manager"></category></entry><entry><title>Functional Python and Lambdas</title><link href="https://slott56.github.io/2024-02-09-functional_python_and_lambdas.html" rel="alternate"></link><published>2024-02-09T08:01:00-05:00</published><updated>2024-02-09T08:01:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-02-09:/2024-02-09-functional_python_and_lambdas.html</id><summary type="html">&lt;p&gt;I saw a confusing post on &lt;a class="reference external" href="https://fosstodon.org"&gt;https://fosstodon.org&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I won't link to it, but I will quote it because it repeats some common misconceptions.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 I have some iterator chain (in reality longer and more complex than this example).
@@ -256,7 +706,7 @@ Python, by being more explicit, is less good.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Runtime&lt;/strong&gt;: Shell script interpreters are ubiquitous. True. Not a compelling argument, when we consider that bash scripts are untestable.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Semantics&lt;/strong&gt;: There is a cognitive cost in converteing bash to Python. Correct. Easy to avoid by avoiding the confusing and opaque bash abstractions.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Semantics&lt;/strong&gt;: There is a cognitive cost in converting bash to Python. Correct. Easy to avoid by avoiding the confusing and opaque bash abstractions.&lt;ul&gt;
 &lt;li&gt;The argument (again) starts from the notion that the bash abstraction is a standard against which other languages -- by virtue of being different -- aren't as good.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;

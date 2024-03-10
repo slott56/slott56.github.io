@@ -23,7 +23,8 @@ There's no overt OO programming to it (yet.) And, of course, Python has barely b
 
 But there's a down-side to the Hero Game System:
 
-**Accounting**
+Accounting
+----------
 
 The game requires a fairly scrupulous accounting of "Character Points".
 Some are assigned at the outset. A hero, for example, may have a base budget of 75 points.

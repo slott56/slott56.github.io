@@ -58,3 +58,11 @@ git push origin master
 ```
 
 Or `make github`
+
+## TODO
+
+Rewrite tags. 
+
+-   Enumerate the categories.
+
+-   Replace all tags that are *also* categories.

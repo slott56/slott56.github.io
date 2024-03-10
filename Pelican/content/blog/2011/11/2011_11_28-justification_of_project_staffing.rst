@@ -45,7 +45,8 @@ What's wrong with this picture?  Let's enumerate.
    duration.  Why ask me to change the plan?  A customer can only do
    what they **know** to be the right thing.
 
-**Doing the Right Thing**
+Doing the Right Thing
+---------------------
 
 Let's return to that last point.  A customer project manager can only
 do what they absolutely **know** is the right thing.  I can suggest
@@ -93,7 +94,8 @@ subvert it.  Either not schedule them.  Or cancel them because there
 are "more important things to do."  Or interrupt them to pull people
 out of them.
 
-**Overcoming the Confirmation Bias**
+Overcoming the Confirmation Bias
+--------------------------------
 
 I find the process of overcoming the confirmation bias to be tedious.
 Some people like the one-on-one "influencing" role.  It takes patience

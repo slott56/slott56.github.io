@@ -122,7 +122,8 @@ data is in a usable format: .CSV or .XSLX.</p>
 fixed-format COBOL-style records.</p>
 <p>Recently, we got a CSV-with-pipe that included 2 records with embedded
 <tt class="docutils literal">\n</tt> sequences in the middle of a CSV row of data.  Really.</p>
-<p><strong>Painful Elimination</strong></p>
+<div class="section" id="painful-elimination">
+<h2>Painful Elimination</h2>
 <p>There are two ways to &quot;eliminate&quot; this problem.</p>
 <ul class="simple">
 <li>Subclass our input processing to handle this special CSV-with-pipe
@@ -135,7 +136,9 @@ configuration.</li>
 nightmare because we touched the file.  We have to prove that we
 didn't disturb any other fields.  While not impossible, it becomes a
 very strange special case for this one-and-only file.</p>
-<p><strong>CSV Simplicity</strong></p>
+</div>
+<div class="section" id="csv-simplicity">
+<h2>CSV Simplicity</h2>
 <p>The CSV module's epic simplicity makes it easy to work around this
 kind of goofy data.  Our subclass for this case had the following
 extra foolishness put in</p>
@@ -159,7 +162,9 @@ def make_reader( self ):
 lines, we can (with a simple generator function) provide the necessary
 &quot;iterator-over-lines&quot;.</p>
 <p>Delightful.</p>
-<p><strong>Apology</strong></p>
+</div>
+<div class="section" id="apology">
+<h2>Apology</h2>
 <p>The murky-looking <tt class="docutils literal"><span class="pre">row.rfind('&quot;')</span> &gt;= <span class="pre">len(row)-3</span></tt> condition is one of
 those consequences of trying to find just a few irregular line endings
 in an otherwise regular file.  For CSV processing, files often have to
@@ -171,6 +176,7 @@ universal newline and &quot;rb&quot; mode, it's slightly easier to look for a
 <p>We're hoping this is a one-time-only subclass that we can safely
 ignore in the future.  If hope is dashed, it's a distinct subclass, so
 it's easily reused and didn't break anything else.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -248,6 +254,10 @@ it's easily reused and didn't break anything else.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (2)
           </a>

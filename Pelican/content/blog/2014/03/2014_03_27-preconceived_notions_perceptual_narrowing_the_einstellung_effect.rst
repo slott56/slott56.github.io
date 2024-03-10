@@ -56,7 +56,8 @@ performance issues.
 No. I was preventing Einstellung. Avoiding Perceptual Narrowing.
 Avoiding "Calling a problems nails because I'm wielding the hammer."
 
-**The Relational Database as Hammer**
+The Relational Database as Hammer
+----------------------------------
 
 I feel obligated to note that the relational database often becomes the
 hammer and all problems are then reduced to RDBMS/SQL nails. No matter

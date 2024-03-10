@@ -17,7 +17,8 @@ fixed-format COBOL-style records.
 Recently, we got a CSV-with-pipe that included 2 records with embedded
 ``\n`` sequences in the middle of a CSV row of data.  Really.
 
-**Painful Elimination**
+Painful Elimination
+--------------------
 
 There are two ways to "eliminate" this problem.
 
@@ -33,7 +34,8 @@ nightmare because we touched the file.  We have to prove that we
 didn't disturb any other fields.  While not impossible, it becomes a
 very strange special case for this one-and-only file.
 
-**CSV Simplicity**
+CSV Simplicity
+--------------
 
 The CSV module's epic simplicity makes it easy to work around this
 kind of goofy data.  Our subclass for this case had the following
@@ -63,7 +65,8 @@ lines, we can (with a simple generator function) provide the necessary
 
 Delightful.
 
-**Apology**
+Apology
+-------
 
 The murky-looking ``row.rfind('"') >= len(row)-3`` condition is one of
 those consequences of trying to find just a few irregular line endings

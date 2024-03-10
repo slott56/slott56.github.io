@@ -12,7 +12,8 @@ error story.  The issue is that inheritance happens along an "axis" or
 "dimension" where the subclasses are at different points along that
 axis.  Multi-dimensional inheritance is an EPIC FAIL.
 
-**Context**
+Context
+--------
 
 Data warehouse processing can involve a fair amount of "big batch"
 programs.  Loading 40,000 rows of econometric data in a single swoop,
@@ -30,7 +31,8 @@ big batch programs has at least two operating modes.
 -  Load.  Go through all the motions including a complete commit to the
    database and any filesystem changes.
 
-**Problem**
+Problem
+---------
 
 What's the difference between the two modes?  Clearly, one is a
 subclass of the other.
@@ -45,7 +47,8 @@ Simple, right?
 
 Wrong.
 
-**What Doesn't Work**
+What Doesn't Work
+-----------------
 
 This design has a smell.  The smell is that we can't easily extend the
 overall processing to include an additional feature.
@@ -74,7 +77,8 @@ If we subclass Load to add the dimension or fact, we have a problem.
 We have to repeat the Validate stubs in the new extended Load to make
 it into a Validate.  Oops.
 
-**Recognizing Delegation**
+Recognizing Delegation
+-----------------------
 
 It's difficult to predict inheritance vs. delegation design problems.
 
@@ -92,7 +96,8 @@ since this is never essential.  There's always another representation
 for data.  Representation is always independent of the object's
 essential internal state changes.
 
-**Consequence**
+Consequence
+------------
 
 In my case, I've got about a dozen implementations using a clunky
 inheritance that had some copy-and-paste programming.  Oops.
@@ -145,17 +150,21 @@ In general, problems like the above are exactly why inheritance,
 especially implementation inheritance, is a really bad idea. Composition
 avoids this problem entirely even if it requires more work on the part
 of the programmer.
+
 Your real problem is that 'Load' and 'Validate' aren't actually
 subclasses of one another: they have different side-effects and
 therefore different invariants (one modifies the database, the other
 does not). The Liskov Substitution Principal tells us that classes with
 different invariants cannot be subclasses of one another.
+
 The bigger problem is that 'modifies the database' is an invariant that
 not all code cares about. To support code that cares and code that does
 not care, one must inject an interface into the inheritance diagram:
-ETLProcessor (interface)
-\|-OnlyValidate
-\|-LoadForReal
+
+| ETLProcessor (interface)
+| \|-OnlyValidate
+| \|-LoadForReal
+
 with 'ETLProcessor' explicitly noting that it is undefined whether the
 database is modified or not. This way, you can't have loads that don't
 actually load and validates that do load. ETLProcessor is still subject

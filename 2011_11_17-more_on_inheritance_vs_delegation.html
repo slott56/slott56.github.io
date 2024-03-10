@@ -125,7 +125,8 @@ S.Lott -- Software Architect            </a>
 error story.  The issue is that inheritance happens along an &quot;axis&quot; or
 &quot;dimension&quot; where the subclasses are at different points along that
 axis.  Multi-dimensional inheritance is an EPIC FAIL.</p>
-<p><strong>Context</strong></p>
+<div class="section" id="context">
+<h2>Context</h2>
 <p>Data warehouse processing can involve a fair amount of &quot;big batch&quot;
 programs.  Loading 40,000 rows of econometric data in a single swoop,
 updating dimensions and loading facts, for example.</p>
@@ -140,7 +141,9 @@ current.)</li>
 <li>Load.  Go through all the motions including a complete commit to the
 database and any filesystem changes.</li>
 </ul>
-<p><strong>Problem</strong></p>
+</div>
+<div class="section" id="problem">
+<h2>Problem</h2>
 <p>What's the difference between the two modes?  Clearly, one is a
 subclass of the other.</p>
 <ul class="simple">
@@ -151,7 +154,9 @@ the save method stubs with methods that do something useful.</li>
 </ul>
 <p>Simple, right?</p>
 <p>Wrong.</p>
-<p><strong>What Doesn't Work</strong></p>
+</div>
+<div class="section" id="what-doesn-t-work">
+<h2>What Doesn't Work</h2>
 <p>This design has a smell.  The smell is that we can't easily extend the
 overall processing to include an additional feature.</p>
 <p>Why not?</p>
@@ -172,7 +177,9 @@ methods for the new, extended Load.  Oops.</p>
 <p>If we subclass Load to add the dimension or fact, we have a problem.
 We have to repeat the Validate stubs in the new extended Load to make
 it into a Validate.  Oops.</p>
-<p><strong>Recognizing Delegation</strong></p>
+</div>
+<div class="section" id="recognizing-delegation">
+<h2>Recognizing Delegation</h2>
 <p>It's difficult to predict inheritance vs. delegation design problems.</p>
 <p>The hand-waving advice is to consider the <em>essential</em> features of the
 object.  This isn't too helpful.  Often, we're so focused on the
@@ -185,7 +192,9 @@ problem of representation: JSON, XML, etc., should rely on delegation
 since this is never essential.  There's always another representation
 for data.  Representation is always independent of the object's
 essential internal state changes.</p>
-<p><strong>Consequence</strong></p>
+</div>
+<div class="section" id="consequence">
+<h2>Consequence</h2>
 <p>In my case, I've got about a dozen implementations using a clunky
 inheritance that had some copy-and-paste programming.  Oops.</p>
 <p>I'm trying to reduce that technical debt by rewriting each to be a
@@ -193,6 +202,7 @@ proper delegation.  With good unit test coverage, there's no real
 technical risk.  Just tedious fixing the same mistake that I rushed
 into production twelve separate times.</p>
 <p>Really.  Colossally dumb.</p>
+</div>
 <hr class="docutils" />
 <div class="section" id="check-out-quot-composition-versus-inheritance-a">
 <h2>Check out &amp;quot;Composition versus inheritance: A ...</h2>
@@ -219,19 +229,21 @@ instantiate it as a component.</p>
 <p>In general, problems like the above are exactly why inheritance,
 especially implementation inheritance, is a really bad idea. Composition
 avoids this problem entirely even if it requires more work on the part
-of the programmer.
-Your real problem is that 'Load' and 'Validate' aren't actually
+of the programmer.</p>
+<p>Your real problem is that 'Load' and 'Validate' aren't actually
 subclasses of one another: they have different side-effects and
 therefore different invariants (one modifies the database, the other
 does not). The Liskov Substitution Principal tells us that classes with
-different invariants cannot be subclasses of one another.
-The bigger problem is that 'modifies the database' is an invariant that
+different invariants cannot be subclasses of one another.</p>
+<p>The bigger problem is that 'modifies the database' is an invariant that
 not all code cares about. To support code that cares and code that does
-not care, one must inject an interface into the inheritance diagram:
-ETLProcessor (interface)
-|-OnlyValidate
-|-LoadForReal
-with 'ETLProcessor' explicitly noting that it is undefined whether the
+not care, one must inject an interface into the inheritance diagram:</p>
+<div class="line-block">
+<div class="line">ETLProcessor (interface)</div>
+<div class="line">|-OnlyValidate</div>
+<div class="line">|-LoadForReal</div>
+</div>
+<p>with 'ETLProcessor' explicitly noting that it is undefined whether the
 database is modified or not. This way, you can't have loads that don't
 actually load and validates that do load. ETLProcessor is still subject
 to the fragile base-class problem, but that's true of all inheritance
@@ -314,6 +326,10 @@ schemes; composition is the only way to avoid this problem.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (2)
           </a>

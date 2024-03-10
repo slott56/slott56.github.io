@@ -71,13 +71,8 @@ than rewriting the API's and moving the data.
 
 
 
-Desire to Utilize [Relational DB]
----------------------------------
-
-**More Support Available for [Relational DB]**
-
-
-
+**Desire to Utilize [Relational DB]** and
+**More Support Available for [Relational DB]**.
 Clearly, these last two are the real reasons. Everything above looks
 like post-hoc justification for the real issue.
 

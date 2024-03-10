@@ -135,7 +135,8 @@ PC's were an expensive luxury item. But the Macintosh was there to help us think
 The Fantasy Hero rules were a delight, and lead to many long, involved campaigns.</p>
 <p>There's no overt OO programming to it (yet.) And, of course, Python has barely been invented.</p>
 <p>But there's a down-side to the Hero Game System:</p>
-<p><strong>Accounting</strong></p>
+<div class="section" id="accounting">
+<h2>Accounting</h2>
 <p>The game requires a fairly scrupulous accounting of &quot;Character Points&quot;.
 Some are assigned at the outset. A hero, for example, may have a base budget of 75 points.
 Some are purchased by taking on disadvantages. For example Paranoia, or Hunted and Watched by Authorities,
@@ -150,7 +151,7 @@ are all designed properly?</p>
 <p>Clearly, the answer is tools. Eventually, there will be OO design in here, I promise.
 We'll work through the history, though.</p>
 <div class="section" id="paper-and-pencil">
-<h2>Paper and Pencil</h2>
+<h3>Paper and Pencil</h3>
 <p>In the 90's, I played the game using actual paper spreadsheets. 3-column accounting pads to tally up base
 points, advantages, and limitations to compute the net points after adjustments.</p>
 <p>After all, we're talking about table-top role-playing.
@@ -162,7 +163,7 @@ I remember the Mac+. I remember the iMac. In between the two was a slim pizza bo
 for gaming.</p>
 </div>
 <div class="section" id="software">
-<h2>Software</h2>
+<h3>Software</h3>
 <p>It didn't take too long to start using spreadsheet software. Appleworks. Then Clarisworks.</p>
 <p>It's clunky, but the computations aren't complicated. It's just a lot of typing.</p>
 <p>First, you have to be super-careful to type all the stuff from the rule books into the spreadsheet properly.</p>
@@ -171,7 +172,7 @@ design offline, print, and use paper on game night to play.</p>
 <p>Remember, it's a spreadsheet: it introduces as many problems as it solves.</p>
 </div>
 <div class="section" id="software-v2-hypercard">
-<h2>Software V2: Hypercard</h2>
+<h3>Software V2: Hypercard</h3>
 <p>HyperCard -- if you've never seen it -- isn't easy to understand.</p>
 <p>With some work, I created cards for each power/skill/perk/talent/whatever.</p>
 <p>I can use those cards to create new cards for a character with abilities, and references to powers, skills, talents, perks, whatever.</p>
@@ -185,7 +186,7 @@ The pubishing involved spreadsheet formatting and some word-processing to tie it
 <p>But. All good things come to an end. 2004 was the end of Hypercard.</p>
 </div>
 <div class="section" id="software-v3-python-and-oop">
-<h2>Software V3: Python and OOP</h2>
+<h3>Software V3: Python and OOP</h3>
 <p>(See, I told you we'd get to OOP, eventually.)</p>
 <p>When you consider the problem domain
 it's a classic Object-Oriented Programming problem.
@@ -227,7 +228,7 @@ This means the characters can format nicely for game night.</p>
 But I could balance the books on my laptop to make sure their characters were legit.</p>
 </div>
 <div class="section" id="software-v4-python-3-and-type-hints">
-<h2>Software V4: Python 3 and Type Hints</h2>
+<h3>Software V4: Python 3 and Type Hints</h3>
 <p>So now it's 2023.</p>
 <p>I don't play Hero games much anymore.
 In spite of not playing regularly,
@@ -240,8 +241,10 @@ I did this in the unlikely event I ever wind up playing this TTRPG again.</p>
 <p>Why?</p>
 <p>Getting the type hints right revealed problems.
 There are two parts to why this took so much work.</p>
+</div>
+</div>
 <div class="section" id="type-hint-fundamentals">
-<h3>Type Hint Fundamentals</h3>
+<h2>Type Hint Fundamentals</h2>
 <p>One issue is in the way the various columns of a standard
 &quot;Full Character Sheet&quot; are formatted.
 The publication guidelines are for paper-and-pencil, hard-copy kind of adventure guides and campaing books.</p>
@@ -259,7 +262,7 @@ in the first place: accounting.)</p>
 <p>Thst's not all, though.</p>
 </div>
 <div class="section" id="use-case-issues">
-<h3>Use Case Issues</h3>
+<h2>Use Case Issues</h2>
 <p>The more fundamental issue was the conflation of <tt class="docutils literal">Character | Gadget | Base | Vehicle</tt>.
 This requires some care in writing type hints and doing OO design to make
 sure that any differences are essential differences in these classes of objects.</p>
@@ -288,7 +291,7 @@ because there are advantages and disadvantages that are figured in.)</p>
 lack a unifying abstraction or protocol. This needs to be fixed.</p>
 </div>
 <div class="section" id="oo-design-advice">
-<h3>OO Design Advice</h3>
+<h2>OO Design Advice</h2>
 <p>It's not at all clear this distinction between raw material and finished good <strong>needs</strong> to be present.
 Superficially, it seems like everything's a <tt class="docutils literal">Feature</tt> and that's all we need to know.</p>
 <p>The use cases for design based on raw materials are an unstated element of the rules.
@@ -301,10 +304,8 @@ understand the two kinds of design.</p>
 <p>There are things that are essential, but are -- like the atmosphere -- so pervasive
 and invisble no one things to mention them.</p>
 <p>There's more (of course.)</p>
-</div>
-</div>
 <div class="section" id="software-v5-python-3">
-<h2>Software V5: Python 3</h2>
+<h3>Software V5: Python 3</h3>
 <p>Interactivity was part of HyperCard (and the spreadsheets that preceeded it.)</p>
 <p>The Python 2 and Python 3 definitions of a Character was something
 I implemented as a simple script.
@@ -322,7 +323,7 @@ I can run the notebook to validate the budgets for all the various bad guys in t
 <p>I can write the supplemental stuff as Markdown. Right there. In the notebook.</p>
 </div>
 <div class="section" id="software-v6-adventure-books">
-<h2>Software V6: Adventure Books</h2>
+<h3>Software V6: Adventure Books</h3>
 <p>There's a very small, dedicated markeplace for Hero content.</p>
 <p>(See <a class="reference external" href="https://www.herogames.com">https://www.herogames.com</a>, <a class="reference external" href="https://www.patreon.com/hero_games">https://www.patreon.com/hero_games</a>, and <a class="reference external" href="https://roll20.net/compendium/HERO/BookIndex#content">https://roll20.net/compendium/HERO/BookIndex#content</a>)</p>
 <p>While I'll never be a proper game author,
@@ -333,6 +334,7 @@ get a few bucks for an Adventurer's Club submission.</p>
 to Python/Sphinx projects.
 While it might be fun to imagine publishing them to HeroGames or Roll20, they're based 4th ed out-of-date rules.
 So. It's a hobby project that pleases only me.</p>
+</div>
 </div>
 
             </div>
@@ -411,6 +413,10 @@ So. It's a hobby project that pleases only me.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (2)
           </a>

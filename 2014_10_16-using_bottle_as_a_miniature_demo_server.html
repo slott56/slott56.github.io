@@ -126,102 +126,106 @@ When writing API's, it sometimes helps to have a small demo web site to
 show the API in a context that's easy to visualize. API's are sometimes
 abstract, and without an application to provide some context, it can be
 unclear why the path looks like that or why the JSON document has those
-fields.
-I want to emphasize the &quot;small&quot; part of the small demo. A small page or
+fields.</p>
+<p>I want to emphasize the &quot;small&quot; part of the small demo. A small page or
 two with some HTML forms and a submit button. Really small.
 The <strong>actual</strong> customer-facing apps (mobile, mobile web, and full web
 site) are being built by lots of other people. Not us. They're big. We
 build the API's (there are a lot) that support the data structures that
-support the processing that supports the user experience.
-Building fake mobile apps is right out. We're not going to lard on
+support the processing that supports the user experience.</p>
+<p>Building fake mobile apps is right out. We're not going to lard on
 <a class="reference external" href="https://developer.android.com/sdk/index.html?hl=i">Android SDK</a> or
 <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a> development environments
-to our already overburdened laptops. We build backend API's.
-Building a fake mobile web or full web site is appealing. What makes it
+to our already overburdened laptops. We build backend API's.</p>
+<p>Building a fake mobile web or full web site is appealing. What makes it
 complex is the UX folks are building everything in
 <a class="reference external" href="https://angularjs.org/">Angular.js</a>. If we want to properly
 implement a form, we would have to master Angular just to do a demo for
-the product owner.
-No thanks. Still too far afield for API developers. We're focused on
+the product owner.</p>
+<p>No thanks. Still too far afield for API developers. We're focused on
 mongo and JSON and performance and scalability. Not Angular.js and the
-UX.
-What we want to do is build a small web server which runs just a few
+UX.</p>
+<p>What we want to do is build a small web server which runs just a few
 pages plucked out of the UX demo code so that we can show how
 interactions with a web page put stuff in a database. And vice-versa:
-stuff in the database will show up on a web page.
-&quot;Really?&quot; we get asked. Some folks look askance at us for wanting to put
-a small demo site together.
-&quot;Yes,&quot; we answer. &quot;Our product owner has a big vision and we're breaking
+stuff in the database will show up on a web page.</p>
+<p>&quot;Really?&quot; we get asked. Some folks look askance at us for wanting to put
+a small demo site together.</p>
+<p>&quot;Yes,&quot; we answer. &quot;Our product owner has a big vision and we're breaking
 that into a bunch of little API's. It's not perfectly clear how we're
-building up to that vision.&quot;
-It's not <strong>perfectly</strong> clear how some of this work. Folks outside the
+building up to that vision.&quot;</p>
+<p>It's not <strong>perfectly</strong> clear how some of this work. Folks outside the
 scrum team have distracting questions. We want to have a page or two
 where we can fill in a form and click submit and stuff happens. This is
 far easier to explain than showing
 them <a class="reference external" href="http://www.getpostman.com/">Postman</a> or <a class="reference external" href="http://www.soapui.org/">SoapUI</a> and
-<strong>claiming</strong> that this will support some user stories.
-And as we grow toward the epic, the workflow aspects of this will grow.
+<strong>claiming</strong> that this will support some user stories.</p>
+<p>And as we grow toward the epic, the workflow aspects of this will grow.
 The stuff that admin &quot;A&quot; does after user &quot;U&quot; has made an initial
 request. Or the stuff that internal user &quot;I&quot; does after external user
-&quot;X&quot; has done something. But really, it's just a few small web pages.
-Small.
-Imagine the demo. On laptop #1, we'll show user &quot;X&quot;. On laptop #2, we're
+&quot;X&quot; has done something. But really, it's just a few small web pages.</p>
+<p>Small.</p>
+<p>Imagine the demo. On laptop #1, we'll show user &quot;X&quot;. On laptop #2, we're
 running a Mongo shell to query what's in the db. On laptop #3 we're
 showing user &quot;I&quot;. The focus is really the API's. And how the API's add
-up to an epic collection of stories.
-<strong>Serving some HTML pages</strong>
-Just to make it painful, we can't simply grab the demo web pages out of
+up to an epic collection of stories.</p>
+<div class="section" id="serving-some-html-pages">
+<h2>Serving some HTML pages</h2>
+<p>Just to make it painful, we can't simply grab the demo web pages out of
 the UX team's SVN repository. Why not? First, it's an Angular app. We
 can't just grab some HTML and go. The demo pages are served via
 <a class="reference external" href="http://nodejs.org/">node.js</a> with <a class="reference external" href="http://bower.io/">Bower</a>, so
-it's not even clear (to us) what the <strong>complete</strong> deployment looks like.
-So. We cheated. We took a screen shot. We trimmed the edges of the page
+it's not even clear (to us) what the <strong>complete</strong> deployment looks like.</p>
+<p>So. We cheated. We took a screen shot. We trimmed the edges of the page
 as .PNG files. We wrote our own form and cobbled in enough CSS to make
 it look close. We're not here to fake out the UX. We just want to enter
 some data and have it tickle our API. (Indeed, we have a &quot;Not The Real
-Experience&quot; on some pages.)
-Initially, some of the team members tried serving these small pages with
+Experience&quot; on some pages.)</p>
+<p>Initially, some of the team members tried serving these small pages with
 <a class="reference external" href="http://www.oracle.com/technetwork/middleware/weblogic/overview/index.html">WebLogic</a>.
 Then <a class="reference external" href="http://www.eclipse.org/jetty/">Jetty</a>. It's not bad. But it's
 Java. It takes forever to build and deploy something after a trivial
 change. There are a lot of moving parts even with Jetty, and not all of
-them are obvious.
-Since we're building &quot;enterprise&quot; API's, we're deeply enmeshed with
+them are obvious.</p>
+<p>Since we're building &quot;enterprise&quot; API's, we're deeply enmeshed with
 every feature of the <a class="reference external" href="http://projects.spring.io/spring-framework/">Spring
 Framework</a>. Our
-STS/Eclipse environments are fat with add-ons and features.
-While the Spring Framework ideal is to allow a developer to focus on
+STS/Eclipse environments are fat with add-ons and features.</p>
+<p>While the Spring Framework ideal is to allow a developer to focus on
 relevant details and have the irrelevant details handled automagically,
 the magic almost gets in the way. These are small applications that are
-little more than a few static pages with forms and a submit button.
-Spring can do it, of course. But we're often testing our the actual
+little more than a few static pages with forms and a submit button.</p>
+<p>Spring can do it, of course. But we're often testing our the actual
 API's in a Jetty server (or two). If the demo site requires yet another
 instance of Jetty with yet another configuration, our ability to cope
-diminishes.
-How can we get back to small?
-<strong>Python and Bottle</strong>
-Python has several web servers built-in. We can use
+diminishes.</p>
+<p>How can we get back to small?</p>
+</div>
+<div class="section" id="python-and-bottle">
+<h2>Python and Bottle</h2>
+<p>Python has several web servers built-in. We can use
 <a class="reference external" href="https://docs.python.org/3/library/http.server.html">http.server</a>. We
 can use <a class="reference external" href="https://docs.python.org/3/library/wsgiref.html">wsgiref</a>.
-Both of these are almost OK for what we want to do.
-We can do better with two small downloads:
+Both of these are almost OK for what we want to do.</p>
+<p>We can do better with two small downloads:
 <a class="reference external" href="http://bottlepy.org/docs/dev/index.html">Bottle</a> and
 <a class="reference external" href="http://jinja.pocoo.org/">Jinja2</a>. With these, we can build simple
 HTML pages that show some data. We can build simple servers that collect
 form data, use
 <a class="reference external" href="https://docs.python.org/3/library/http.client.html">http.client</a> to
 make API requests, and write copious logging details. We can write
-little bottle apps that handle just GETs and POSTs simply.
-This is suitably small.
-We can share the module with the Bottle object and the HTML mock-up
+little bottle apps that handle just GETs and POSTs simply.</p>
+<p>This is suitably small.</p>
+<p>We can share the module with the Bottle object and the HTML mock-up
 pages. We can fire up the app in an instant on anyone's laptop, no
 matter what else they're running. We can tweak the server to adjust the
-logging or the API request or the form.
-We actually run the server from within Idle. Make a change and hit F5 to
+logging or the API request or the form.</p>
+<p>We actually run the server from within Idle. Make a change and hit F5 to
 redeploy after a change. It's small. It's fast. And it doesn't involve
-the huge complexities associated with Java.
-Bottle doesn't do much. But what little it does do is a pretty tidy fit
+the huge complexities associated with Java.</p>
+<p>Bottle doesn't do much. But what little it does do is a pretty tidy fit
 with tiny little demonstrations of super-simple HTML interactions.</p>
+</div>
 
             </div>
             <!-- /.entry-content -->
@@ -299,6 +303,10 @@ with tiny little demonstrations of super-simple HTML interactions.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2024/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2024 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2024 (2)
           </a>

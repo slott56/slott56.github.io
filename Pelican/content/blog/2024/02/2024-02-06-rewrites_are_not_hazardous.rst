@@ -2,7 +2,7 @@ Rewrites are NOT hazardous
 ===================================================
 
 :date: 2024-02-06 08:01
-:tags: test-driven reverse engineering,refactoring,legacy-codem,estimating
+:tags: test-driven reverse engineering,refactoring,legacy-code,estimating
 :slug: 2024-02-06-rewrites_are_not_hazardous
 :category: Management
 :status: published
