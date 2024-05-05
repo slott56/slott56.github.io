@@ -2,7 +2,7 @@ Not the first time...
 =====================
 
 :date: 2003-12-13 19:23
-:tags: technologies,xml
+:tags: xml,xslt
 :slug: 2003_12_13-not_the_first_time
 :category: Technologies
 :status: published
@@ -15,7 +15,10 @@ From an email I got recently, lightly edited.  Responses to follow
 
 
 
-**Problem**: The data layer of application architecture must be flexible enough to adapt to
+Problem
+--------
+
+The data layer of application architecture must be flexible enough to adapt to
 virtually any new data-driven functional requirement demanded by today's
 client..right...well to support such adaptability in client deployments, the
 data model must allow almost arbitrary categorizations and groupings of data
@@ -25,7 +28,10 @@ ease of use and system simplicity.
 
 
 
-**Proposed Architecture**: I am really started to
+Proposed Architecture
+----------------------
+
+I am really started to
 take a liking to Java/XSLT that is driven by XML...well here is my
 thinking:
 

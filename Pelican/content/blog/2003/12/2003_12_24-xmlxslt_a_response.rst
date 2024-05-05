@@ -2,7 +2,7 @@ XML/XSLT - A Response
 =====================
 
 :date: 2003-12-24 20:37
-:tags: technologies,xml
+:tags: xml,xslt
 :slug: 2003_12_24-xmlxslt_a_response
 :category: Technologies
 :status: published

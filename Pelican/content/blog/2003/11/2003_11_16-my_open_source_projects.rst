@@ -2,17 +2,16 @@ My open source projects
 =======================
 
 :date: 2003-11-16 22:10
-:tags: FOSS,open-source
+:tags: HTML,Literate Programming,Random Numbers,COBOL,Database
 :slug: 2003_11_16-my_open_source_projects
 :category: FOSS
 :status: published
 
 
+..  todo:: Are any of these lkinks still live?
 
 
-
-Why Python?  Stay tuned.  Why Zope?  More
-to come.
+Why Python?  Stay tuned.  Why Zope?  More to come.
 
 
 
@@ -28,8 +27,7 @@ script.
 
 
 
-Additional
-projects:
+Additional projects:
 
 
 

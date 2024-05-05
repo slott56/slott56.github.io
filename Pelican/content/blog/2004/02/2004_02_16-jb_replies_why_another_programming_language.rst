@@ -2,7 +2,7 @@ JB replies: Why Another Programming Language?
 =============================================
 
 :date: 2004-02-16 01:37
-:tags: technologies,xml
+:tags: xml,xslt
 :slug: 2004_02_16-jb_replies_why_another_programming_language
 :category: Technologies
 :status: published
