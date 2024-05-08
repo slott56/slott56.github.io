@@ -1,5 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-03-10T08:01:00-04:00</updated><entry><title>DBLock Context Manager</title><link href="https://slott56.github.io/2024-03-10-dblock-context-manager.html" rel="alternate"></link><published>2024-03-10T08:01:00-04:00</published><updated>2024-03-10T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-03-10:/2024-03-10-dblock-context-manager.html</id><summary type="html">&lt;p&gt;Consider, for a moment, the &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; packages for storing things in a “database.”
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-05-07T08:01:00-04:00</updated><entry><title>Git Nightmare</title><link href="https://slott56.github.io/2024-05-07-github_nightmare.html" rel="alternate"></link><published>2024-05-07T08:01:00-04:00</published><updated>2024-05-07T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-05-07:/2024-05-07-github_nightmare.html</id><summary type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
+is very large: 859 postings over the last few years. 2,334 image files.&lt;/p&gt;
+&lt;p&gt;This is a LOT of content.&lt;/p&gt;
+&lt;p&gt;A few of the files (were) Movies, which tend to create immense files.&lt;/p&gt;
+&lt;p&gt;The whole mess was so big&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How Big Was It?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
+is very large: 859 postings over the last few years. 2,334 image files.&lt;/p&gt;
+&lt;p&gt;This is a LOT of content.&lt;/p&gt;
+&lt;p&gt;A few of the files (were) Movies, which tend to create immense files.&lt;/p&gt;
+&lt;p&gt;The whole mess was so big&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How Big Was It?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It was so big, the &lt;tt class="docutils literal"&gt;git push&lt;/tt&gt; command crashed. Repeatedly.&lt;/p&gt;
+&lt;p&gt;I researched a lot of Stack Overflow answers on dealing with big files.  Maybe they were helpful.
+Maybe they were misleading. I tried a &lt;strong&gt;lot&lt;/strong&gt; of things.&lt;/p&gt;
+&lt;p&gt;The problem was using the following approach.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;First. Get it all organized.&lt;/li&gt;
+&lt;li&gt;Then. Do a single massive commit of everything.&lt;/li&gt;
+&lt;li&gt;Now. The &lt;tt class="docutils literal"&gt;git push&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This -- it turns out -- is not a good idea. There are too many files and too many huge files.&lt;/p&gt;
+&lt;div class="section" id="beating-to-weather"&gt;
+&lt;h2&gt;Beating to Weather&lt;/h2&gt;
+&lt;p&gt;It seemed sensible to try and preseve the &amp;quot;one big commit with everything in it.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This was -- of course -- a mistake.&lt;/p&gt;
+&lt;p&gt;It's just too big to preserve. And there's no good reason to preserve it.&lt;/p&gt;
+&lt;p&gt;It had some HUGE movie and PDF files that are better kept separate from the blog content.
+Some of the pictures were exported at &lt;strong&gt;full&lt;/strong&gt; size, leading to about 100 image files of 22Mb or larger.
+The resulting pack files are huge. Far too big to process.&lt;/p&gt;
+&lt;p&gt;Trying to get the &lt;tt class="docutils literal"&gt;git gc&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;git repack&lt;/tt&gt; commands to create some useful approach to uploading one big commit was (in retrospect) a waste of time and brain calories.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="image-resizing"&gt;
+&lt;h2&gt;Image Resizing&lt;/h2&gt;
+&lt;p&gt;This was fun. A little program using &lt;tt class="docutils literal"&gt;pillow&lt;/tt&gt; to do &lt;tt class="docutils literal"&gt;Image.reduce()&lt;/tt&gt; on the 100 or so egregiously large files.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def png_reduce(counts: Counter, path: Path, new: Path) -&amp;gt; None:
+    target_image_size =  4_851_306  # about 2202 x 2202.
+
+    counts[path.suffix] += 1
+    if not path.suffix.lower() in {&amp;quot;.png&amp;quot;}:
+        return
+    try:
+        with Image.open(path) as image:
+            if image.width * image.height &amp;lt; target_image_size:
+                counts['small'] += 1
+                return
+            counts['reduce'] += 1
+            factor = int((image.width * image.height) / target_image_size + 0.5)
+            target_width = int(image.width / factor + 0.5)
+            target_height = int(image.height / factor + 0.5)
+            reduced = image.reduce(factor)
+            # Save reduced Image in separate directory. These can then be moved to replace the originals.
+            target = new / path.name
+            reduced.save(target)
+        print(
+            f&amp;quot;Reduce {path.name} {path.lstat().st_size // 1024 // 1024}M:&amp;quot;
+            f&amp;quot; factor={factor} from {image.width}×{image.height} to {target_width}×{target_height}&amp;quot;
+        )
+    except UnidentifiedImageError as ex:
+        counts['exception'] += 1
+        print(path.name, ex)
+&lt;/pre&gt;
+&lt;p&gt;The target image size was a kind of guess. I divided the range of sizes into 64 bins.
+I counted the number of files in each bin to see where the various size lumps occurred.
+The bin with 4,851,306 seemed to be on the line between a lot of small files and a few large files.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tack-to-a-new-course"&gt;
+&lt;h2&gt;Tack to a New Course&lt;/h2&gt;
+&lt;p&gt;What's the alternative?&lt;/p&gt;
+&lt;p&gt;Here's what worked.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;git reset&lt;/tt&gt; back to empty. (There was only one commit, so this was easy.)&lt;/li&gt;
+&lt;li&gt;Put in the overhead files: &lt;tt class="docutils literal"&gt;README.rst&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;requirements.txt&lt;/tt&gt;, the Pelican configuration files, &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt;, etc.&lt;/li&gt;
+&lt;li&gt;Commit this. And push.&lt;/li&gt;
+&lt;li&gt;Put in the text content files, all 859 of them. Plus the handful of non-blog pages and photo albums.&lt;/li&gt;
+&lt;li&gt;Commit this. And push.&lt;/li&gt;
+&lt;li&gt;The images can be broken into 5 batches of about 400 files. Commit and push each of these.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At the end of the day, it's all there, but it took 7 commits and 7 separate &lt;tt class="docutils literal"&gt;git push&lt;/tt&gt; operations to get there.&lt;/p&gt;
+&lt;p&gt;It went really fast. Error free. No drama.&lt;/p&gt;
+&lt;p&gt;Doubly aggravating because this could have been completed two days ago.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-finish-line"&gt;
+&lt;h2&gt;The Finish Line&lt;/h2&gt;
+&lt;p&gt;Now, I can do ordinary &lt;tt class="docutils literal"&gt;git pull&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;git push&lt;/tt&gt; from &lt;strong&gt;any&lt;/strong&gt; computer.&lt;/p&gt;
+&lt;p&gt;I can login to the hosting service from any computer, do a &lt;tt class="docutils literal"&gt;git pull&lt;/tt&gt; and a &lt;tt class="docutils literal"&gt;make publish&lt;/tt&gt;, and the site is updated.&lt;/p&gt;
+&lt;p&gt;The point is to be able to use an iPad to edit content and leverage my hosting service to do a little more than serve static HTML.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="git"></category><category term="github"></category><category term="memory"></category></entry><entry><title>DBLock Context Manager</title><link href="https://slott56.github.io/2024-03-10-dblock-context-manager.html" rel="alternate"></link><published>2024-03-10T08:01:00-04:00</published><updated>2024-03-10T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-03-10:/2024-03-10-dblock-context-manager.html</id><summary type="html">&lt;p&gt;Consider, for a moment, the &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;dbm&lt;/tt&gt; packages for storing things in a “database.”
 Built-in. Lightweight. The database is essentially a mapping from identifiers to objects.
 It can be quite nice.&lt;/p&gt;
 &lt;p&gt;The &lt;tt class="docutils literal"&gt;shelve&lt;/tt&gt; module directly puts Python objects in a file.
@@ -872,7 +961,9 @@ when we're making changes that update the static diagram we want.&lt;/p&gt;
 The &lt;tt class="docutils literal"&gt;plt.show()&lt;/tt&gt; works.&lt;/p&gt;
 &lt;p&gt;But that's actually &lt;strong&gt;not&lt;/strong&gt; right for the kinds of things I was trying to do.&lt;/p&gt;
 &lt;p&gt;Here's what I was working on.&lt;/p&gt;
-&lt;a class="reference external image-reference" href="https://slott56.github.io/media/Empire_1337.png"&gt;&lt;img alt="Hexagonal map showing 5 interlocking regions" src="https://slott56.github.io/media/Empire_1337.png" style="width: 400px; height: 400px;" /&gt;&lt;/a&gt;
+&lt;a class="reference external image-reference" href="https://slott56.github.io/media/Empire_1337.png"&gt;
+&lt;img alt="Hexagonal map showing 5 interlocking regions" src="https://slott56.github.io/media/Empire_1337.png" style="width: 400px; height: 400px;" /&gt;
+&lt;/a&gt;
 &lt;p&gt;This map is actually &amp;quot;grown&amp;quot; using some simple rules from a few seed points.
 The animation of that growth process is what I want.&lt;/p&gt;
 &lt;p&gt;This isn't as clever as &lt;a class="reference external" href="https://conwaylife.com"&gt;Conway's Game of Life&lt;/a&gt;, but it is similar in a few respects.
