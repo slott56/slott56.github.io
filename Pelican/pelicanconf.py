@@ -46,7 +46,7 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
-THEME = "pelican-bootstrap3"
+THEME = "/Users/slott/Documents/Writing/Blogs/pelican-themes/pelican-bootstrap3"
 
 PLUGIN_PATHS = ['/Users/slott/Documents/Writing/Blogs/pelican-plugins', ]
 PLUGINS = ['i18n_subsites', ]

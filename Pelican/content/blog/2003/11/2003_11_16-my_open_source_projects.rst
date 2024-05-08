@@ -8,7 +8,7 @@ My open source projects
 :status: published
 
 
-..  todo:: Are any of these lkinks still live?
+..  important:: Are any of these lkinks still live?
 
 
 Why Python?  Stay tuned.  Why Zope?  More to come.
