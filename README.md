@@ -57,12 +57,12 @@ pelican content -o .. -s pelicanconf.py
 git push origin master
 ```
 
-Or `make github`
+Or 
+
+```commandline
+make github
+```
 
 ## TODO
 
-Rewrite tags. 
-
--   Enumerate the categories.
-
--   Replace all tags that are *also* categories.
+Replace all tags that are *also* categories.

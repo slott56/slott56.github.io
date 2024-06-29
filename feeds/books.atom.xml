@@ -2312,71 +2312,8 @@ things I haven't spent a lot of mental energy mastering.  Perhaps we only have a
 finite number of slots for large complex things in our heads.  I don't follow
 many professional sports.  I have a limited facility with XSLT.  Maybe it's an
 optimization trade-off: I opted for Python, SQL, Java and America's Cup Yacht
-Racing.  Perhaps Kontrawize choose the Ukelele instead of Python?&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>One More Cool Thing About Python Is...</title><link href="https://slott56.github.io/2005_10_22-one_more_cool_thing_about_python_is.html" rel="alternate"></link><published>2005-10-22T15:25:00-04:00</published><updated>2005-10-22T15:25:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-22:/2005_10_22-one_more_cool_thing_about_python_is.html</id><summary type="html">&lt;p&gt;So, confronted with 1.4M records of questionable
-data, what do we do?&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;We'll need a production program that can run
-daily from now until the end of time to cleanse the data and reject the truly
-evil records.&lt;/li&gt;
-&lt;li&gt;We don't have a good fix on what the data is …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;So, confronted with 1.4M records of questionable
-data, what do we do?&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;We'll need a production program that can run
-daily from now until the end of time to cleanse the data and reject the truly
-evil records.&lt;/li&gt;
-&lt;li&gt;We don't have a good fix on what the data is.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;We have some &amp;quot;specifications&amp;quot; but
-they're little more than a wish list of cleansing
-suggestions.&lt;/p&gt;
-&lt;p&gt;What to do?&lt;/p&gt;
-&lt;p&gt;Well, step 1 is obviously analysis to
-fully define the problem.  What data do we have?  What is the platonic ideal?
-What forms of badness are represented where data does not meet the
-ideal?&lt;/p&gt;
-&lt;p&gt;So, how do we analyze?  We can't
-throw it into Excel.  We can barely open the file in Textpad.&lt;/p&gt;
-&lt;div class="section" id="python-to-the-rescue"&gt;
-&lt;h2&gt;Python to the rescue&lt;/h2&gt;
-&lt;p&gt;While the final application
-must be delivered in Java, Java's a terrible way to analyze unknown data.  We
-would have a cycle of write, debug, build, test, run and scratch head over a
-fairly complex piece of Java code just to do simple frequency
-histograms.&lt;/p&gt;
-&lt;p&gt;The Python program we used
-was something on the order of&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-fq= {}
-for line in file( 'sample.csv', 'r'):
-    fields= line.split(',')
-    aSuspect= fields[4].split()
-    fq.setdefault( aSuspect[3], 0 )
-    fq[ aSuspect[3] ] += 1
-print fq
-&lt;/pre&gt;
-&lt;p&gt;Given this template we can move
-around, analyzing fields individually or in groups, looking for the domain of
-badness and formulating a cleansing
-strategy.&lt;/p&gt;
-&lt;p&gt;Python reduces the
-development cycle to type-run-think analysis cycle which goes very quickly.  And
-we can easily produce things we don't mind throwing away.  We haven't invested
-much, we don't have the Urge to
-Preserve.&lt;/p&gt;
-&lt;p&gt;We can then dry-run our
-cleansing approach in a type-run-think design cycle.  Again, the Urge to
-Preserve is negligible when there's such a tiny
-investment.&lt;/p&gt;
-&lt;p&gt;Compare the 8 lines of code
-above with the equivalent in Java.  It would be, perhaps twice the size.  The
-strong type checking slows development, and causes you to marry a class
-hierarchy that isn't really correct because it's too expensive to
-change.&lt;/p&gt;
-&lt;p&gt;And when we're done, we can
-simply translate to Java.  I like this Python thing, it works.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry><entry><title>How does Python stack up?</title><link href="https://slott56.github.io/2005_10_07-how_does_python_stack_up.html" rel="alternate"></link><published>2005-10-07T03:34:00-04:00</published><updated>2005-10-07T03:34:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-07:/2005_10_07-how_does_python_stack_up.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://pjhyett.com/articles/2005/10/06/why-hasnt-anything-changed-since-the-50s"&gt;PJHyett&lt;/a&gt; asks&lt;/p&gt;
+Racing.  Perhaps Kontrawize choose the Ukulele instead of Python?&lt;/p&gt;
+</content><category term="Books"></category><category term="building skills books"></category><category term="applications"></category><category term="data analysis"></category></entry><entry><title>How does Python stack up?</title><link href="https://slott56.github.io/2005_10_07-how_does_python_stack_up.html" rel="alternate"></link><published>2005-10-07T03:34:00-04:00</published><updated>2005-10-07T03:34:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-07:/2005_10_07-how_does_python_stack_up.html</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://pjhyett.com/articles/2005/10/06/why-hasnt-anything-changed-since-the-50s"&gt;PJHyett&lt;/a&gt; asks&lt;/p&gt;
 &lt;p&gt;Why is it that selling points of
 newer langauges are features that Lisp had decades ago? Java has garbage
 collection, Ruby has closures, Perl is dynamically typed, etc. What the hell
@@ -2426,4 +2363,4 @@ business.&lt;/p&gt;
 programming, but a more serious attempt to maximize the value from that
 programming, we'd have fewer languages, fewer bugs, less maintenance and
 support.&lt;/p&gt;
-</content><category term="Books"></category><category term="books"></category><category term="building skills"></category><category term="#python"></category></entry></feed>
+</content><category term="Books"></category><category term="building skills books"></category><category term="python features"></category></entry></feed>

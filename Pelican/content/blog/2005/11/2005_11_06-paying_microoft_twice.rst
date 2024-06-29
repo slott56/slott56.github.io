@@ -2,7 +2,7 @@ Paying Micro$oft Twice
 ======================
 
 :date: 2005-11-06 18:01
-:tags: management
+:tags: microsoft,spyware
 :slug: 2005_11_06-paying_microoft_twice
 :category: Management
 :status: published

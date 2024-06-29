@@ -2,9 +2,9 @@ One More Cool Thing About Python Is...
 ======================================
 
 :date: 2005-10-22 15:25
-:tags: books,building skills,#python
+:tags: data analysis,application example
 :slug: 2005_10_22-one_more_cool_thing_about_python_is
-:category: Books
+:category: Python
 :status: published
 
 

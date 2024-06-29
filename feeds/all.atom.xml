@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-05-07T08:01:00-04:00</updated><entry><title>Git Nightmare</title><link href="https://slott56.github.io/2024-05-07-github_nightmare.html" rel="alternate"></link><published>2024-05-07T08:01:00-04:00</published><updated>2024-05-07T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-05-07:/2024-05-07-github_nightmare.html</id><summary type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-06-29T09:22:00-04:00</updated><entry><title>Synthetic Data</title><link href="https://slott56.github.io/2024-06-29-synthetic_data.html" rel="alternate"></link><published>2024-06-29T09:22:00-04:00</published><updated>2024-06-29T09:22:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-06-29:/2024-06-29-synthetic_data.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Book?&lt;/strong&gt; Second draft (with tech review comments addressed) off to editors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boat?&lt;/strong&gt; Still on the hard during Hurricane Season.&lt;/p&gt;
+&lt;div class="section" id="synthetic-data-1"&gt;
+&lt;h2&gt;Synthetic Data&lt;/h2&gt;
+&lt;p&gt;I've had a passing interest in data synthesis for decades.&lt;/p&gt;
+&lt;p&gt;Early on in my career, I figured out how the Z/OS IEDBG utility worked.
+See &lt;a class="reference external" href="https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program"&gt;https://www.ibm …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Book?&lt;/strong&gt; Second draft (with tech review comments addressed) off to editors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boat?&lt;/strong&gt; Still on the hard during Hurricane Season.&lt;/p&gt;
+&lt;div class="section" id="synthetic-data-1"&gt;
+&lt;h2&gt;Synthetic Data&lt;/h2&gt;
+&lt;p&gt;I've had a passing interest in data synthesis for decades.&lt;/p&gt;
+&lt;p&gt;Early on in my career, I figured out how the Z/OS IEDBG utility worked.
+See &lt;a class="reference external" href="https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program"&gt;https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program&lt;/a&gt;.
+It synthesized test data according to a number of mainframe-centric rules.&lt;/p&gt;
+&lt;p&gt;When I started doing DBA work (Ingres, Oracle, DB2, etc.) the need for bulk synthetic data became more profound.
+Folks would debate optimization questions without the benefit of &lt;strong&gt;facts&lt;/strong&gt;.
+They'd suppose the optimizer might use an index or a 2NF demormalization might save some time.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Without data, it's all second-guessing the DBMS algorithms.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;not&lt;/strong&gt; synthetic data for generative machine learning models.&lt;/p&gt;
+&lt;p class="last"&gt;That's a possible application, but the focus is on databases, ETL, and data analytics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="new-development"&gt;
+&lt;h3&gt;New Development&lt;/h3&gt;
+&lt;p&gt;The real &amp;quot;shoal water without a chart&amp;quot; problem is new development.&lt;/p&gt;
+&lt;p&gt;You don't have legacy data with which to benchmark anything.&lt;/p&gt;
+&lt;p&gt;You only have hand-waving ideas of what the data might look like once the application sees some adoption.&lt;/p&gt;
+&lt;p&gt;And those are often wishful thinking. (Worse, they can be outright lies by folks seeking investment money.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h3&gt;What To Do?&lt;/h3&gt;
+&lt;p&gt;All design is driven by data. (Remember, when you switch application code, you preserve the data; it's the real value.)&lt;/p&gt;
+&lt;p&gt;All scalability problems are data-related.&lt;/p&gt;
+&lt;p&gt;You can use ordinary &amp;quot;Big-O&amp;quot; complexity analysis to design algorithms that are optimal, but you don't know
+any actual performance metrics without hardware, software, and -- what's really hard -- data.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;only&lt;/strong&gt; thing you can do is follow this plan:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Write your Proof-of-Concept, Spike solution.&lt;/li&gt;
+&lt;li&gt;Synthesize realistic volumes of data with realistic relationships among the values and realistic distributions of values.&lt;/li&gt;
+&lt;li&gt;Benchmark the performance of the POC/Spike with actual data on actual hardware.&lt;/li&gt;
+&lt;li&gt;Continuously monitor performance, establishing new benchmarks with better algorithms or data structures.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Without actual performance benchmarks, you're creating two scalability problems:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The immediate problem of &amp;quot;can't start using it because it's too slow.&amp;quot;&lt;/li&gt;
+&lt;li&gt;The subsequent problem of &amp;quot;users are complaining that it's slow.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="okay-how-do-i-do-it"&gt;
+&lt;h3&gt;Okay, How Do I Do It?&lt;/h3&gt;
+&lt;p&gt;Which brings us to tools that synthesize data.&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;not&lt;/strong&gt; synthetic data for generative machine learning models.&lt;/p&gt;
+&lt;p&gt;This is synthetic data for database, bulk ETL, and ordinary statistical analysis performance testing.&lt;/p&gt;
+&lt;p&gt;I've got a bunch of stuff that I'll be posting to Git with an approach that I think might be useful to others.&lt;/p&gt;
+&lt;p&gt;It based on stuff I've done before. It includes the results of some lessons learned.&lt;/p&gt;
+&lt;p&gt;More to come.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="synthetic data"></category><category term="python"></category><category term="project"></category></entry><entry><title>Git Nightmare</title><link href="https://slott56.github.io/2024-05-07-github_nightmare.html" rel="alternate"></link><published>2024-05-07T08:01:00-04:00</published><updated>2024-05-07T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-05-07:/2024-05-07-github_nightmare.html</id><summary type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
 is very large: 859 postings over the last few years. 2,334 image files.&lt;/p&gt;
 &lt;p&gt;This is a LOT of content.&lt;/p&gt;
 &lt;p&gt;A few of the files (were) Movies, which tend to create immense files.&lt;/p&gt;
@@ -11152,128 +11212,4 @@ What Python books do you recommend for novices so they can learn from
 beginner to advanced?
 Thanks.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Books"></category><category term="#python"></category><category term="modern python cookbook"></category><category term="@PacktAuthors"></category><category term="packtpub"></category></entry><entry><title>Inelegant Python</title><link href="https://slott56.github.io/2020_12_16-inelegant_python.html" rel="alternate"></link><published>2020-12-16T08:54:00-05:00</published><updated>2020-12-16T08:54:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2020-12-16:/2020_12_16-inelegant_python.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array/"&gt;https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array/&lt;/a&gt;
-This seems to be a popular coding interview problem.&lt;/p&gt;
-&lt;p&gt;The Python code shown on the site seems almost maliciously misleading.&lt;/p&gt;
-&lt;p&gt;The full problem is this:&lt;/p&gt;
-&lt;blockquote&gt;
-You are given an unsorted array with both positive and negative
-elements. You have to find the smallest positive …&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array/"&gt;https://www.geeksforgeeks.org/find-the-smallest-positive-number-missing-from-an-unsorted-array/&lt;/a&gt;
-This seems to be a popular coding interview problem.&lt;/p&gt;
-&lt;p&gt;The Python code shown on the site seems almost maliciously misleading.&lt;/p&gt;
-&lt;p&gt;The full problem is this:&lt;/p&gt;
-&lt;blockquote&gt;
-You are given an unsorted array with both positive and negative
-elements. You have to find the smallest positive number missing from
-the array in O(n) time using constant extra space. You can modify the
-original array.&lt;/blockquote&gt;
-&lt;p&gt;Here's a common-enough Python solution.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def smallest_missing_1(x):
-    &amp;quot;&amp;quot;&amp;quot;
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_1([2, 3, 7, 6, 8, -1, -10, 15])
-    1
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_1([2, 3, -7, 6, 8, 1, -10, 15])
-    4
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_1([1, 1, 0, -1, -2])
-    2
-    &amp;quot;&amp;quot;&amp;quot;
-    try:
-        return min(set(range(1, max(x)+2))-set(x))
-    except ValueError as ex:
-        # min() arg is an empty sequence
-        return 1
-&lt;/pre&gt;
-&lt;p&gt;Some folks don't like the try/except to detect the edge case of all
-negative values. If  max(x) &amp;lt;= 0, then the exception will be raised, and
-we could use an if statement for a LBYL solution.&lt;/p&gt;
-&lt;p&gt;What's more important is this solution violates the constant extra space
-constraint. It builds two sets, which isn't a simple constant size
-object; it depends on the size of the input object.&lt;/p&gt;
-&lt;p&gt;To avoid the sets, we'll use a generator.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def smallest_missing_2(x):
-    &amp;quot;&amp;quot;&amp;quot;
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_2([2, 3, 7, 6, 8, -1, -10, 15])
-    1
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_2([2, 3, -7, 6, 8, 1, -10, 15])
-    4
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_2([1, 1, 0, -1, -2])
-    2
-    &amp;quot;&amp;quot;&amp;quot;
-    try:
-        return next(n for n in range(1, max(x)+2) if n not in x)
-    except StopIteration as ex:
-        # next() found an empty sequence
-        return 1
-&lt;/pre&gt;
-&lt;p&gt;This violates the &lt;strong&gt;O&lt;/strong&gt;(&lt;em&gt;n&lt;/em&gt;) constraint with the repeated use of the
-&lt;strong&gt;in&lt;/strong&gt; operator.&lt;/p&gt;
-&lt;p&gt;To get to &lt;strong&gt;O&lt;/strong&gt;(&lt;em&gt;n&lt;/em&gt;) and no extra storage, we're forced to (a) demand
-the input is a mutable list, so we can (b) reuse the input list object
-to track which numbers are present and which are absent. This reuse of a
-mutable list is atypical for Python programming. Indeed, it seems like a
-bad idea.&lt;/p&gt;
-&lt;p&gt;Consistent with the spirit of the problem, we're constrained to making
-arithmetic changes to the values in the original list, x, to track the
-state of the computation. The idea is that the value x[i] will have
-*both* an original input value, and the presence (or absence) of some
-value, p+i, in the sequence.&lt;/p&gt;
-&lt;p&gt;One traditional approach is to use the sign as a way to carry this extra
-bit of information. That's why negative numbers are thrown in to the
-input data. They make the sign business super confusing. Also. That's
-why zero is excluded. Conventional integer math doesn't have a negative
-zero, confounding the problem with array slots that have numbers that
-make sign processing icky.&lt;/p&gt;
-&lt;p&gt;I'm not a fan of using the sign for this. I'd prefer to use Least
-Significant Bits (LSB's) because we have a fairly large number of
-available LSB's. And. We can trivially ignore zero values and their
-habit of not having useful signs. Unless the list has 2**62 elements, a
-little shifting won't hurt any.&lt;/p&gt;
-&lt;p&gt;Here's a solution that would *rarely* be used in normal Python work.
-Maybe on a Circuit Playground Express MicroPython. But not anywhere
-else.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-from typing import List
-
-def smallest_missing_3(x: List[int]) -&amp;gt; int:
-    &amp;quot;&amp;quot;&amp;quot;
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_3([2, 3, 7, 6, 8, -1, -10, 15])
-    1
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_3([2, 3, -7, 6, 8, 1, -10, 15])
-    4
-    &amp;gt;&amp;gt;&amp;gt; smallest_missing_3([1, 1, 0, -1, -2])
-    2
-    &amp;quot;&amp;quot;&amp;quot;
-    # Purge negative numbers. Scale the other numbers.
-    for i in range(len(x)):
-        if x[i] &amp;lt; 0:
-            x[i] = 0
-        else:
-            x[i] = x[i] &amp;lt;&amp;lt; 1
-    # Set LSB on positions which are filled; ignoring None values.
-    # This can raise an index out-of-bounds exception, which we silence.
-    for v in filter(None, (scaled &amp;gt;&amp;gt; 1 for scaled in x)):
-        try:
-            x[v-1] = x[v-1] | 1
-        except IndexError:
-            pass
-    # Find first value with LSB not set.
-    for i in range(len(x)):
-        if x[i] &amp;amp; 1 == 0:
-            return i+1
-&lt;/pre&gt;
-&lt;p&gt;This is pretty atypical Python code. I'm kind of shocked folks would use
-something like this as an interview question. It's rather complex and
-requires some very old-school programming tricks to make the whole thing
-remotely palatable.&lt;/p&gt;
-&lt;p&gt;The index out-of-bounds is particularly nasty. It means there's a
-number, n, that's greater than len(x). This is worrisome, but, it also
-means any gap MUST be less than this large number n. For this reason, we
-can silence array index errors.&lt;/p&gt;
-&lt;p&gt;I would not be able to simply stand up in a conference room and solve
-this without some additional direction. The &amp;quot;making arithmetic changes
-to the values in the original list&amp;quot; secret is something I knew about and
-did -- when I was younger -- but I haven't done that kind of thing in
-decades.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="complexity"></category><category term="#python"></category></entry></feed>
+</content><category term="Books"></category><category term="#python"></category><category term="modern python cookbook"></category><category term="@PacktAuthors"></category><category term="packtpub"></category></entry></feed>

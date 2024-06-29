@@ -1,9 +1,11 @@
 """
 Check Tags vs. Categories in content/blog
 """
+from collections import Counter
 from pathlib import Path
 import re
 
+counts = Counter()
 source = Path.cwd() / "content" / "blog"
 for entry in sorted(source.glob("**/*.rst")):
     tags = []
@@ -15,3 +17,6 @@ for entry in sorted(source.glob("**/*.rst")):
             category = cat_line.group(1).strip()
     if category.lower() in tags:
         print(entry.relative_to(source), category, tags)
+        counts[entry.parent.parent.name, entry.parent.name] += 1
+for year, cleanup in counts.items():
+    print(year, cleanup)

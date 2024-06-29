@@ -2,7 +2,7 @@ Python Unit Testing Frameworks (v3)
 ===================================
 
 :date: 2005-11-02 00:12
-:tags: #python,unit testing
+:tags: unit testing
 :slug: 2005_11_02-python_unit_testing_frameworks_v3
 :category: Python
 :status: published

@@ -2,7 +2,7 @@ Multi-Lingual Solutions: Explore in Python, Implement in Java
 =============================================================
 
 :date: 2005-11-02 00:51
-:tags: books,building skills,#python
+:tags: building skills books,applications,data analysis
 :slug: 2005_11_02-multi_lingual_solutions_explore_in_python_implement_in_java
 :category: Books
 :status: published
@@ -48,7 +48,7 @@ things I haven't spent a lot of mental energy mastering.  Perhaps we only have a
 finite number of slots for large complex things in our heads.  I don't follow
 many professional sports.  I have a limited facility with XSLT.  Maybe it's an
 optimization trade-off: I opted for Python, SQL, Java and America's Cup Yacht
-Racing.  Perhaps Kontrawize choose the Ukelele instead of Python?
+Racing.  Perhaps Kontrawize choose the Ukulele instead of Python?
 
 
 

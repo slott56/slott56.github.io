@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-05-07T08:01:00-04:00</updated><entry><title>Git Nightmare</title><link href="https://slott56.github.io/2024-05-07-github_nightmare.html" rel="alternate"></link><published>2024-05-07T08:01:00-04:00</published><updated>2024-05-07T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-05-07:/2024-05-07-github_nightmare.html</id><summary type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-06-29T09:22:00-04:00</updated><entry><title>Synthetic Data</title><link href="https://slott56.github.io/2024-06-29-synthetic_data.html" rel="alternate"></link><published>2024-06-29T09:22:00-04:00</published><updated>2024-06-29T09:22:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-06-29:/2024-06-29-synthetic_data.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Book?&lt;/strong&gt; Second draft (with tech review comments addressed) off to editors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boat?&lt;/strong&gt; Still on the hard during Hurricane Season.&lt;/p&gt;
+&lt;div class="section" id="synthetic-data-1"&gt;
+&lt;h2&gt;Synthetic Data&lt;/h2&gt;
+&lt;p&gt;I've had a passing interest in data synthesis for decades.&lt;/p&gt;
+&lt;p&gt;Early on in my career, I figured out how the Z/OS IEDBG utility worked.
+See &lt;a class="reference external" href="https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program"&gt;https://www.ibm …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Book?&lt;/strong&gt; Second draft (with tech review comments addressed) off to editors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Boat?&lt;/strong&gt; Still on the hard during Hurricane Season.&lt;/p&gt;
+&lt;div class="section" id="synthetic-data-1"&gt;
+&lt;h2&gt;Synthetic Data&lt;/h2&gt;
+&lt;p&gt;I've had a passing interest in data synthesis for decades.&lt;/p&gt;
+&lt;p&gt;Early on in my career, I figured out how the Z/OS IEDBG utility worked.
+See &lt;a class="reference external" href="https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program"&gt;https://www.ibm.com/docs/en/zos/3.1.0?topic=utilities-iebdg-test-data-generator-program&lt;/a&gt;.
+It synthesized test data according to a number of mainframe-centric rules.&lt;/p&gt;
+&lt;p&gt;When I started doing DBA work (Ingres, Oracle, DB2, etc.) the need for bulk synthetic data became more profound.
+Folks would debate optimization questions without the benefit of &lt;strong&gt;facts&lt;/strong&gt;.
+They'd suppose the optimizer might use an index or a 2NF demormalization might save some time.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Without data, it's all second-guessing the DBMS algorithms.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;not&lt;/strong&gt; synthetic data for generative machine learning models.&lt;/p&gt;
+&lt;p class="last"&gt;That's a possible application, but the focus is on databases, ETL, and data analytics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="new-development"&gt;
+&lt;h3&gt;New Development&lt;/h3&gt;
+&lt;p&gt;The real &amp;quot;shoal water without a chart&amp;quot; problem is new development.&lt;/p&gt;
+&lt;p&gt;You don't have legacy data with which to benchmark anything.&lt;/p&gt;
+&lt;p&gt;You only have hand-waving ideas of what the data might look like once the application sees some adoption.&lt;/p&gt;
+&lt;p&gt;And those are often wishful thinking. (Worse, they can be outright lies by folks seeking investment money.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h3&gt;What To Do?&lt;/h3&gt;
+&lt;p&gt;All design is driven by data. (Remember, when you switch application code, you preserve the data; it's the real value.)&lt;/p&gt;
+&lt;p&gt;All scalability problems are data-related.&lt;/p&gt;
+&lt;p&gt;You can use ordinary &amp;quot;Big-O&amp;quot; complexity analysis to design algorithms that are optimal, but you don't know
+any actual performance metrics without hardware, software, and -- what's really hard -- data.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;only&lt;/strong&gt; thing you can do is follow this plan:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Write your Proof-of-Concept, Spike solution.&lt;/li&gt;
+&lt;li&gt;Synthesize realistic volumes of data with realistic relationships among the values and realistic distributions of values.&lt;/li&gt;
+&lt;li&gt;Benchmark the performance of the POC/Spike with actual data on actual hardware.&lt;/li&gt;
+&lt;li&gt;Continuously monitor performance, establishing new benchmarks with better algorithms or data structures.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Without actual performance benchmarks, you're creating two scalability problems:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The immediate problem of &amp;quot;can't start using it because it's too slow.&amp;quot;&lt;/li&gt;
+&lt;li&gt;The subsequent problem of &amp;quot;users are complaining that it's slow.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="okay-how-do-i-do-it"&gt;
+&lt;h3&gt;Okay, How Do I Do It?&lt;/h3&gt;
+&lt;p&gt;Which brings us to tools that synthesize data.&lt;/p&gt;
+&lt;p&gt;This is &lt;strong&gt;not&lt;/strong&gt; synthetic data for generative machine learning models.&lt;/p&gt;
+&lt;p&gt;This is synthetic data for database, bulk ETL, and ordinary statistical analysis performance testing.&lt;/p&gt;
+&lt;p&gt;I've got a bunch of stuff that I'll be posting to Git with an approach that I think might be useful to others.&lt;/p&gt;
+&lt;p&gt;It based on stuff I've done before. It includes the results of some lessons learned.&lt;/p&gt;
+&lt;p&gt;More to come.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="synthetic data"></category><category term="python"></category><category term="project"></category></entry><entry><title>Git Nightmare</title><link href="https://slott56.github.io/2024-05-07-github_nightmare.html" rel="alternate"></link><published>2024-05-07T08:01:00-04:00</published><updated>2024-05-07T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-05-07:/2024-05-07-github_nightmare.html</id><summary type="html">&lt;p&gt;My sailing blog, &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Team Red Cruising&lt;/a&gt;
 is very large: 859 postings over the last few years. 2,334 image files.&lt;/p&gt;
 &lt;p&gt;This is a LOT of content.&lt;/p&gt;
 &lt;p&gt;A few of the files (were) Movies, which tend to create immense files.&lt;/p&gt;
@@ -3771,4 +3831,67 @@ test.py.&lt;/p&gt;
 &lt;p&gt;Ian Bicking also has a list of
 complaints about the basic unittest interface [&lt;a class="reference external" href="http://blog.colorstudy.com/ianb/weblog/2003/10/10.html#P11"&gt;http://blog.colorstudy.com/ianb/weblog/2003/10/10.html#P11&lt;/a&gt; ], many of which are answered by the
 add-ons.&lt;/p&gt;
-</content><category term="Python"></category><category term="#python"></category><category term="unit testing"></category></entry></feed>
+</content><category term="Python"></category><category term="unit testing"></category></entry><entry><title>One More Cool Thing About Python Is...</title><link href="https://slott56.github.io/2005_10_22-one_more_cool_thing_about_python_is.html" rel="alternate"></link><published>2005-10-22T15:25:00-04:00</published><updated>2005-10-22T15:25:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2005-10-22:/2005_10_22-one_more_cool_thing_about_python_is.html</id><summary type="html">&lt;p&gt;So, confronted with 1.4M records of questionable
+data, what do we do?&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;We'll need a production program that can run
+daily from now until the end of time to cleanse the data and reject the truly
+evil records.&lt;/li&gt;
+&lt;li&gt;We don't have a good fix on what the data is …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;So, confronted with 1.4M records of questionable
+data, what do we do?&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;We'll need a production program that can run
+daily from now until the end of time to cleanse the data and reject the truly
+evil records.&lt;/li&gt;
+&lt;li&gt;We don't have a good fix on what the data is.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We have some &amp;quot;specifications&amp;quot; but
+they're little more than a wish list of cleansing
+suggestions.&lt;/p&gt;
+&lt;p&gt;What to do?&lt;/p&gt;
+&lt;p&gt;Well, step 1 is obviously analysis to
+fully define the problem.  What data do we have?  What is the platonic ideal?
+What forms of badness are represented where data does not meet the
+ideal?&lt;/p&gt;
+&lt;p&gt;So, how do we analyze?  We can't
+throw it into Excel.  We can barely open the file in Textpad.&lt;/p&gt;
+&lt;div class="section" id="python-to-the-rescue"&gt;
+&lt;h2&gt;Python to the rescue&lt;/h2&gt;
+&lt;p&gt;While the final application
+must be delivered in Java, Java's a terrible way to analyze unknown data.  We
+would have a cycle of write, debug, build, test, run and scratch head over a
+fairly complex piece of Java code just to do simple frequency
+histograms.&lt;/p&gt;
+&lt;p&gt;The Python program we used
+was something on the order of&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+fq= {}
+for line in file( 'sample.csv', 'r'):
+    fields= line.split(',')
+    aSuspect= fields[4].split()
+    fq.setdefault( aSuspect[3], 0 )
+    fq[ aSuspect[3] ] += 1
+print fq
+&lt;/pre&gt;
+&lt;p&gt;Given this template we can move
+around, analyzing fields individually or in groups, looking for the domain of
+badness and formulating a cleansing
+strategy.&lt;/p&gt;
+&lt;p&gt;Python reduces the
+development cycle to type-run-think analysis cycle which goes very quickly.  And
+we can easily produce things we don't mind throwing away.  We haven't invested
+much, we don't have the Urge to
+Preserve.&lt;/p&gt;
+&lt;p&gt;We can then dry-run our
+cleansing approach in a type-run-think design cycle.  Again, the Urge to
+Preserve is negligible when there's such a tiny
+investment.&lt;/p&gt;
+&lt;p&gt;Compare the 8 lines of code
+above with the equivalent in Java.  It would be, perhaps twice the size.  The
+strong type checking slows development, and causes you to marry a class
+hierarchy that isn't really correct because it's too expensive to
+change.&lt;/p&gt;
+&lt;p&gt;And when we're done, we can
+simply translate to Java.  I like this Python thing, it works.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="data analysis"></category><category term="application example"></category></entry></feed>

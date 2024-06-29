@@ -2,7 +2,7 @@ Java - the new COBOL (Revised)
 ==============================
 
 :date: 2005-11-03 14:55
-:tags: management
+:tags: java,cobol,legacy
 :slug: 2005_11_03-java_the_new_cobol_revised
 :category: Management
 :status: published

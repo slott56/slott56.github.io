@@ -2,7 +2,7 @@ Chat Bots, Poker Rooms, Who's really Human?
 ===========================================
 
 :date: 2005-09-20 10:42
-:tags: news
+:tags: chatbots,AI
 :slug: 2005_09_20-chat_bots_poker_rooms_whos_really_human
 :category: News
 :status: published

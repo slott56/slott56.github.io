@@ -2,7 +2,7 @@ How does Python stack up?
 =========================
 
 :date: 2005-10-07 03:34
-:tags: books,building skills,#python
+:tags: building skills books,python features
 :slug: 2005_10_07-how_does_python_stack_up
 :category: Books
 :status: published
