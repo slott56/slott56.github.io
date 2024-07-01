@@ -2,7 +2,7 @@ Opacity and Perl
 ================
 
 :date: 2006-02-07 11:51
-:tags: management
+:tags: perl,opacity
 :slug: 2006_02_07-opacity_and_perl
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Ouch, this is going to hurt
 ===========================
 
 :date: 2006-01-11 12:06
-:tags: management
+:tags: spreadsheet,database
 :slug: 2006_01_11-ouch_this_is_going_to_hurt
 :category: Management
 :status: published

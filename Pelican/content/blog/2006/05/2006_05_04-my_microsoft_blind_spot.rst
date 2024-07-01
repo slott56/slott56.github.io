@@ -2,7 +2,7 @@ My Microsoft Blind-Spot
 =======================
 
 :date: 2006-05-04 14:08
-:tags: management
+:tags: microsoft,lamp
 :slug: 2006_05_04-my_microsoft_blind_spot
 :category: Management
 :status: published

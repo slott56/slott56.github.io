@@ -2,7 +2,7 @@ After Perl, what? (Revised)
 ===========================
 
 :date: 2006-01-27 00:58
-:tags: management
+:tags: LAMP,perl,php,java,python,ruby
 :slug: 2006_01_27-after_perl_what_revised
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Offshoring and Short-Term Thinking
 ==================================
 
 :date: 2006-03-25 16:37
-:tags: management
+:tags: outsourcing,offshoring
 :slug: 2006_03_25-offshoring_and_short_term_thinking
 :category: Management
 :status: published

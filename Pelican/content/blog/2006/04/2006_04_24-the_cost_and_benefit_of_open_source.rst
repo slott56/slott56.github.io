@@ -2,7 +2,7 @@ The Cost (and Benefit) of Open Source
 =====================================
 
 :date: 2006-04-24 23:59
-:tags: management
+:tags: open source,enterprise
 :slug: 2006_04_24-the_cost_and_benefit_of_open_source
 :category: Management
 :status: published

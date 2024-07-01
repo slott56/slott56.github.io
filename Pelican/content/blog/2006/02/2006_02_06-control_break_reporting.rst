@@ -2,7 +2,7 @@ Control Break Reporting
 =======================
 
 :date: 2006-02-06 23:49
-:tags: books,building skills,#python
+:tags: building skills,python,data analysis,summarizing
 :slug: 2006_02_06-control_break_reporting
 :category: Books
 :status: published

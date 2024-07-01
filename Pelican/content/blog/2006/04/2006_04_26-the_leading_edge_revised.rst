@@ -2,7 +2,7 @@ The Leading Edge (Revised)
 ==========================
 
 :date: 2006-04-26 19:15
-:tags: management
+:tags: open source,enterprise
 :slug: 2006_04_26-the_leading_edge_revised
 :category: Management
 :status: published

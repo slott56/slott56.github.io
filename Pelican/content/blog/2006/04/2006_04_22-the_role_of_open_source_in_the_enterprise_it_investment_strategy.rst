@@ -2,7 +2,7 @@ The Role of Open Source in the Enterprise IT Investment Strategy
 ================================================================
 
 :date: 2006-04-22 14:37
-:tags: management
+:tags: open source,enterprise
 :slug: 2006_04_22-the_role_of_open_source_in_the_enterprise_it_investment_strategy
 :category: Management
 :status: published

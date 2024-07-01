@@ -2,7 +2,7 @@ Offshoring Shows How Valuable Code Is (Revised)
 ===============================================
 
 :date: 2006-03-20 21:58
-:tags: management
+:tags: outsourcing,offshoring
 :slug: 2006_03_20-offshoring_shows_how_valuable_code_is_revised
 :category: Management
 :status: published
