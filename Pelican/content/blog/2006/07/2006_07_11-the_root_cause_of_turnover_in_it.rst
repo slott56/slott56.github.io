@@ -2,7 +2,7 @@ The Root Cause of Turnover in IT
 ================================
 
 :date: 2006-07-11 14:40
-:tags: management
+:tags: Enterprise IT,turnover,problem-solving
 :slug: 2006_07_11-the_root_cause_of_turnover_in_it
 :category: Management
 :status: published

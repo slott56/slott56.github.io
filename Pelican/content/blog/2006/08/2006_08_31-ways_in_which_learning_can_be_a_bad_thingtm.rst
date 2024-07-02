@@ -2,7 +2,7 @@ Ways in which learning can be A Bad Thing™
 ==========================================
 
 :date: 2006-08-31 17:54
-:tags: books,building skills,#python
+:tags: building skills,#python,learning
 :slug: 2006_08_31-ways_in_which_learning_can_be_a_bad_thingtm
 :category: Books
 :status: published

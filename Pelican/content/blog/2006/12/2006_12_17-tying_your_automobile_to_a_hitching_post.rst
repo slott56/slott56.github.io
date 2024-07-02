@@ -2,7 +2,7 @@ Tying your automobile to a hitching post.
 =========================================
 
 :date: 2006-12-17 21:04
-:tags: books,building skills,#python
+:tags: building skills,#python,python complaints
 :slug: 2006_12_17-tying_your_automobile_to_a_hitching_post
 :category: Books
 :status: published

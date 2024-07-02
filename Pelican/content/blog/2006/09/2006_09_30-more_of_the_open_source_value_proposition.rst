@@ -2,7 +2,7 @@ More of the Open Source Value Proposition
 =========================================
 
 :date: 2006-09-30 12:10
-:tags: management
+:tags: open source,Enterprise IT,value,rewards
 :slug: 2006_09_30-more_of_the_open_source_value_proposition
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ It's Strategic -- but it's not -- but it was -- now it's a burden
 =================================================================
 
 :date: 2006-09-08 13:06
-:tags: management
+:tags: strategic,Enterprise IT,technical debt
 :slug: 2006_09_08-its_strategic_but_its_not_but_it_was_now_its_a_burden
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Dynamic Languages and Corporate IT's Objections
 ===============================================
 
 :date: 2006-08-29 17:57
-:tags: news
+:tags: dynamic language,scripting systems,Enterprise IT
 :slug: 2006_08_29-dynamic_languages_and_corporate_its_objections
 :category: News
 :status: published

@@ -2,7 +2,7 @@ Deprecating Dynamic Languages (or Scripting Systems)
 ====================================================
 
 :date: 2006-08-23 11:05
-:tags: news
+:tags: dynamic language,scripting systems
 :slug: 2006_08_23-deprecating_dynamic_languages_or_scripting_systems
 :category: News
 :status: published

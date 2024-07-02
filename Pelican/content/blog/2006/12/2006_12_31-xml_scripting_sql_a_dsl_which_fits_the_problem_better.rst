@@ -2,7 +2,7 @@ XML - Scripting - SQL - a DSL: which fits the problem better?
 =============================================================
 
 :date: 2006-12-31 04:46
-:tags: technologies,xml
+:tags: xml
 :slug: 2006_12_31-xml_scripting_sql_a_dsl_which_fits_the_problem_better
 :category: Technologies
 :status: published

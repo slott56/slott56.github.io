@@ -2,7 +2,7 @@ Expertise and Expert Performance
 ================================
 
 :date: 2006-07-19 10:48
-:tags: books,building skills,#python
+:tags: building skills,#python,OO design
 :slug: 2006_07_19-expertise_and_expert_performance
 :category: Books
 :status: published

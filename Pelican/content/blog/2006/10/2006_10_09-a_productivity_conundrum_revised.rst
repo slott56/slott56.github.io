@@ -2,7 +2,7 @@ A Productivity Conundrum (Revised)
 ==================================
 
 :date: 2006-10-09 10:24
-:tags: books,building skills,#python
+:tags: building skills,#python,productivity,database design
 :slug: 2006_10_09-a_productivity_conundrum_revised
 :category: Books
 :status: published

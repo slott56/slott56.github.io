@@ -2,7 +2,7 @@ Google vs. the Herd
 ===================
 
 :date: 2006-08-28 10:52
-:tags: management
+:tags: google,gartner,CIO,herd animals
 :slug: 2006_08_28-google_vs_the_herd
 :category: Management
 :status: published

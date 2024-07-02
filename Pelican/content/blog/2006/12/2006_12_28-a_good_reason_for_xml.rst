@@ -2,7 +2,7 @@ A Good Reason for XML
 =====================
 
 :date: 2006-12-28 15:39
-:tags: technologies,xml
+:tags: xml
 :slug: 2006_12_28-a_good_reason_for_xml
 :category: Technologies
 :status: published

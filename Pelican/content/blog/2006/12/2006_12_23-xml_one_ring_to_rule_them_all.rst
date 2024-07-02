@@ -2,7 +2,7 @@ XML - One Ring to Rule them All...
 ==================================
 
 :date: 2006-12-23 17:43
-:tags: technologies,xml
+:tags: xml
 :slug: 2006_12_23-xml_one_ring_to_rule_them_all
 :category: Technologies
 :status: published

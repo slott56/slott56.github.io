@@ -2,7 +2,7 @@ Apple and Flexibility
 =====================
 
 :date: 2006-08-07 23:21
-:tags: news
+:tags: apple,flexibility
 :slug: 2006_08_07-apple_and_flexibility
 :category: News
 :status: published

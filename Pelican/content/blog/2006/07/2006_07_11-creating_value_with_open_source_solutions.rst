@@ -2,7 +2,7 @@ Creating Value with Open Source Solutions
 =========================================
 
 :date: 2006-07-11 14:23
-:tags: management
+:tags: open source,enterprise IT,rewards
 :slug: 2006_07_11-creating_value_with_open_source_solutions
 :category: Management
 :status: published

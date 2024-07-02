@@ -2,7 +2,7 @@ Creating Value with Open Source Products (part 2)
 =================================================
 
 :date: 2006-08-31 18:15
-:tags: management
+:tags: open source,Enterprise IT,rewards
 :slug: 2006_08_31-creating_value_with_open_source_products_part_2
 :category: Management
 :status: published

@@ -18,5 +18,5 @@ for entry in sorted(source.glob("**/*.rst")):
     if category.lower() in tags:
         print(entry.relative_to(source), category, tags)
         counts[entry.parent.parent.name, entry.parent.name] += 1
-for year, cleanup in counts.items():
-    print(year, cleanup)
+# for year, cleanup in counts.items():
+#     print(year, cleanup)
