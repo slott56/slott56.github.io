@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-07-01T19:22:00-04:00</updated><entry><title>DataSynthTool Repository</title><link href="https://slott56.github.io/2024-07-01-datasynthtool_repository.html" rel="alternate"></link><published>2024-07-01T19:22:00-04:00</published><updated>2024-07-01T19:22:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-07-01:/2024-07-01-datasynthtool_repository.html</id><content type="html">&lt;p&gt;I've published
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-07-16T08:14:00-04:00</updated><entry><title>Functional SQL in Pure Python</title><link href="https://slott56.github.io/2024-07-16-functional_sql_in_pure_python.html" rel="alternate"></link><published>2024-07-16T08:14:00-04:00</published><updated>2024-07-16T08:14:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-07-16:/2024-07-16-functional_sql_in_pure_python.html</id><summary type="html">&lt;p&gt;I've published a framework for doing SQL-like programming in Pure Python -- no database required.&lt;/p&gt;
+&lt;p&gt;Here: &lt;a class="reference external" href="https://github.com/slott56/functional-SQL"&gt;https://github.com/slott56/functional-SQL&lt;/a&gt;.
+See the &lt;a class="reference external" href="https://slott56.github.io/functional-SQL/_build/html/index.html"&gt;functional-SQL&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;This allows us to transform SQL:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c2&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;names_table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;values_table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To pure Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I've published a framework for doing SQL-like programming in Pure Python -- no database required.&lt;/p&gt;
+&lt;p&gt;Here: &lt;a class="reference external" href="https://github.com/slott56/functional-SQL"&gt;https://github.com/slott56/functional-SQL&lt;/a&gt;.
+See the &lt;a class="reference external" href="https://slott56.github.io/functional-SQL/_build/html/index.html"&gt;functional-SQL&lt;/a&gt; documentation.&lt;/p&gt;
+&lt;p&gt;This allows us to transform SQL:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c2&lt;/span&gt;
+&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;names_table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;values_table&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;
+&lt;span class="k"&gt;WHERE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To pure Python:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;from_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;names_table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;values_table&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;cr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Yes, the Python is longer and cluttered with lambdas.&lt;/p&gt;
+&lt;p&gt;This produces the same results using a similar algorithm.&lt;/p&gt;
+&lt;p&gt;Most important, this works with table-like collections of &lt;strong&gt;Any&lt;/strong&gt; class of Python objects.&lt;/p&gt;
+&lt;p&gt;This implements the essential SQL query algorithm:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;having &lt;tt class="docutils literal"&gt;filter()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;group-by &lt;tt class="docutils literal"&gt;reduce()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;where &lt;tt class="docutils literal"&gt;filter()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;select &lt;tt class="docutils literal"&gt;map()&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;from &lt;tt class="docutils literal"&gt;itertools.product()&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This &lt;cite&gt;From-Select-Where-GroupBy-Having(Tables)&lt;/cite&gt; design pattern is very handy.
+A lot of people think of processing data following this template.
+There's no reason, however, to inject the overhead of schema and database.&lt;/p&gt;
+</content><category term="Python"></category><category term="SQL"></category><category term="python"></category><category term="project"></category></entry><entry><title>DataSynthTool Repository</title><link href="https://slott56.github.io/2024-07-01-datasynthtool_repository.html" rel="alternate"></link><published>2024-07-01T19:22:00-04:00</published><updated>2024-07-01T19:22:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-07-01:/2024-07-01-datasynthtool_repository.html</id><content type="html">&lt;p&gt;I've published
 a framework for making tools to leverage formal schema definitions to synthesize bulk data for performance tuning.&lt;/p&gt;
 &lt;p&gt;Here: &lt;a class="reference external" href="https://github.com/slott56/DataSynthTool"&gt;https://github.com/slott56/DataSynthTool&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;See the &lt;a class="reference external" href="https://slott56.github.io/DataSynthTool/synthetic_data.slides.html#/"&gt;original talk&lt;/a&gt;.&lt;/p&gt;
@@ -11087,89 +11123,4 @@ exactly wrong. Everything needs to be challenged and clarified.&lt;/p&gt;
 &lt;p&gt;tl;dr Writing is sometimes hard. And that's the expectation. It's a
 narrow fairway surrounded by shoals.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="writing"></category></entry><entry><title>Diagrams and UML notation</title><link href="https://slott56.github.io/2021_01_05-diagrams_and_uml_notation.html" rel="alternate"></link><published>2021-01-05T08:00:00-05:00</published><updated>2021-01-05T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-01-05:/2021_01_05-diagrams_and_uml_notation.html</id><summary type="html">&lt;p&gt;When I started in this business I was given a flowcharting template.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://americanhistory.si.edu/collections/object-groups/flowcharting-templates"&gt;https://americanhistory.si.edu/collections/object-groups/flowcharting-templates&lt;/a&gt;.
-I'm pretty sure I had one of
-these: &lt;a class="reference external" href="https://americanhistory.si.edu/collections/search/object/nmah_690078"&gt;https://americanhistory.si.edu/collections/search/object/nmah_690078&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Since then, things have changed a little.&lt;/p&gt;
-&lt;p&gt;I fondly recall using the Rational Rose …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I started in this business I was given a flowcharting template.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://americanhistory.si.edu/collections/object-groups/flowcharting-templates"&gt;https://americanhistory.si.edu/collections/object-groups/flowcharting-templates&lt;/a&gt;.
-I'm pretty sure I had one of
-these: &lt;a class="reference external" href="https://americanhistory.si.edu/collections/search/object/nmah_690078"&gt;https://americanhistory.si.edu/collections/search/object/nmah_690078&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Since then, things have changed a little.&lt;/p&gt;
-&lt;p&gt;I fondly recall using the Rational Rose (and an earlier tool that did
-Rumbaugh OMT diagrams) to create object models.&lt;/p&gt;
-&lt;p&gt;But these were expensive.&lt;/p&gt;
-&lt;p&gt;After much searching, I found &lt;strong&gt;ArgoUML&lt;/strong&gt;. This was my go-to-diagrammer
-of choice for many years. It's available
-here: &lt;a class="reference external" href="https://argouml-tigris-org.github.io"&gt;https://argouml-tigris-org.github.io&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Then, I wound up using &lt;strong&gt;yuml&lt;/strong&gt;
-at &lt;a class="reference external" href="https://yuml.me/diagram/scruffy/class/draw"&gt;https://yuml.me/diagram/scruffy/class/draw&lt;/a&gt;. This was very nice
-because there was a source text version of the diagram. It was a
-high-level code-like description that would lead to a handy picture you
-could include in documentation.&lt;/p&gt;
-&lt;p&gt;Heavenly.&lt;/p&gt;
-&lt;p&gt;Recently, I spent time using &lt;strong&gt;draw.io&lt;/strong&gt;. Start here &lt;a class="reference external" href="https://draw.io"&gt;https://draw.io&lt;/a&gt;.
-You have plain-text source version of the diagram that's Git-friendly. I
-liked that. It has a lot of UML features, which is very nice, also.&lt;/p&gt;
-&lt;p&gt;But now.&lt;/p&gt;
-&lt;p&gt;I'm using &lt;strong&gt;plantUML&lt;/strong&gt;, and I think it's pretty
-handy. &lt;a class="reference external" href="https://plantuml.com"&gt;https://plantuml.com&lt;/a&gt;. It's a big-old JAR file that converts text
-to a diagram. There's no GUI component to this. You describe the image
-in a source-code like way. Run it through the tool, and you get a
-picture you can paste into documentation. Like yuml, it has an
-easy-to-understand high-level text description. I strongly suspect I
-could walk a Python AST and emit plantUML source as an intermediate
-language from which pictures can be created.&lt;/p&gt;
-&lt;p&gt;The Python-Markup tool (&lt;a class="reference external" href="https://python-markdown.github.io/extensions/"&gt;https://python-markdown.github.io/extensions/&lt;/a&gt;)
-has a third-party PlantUML plug-in. PyCharm can leverage this to draw
-while you're editing in the markdown window.&lt;/p&gt;
-&lt;div class="section" id="the-fiddly-bits"&gt;
-&lt;h2&gt;The Fiddly Bits&lt;/h2&gt;
-&lt;p&gt;It's a little fiddly to get all the parts organized properly, but, it
-really, really does work. You can write technical documentation, with
-pictures.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Add the Markdown tool to PyCharm.&lt;/li&gt;
-&lt;li&gt;In the preferences for the PyCharm Markdown tool, install and enable
-PlantUML.&lt;/li&gt;
-&lt;li&gt;You can usually use &lt;strong&gt;conda&lt;/strong&gt; to install &lt;strong&gt;graphviz&lt;/strong&gt; as well as
-installing the &lt;strong&gt;plantuml-markdown&lt;/strong&gt; tools. You can manually run the
-&lt;strong&gt;markdown_py&lt;/strong&gt; application to create the HTML copies of the .md
-files.&lt;/li&gt;
-&lt;li&gt;Update your OS environment settings to set the
-&lt;strong&gt;GRAPHVIZ_DOT&lt;/strong&gt; environment variable to name the conda virtual
-environment where &lt;strong&gt;graphviz&lt;/strong&gt; was installed. For macOS and Linux
-users update the &lt;strong&gt;~/.zshrc&lt;/strong&gt; (or &lt;strong&gt;~/.bashrc&lt;/strong&gt;) file, depending on
-which shell is in use. Windows users have my heartfelt sympathy;
-maybe set the system environment variables.&lt;/li&gt;
-&lt;li&gt;You may also need to create a &lt;strong&gt;plantuml&lt;/strong&gt; shell script that's on
-your &lt;strong&gt;PATH&lt;/strong&gt;. I put it in &lt;strong&gt;/usr/local/bin&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/mikitex70/plantuml-markdown"&gt;https://github.com/mikitex70/plantuml-markdown&lt;/a&gt; for details on
-installation.&lt;/p&gt;
-&lt;p&gt;After all this fussing around, it worked delightfully. I'm a convert to
-PlantUML.&lt;/p&gt;
-&lt;p&gt;I suggest the following in each diagram.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-skinparam monochrome true
-skinparam handwritten false
-skinparam shadowing false
-hide class circle
-&lt;/pre&gt;
-&lt;p&gt;You may want to set a more global configuration, but I sometimes want to
-change the handwritten parameter to true for &amp;quot;draft&amp;quot; diagrams, separate
-from final.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;tl;dr&lt;/h2&gt;
-&lt;p&gt;You can integrate plantUML with PyCharm to draw pictures while you're
-editing in the markdown window.&lt;/p&gt;
-&lt;p&gt;You do have to trust plantUML to draw more-or-less what you want. There
-are limits, and if you don't like what plantUML is doing, switch to
-draw.io. If you are flexible, however, it's really, really good.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="plantuml"></category><category term="UML"></category></entry></feed>
+</content><category term="Technologies"></category><category term="writing"></category></entry></feed>
