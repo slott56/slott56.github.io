@@ -2,7 +2,7 @@ Clarifying XML's Strengths.
 ===========================
 
 :date: 2007-01-02 15:55
-:tags: technologies,xml
+:tags: xml
 :slug: 2007_01_02-clarifying_xmls_strengths
 :category: Technologies
 :status: published

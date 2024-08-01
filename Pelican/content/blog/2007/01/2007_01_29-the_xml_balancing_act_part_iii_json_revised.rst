@@ -2,7 +2,7 @@ The XML Balancing Act - Part III, JSON (Revised)
 ================================================
 
 :date: 2007-01-29 15:03
-:tags: technologies,xml
+:tags: xml
 :slug: 2007_01_29-the_xml_balancing_act_part_iii_json_revised
 :category: Technologies
 :status: published

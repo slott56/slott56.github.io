@@ -2,7 +2,7 @@ The Question of Risk (Revised)
 ==============================
 
 :date: 2007-01-06 15:16
-:tags: management
+:tags: risk,cost,strategy
 :slug: 2007_01_06-the_question_of_risk_revised
 :category: Management
 :status: published

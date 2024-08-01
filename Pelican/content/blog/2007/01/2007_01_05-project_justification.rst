@@ -2,7 +2,7 @@ Project Justification
 =====================
 
 :date: 2007-01-05 14:31
-:tags: management
+:tags: cost,investment,strategy
 :slug: 2007_01_05-project_justification
 :category: Management
 :status: published
