@@ -2,7 +2,7 @@ Python and Reverse Engineering, Part 4
 ======================================
 
 :date: 2007-04-18 15:47
-:tags: management
+:tags: reverse engineering,C,compiler
 :slug: 2007_04_18-python_and_reverse_engineering_part_4
 :category: Management
 :status: published

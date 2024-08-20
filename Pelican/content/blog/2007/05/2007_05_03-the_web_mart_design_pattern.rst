@@ -2,7 +2,7 @@ The Web Mart Design Pattern.
 ============================
 
 :date: 2007-05-03 13:28
-:tags: news
+:tags: web mart,Django,data model
 :slug: 2007_05_03-the_web_mart_design_pattern
 :category: News
 :status: published

@@ -2,7 +2,7 @@ Python and Reverse Engineering, Part 2
 ======================================
 
 :date: 2007-04-05 14:25
-:tags: management
+:tags: reverse engineering,PL/SQL,SQL,database
 :slug: 2007_04_05-python_and_reverse_engineering_part_2
 :category: Management
 :status: published

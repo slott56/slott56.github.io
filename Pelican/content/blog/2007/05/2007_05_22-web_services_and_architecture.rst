@@ -2,7 +2,7 @@ Web Services and Architecture
 #############################
 
 :date: 2007-05-22 23:11
-:tags: books,building skills,#python
+:tags: building skills,#python,web services
 :slug: 2007_05_22-web_services_and_architecture
 :category: Books
 :status: published

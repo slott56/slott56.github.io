@@ -2,7 +2,7 @@ Being an Architect
 ==================
 
 :date: 2007-04-16 15:24
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2007_04_16-being_an_architect
 :category: Books
 :status: published

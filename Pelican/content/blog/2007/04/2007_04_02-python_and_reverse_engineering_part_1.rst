@@ -2,7 +2,7 @@ Python and Reverse Engineering, Part 1
 ======================================
 
 :date: 2007-04-02 17:38
-:tags: management
+:tags: reverse engineering,EBCDIC,data transfer
 :slug: 2007_04_02-python_and_reverse_engineering_part_1
 :category: Management
 :status: published

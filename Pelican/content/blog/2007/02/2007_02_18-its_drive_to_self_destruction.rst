@@ -2,7 +2,7 @@ IT's Drive to Self-Destruction
 ==============================
 
 :date: 2007-02-18 22:32
-:tags: management
+:tags: failures,roi,budget,planning
 :slug: 2007_02_18-its_drive_to_self_destruction
 :category: Management
 :status: published

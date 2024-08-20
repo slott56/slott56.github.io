@@ -2,7 +2,7 @@ Python and Reverse Engineering, Part 5
 ======================================
 
 :date: 2007-04-30 13:25
-:tags: management
+:tags: reverse engineering,database,ETL
 :slug: 2007_04_30-python_and_reverse_engineering_part_5
 :category: Management
 :status: published

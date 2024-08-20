@@ -2,7 +2,7 @@ Advanced Programming
 ====================
 
 :date: 2007-03-02 15:43
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2007_03_02-advanced_programming
 :category: Books
 :status: published
