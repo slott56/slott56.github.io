@@ -2,7 +2,7 @@ I haven't written a program in years.  How do I rebuild my skills?
 ==================================================================
 
 :date: 2007-12-19 13:42
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2007_12_19-i_havent_written_a_program_in_years_how_do_i_rebuild_my_skills
 :category: Books
 :status: published

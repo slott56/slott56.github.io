@@ -1,10 +1,425 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-08-20T16:31:00-04:00</updated><entry><title>Unlearning SQL, revised</title><link href="https://slott56.github.io/2024-08-20-unlearning_sql.html" rel="alternate"></link><published>2024-08-20T16:31:00-04:00</published><updated>2024-08-20T16:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-08-20:/2024-08-20-unlearning_sql.html</id><summary type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-08-27T16:31:00-04:00</updated><entry><title>Sphinx EPUB and Print</title><link href="https://slott56.github.io/2024-08-27-sphinx_epub_and_print.html" rel="alternate"></link><published>2024-08-27T16:31:00-04:00</published><updated>2024-08-27T16:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-08-27:/2024-08-27-sphinx_epub_and_print.html</id><summary type="html">&lt;p&gt;Let's say you want to self-publish an ebook and a print-on-demand paperback book.&lt;/p&gt;
+&lt;p&gt;This isn't impossible, nor is it particularly easy. Here's what I've learned.&lt;/p&gt;
+&lt;div class="section" id="basic-workflow"&gt;
+&lt;h2&gt;Basic Workflow&lt;/h2&gt;
+&lt;p&gt;You've got two obvious paths to make sure your EPUB book and your print-on-demand book match:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Convert EPUB to Print. This generally means …&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's say you want to self-publish an ebook and a print-on-demand paperback book.&lt;/p&gt;
+&lt;p&gt;This isn't impossible, nor is it particularly easy. Here's what I've learned.&lt;/p&gt;
+&lt;div class="section" id="basic-workflow"&gt;
+&lt;h2&gt;Basic Workflow&lt;/h2&gt;
+&lt;p&gt;You've got two obvious paths to make sure your EPUB book and your print-on-demand book match:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Convert EPUB to Print. This generally means starting with HTML for the EPUB and building LaTeX from this to create the PDF. There are a number of tools that do this. It's relatively easy because HTML is easy to parse, and doesn't have quite to many options and features as LaTeX.&lt;/li&gt;
+&lt;li&gt;Convert Print to EPUB. This generally means using a specialized LaTeX tool to extract HTML from LaTeX. There's a pair of tools, &lt;strong&gt;Tex4ht&lt;/strong&gt; and &lt;strong&gt;LaTeX2HTML&lt;/strong&gt;, that can be pressed into service.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Both of these suffer from potential problems with vague markup.
+HTML has a limited domain of tags, and important semantic details put into &lt;tt class="docutils literal"&gt;&amp;lt;div&amp;gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&amp;lt;span&amp;gt;&lt;/tt&gt; tags where the CSS class name provides crucial information.
+LaTeX is more than just markup; it's a Turning-complete programming language, and your &lt;tt class="docutils literal"&gt;.tex&lt;/tt&gt; input as a piece of code that emits a DVI file that drives the final printing process.
+Extracting semantically meaningful details can be difficult.&lt;/p&gt;
+&lt;p&gt;There's a third path: use a language like RST (or Markdown) and convert it to HTML &lt;strong&gt;and&lt;/strong&gt; LaTeX.
+Now you have one source for the content, and the vagaries of HTML tags vs. CSS classes or LaTeX layers are less burdensome.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Sphinx&lt;/strong&gt; package handles this elegantly. &lt;a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html"&gt;https://www.sphinx-doc.org/en/master/index.html&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="content-creation"&gt;
+&lt;h2&gt;Content Creation&lt;/h2&gt;
+&lt;p&gt;First, get all the examples right. Be sure all the code has unit tests.&lt;/p&gt;
+&lt;p&gt;Option 1 is to use REPL-based examples and run the text through &lt;strong&gt;doctest&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Option 2 is to use more conventional modules in files with a separate test tool.
+This can be &lt;strong&gt;doctest&lt;/strong&gt;, but it may also need to be something more sophisticated, like &lt;strong&gt;pytest&lt;/strong&gt; (&lt;a class="reference external" href="https://docs.pytest.org/en/stable/"&gt;https://docs.pytest.org/en/stable/&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;It's imperative to use &lt;strong&gt;mypy&lt;/strong&gt; or &lt;strong&gt;pyright&lt;/strong&gt; to check the type hints, and &lt;strong&gt;ruff&lt;/strong&gt; or &lt;strong&gt;black&lt;/strong&gt; to format the code consistently.
+This has to be done carefully. Sometimes, the book margins require fiddling with &lt;strong&gt;ruff&lt;/strong&gt; configuration to narrow
+the code so it will fit.&lt;/p&gt;
+&lt;p&gt;A handy feature of &lt;strong&gt;doctest&lt;/strong&gt; is the &lt;tt class="docutils literal"&gt;__test__&lt;/tt&gt; object. This is a mapping from test name to test code.&lt;/p&gt;
+&lt;p&gt;Let's say you have an example line of code like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;355&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;113&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And you need to be sure it works.&lt;/p&gt;
+&lt;p&gt;Consider putting this into your examples file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;test_ex_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;gt;&amp;gt;&amp;gt; from math import isclose, pi&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;gt;&amp;gt;&amp;gt; isclose(p, pi, rel_tol=1e-7)&lt;/span&gt;
+&lt;span class="s2"&gt;True&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can add the following at the very bottom of the module.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;__test__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;case&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;case&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;startswith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;test_&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The doctest target, &lt;tt class="docutils literal"&gt;__test__&lt;/tt&gt; will be a dictionary, with test cases pulled from
+all global variables that start with &lt;tt class="docutils literal"&gt;test_&lt;/tt&gt;.
+This means every random, little scrap of code can be thrown into a file with enough tests to make
+the examples unassailable.&lt;/p&gt;
+&lt;p&gt;Of course, there's more to test design, but that's a start.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="general-setup"&gt;
+&lt;h2&gt;General Setup&lt;/h2&gt;
+&lt;p&gt;Diagrams are often best done using &lt;strong&gt;PlantUML&lt;/strong&gt; (&lt;a class="reference external" href="https://plantuml.com"&gt;https://plantuml.com&lt;/a&gt;).
+For really, really complicated stiff, use TIKZ and LaTeX.&lt;/p&gt;
+&lt;p&gt;That means installing the &lt;tt class="docutils literal"&gt;sphinxcontrib.plantuml&lt;/tt&gt; plug-in to Sphinx to make PlantUML work cleanly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sphinx-epub"&gt;
+&lt;h2&gt;Sphinx EPUB&lt;/h2&gt;
+&lt;p&gt;The EPUB pipeline in Sphinx is so similar to the HTML pipeline. It's easy to create the HTML
+pages and review them for readability, formatting, spelling mistakes, clarity, spelling mistakes,
+grammar errors, and spelling mistakes.&lt;/p&gt;
+&lt;p&gt;I use &lt;strong&gt;pycharm&lt;/strong&gt;, and the spell-checking is less than ideal. For free. For a few $$$, I think I might do better.&lt;/p&gt;
+&lt;p&gt;I have some CSS features that I really like.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;A lettrine at the start of a section. This is a &amp;quot;dropped capital letter&amp;quot;. It ties up two lines.&lt;/li&gt;
+&lt;li&gt;From &lt;a class="reference external" href="https://www.lode.de/"&gt;https://www.lode.de/&lt;/a&gt;, I borrowed the idea of big quotation marks around a blockquote paragraph.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These require special CSS in Sphinx. There are two parts.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add this to your &lt;tt class="docutils literal"&gt;conf.py&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html_static_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;_static&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;html_style&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;building_skills.css&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add a &lt;tt class="docutils literal"&gt;building_skills.css&lt;/tt&gt; to the &lt;tt class="docutils literal"&gt;_static&lt;/tt&gt; directory. It looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;alabaster.css&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;has&lt;/span&gt;&lt;span class="o"&gt;(&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;lettrine&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;first-letter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;left&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;line-height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;padding&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;-0.1&lt;/span&gt;&lt;span class="kt"&gt;rem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;.4&lt;/span&gt;&lt;span class="kt"&gt;rem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;span&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;lettrine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;font-variant-caps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;small-caps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;myquotation&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c"&gt;/* Indent */&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;margin-left&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;margin-right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;myquotation&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;before&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;content&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;“&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;left&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;line-height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, all you need to do is make sure there's a &lt;tt class="docutils literal"&gt;&amp;lt;span &lt;span class="pre"&gt;class=&amp;quot;lettrine&amp;quot;&amp;gt;&lt;/span&gt;&lt;/tt&gt; to make the dropped-capital lettrine work. That's done with a local extension for Sphinx.
+Again, there are two parts.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add this to your &lt;tt class="docutils literal"&gt;conf.py&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pathlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ext&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And this, too.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;lettrine&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c1"&gt;# all the others, like &amp;quot;sphinxcontrib.plantuml&amp;quot;, and &amp;quot;sphinx.ext.imgmath&amp;quot;,&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create an &lt;tt class="docutils literal"&gt;ext&lt;/tt&gt; directory, and include a module, &lt;tt class="docutils literal"&gt;lettrine.py&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;docutils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;nodes&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sphinx.application&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Sphinx&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sphinx.util.docutils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SphinxDirective&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SphinxRole&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sphinx.util.typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ExtensionMetadata&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;LettrineRole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SphinxRole&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;A role to mark a Lettrine (often at the start of a section.)&lt;/span&gt;
+
+&lt;span class="sd"&gt;    The text becomes a new inline ``&amp;lt;span class=&amp;quot;lettrine&amp;quot;&amp;gt;``&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;system_message&lt;/span&gt;&lt;span class="p"&gt;]]:&lt;/span&gt;
+        &lt;span class="c1"&gt;# Break things up for LaTeX output.&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
+        &lt;span class="n"&gt;new_node&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nodes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;new_node&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;classes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lettrine&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;new_node&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Sphinx&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ExtensionMetadata&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_role&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lettrine&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LettrineRole&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;version&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;parallel_read_safe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;parallel_write_safe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The role defines a &lt;tt class="docutils literal"&gt;:lettrine:&lt;/tt&gt; role that merely wedges in the  proper class.
+The &lt;tt class="docutils literal"&gt;setup&lt;/tt&gt; adds the role to the sphinx environment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;:lettrine:&lt;/span&gt;&lt;span class="nv"&gt;`Now, your opening sentence has a lettrine.`&lt;/span&gt;
+Subsequent lines of the paragraph are formatted &lt;span class="gs"&gt;**normally**&lt;/span&gt;.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sphinx-latex"&gt;
+&lt;h2&gt;Sphinx LaTeX&lt;/h2&gt;
+&lt;p&gt;This involves a &lt;strong&gt;lot&lt;/strong&gt; of little details. We'll start with a little background.
+Then we'll look at the configuration.&lt;/p&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h3&gt;Background&lt;/h3&gt;
+&lt;p&gt;The LaTeX language involves a mixture of environments and commands.
+The environments have clear boundaries, usually a &lt;tt class="docutils literal"&gt;\begin{X}&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;\end{X}&lt;/tt&gt;.
+Sometimes commands &lt;strong&gt;also&lt;/strong&gt; bracket something; the &lt;tt class="docutils literal"&gt;\makeatletter&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;\makeatother&lt;/tt&gt; commands,
+bracket a macro definition that needs to have &lt;tt class="docutils literal"&gt;&amp;#64;&lt;/tt&gt; interpretation turned off.
+This mixture of stateful commands and environments can be exasperating.&lt;/p&gt;
+&lt;p&gt;Also, the input can include macro definitions and redefinitions.
+Macros can be recursive. There are &lt;tt class="docutils literal"&gt;\if&lt;/tt&gt; constructs.
+It's a Turing complete programming language, which makes some aspects quite complicated.&lt;/p&gt;
+&lt;p&gt;Producing a book is goes beyond built-in &lt;tt class="docutils literal"&gt;manual&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;howto&lt;/tt&gt; document classes Sphinx offers.
+The various book classes decompose the content into three kinds:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;KDP - See &lt;a class="reference external" href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"&gt;https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK&lt;/a&gt; for my author's page. I'll be adding &lt;em&gt;Unlearning SQL&lt;/em&gt; to the page as soon as it's ready to go.&lt;/li&gt;
-&lt;li&gt;Google Play - See &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;. Be sure to get the 2024 …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
+&lt;li&gt;Front Matter. Some combination of Half-Title, Publisher, Acknowledgments, Contents, Forward, Prefix, Table of Contents, etc. (Once upon a time, books started with a &amp;quot;title page&amp;quot; that had the title, publisher, and copyright information. Now, most software is setup to create a paper title page in front of that, called a half-title, separate from the cover.)&lt;/li&gt;
+&lt;li&gt;Main Matter. The parts and chapters.&lt;/li&gt;
+&lt;li&gt;Back Matter. Appendices, indices, glossary, about the author, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to this, a preamble is used to define the various commands and environments.
+Ideally, the &lt;tt class="docutils literal"&gt;main.tex&lt;/tt&gt; file is a sequence of &lt;tt class="docutils literal"&gt;\input&lt;/tt&gt; commands to build the preamble,
+define the document environment, provide the needed commands, and input
+the various pieces content from separate files. Ideally.&lt;/p&gt;
+&lt;p&gt;Pragmatically, Sphinx doesn't have a perfectly clean separation of the LaTeX organization
+from the content.
+Some of this is a consequence of the way LaTeX works, and the need for &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\if--\fi&lt;/span&gt;&lt;/tt&gt; blocks
+to handle special cases.
+Other aspects are patches for subtle incompatibilities among LaTeX packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="latex-content"&gt;
+&lt;h3&gt;Latex Content&lt;/h3&gt;
+&lt;p&gt;First, the top-level &lt;tt class="docutils literal"&gt;index.rst&lt;/tt&gt; should have &lt;strong&gt;almost&lt;/strong&gt; nothing in it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;toctree&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+   &lt;span class="nc"&gt;:maxdepth:&lt;/span&gt; 2
+
+   front/index
+   chapters/index
+   back/index
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The book will have three folders: &lt;tt class="docutils literal"&gt;front&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;chapters&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;back&lt;/tt&gt;, each of
+which has it's own &lt;tt class="docutils literal"&gt;index.rst&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;There are a few (very few) places where LaTeX-specific content is needed.
+Here's the &lt;tt class="docutils literal"&gt;back/index.rst&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;..&lt;/span&gt;  &lt;span class="ow"&gt;raw&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt; latex
+
+    \frontmatter
+
+&lt;span class="p"&gt;..&lt;/span&gt;  &lt;span class="ow"&gt;toctree&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+
+    preface
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's it. Include the raw LaTeX command, and include the &lt;tt class="docutils literal"&gt;preface.rst&lt;/tt&gt; file.
+This generates nice-looking HTML and EPUB. And it injects the helpful &lt;tt class="docutils literal"&gt;\frontmatter&lt;/tt&gt; in front of the preface.
+The &lt;tt class="docutils literal"&gt;back/index.rst&lt;/tt&gt; is similar, as is the &lt;tt class="docutils literal"&gt;chapters/index.rst&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;(The front matter setup doesn't seem ideal. I think the &lt;tt class="docutils literal"&gt;\frontmatter&lt;/tt&gt; should include the half-title, publisher's page, and contents, also, but it doesn't seem to work unless it's in front of the preface.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-sphinx-configuration"&gt;
+&lt;h3&gt;The Sphinx Configuration&lt;/h3&gt;
+&lt;p&gt;There are four configuration variables that need to be set.&lt;/p&gt;
+&lt;table class="docutils field-list" frame="void" rules="none"&gt;
+&lt;col class="field-name" /&gt;
+&lt;col class="field-body" /&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;latex_engine:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;tt class="docutils literal"&gt;'xelatex'&lt;/tt&gt; works well because it permits UTF encoded files and (some) Unicode.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;latex_elements:&lt;/th&gt;&lt;td class="field-body"&gt;This is a large dictionary of individual settings. The value is a dictionary, wrapped in &lt;tt class="docutils literal"&gt;{}&lt;/tt&gt;,
+with string key values. Most of the values will be LaTeX commands.
+Because LaTeX uses &lt;tt class="docutils literal"&gt;\&lt;/tt&gt;, it's helpful to use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt; &amp;quot;&amp;quot;&amp;quot;&lt;/tt&gt; around the LaTeX.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;latex_theme:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;tt class="docutils literal"&gt;'manual'&lt;/tt&gt; is close to the book format we want to use. We'll provide a subsequent definition to expand on this. The &amp;quot;theme&amp;quot; in Sphinx parlance is the document class in LaTeX world.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name" colspan="2"&gt;latex_toplevel_sectioning:&lt;/th&gt;&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td class="field-body"&gt;&lt;tt class="docutils literal"&gt;'chapter'&lt;/tt&gt; for books without parts. Otherwise &lt;tt class="docutils literal"&gt;'part'&lt;/tt&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;latex_docclass:&lt;/th&gt;&lt;td class="field-body"&gt;This is a mapping from document class to the actual LaTeX class to use.
+We provide the value &lt;tt class="docutils literal"&gt;{'manual': 'scrbook'}&lt;/tt&gt; because that seems to work well.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Within the &lt;tt class="docutils literal"&gt;latex_elements&lt;/tt&gt; mapping, we have a number of configuration parameters.
+Most of these are small-ish. Two are immensee blocks of LaTeX code.&lt;/p&gt;
+&lt;table class="docutils field-list" frame="void" rules="none"&gt;
+&lt;col class="field-name" /&gt;
+&lt;col class="field-body" /&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;babel:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;I use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\usepackage[american]{babel}'&lt;/span&gt;&lt;/tt&gt; because, well, I'm an American writer.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;fncychap:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;Set to &lt;tt class="docutils literal"&gt;''&lt;/tt&gt; to disable any of the fancy chapter styles. They seem busy to me.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name" colspan="2"&gt;passoptionstopackages:&lt;/th&gt;&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;I use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\PassOptionsToPackage{headings}{fancyhdr}'&lt;/span&gt;&lt;/tt&gt;, even though I'm not sure this is really required.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;extrapackages:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This is a bunch of &lt;tt class="docutils literal"&gt;\usepackage&lt;/tt&gt; commands. I use &lt;tt class="docutils literal"&gt;lettrine&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;xstring&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;afterpage&lt;/tt&gt;.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;preamble:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This is huge, we'll return to it.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;fvset:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This can be used to set the font for &amp;quot;fancyverb&amp;quot; verbatime environments.
+I use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\fvset{fontsize=\scriptsize}'&lt;/span&gt;&lt;/tt&gt; to make the font smaller so the examples fit
+in a &lt;span class="formula"&gt;6&lt;sup&gt;′′&lt;/sup&gt;×9&lt;sup&gt;′′&lt;/sup&gt;&lt;/span&gt; book.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;releasename:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This is really fussy. The word &amp;quot;release&amp;quot; seems too long, so I set this to &lt;tt class="docutils literal"&gt;v.&lt;/tt&gt;.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;geometry:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This defines the page layouts. It's quite long.
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\usepackage[paperwidth=6in,&lt;/span&gt; paperheight=9in, inner=3.75pc, outer=3pc, top=2pc, bottom=3pc, includehead, includefoot, &lt;span class="pre"&gt;headheight=32pt]{geometry}'&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;pc&lt;/tt&gt; unit is pica, &lt;span class="formula"&gt;&lt;span class="textfraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; of an inch. I'm not sure it's helpful to switch units like this.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;maketitle:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first last"&gt;This is also quite large.&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-preamble"&gt;
+&lt;h3&gt;The Preamble&lt;/h3&gt;
+&lt;p&gt;The preamble adds style details. It's a large block of LaTeX.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% Lettrine&lt;/span&gt;
+&lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\DUrolelettrine&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;[1]&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\StrLeft&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#1&lt;span class="nb"&gt;}{&lt;/span&gt;1&lt;span class="nb"&gt;}&lt;/span&gt;[&lt;span class="k"&gt;\First&lt;/span&gt;]&lt;span class="k"&gt;\StrGobbleLeft&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;#1&lt;span class="nb"&gt;}{&lt;/span&gt;1&lt;span class="nb"&gt;}&lt;/span&gt;[&lt;span class="k"&gt;\Rest&lt;/span&gt;]&lt;span class="k"&gt;\lettrine&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\First&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\Rest&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="c"&gt;% Page Layout Normal&lt;/span&gt;
+&lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;span class="k"&gt;\fancypagestyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;normal&lt;span class="nb"&gt;}{&lt;/span&gt;
+&lt;span class="k"&gt;\fancyhf&lt;/span&gt;&lt;span class="nb"&gt;{}&lt;/span&gt;
+&lt;span class="k"&gt;\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[RO]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\thepage&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[LO]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\nouppercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\rightmark&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;
+&lt;span class="k"&gt;\fancyhead&lt;/span&gt;&lt;span class="na"&gt;[RO]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily&lt;/span&gt; &lt;span class="k"&gt;\@title\sphinxheadercomma\py@release&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\if@twoside&lt;/span&gt;
+ &lt;span class="k"&gt;\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[LE]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\thepage&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+ &lt;span class="k"&gt;\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[RE]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\nouppercase&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\rightmark&lt;/span&gt;&lt;span class="nb"&gt;}}}&lt;/span&gt;
+ &lt;span class="k"&gt;\fancyhead&lt;/span&gt;&lt;span class="na"&gt;[LE]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily&lt;/span&gt; &lt;span class="k"&gt;\@title\sphinxheadercomma\py@release&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+&lt;span class="k"&gt;\fi&lt;/span&gt;
+&lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\headrulewidth&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;0.4pt&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\footrulewidth&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;0.4pt&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;% define chaptermark with \@chappos when \@chappos is available for Japanese&lt;/span&gt;
+&lt;span class="k"&gt;\ltx@ifundefined&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;@chappos&lt;span class="nb"&gt;}{}&lt;/span&gt;
+  &lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\def\chaptermark&lt;/span&gt;##1&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\markboth&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\@chapapp\space\thechapter\space\@chappos\space&lt;/span&gt; ##1&lt;span class="nb"&gt;}{}}}&lt;/span&gt;
+&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;% Page Layout Plain (1st page of Section or Chapter.)&lt;/span&gt;
+&lt;span class="k"&gt;\fancypagestyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;plain&lt;span class="nb"&gt;}{&lt;/span&gt;
+    &lt;span class="k"&gt;\fancyhf&lt;/span&gt;&lt;span class="nb"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[RO]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\thepage&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+    &lt;span class="k"&gt;\if@twoside\fancyfoot&lt;/span&gt;&lt;span class="na"&gt;[LE]&lt;/span&gt;&lt;span class="nb"&gt;{{&lt;/span&gt;&lt;span class="k"&gt;\rmfamily\thepage&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;&lt;span class="k"&gt;\fi&lt;/span&gt;
+    &lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\headrulewidth&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;0pt&lt;span class="nb"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\footrulewidth&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;0.4pt&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\makeatother&lt;/span&gt;
+&lt;span class="c"&gt;% Blank Page&lt;/span&gt;
+&lt;span class="k"&gt;\newcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\blankpage&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
+    &lt;span class="k"&gt;\afterpage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\null\thispagestyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;empty&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\newpage&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\pagestyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;empty&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\cleardoublepage&lt;/span&gt;&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;% Define &amp;quot;myquotation&amp;quot; to indent a whole paragraph with a big, fancy &amp;quot; character.&lt;/span&gt;
+&lt;span class="k"&gt;\renewcommand&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\indent&lt;/span&gt;&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="c"&gt;%&lt;/span&gt;
+    &lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;picture&lt;span class="nb"&gt;}&lt;/span&gt;(0,0)&lt;span class="k"&gt;\put&lt;/span&gt;(10,-5)&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\makebox&lt;/span&gt;(0,0)&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\scalebox&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;6&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\textcolor&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;lightgray&lt;span class="nb"&gt;}{&lt;/span&gt;“&lt;span class="nb"&gt;}}}}&lt;/span&gt;&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;picture&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hspace*&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;1.0cm&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\hangindent&lt;/span&gt;=1.15cm
+&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\newenvironment&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;sphinxclassmyquotation&lt;span class="nb"&gt;}{&lt;/span&gt;&lt;span class="k"&gt;\indent&lt;/span&gt;&lt;span class="nb"&gt;}{}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;DUrolelettrine&lt;/tt&gt; command is the Docutils role that is used
+to define the &lt;tt class="docutils literal"&gt;lettrine&lt;/tt&gt; role that we added as an extension to Sphinx.
+The &lt;tt class="docutils literal"&gt;DUrole&lt;/tt&gt; is prepended to define a unique command.
+The implementation of this command is a macro that splits out the first letter to make it big, and the
+rest of the text is set in small-caps style.&lt;/p&gt;
+&lt;p&gt;Two page layouts are defined: &lt;tt class="docutils literal"&gt;normal&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;plain&lt;/tt&gt;.
+These revise the built-in Sphinx layouts to use different fonts for the page header and footer.
+The definitions have to be wedged between &lt;tt class="docutils literal"&gt;\makeatnormal&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;\makeatother&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;blankpage&lt;/tt&gt; command is added here. It seems helpful for getting the even-odd page business
+correct on the half-title and publisher pages.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;sphinxclassmyquotation&lt;/tt&gt; environment is what Sphinx does with otherwise unknown directives.
+When the text has a &lt;tt class="docutils literal"&gt;..&amp;nbsp; myquotation::&lt;/tt&gt; directive, this becomes a new environment with a distinctive
+name. We can then define an environment that provides the distinctive style attributes
+for the content.&lt;/p&gt;
+&lt;p&gt;The mapping from RST role or directive to &lt;tt class="docutils literal"&gt;DUrole&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;sphinxclass&lt;/tt&gt; isn't the most obvious,
+but, it works delightfully well.
+For HTML and EPUB, CSS definitions are required.
+For LaTeX, these preamble definitions are required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-maketitle-command"&gt;
+&lt;h3&gt;The MakeTitle Command&lt;/h3&gt;
+&lt;p&gt;While LaTeX has a &lt;tt class="docutils literal"&gt;\maketitle&lt;/tt&gt; command, there's a redefinition of this by Sphinx.
+This is the &lt;tt class="docutils literal"&gt;\sphinxmaketitle&lt;/tt&gt; command that emits the title page.&lt;/p&gt;
+&lt;p&gt;Ordinarily -- for the default manual or howto themes -- this is followed by the table of contents,
+and then the content.
+For books, the title page isn't the cover, and is demoted to being called a half-title.
+There's often a publisher's page -- with important copyright information -- between the half-title page and the table of contents.&lt;/p&gt;
+&lt;p&gt;To build this, we need to provide a &lt;tt class="docutils literal"&gt;maketitle&lt;/tt&gt; setting that &lt;strong&gt;also&lt;/strong&gt; defines
+a &lt;tt class="docutils literal"&gt;sphinxbackoftitlepage&lt;/tt&gt; command. This command does everything between the half-page and the table of contents.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;\makeatletter&lt;/span&gt;
+&lt;span class="k"&gt;\newcommand\sphinxbackoftitlepage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;
+    &lt;span class="c"&gt;% Blank page on the verso after 1/2 title&lt;/span&gt;
+    &lt;span class="k"&gt;\blankpage&lt;/span&gt;
+    &lt;span class="c"&gt;% Publisher page is recto (odd page)&lt;/span&gt;
+    &lt;span class="k"&gt;\thispagestyle&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;empty&lt;span class="nb"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;\sffamily\textbf&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\textsc&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Building Skills&lt;span class="nb"&gt;}}&lt;/span&gt;
+
+    &lt;span class="k"&gt;\Huge&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\sffamily\textbf&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&lt;span class="k"&gt;\@title&lt;/span&gt;&lt;span class="nb"&gt;}}&lt;/span&gt;
+
+    &lt;span class="k"&gt;\large&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;&amp;quot;When your only tool is a hammer, every problem looks like a nail.&amp;quot;&lt;span class="nb"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;\normalsize&lt;/span&gt;
+    By &lt;span class="k"&gt;\@author&lt;/span&gt;
+
+    &lt;span class="k"&gt;\vspace&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;1in&lt;span class="nb"&gt;}&lt;/span&gt;
+    Python 3.12&lt;span class="k"&gt;\&lt;/span&gt;
+    Release &lt;span class="k"&gt;\py@release\&lt;/span&gt;
+    Created &lt;span class="k"&gt;\today&lt;/span&gt;
+
+    &lt;span class="k"&gt;\vfill&lt;/span&gt;
+    &lt;span class="k"&gt;\rmfamily\normalsize&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;\copyright&lt;/span&gt;~&lt;span class="k"&gt;\the\year\&lt;/span&gt; &lt;span class="k"&gt;\textit&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;Steven F. Lott&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\&lt;/span&gt;
+        &lt;span class="k"&gt;\textsc&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;All Rights Reserved.&lt;span class="nb"&gt;}&lt;/span&gt;
+    &lt;span class="nb"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;\vfill&lt;/span&gt;
+    &lt;span class="k"&gt;\url&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;https://fosstodon.org/@slott56&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\&lt;/span&gt;
+    &lt;span class="k"&gt;\url&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;https://itmaybeahack.com&lt;span class="nb"&gt;}&lt;/span&gt;&lt;span class="k"&gt;\&lt;/span&gt;
+    &lt;span class="k"&gt;\url&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;https://github.com/slott56/unlearning-sql&lt;span class="nb"&gt;}&lt;/span&gt;
+
+    &lt;span class="c"&gt;% Blank page on verso of publisher.&lt;/span&gt;
+    &lt;span class="k"&gt;\blankpage&lt;/span&gt;
+    &lt;span class="c"&gt;% Contents will follow.&lt;/span&gt;
+&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\makeatother&lt;/span&gt;
+
+&lt;span class="k"&gt;\sphinxmaketitle&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It seems odd to put this definition here instead of in the preamble.
+It also seems necessary to get the page numbering correct.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="summary"&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;On one hand, there is a &lt;strong&gt;lot&lt;/strong&gt; of LaTeX customization required.&lt;/p&gt;
+&lt;p&gt;On the other hand, a single change to the RST files leads to two &lt;strong&gt;identical&lt;/strong&gt; results
+that can be uploaded for EPUB and print-on-demand.&lt;/p&gt;
+&lt;p&gt;There are still some odd, little glitches in the LaTeX.
+It's not &lt;strong&gt;perfect&lt;/strong&gt;, but it's really good.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="books"></category><category term="sphinx"></category><category term="RST"></category><category term="LaTeX"></category><category term="epub"></category><category term="PDF"></category></entry><entry><title>Unlearning SQL, revised</title><link href="https://slott56.github.io/2024-08-20-unlearning_sql.html" rel="alternate"></link><published>2024-08-20T16:31:00-04:00</published><updated>2024-08-20T16:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-08-20:/2024-08-20-unlearning_sql.html</id><summary type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;KDP - See &lt;a class="reference external" href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"&gt;https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK&lt;/a&gt; for my author's page. I'll be adding &lt;em&gt;Unlearning SQL&lt;/em&gt; to the page as soon as it's ready to go.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;KDP - See &lt;a class="reference external" href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"&gt;https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK&lt;/a&gt; for my author's page.&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="https://www.amazon.com/Unlearning-SQL-hammer-every-problem-ebook/dp/B0DDMFMXNW"&gt;https://www.amazon.com/Unlearning-SQL-hammer-every-problem-ebook/dp/B0DDMFMXNW&lt;/a&gt; is the book.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;Google Play - See &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;. Be sure to get the 2024.08 edition; there's a previous …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;KDP - See &lt;a class="reference external" href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"&gt;https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK&lt;/a&gt; for my author's page.&lt;/dt&gt;
+&lt;dd&gt;&lt;a class="reference external" href="https://www.amazon.com/Unlearning-SQL-hammer-every-problem-ebook/dp/B0DDMFMXNW"&gt;https://www.amazon.com/Unlearning-SQL-hammer-every-problem-ebook/dp/B0DDMFMXNW&lt;/a&gt; is the book.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
 &lt;li&gt;Google Play - See &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;. Be sure to get the 2024.08 edition; there's a previous edition (from 2022) out there, also. Don't buy the 2022 edition.&lt;/li&gt;
 &lt;li&gt;Lulu - &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html&lt;/a&gt;. It may be a few weeks before I get the proof copy and can formally approve it.&lt;/li&gt;
 &lt;/ul&gt;
@@ -11015,11 +11430,4 @@ might be helpful.)&lt;/p&gt;
 appealing. It steps away from the NMEA GPS talker messages. It's
 heavy-going for an Arduino Uno. But. Might work out well on something a
 little bigger.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="arduino"></category><category term="#python"></category><category term="CircuitPlayground"></category><category term="boat"></category><category term="IoT"></category><category term="RaspberryPi"></category></entry><entry><title>A 5-point framework for Python performance management</title><link href="https://slott56.github.io/2021_04_06-a_5_point_framework_for_python_performance_management.html" rel="alternate"></link><published>2021-04-06T08:00:00-04:00</published><updated>2021-04-06T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-04-06:/2021_04_06-a_5_point_framework_for_python_performance_management.html</id><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://medium.com/capital-one-tech/a-5-point-framework-for-python-performance-management-5af2be5739d9"&gt;A 5-Point Framework For Python Performance
-Management&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It seems straight-forward to me. Have goals. Measure your ability to
-meet them.&lt;/p&gt;
-&lt;p&gt;I don't see too many teams doing this, though.&lt;/p&gt;
-&lt;p&gt;I could be wrong, but, I think performance is left to arguments and
-complaints, not solid engineering.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="performance"></category><category term="#python"></category></entry></feed>
+</content><category term="Technologies"></category><category term="arduino"></category><category term="#python"></category><category term="CircuitPlayground"></category><category term="boat"></category><category term="IoT"></category><category term="RaspberryPi"></category></entry></feed>

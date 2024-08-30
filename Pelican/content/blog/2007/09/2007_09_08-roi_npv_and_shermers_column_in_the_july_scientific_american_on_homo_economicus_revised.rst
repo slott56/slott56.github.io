@@ -2,7 +2,7 @@ ROI, NPV and Shermer's column in the July *Scientific American* , on Homo econom
 ==============================================================================================
 
 :date: 2007-09-08 19:11
-:tags: management
+:tags: ROI,Preventing Loss,CYA,Risk
 :slug: 2007_09_08-roi_npv_and_shermers_column_in_the_july_scientific_american_on_homo_economicus_revised
 :category: Management
 :status: published

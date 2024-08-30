@@ -2,7 +2,7 @@ Something Else I Invented
 =========================
 
 :date: 2007-08-25 11:58
-:tags: FOSS,open-source
+:tags: open-source,good ideas
 :slug: 2007_08_25-something_else_i_invented
 :category: FOSS
 :status: published

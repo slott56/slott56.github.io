@@ -2,7 +2,7 @@ Estimating, and the Unknown Unknowns
 ====================================
 
 :date: 2007-11-11 20:17
-:tags: management
+:tags: Risk,Unknowns,Estimating,Planning,Project Management
 :slug: 2007_11_11-estimating_and_the_unknown_unknowns
 :category: Management
 :status: published

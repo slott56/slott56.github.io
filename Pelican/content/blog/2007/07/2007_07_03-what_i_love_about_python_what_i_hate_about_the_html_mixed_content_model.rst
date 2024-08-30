@@ -2,7 +2,7 @@ What I love about Python == What I hate about the HTML mixed-content model
 ==========================================================================
 
 :date: 2007-07-03 00:01
-:tags: FOSS,open-source
+:tags: open-source,Python,HTML,Beautiful Soup
 :slug: 2007_07_03-what_i_love_about_python_what_i_hate_about_the_html_mixed_content_model
 :category: FOSS
 :status: published

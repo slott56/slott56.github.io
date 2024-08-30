@@ -2,7 +2,7 @@ Dynamic Languages In The News
 =============================
 
 :date: 2007-08-03 13:57
-:tags: news
+:tags: dynamic languages,JavaScript,Ruby,PHP,Java,COBOL
 :slug: 2007_08_03-dynamic_languages_in_the_news
 :category: News
 :status: published

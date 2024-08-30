@@ -2,7 +2,7 @@ Database Design and UML - What was the question again?
 ======================================================
 
 :date: 2007-12-15 13:08
-:tags: management
+:tags: Design,Database,UML,ERD
 :slug: 2007_12_15-database_design_and_uml_what_was_the_question_again
 :category: Management
 :status: published

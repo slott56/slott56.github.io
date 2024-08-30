@@ -2,7 +2,7 @@ What I love about Python == what I hate about the word of open source
 =====================================================================
 
 :date: 2007-07-04 14:37
-:tags: FOSS,open-source
+:tags: open-source,Python,Community,HTML,Beautiful Soup
 :slug: 2007_07_04-what_i_love_about_python_what_i_hate_about_the_word_of_open_source
 :category: FOSS
 :status: published

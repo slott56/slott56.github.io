@@ -9,7 +9,8 @@ Unlearning SQL, revised
 
 Book (pre) Announcement:
 
-- KDP - See https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK for my author's page. I'll be adding *Unlearning SQL* to the page as soon as it's ready to go.
+- KDP - See https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK for my author's page.
+    https://www.amazon.com/Unlearning-SQL-hammer-every-problem-ebook/dp/B0DDMFMXNW is the book.
 
 - Google Play - See https://play.google.com/store/books/details?id=23WAEAAAQBAJ. Be sure to get the 2024.08 edition; there's a previous edition (from 2022) out there, also. Don't buy the 2022 edition.
 

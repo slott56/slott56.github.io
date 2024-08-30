@@ -5,7 +5,7 @@ Sphinx EPUB and Print
 :tags: sphinx,RST,LaTeX,epub,PDF
 :slug: 2024-08-27-sphinx_epub_and_print
 :category: books
-:status: draft
+:status: published
 
 Let's say you want to self-publish an ebook and a print-on-demand paperback book.
 

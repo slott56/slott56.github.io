@@ -2,7 +2,7 @@ Building Skills in Python
 =========================
 
 :date: 2007-12-17 15:38
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2007_12_17-building_skills_in_python
 :category: Books
 :status: published

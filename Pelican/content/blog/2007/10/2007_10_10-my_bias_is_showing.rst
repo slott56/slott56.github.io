@@ -2,7 +2,7 @@ My Bias is Showing
 ==================
 
 :date: 2007-10-10 10:23
-:tags: FOSS,open-source
+:tags: open-source,Python,Productivity,Dynamic Languages
 :slug: 2007_10_10-my_bias_is_showing
 :category: FOSS
 :status: published

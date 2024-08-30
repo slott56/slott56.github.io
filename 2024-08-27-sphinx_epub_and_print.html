@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>PL/SQL and Java - The Benchmark Challenge (revised) - S.Lott -- Software Architect</title>
+    <title>Sphinx EPUB and Print - S.Lott -- Software Architect</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,25 +9,24 @@
 
 
 
-<link rel="canonical" href="https://slott56.github.io/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html">
+<link rel="canonical" href="https://slott56.github.io/2024-08-27-sphinx_epub_and_print.html">
 
         <meta name="author" content="S.Lott" />
-        <meta name="keywords" content="architecture,software design,data structure,algorithm,pl/sql,java" />
-        <meta name="description" content="First, the confusion. A couple of comments asked for code, offering to &#34;fix&#34; the problems. Specifically, offering to optimize or improve the PL/SQL. The code was already posted, but I failed to make that clear. Here&#39;s a recap of the various blog entries on this subject. PL/SQL vs …" />
+        <meta name="keywords" content="sphinx,RST,LaTeX,epub,PDF" />
+        <meta name="description" content="Let&#39;s say you want to self-publish an ebook and a print-on-demand paperback book. This isn&#39;t impossible, nor is it particularly easy. Here&#39;s what I&#39;ve learned. Basic Workflow You&#39;ve got two obvious paths to make sure your EPUB book and your print-on-demand book match: Convert EPUB to Print. This generally means …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="PL/SQL and Java - The Benchmark Challenge (revised)"/>
-        <meta property="og:url" content="https://slott56.github.io/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html"/>
-        <meta property="og:description" content="First, the confusion. A couple of comments asked for code, offering to &#34;fix&#34; the problems. Specifically, offering to optimize or improve the PL/SQL. The code was already posted, but I failed to make that clear. Here&#39;s a recap of the various blog entries on this subject. PL/SQL vs …"/>
-        <meta property="article:published_time" content="2007-05-27" />
-            <meta property="article:section" content="Architecture & Design" />
-            <meta property="article:tag" content="architecture" />
-            <meta property="article:tag" content="software design" />
-            <meta property="article:tag" content="data structure" />
-            <meta property="article:tag" content="algorithm" />
-            <meta property="article:tag" content="pl/sql" />
-            <meta property="article:tag" content="java" />
+        <meta property="og:title" content="Sphinx EPUB and Print"/>
+        <meta property="og:url" content="https://slott56.github.io/2024-08-27-sphinx_epub_and_print.html"/>
+        <meta property="og:description" content="Let&#39;s say you want to self-publish an ebook and a print-on-demand paperback book. This isn&#39;t impossible, nor is it particularly easy. Here&#39;s what I&#39;ve learned. Basic Workflow You&#39;ve got two obvious paths to make sure your EPUB book and your print-on-demand book match: Convert EPUB to Print. This generally means …"/>
+        <meta property="article:published_time" content="2024-08-27" />
+            <meta property="article:section" content="books" />
+            <meta property="article:tag" content="sphinx" />
+            <meta property="article:tag" content="RST" />
+            <meta property="article:tag" content="LaTeX" />
+            <meta property="article:tag" content="epub" />
+            <meta property="article:tag" content="PDF" />
             <meta property="article:author" content="S.Lott" />
 
 
@@ -45,8 +44,8 @@
 
         <link href="https://slott56.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
               title="S.Lott -- Software Architect RSS Feed"/>
-        <link href="https://slott56.github.io/feeds/architecture-design.atom.xml" type="application/atom+xml" rel="alternate"
-              title="S.Lott -- Software Architect Architecture & Design ATOM Feed"/>
+        <link href="https://slott56.github.io/feeds/books.atom.xml" type="application/atom+xml" rel="alternate"
+              title="S.Lott -- Software Architect books ATOM Feed"/>
 </head>
 <body>
 
@@ -92,10 +91,10 @@ S.Lott -- Software Architect            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="https://slott56.github.io/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html"
+                    <a href="https://slott56.github.io/2024-08-27-sphinx_epub_and_print.html"
                        rel="bookmark"
-                       title="Permalink to PL/SQL and Java - The Benchmark Challenge (revised)">
-                        PL/SQL and Java - The Benchmark Challenge (revised)
+                       title="Permalink to Sphinx EPUB and Print">
+                        Sphinx EPUB and Print
                     </a>
                 </h1>
             </header>
@@ -105,7 +104,7 @@ S.Lott -- Software Architect            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2007-05-27T13:07:00-04:00"> Sun 27 May 2007</time>
+        <i class="fa fa-calendar"></i><time datetime="2024-08-27T16:31:00-04:00"> Tue 27 August 2024</time>
     </span>
 
 
@@ -113,57 +112,418 @@ S.Lott -- Software Architect            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="https://slott56.github.io/tag/architecture.html">architecture</a>
+	<a href="https://slott56.github.io/tag/sphinx.html">sphinx</a>
         /
-	<a href="https://slott56.github.io/tag/software-design.html">software design</a>
+	<a href="https://slott56.github.io/tag/rst.html">RST</a>
         /
-	<a href="https://slott56.github.io/tag/data-structure.html">data structure</a>
+	<a href="https://slott56.github.io/tag/latex.html">LaTeX</a>
         /
-	<a href="https://slott56.github.io/tag/algorithm.html">algorithm</a>
+	<a href="https://slott56.github.io/tag/epub.html">epub</a>
         /
-	<a href="https://slott56.github.io/tag/plsql.html">pl/sql</a>
-        /
-	<a href="https://slott56.github.io/tag/java.html">java</a>
+	<a href="https://slott56.github.io/tag/pdf.html">PDF</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>First, the confusion.  A couple of comments asked for code, offering to &quot;fix&quot; the problems.  Specifically, offering to optimize or improve the PL/SQL.  The code was already posted, but I failed to make that clear.  Here's a recap of the various blog entries on this subject.</p>
+                <p>Let's say you want to self-publish an ebook and a print-on-demand paperback book.</p>
+<p>This isn't impossible, nor is it particularly easy. Here's what I've learned.</p>
+<div class="section" id="basic-workflow">
+<h2>Basic Workflow</h2>
+<p>You've got two obvious paths to make sure your EPUB book and your print-on-demand book match:</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_which_is_really_faster.html">PL/SQL vs. Java - Which is Really Faster?</a></li>
-<li><a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_additional_information.html">PL/SQL vs. Java - Additional Information</a></li>
-<li><a class="reference external" href="https://slott56.github.io/2007_05_26-plsql_vs_java_yet_again.html">PL/SQL vs. Java - Yet Again</a></li>
+<li>Convert EPUB to Print. This generally means starting with HTML for the EPUB and building LaTeX from this to create the PDF. There are a number of tools that do this. It's relatively easy because HTML is easy to parse, and doesn't have quite to many options and features as LaTeX.</li>
+<li>Convert Print to EPUB. This generally means using a specialized LaTeX tool to extract HTML from LaTeX. There's a pair of tools, <strong>Tex4ht</strong> and <strong>LaTeX2HTML</strong>, that can be pressed into service.</li>
 </ol>
-<div class="section" id="sizing">
-<h2>Sizing</h2>
-<p>Someone asked how a real-world problem can have so few (only a few thousand) invoices.  The answer is that the customer has a giant table of business records, from which they extract the business records to be processed.  That extraction isn't on the table as part of the overall performance problem.</p>
-<p>It should be.  Indeed, they should have a data warehouse so that they aren't doing extracts of live data from history.  To them, in their real world, that's another problem.</p>
+<p>Both of these suffer from potential problems with vague markup.
+HTML has a limited domain of tags, and important semantic details put into <tt class="docutils literal">&lt;div&gt;</tt> and <tt class="docutils literal">&lt;span&gt;</tt> tags where the CSS class name provides crucial information.
+LaTeX is more than just markup; it's a Turning-complete programming language, and your <tt class="docutils literal">.tex</tt> input as a piece of code that emits a DVI file that drives the final printing process.
+Extracting semantically meaningful details can be difficult.</p>
+<p>There's a third path: use a language like RST (or Markdown) and convert it to HTML <strong>and</strong> LaTeX.
+Now you have one source for the content, and the vagaries of HTML tags vs. CSS classes or LaTeX layers are less burdensome.</p>
+<p>The <strong>Sphinx</strong> package handles this elegantly. <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">https://www.sphinx-doc.org/en/master/index.html</a>.</p>
 </div>
-<div class="section" id="native-code">
-<h2>Native Code</h2>
-<p>One interesting response lifted up Oracle's PL/SQL Native Compilation technique.  I think they're talking about Oracle® Database PL/SQL User's Guide and Reference, chapter 11, <a class="reference external" href="http://download-east.oracle.com/docs/cd/B19306_01/appdev.102/b14261/tuning.htm">Tuning PL/SQL Applications for Performance</a> .</p>
-<p>While an interesting approach, my customers are unlikely to agree to this as a solution to slowness.  They use PL/SQL precisely because it's flexible.  They like it for the same reasons people like Python -- it's (in effect) a scripting language.  The development overhead of native compilation is daunting.</p>
-<p>Java doesn't have the level of complexity (i.e., C compilers, shared libraries, etc.) that this native compilation of PL/SQL has.  That doesn't eliminate the native compilation, it makes it undesirable as a solution.</p>
-<p>However, if performance matters, I suppose this needs to to be put on the table.  It is complex -- far more complex than Java -- but it could be considered as a solution.  To run a comparison will take me some time to configure and install this under Fedora Core 6.  I'm not sure I want to go through the agony, when Java is already a solution in hand.</p>
+<div class="section" id="content-creation">
+<h2>Content Creation</h2>
+<p>First, get all the examples right. Be sure all the code has unit tests.</p>
+<p>Option 1 is to use REPL-based examples and run the text through <strong>doctest</strong>.</p>
+<p>Option 2 is to use more conventional modules in files with a separate test tool.
+This can be <strong>doctest</strong>, but it may also need to be something more sophisticated, like <strong>pytest</strong> (<a class="reference external" href="https://docs.pytest.org/en/stable/">https://docs.pytest.org/en/stable/</a>).</p>
+<p>It's imperative to use <strong>mypy</strong> or <strong>pyright</strong> to check the type hints, and <strong>ruff</strong> or <strong>black</strong> to format the code consistently.
+This has to be done carefully. Sometimes, the book margins require fiddling with <strong>ruff</strong> configuration to narrow
+the code so it will fit.</p>
+<p>A handy feature of <strong>doctest</strong> is the <tt class="docutils literal">__test__</tt> object. This is a mapping from test name to test code.</p>
+<p>Let's say you have an example line of code like this:</p>
+<div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">355</span> <span class="o">/</span> <span class="mi">113</span>
+</pre></div>
+<p>And you need to be sure it works.</p>
+<p>Consider putting this into your examples file:</p>
+<div class="highlight"><pre><span></span><span class="n">test_ex_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&gt;&gt;&gt; from math import isclose, pi</span>
+<span class="s2">&gt;&gt;&gt; isclose(p, pi, rel_tol=1e-7)</span>
+<span class="s2">True</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+<p>You can add the following at the very bottom of the module.</p>
+<div class="highlight"><pre><span></span><span class="n">__test__</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">,</span> <span class="n">case</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">case</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;test_&quot;</span><span class="p">)}</span>
+</pre></div>
+<p>The doctest target, <tt class="docutils literal">__test__</tt> will be a dictionary, with test cases pulled from
+all global variables that start with <tt class="docutils literal">test_</tt>.
+This means every random, little scrap of code can be thrown into a file with enough tests to make
+the examples unassailable.</p>
+<p>Of course, there's more to test design, but that's a start.</p>
 </div>
-<div class="section" id="in-the-real-world">
-<h2>In The Real World</h2>
-<p>[<em>Digression</em>.  One response included the disturbing magic words &quot;in the real world&quot;.  Often I stop reading there, because it's an attempted trump card.  It is a kind of power play; the claim is that the &quot;real world&quot; situation deserves more credence than other situations.  It subverts a useful comparison of constraints and priorities.  Your &quot;real world&quot; is no more real than my &quot;real world&quot;; you have different priorities and different values.  Let's talk about those in detail rather than summarily dismissing my customer's real world as being less real than your real world.]</p>
-<p>One response noted that time is lost transferring big chunks of data.  That was specifically what I was trying to avoid in my benchmark.   The client code I was basing this on did not involve big chunks of data.  If the queries did involve big chunks of data, the application might work better in PL/SQL.  The issue centered on queries with small chunks of data; this doesn't work better in PL/SQL.</p>
-<p>I didn't make it clear that I'm running a specific benchmark, for which I provided code.  If, in your world, things behave differently, provide the code, post your results.  <strong>Let's see this benchmark</strong>.</p>
+<div class="section" id="general-setup">
+<h2>General Setup</h2>
+<p>Diagrams are often best done using <strong>PlantUML</strong> (<a class="reference external" href="https://plantuml.com">https://plantuml.com</a>).
+For really, really complicated stiff, use TIKZ and LaTeX.</p>
+<p>That means installing the <tt class="docutils literal">sphinxcontrib.plantuml</tt> plug-in to Sphinx to make PlantUML work cleanly.</p>
 </div>
-<div class="section" id="wrong-algorithm">
-<h2>Wrong Algorithm</h2>
-<p>One response hinted that I was using entirely the wrong algorithm.  That's an interesting notion.  The claim is that 6 SELECT statements would do the same thing as the two-part business rule I fabricated.  I'm dying to see the 6 SELECT statements.  <strong>Let's see this benchmark</strong>.</p>
-<p>What I failed to make clear is that my benchmark is drawn from the situation where the business has a large number of business rules.  Consequently, they a large number of if-statements.  Worse, the if-statements interact with each other, so that you need to (effectively) union all of the rules together and determine the composite predicate for each rule.</p>
-<p>With two rules, it's easy to work out the four conditions that apply.  For <em>n</em>  rules, there are 2*n*  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.</p>
+<div class="section" id="sphinx-epub">
+<h2>Sphinx EPUB</h2>
+<p>The EPUB pipeline in Sphinx is so similar to the HTML pipeline. It's easy to create the HTML
+pages and review them for readability, formatting, spelling mistakes, clarity, spelling mistakes,
+grammar errors, and spelling mistakes.</p>
+<p>I use <strong>pycharm</strong>, and the spell-checking is less than ideal. For free. For a few $$$, I think I might do better.</p>
+<p>I have some CSS features that I really like.</p>
+<ol class="arabic simple">
+<li>A lettrine at the start of a section. This is a &quot;dropped capital letter&quot;. It ties up two lines.</li>
+<li>From <a class="reference external" href="https://www.lode.de/">https://www.lode.de/</a>, I borrowed the idea of big quotation marks around a blockquote paragraph.</li>
+</ol>
+<p>These require special CSS in Sphinx. There are two parts.</p>
+<ol class="arabic">
+<li><p class="first">Add this to your <tt class="docutils literal">conf.py</tt></p>
+<div class="highlight"><pre><span></span><span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+<span class="n">html_style</span> <span class="o">=</span> <span class="s1">&#39;building_skills.css&#39;</span>
+</pre></div>
+</li>
+<li><p class="first">Add a <tt class="docutils literal">building_skills.css</tt> to the <tt class="docutils literal">_static</tt> directory. It looks like this:</p>
+<div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s2">&quot;alabaster.css&quot;</span><span class="o">)</span><span class="p">;</span>
+
+<span class="nt">p</span><span class="p">:</span><span class="nd">has</span><span class="o">(&gt;</span><span class="nt">span</span><span class="p">.</span><span class="nc">lettrine</span><span class="o">)</span><span class="p">::</span><span class="nd">first-letter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.1</span><span class="kt">rem</span><span class="w"> </span><span class="mf">.4</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">span</span><span class="p">.</span><span class="nc">lettrine</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">font-variant-caps</span><span class="p">:</span><span class="w"> </span><span class="kc">small-caps</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">div</span><span class="p">.</span><span class="nc">myquotation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c">/* Indent */</span>
+<span class="w">    </span><span class="k">margin-left</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="nt">div</span><span class="p">.</span><span class="nc">myquotation</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;“&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</li>
+</ol>
+<p>Now, all you need to do is make sure there's a <tt class="docutils literal">&lt;span <span class="pre">class=&quot;lettrine&quot;&gt;</span></tt> to make the dropped-capital lettrine work. That's done with a local extension for Sphinx.
+Again, there are two parts.</p>
+<ol class="arabic">
+<li><p class="first">Add this to your <tt class="docutils literal">conf.py</tt></p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;ext&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()))</span>
+</pre></div>
+<p>And this, too.</p>
+<div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;lettrine&#39;</span><span class="p">,</span>
+    <span class="c1"># all the others, like &quot;sphinxcontrib.plantuml&quot;, and &quot;sphinx.ext.imgmath&quot;,</span>
+<span class="p">]</span>
+</pre></div>
+</li>
+<li><p class="first">Create an <tt class="docutils literal">ext</tt> directory, and include a module, <tt class="docutils literal">lettrine.py</tt>.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+
+<span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.docutils</span> <span class="kn">import</span> <span class="n">SphinxDirective</span><span class="p">,</span> <span class="n">SphinxRole</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.typing</span> <span class="kn">import</span> <span class="n">ExtensionMetadata</span>
+
+
+<span class="k">class</span> <span class="nc">LettrineRole</span><span class="p">(</span><span class="n">SphinxRole</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A role to mark a Lettrine (often at the start of a section.)</span>
+
+<span class="sd">    The text becomes a new inline ``&lt;span class=&quot;lettrine&quot;&gt;``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">first</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">rest</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">system_message</span><span class="p">]]:</span>
+        <span class="c1"># Break things up for LaTeX output.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">inline</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">new_node</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lettrine&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">new_node</span><span class="p">],</span> <span class="p">[]</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_role</span><span class="p">(</span><span class="s1">&#39;lettrine&#39;</span><span class="p">,</span> <span class="n">LettrineRole</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</li>
+</ol>
+<p>The role defines a <tt class="docutils literal">:lettrine:</tt> role that merely wedges in the  proper class.
+The <tt class="docutils literal">setup</tt> adds the role to the sphinx environment.</p>
+<div class="highlight"><pre><span></span><span class="na">:lettrine:</span><span class="nv">`Now, your opening sentence has a lettrine.`</span>
+Subsequent lines of the paragraph are formatted <span class="gs">**normally**</span>.
+</pre></div>
 </div>
-<div class="section" id="additional-processing">
-<h2>Additional Processing</h2>
-<p>I raised the confusion level by leaving out the updates.  Since I only wanted to illustrate the basic business rules, I took out the update which is an essential operation for each kind of match (and non-match).  This makes the issue more that simple SELECT statements.</p>
+<div class="section" id="sphinx-latex">
+<h2>Sphinx LaTeX</h2>
+<p>This involves a <strong>lot</strong> of little details. We'll start with a little background.
+Then we'll look at the configuration.</p>
+<div class="section" id="background">
+<h3>Background</h3>
+<p>The LaTeX language involves a mixture of environments and commands.
+The environments have clear boundaries, usually a <tt class="docutils literal">\begin{X}</tt> and <tt class="docutils literal">\end{X}</tt>.
+Sometimes commands <strong>also</strong> bracket something; the <tt class="docutils literal">\makeatletter</tt> and <tt class="docutils literal">\makeatother</tt> commands,
+bracket a macro definition that needs to have <tt class="docutils literal">&#64;</tt> interpretation turned off.
+This mixture of stateful commands and environments can be exasperating.</p>
+<p>Also, the input can include macro definitions and redefinitions.
+Macros can be recursive. There are <tt class="docutils literal">\if</tt> constructs.
+It's a Turing complete programming language, which makes some aspects quite complicated.</p>
+<p>Producing a book is goes beyond built-in <tt class="docutils literal">manual</tt> or <tt class="docutils literal">howto</tt> document classes Sphinx offers.
+The various book classes decompose the content into three kinds:</p>
+<ul class="simple">
+<li>Front Matter. Some combination of Half-Title, Publisher, Acknowledgments, Contents, Forward, Prefix, Table of Contents, etc. (Once upon a time, books started with a &quot;title page&quot; that had the title, publisher, and copyright information. Now, most software is setup to create a paper title page in front of that, called a half-title, separate from the cover.)</li>
+<li>Main Matter. The parts and chapters.</li>
+<li>Back Matter. Appendices, indices, glossary, about the author, etc.</li>
+</ul>
+<p>In addition to this, a preamble is used to define the various commands and environments.
+Ideally, the <tt class="docutils literal">main.tex</tt> file is a sequence of <tt class="docutils literal">\input</tt> commands to build the preamble,
+define the document environment, provide the needed commands, and input
+the various pieces content from separate files. Ideally.</p>
+<p>Pragmatically, Sphinx doesn't have a perfectly clean separation of the LaTeX organization
+from the content.
+Some of this is a consequence of the way LaTeX works, and the need for <tt class="docutils literal"><span class="pre">\if--\fi</span></tt> blocks
+to handle special cases.
+Other aspects are patches for subtle incompatibilities among LaTeX packages.</p>
 </div>
-<div class="section" id="conclusion">
-<h2>Conclusion</h2>
-<p>Thanks for the thoughtful comments.  Please post your competing benchmarks so I can see what can be improved in my situation.</p>
+<div class="section" id="latex-content">
+<h3>Latex Content</h3>
+<p>First, the top-level <tt class="docutils literal">index.rst</tt> should have <strong>almost</strong> nothing in it.</p>
+<div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+
+   front/index
+   chapters/index
+   back/index
+</pre></div>
+<p>The book will have three folders: <tt class="docutils literal">front</tt>, <tt class="docutils literal">chapters</tt>, and <tt class="docutils literal">back</tt>, each of
+which has it's own <tt class="docutils literal">index.rst</tt>.</p>
+<p>There are a few (very few) places where LaTeX-specific content is needed.
+Here's the <tt class="docutils literal">back/index.rst</tt>.</p>
+<div class="highlight"><pre><span></span><span class="p">..</span>  <span class="ow">raw</span><span class="p">::</span> latex
+
+    \frontmatter
+
+<span class="p">..</span>  <span class="ow">toctree</span><span class="p">::</span>
+
+    preface
+</pre></div>
+<p>That's it. Include the raw LaTeX command, and include the <tt class="docutils literal">preface.rst</tt> file.
+This generates nice-looking HTML and EPUB. And it injects the helpful <tt class="docutils literal">\frontmatter</tt> in front of the preface.
+The <tt class="docutils literal">back/index.rst</tt> is similar, as is the <tt class="docutils literal">chapters/index.rst</tt>.</p>
+<p>(The front matter setup doesn't seem ideal. I think the <tt class="docutils literal">\frontmatter</tt> should include the half-title, publisher's page, and contents, also, but it doesn't seem to work unless it's in front of the preface.)</p>
+</div>
+<div class="section" id="the-sphinx-configuration">
+<h3>The Sphinx Configuration</h3>
+<p>There are four configuration variables that need to be set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">latex_engine:</th><td class="field-body"><tt class="docutils literal">'xelatex'</tt> works well because it permits UTF encoded files and (some) Unicode.</td>
+</tr>
+<tr class="field"><th class="field-name">latex_elements:</th><td class="field-body">This is a large dictionary of individual settings. The value is a dictionary, wrapped in <tt class="docutils literal">{}</tt>,
+with string key values. Most of the values will be LaTeX commands.
+Because LaTeX uses <tt class="docutils literal">\</tt>, it's helpful to use <tt class="docutils literal"><span class="pre">r&quot;&quot;&quot;</span> &quot;&quot;&quot;</tt> around the LaTeX.</td>
+</tr>
+<tr class="field"><th class="field-name">latex_theme:</th><td class="field-body"><tt class="docutils literal">'manual'</tt> is close to the book format we want to use. We'll provide a subsequent definition to expand on this. The &quot;theme&quot; in Sphinx parlance is the document class in LaTeX world.</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">latex_toplevel_sectioning:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body"><tt class="docutils literal">'chapter'</tt> for books without parts. Otherwise <tt class="docutils literal">'part'</tt>.</td>
+</tr>
+<tr class="field"><th class="field-name">latex_docclass:</th><td class="field-body">This is a mapping from document class to the actual LaTeX class to use.
+We provide the value <tt class="docutils literal">{'manual': 'scrbook'}</tt> because that seems to work well.</td>
+</tr>
+</tbody>
+</table>
+<p>Within the <tt class="docutils literal">latex_elements</tt> mapping, we have a number of configuration parameters.
+Most of these are small-ish. Two are immensee blocks of LaTeX code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">babel:</th><td class="field-body"><p class="first">I use <tt class="docutils literal"><span class="pre">r'\usepackage[american]{babel}'</span></tt> because, well, I'm an American writer.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">fncychap:</th><td class="field-body"><p class="first">Set to <tt class="docutils literal">''</tt> to disable any of the fancy chapter styles. They seem busy to me.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">passoptionstopackages:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body"><p class="first">I use <tt class="docutils literal"><span class="pre">r'\PassOptionsToPackage{headings}{fancyhdr}'</span></tt>, even though I'm not sure this is really required.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">extrapackages:</th><td class="field-body"><p class="first">This is a bunch of <tt class="docutils literal">\usepackage</tt> commands. I use <tt class="docutils literal">lettrine</tt>, <tt class="docutils literal">xstring</tt>, and <tt class="docutils literal">afterpage</tt>.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">preamble:</th><td class="field-body"><p class="first">This is huge, we'll return to it.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">fvset:</th><td class="field-body"><p class="first">This can be used to set the font for &quot;fancyverb&quot; verbatime environments.
+I use <tt class="docutils literal"><span class="pre">r'\fvset{fontsize=\scriptsize}'</span></tt> to make the font smaller so the examples fit
+in a <span class="formula">6<sup>′′</sup>×9<sup>′′</sup></span> book.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">releasename:</th><td class="field-body"><p class="first">This is really fussy. The word &quot;release&quot; seems too long, so I set this to <tt class="docutils literal">v.</tt>.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">geometry:</th><td class="field-body"><p class="first">This defines the page layouts. It's quite long.
+<tt class="docutils literal"><span class="pre">r'\usepackage[paperwidth=6in,</span> paperheight=9in, inner=3.75pc, outer=3pc, top=2pc, bottom=3pc, includehead, includefoot, <span class="pre">headheight=32pt]{geometry}'</span></tt></p>
+<p>The <tt class="docutils literal">pc</tt> unit is pica, <span class="formula"><span class="textfraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator">6</span><span class="ignored">)</span></span></span> of an inch. I'm not sure it's helpful to switch units like this.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">maketitle:</th><td class="field-body"><p class="first last">This is also quite large.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-preamble">
+<h3>The Preamble</h3>
+<p>The preamble adds style details. It's a large block of LaTeX.</p>
+<div class="highlight"><pre><span></span><span class="c">% Lettrine</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\DUrolelettrine</span><span class="nb">}</span>[1]<span class="nb">{</span><span class="k">\StrLeft</span><span class="nb">{</span>#1<span class="nb">}{</span>1<span class="nb">}</span>[<span class="k">\First</span>]<span class="k">\StrGobbleLeft</span><span class="nb">{</span>#1<span class="nb">}{</span>1<span class="nb">}</span>[<span class="k">\Rest</span>]<span class="k">\lettrine</span><span class="nb">{</span><span class="k">\First</span><span class="nb">}{</span><span class="k">\Rest</span><span class="nb">}}</span>
+<span class="c">% Page Layout Normal</span>
+<span class="k">\makeatletter</span>
+<span class="k">\fancypagestyle</span><span class="nb">{</span>normal<span class="nb">}{</span>
+<span class="k">\fancyhf</span><span class="nb">{}</span>
+<span class="k">\fancyfoot</span><span class="na">[RO]</span><span class="nb">{{</span><span class="k">\rmfamily\thepage</span><span class="nb">}}</span>
+<span class="k">\fancyfoot</span><span class="na">[LO]</span><span class="nb">{{</span><span class="k">\rmfamily\nouppercase</span><span class="nb">{</span><span class="k">\rightmark</span><span class="nb">}}}</span>
+<span class="k">\fancyhead</span><span class="na">[RO]</span><span class="nb">{{</span><span class="k">\rmfamily</span> <span class="k">\@title\sphinxheadercomma\py@release</span><span class="nb">}}</span>
+<span class="k">\if@twoside</span>
+ <span class="k">\fancyfoot</span><span class="na">[LE]</span><span class="nb">{{</span><span class="k">\rmfamily\thepage</span><span class="nb">}}</span>
+ <span class="k">\fancyfoot</span><span class="na">[RE]</span><span class="nb">{{</span><span class="k">\rmfamily\nouppercase</span><span class="nb">{</span><span class="k">\rightmark</span><span class="nb">}}}</span>
+ <span class="k">\fancyhead</span><span class="na">[LE]</span><span class="nb">{{</span><span class="k">\rmfamily</span> <span class="k">\@title\sphinxheadercomma\py@release</span><span class="nb">}}</span>
+<span class="k">\fi</span>
+<span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\headrulewidth</span><span class="nb">}{</span>0.4pt<span class="nb">}</span>
+<span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\footrulewidth</span><span class="nb">}{</span>0.4pt<span class="nb">}</span>
+<span class="c">% define chaptermark with \@chappos when \@chappos is available for Japanese</span>
+<span class="k">\ltx@ifundefined</span><span class="nb">{</span>@chappos<span class="nb">}{}</span>
+  <span class="nb">{</span><span class="k">\def\chaptermark</span>##1<span class="nb">{</span><span class="k">\markboth</span><span class="nb">{</span><span class="k">\@chapapp\space\thechapter\space\@chappos\space</span> ##1<span class="nb">}{}}}</span>
+<span class="nb">}</span>
+<span class="c">% Page Layout Plain (1st page of Section or Chapter.)</span>
+<span class="k">\fancypagestyle</span><span class="nb">{</span>plain<span class="nb">}{</span>
+    <span class="k">\fancyhf</span><span class="nb">{}</span>
+    <span class="k">\fancyfoot</span><span class="na">[RO]</span><span class="nb">{{</span><span class="k">\rmfamily\thepage</span><span class="nb">}}</span>
+    <span class="k">\if@twoside\fancyfoot</span><span class="na">[LE]</span><span class="nb">{{</span><span class="k">\rmfamily\thepage</span><span class="nb">}}</span><span class="k">\fi</span>
+    <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\headrulewidth</span><span class="nb">}{</span>0pt<span class="nb">}</span>
+    <span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\footrulewidth</span><span class="nb">}{</span>0.4pt<span class="nb">}</span>
+<span class="nb">}</span>
+<span class="k">\makeatother</span>
+<span class="c">% Blank Page</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\blankpage</span><span class="nb">}{</span><span class="c">%</span>
+    <span class="k">\afterpage</span><span class="nb">{</span><span class="k">\null\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span><span class="k">\newpage</span><span class="nb">}{</span><span class="k">\pagestyle</span><span class="nb">{</span>empty<span class="nb">}</span><span class="k">\cleardoublepage</span><span class="nb">}</span>
+<span class="nb">}</span>
+<span class="c">% Define &quot;myquotation&quot; to indent a whole paragraph with a big, fancy &quot; character.</span>
+<span class="k">\renewcommand</span><span class="nb">{</span><span class="k">\indent</span><span class="nb">}{</span><span class="c">%</span>
+    <span class="k">\begin</span><span class="nb">{</span>picture<span class="nb">}</span>(0,0)<span class="k">\put</span>(10,-5)<span class="nb">{</span><span class="k">\makebox</span>(0,0)<span class="nb">{</span><span class="k">\scalebox</span><span class="nb">{</span>6<span class="nb">}{</span><span class="k">\textcolor</span><span class="nb">{</span>lightgray<span class="nb">}{</span>“<span class="nb">}}}}</span><span class="k">\end</span><span class="nb">{</span>picture<span class="nb">}</span><span class="k">\hspace*</span><span class="nb">{</span>1.0cm<span class="nb">}</span><span class="k">\hangindent</span>=1.15cm
+<span class="nb">}</span>
+<span class="k">\newenvironment</span><span class="nb">{</span>sphinxclassmyquotation<span class="nb">}{</span><span class="k">\indent</span><span class="nb">}{}</span>
+</pre></div>
+<p>The <tt class="docutils literal">DUrolelettrine</tt> command is the Docutils role that is used
+to define the <tt class="docutils literal">lettrine</tt> role that we added as an extension to Sphinx.
+The <tt class="docutils literal">DUrole</tt> is prepended to define a unique command.
+The implementation of this command is a macro that splits out the first letter to make it big, and the
+rest of the text is set in small-caps style.</p>
+<p>Two page layouts are defined: <tt class="docutils literal">normal</tt> and <tt class="docutils literal">plain</tt>.
+These revise the built-in Sphinx layouts to use different fonts for the page header and footer.
+The definitions have to be wedged between <tt class="docutils literal">\makeatnormal</tt> and <tt class="docutils literal">\makeatother</tt>.</p>
+<p>The <tt class="docutils literal">blankpage</tt> command is added here. It seems helpful for getting the even-odd page business
+correct on the half-title and publisher pages.</p>
+<p>The <tt class="docutils literal">sphinxclassmyquotation</tt> environment is what Sphinx does with otherwise unknown directives.
+When the text has a <tt class="docutils literal">..&nbsp; myquotation::</tt> directive, this becomes a new environment with a distinctive
+name. We can then define an environment that provides the distinctive style attributes
+for the content.</p>
+<p>The mapping from RST role or directive to <tt class="docutils literal">DUrole</tt> or <tt class="docutils literal">sphinxclass</tt> isn't the most obvious,
+but, it works delightfully well.
+For HTML and EPUB, CSS definitions are required.
+For LaTeX, these preamble definitions are required.</p>
+</div>
+<div class="section" id="the-maketitle-command">
+<h3>The MakeTitle Command</h3>
+<p>While LaTeX has a <tt class="docutils literal">\maketitle</tt> command, there's a redefinition of this by Sphinx.
+This is the <tt class="docutils literal">\sphinxmaketitle</tt> command that emits the title page.</p>
+<p>Ordinarily -- for the default manual or howto themes -- this is followed by the table of contents,
+and then the content.
+For books, the title page isn't the cover, and is demoted to being called a half-title.
+There's often a publisher's page -- with important copyright information -- between the half-title page and the table of contents.</p>
+<p>To build this, we need to provide a <tt class="docutils literal">maketitle</tt> setting that <strong>also</strong> defines
+a <tt class="docutils literal">sphinxbackoftitlepage</tt> command. This command does everything between the half-page and the table of contents.</p>
+<div class="highlight"><pre><span></span><span class="k">\makeatletter</span>
+<span class="k">\newcommand\sphinxbackoftitlepage</span><span class="nb">{</span>
+    <span class="c">% Blank page on the verso after 1/2 title</span>
+    <span class="k">\blankpage</span>
+    <span class="c">% Publisher page is recto (odd page)</span>
+    <span class="k">\thispagestyle</span><span class="nb">{</span>empty<span class="nb">}</span>
+    <span class="k">\sffamily\textbf</span><span class="nb">{</span><span class="k">\textsc</span><span class="nb">{</span>Building Skills<span class="nb">}}</span>
+
+    <span class="k">\Huge</span><span class="nb">{</span><span class="k">\sffamily\textbf</span><span class="nb">{</span><span class="k">\@title</span><span class="nb">}}</span>
+
+    <span class="k">\large</span><span class="nb">{</span>&quot;When your only tool is a hammer, every problem looks like a nail.&quot;<span class="nb">}</span>
+
+    <span class="k">\normalsize</span>
+    By <span class="k">\@author</span>
+
+    <span class="k">\vspace</span><span class="nb">{</span>1in<span class="nb">}</span>
+    Python 3.12<span class="k">\</span>
+    Release <span class="k">\py@release\</span>
+    Created <span class="k">\today</span>
+
+    <span class="k">\vfill</span>
+    <span class="k">\rmfamily\normalsize</span><span class="nb">{</span>
+        <span class="k">\copyright</span>~<span class="k">\the\year\</span> <span class="k">\textit</span><span class="nb">{</span>Steven F. Lott<span class="nb">}</span><span class="k">\</span>
+        <span class="k">\textsc</span><span class="nb">{</span>All Rights Reserved.<span class="nb">}</span>
+    <span class="nb">}</span>
+
+    <span class="k">\vfill</span>
+    <span class="k">\url</span><span class="nb">{</span>https://fosstodon.org/@slott56<span class="nb">}</span><span class="k">\</span>
+    <span class="k">\url</span><span class="nb">{</span>https://itmaybeahack.com<span class="nb">}</span><span class="k">\</span>
+    <span class="k">\url</span><span class="nb">{</span>https://github.com/slott56/unlearning-sql<span class="nb">}</span>
+
+    <span class="c">% Blank page on verso of publisher.</span>
+    <span class="k">\blankpage</span>
+    <span class="c">% Contents will follow.</span>
+<span class="nb">}</span>
+<span class="k">\makeatother</span>
+
+<span class="k">\sphinxmaketitle</span>
+</pre></div>
+<p>It seems odd to put this definition here instead of in the preamble.
+It also seems necessary to get the page numbering correct.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary</h2>
+<p>On one hand, there is a <strong>lot</strong> of LaTeX customization required.</p>
+<p>On the other hand, a single change to the RST files leads to two <strong>identical</strong> results
+that can be uploaded for EPUB and print-on-demand.</p>
+<p>There are still some odd, little glitches in the LaTeX.
+It's not <strong>perfect</strong>, but it's really good.</p>
 </div>
 
             </div>

@@ -2,7 +2,7 @@ Java-related skills - response to a question
 ============================================
 
 :date: 2007-06-20 18:59
-:tags: books,building skills,#python
+:tags: building skills,#python,java
 :slug: 2007_06_20-java_related_skills_response_to_a_question
 :category: Books
 :status: published

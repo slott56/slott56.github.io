@@ -2,7 +2,7 @@ Django Project, Application and Database Naming
 ===============================================
 
 :date: 2007-06-22 19:25
-:tags: FOSS,open-source
+:tags: open-source,Django,Design,Scope
 :slug: 2007_06_22-django_project_application_and_database_naming
 :category: FOSS
 :status: published

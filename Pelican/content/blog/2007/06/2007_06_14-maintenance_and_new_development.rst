@@ -2,7 +2,7 @@ Maintenance and New Development
 ===============================
 
 :date: 2007-06-14 13:23
-:tags: management
+:tags: maintenance,planning,innovation,productivity
 :slug: 2007_06_14-maintenance_and_new_development
 :category: Management
 :status: published
