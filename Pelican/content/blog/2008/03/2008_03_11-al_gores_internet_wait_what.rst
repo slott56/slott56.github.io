@@ -2,7 +2,7 @@ Al Gore's Internet?  Wait -- What?
 ==================================
 
 :date: 2008-03-11 20:02
-:tags: news
+:tags: internet,politics,innovation
 :slug: 2008_03_11-al_gores_internet_wait_what
 :category: News
 :status: published
@@ -17,32 +17,17 @@ Here's the lead-off quote
 
 
 
-"Check out how insecure Al Gore's internet is ....
-
-
-
-
-http://arstechnica.com/news.ars/post/20080225-insecure-routing-redirects-youtube-to-pakistan.html 
-
-
-
-
+| "Check out how insecure Al Gore's internet is ...."
+|
+| http://arstechnica.com/news.ars/post/20080225-insecure-routing-redirects-youtube-to-pakistan.html
+|
+| While losing YouTube isn't really an issue, shows how fragile the networking infrastructure is worldwide.
 
 
 
 
 
 
-
-
-While losing YouTube isn't really an issue, shows how fragile the networking infrastructure is worldwide.
-
-
-
-
-
-
-"
 
 
 
@@ -78,46 +63,15 @@ After I finished my "Al Gore was Only One Of Many" rants, I got this response
 
 
 
-"Believe the grad student who developed eventually developed the first real search engine for the Internet and the two Michigan State guys who developed the browser were the major contributors of the modern Internet.  The founders of Arpanet (unknown to me) share in this along with tons of router and wiring guys.
-
-
-
-
-
-
-
-Politicians who say they voted and supported Internet stuff are nice but not "founders". 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-I quote Al Gore since it gets a laugh (just like nuclear with Bush).
-
-
-
-
-
-
-
-
-
-"
-
-
+| "Believe the grad student who developed eventually developed the
+| first real search engine for the Internet and the two Michigan
+| State guys who developed the browser were the major contributors
+| of the modern Internet.  The founders of Arpanet (unknown to me)
+| share in this along with tons of router and wiring guys.
+|
+| Politicians who say they voted and supported Internet stuff are nice but not "founders".
+|
+| I quote Al Gore since it gets a laugh (just like nuclear with Bush).
 
 
 

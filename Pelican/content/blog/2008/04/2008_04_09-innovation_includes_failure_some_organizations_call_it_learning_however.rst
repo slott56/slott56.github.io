@@ -2,7 +2,7 @@ Innovation includes Failure (some organizations call it "Learning", however)
 ============================================================================
 
 :date: 2008-04-09 13:20
-:tags: management
+:tags: enterprise,IT,innovation,organization
 :slug: 2008_04_09-innovation_includes_failure_some_organizations_call_it_learning_however
 :category: Management
 :status: published

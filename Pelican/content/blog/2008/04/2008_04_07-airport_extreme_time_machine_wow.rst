@@ -2,7 +2,7 @@ Airport Extreme + Time Machine.  Wow!
 =====================================
 
 :date: 2008-04-07 13:55
-:tags: technologies,web
+:tags: web,Apple Airport
 :slug: 2008_04_07-airport_extreme_time_machine_wow
 :category: Technologies
 :status: published

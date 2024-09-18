@@ -2,7 +2,7 @@ Technical Debt, the Cost of Cheap and "Get This Done ACAP"
 ==========================================================
 
 :date: 2008-03-08 15:30
-:tags: management
+:tags: planning,open source,enterprise,cost
 :slug: 2008_03_08-technical_debt_the_cost_of_cheap_and_get_this_done_acap
 :category: Management
 :status: published

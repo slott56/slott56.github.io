@@ -2,7 +2,7 @@ Technology and New Business Models
 ==================================
 
 :date: 2008-04-02 19:02
-:tags: management
+:tags: enterprise,IT,business model
 :slug: 2008_04_02-technology_and_new_business_models
 :category: Management
 :status: published

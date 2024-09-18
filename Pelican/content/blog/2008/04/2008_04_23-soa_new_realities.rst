@@ -2,7 +2,7 @@ SOA New Realities
 =================
 
 :date: 2008-04-23 10:16
-:tags: technologies,xml
+:tags: soa,xml
 :slug: 2008_04_23-soa_new_realities
 :category: Technologies
 :status: published

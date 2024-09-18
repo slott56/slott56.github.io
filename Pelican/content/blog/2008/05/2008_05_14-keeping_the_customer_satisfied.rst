@@ -2,7 +2,7 @@ Keeping the Customer Satisfied
 ==============================
 
 :date: 2008-05-14 22:53
-:tags: management
+:tags: enterprise,IT,project planning
 :slug: 2008_05_14-keeping_the_customer_satisfied
 :category: Management
 :status: published

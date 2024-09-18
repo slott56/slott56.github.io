@@ -2,7 +2,7 @@ Open Source and Corporate IT (again)
 ====================================
 
 :date: 2008-02-15 21:26
-:tags: management
+:tags: planning,open source,enterprise
 :slug: 2008_02_15-open_source_and_corporate_it_again
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Building Skills In Python - 2.5 Edition
 =======================================
 
 :date: 2008-01-28 11:24
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2008_01_28-building_skills_in_python_25_edition
 :category: Books
 :status: published

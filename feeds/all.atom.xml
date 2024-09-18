@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-09-03T14:35:00-04:00</updated><entry><title>Revised Books Available</title><link href="https://slott56.github.io/2024-09-03-revised_books_available.html" rel="alternate"></link><published>2024-09-03T14:35:00-04:00</published><updated>2024-09-03T14:35:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-03:/2024-09-03-revised_books_available.html</id><summary type="html">&lt;p&gt;Big Announcement: the 2024.8 version of &lt;em&gt;Unlearning SQL&lt;/em&gt;, and the 2024.9 version of &lt;em&gt;Pivot to Python&lt;/em&gt; are available from booksellers online. Both are revised and all the code tested with Python 3.12.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-09-18T16:03:00-04:00</updated><entry><title>Modern Python Cookbook and Type Hints</title><link href="https://slott56.github.io/2024-09-18-cookbook_and_mypy.html" rel="alternate"></link><published>2024-09-18T16:03:00-04:00</published><updated>2024-09-18T16:03:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-18:/2024-09-18-cookbook_and_mypy.html</id><summary type="html">&lt;p&gt;Modern Python Cookbook — with lots and lots of recipes — is something you might need. Find the results of checking all these recipes here:
+&lt;a class="reference external" href="https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389"&gt;https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I (reluctantly) switched from using &lt;strong&gt;mypy&lt;/strong&gt; to using &lt;strong&gt;pyright&lt;/strong&gt; to check all of these recipes carefully. The type alias (&lt;a class="reference external" href="https://peps.python.org/pep-0695"&gt;PEP …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Modern Python Cookbook — with lots and lots of recipes — is something you might need. Find the results of checking all these recipes here:
+&lt;a class="reference external" href="https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389"&gt;https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I (reluctantly) switched from using &lt;strong&gt;mypy&lt;/strong&gt; to using &lt;strong&gt;pyright&lt;/strong&gt; to check all of these recipes carefully. The type alias (&lt;a class="reference external" href="https://peps.python.org/pep-0695"&gt;PEP 695&lt;/a&gt;) syntax wasn’t fully supported.&lt;/p&gt;
+&lt;p&gt;I didn’t find any new problems with &lt;strong&gt;pyright&lt;/strong&gt;, but I did tweak my workflow a little bit to use more of &lt;strong&gt;pyright&lt;/strong&gt;’s linting features.&lt;/p&gt;
+&lt;p&gt;Follow this for status on mypy &lt;a class="reference external" href="https://github.com/python/mypy/issues/15238"&gt;https://github.com/python/mypy/issues/15238&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="what-gets-checked"&gt;
+&lt;h2&gt;What gets checked?&lt;/h2&gt;
+&lt;p&gt;Using a vague phrase like &amp;quot;everything&amp;quot; is -- obviously -- not quite as helpful as some details.&lt;/p&gt;
+&lt;p&gt;There are three broad categories of examples:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;REPL examples.&lt;/li&gt;
+&lt;li&gt;Code examples.&lt;/li&gt;
+&lt;li&gt;Jupyter Lab examples.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Clearly, the REPL examples can't be checked. However. Many REPL examples depend on code definitions that can include checkable hints. The idea is to provide code outside the REPL and then use REPL doctest test cases to demonstrate how the code works. Which means many REPL examples have type hints that aren't shown in detail in the recipe.&lt;/p&gt;
+&lt;p&gt;All of the ordinary code examples are checked.&lt;/p&gt;
+&lt;p&gt;The Jupyter Lab examples in Chapter 12 are a mixed bag. Some examples involve an importable module, which can be checked. The notebook itself, though, is difficult to check. One &lt;strong&gt;could&lt;/strong&gt; convert the notebook to a script and the type check the script. This only works when the notebook is careful about not reusing variables.&lt;/p&gt;
+&lt;p&gt;So that means all the example code in almost all of the chapters is put through &lt;strong&gt;pyright&lt;/strong&gt; to be &lt;strong&gt;sure&lt;/strong&gt; there's nothing obviously sketchy.&lt;/p&gt;
+&lt;p&gt;I'd like to switch back to &lt;strong&gt;mypy&lt;/strong&gt;. I don't have a great reason, it just seems like it's vaguely &amp;quot;better&amp;quot;, measured on some axis I can't articulate.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="book"></category><category term="packt"></category><category term="cookbook"></category></entry><entry><title>Revised Books Available</title><link href="https://slott56.github.io/2024-09-03-revised_books_available.html" rel="alternate"></link><published>2024-09-03T14:35:00-04:00</published><updated>2024-09-03T14:35:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-03:/2024-09-03-revised_books_available.html</id><summary type="html">&lt;p&gt;Big Announcement: the 2024.8 version of &lt;em&gt;Unlearning SQL&lt;/em&gt;, and the 2024.9 version of &lt;em&gt;Pivot to Python&lt;/em&gt; are available from booksellers online. Both are revised and all the code tested with Python 3.12.&lt;/p&gt;
 &lt;div class="section" id="unlearning-sql"&gt;
 &lt;h2&gt;Unlearning SQL&lt;/h2&gt;
 &lt;p&gt;This book shows you how to translate essential SQL concepts into the Python …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Big Announcement: the 2024.8 version of &lt;em&gt;Unlearning SQL&lt;/em&gt;, and the 2024.9 version of &lt;em&gt;Pivot to Python&lt;/em&gt; are available from booksellers online. Both are revised and all the code tested with Python 3.12.&lt;/p&gt;
@@ -11362,61 +11384,4 @@ great UX in general. We just need to get past the rows-and-columns.&lt;/p&gt;
 &lt;p&gt;The problem with most spreadsheet apps is the limited capability for
 more serious math.&lt;/p&gt;
 &lt;p&gt;Which is why the sympy + Jupyter Lab was a blinding revelation to me.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="jupyter lab"></category><category term="spreadsheet"></category><category term="sympy"></category></entry><entry><title>Python's Protocol Annotation vs. Duck Typing</title><link href="https://slott56.github.io/2021_05_25-pythons_protocol_annotation_vs_duck_typing.html" rel="alternate"></link><published>2021-05-25T08:00:00-04:00</published><updated>2021-05-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-05-25:/2021_05_25-pythons_protocol_annotation_vs_duck_typing.html</id><summary type="html">&lt;p&gt;Let's talk about profound confusion.&lt;/p&gt;
-&lt;p&gt;I got an email with a subject of this, &amp;quot;Python's Protocol Reduces
-Reliance on Duck Typing&amp;quot;. The resulting conversation led to this nugget:
-&amp;quot;... my current project could use protocols in Python, and thus I didn't
-need to rely on duck typing and instead could use …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Let's talk about profound confusion.&lt;/p&gt;
-&lt;p&gt;I got an email with a subject of this, &amp;quot;Python's Protocol Reduces
-Reliance on Duck Typing&amp;quot;. The resulting conversation led to this nugget:
-&amp;quot;... my current project could use protocols in Python, and thus I didn't
-need to rely on duck typing and instead could use that as my type.&amp;quot;&lt;/p&gt;
-&lt;p&gt;I'm unclear on what &amp;quot;reliance&amp;quot; really meant here.&lt;/p&gt;
-&lt;p&gt;Python depends (heavily) on duck typing. Because type annotations are
-optional, this cannot change. It's unlikely to ever change.&lt;/p&gt;
-&lt;p&gt;Here's the bottom line: Duck Typing Won't Go Away.&lt;/p&gt;
-&lt;p&gt;Indeed, there's more: Duck Typing Isn't Bad.&lt;/p&gt;
-&lt;p&gt;Python doesn't &amp;quot;rely&amp;quot; on the type annotations. They're a bonus feature
-to make sure you aren't lying about the types and how they're used.&lt;/p&gt;
-&lt;p&gt;Protocols are how duck typing works. When we leverage duck typing among
-classes, we're implicitly relying on the classes all supporting a common
-protocol. Numbers, for example, implement a ton of methods; this
-collection of common methods (e.g., &lt;tt class="docutils literal"&gt;__add__()&lt;/tt&gt;, etc.) define a
-protocol.&lt;/p&gt;
-&lt;p&gt;With mypy, we can create our own distinct protocols as named types.&lt;/p&gt;
-&lt;p&gt;I don't get the &amp;quot;reducing reliance&amp;quot; business when protocols make duck
-typing work. And. Sadly. I couldn't figure out where the confusion
-arose.&lt;/p&gt;
-&lt;div class="section" id="follow-up"&gt;
-&lt;h2&gt;Follow-up&lt;/h2&gt;
-&lt;p&gt;I asked for clarification and got nothing useful in response. The person
-sending the email seemed to be working from a summary of another
-conversation, or something. I couldn't figure it out.&lt;/p&gt;
-&lt;p&gt;I can try to assume they used to have this.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-class Something:
-    def useful_method(self, x: str) -&amp;gt; int:
-        # whatever
-
-class CloselyRelated:
-    def useful_method(self, x: str) -&amp;gt; int:
-        # another polymorphic thing
-
-Polymorphic = Union[Something, CloselyRelated]
-
-# many classes and functions relying on Polymorphic
-&lt;/pre&gt;
-&lt;p&gt;And they've realized that there may be a better way.&lt;/p&gt;
-&lt;p&gt;But. I haven't really got much to go on.&lt;/p&gt;
-&lt;p&gt;The better approach often involves something like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-class Polymorphic(Protocol):
-    def useful_method(self, x: str) -&amp;gt; int:
-        ...
-&lt;/pre&gt;
-&lt;p&gt;We can define a protocol to help locate the essential features of a
-parameter or a result type.&lt;/p&gt;
-&lt;p&gt;But. I don't really know what was going on.&lt;/p&gt;
-&lt;p&gt;And I couldn't figure out why the word &amp;quot;Reliance&amp;quot; was used.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="duck typing"></category><category term="protocols"></category><category term="annotations"></category><category term="type hints"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="jupyter lab"></category><category term="spreadsheet"></category><category term="sympy"></category></entry></feed>

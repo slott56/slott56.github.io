@@ -2,7 +2,7 @@ Building Skills Updates
 =======================
 
 :date: 2008-04-08 13:45
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2008_04_08-building_skills_updates
 :category: Books
 :status: published

@@ -2,7 +2,7 @@ Building Skills in OO Design -- Updated
 =======================================
 
 :date: 2008-05-31 20:20
-:tags: books,building skills,#python
+:tags: building skills,#python,OO Design
 :slug: 2008_05_31-building_skills_in_oo_design_updated
 :category: Books
 :status: published

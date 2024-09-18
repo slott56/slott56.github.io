@@ -2,7 +2,7 @@ Censorship - who wins?
 ======================
 
 :date: 2008-03-12 10:15
-:tags: news
+:tags: internet,politics,innovation
 :slug: 2008_03_12-censorship_who_wins
 :category: News
 :status: published
@@ -26,6 +26,7 @@ The content could be viewed as politically challenging, but it sure looked like 
 
 
 Bullying
+--------
 
 
 

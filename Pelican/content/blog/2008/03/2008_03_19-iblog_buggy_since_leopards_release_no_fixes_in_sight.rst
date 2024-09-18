@@ -1,8 +1,8 @@
-iBlog Buggy... Since Leopard's release... No fixes in sight.
+iBlog Buggy... Since Leopard's release... No fixes in sight
 ============================================================
 
 :date: 2008-03-19 15:59
-:tags: technologies,web
+:tags: web,iblog,blogging,tools
 :slug: 2008_03_19-iblog_buggy_since_leopards_release_no_fixes_in_sight
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ More Programming for n00bz
 ==========================
 
 :date: 2008-02-23 20:18
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2008_02_23-more_programming_for_n00bz
 :category: Books
 :status: published
