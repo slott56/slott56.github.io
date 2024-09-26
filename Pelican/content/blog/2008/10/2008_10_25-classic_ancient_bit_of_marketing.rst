@@ -2,7 +2,7 @@ Classic / Ancient Bit of Marketing
 ==================================
 
 :date: 2008-10-25 14:57
-:tags: news
+:tags: marketing,Apple
 :slug: 2008_10_25-classic_ancient_bit_of_marketing
 :category: News
 :status: published

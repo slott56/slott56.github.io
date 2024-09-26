@@ -2,7 +2,7 @@ Universal Truths
 ================
 
 :date: 2008-08-22 00:29
-:tags: management
+:tags: SDLC,life-cycle,softare development,project management
 :slug: 2008_08_22-universal_truths
 :category: Management
 :status: published

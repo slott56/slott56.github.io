@@ -2,7 +2,7 @@ Rickrolling Trifecta
 ====================
 
 :date: 2008-11-29 20:50
-:tags: technologies,web
+:tags: web,rickrolling
 :slug: 2008_11_29-rickrolling_trifecta
 :category: Technologies
 :status: published

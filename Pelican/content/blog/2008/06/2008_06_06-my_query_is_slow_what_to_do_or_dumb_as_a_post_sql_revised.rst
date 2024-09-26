@@ -2,7 +2,7 @@ My Query Is Slow -- What To Do?  Or Dumb-As-A-Post SQL (Revised)
 ================================================================
 
 :date: 2008-06-06 22:30
-:tags: #python,database
+:tags: database,jquery,sql,design
 :slug: 2008_06_06-my_query_is_slow_what_to_do_or_dumb_as_a_post_sql_revised
 :category: Python
 :status: published

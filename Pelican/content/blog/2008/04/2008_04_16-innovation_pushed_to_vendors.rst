@@ -2,7 +2,7 @@ Innovation Pushed to Vendors
 ============================
 
 :date: 2008-04-16 10:37
-:tags: management
+:tags: innovation,supply chain
 :slug: 2008_04_16-innovation_pushed_to_vendors
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Programming Languages I've Learned (more-or-less in order) [Update]
 ===================================================================
 
 :date: 2008-09-28 23:21
-:tags: books,building skills,#python
+:tags: building skills,#python,history,programming languages
 :slug: 2008_09_28-programming_languages_ive_learned_more_or_less_in_order_update
 :category: Books
 :status: published

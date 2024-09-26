@@ -2,7 +2,7 @@ The "Which Language" Question
 =============================
 
 :date: 2008-06-29 15:45
-:tags: books,building skills,#python
+:tags: building skills,#python,programming language,strategy
 :slug: 2008_06_29-the_which_language_question
 :category: Books
 :status: published

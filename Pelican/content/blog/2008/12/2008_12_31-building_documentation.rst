@@ -2,7 +2,7 @@ Building Documentation
 ======================
 
 :date: 2008-12-31 23:17
-:tags: FOSS,open-source
+:tags: open-source,documentation,docutils,sphinx
 :slug: 2008_12_31-building_documentation
 :category: FOSS
 :status: published

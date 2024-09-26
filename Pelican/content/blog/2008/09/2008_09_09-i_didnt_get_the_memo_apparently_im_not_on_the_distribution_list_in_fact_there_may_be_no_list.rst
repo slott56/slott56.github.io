@@ -2,7 +2,7 @@ I didn't get the memo -- apparently, I'm not on the distribution list -- in fact
 ======================================================================================================
 
 :date: 2008-09-09 09:50
-:tags: management
+:tags: content,discovery,architecture
 :slug: 2008_09_09-i_didnt_get_the_memo_apparently_im_not_on_the_distribution_list_in_fact_there_may_be_no_list
 :category: Management
 :status: published

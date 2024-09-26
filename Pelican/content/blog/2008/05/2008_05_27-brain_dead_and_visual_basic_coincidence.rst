@@ -2,7 +2,7 @@ Brain Dead and Visual Basic: Coincidence?
 =========================================
 
 :date: 2008-05-27 23:04
-:tags: books,building skills,#python
+:tags: building skills,#python,visual basic
 :slug: 2008_05_27-brain_dead_and_visual_basic_coincidence
 :category: Books
 :status: published

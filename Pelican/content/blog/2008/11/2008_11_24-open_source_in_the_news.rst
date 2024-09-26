@@ -2,7 +2,7 @@ Open Source In The News
 =======================
 
 :date: 2008-11-24 15:24
-:tags: FOSS,open-source
+:tags: open-source,Enterprise,IT,standards
 :slug: 2008_11_24-open_source_in_the_news
 :category: FOSS
 :status: published

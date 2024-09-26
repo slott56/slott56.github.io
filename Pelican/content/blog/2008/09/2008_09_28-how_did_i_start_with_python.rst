@@ -2,7 +2,7 @@ How did I start with Python?
 ============================
 
 :date: 2008-09-28 02:00
-:tags: books,building skills,#python
+:tags: building skills,#python,history
 :slug: 2008_09_28-how_did_i_start_with_python
 :category: Books
 :status: published

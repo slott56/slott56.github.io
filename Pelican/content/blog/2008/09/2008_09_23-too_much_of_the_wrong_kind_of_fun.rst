@@ -2,7 +2,7 @@ Too much of the wrong kind of fun.
 ==================================
 
 :date: 2008-09-23 00:08
-:tags: books,building skills,#python
+:tags: building skills,#python,stack overflow
 :slug: 2008_09_23-too_much_of_the_wrong_kind_of_fun
 :category: Books
 :status: published

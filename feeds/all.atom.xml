@@ -1,5 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-09-18T16:03:00-04:00</updated><entry><title>Modern Python Cookbook and Type Hints</title><link href="https://slott56.github.io/2024-09-18-cookbook_and_mypy.html" rel="alternate"></link><published>2024-09-18T16:03:00-04:00</published><updated>2024-09-18T16:03:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-18:/2024-09-18-cookbook_and_mypy.html</id><summary type="html">&lt;p&gt;Modern Python Cookbook — with lots and lots of recipes — is something you might need. Find the results of checking all these recipes here:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-09-26T09:50:00-04:00</updated><entry><title>Better than grep</title><link href="https://slott56.github.io/2024-09-26-better_than_grep.html" rel="alternate"></link><published>2024-09-26T09:50:00-04:00</published><updated>2024-09-26T09:50:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-26:/2024-09-26-better_than_grep.html</id><summary type="html">&lt;p&gt;In the process of writing &lt;em&gt;Unlearning SQL&lt;/em&gt;, I had a need to extract SQL blocks from Python programs.
+Of course, I tried &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;.
+It wasn't ideal.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;Book is available here:&lt;/p&gt;
+&lt;ul class="last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;In the process of writing &lt;em&gt;Unlearning SQL&lt;/em&gt;, I had a need to extract SQL blocks from Python programs.
+Of course, I tried &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;.
+It wasn't ideal.&lt;/p&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;Book is available here:&lt;/p&gt;
+&lt;ul class="last simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;SQL blocks are -- ideally -- triple-quoted strings.
+Of course, so are docstrings.
+This creates additional problems.&lt;/p&gt;
+&lt;p&gt;The first pass is to try to use &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; to track down the triple-quoted blocks.
+This is a complex regular expression because it spans multiple lines.&lt;/p&gt;
+&lt;p&gt;The output is a file of text with SQL stateements, docstrings, and quote marks all over the place.
+It requires much manual cleanup.&lt;/p&gt;
+&lt;p&gt;Doing the cleanup of the initial &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; output is right awful.
+I need to somehow preserve a multi-line triple-quoted string that starts with a SQL reserved word,
+and ignore multi-line triple-quoted strings that don't begin with something obvious SQL.&lt;/p&gt;
+&lt;p&gt;I give up.&lt;/p&gt;
+&lt;div class="section" id="python-re"&gt;
+&lt;h2&gt;Python RE&lt;/h2&gt;
+&lt;p&gt;Using Python to extract the initial strings and create a data structure is a good second step.
+I can use the same regular expression with the Python &lt;tt class="docutils literal"&gt;re&lt;/tt&gt; module.
+I can use &lt;tt class="docutils literal"&gt;Path.glob()&lt;/tt&gt; instead of shell globbing.&lt;/p&gt;
+&lt;p&gt;I can now apply a second regular expression to the list-of-strings object to look for SQL words.
+(There aren't many: CREATE, DROP, INSERT, UPDATE, SELECT, DELETE.)&lt;/p&gt;
+&lt;p&gt;This is much nicer. But. I can do better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-ast"&gt;
+&lt;h2&gt;Python AST&lt;/h2&gt;
+&lt;p&gt;This process is reading valid, tested Python code.
+The standard library's &lt;tt class="docutils literal"&gt;ast&lt;/tt&gt; module defines the abstract syntax tree for Python code.
+This module can identify literal strings in code, and docstrings.&lt;/p&gt;
+&lt;p&gt;How does this work?&lt;/p&gt;
+&lt;p&gt;There are three parts.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Define an &lt;tt class="docutils literal"&gt;ast.NodeVisitor&lt;/tt&gt; subclass.&lt;/li&gt;
+&lt;li&gt;Parse the module's source to create an AST.&lt;/li&gt;
+&lt;li&gt;Use the visitor to collect the strings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll look at each in some detail.&lt;/p&gt;
+&lt;p&gt;First, a note for those unfamiliar with the &lt;strong&gt;Visitor&lt;/strong&gt; design pattern.
+A tree structure is recursive.
+Examining each node of the tree can be done with a recursive function to visit a node, then visit all descendents of that node.
+It's not a complicated function, but, there's  a complication.&lt;/p&gt;
+&lt;p&gt;The node in an abstract syntax tree tend to be a union of a wide variety of types.
+There will be an &lt;tt class="docutils literal"&gt;ast.Module&lt;/tt&gt;, an &lt;tt class="docutils literal"&gt;ast.ClassDef&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;ast.FunctionDev&lt;/tt&gt;, etc., etc.
+A &amp;quot;simple&amp;quot; recursive function needs to treat each class distinctly to properly visit all of the children.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Visitor&lt;/strong&gt; pattern delegates part of the work to a visitor object that is presented each node of the tree.
+The visitor object can have methods for each unique type of node, avoiding a complex &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;match-case&lt;/span&gt;&lt;/tt&gt; statement,
+or a complex &lt;tt class="docutils literal"&gt;if isinstance(node, &lt;span class="pre"&gt;Whatever)-elif&lt;/span&gt;&lt;/tt&gt; chain.&lt;/p&gt;
+&lt;div class="section" id="the-visitor"&gt;
+&lt;h3&gt;The Visitor&lt;/h3&gt;
+&lt;p&gt;We're interested in one feature of the abstract syntax tree of Python: the &lt;tt class="docutils literal"&gt;ast.Constant&lt;/tt&gt; objects where the constant's value is a string.
+Ideally, this will focus on those strings that start with a SQL keyword.&lt;/p&gt;
+&lt;p&gt;Here's the starting point:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class StringVisitor(ast.NodeVisitor):
+    def __init__(self) -&amp;gt; None:
+        self.sql_blocks = []
+    def visit_Constant(self, node: ast.AST) -&amp;gt; None:
+        match node.value:
+            case str() if sql_like(node.value):
+                self.sql_blocks.append(range(node.lineno+1, node.end_lineno))
+            case _:  # Ignore all other types
+                pass
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;visit_Constant()&lt;/tt&gt; method is invoked for each &lt;tt class="docutils literal"&gt;ast.Constant&lt;/tt&gt; object in the tree.
+This will find nodes that are strings and pass the &lt;tt class="docutils literal"&gt;sql_like()&lt;/tt&gt; filter.&lt;/p&gt;
+&lt;p&gt;This net is a little too fine.
+It can will capture docstring comments that happen to look SQL-like.
+It's essentially the same as the &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; output with two improvements:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;No baffling regular expression.&lt;/li&gt;
+&lt;li&gt;The output can be a more useful data structure, not a file of lines of text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While nicer in some respects, it's incomplete.
+The next step is to add the required feature to ignore docstring comments.
+There two choices:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Write a better &lt;tt class="docutils literal"&gt;sql_like()&lt;/tt&gt; function.&lt;/li&gt;
+&lt;li&gt;Exclude any string constant that is the first line of the body of a module, class, or function definition.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Option 1 can can involve finding a SQL parser to see if a string really is pure SQL.
+Or, it can require writing a better regular expression to locate likely SQL statements.&lt;/p&gt;
+&lt;p&gt;Here's the unit test case:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; src_text = &amp;quot;&amp;quot;&amp;quot;
+... def f(c):
+...     '''
+...         Select the right answers.
+...     '''
+...     r = c.execute('''
+...         SELECT * FROM DUMMY
+...     ''')
+... &amp;quot;&amp;quot;&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;The docstring comment starts with a SQL keyword. Ugh.
+It seems kind of daunting to locate a suitable SQL parser.
+The regular expression to distinguish casual use of SQL-like keywords seems hopeless complicated.
+There's something better: exclude docstring constants.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="exclusion-rules"&gt;
+&lt;h3&gt;Exclusion Rules&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;ast.NodeVisitor&lt;/strong&gt; implementation has a handy feature.
+This permits an application to choose to visit or skip the subsidiary nodes of an object.
+When a class overrides a &lt;tt class="docutils literal"&gt;visit_XXX()&lt;/tt&gt; method, the override can call the &lt;tt class="docutils literal"&gt;self.generic_visit(node)&lt;/tt&gt; to visit all the children.
+If the overriding method does not evaluate &lt;tt class="docutils literal"&gt;self.generic_visit(node)&lt;/tt&gt;, the children are &lt;strong&gt;not&lt;/strong&gt; examined.&lt;/p&gt;
+&lt;p&gt;This is a bit too strict.&lt;/p&gt;
+&lt;p&gt;Skipping &lt;strong&gt;all&lt;/strong&gt; children of a module, class definition or function definition isn't helpful.
+The rest of the children could have SQL code.
+It's important to skip only the very first line of code when this is a string constant.
+The rest of the code needs to be visited.&lt;/p&gt;
+&lt;p&gt;I decided to accumulate an &amp;quot;ignore these&amp;quot; set of nodes.
+This set of nodes will be the first line of code that's also a string constant.
+The &lt;tt class="docutils literal"&gt;visit_Constant()&lt;/tt&gt; can then politely decline these nodes.&lt;/p&gt;
+&lt;p&gt;Here's the visitor class looks:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class StringVisitor(ast.NodeVisitor):
+    def __init__(self) -&amp;gt; None:
+        self.docstrings = set()  # Docstring nodes at the start of module, class, def
+        self.sql_blocks = []
+    def exclude_docstring(self, node: ast.AST) -&amp;gt; None:
+        if isinstance(node.body[0], ast.Expr) and isinstance(node.body[0].value, ast.Constant):
+            self.docstrings.add(node.body[0].value)
+        self.generic_visit(node)
+    visit_Module = exclude_docstring
+    visit_ClassDef = exclude_docstring
+    visit_FunctionDef = exclude_docstring
+    def visit_Constant(self, node: ast.AST) -&amp;gt; None:
+        match node.value:
+        case str() if sql_like(node.value):
+            if node not in self.docstrings:
+                self.sql_blocks.append(range(node.lineno+1, node.end_lineno))
+            case _:  # Ignore all other types
+                pass
+&lt;/pre&gt;
+&lt;p&gt;First, I've added a a set of nodes to exclude.
+(Nodes are immutable, and have a hash value, that's why a set works well for this.)&lt;/p&gt;
+&lt;p&gt;Second, there's a generic visit function, &lt;tt class="docutils literal"&gt;exclude_docstring()&lt;/tt&gt;, that handles &lt;tt class="docutils literal"&gt;ast.Module&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;ast.ClassDef&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;ast.FunctionDef&lt;/tt&gt; classes.
+I can define the needed &lt;tt class="docutils literal"&gt;visti_XXX()&lt;/tt&gt; methods for these classes to all use the generic exclusion method.&lt;/p&gt;
+&lt;p&gt;Finally, I need to make sure any &lt;tt class="docutils literal"&gt;ast.Constant&lt;/tt&gt; node wasn't already excluded because it was the first string in a definition.&lt;/p&gt;
+&lt;p&gt;With this, I can now parse the source, and apply the visitor.
+The &lt;tt class="docutils literal"&gt;sql_blocks&lt;/tt&gt; attribute will have a list of &lt;tt class="docutils literal"&gt;range()&lt;/tt&gt; objects that point to the SQL statements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-parsing-and-visiting"&gt;
+&lt;h3&gt;The Parsing and Visiting&lt;/h3&gt;
+&lt;p&gt;Here's the final bit.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+tree = ast.parse(src_text, &amp;quot;&amp;lt;test&amp;gt;&amp;quot;)
+sv = StringVisitor()
+sv.visit(tree)
+print(sv.sql_blocks)
+&lt;/pre&gt;
+&lt;p&gt;This will parse the code, then visit the ast.&lt;/p&gt;
+&lt;p&gt;When this is done, it has a list of &lt;tt class="docutils literal"&gt;range()&lt;/tt&gt; objects.
+These ranges can be used to highlight the proper lines of code from the source file.
+Your application may be different, of course, you may want to simply write the literals to a TOML configuration file, for example.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Why,&amp;quot; you might ask, &amp;quot;do you have range() objects instead of the code?&amp;quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-ultimate-goal"&gt;
+&lt;h2&gt;The Ultimate Goal&lt;/h2&gt;
+&lt;p&gt;In my specific (and unique) use case, I need to be sure the &lt;strong&gt;minted&lt;/strong&gt; code highlighter will properly format SQL code.&lt;/p&gt;
+&lt;p&gt;The goal is a book, written using RST markup, with properly colorized SQL examples.
+That part is easy, what's hard is making sure all examples are unit-tested and really, really work.
+(I'm fussy like that.)&lt;/p&gt;
+&lt;p&gt;This means including the source text from a &lt;tt class="docutils literal"&gt;.py&lt;/tt&gt; file into the book's content.&lt;/p&gt;
+&lt;p&gt;But. (Big Sigh.)&lt;/p&gt;
+&lt;p&gt;Minted can't cope with a mixture of Python and SQL, and can't properly color code a few isolated SQL lines plucked from a Python context.
+(This shouldn't have been too surprising; after I ranted and raved about it, I realized minted must colorize the whole file before a few lines can be selected from it.
+Context matters when highlighting syntax.)&lt;/p&gt;
+&lt;p&gt;In my application, I'm creating a parallel file with all &lt;strong&gt;non-SQL&lt;/strong&gt; lines prefixed with the &amp;quot;--&amp;quot; SQL comment marker.
+This leaves the SQL behind to be seen by minted and properly colored.
+The Python lines are hidden from minted.&lt;/p&gt;
+&lt;p&gt;The book can then use an &lt;tt class="docutils literal"&gt;.. literalinclude::&lt;/tt&gt; directive that has properly highlighted SQL.
+The Python file is unit tested, which gives me confidence in the SQL file.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="parsing"></category><category term="ast"></category><category term="SQL"></category><category term="grep"></category></entry><entry><title>Modern Python Cookbook and Type Hints</title><link href="https://slott56.github.io/2024-09-18-cookbook_and_mypy.html" rel="alternate"></link><published>2024-09-18T16:03:00-04:00</published><updated>2024-09-18T16:03:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-18:/2024-09-18-cookbook_and_mypy.html</id><summary type="html">&lt;p&gt;Modern Python Cookbook — with lots and lots of recipes — is something you might need. Find the results of checking all these recipes here:
 &lt;a class="reference external" href="https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389"&gt;https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I (reluctantly) switched from using &lt;strong&gt;mypy&lt;/strong&gt; to using &lt;strong&gt;pyright&lt;/strong&gt; to check all of these recipes carefully. The type alias (&lt;a class="reference external" href="https://peps.python.org/pep-0695"&gt;PEP …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Modern Python Cookbook — with lots and lots of recipes — is something you might need. Find the results of checking all these recipes here:
 &lt;a class="reference external" href="https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389"&gt;https://www.amazon.com/Modern-Python-Cookbook-updated-techniques/dp/1835466389&lt;/a&gt;&lt;/p&gt;
@@ -11350,38 +11541,4 @@ clearly separate because it's a hack to replace complex distance
 computations with substring comparisons.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="#python"></category><category term="object-oriented design"></category><category term="Design Principles"></category><category term="SOLID"></category></entry><entry><title>SQL linting — this sounds cool</title><link href="https://slott56.github.io/2021_06_17-sql_linting_this_sounds_cool.html" rel="alternate"></link><published>2021-06-17T21:16:00-04:00</published><updated>2021-06-17T21:16:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-06-17:/2021_06_17-sql_linting_this_sounds_cool.html</id><content type="html">&lt;p&gt;&lt;a class="reference external" href="https://www.pythonpodcast.com/sqlfluff-sql-linter-episode-318/"&gt;https://www.pythonpodcast.com/sqlfluff-sql-linter-episode-318/&lt;/a&gt;&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="SQL"></category></entry><entry><title>Real Math (symbolic math, like mathematicians do) and a spreadsheet-like feedback loop</title><link href="https://slott56.github.io/2021_06_01-real_math_symbolic_math_like_mathematicians_do_and_a_spreadsheet_like_feedback_loop.html" rel="alternate"></link><published>2021-06-01T08:00:00-04:00</published><updated>2021-06-01T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-06-01:/2021_06_01-real_math_symbolic_math_like_mathematicians_do_and_a_spreadsheet_like_feedback_loop.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/replacing-a-spreadsheet/"&gt;https://slott56.github.io/replacing-a-spreadsheet/&lt;/a&gt;. This document is
-really exciting (to me).&lt;/p&gt;
-&lt;p&gt;This is still shaky -- I'm still learning -- but it's a very cool
-combination of Python components
-&lt;a class="reference external" href="https://docs.sympy.org/latest/index.html"&gt;sympy&lt;/a&gt; and &lt;a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/"&gt;Jupyter
-Lab&lt;/a&gt;. As a bonus,
-&lt;a class="reference external" href="https://jupyterbook.org/intro.html"&gt;Jupyter{Book}&lt;/a&gt; appeals to me as
-a writer. There's an aspect of literate programing …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/replacing-a-spreadsheet/"&gt;https://slott56.github.io/replacing-a-spreadsheet/&lt;/a&gt;. This document is
-really exciting (to me).&lt;/p&gt;
-&lt;p&gt;This is still shaky -- I'm still learning -- but it's a very cool
-combination of Python components
-&lt;a class="reference external" href="https://docs.sympy.org/latest/index.html"&gt;sympy&lt;/a&gt; and &lt;a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/"&gt;Jupyter
-Lab&lt;/a&gt;. As a bonus,
-&lt;a class="reference external" href="https://jupyterbook.org/intro.html"&gt;Jupyter{Book}&lt;/a&gt; appeals to me as
-a writer. There's an aspect of literate programing in this that is also
-very appealing.&lt;/p&gt;
-&lt;p&gt;The core is this.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;I have a problem that involves complex math. Well, it's complex to
-me. It involves integrals, so there's a lot of space for confusion.&lt;/li&gt;
-&lt;li&gt;This is applied math, and I want to plug in numbers and get answers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In effect, I want a spreadsheet.&lt;/p&gt;
-&lt;p&gt;I don't want rows-and-columns. I do want cells, though, that's a nice
-organizing principle.&lt;/p&gt;
-&lt;p&gt;I don't want the goofy little formulas in a spreadsheet. I want real
-Python code.&lt;/p&gt;
-&lt;p&gt;I want the spreadsheet-like feature of computations that depend on
-inputs and are re-run when the inputs change. This has been the core
-value proposition for spreadsheets since the days of VisiCalc. It's a
-great UX in general. We just need to get past the rows-and-columns.&lt;/p&gt;
-&lt;p&gt;The problem with most spreadsheet apps is the limited capability for
-more serious math.&lt;/p&gt;
-&lt;p&gt;Which is why the sympy + Jupyter Lab was a blinding revelation to me.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="jupyter lab"></category><category term="spreadsheet"></category><category term="sympy"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="SQL"></category></entry></feed>

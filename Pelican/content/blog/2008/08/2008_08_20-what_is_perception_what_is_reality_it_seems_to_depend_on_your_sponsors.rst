@@ -2,7 +2,7 @@ What is Perception?  What is Reality?  It seems to depend on your sponsors.
 ===========================================================================
 
 :date: 2008-08-20 23:26
-:tags: news
+:tags: enterprise,IT,microsoft
 :slug: 2008_08_20-what_is_perception_what_is_reality_it_seems_to_depend_on_your_sponsors
 :category: News
 :status: published

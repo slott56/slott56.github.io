@@ -2,7 +2,7 @@ Voice of the Customer
 =====================
 
 :date: 2008-07-06 19:06
-:tags: books,building skills,#python
+:tags: building skills,#python,reader response
 :slug: 2008_07_06-voice_of_the_customer
 :category: Books
 :status: published
