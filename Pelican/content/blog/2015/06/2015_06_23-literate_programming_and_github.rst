@@ -2,7 +2,7 @@ Literate Programming and GitHub
 ===============================
 
 :date: 2015-06-23 08:00
-:tags: sphinx,#python,literate programming,PyLit,github
+:tags: sphinx,#python,literate programming,PyLit,github,stingray reader
 :slug: 2015_06_23-literate_programming_and_github
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ Stingray 4.4 Update -- the Posix split command applied to COBOL files
 =====================================================================
 
 :date: 2014-05-29 08:00
-:tags: #python,RECFM,EBCDIC,COBOL,mastering object-oriented python
+:tags: #python,RECFM,EBCDIC,COBOL,mastering object-oriented python,stingray reader
 :slug: 2014_05_29-stingray_44_update_the_posix_split_command_applied_to_cobol_files
 :category: Technologies
 :status: published

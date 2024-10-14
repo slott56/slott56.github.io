@@ -2,7 +2,7 @@ ROI - Buzzword Bingo
 ====================
 
 :date: 2009-01-13 01:42
-:tags: news
+:tags: roi,management,investment,innovation
 :slug: 2009_01_13-roi_buzzword_bingo
 :category: News
 :status: published

@@ -2,7 +2,7 @@ An Implementation of Annotated Types
 ##############################################
 
 :date: 2023-07-11 09:00
-:tags: patterns,python,type-hints
+:tags: patterns,type-hints
 :slug: 2023-07-11-an_implementation_of_annotated_types
 :category: Python
 :status: published

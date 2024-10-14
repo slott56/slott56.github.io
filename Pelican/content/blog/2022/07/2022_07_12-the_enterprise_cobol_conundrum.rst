@@ -2,7 +2,7 @@ The Enterprise COBOL Conundrum
 ==============================
 
 :date: 2022-07-12 08:00
-:tags: #python,COBOL
+:tags: #python,COBOL,stingray reader
 :slug: 2022_07_12-the_enterprise_cobol_conundrum
 :category: Technologies
 :status: published

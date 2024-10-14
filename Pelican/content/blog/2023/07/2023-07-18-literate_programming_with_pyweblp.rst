@@ -2,7 +2,7 @@ Literate Programming with PyWebLP
 ##############################################
 
 :date: 2023-07-18 09:00
-:tags: python,literate programming,pyweb
+:tags: literate programming,pyweb
 :slug: 2023-07-18-literate_programming_with_pyweblp
 :category: Python
 :status: published

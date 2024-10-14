@@ -2,7 +2,7 @@ News -- Music, Python 3.0 and more music
 ========================================
 
 :date: 2009-01-14 00:00
-:tags: news
+:tags: music,python,rickrolling
 :slug: 2009_01_14-news_music_python_30_and_more_music
 :category: News
 :status: published

@@ -2,7 +2,7 @@ Processing Apple Numbers Files
 ==============================
 
 :date: 2021-12-01 07:00
-:tags: open source,#python,workbook,spreadsheet,jsonschema
+:tags: open source,#python,workbook,spreadsheet,jsonschema,stingray reader
 :slug: 2021_12_01-processing_apple_numbers_files
 :category: Technologies
 :status: published

@@ -2,7 +2,7 @@ The Echo-Pipe Trap [Updated]
 ##############################################
 
 :date: 2023-08-30 09:00
-:tags: python,shell,bash
+:tags: shell,bash
 :slug: 2023-08-30-the_echo_pipe_trap
 :category: Python
 :status: published

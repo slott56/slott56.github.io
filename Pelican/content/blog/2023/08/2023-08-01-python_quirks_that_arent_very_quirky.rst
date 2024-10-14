@@ -2,7 +2,7 @@ Python Quirks that aren't very quirky
 ##############################################
 
 :date: 2023-08-01 09:00
-:tags: python,community
+:tags: community,quirks
 :slug: 2023-08-01-python_quirks_that_arent_very_quirky
 :category: Python
 :status: published

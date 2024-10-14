@@ -2,7 +2,7 @@ Functional Python and Lambdas
 =============================
 
 :date: 2024-02-09 08:01
-:tags: python,functional programming,functional python programming
+:tags: functional programming,functional python programming
 :slug: 2024-02-09-functional_python_and_lambdas
 :category: Python
 :status: published

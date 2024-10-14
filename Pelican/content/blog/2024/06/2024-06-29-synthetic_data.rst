@@ -2,7 +2,7 @@ Synthetic Data
 ######################
 
 :date: 2024-06-29 09:22
-:tags: synthetic data,python,project
+:tags: synthetic data,project
 :slug: 2024-06-29-synthetic_data
 :category: Python
 :status: published

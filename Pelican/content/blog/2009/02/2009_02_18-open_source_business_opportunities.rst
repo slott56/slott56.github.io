@@ -2,7 +2,7 @@ Open Source Business Opportunities
 ==================================
 
 :date: 2009-02-18 01:30
-:tags: management
+:tags: open-source,FOSS
 :slug: 2009_02_18-open_source_business_opportunities
 :category: Management
 :status: published

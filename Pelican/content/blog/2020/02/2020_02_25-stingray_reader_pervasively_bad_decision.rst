@@ -15,7 +15,7 @@ Recently, I've burdened myself with conflicting goals. Ugh.
 I need to upgrade to Python 3.8, and add type hints. This exposed
 somes badness.
 
-See {filename/blog/2020/01/2020_01_31-stingray_reader_rewrite.rst for some status.
+See `Stingray Reader Rewrite <{filename/blog/2020/01/2020_01_31-stingray_reader_rewrite.rst>`_ for some status.
 
 The very first version(s) of this were expeditious solutions to some
 separate-but-related problems. Spreadsheet processing was an important

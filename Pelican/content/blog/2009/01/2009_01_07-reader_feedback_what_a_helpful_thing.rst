@@ -2,7 +2,7 @@ Reader Feedback -- what a helpful thing
 =======================================
 
 :date: 2009-01-07 02:21
-:tags: books,building skills,#python
+:tags: building skills,#python
 :slug: 2009_01_07-reader_feedback_what_a_helpful_thing
 :category: Books
 :status: published

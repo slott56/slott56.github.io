@@ -2,7 +2,7 @@ Python and Perl compare/contrast
 ================================
 
 :date: 2009-02-02 10:57
-:tags: news
+:tags: python,perl,open-source
 :slug: 2009_02_02-python_and_perl_comparecontrast
 :category: News
 :status: published

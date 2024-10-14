@@ -2,7 +2,7 @@ Synthetic Data Tool
 ######################
 
 :date: 2024-07-25 14:22
-:tags: synthetic data,python,project
+:tags: synthetic data,project
 :slug: 2024-07-25-synthetic_data_tool
 :category: Python
 :status: published

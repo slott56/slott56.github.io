@@ -2,7 +2,7 @@ More Python Quirks Debunking
 ##############################################
 
 :date: 2023-08-15 09:00
-:tags: python,community
+:tags: community,quirks
 :slug: 2023-08-15-more_python_quirk_debunking
 :category: Python
 :status: published

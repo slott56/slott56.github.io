@@ -2,7 +2,7 @@ The Future of Windows -- And the Future WIthout WIndows
 =======================================================
 
 :date: 2009-02-11 02:49
-:tags: management
+:tags: windows,microsoft
 :slug: 2009_02_11-the_future_of_windows_and_the_future_without_windows
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ DataSynthTool Repository
 ########################
 
 :date: 2024-07-01 19:22
-:tags: synthetic data,python,project
+:tags: synthetic data,project
 :slug: 2024-07-01-datasynthtool_repository
 :category: Python
 :status: published

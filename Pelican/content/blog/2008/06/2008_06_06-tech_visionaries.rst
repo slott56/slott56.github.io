@@ -2,7 +2,7 @@ Tech Visionaries
 ================
 
 :date: 2008-06-06 10:00
-:tags: news
+:tags: RFC,FTP,Technology
 :slug: 2008_06_06-tech_visionaries
 :category: News
 :status: published

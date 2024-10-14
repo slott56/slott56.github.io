@@ -2,7 +2,7 @@ Functional SQL in Pure Python
 #############################
 
 :date: 2024-07-16 08:14
-:tags: SQL,python,project
+:tags: SQL,project,functional programming,functional python programming
 :slug: 2024-07-16-functional_sql_in_pure_python
 :category: Python
 :status: published

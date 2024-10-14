@@ -2,7 +2,7 @@ Mac OS X Sync and iPhone
 ========================
 
 :date: 2009-01-15 01:21
-:tags: technologies,web
+:tags: macosx,iphone,web
 :slug: 2009_01_15-mac_os_x_sync_and_iphone
 :category: Technologies
 :status: published

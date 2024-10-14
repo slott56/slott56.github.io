@@ -2,7 +2,7 @@ Python and .NET News
 ====================
 
 :date: 2009-02-19 14:22
-:tags: news
+:tags: python,windows
 :slug: 2009_02_19-python_and_net_news
 :category: News
 :status: published

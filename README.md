@@ -48,7 +48,7 @@ pelican --autoreload --listen
 Or `make devserver`.
 
 If the site can't be served by the devserver, it means a file has a bad slug, and is 
-creating a ``.html`` file. Read this file to find this bad entry with the bad slug.
+creating a ``.html`` file. Read this ``output/.html`` file to find this bad entry with the bad slug.
 
 Publish with
 

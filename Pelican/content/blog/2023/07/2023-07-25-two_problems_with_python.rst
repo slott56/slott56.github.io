@@ -2,7 +2,7 @@ Two Problems with Python
 ##############################################
 
 :date: 2023-07-25 09:00
-:tags: python,community
+:tags: community
 :slug: 2023-07-25-two_problems_with_python
 :category: Python
 :status: published

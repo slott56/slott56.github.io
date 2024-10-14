@@ -2,7 +2,7 @@ DBLock Context Manager
 ######################
 
 :date: 2024-03-10 08:01
-:tags: python,database,dbm,shelve,multiprocessing,context manager
+:tags: database,dbm,shelve,multiprocessing,context manager
 :slug: 2024-03-10-dblock-context-manager
 :category: Python
 :status: published

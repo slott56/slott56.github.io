@@ -2,7 +2,7 @@ Personal Spam
 =============
 
 :date: 2009-01-02 01:25
-:tags: technologies,web
+:tags: web,email,vcf
 :slug: 2009_01_02-personal_spam
 :category: Technologies
 :status: published
