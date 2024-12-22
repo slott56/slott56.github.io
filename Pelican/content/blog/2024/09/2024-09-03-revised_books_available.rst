@@ -4,7 +4,7 @@ Revised Books Available
 :date: 2024-09-03 14:35
 :tags: Python,SQL,database
 :slug: 2024-09-03-revised_books_available
-:category: books
+:category: Books
 :status: published
 
 Big Announcement: the 2024.8 version of *Unlearning SQL*, and the 2024.9 version of *Pivot to Python* are available from booksellers online. Both are revised and all the code tested with Python 3.12.

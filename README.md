@@ -63,6 +63,3 @@ Or
 make github
 ```
 
-## TODO
-
-Replace all tags that are *also* categories.

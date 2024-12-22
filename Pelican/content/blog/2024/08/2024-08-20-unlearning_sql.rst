@@ -4,7 +4,7 @@ Unlearning SQL, revised
 :date: 2024-08-20 16:31
 :tags: building skills,python,SQL,database
 :slug: 2024-08-20-unlearning_sql
-:category: books
+:category: Books
 :status: published
 
 Book (pre) Announcement:
