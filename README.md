@@ -61,5 +61,6 @@ Or
 
 ```commandline
 make github
+git push origin master
 ```
 

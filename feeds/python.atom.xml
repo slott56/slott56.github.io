@@ -1,5 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-09-26T09:50:00-04:00</updated><entry><title>Better than grep</title><link href="https://slott56.github.io/2024-09-26-better_than_grep.html" rel="alternate"></link><published>2024-09-26T09:50:00-04:00</published><updated>2024-09-26T09:50:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-26:/2024-09-26-better_than_grep.html</id><summary type="html">&lt;p&gt;In the process of writing &lt;em&gt;Unlearning SQL&lt;/em&gt;, I had a need to extract SQL blocks from Python programs.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-12-31T13:21:00-05:00</updated><entry><title>Database Migration, Part I</title><link href="https://slott56.github.io/2024-12-31_database_migration_part_i.html" rel="alternate"></link><published>2024-12-31T13:21:00-05:00</published><updated>2024-12-31T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-12-31:/2024-12-31_database_migration_part_i.html</id><summary type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
+This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
+This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Apple Books
+&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;This case study is about legacy database preservation: we want the data.
+We don't want the code.&lt;/p&gt;
+&lt;p&gt;Let's reach back 20 years, when packages like Joomla! were -- essentially -- the only way to have interactive, peer-maintained content.
+Facebook barely existed before 2005.
+Yahoo! Groups was what we had been using to share information as a kind of &amp;quot;social media&amp;quot; up until 2008, when the Joomla! site was started.&lt;/p&gt;
+&lt;p&gt;We have web content reaching back almost two decades, most of it in a Jooma! database.
+Some of the Joomla! articles are extracts stretching from the Yahoo! groups.
+Currently, the user base interacts through Facebook, rarely touching this complicated web content.&lt;/p&gt;
+&lt;p&gt;We want to preserve what's in Joomla! and migrate it into a simpler publishing system like Hugo (&lt;a class="reference external" href="https://gohugo.io"&gt;https://gohugo.io&lt;/a&gt;)
+We intend to sacrifice some of the Kunena features. However. Since no one is interacting via the Kunena forums, this isn't a real sacrifice.&lt;/p&gt;
+&lt;p&gt;Let's work through the conversion of data from a relational database to a directory of Markdown files.
+One stumbling step at a time.&lt;/p&gt;
+&lt;div class="section" id="stumble-1-what-do-we-have"&gt;
+&lt;h2&gt;Stumble 1: What do we have?&lt;/h2&gt;
+&lt;p&gt;We have a snopshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
+We can install MariaDB on our laptop and run the script.&lt;/p&gt;
+&lt;p&gt;We have the data.&lt;/p&gt;
+&lt;p&gt;What do we have?&lt;/p&gt;
+&lt;p&gt;The Joomla! PHP world has a bunch of admin apps and tools to peek at the database.
+We're not interested in these because they run on the server, which we'd like to disconnect from.&lt;/p&gt;
+&lt;p&gt;First, we have tables&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+SELECT TABLE_NAME, TABLE_ROWS
+FROM   information_schema.TABLES
+WHERE  TABLE_SCHEMA = &amp;quot;testdb&amp;quot;
+AND    TABLE_TYPE = &amp;quot;BASE TABLE&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;We can extract some details and helps us discover the Joomla! naming convention.
+There's a prefix in front of each table name. &lt;tt class="docutils literal"&gt;j930_&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;jos_&lt;/tt&gt; seem to be prefixes used
+by previous admins to preserve some data for a test instance (or something.)
+While we don't &lt;strong&gt;know&lt;/strong&gt; this, the overlapping names and smaller (or zero) row counts suggest these don't matter.
+It's the &lt;tt class="docutils literal"&gt;j500_&lt;/tt&gt; tables that matter.&lt;/p&gt;
+&lt;p&gt;It's best to fuss about with this initial peeking in a notebook, just uncover the metadata, and see what's going on.&lt;/p&gt;
+&lt;p&gt;Plan to abandon the notebook.&lt;/p&gt;
+&lt;p&gt;Here's how we prefer to deal with the schama&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;dataclass
+class Table:
+    name: str
+    num_rows: int | None = field(default=None)
+    columns: dict[str, Column] = field(default_factory=dict)
+
+    query: ClassVar[str] = &amp;quot;&amp;quot;&amp;quot;
+        SELECT TABLE_NAME, TABLE_ROWS
+        FROM   information_schema.TABLES
+        WHERE  TABLE_SCHEMA = &amp;quot;testdb&amp;quot;
+        AND    TABLE_TYPE = &amp;quot;BASE TABLE&amp;quot;
+    &amp;quot;&amp;quot;&amp;quot;
+
+    &amp;#64;classmethod
+    def from_query(cls, row: tuple[Any, ...]) -&amp;gt; &amp;quot;Table&amp;quot;:
+        return Table(name=row[0], num_rows=row[1])
+&lt;/pre&gt;
+&lt;p&gt;A reusable function can execute the query, and then use the &lt;tt class="docutils literal"&gt;from_query()&lt;/tt&gt; method
+to build rows of the &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; class.&lt;/p&gt;
+&lt;p&gt;The column metadata is a separate dataclass:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;dataclass
+class Column:
+    name: str
+    type_name: str
+    size: int
+    python_type: str | None
+    optionality_type: OptionalityType
+    domain_type: DomainType | None = field(default=None)
+    not_used: bool = field(default=False)
+    val_min: Any = field(default=None)
+    val_max: Any = field(default=None)
+    val_common: list[tuple[Any, int]] = field(default_factory=list)
+    val_cardinality: int = field(default=0)
+
+    query: ClassVar[str] = &amp;quot;&amp;quot;&amp;quot;
+        SELECT COLUMN_NAME, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = &amp;quot;testdb&amp;quot;
+        AND   TABLE_NAME = ?
+    &amp;quot;&amp;quot;&amp;quot;
+
+    &amp;#64;classmethod
+    def from_query(cls, row: tuple[Any, ...]) -&amp;gt; &amp;quot;Column&amp;quot;:
+        assert row[2].upper() in PYTHON_TYPE, f&amp;quot;unknown type {row[2]}&amp;quot;
+        return Column(
+            name=row[0],
+            type_name=row[2],
+            size=row[3],
+            python_type=PYTHON_TYPE.get(row[2].upper()),
+            optionality_type=(
+                OptionalityType.REQUIRED if row[1] == &amp;quot;NO&amp;quot; else OptionalityType.OPTIONAL
+            ),
+        )
+&lt;/pre&gt;
+&lt;p&gt;The various &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;val_...&lt;/span&gt;&lt;/tt&gt; attributes are populated later.
+We need to query the data to get the minimum value, maximum value, the five most common values, and a general sense of the overall cardinality (is each value unique?)&lt;/p&gt;
+&lt;p&gt;We can see what the columns mean when we see sample data.&lt;/p&gt;
+&lt;p&gt;We'll do this with methods that are part of the &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; dataclass.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def rows(self, connection: mariadb.Connection) -&amp;gt; Iterator[dict[str, Any]]:
+    query = f&amp;quot;&amp;quot;&amp;quot;SELECT * FROM {self.name}&amp;quot;&amp;quot;&amp;quot;
+    with connection.cursor() as c:
+        c.execute(query)
+        column_names = [col[0] for col in c.description]
+        for rt in c.fetchall():
+            row_dict = dict(zip(column_names, rt))
+            yield row_dict
+
+def set_domain(self, connection: mariadb.Connection) -&amp;gt; None:
+    raw_domains = collections.defaultdict(collections.Counter)
+    for row in self.rows(connection):
+        for name in self.columns.keys():
+            raw_domains[name][row[name]] += 1
+    for name, col in self.columns.items():
+        col.set_domain(raw_domains[name])
+&lt;/pre&gt;
+&lt;p&gt;These were not shown above to keep the initial definition of &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; clear.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;set_domain()&lt;/tt&gt; method for a &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; gets all of the data, and then -- column by column -- sets the data domain for the column.
+For vast tables, these has to be approached in a different.
+For this databsae, with under 10,000 rows in any given table, fetching all the rows works out quite nicely.&lt;/p&gt;
+&lt;p&gt;This relies on a &lt;tt class="docutils literal"&gt;set_domain()&lt;/tt&gt; method for the &lt;tt class="docutils literal"&gt;Column&lt;/tt&gt; class. Like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def set_domain(self, frequencies: collections.Counter[Any]) -&amp;gt; None:
+    values = list(filter(None, frequencies.keys()))
+    if values:
+        self.val_min = min(values)
+        self.val_max = max(values)
+        self.val_common = frequencies.most_common(5)
+        self.val_cardinality = len(frequencies)
+        if all(f == 1 for val, f in frequencies.items() if val is not None):
+            self.domain_type = DomainType.UNIQUE
+        else:
+            self.domain_type = DomainType.NON_UNIQUE
+    else:
+        self.not_used = True
+&lt;/pre&gt;
+&lt;p&gt;There are two enum class definitions that are part of this, also.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class DomainType(StrEnum):
+    UNIQUE = &amp;quot;unique&amp;quot;
+    NON_UNIQUE = &amp;quot;non-unique&amp;quot;
+
+
+class OptionalityType(StrEnum):
+    OPTIONAL = &amp;quot;nullable&amp;quot;
+    REQUIRED = &amp;quot;non-nullable&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;With this, we can build a schema -- a collection of &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; definitions -- from the database.
+We can then view the beast as a whole.&lt;/p&gt;
+&lt;p&gt;Which means what?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-do-we-explore"&gt;
+&lt;h2&gt;How do we Explore?&lt;/h2&gt;
+&lt;p&gt;Step 1 is to build some ERD diagrams.&lt;/p&gt;
+&lt;p&gt;We can add a method to &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; to expose it as a Plant UML entity:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def as_puml(self) -&amp;gt; str:
+    buffer = io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        print(f&amp;quot;entity {self.name} {{ /' {self.num_rows} rows '/&amp;quot;)
+        for col in (c for c in self.columns.values() if not c.not_used):
+            flag = (
+                &amp;quot;* &amp;quot;
+                if col.domain_type == DomainType.UNIQUE
+                and col.optionality_type == OptionalityType.REQUIRED
+                else &amp;quot;&amp;quot;
+            )
+            print(
+                f&amp;quot;  {flag}{col.name} {col.type_name}({col.size}) /' {col.optionality_type}, {col.domain_type}, range {col.value_range}, {col.value_common} '/&amp;quot;
+            )
+        print(&amp;quot;}&amp;quot;)
+    return buffer.getvalue()
+&lt;/pre&gt;
+&lt;p&gt;The output is a block of text like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+entity j500_assets { /' 1239 rows '/
+  * id INT(4) /' non-nullable, unique, range 1..1334, [(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), ... 1234 more] '/
+  parent_id INT(4) &amp;lt;&amp;lt;FK&amp;gt;&amp;gt; /' non-nullable, non-unique, range 1..941, [(895, 361), (699, 51), (478, 49), (1, 42), (35, 38), ... 117 more] '/
+  --
+  lft INT(4) /' non-nullable, non-unique, range 1..2475, [(1, 2), (3, 1), (9, 1), (11, 1), (13, 1), ... 1233 more] '/
+  rgt INT(4) /' non-nullable, unique, range 2..2477, [(2477, 1), (2, 1), (8, 1), (10, 1), (12, 1), ... 1234 more] '/
+  level INT(4) /' non-nullable, non-unique, range 1..5, [(4, 766), (3, 254), (2, 90), (5, 85), (1, 43), ... 1 more] '/
+  name VARMYSQL(200) /' non-nullable, unique, range 'com_actionlogs'..'root.1', [('root.1', 1), ('com_admin', 1), ('com_banners', 1), ('com_cache', 1), ('com_checkin', 1), ... 1234 more] '/
+  title VARMYSQL(400) /' non-nullable, non-unique, range 'Ar n-Inin (Hull #331)'..'vtest1', [('Uncategorised', 7), ('Whitby42 #172 [...]', 5), ('General', 3), ('Introduction', 3), ('2008 Rendezvous', 3), ... 1170 more] '/
+  rules VARMYSQL(20480) /' non-nullable, non-unique, range '{&amp;quot;core.admin&amp;quot;:[],&amp;quot;core.mana...'..'{}', [('{}', 544), ('None', 348), ('{&amp;quot;core.delete&amp;quot;:{&amp;quot;...', 81), ('{&amp;quot;core.delete&amp;quot;:[]...', 74), ('{&amp;quot;core.delete&amp;quot;:[]...', 65), ... 25 more] '/
+}
+note bottom: 1239 rows
+&lt;/pre&gt;
+&lt;p&gt;This isn't too pretty, but when the PlantUML tool finishes with it, it's a tidy little box in an ERD.
+The long &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;/'...'/&lt;/span&gt;&lt;/tt&gt; comments are not shown in the diagram.
+They're helpful in the file because they show us the domain of values in a column.&lt;/p&gt;
+&lt;p&gt;Once we have all of the entities in a &lt;tt class="docutils literal"&gt;.puml&lt;/tt&gt; file, we can insert relationships.
+We can also partition the tables into packages to try and discern which ones have interesting content, and
+which ones are operational overheads.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-we-didn-t-do"&gt;
+&lt;h2&gt;What We Didn't Do&lt;/h2&gt;
+&lt;p&gt;An important part of this is to &lt;strong&gt;not&lt;/strong&gt; -- emphatically &lt;strong&gt;not&lt;/strong&gt; -- build an ORM layer.
+We don't really want to try and get ORM class definitions wrapped around a legacy database.
+It's technically possible.
+The tables are small, so there may not be profound performance problems.&lt;/p&gt;
+&lt;p&gt;It's much, much easier to extract that data from the database, and build native Python objects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-we-will-do"&gt;
+&lt;h2&gt;What We Will Do&lt;/h2&gt;
+&lt;p&gt;The goal is to have a &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; module with &lt;strong&gt;Pydantic&lt;/strong&gt; &lt;tt class="docutils literal"&gt;BaseModel&lt;/tt&gt; definitions for the tables we want to preserve.
+As we'll see in the next section, we can query the database and populate the &lt;strong&gt;Pydantic&lt;/strong&gt; class definitions.
+We can then dump these Python objects into NDJSON files so we can explore without the overheaeds of SQL or MariaDB.&lt;/p&gt;
+&lt;p&gt;The relational model -- and the requirement to normalize -- has decomposed relatively straight-forward
+objects into a table of tables with primary keys, foreign keys, and equijoin operations.
+We want to undo the normalization and recreate a more sensible structure in native Python.
+We really want to have nested &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; statements without have to create cursors and execute queries.&lt;/p&gt;
+&lt;p&gt;We want to be able to create dictionaries without the overhead of defining an index.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-database-model"&gt;
+&lt;h2&gt;The Database Model&lt;/h2&gt;
+&lt;p&gt;The starting position is some &lt;strong&gt;Pydantic&lt;/strong&gt; class definitions for the database tables.
+This is another method of the &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; class.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def as_dataclass(self) -&amp;gt; str:
+    &amp;quot;&amp;quot;&amp;quot;Actually, as pydantic DBModel subclass...&amp;quot;&amp;quot;&amp;quot;
+    buffer = io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        column_subset = [c for c in self.columns.values() if not c.not_used]
+        keys = set(
+            col.name
+            for col in column_subset
+            if col.domain_type == DomainType.UNIQUE
+            and col.optionality_type == OptionalityType.REQUIRED
+        )
+        print(f&amp;quot;class {self.class_name}(DBModel):&amp;quot;)
+        print('    &amp;quot;&amp;quot;&amp;quot;')
+        print(f&amp;quot;    {self.num_rows} rows&amp;quot;)
+        print('    &amp;quot;&amp;quot;&amp;quot;')
+        for col in column_subset:
+            annotation = (
+                f&amp;quot;{col.python_type}&amp;quot;
+                if col.optionality_type == OptionalityType.REQUIRED
+                else f&amp;quot;{col.python_type} | None&amp;quot;
+            )
+            key = &amp;quot;&amp;lt;&amp;lt;PK&amp;gt;&amp;gt; &amp;quot; if col.name in keys else &amp;quot;&amp;quot;
+            print(
+                f&amp;quot;    {col.name}: {annotation}  # {key}range {col.value_range}, in {col.value_common}&amp;quot;
+            )
+        wrapped_names = [f&amp;quot;`{col.name}`&amp;quot; for col in column_subset]
+        print()
+        print('    query: ClassVar[str] = &amp;quot;&amp;quot;&amp;quot;')
+        print(f&amp;quot;        SELECT {', '.join(wrapped_names)}&amp;quot;)
+        print(f&amp;quot;          FROM {self.name}&amp;quot;)
+        print('    &amp;quot;&amp;quot;&amp;quot;')
+        print()
+        print(&amp;quot;    &amp;#64;classmethod&amp;quot;)
+        print(
+            f&amp;quot;    def from_query(cls, row: tuple[Any, ...]) -&amp;gt; '{self.class_name}':&amp;quot;
+        )
+        print(f&amp;quot;        return {self.class_name}(&amp;quot;)
+        for position, col in enumerate(column_subset):
+            print(f&amp;quot;            {col.name}=row[{position}],&amp;quot;)
+        print(&amp;quot;        )&amp;quot;)
+    return buffer.getvalue()
+&lt;/pre&gt;
+&lt;p&gt;It writes the definition as Python code.
+We can assemble a &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; class from these.
+Once we have that we're in a position to extract the data and build NDJSON files.&lt;/p&gt;
+&lt;p&gt;This first part, then, is an application with a name like &lt;tt class="docutils literal"&gt;scan_db.py&lt;/tt&gt; to emit the UML,
+and the db_model.&lt;/p&gt;
+&lt;p&gt;We draw a line under this module because it deals with the available metadata.
+It doesn't do the full extract.
+Nor does it explore the data prior to migration.
+The database metadata analysis is something we'd like to isolate, and run rarely.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-testing"&gt;
+&lt;h2&gt;Unit Testing&lt;/h2&gt;
+&lt;p&gt;While -- in principle -- this is one-0ff software, test cases are essential.
+We don't need 100% code or logical path coverage.
+But, we do need enough coverage that we can refactor with confidence.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="documentation"&gt;
+&lt;h2&gt;Documentation&lt;/h2&gt;
+&lt;p&gt;The PUML files document the source database.&lt;/p&gt;
+&lt;p&gt;We should create a &lt;tt class="docutils literal"&gt;docs&lt;/tt&gt; directory and put some notes in there about what this is and how to use it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next"&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;So far, we have a sense of what the data is.&lt;/p&gt;
+&lt;p&gt;We've fiddled with the PUML file(s) to create ERD's that seem to capture our initial understandings.&lt;/p&gt;
+&lt;p&gt;We've goa &lt;tt class="docutils literal"&gt;db_model.py&lt;/tt&gt; file full of class definitions we can use for further work.&lt;/p&gt;
+&lt;p&gt;We can write a database extract (and database reloader) to work with the NDJSON extracts.
+Then we can kiss MariaDB goodbye, and stop the service from running on our laptop.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Better than grep</title><link href="https://slott56.github.io/2024-09-26-better_than_grep.html" rel="alternate"></link><published>2024-09-26T09:50:00-04:00</published><updated>2024-09-26T09:50:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-09-26:/2024-09-26-better_than_grep.html</id><summary type="html">&lt;p&gt;In the process of writing &lt;em&gt;Unlearning SQL&lt;/em&gt;, I had a need to extract SQL blocks from Python programs.
 Of course, I tried &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt;.
 It wasn't ideal.&lt;/p&gt;
 &lt;div class="admonition note"&gt;
