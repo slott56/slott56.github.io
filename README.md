@@ -50,17 +50,19 @@ Or `make devserver`.
 If the site can't be served by the devserver, it means a file has a bad slug, and is 
 creating a ``.html`` file. Read this ``output/.html`` file to find this bad entry with the bad slug.
 
-Publish with
+Publish with:
 
 ```commandline
 pelican content -o .. -s pelicanconf.py
+git commit -m "Blog updates through yyyy-mmm-dd"
 git push origin master
 ```
 
-Or 
+Or, better yet:
 
 ```commandline
 make github
+git commit -m "Blog updates through yyyy-mmm-dd"
 git push origin master
 ```
 

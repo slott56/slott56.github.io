@@ -146,7 +146,7 @@ We intend to sacrifice some of the Kunena features. However. Since no one is int
 One stumbling step at a time.</p>
 <div class="section" id="stumble-1-what-do-we-have">
 <h2>Stumble 1: What do we have?</h2>
-<p>We have a snopshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
+<p>We have a snapshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
 We can install MariaDB on our laptop and run the script.</p>
 <p>We have the data.</p>
 <p>What do we have?</p>
@@ -166,7 +166,7 @@ While we don't <strong>know</strong> this, the overlapping names and smaller (or
 It's the <tt class="docutils literal">j500_</tt> tables that matter.</p>
 <p>It's best to fuss about with this initial peeking in a notebook, just uncover the metadata, and see what's going on.</p>
 <p>Plan to abandon the notebook.</p>
-<p>Here's how we prefer to deal with the schama</p>
+<p>Here's how we prefer to deal with the schema</p>
 <pre class="literal-block">
 &#64;dataclass
 class Table:
@@ -336,7 +336,7 @@ The tables are small, so there may not be profound performance problems.</p>
 <h2>What We Will Do</h2>
 <p>The goal is to have a <tt class="docutils literal">db_model</tt> module with <strong>Pydantic</strong> <tt class="docutils literal">BaseModel</tt> definitions for the tables we want to preserve.
 As we'll see in the next section, we can query the database and populate the <strong>Pydantic</strong> class definitions.
-We can then dump these Python objects into NDJSON files so we can explore without the overheaeds of SQL or MariaDB.</p>
+We can then dump these Python objects into NDJSON files so we can explore without the overheads of SQL or MariaDB.</p>
 <p>The relational model -- and the requirement to normalize -- has decomposed relatively straight-forward
 objects into a table of tables with primary keys, foreign keys, and equijoin operations.
 We want to undo the normalization and recreate a more sensible structure in native Python.
@@ -415,7 +415,7 @@ But, we do need enough coverage that we can refactor with confidence.</p>
 <h2>Next</h2>
 <p>So far, we have a sense of what the data is.</p>
 <p>We've fiddled with the PUML file(s) to create ERD's that seem to capture our initial understandings.</p>
-<p>We've goa <tt class="docutils literal">db_model.py</tt> file full of class definitions we can use for further work.</p>
+<p>We've got a <tt class="docutils literal">db_model.py</tt> file full of class definitions we can use for further work.</p>
 <p>We can write a database extract (and database reloader) to work with the NDJSON extracts.
 Then we can kiss MariaDB goodbye, and stop the service from running on our laptop.</p>
 </div>
@@ -496,6 +496,10 @@ Then we can kiss MariaDB goodbye, and stop the service from running on our lapto
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2024 (2)
           </a>
@@ -1403,7 +1407,7 @@ Then we can kiss MariaDB goodbye, and stop the service from running on our lapto
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2024 S.Lott
+         <div class="col-xs-10">&copy; 2025 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

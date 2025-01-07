@@ -78,6 +78,46 @@ S.Lott -- Software Architect            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="https://slott56.github.io/2012_01_31-enriched_details_of_apache_common_log_format.html">Enriched Details of Apache Common Log Format</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2012-01-31T22:25:00-05:00"> Tue 31 January 2012</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/functional-programming.html">functional programming</a>
+        /
+	<a href="https://slott56.github.io/tag/apache.html">Apache</a>
+        /
+	<a href="https://slott56.github.io/tag/analysis.html">analysis</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>See <a class="reference external" href="https://slott56.github.io/2012_01_26-apache_log_parsing.html">Apache Log Parsing</a>
+for the background.</p>
+<p>Here's a generator function which expands a simple Access to be a more
+detailed named tuple.</p>
+<pre class="literal-block">
+Access_Details= namedtuple( 'Access_Details',
+    ['access', 'time', 'method', 'url', 'protocol'] )
+
+def details_iter( iterable ):
+    def parse_time_linux( ts ):
+        return datetime.datetime.strptime( ts, &quot;%d/%b/%Y:%H:%M:%S %z&quot; )
+
+    def …</pre>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2012_01_31-enriched_details_of_apache_common_log_format.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="https://slott56.github.io/2012_01_26-apache_log_parsing.html">Apache Log Parsing</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -365,40 +405,6 @@ permit writing scripts to control VM's.</p>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="https://slott56.github.io/2011_10_13-more_command_line_goodness.html">More Command-Line Goodness</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2011-10-13T08:00:00-04:00"> Thu 13 October 2011</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="https://slott56.github.io/tag/stingray-reader.html">stingray reader</a>
-        /
-	<a href="https://slott56.github.io/tag/python.html">#python</a>
-        /
-	<a href="https://slott56.github.io/tag/cli.html">CLI</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>In <a class="reference external" href="https://slott56.github.io/2011_10_06-command_line_applications.html">Command-Line Applications</a>,
-we looked at a Python main-import switch which boiled down to this.</p>
-<pre class="literal-block">
-for file in args.file:
-    with open( file, &quot;r&quot; ) as source:
-        process_file( source, args )
-</pre>
-<p>The point was that each distinct file on the command-line was
-processed in a more-or-less uniform way by a single function …</p>
-                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2011_10_13-more_command_line_goodness.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="https://slott56.github.io/tag/python30.html">&laquo;</a>
@@ -571,6 +577,10 @@ processed in a more-or-less uniform way by a single function …</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2024/Dec/index.html"><i class="fa fa-calendar fa-lg"></i>December 2024 (2)
           </a>
@@ -1322,7 +1332,7 @@ processed in a more-or-less uniform way by a single function …</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2024 S.Lott
+         <div class="col-xs-10">&copy; 2025 S.Lott
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

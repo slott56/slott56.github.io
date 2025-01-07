@@ -1,5 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2024-12-31T13:21:00-05:00</updated><entry><title>Database Migration, Part I</title><link href="https://slott56.github.io/2024-12-31_database_migration_part_i.html" rel="alternate"></link><published>2024-12-31T13:21:00-05:00</published><updated>2024-12-31T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-12-31:/2024-12-31_database_migration_part_i.html</id><summary type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-07T13:21:00-05:00</updated><entry><title>Database Migration, Part II</title><link href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html" rel="alternate"></link><published>2025-01-07T13:21:00-05:00</published><updated>2025-01-07T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-07:/2025-01-07_database_migration_part_ii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Apple Books
+&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
+From this we created Python &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Column&lt;/tt&gt; objects that we used to record what we know about the data.
+These class could also emit metadata in other formats.
+The other formats include&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://plantuml.com"&gt;PlantUML&lt;/a&gt; ERD diagrams.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://docs.pydantic.dev/latest/"&gt;Pydantic&lt;/a&gt; class definitions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far, these have given us a sense of what the data is.&lt;/p&gt;
+&lt;p&gt;We've fiddled with the PUML file(s) to create ERD's that seem to capture our initial understandings.&lt;/p&gt;
+&lt;p&gt;We've got a &lt;tt class="docutils literal"&gt;db_model.py&lt;/tt&gt; file full of class definitions we can use for further work.&lt;/p&gt;
+&lt;div class="section" id="stumble-2-extract"&gt;
+&lt;h2&gt;Stumble 2, Extract&lt;/h2&gt;
+&lt;p&gt;We can write a database extract (and database reloader) to work with the NDJSON extracts.
+Then we can kiss MariaDB goodbye, and stop the service from running on our laptop.&lt;/p&gt;
+&lt;p&gt;The database metadata includes a lot of tables. We don't want all of them.
+It's hard to be sure &lt;strong&gt;exactly&lt;/strong&gt; which ones we need, so it pays to be flexible.&lt;/p&gt;
+&lt;p&gt;What makes sense to me is creating a list of relevant tables in the &lt;tt class="docutils literal"&gt;scan_db.py&lt;/tt&gt; application.
+Then we can run it as often as we uncover another table that seems relevant.&lt;/p&gt;
+&lt;p&gt;The extract can use a function like this to find the tables in the &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; module.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def class_iter(module: ModuleType) -&amp;gt; Iterator[type]:
+    other_imported_names = {
+        &amp;quot;Decimal&amp;quot;,
+        &amp;quot;ClassVar&amp;quot;,
+        &amp;quot;Any&amp;quot;,
+        &amp;quot;BaseModel&amp;quot;,
+        &amp;quot;Field&amp;quot;,
+        &amp;quot;DBModel&amp;quot;,
+        &amp;quot;__class__&amp;quot;,  # SimpleNamespace
+    }
+    for name in dir(module):
+        object = getattr(module, name)
+        match object:
+            case typing._AnyMeta():  # type: ignore
+                pass
+            case type() if name not in other_imported_names:
+                print(&amp;quot;DEBUG&amp;quot;, name)
+                yield object
+&lt;/pre&gt;
+&lt;p&gt;This yields the class definitions.
+Here's the entire list of classes in the module.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+classes = list(class_iter(db_model))
+&lt;/pre&gt;
+&lt;p&gt;Since each of our classes has a query and a &lt;tt class="docutils literal"&gt;from_query()&lt;/tt&gt; method,
+getting the data for a given table looks like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def get_data(
+    connection: mariadb.Connection, cls: type[db_model.DBModel]
+) -&amp;gt; list[db_model.DBModel]:
+    try:
+        with connection.cursor() as crsr:
+            crsr.execute(cls.query)
+            data = [cls.from_query(row) for row in crsr.fetchall()]
+            # pprint.pprint(data)
+            return data
+        print(cls.__name__, len(data))
+    except AttributeError:
+        print(f&amp;quot;***UNEXPECTED {cls.__name__}&amp;quot;)
+        # print(cls.query)
+        raise
+&lt;/pre&gt;
+&lt;p&gt;Execute the table's query. Convert the table's rows to the &lt;strong&gt;pydantic&lt;/strong&gt; model instances.
+Return the list of instances.&lt;/p&gt;
+&lt;p&gt;Producing an line in an NDJSON file is delightfully simple with Pydantic.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+row.model_dump_json(indent=None)
+&lt;/pre&gt;
+&lt;p&gt;While we can easily make a bunch of NDJSON files, it offends me to have a whole directory full of files that we're only going to read.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stumble-3-the-working-files"&gt;
+&lt;h2&gt;Stumble 3, The Working Files&lt;/h2&gt;
+&lt;p&gt;My first preference was to pickle the data.
+It's easy to create a dictionary that maps table name to  a list of row instances.&lt;/p&gt;
+&lt;p&gt;We have a common base class&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class DBModel(BaseModel):
+    query: ClassVar[str]
+
+    &amp;#64;classmethod
+    def from_query(cls, row: tuple[Any, ...]) -&amp;gt; &amp;quot;DBModel&amp;quot;:
+        raise NotImplementedError()
+&lt;/pre&gt;
+&lt;p&gt;This means the database is&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+type Database = map[str, list[DBModel]]
+&lt;/pre&gt;
+&lt;p&gt;We can pickle this mapping and recover the entire thing.&lt;/p&gt;
+&lt;p&gt;It's really quite elegant. And pretty fast, too.&lt;/p&gt;
+&lt;div class="section" id="big-problem"&gt;
+&lt;h3&gt;Big Problem&lt;/h3&gt;
+&lt;p&gt;There's a big problem.&lt;/p&gt;
+&lt;p&gt;The data is essentially wired to specific class definitions.
+Change the class too much, and the data no longer loads from the pickle.&lt;/p&gt;
+&lt;p&gt;Since this is exploratory, we won't know anything up front.
+We need more flexibility.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="course-correction"&gt;
+&lt;h2&gt;Course Correction&lt;/h2&gt;
+&lt;p&gt;Pickle didn't work. What's next?&lt;/p&gt;
+&lt;p&gt;Make a TAR Archive (compressed) with all the NDJSON members.
+The extra CPU of compression is more than offset by the reduced time to do physical I/O on a smaller file.&lt;/p&gt;
+&lt;p&gt;Here's the TAR write:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def save_data(
+    content_path: Path,
+    archive: tarfile.TarFile,
+    cls: type[db_model.DBModel],
+    data: list[db_model.DBModel],
+) -&amp;gt; None:
+    detail = (content_path / cls.__name__).with_suffix(&amp;quot;.ndjson&amp;quot;)
+    with open(detail, &amp;quot;w&amp;quot;) as detail_file:
+        for row in data:
+            print(row.model_dump_json(indent=None), file=detail_file)
+    info = archive.gettarinfo(detail, arcname=cls.__name__)
+    print(info.name, info.size)
+    with open(detail, &amp;quot;rb&amp;quot;) as detail_file:
+        archive.addfile(info, detail_file)
+    detail.unlink()
+&lt;/pre&gt;
+&lt;p&gt;The idea is to write a table of data to a file at the &lt;tt class="docutils literal"&gt;detail&lt;/tt&gt; path, add this to the open TAR archive, and then delete the &lt;tt class="docutils literal"&gt;detail&lt;/tt&gt; entry.
+This leaves us with a TAR file filled with the extracted database rows.
+Further, it's in JSON notation, so we can fiddle with the schema.&lt;/p&gt;
+&lt;p&gt;The original SQL backup was 167,885,194 bytes.&lt;/p&gt;
+&lt;p&gt;The useful subset of data, compressed, is 28,815,360 bytes. 17% of the original. About 1/5 the size.&lt;/p&gt;
+&lt;p&gt;Simply rebuilding the original db_model collections goes quickly.
+And I can make small changes without breaking things.&lt;/p&gt;
+&lt;p&gt;It turns out, I don't want to make &lt;strong&gt;small&lt;/strong&gt; changes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-raw-database-model"&gt;
+&lt;h2&gt;The Raw Database Model&lt;/h2&gt;
+&lt;p&gt;The real model is derived from the class definitions in the  &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt;  module.
+I don't need the SQL query.  Or the &lt;tt class="docutils literal"&gt;from_query()&lt;/tt&gt; method.
+The &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; module is full of classes that have these features, but doesn't need them.&lt;/p&gt;
+&lt;p&gt;To move on in the data pipeline, I need to reload data using &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; class definitions.
+Later, we'll start transforming this data as we undo the mischief of normalization.
+Loading the data for exploration is done by this function:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def load_db(source_path: Path) -&amp;gt; Database:
+    logger = logging.getLogger(&amp;quot;load_db&amp;quot;)
+    database: Database = {}
+
+    with tarfile.open(source_path, &amp;quot;r&amp;quot;) as archive:
+        for item in archive.getmembers():
+            cls = getattr(db_model, item.name)
+            raw_file = archive.extractfile(item)
+            if raw_file:
+                reader = io.TextIOWrapper(raw_file)
+                rows = DBTable(cls.model_validate_json(line) for line in reader)
+                database[item.name] = rows
+            else:
+                logger.error(&amp;quot;archive item %r as no content&amp;quot;, item)
+    return database
+&lt;/pre&gt;
+&lt;p&gt;I can read and validate the NDJSON documents with the following generator expression.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+(cls.model_validate_json(line) for line in reader)
+&lt;/pre&gt;
+&lt;p&gt;We can use the &lt;strong&gt;Pydantic&lt;/strong&gt; &lt;tt class="docutils literal"&gt;model_validate_json()&lt;/tt&gt; method to create my target object.
+I can now adjust attribute definitions in a limited way, and add new attributes.&lt;/p&gt;
+&lt;p&gt;First, however, we need to take a look at the &lt;tt class="docutils literal"&gt;DBTable&lt;/tt&gt; class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-dbtable-collection"&gt;
+&lt;h2&gt;The DBTable Collection&lt;/h2&gt;
+&lt;p&gt;For the purposes of reading the db tables back in from the TAR archive,
+we have these two definitions:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class DBTable(list[db_model.DBModel]):
+    pass
+
+
+type Database = dict[str, DBTable]
+&lt;/pre&gt;
+&lt;p&gt;Yes, &lt;tt class="docutils literal"&gt;DBTable&lt;/tt&gt; is a &lt;tt class="docutils literal"&gt;list&lt;/tt&gt;. It could do more. It turns out, nothing more is needed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next"&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;Once we've got a a dictionary full of lists of data, we need to restructure it into a more useful form.
+This means drawing some more lines to distinguish the various parts of our processing.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;scan_db.py -- extracts the table definitions and PlantUML descriptions from the database.&lt;/li&gt;
+&lt;li&gt;extract_db.py -- extracts the data, writing a TAR file of NDJSON documents with all the database rows.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Reading and &amp;quot;preparing&amp;quot; the data for deeper analysis is a separate application.&lt;/p&gt;
+&lt;p&gt;It took a few mistakes to learn that the &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; schema &lt;strong&gt;must&lt;/strong&gt; match the database.
+We really can't tweak it.
+We need to build a model derived from this model.&lt;/p&gt;
+&lt;p&gt;In the next section we'll define the &lt;tt class="docutils literal"&gt;model.AppModel&lt;/tt&gt; class for objects derived from the &lt;tt class="docutils literal"&gt;db_table.DBModel&lt;/tt&gt; objects.
+These &lt;tt class="docutils literal"&gt;AppModel&lt;/tt&gt; classes can have a number of additional fields and distinct annotated types and validation rules.
+This makes it easy to build them using a line like the following:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+obj = row_cls.model_validate(row, from_attributes=True)
+&lt;/pre&gt;
+&lt;p&gt;the &lt;tt class="docutils literal"&gt;model_validate()&lt;/tt&gt; moves data into the &lt;tt class="docutils literal"&gt;row_cls&lt;/tt&gt; model. The &lt;tt class="docutils literal"&gt;from_attributes=True&lt;/tt&gt; means attribute name matching is used.
+This means our &lt;tt class="docutils literal"&gt;AppModel&lt;/tt&gt; classes must have attribute names that match the &lt;tt class="docutils literal"&gt;DBModel&lt;/tt&gt; classes.
+These have have attribute names that match the original SQL.
+We have a reasonably transparent mapping because of this constraint.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part I</title><link href="https://slott56.github.io/2024-12-31_database_migration_part_i.html" rel="alternate"></link><published>2024-12-31T13:21:00-05:00</published><updated>2024-12-31T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-12-31:/2024-12-31_database_migration_part_i.html</id><summary type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
 &lt;ul class="first last simple"&gt;
@@ -36,7 +259,7 @@ We intend to sacrifice some of the Kunena features. However. Since no one is int
 One stumbling step at a time.&lt;/p&gt;
 &lt;div class="section" id="stumble-1-what-do-we-have"&gt;
 &lt;h2&gt;Stumble 1: What do we have?&lt;/h2&gt;
-&lt;p&gt;We have a snopshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
+&lt;p&gt;We have a snapshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
 We can install MariaDB on our laptop and run the script.&lt;/p&gt;
 &lt;p&gt;We have the data.&lt;/p&gt;
 &lt;p&gt;What do we have?&lt;/p&gt;
@@ -56,7 +279,7 @@ While we don't &lt;strong&gt;know&lt;/strong&gt; this, the overlapping names and
 It's the &lt;tt class="docutils literal"&gt;j500_&lt;/tt&gt; tables that matter.&lt;/p&gt;
 &lt;p&gt;It's best to fuss about with this initial peeking in a notebook, just uncover the metadata, and see what's going on.&lt;/p&gt;
 &lt;p&gt;Plan to abandon the notebook.&lt;/p&gt;
-&lt;p&gt;Here's how we prefer to deal with the schama&lt;/p&gt;
+&lt;p&gt;Here's how we prefer to deal with the schema&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 &amp;#64;dataclass
 class Table:
@@ -226,7 +449,7 @@ The tables are small, so there may not be profound performance problems.&lt;/p&g
 &lt;h2&gt;What We Will Do&lt;/h2&gt;
 &lt;p&gt;The goal is to have a &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; module with &lt;strong&gt;Pydantic&lt;/strong&gt; &lt;tt class="docutils literal"&gt;BaseModel&lt;/tt&gt; definitions for the tables we want to preserve.
 As we'll see in the next section, we can query the database and populate the &lt;strong&gt;Pydantic&lt;/strong&gt; class definitions.
-We can then dump these Python objects into NDJSON files so we can explore without the overheaeds of SQL or MariaDB.&lt;/p&gt;
+We can then dump these Python objects into NDJSON files so we can explore without the overheads of SQL or MariaDB.&lt;/p&gt;
 &lt;p&gt;The relational model -- and the requirement to normalize -- has decomposed relatively straight-forward
 objects into a table of tables with primary keys, foreign keys, and equijoin operations.
 We want to undo the normalization and recreate a more sensible structure in native Python.
@@ -305,7 +528,7 @@ But, we do need enough coverage that we can refactor with confidence.&lt;/p&gt;
 &lt;h2&gt;Next&lt;/h2&gt;
 &lt;p&gt;So far, we have a sense of what the data is.&lt;/p&gt;
 &lt;p&gt;We've fiddled with the PUML file(s) to create ERD's that seem to capture our initial understandings.&lt;/p&gt;
-&lt;p&gt;We've goa &lt;tt class="docutils literal"&gt;db_model.py&lt;/tt&gt; file full of class definitions we can use for further work.&lt;/p&gt;
+&lt;p&gt;We've got a &lt;tt class="docutils literal"&gt;db_model.py&lt;/tt&gt; file full of class definitions we can use for further work.&lt;/p&gt;
 &lt;p&gt;We can write a database extract (and database reloader) to work with the NDJSON extracts.
 Then we can kiss MariaDB goodbye, and stop the service from running on our laptop.&lt;/p&gt;
 &lt;/div&gt;
@@ -11375,149 +11598,4 @@ class definitions and Python module definitions are Singletons, and
 using a class definition as a &lt;strong&gt;Singleton&lt;/strong&gt; object is often far simpler
 than the commonly-used techniques for C++ and Java.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="packtpub"></category><category term="#python"></category><category term="building skills books"></category></entry><entry><title>A Python Roadmap</title><link href="https://slott56.github.io/2021_07_06-a_python_roadmap.html" rel="alternate"></link><published>2021-07-06T08:00:00-04:00</published><updated>2021-07-06T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-07-06:/2021_07_06-a_python_roadmap.html</id><summary type="html">&lt;p&gt;An interesting tweet. The  roadmap has three sections. I'm not sure this
-is actually complete, or even grouped correctly. It is a very good list
-of topics.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/prasoonpratham/status/1408435475426254849?s=11"&gt;https://twitter.com/prasoonpratham/status/1408435475426254849?s=11&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&amp;quot;Here's a complete roadmap of topics to master Python.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The thread, however, seems no longer …&lt;/p&gt;</summary><content type="html">&lt;p&gt;An interesting tweet. The  roadmap has three sections. I'm not sure this
-is actually complete, or even grouped correctly. It is a very good list
-of topics.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://twitter.com/prasoonpratham/status/1408435475426254849?s=11"&gt;https://twitter.com/prasoonpratham/status/1408435475426254849?s=11&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&amp;quot;Here's a complete roadmap of topics to master Python.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The thread, however, seems no longer to exist.&lt;/p&gt;
-&lt;div class="section" id="foundations"&gt;
-&lt;h2&gt;Foundations&lt;/h2&gt;
-&lt;p&gt;I want start by quibbling about variables being first. I'm not sold on
-this.&lt;/p&gt;
-&lt;p&gt;I think that operators, expressions, and the built-in immutable types
-are foundational. int, float, str, and tuple are hugely important as
-core concepts in computing and Python.&lt;/p&gt;
-&lt;p&gt;I also think that &amp;quot;loops&amp;quot; is a sketchy notion and I kind of wish we
-wouldn't describe for and while statements as &amp;quot;loops&amp;quot;. I think we should
-call them iterations. They implement two kinds of logical quantifiers
-&amp;quot;for all&amp;quot; and &amp;quot;there exists.&amp;quot; I think we should talk about the final
-result of a for statement: all of the values in a range are processed.
-Similarly a for-if-break construct establishes a &amp;quot;for exists&amp;quot; that
-defines the first value in a range for which a condition is met. And
-yes, range objects will be central.&lt;/p&gt;
-&lt;p&gt;I think that a huge amount of programming can be covered with these
-topics. I'm not sure &amp;quot;basic&amp;quot; is the right term; &lt;strong&gt;foundations&lt;/strong&gt; might be
-a better idea.&lt;/p&gt;
-&lt;p&gt;The use of variables to manage state is part of this. But. Variables,
-assignment, and state change are a bit more advanced and maybe shouldn't
-be first.&lt;/p&gt;
-&lt;p&gt;I also think function definitions are foundational. Mathematics has been
-defining functions based on other functions. It's a way of providing a
-mental short-hand for complex concepts. I don't need to know all the
-details of how to compute a square root to make use of square root as a
-concept.&lt;/p&gt;
-&lt;p&gt;The wide varieties of assignment statements, including assignment to
-decompose collections aren't mentioned in the original post. This may be
-an important omission, causing me to quibble on &amp;quot;complete.&amp;quot;&lt;/p&gt;
-&lt;p&gt;I agree that files and elements of File IO are part of this foundation.
-If we limit ourselves to reading and writing files, then they're
-essentially immutable structures. I think we can safely avoid
-update-in-place files because this is an application topic more than a
-language topic. Python offers the minimal level of support via seek and
-tell, but little more. And most modern application relies on a database
-for updatable files.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="data-structures"&gt;
-&lt;h2&gt;Data Structures&lt;/h2&gt;
-&lt;p&gt;Moving from basic to intermediate. I prefer the term &amp;quot;data structures&amp;quot;
-which are built on the language foundations. I think that the mutable
-built-in data structures come next in the roadmap. My preference is to
-omit terms like Object-Oriented or Functional, and focus on list, dict,
-and set, and how the iteration works. This means comprehensions and
-generators are part of this essential data structure section.&lt;/p&gt;
-&lt;p&gt;No, comprehensions aren't and shouldn't be called &amp;quot;advanced.&amp;quot; They're
-very much a core concept. Thinking about statements to implement a
-map/filter/reduce over a collection is the essence of a great deal of
-programming. We don't always learn it that way, but it needs to be
-presented in that framework even to beginners. A pile of for and if
-statements and a bunch of variables is a programmer's first step toward
-a simpler comprehension. In both cases, they're doing a mapping and it
-needs to be described as mapping one collection to another collection.&lt;/p&gt;
-&lt;p&gt;This is where the standard library collections module is introduced.&lt;/p&gt;
-&lt;p&gt;Yes it's part of the library. I think it's too central to be ignored. I
-think dataclasses belong here, too.&lt;/p&gt;
-&lt;p&gt;Talking about the mutable data structures means revisiting the for
-statement and using it on a variety of iterables. The way Python's
-concepts apply to a variety of data types is an important feature of the
-language. (In the olden days, they used to talk about &amp;quot;orthogonality&amp;quot; of
-data and processing; we don't need to dwell on it, but I think it helps
-to acknowledge it.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="functional-programming"&gt;
-&lt;h2&gt;Functional Programming&lt;/h2&gt;
-&lt;p&gt;It appears to me that the functional programming topics can come next.
-The idea of functional composition via higher-order functions and
-decorators builds on the existing foundation. This is where map() and
-filter() belong. Because of the way sorted(), max(), and min() work on
-collections with a key= function, these are part of the functional
-programming roadmap. The inconsistency between map() and functions like
-max() is an important thing to note.&lt;/p&gt;
-&lt;p&gt;I also think itertools belongs here. We can make the case that it's in
-the standard library, but then, so is io. I think itertools and
-functools are as central to practical Python as the math module and
-collections.&lt;/p&gt;
-&lt;p&gt;I think typing.NamedTuple and dataclasses belong here, also. A frozen
-dataclass is stateless, and can be helpful when creating list
-comprehensions to perform a mapping from one collection to another
-collection.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="object-oriented-programming"&gt;
-&lt;h2&gt;Object-Oriented Programming&lt;/h2&gt;
-&lt;p&gt;I think OO programming and related concepts build on the previous
-material. Class definitions and state management aren't simple, even
-though they're essential parts of Python.&lt;/p&gt;
-&lt;p&gt;To an extent, OO programming can be decomposed into two layers. While I
-hate to overuse &amp;quot;foundation&amp;quot;, there seem to be two parts:&lt;/p&gt;
-&lt;p&gt;OO Foundations -- inheritance, composition, and different kinds of
-delegation. This tends to expose a number of common design patterns like
-Strategy, Decorator, and Facade.&lt;/p&gt;
-&lt;p&gt;OO Features -- this includes metaprogramming, decorators, ABC's, mixins,
-and the like. These topics are all designed to avoid copy-and-paste in
-sophisticated edge cases that cross class boundaries.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="concurrency"&gt;
-&lt;h2&gt;Concurrency&lt;/h2&gt;
-&lt;p&gt;I'm not sure why concurrency and parallelism are separate topics in the
-original list. I've had folks try to split this hair a number of ways.
-The idea is to find a place where async lives that's &amp;quot;concurrency lite&amp;quot;
-or something.&lt;/p&gt;
-&lt;p&gt;The concepts here become blurry because threads and processes are OS
-features, not language features. The async/await language features,
-however, are clearly part of Python. It becomes particularly awful when
-working on something practical where asyncio doesn't provide the feature
-you need. Specifically, blocking file system I/O isn't part of asyncio
-and requires an explicit appeal to the underlying thread pool for the
-blocking operation.&lt;/p&gt;
-&lt;p&gt;To an extent, async/await needs to be on the roadmap. It's tricky,
-though, to cover this without also digressing into threads as a way to
-deal with blocking operations.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="test-integration-and-deployment"&gt;
-&lt;h2&gt;Test, Integration, and Deployment&lt;/h2&gt;
-&lt;p&gt;This is where tools show up. This is where pip, unittest, pytest,
-tox/nox, coverage, etc. live. Are these part of the language? Or are the
-part of the broader ecosystem?&lt;/p&gt;
-&lt;p&gt;I submit they're explicitly not part of the language. The roadmap ends
-just before this topic. The idea is that we should have a Python roadmap
-that uses the language and the standard library.&lt;/p&gt;
-&lt;p&gt;Once we've talked about the language (and some of the library) we can
-move on to pip and packaging. I don't think pip is and &amp;quot;intermediate&amp;quot;
-topic. I find that premature introduction of pip is a sign of trying to
-create useful interesting examples. Examples that don't use pip wind up
-being kind of boring. Everyone wants to play with pygame and pillow and
-other kinds of projects, but, those aren't foundational to the language.
-They're interesting and appealing and -- frankly -- a lot of fun.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;tl;dr&lt;/h2&gt;
-&lt;p&gt;I'm not a fan of the roadmap. I like some of it. I don't like some of
-it.&lt;/p&gt;
-&lt;p&gt;I am a fan of presenting the idea for discussion.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="object-oriented programming"></category><category term="functional python programming"></category><category term="#python"></category></entry></feed>
+</content><category term="Technologies"></category><category term="packtpub"></category><category term="#python"></category><category term="building skills books"></category></entry></feed>

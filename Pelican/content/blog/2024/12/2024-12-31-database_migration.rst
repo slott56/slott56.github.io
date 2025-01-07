@@ -45,7 +45,7 @@ One stumbling step at a time.
 Stumble 1: What do we have?
 ===========================
 
-We have a snopshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
+We have a snapshot of the database. It's MariaDB/MySQL, and the snapshot is a big SQL script.
 We can install MariaDB on our laptop and run the script.
 
 We have the data.
@@ -73,7 +73,7 @@ It's best to fuss about with this initial peeking in a notebook, just uncover th
 
 Plan to abandon the notebook.
 
-Here's how we prefer to deal with the schama
+Here's how we prefer to deal with the schema
 
 ::
 
@@ -268,7 +268,7 @@ What We Will Do
 
 The goal is to have a ``db_model`` module with **Pydantic** ``BaseModel`` definitions for the tables we want to preserve.
 As we'll see in the next section, we can query the database and populate the **Pydantic** class definitions.
-We can then dump these Python objects into NDJSON files so we can explore without the overheaeds of SQL or MariaDB.
+We can then dump these Python objects into NDJSON files so we can explore without the overheads of SQL or MariaDB.
 
 The relational model -- and the requirement to normalize -- has decomposed relatively straight-forward
 objects into a table of tables with primary keys, foreign keys, and equijoin operations.
@@ -360,7 +360,7 @@ So far, we have a sense of what the data is.
 
 We've fiddled with the PUML file(s) to create ERD's that seem to capture our initial understandings.
 
-We've goa ``db_model.py`` file full of class definitions we can use for further work.
+We've got a ``db_model.py`` file full of class definitions we can use for further work.
 
 We can write a database extract (and database reloader) to work with the NDJSON extracts.
 Then we can kiss MariaDB goodbye, and stop the service from running on our laptop.
