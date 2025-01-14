@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-07T13:21:00-05:00</updated><entry><title>Database Migration, Part II</title><link href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html" rel="alternate"></link><published>2025-01-07T13:21:00-05:00</published><updated>2025-01-07T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-07:/2025-01-07_database_migration_part_ii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
-This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-14T07:21:00-05:00</updated><entry><title>Database Migration, Part III</title><link href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html" rel="alternate"></link><published>2025-01-14T07:21:00-05:00</published><updated>2025-01-14T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-14:/2025-01-14_database_migration_part_iii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
 &lt;ul class="first last simple"&gt;
 &lt;li&gt;KDP
@@ -9,7 +9,285 @@ This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Google Play
 &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
-This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Apple Books
+&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.&lt;/p&gt;
+&lt;p&gt;We can now move beyond the raw relational data into something more useful.&lt;/p&gt;
+&lt;div class="section" id="things-sql-does-badly"&gt;
+&lt;h2&gt;Things SQL Does Badly&lt;/h2&gt;
+&lt;p&gt;One thing SQL does badly is model hierarchies. (This is one aspect of not handling graphs in general.)&lt;/p&gt;
+&lt;p&gt;In a hierarchy -- a Directed Acyclic Graph -- there are nodes. A node may have a parent.
+A mode may have one or more children.
+A node with no parent is the &amp;quot;root&amp;quot; of the tree.
+A node with no children is a &amp;quot;leaf&amp;quot; of the tree.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Diagram of a tree." src="https://slott56.github.io/media/tree_model.png" /&gt;
+&lt;p class="caption"&gt;A tree&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The point is that the relationships are transitive -- the root has children that have children dot dot dot that have leaves.
+No arbitrary &lt;tt class="docutils literal"&gt;&amp;lt;h1&amp;gt;&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;&amp;lt;h6&amp;gt;&lt;/tt&gt; limit.
+(Pragmatically, you don't &lt;em&gt;need&lt;/em&gt; very many levels.
+Common SQL hacks impose limits to so a simple &lt;tt class="docutils literal"&gt;SELECT&lt;/tt&gt; statement and a programming languages like &lt;tt class="docutils literal"&gt;COBOL&lt;/tt&gt; will work.
+The &lt;tt class="docutils literal"&gt;WITH&lt;/tt&gt; clause permits indefinite hierarchies, at the cost of consuming time querying the rows from the database.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="not-using-sql"&gt;
+&lt;h2&gt;Not Using SQL&lt;/h2&gt;
+&lt;p&gt;In ordinary, in-memory data structures, it makes sense to define tree structures like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from pydantic import BaseModel, Field, Json, WrapValidator
+
+class AppModel(BaseModel, from_attributes=True, arbitrary_types_allowed=True):
+    &amp;#64;property
+    def pk(self) -&amp;gt; int:
+        raise NotImplementedError()
+
+    def __str__(self) -&amp;gt; str:
+        base = super().__str__()
+        return f&amp;quot;{self.__class__.__name__} {base}&amp;quot;
+
+class Assets(AppModel):
+    &amp;quot;&amp;quot;&amp;quot;
+    1239 rows
+    &amp;quot;&amp;quot;&amp;quot;
+
+    &amp;#64;property
+    def pk(self) -&amp;gt; int:
+        return self.id
+
+    id: int  # &amp;lt;&amp;lt;PK&amp;gt;&amp;gt; range 1..1334, in [(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), ... 1234 more]
+    parent_id: int  # range 1..941, in [(895, 361), (699, 51), (478, 49), (1, 42), (35, 38), ... 117 more]
+    lft: int  # range 1..2475, in [(1, 2), (3, 1), (9, 1), (11, 1), (13, 1), ... 1233 more]
+    rgt: int  # &amp;lt;&amp;lt;unique&amp;gt;&amp;gt; range 2..2477, in [(2477, 1), (2, 1), (8, 1), (10, 1), (12, 1), ... 1234 more]
+    level: int  # range 1..5, in [(4, 766), (3, 254), (2, 90), (5, 85), (1, 43), ... 1 more]
+    name: str  # &amp;lt;&amp;lt;unique&amp;gt;&amp;gt; range 'com_actionlogs'..'root.1', in [('root.1', 1), ('com_admin', 1), ('com_banners', 1), ('com_cache', 1), ('com_checkin', 1), ... 1234 more]
+    title: str  # range 'Ar n-Inin (Hull #331)'..'vtest1', in [('Uncategorised', 7), ('Whitby42 #172 [...]', 5), ('General', 3), ('Introduction', 3), ('2008 Rendezvous', 3), ... 1170 more]
+    rules: str  # range '{&amp;quot;core.admin&amp;quot;:[],&amp;quot;core.mana...'..'{}', in [('{}', 544), ('None', 348), ('{&amp;quot;core.delete&amp;quot;:{&amp;quot;...', 81), ('{&amp;quot;core.delete&amp;quot;:[]...', 74), ('{&amp;quot;core.delete&amp;quot;:[]...', 65), ... 25 more]
+
+    children: list[&amp;quot;Assets&amp;quot;] = Field(default_factory=list, repr=False)
+    parent: ref[&amp;quot;Assets&amp;quot;] | None = Field(default=None, repr=False)
+    gallery_catgs: list[&amp;quot;Joomgallery_Catg&amp;quot;] = Field(default_factory=list, repr=False)
+    galleries: list[&amp;quot;Joomgallery&amp;quot;] = Field(default_factory=list, repr=False)
+    categories: list[&amp;quot;Categories&amp;quot;] = Field(default_factory=list, repr=False)
+    content: list[&amp;quot;Content&amp;quot;] = Field(default_factory=list, repr=False)
+    modules: list[&amp;quot;Modules&amp;quot;] = Field(default_factory=list, repr=False)
+&lt;/pre&gt;
+&lt;p&gt;An &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; instance has &lt;tt class="docutils literal"&gt;children: &lt;span class="pre"&gt;list[&amp;quot;Assets&amp;quot;]&lt;/span&gt;&lt;/tt&gt;.
+Similarly, an &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; instance may have a weak reference to a parent, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;ref[&amp;quot;Assets&amp;quot;]&lt;/span&gt; | None&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;It's a weak reference because two mutual references -- parent -&amp;gt; child and child -&amp;gt; parent -- will create a circularity that defeats reference counting.
+Using weak references adds a bit of fussiness, but otherwise leads to objects that play well with others.&lt;/p&gt;
+&lt;p&gt;Some of these fields are nonsense. The rest describe the asset tree used by Joomla!&lt;/p&gt;
+&lt;p&gt;Having an explicit &lt;tt class="docutils literal"&gt;children&lt;/tt&gt; list attached to each &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; saves going back to the database to do additional queries to find the children of a given asset.
+Further, it makes it very easy to &amp;quot;walk&amp;quot; the transitive closure of all children under an asset.
+And, it makes it very easy to locate the transitive closure of all parents of an asset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-do-we-get-there"&gt;
+&lt;h2&gt;How Do We Get There?&lt;/h2&gt;
+&lt;p&gt;Building the the &lt;tt class="docutils literal"&gt;model&lt;/tt&gt; objects is a two-step process.&lt;/p&gt;
+&lt;div class="section" id="step-the-first"&gt;
+&lt;h3&gt;Step, the first&lt;/h3&gt;
+&lt;p&gt;Most of the attributes are seeded from &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; objects using a line like the following:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+obj = Assets.model_validate(row)
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;model_validate()&lt;/tt&gt; moves data into a new instance of the  &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; model.
+The &lt;tt class="docutils literal"&gt;from_attributes=True&lt;/tt&gt; means attribute name matching is used; this means our &lt;tt class="docutils literal"&gt;AppModel&lt;/tt&gt; classes must have attribute names that match the &lt;tt class="docutils literal"&gt;DBModel&lt;/tt&gt; classes.
+These have have attribute names that match the original SQL.
+We have a reasonably transparent mapping because of this constraint.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-the-second"&gt;
+&lt;h3&gt;Step, the second&lt;/h3&gt;
+&lt;p&gt;The relationships don't resolve themselves.&lt;/p&gt;
+&lt;p&gt;We need to attach children to parents and parents to children.
+For this, we've defined a &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; class.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class AssetsBuilder(AppModelBuilder):
+    &amp;quot;&amp;quot;&amp;quot;
+    &amp;#64;startuml
+    hide circle
+    skinparam linetype ortho
+
+    entity Assets
+    Assets }o-- &amp;quot;parent&amp;quot; Assets
+    &amp;#64;enduml
+    &amp;quot;&amp;quot;&amp;quot;
+
+    class AppTable(model.AppTable[model.Assets]):
+        pass
+
+    def __call__(self, table: DBTable) -&amp;gt; model.AppTable[model.Assets]:
+        items = self.AppTable.build(model.Assets, table)
+        for item in items.values():
+            if item.parent_id in items:
+                items[item.parent_id].add_child(item)
+        return items
+&lt;/pre&gt;
+&lt;p&gt;In SQL world, every &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; row has a &lt;tt class="docutils literal"&gt;parent_id&lt;/tt&gt; column with a foreign key reference to another &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt;.
+Or a null of some kind, maybe a database &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;, maybe a zero.&lt;/p&gt;
+&lt;p&gt;(There is &lt;strong&gt;not&lt;/strong&gt; one standard answer to null representation.
+Don't &lt;tt class="docutils literal"&gt;&amp;#64;&lt;/tt&gt; me with it &lt;strong&gt;should&lt;/strong&gt; be &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+In this case, it isn't &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;, and it doesn't have to be a &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+It's usually zero. Except in one case that seems to be the result of a bug of some kind.)&lt;/p&gt;
+&lt;p&gt;(We'll look at the &lt;tt class="docutils literal"&gt;AppTable.build&lt;/tt&gt; later, for now I want to focus on the hierarchies.)&lt;/p&gt;
+&lt;p&gt;For each &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; object in &lt;tt class="docutils literal"&gt;items.values()&lt;/tt&gt;, we need to see if it has a parent.
+If it does have a parent, we need to as the parent to add this child.
+This will do two things: add the child to the parent's &lt;tt class="docutils literal"&gt;children&lt;/tt&gt; list, and &lt;strong&gt;also&lt;/strong&gt; set the parent relationship for each of the children.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def add_child(self, item: &amp;quot;Assets&amp;quot;) -&amp;gt; None:
+    self.children.append(item)
+    item.parent = ref(self)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-apptable-class"&gt;
+&lt;h2&gt;The &lt;tt class="docutils literal"&gt;AppTable&lt;/tt&gt; class&lt;/h2&gt;
+&lt;p&gt;The final step in the &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; is a the &lt;tt class="docutils literal"&gt;AppTable&lt;/tt&gt;; a handy structure to manage each collection of objects.&lt;/p&gt;
+&lt;p&gt;In the long run, this is not required.&lt;/p&gt;
+&lt;p&gt;In the short run -- where we can't navigate the database -- it's really handy for exploring.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+T_AppModel = TypeVar(&amp;quot;T_AppModel&amp;quot;)
+
+
+class AppTable[T_AppModel: AppModel](dict[Any, T_AppModel]):
+    &amp;quot;&amp;quot;&amp;quot;
+    A mapping from PK id to AppModel instance.
+    &amp;quot;&amp;quot;&amp;quot;
+
+    logger: ClassVar[logging.Logger]
+
+    &amp;#64;classmethod
+    def build(
+        cls, row_cls: type[T_AppModel], db_table: Iterable[BaseModel]
+    ) -&amp;gt; &amp;quot;AppTable[T_AppModel]&amp;quot;:
+        cls.logger = logging.getLogger(cls.__name__)
+        app_table = AppTable[T_AppModel]()
+        for row in db_table:
+            obj = row_cls.model_validate(row, from_attributes=True)
+            if obj.pk in app_table:
+                cls.logger.error(
+                    &amp;quot;Duplicate key %r, replacing %r&amp;quot;, row, app_table[obj.pk]
+                )
+            app_table[obj.pk] = obj
+        return app_table
+
+    def where(
+        self, filter_function: Callable[[T_AppModel], bool]
+    ) -&amp;gt; Iterator[T_AppModel]:
+        &amp;quot;&amp;quot;&amp;quot;
+        A vaguely SQL-like search.
+        &amp;quot;&amp;quot;&amp;quot;
+        yield from filter(filter_function, self.values())
+&lt;/pre&gt;
+&lt;p&gt;This is where we build a &lt;tt class="docutils literal"&gt;model.Assets&lt;/tt&gt; object from the database &lt;tt class="docutils literal"&gt;db_model.Assets&lt;/tt&gt; object.
+Further, we index them by the stated PK so we don't &lt;strong&gt;need&lt;/strong&gt; to search.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;where()&lt;/tt&gt; method lets us provide a &lt;tt class="docutils literal"&gt;lambda&lt;/tt&gt; that searches the rows for matching instances.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+featured = list(self.content.Content.where(lambda c: c.featured == 1))
+&lt;/pre&gt;
+&lt;p&gt;This is equivalent to &lt;tt class="docutils literal"&gt;SELECT * FROM content WHERE featured = 1&lt;/tt&gt; in SQL.
+Except it's a lot faster.
+And a lot more flexible.&lt;/p&gt;
+&lt;p&gt;This is not &lt;strong&gt;heavily&lt;/strong&gt; used.
+Most of what we need, we can find with ordinary foreign-key-to-primary-key relationships that use the native Python mappings.
+A few things, like specific assets that define Joomla! modules and content categories, must be found by name, and will use the &lt;tt class="docutils literal"&gt;where()&lt;/tt&gt; method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="all-the-things"&gt;
+&lt;h2&gt;All the Things&lt;/h2&gt;
+&lt;p&gt;Now that we can unravel the parent-child hierarchies, we can prepare the database for real work.&lt;/p&gt;
+&lt;p&gt;We'll transform the original SQL-like structures to a module-like namespace
+that has all the things we want, with their proper relationships.
+There are 18 tables that seem to have all the content we care about.
+For now, we're avoiding some of the installed Joomla! extensions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def prepare_content(database: Database) -&amp;gt; SimpleNamespace:
+    content = SimpleNamespace()
+
+    content.Phocadownload_Categories = PhocaCategoryBuilder(content)(
+        database[&amp;quot;Phocadownload_Categories&amp;quot;]
+    )
+    content.Phocadownload = PhocaDownloadBuilder(content)(database[&amp;quot;Phocadownload&amp;quot;])
+
+    content.Kunena_Categories = KCategoryBuilder(content)(database[&amp;quot;Kunena_Categories&amp;quot;])
+    content.Kunena_Topics = KTopicBuilder(content)(database[&amp;quot;Kunena_Topics&amp;quot;])
+    content.Kunena_Messages = KMessageBuilder(content)(database[&amp;quot;Kunena_Messages&amp;quot;])
+    content.Kunena_Messages_Text = KMessageTextBuilder(content)(
+        database[&amp;quot;Kunena_Messages_Text&amp;quot;]
+    )
+    content.Kunena_Attachments = KAttachmentBuilder(content)(
+        database[&amp;quot;Kunena_Attachments&amp;quot;]
+    )
+
+    content.Assets = AssetsBuilder(content)(database[&amp;quot;Assets&amp;quot;])
+
+    content.Rsgallery2_Galleries = RSGalleryBuilder(content)(
+        database[&amp;quot;Rsgallery2_Galleries&amp;quot;]
+    )
+    content.Rsgallery2_Files = RSFileBuilder(content)(database[&amp;quot;Rsgallery2_Files&amp;quot;])
+
+    content.Joomgallery_Catg = JGCatgBuilder(content)(database[&amp;quot;Joomgallery_Catg&amp;quot;])
+    content.Joomgallery = JGalleryBuilder(content)(database[&amp;quot;Joomgallery&amp;quot;])
+
+    content.Categories = CategoriesBuilder(content)(database[&amp;quot;Categories&amp;quot;])
+    content.Content = ContentBuilder(content)(database[&amp;quot;Content&amp;quot;])
+
+    content.Modules = ModulesBuilder(content)(database[&amp;quot;Modules&amp;quot;])
+    content.Menu = MenuBuilder(content)(database[&amp;quot;Menu&amp;quot;])
+    content.Weblinks = WeblinksBuilder(content)(database[&amp;quot;Weblinks&amp;quot;])
+
+    # The following are of dubious value...
+    content.Modules_Menu = ModulesMenuAssoc(content)(database[&amp;quot;Modules_Menu&amp;quot;])
+    content.Content_Frontpage = ContentFPBuilder(content)(database[&amp;quot;Content_Frontpage&amp;quot;])
+
+    return content
+&lt;/pre&gt;
+&lt;p&gt;Each &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; applies several transformative steps:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Build &lt;tt class="docutils literal"&gt;model&lt;/tt&gt; objects from &lt;tt class="docutils literal"&gt;db_model&lt;/tt&gt; objects for the relevant few &lt;tt class="docutils literal"&gt;DBTable&lt;/tt&gt; objects.&lt;/li&gt;
+&lt;li&gt;Make &lt;tt class="docutils literal"&gt;AppTable&lt;/tt&gt; dictionaries from &lt;tt class="docutils literal"&gt;object.pk&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;object&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Make trees for objects with parent-child relationships.&lt;/li&gt;
+&lt;li&gt;Resolve other inter-object references.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next"&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;Once we've got a proper namespace full of objects, we can start to explore it to find the relevant pieces.&lt;/p&gt;
+&lt;p&gt;Are are the lines we've drawn to distinguish the various parts of our processing.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;scan_db.py -- extracts the table definitions and PlantUML descriptions from the database.&lt;/li&gt;
+&lt;li&gt;extract_db.py -- extracts the data, writing a TAR file of NDJSON documents with all the database rows.&lt;/li&gt;
+&lt;li&gt;view_content.py -- &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; classes and &lt;tt class="docutils literal"&gt;prepare_content()&lt;/tt&gt; function to get raw data organized.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The steps in &lt;tt class="docutils literal"&gt;view_content&lt;/tt&gt; are free of SQL complications.&lt;/p&gt;
+&lt;p&gt;In the next section we'll look at the conversion process.&lt;/p&gt;
+&lt;p&gt;There will be three parts:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Locate the relevant objects&lt;/li&gt;
+&lt;li&gt;Convert the objects for use by a static site generator like Hugo. This turns out to be pretty complicated. However, since we're done with SQL, the complications don't involve database queries.&lt;/li&gt;
+&lt;li&gt;Write needed &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; files the mimic the legacy site's Joomla! presentation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part II</title><link href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html" rel="alternate"></link><published>2025-01-07T13:21:00-05:00</published><updated>2025-01-07T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-07:/2025-01-07_database_migration_part_ii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;ul class="first last simple"&gt;
+&lt;li&gt;KDP
+&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lulu
+&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google Play
+&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
 &lt;ul class="first last simple"&gt;
 &lt;li&gt;KDP
@@ -201,7 +479,7 @@ type Database = dict[str, DBTable]
 &lt;/div&gt;
 &lt;div class="section" id="next"&gt;
 &lt;h2&gt;Next&lt;/h2&gt;
-&lt;p&gt;Once we've got a a dictionary full of lists of data, we need to restructure it into a more useful form.
+&lt;p&gt;Once we've got a dictionary full of lists of data, we need to restructure it into a more useful form.
 This means drawing some more lines to distinguish the various parts of our processing.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;scan_db.py -- extracts the table definitions and PlantUML descriptions from the database.&lt;/li&gt;

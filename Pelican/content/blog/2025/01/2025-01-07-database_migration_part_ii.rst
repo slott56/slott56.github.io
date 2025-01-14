@@ -8,7 +8,7 @@ Database Migration, Part II
 :status: published
 
 We're talking about extracting data from complex relational databases.
-This is -- in a way -- another case study for my Unlearning SQL book.
+This is -- in a way -- another case study for my *Unlearning SQL* book.
 
 ..  sidebar::
 
@@ -249,7 +249,7 @@ Yes, ``DBTable`` is a ``list``. It could do more. It turns out, nothing more is 
 Next
 =====
 
-Once we've got a a dictionary full of lists of data, we need to restructure it into a more useful form.
+Once we've got a dictionary full of lists of data, we need to restructure it into a more useful form.
 This means drawing some more lines to distinguish the various parts of our processing.
 
 1. scan_db.py -- extracts the table definitions and PlantUML descriptions from the database.
