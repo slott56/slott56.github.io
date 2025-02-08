@@ -1,26 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-14T07:21:00-05:00</updated><entry><title>Database Migration, Part III</title><link href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html" rel="alternate"></link><published>2025-01-14T07:21:00-05:00</published><updated>2025-01-14T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-14:/2025-01-14_database_migration_part_iii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-21T07:21:00-05:00</updated><entry><title>Database Migration, Part IV</title><link href="https://slott56.github.io/2025-01-21_database_migration_part_iv.html" rel="alternate"></link><published>2025-01-21T07:21:00-05:00</published><updated>2025-01-21T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-21:/2025-01-21_database_migration_part_iv.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html"&gt;Part III&lt;/a&gt;, we prepared native Python objects that had a complete representation for the various kinds of tree structures.
+These include assets, categories, forum topics, image galleries, amongst other things.&lt;/p&gt;
+&lt;p&gt;We can now explore the details of the data, looking for the original content.&lt;/p&gt;
+&lt;div class="section" id="how-joomla-works"&gt;
+&lt;h2&gt;How Joomla! Works&lt;/h2&gt;
+&lt;p&gt;We're avoiding looking at the Jooml! elephant, wandering around the parlor.
+Yes, we &lt;strong&gt;could&lt;/strong&gt; reverse engineer the PHP to figure out how the database content is used to build the web site.
+We, however, don't much care about the details.&lt;/p&gt;
+&lt;p&gt;We have a pile of specific kinds of content we can see.
+This includes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A home page with a few articles.&lt;/li&gt;
+&lt;li&gt;A right sidebar with some articles.&lt;/li&gt;
+&lt;li&gt;A few pages with dozen or so narrowly-focused articles.&lt;/li&gt;
+&lt;li&gt;The master collection of articles, neatly organized by category.&lt;/li&gt;
+&lt;li&gt;Several separate pages of different kinds of links. These are actually articles with the links.&lt;/li&gt;
+&lt;li&gt;The Kunena Forums.&lt;/li&gt;
+&lt;li&gt;A Photo gallery that might be from RSGallery2 or JoomGallery.&lt;/li&gt;
+&lt;li&gt;The Phoca Downloads.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;While there are a bunch of Joomla! Modules that seem to be used to define the site organization,
+there is also a (simpler) tree of Assets.
+For the most part, it appears we need a &amp;quot;grep&amp;quot;-like tool to dig through the database looking for
+content.
+Then we can work out what appears to be the owning asset, bypassing many Joomla! complications.&lt;/p&gt;
+&lt;p&gt;Doing a grep on the raw data is actually kind of easy.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;raw&amp;quot; database has the following type definition:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+DBTable = list[db_model.DBModel]
+
+type Database = dict[str, DBTable]
+&lt;/pre&gt;
+&lt;p&gt;We can, then, use &lt;tt class="docutils literal"&gt;database.values()&lt;/tt&gt; to work all of the tables.
+And for each table, all of the string columns looking for relevant rows.
+It shapes up like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def row_match(pattern: Pattern, row: BaseModel) -&amp;gt; bool:
+    for name in row.model_fields_set:
+        val = getattr(row, name)
+        match val:
+            case str() as text if pattern.search(text):
+                return True
+            case _:
+                pass
+    return False
+&lt;/pre&gt;
+&lt;p&gt;Since the rows are based on &lt;tt class="docutils literal"&gt;pydantic.BaseModel&lt;/tt&gt;, we can introspect the columns and search the text-based columns to locate all rows that has a column matching the given pattern.
+We search all of them because there are columns with names like &amp;quot;title&amp;quot;, &amp;quot;name&amp;quot;, and &amp;quot;alias&amp;quot;, all of which seem to have potentially relevant values, and we don't know &lt;strong&gt;precisely&lt;/strong&gt; what the semantics of them are.
+Here's the containing function that wraps the &lt;tt class="docutils literal"&gt;row_match&lt;/tt&gt; function:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;staticmethod
+def execute(options: argparse.Namespace) -&amp;gt; None:
+    &amp;quot;&amp;quot;&amp;quot;
+    Search all str columns of all tables for the pattern.
+    &amp;quot;&amp;quot;&amp;quot;
+
+    # def row_match... (shown earlier)
+
+    database = load_db(options.source)
+
+    Grep.logger.info(&amp;quot;grep pattern %r&amp;quot;, options.pattern)
+    pattern = re.compile(options.pattern)
+    matcher = partial(row_match, pattern)
+    for cls in database:
+        # Could reuse :meth:`where` method for this
+        for match in filter(matcher, database[cls]):
+            print(type(match), shorten(repr(match), 128))
+&lt;/pre&gt;
+&lt;p&gt;This is a method of a &lt;tt class="docutils literal"&gt;Grep&lt;/tt&gt; command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Grep(Command):
+    &amp;quot;&amp;quot;&amp;quot;Make a grep-like search through the content.&amp;quot;&amp;quot;&amp;quot;
+    logger = logging.getLogger(&amp;quot;Grep&amp;quot;)
+
+    &amp;#64;staticmethod
+    def config_argparse(
+        subparsers: argparse._SubParsersAction, defaults: dict[str, Any]
+    ) -&amp;gt; None:
+        parsers_grep = subparsers.add_parser(&amp;quot;grep&amp;quot;, help=&amp;quot;grep all tables for a Regex&amp;quot;)
+        parsers_grep.add_argument(&amp;quot;--pattern&amp;quot;, &amp;quot;-p&amp;quot;, action=&amp;quot;store&amp;quot;, type=str)
+        Command.common_args(parsers_grep, defaults)
+        parsers_grep.set_defaults(command=Grep.execute)
+&lt;/pre&gt;
+&lt;p&gt;The abstract base class is defined like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Command(abc.ABC):
+    &amp;quot;&amp;quot;&amp;quot;CLI Command abstract base class.&amp;quot;&amp;quot;&amp;quot;
+
+    logger: logging.Logger
+
+    &amp;#64;staticmethod
+    &amp;#64;abc.abstractmethod
+    def config_argparse(
+        subparsers: argparse._SubParsersAction, defaults: dict[str, Any]
+    ) -&amp;gt; None: ...
+
+    &amp;#64;staticmethod
+    def common_args(parser: argparse.ArgumentParser, defaults: dict[str, Any]) -&amp;gt; None:
+        parser.add_argument(
+            &amp;quot;source&amp;quot;, action=&amp;quot;store&amp;quot;, type=Path, default=defaults.get(&amp;quot;source&amp;quot;)
+        )
+
+    &amp;#64;staticmethod
+    &amp;#64;abc.abstractmethod
+    def execute(options: argparse.Namespace) -&amp;gt; None: ...
+&lt;/pre&gt;
+&lt;p&gt;This provides a tidy package to wrap the &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; command so we can create a CLI to poke around in the database looking for the Home Page content, the various pages with narrowly-focused articles, and the specific articles with the links.&lt;/p&gt;
+&lt;p&gt;This isn't quite enough to locate all of the various forums and galleries.
+But it gets us started examining the content.
+There's more -- of course -- but it's all outside the realm of SQL processing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-path"&gt;
+&lt;h2&gt;The Path&lt;/h2&gt;
+&lt;p&gt;There are several steps on this path:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;SQL legacy data.&lt;/li&gt;
+&lt;li&gt;Python extract of SQL data.&lt;/li&gt;
+&lt;li&gt;Python structures without SQL complications of foreign keys. And -- more important -- with proper hierarchies.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/database_migration.png" /&gt;
+&lt;p class="caption"&gt;The migration path so far&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;These first few transformations aren't the goal, of course.&lt;/p&gt;
+&lt;p&gt;The goal is a directory tree of markdown and images that Hugo can transform into a static web site.
+The rest of the exploration and migration isn't SQL-related at all.
+It's a fairly complicated matter of finding the content and restating it in a form Hugo can work with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We started with a SQL database, and carefully set it aside.
+We wrote two small applications to get the data out of the SQL database.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;scan_db.py&lt;/tt&gt; -- extracts the table definitions and PlantUML descriptions from the database.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;extract_db.py&lt;/tt&gt; -- extracts the data, writing a TAR file of NDJSON documents with all the database rows.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once we had the data in a neutral form -- specifically NDJSON documents -- we could create
+alternative models for the data and preparation steps to populate those models.&lt;/p&gt;
+&lt;p&gt;This model is an integration part of exploring the data.
+This means the exploration application evolves until it becomes the migration application.&lt;/p&gt;
+&lt;p&gt;We start with a skeleton of &lt;tt class="docutils literal"&gt;view_content.py&lt;/tt&gt;.
+This is based on a number of &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; classes and a &lt;tt class="docutils literal"&gt;prepare_content()&lt;/tt&gt; function to get raw data organized into what appears to be a useful model.&lt;/p&gt;
+&lt;p&gt;The steps in this &lt;tt class="docutils literal"&gt;view_content.py&lt;/tt&gt; application (and the association &lt;tt class="docutils literal"&gt;model.py&lt;/tt&gt;) are free of SQL complications.&lt;/p&gt;
+&lt;p&gt;The conversion process has at least three parts:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Locate the relevant objects. Often, an instance of the &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; class does this.
+A relevant &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; instance doesn't seem to be universal, though.&lt;/li&gt;
+&lt;li&gt;Convert the objects for use by a static site generator like Hugo. This turns out to be pretty complicated.
+There are a number of distinct cases for the different kinds of content: articles, images, downloads, and forum topics.
+However, since we're done with SQL, these complications don't involve database queries.&lt;/li&gt;
+&lt;li&gt;Write needed &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; files so Hugo &lt;em&gt;Sections&lt;/em&gt; and &lt;em&gt;Page Bundles&lt;/em&gt; will mimic the legacy site's Joomla! presentation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part III</title><link href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html" rel="alternate"></link><published>2025-01-14T07:21:00-05:00</published><updated>2025-01-14T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-14:/2025-01-14_database_migration_part_iii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
 In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.&lt;/p&gt;
@@ -280,25 +442,17 @@ def prepare_content(database: Database) -&amp;gt; SimpleNamespace:
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part II</title><link href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html" rel="alternate"></link><published>2025-01-07T13:21:00-05:00</published><updated>2025-01-07T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-07:/2025-01-07_database_migration_part_ii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
 From this we created Python &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Column&lt;/tt&gt; objects that we used to record what we know about the data.
@@ -503,25 +657,17 @@ We have a reasonably transparent mapping because of this constraint.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part I</title><link href="https://slott56.github.io/2024-12-31_database_migration_part_i.html" rel="alternate"></link><published>2024-12-31T13:21:00-05:00</published><updated>2024-12-31T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-12-31:/2024-12-31_database_migration_part_i.html</id><summary type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This case study is about legacy database preservation: we want the data.
 We don't want the code.&lt;/p&gt;

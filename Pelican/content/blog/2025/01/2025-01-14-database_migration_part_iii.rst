@@ -10,19 +10,15 @@ Database Migration, Part III
 We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my *Unlearning SQL* book.
 
-..  sidebar::
+..  sidebar:: *Unlearning SQL*
 
-    -   KDP
-        https://www.amazon.com/dp/B0DDMFMXNW
+    KDP https://www.amazon.com/dp/B0DDMFMXNW
 
-    -   Lulu
-        https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&pageSize=4
+    Lulu https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&pageSize=4
 
-    -   Google Play
-        https://play.google.com/store/books/details?id=23WAEAAAQBAJ
+    Google Play https://play.google.com/store/books/details?id=23WAEAAAQBAJ
 
-    -   Apple Books
-        https://books.apple.com/us/book/unlearning-sql/id6443164060
+    Apple Books https://books.apple.com/us/book/unlearning-sql/id6443164060
 
 In `Part I <{filename}/blog/2024/12/2024-12-31-database_migration.rst>`_, we loaded a database and queried the metadata.
 In `Part II <{filename}/blog/2025/01/2025-01-07-database_migration_part_ii.rst>`_, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.

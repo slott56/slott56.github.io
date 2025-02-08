@@ -1,26 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-14T07:21:00-05:00</updated><entry><title>Database Migration, Part III</title><link href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html" rel="alternate"></link><published>2025-01-14T07:21:00-05:00</published><updated>2025-01-14T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-14:/2025-01-14_database_migration_part_iii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-21T07:21:00-05:00</updated><entry><title>Database Migration, Part IV</title><link href="https://slott56.github.io/2025-01-21_database_migration_part_iv.html" rel="alternate"></link><published>2025-01-21T07:21:00-05:00</published><updated>2025-01-21T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-21:/2025-01-21_database_migration_part_iv.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html"&gt;Part III&lt;/a&gt;, we prepared native Python objects that had a complete representation for the various kinds of tree structures.
+These include assets, categories, forum topics, image galleries, amongst other things.&lt;/p&gt;
+&lt;p&gt;We can now explore the details of the data, looking for the original content.&lt;/p&gt;
+&lt;div class="section" id="how-joomla-works"&gt;
+&lt;h2&gt;How Joomla! Works&lt;/h2&gt;
+&lt;p&gt;We're avoiding looking at the Jooml! elephant, wandering around the parlor.
+Yes, we &lt;strong&gt;could&lt;/strong&gt; reverse engineer the PHP to figure out how the database content is used to build the web site.
+We, however, don't much care about the details.&lt;/p&gt;
+&lt;p&gt;We have a pile of specific kinds of content we can see.
+This includes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A home page with a few articles.&lt;/li&gt;
+&lt;li&gt;A right sidebar with some articles.&lt;/li&gt;
+&lt;li&gt;A few pages with dozen or so narrowly-focused articles.&lt;/li&gt;
+&lt;li&gt;The master collection of articles, neatly organized by category.&lt;/li&gt;
+&lt;li&gt;Several separate pages of different kinds of links. These are actually articles with the links.&lt;/li&gt;
+&lt;li&gt;The Kunena Forums.&lt;/li&gt;
+&lt;li&gt;A Photo gallery that might be from RSGallery2 or JoomGallery.&lt;/li&gt;
+&lt;li&gt;The Phoca Downloads.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;While there are a bunch of Joomla! Modules that seem to be used to define the site organization,
+there is also a (simpler) tree of Assets.
+For the most part, it appears we need a &amp;quot;grep&amp;quot;-like tool to dig through the database looking for
+content.
+Then we can work out what appears to be the owning asset, bypassing many Joomla! complications.&lt;/p&gt;
+&lt;p&gt;Doing a grep on the raw data is actually kind of easy.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;raw&amp;quot; database has the following type definition:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+DBTable = list[db_model.DBModel]
+
+type Database = dict[str, DBTable]
+&lt;/pre&gt;
+&lt;p&gt;We can, then, use &lt;tt class="docutils literal"&gt;database.values()&lt;/tt&gt; to work all of the tables.
+And for each table, all of the string columns looking for relevant rows.
+It shapes up like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def row_match(pattern: Pattern, row: BaseModel) -&amp;gt; bool:
+    for name in row.model_fields_set:
+        val = getattr(row, name)
+        match val:
+            case str() as text if pattern.search(text):
+                return True
+            case _:
+                pass
+    return False
+&lt;/pre&gt;
+&lt;p&gt;Since the rows are based on &lt;tt class="docutils literal"&gt;pydantic.BaseModel&lt;/tt&gt;, we can introspect the columns and search the text-based columns to locate all rows that has a column matching the given pattern.
+We search all of them because there are columns with names like &amp;quot;title&amp;quot;, &amp;quot;name&amp;quot;, and &amp;quot;alias&amp;quot;, all of which seem to have potentially relevant values, and we don't know &lt;strong&gt;precisely&lt;/strong&gt; what the semantics of them are.
+Here's the containing function that wraps the &lt;tt class="docutils literal"&gt;row_match&lt;/tt&gt; function:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;staticmethod
+def execute(options: argparse.Namespace) -&amp;gt; None:
+    &amp;quot;&amp;quot;&amp;quot;
+    Search all str columns of all tables for the pattern.
+    &amp;quot;&amp;quot;&amp;quot;
+
+    # def row_match... (shown earlier)
+
+    database = load_db(options.source)
+
+    Grep.logger.info(&amp;quot;grep pattern %r&amp;quot;, options.pattern)
+    pattern = re.compile(options.pattern)
+    matcher = partial(row_match, pattern)
+    for cls in database:
+        # Could reuse :meth:`where` method for this
+        for match in filter(matcher, database[cls]):
+            print(type(match), shorten(repr(match), 128))
+&lt;/pre&gt;
+&lt;p&gt;This is a method of a &lt;tt class="docutils literal"&gt;Grep&lt;/tt&gt; command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Grep(Command):
+    &amp;quot;&amp;quot;&amp;quot;Make a grep-like search through the content.&amp;quot;&amp;quot;&amp;quot;
+    logger = logging.getLogger(&amp;quot;Grep&amp;quot;)
+
+    &amp;#64;staticmethod
+    def config_argparse(
+        subparsers: argparse._SubParsersAction, defaults: dict[str, Any]
+    ) -&amp;gt; None:
+        parsers_grep = subparsers.add_parser(&amp;quot;grep&amp;quot;, help=&amp;quot;grep all tables for a Regex&amp;quot;)
+        parsers_grep.add_argument(&amp;quot;--pattern&amp;quot;, &amp;quot;-p&amp;quot;, action=&amp;quot;store&amp;quot;, type=str)
+        Command.common_args(parsers_grep, defaults)
+        parsers_grep.set_defaults(command=Grep.execute)
+&lt;/pre&gt;
+&lt;p&gt;The abstract base class is defined like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Command(abc.ABC):
+    &amp;quot;&amp;quot;&amp;quot;CLI Command abstract base class.&amp;quot;&amp;quot;&amp;quot;
+
+    logger: logging.Logger
+
+    &amp;#64;staticmethod
+    &amp;#64;abc.abstractmethod
+    def config_argparse(
+        subparsers: argparse._SubParsersAction, defaults: dict[str, Any]
+    ) -&amp;gt; None: ...
+
+    &amp;#64;staticmethod
+    def common_args(parser: argparse.ArgumentParser, defaults: dict[str, Any]) -&amp;gt; None:
+        parser.add_argument(
+            &amp;quot;source&amp;quot;, action=&amp;quot;store&amp;quot;, type=Path, default=defaults.get(&amp;quot;source&amp;quot;)
+        )
+
+    &amp;#64;staticmethod
+    &amp;#64;abc.abstractmethod
+    def execute(options: argparse.Namespace) -&amp;gt; None: ...
+&lt;/pre&gt;
+&lt;p&gt;This provides a tidy package to wrap the &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; command so we can create a CLI to poke around in the database looking for the Home Page content, the various pages with narrowly-focused articles, and the specific articles with the links.&lt;/p&gt;
+&lt;p&gt;This isn't quite enough to locate all of the various forums and galleries.
+But it gets us started examining the content.
+There's more -- of course -- but it's all outside the realm of SQL processing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-path"&gt;
+&lt;h2&gt;The Path&lt;/h2&gt;
+&lt;p&gt;There are several steps on this path:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;SQL legacy data.&lt;/li&gt;
+&lt;li&gt;Python extract of SQL data.&lt;/li&gt;
+&lt;li&gt;Python structures without SQL complications of foreign keys. And -- more important -- with proper hierarchies.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/database_migration.png" /&gt;
+&lt;p class="caption"&gt;The migration path so far&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;These first few transformations aren't the goal, of course.&lt;/p&gt;
+&lt;p&gt;The goal is a directory tree of markdown and images that Hugo can transform into a static web site.
+The rest of the exploration and migration isn't SQL-related at all.
+It's a fairly complicated matter of finding the content and restating it in a form Hugo can work with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We started with a SQL database, and carefully set it aside.
+We wrote two small applications to get the data out of the SQL database.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;scan_db.py&lt;/tt&gt; -- extracts the table definitions and PlantUML descriptions from the database.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;extract_db.py&lt;/tt&gt; -- extracts the data, writing a TAR file of NDJSON documents with all the database rows.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once we had the data in a neutral form -- specifically NDJSON documents -- we could create
+alternative models for the data and preparation steps to populate those models.&lt;/p&gt;
+&lt;p&gt;This model is an integration part of exploring the data.
+This means the exploration application evolves until it becomes the migration application.&lt;/p&gt;
+&lt;p&gt;We start with a skeleton of &lt;tt class="docutils literal"&gt;view_content.py&lt;/tt&gt;.
+This is based on a number of &lt;tt class="docutils literal"&gt;Builder&lt;/tt&gt; classes and a &lt;tt class="docutils literal"&gt;prepare_content()&lt;/tt&gt; function to get raw data organized into what appears to be a useful model.&lt;/p&gt;
+&lt;p&gt;The steps in this &lt;tt class="docutils literal"&gt;view_content.py&lt;/tt&gt; application (and the association &lt;tt class="docutils literal"&gt;model.py&lt;/tt&gt;) are free of SQL complications.&lt;/p&gt;
+&lt;p&gt;The conversion process has at least three parts:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Locate the relevant objects. Often, an instance of the &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; class does this.
+A relevant &lt;tt class="docutils literal"&gt;Assets&lt;/tt&gt; instance doesn't seem to be universal, though.&lt;/li&gt;
+&lt;li&gt;Convert the objects for use by a static site generator like Hugo. This turns out to be pretty complicated.
+There are a number of distinct cases for the different kinds of content: articles, images, downloads, and forum topics.
+However, since we're done with SQL, these complications don't involve database queries.&lt;/li&gt;
+&lt;li&gt;Write needed &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; files so Hugo &lt;em&gt;Sections&lt;/em&gt; and &lt;em&gt;Page Bundles&lt;/em&gt; will mimic the legacy site's Joomla! presentation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part III</title><link href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html" rel="alternate"></link><published>2025-01-14T07:21:00-05:00</published><updated>2025-01-14T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-14:/2025-01-14_database_migration_part_iii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
 In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.&lt;/p&gt;
@@ -280,25 +442,17 @@ def prepare_content(database: Database) -&amp;gt; SimpleNamespace:
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part II</title><link href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html" rel="alternate"></link><published>2025-01-07T13:21:00-05:00</published><updated>2025-01-07T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-07:/2025-01-07_database_migration_part_ii.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
 From this we created Python &lt;tt class="docutils literal"&gt;Table&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Column&lt;/tt&gt; objects that we used to record what we know about the data.
@@ -503,25 +657,17 @@ We have a reasonably transparent mapping because of this constraint.&lt;/p&gt;
 </content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category></entry><entry><title>Database Migration, Part I</title><link href="https://slott56.github.io/2024-12-31_database_migration_part_i.html" rel="alternate"></link><published>2024-12-31T13:21:00-05:00</published><updated>2024-12-31T13:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-12-31:/2024-12-31_database_migration_part_i.html</id><summary type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play …&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
-&lt;ul class="first last simple"&gt;
-&lt;li&gt;KDP
-&lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lulu
-&lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google Play
-&lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Apple Books
-&lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This case study is about legacy database preservation: we want the data.
 We don't want the code.&lt;/p&gt;
@@ -11576,195 +11722,4 @@ dive into details, we uncover multiple responsibilities. The further we
 descend into implementation details the more responsibilities we
 uncover. I prefer to consider this a poetic summary, not the first step
 in reviewing a design.&lt;/p&gt;
-</content><category term="Architecture &amp; Design"></category><category term="Design Principles"></category><category term="OO design"></category><category term="SOLID"></category></entry><entry><title>How can people find inspiration at work? #CreateMeaning</title><link href="https://slott56.github.io/2021_07_20-how_can_people_find_inspiration_at_work_createmeaning.html" rel="alternate"></link><published>2021-07-20T09:00:00-04:00</published><updated>2021-07-20T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-07-20:/2021_07_20-how_can_people_find_inspiration_at_work_createmeaning.html</id><summary type="html">&lt;p&gt;What do I know about &amp;quot;inspiration&amp;quot; at work? I'm not sure I know much,
-but I think I may have some advice that could be useful.&lt;/p&gt;
-&lt;p&gt;I was in the high-tech write-software-every-day workplace since about
-1976 or so. (The first two years were part-time while in college.) I use
-past …&lt;/p&gt;</summary><content type="html">&lt;p&gt;What do I know about &amp;quot;inspiration&amp;quot; at work? I'm not sure I know much,
-but I think I may have some advice that could be useful.&lt;/p&gt;
-&lt;p&gt;I was in the high-tech write-software-every-day workplace since about
-1976 or so. (The first two years were part-time while in college.) I use
-past perfect &amp;quot;was&amp;quot; because I'm old enough (and lucky enough) to be able
-to retire from daily work. I've switched from writing code to writing
-books about writing code.&lt;/p&gt;
-&lt;p&gt;For the math-impaired, my software career spanned 45 years.&lt;/p&gt;
-&lt;p&gt;Early in this career, the question of finding inspiration at work wasn't
-asked in the same stark way people discuss it nowadays. When I was
-younger, the idea of maintaining a work/life balance wasn't something we
-were asked or encouraged to consider. We did the best we could and tried
-to avoid getting replaced by someone who could do it better.&lt;/p&gt;
-&lt;p&gt;Which -- with the advantages of hind-sight -- was a terrible way to live
-and work. Simply awful. I was lucky enough to see hundreds of projects
-in my working career. I worked with scores of different organizations.
-There was a spectrum of bad behavior.&lt;/p&gt;
-&lt;p&gt;I did learn this: &lt;strong&gt;Fear is not Inspiring&lt;/strong&gt;. I learned a few other
-things, but let's start with fear.&lt;/p&gt;
-&lt;div class="section" id="the-fear-factor"&gt;
-&lt;h2&gt;The Fear Factor&lt;/h2&gt;
-&lt;p&gt;I want to dwell a bit on the fear factor in the workplace. I'm firmly
-convinced that some manager types suffer with a nagging background of
-essential fear for their own jobs. And they can project this fear onto
-folks around them.&lt;/p&gt;
-&lt;p&gt;Try these shoes on for a moment. The technology has moved on and you
-haven't kept up. You're trying to manage people, but you have a nagging
-suspicion your core managerial skills are weak enough that you could be
-replaced. Motivated by fear, you encourage &amp;quot;casual overtime&amp;quot; and
-&amp;quot;working weekends&amp;quot; and &amp;quot;meeting the committed schedule&amp;quot;. Perhaps you
-feel it necessary to go so far as to demand these things.&lt;/p&gt;
-&lt;p&gt;Fear of getting fired creates an uninspiring place to work. It will be
-an incubator for burnout.&lt;/p&gt;
-&lt;p&gt;Further, I suspect it can lead to worse situations than people quitting.
-I think the &amp;quot;work a little harder&amp;quot; folks plant seeds for various kinds
-of workplace abuses.&lt;/p&gt;
-&lt;p&gt;I think there are a variety of fears. The fear of getting fired is at
-the bottom of Maslow's hierarchy of needs: we could get fired, and be
-unable to get another job. We're in the Physiological and Safety realm
-of the needs pyramid.&lt;/p&gt;
-&lt;p&gt;A fear of a project not working out means we'll tumble in the eyes of
-more senior management. This is somewhere in the higher level of Social
-Belonging and Esteem needs. The problem is that projects have a variety
-of metrics, and simply making the schedule is an easy metric and can
-seem to lead to immediate esteem.&lt;/p&gt;
-&lt;p&gt;What about higher level cognitive needs like Self-actualization and
-Transcendence? I strongly suspect fears related to these needs can color
-someone's workplace. I think these often show up as &amp;quot;Am I really going
-to be doing this for the Rest of My Life?&amp;quot; questions. This becomes an
-undercurrent of negativity stemming from fear of being trapped in
-unfulfilling work.&lt;/p&gt;
-&lt;p&gt;We might see these fears in several places. We each harbor our own
-private fears. In any organization with a hierarchy, we'll have to deal
-with fears that trickle down to us from supervisors. In non-hierarchical
-organizations, we'll have to deal with fears of our peers and
-colleagues. We're surrounded by fears, and I think this can sap our
-inspiration.&lt;/p&gt;
-&lt;p&gt;What can we do to find inspiration in a work environment?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="my-experience"&gt;
-&lt;h2&gt;My Experience&lt;/h2&gt;
-&lt;p&gt;I've worked on hundreds of projects. That means hundreds of jobs that
-came to an end. And when the project ended, I was no longer needed.&lt;/p&gt;
-&lt;p&gt;In effect, I was fired hundreds of times.&lt;/p&gt;
-&lt;p&gt;This isn't a helpful thing. If Maslow's base physiological needs are
-met, then having a project end isn't too horrible. I was a contract
-programmer in the olden days when we were salaried, and the company
-would carry us from assignment to assignment. Being let go by a customer
-can be harsh, but getting paid in spite of being let go softens the
-blow.&lt;/p&gt;
-&lt;p&gt;I emphatically do not recommend this way of working as a source of
-inspiration. Some people like the constant changing gears and changing
-directions. Other people might find it terrifying: each project is a
-whole new group of people in a new organization. Potentially very
-unsettling.&lt;/p&gt;
-&lt;p&gt;I don't think the &amp;quot;get tougher&amp;quot; or &amp;quot;grow thicker skin&amp;quot; advice is good.
-I'm don't think it worked out for me. I think this kind of transience
-left me feeling isolated. I think it lead me to carry around a sense of
-superiority. So. Let's set aside any dumb-sounding advice based on a
-literal review of my experience.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="how-did-i-cope"&gt;
-&lt;h2&gt;How Did I Cope?&lt;/h2&gt;
-&lt;p&gt;Finding ways to cope, I think, is important, but it is also potentially
-misleading. The idea of &lt;strong&gt;coping&lt;/strong&gt; with new projects, new organizations,
-travel, and getting fired all the time isn't inspiring. It's merely
-coping with an endless stream of loss and separation.&lt;/p&gt;
-&lt;p&gt;Underpinning the idea of coping is a more foundational question. Where
-did I find the inspiration to keep on doing this contract programming
-thing for so many years? And the other question is how well my search
-for inspiration might apply to folks who aren't commuting computer
-programmers?&lt;/p&gt;
-&lt;p&gt;I think there's a first step that many people can take. It's this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;strong&gt;We can disentangle our self-worth from the work-place imposed sense of worth.&lt;/strong&gt;&lt;/blockquote&gt;
-&lt;p&gt;This may be overly glib. But. I think the things rewarded in the
-workplace aren't a good reflection of who we are and what we're capable
-of. While it's important to be confident in one's self, our confidence
-can be undermined by a toxic workplace. Having confidence can let us
-take our skills and abilities in a variety of directions. We might, for
-example, decide to find another workplace; one where our value is
-recognized. Or, we might decide to change our circumstances in the
-workplace we're currently inhabiting. In both cases, we're asserting our
-value. We're making a further claim about our value: we may not match
-the workplace's expectations of us. The workplace can change, or we can
-find another workplace.&lt;/p&gt;
-&lt;p&gt;We might see a mismatch in lousy performance reviews. These can can stem
-from many causes. Perhaps we're not suited for a job and need to find
-something else. Or, perhaps the person reviewing our work doesn't see
-what we could (or should) be doing. (They have their own fears, and they
-may not be willing to try to make the changes we'd like them to make.)&lt;/p&gt;
-&lt;p&gt;Looking back, I may have been doing this all along, without being clear
-or intentional about it. Perhaps I excelled at places that valued me,
-and failed to meet expectations at places that treated me poorly.
-Perhaps my job shifting was (in an indirect way) a search for a
-workplace that valued me, my unique experiences, and my distinctive
-voice.&lt;/p&gt;
-&lt;p&gt;I was not intentional about it. I stumbled from job to job, knowing the
-sales folks would find me a next assignment when the current assignment
-had run its course. I think a vague sense of self-worth is what lead me
-to locating inspiration in spite of a lot of change and disruption.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="finding-inspiration"&gt;
-&lt;h2&gt;Finding Inspiration&lt;/h2&gt;
-&lt;p&gt;When we think of inspiration, we think of a spiritual drive to do the
-work. This doesn't often parallel with working for pay to cover rent and
-expenses.&lt;/p&gt;
-&lt;p&gt;A good manager, however, can create a cohesive team from a group of
-people. A group of peers can welcome a new colleague. This creates
-belonging and esteem: the middle levels of Maslow's hierarchy of needs.
-We may find that a team or a team's goal may be inspiring. This means
-that our own self-worth is recognized and valued by our co-workers. This
-can be a marvelous experience.&lt;/p&gt;
-&lt;p&gt;What about the bad manager or unhelpful group of colleagues? In this
-cases, we're forced to make the best of an awkward situation. I think we
-can do this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;strong&gt;We can search for inspiration at the margins of our work life.&lt;/strong&gt;&lt;/blockquote&gt;
-&lt;p&gt;Can we find some side-bar aspect of the work that leads to some helpful
-insights? Perhaps there is a chronic problem we can take notes on and --
-eventually -- fix. Perhaps someone is less helpful that others, and we
-can try to understand what would make them less toxic. Perhaps cleaning
-the break-room fridge is better than complaining about month-old food.
-(Yuck. But. If things are better, it may be worth it.)&lt;/p&gt;
-&lt;p&gt;For years, I had an aspiration to write about software development. To
-further this dream, I started taking more and more careful notes of
-projects I was on. In the era before the World Wide Web, publication was
-difficult, but not impossible. I wrote small articles for technical
-magazines; this effort was something that inspired me to work with
-customers who were inept and had horrible, horrible problems. I liked
-the awful customers because it provided me good examples of things that
-should not be done.&lt;/p&gt;
-&lt;p&gt;At the end of a horrible project, I'd have a good anecdote for what not
-to do.&lt;/p&gt;
-&lt;p&gt;I acknowledge my two ideas of self worth and inspiration isn't a
-dramatic, life-changing epiphany. I'm pretty sure the scales won't fall
-from anyone's eyes as they think about looking at sidebar topics as a
-source of inspiration.&lt;/p&gt;
-&lt;p&gt;Looking at the margins, edges, and corners of a job can help to reveal
-the whole job. The whole team. The whole goal. Finding this broader view
-might inspire us to look for a better team with better goals. In other
-cases, it might help us find the missing skills in the team we're on. In
-other cases, a better perspective might help us steer our supervisor
-toward doing something that's better than what they're doing right now.&lt;/p&gt;
-&lt;p&gt;There are very fine lines between toxic, poorly organized, poorly
-managed, confusing work places, and workplaces that are still trying to
-find a workable organization. Most places have a combination of good and
-bad, inept and well-done, confusing and sensible features. Indeed, these
-may all be different axes and an organization is really a
-multi-dimensional object with different kinds of overlaps and gaps.&lt;/p&gt;
-&lt;p&gt;I believe the foundation for inspiration is a clear sense of self-worth.
-I think we create meaning in our workplace by knowing what we can
-contribute, what we want to contribute, and what the organization needs.
-Our unique contribution and what the organization needs may not overlap
-at all, or the organization may have always been searching for someone
-like us. Either way, our awareness of our skills, our experience, and
-our authentic voice is what lets us find inspiration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="great-article-steve-i-have-had-similar-thoughts-o"&gt;
-&lt;h2&gt;Great article Steve. I have had similar thoughts o...&lt;/h2&gt;
-&lt;p&gt;Dunn Family&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2021-07-29 09:18:19.089000-04:00&lt;/p&gt;
-&lt;p&gt;Great article Steve. I have had similar thoughts over the years as I saw
-how various organizations / departments valued or didn't value the
-people that worked in them.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="career"></category><category term="#CreateMeaning"></category><category term="work-life"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="Design Principles"></category><category term="OO design"></category><category term="SOLID"></category></entry></feed>

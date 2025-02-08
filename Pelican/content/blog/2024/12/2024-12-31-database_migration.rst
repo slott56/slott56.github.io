@@ -10,20 +10,15 @@ Database Migration, Part I
 Let's talk about extracting data from complex relational databases.
 This is -- in a way -- another case study for my Unlearning SQL book.
 
-..  sidebar::
+..  sidebar:: *Unlearning SQL*
 
-    -   KDP
-        https://www.amazon.com/dp/B0DDMFMXNW
+    KDP https://www.amazon.com/dp/B0DDMFMXNW
 
-    -   Lulu
-        https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&pageSize=4
+    Lulu https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&pageSize=4
 
-    -   Google Play
-        https://play.google.com/store/books/details?id=23WAEAAAQBAJ
+    Google Play https://play.google.com/store/books/details?id=23WAEAAAQBAJ
 
-    -   Apple Books
-        https://books.apple.com/us/book/unlearning-sql/id6443164060
-
+    Apple Books https://books.apple.com/us/book/unlearning-sql/id6443164060
 
 This case study is about legacy database preservation: we want the data.
 We don't want the code.

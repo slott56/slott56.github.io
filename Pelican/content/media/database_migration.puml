@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+    package "legacy content" {
+        file "db_export.sql" as sql <<SQL export>>
+        database "temp_db"
+        sql --> temp_db  : "creates"
+        file "images.zip"
+        file "attachments.zip"
+        file "userupload.zip"
+    }
+
+    [scan_db.py] --> [db_model.py] : "creates"
+    temp_db ---> [scan_db.py]
+
+    temp_db ---> [export_db.py]
+
+    package "interim content" {
+        file content <<tar>> {
+            file  assets <<NDJSON>>
+            file  categories  <<NDJSON>>
+        }
+        file "images.zip" as i2
+        file "attachments.zip" as a2
+        file "userupload.zip" as u2
+
+        [export_db.py] ---> content : "creates"
+    }
+
+    [export_db.py] .> [db_model.py] : "import"
+
+    "interim content" ----> [explore.py]
+    [model.py] <. [explore.py] : "import"
+@enduml
