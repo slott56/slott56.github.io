@@ -1,5 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-01-21T07:21:00-05:00</updated><entry><title>Database Migration, Part IV</title><link href="https://slott56.github.io/2025-01-21_database_migration_part_iv.html" rel="alternate"></link><published>2025-01-21T07:21:00-05:00</published><updated>2025-01-21T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-21:/2025-01-21_database_migration_part_iv.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-03-11T15:52:00-04:00</updated><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
+Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
+&lt;p&gt;There are a few cases where a DSL can be …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
+Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
+&lt;p&gt;There are a few cases where a DSL can be handy.&lt;/p&gt;
+&lt;p&gt;One of which is when embedding complicated content in Gherkin test cases.&lt;/p&gt;
+&lt;p&gt;(We'll get the context later. I want to focus on the problem at hand.)&lt;/p&gt;
+&lt;p&gt;We need to write Gherkin that looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;GIVEN some configuration&lt;/span&gt;
+&lt;span class="nf"&gt;WHEN we run the Character UI with input of &amp;quot;&lt;/span&gt;&lt;span class="s"&gt;...&lt;/span&gt;&lt;span class="nf"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nf"&gt;THEN we see the right kind of responses in the log and what-not&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What's essential here is the input to the Character UI (CUI).
+It's a sequence of characters.&lt;/p&gt;
+&lt;p&gt;In Python, it might be &lt;tt class="docutils literal"&gt;&amp;quot;o&amp;quot; + &lt;span class="pre"&gt;2*&amp;quot;mu&amp;quot;&lt;/span&gt; + &amp;quot;i&amp;quot; + &amp;quot;qy&amp;quot;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The idea is to provide a meaningful sequence of commands for the given scenario.&lt;/p&gt;
+&lt;p&gt;Except, of course, Gherkin isn't Python.&lt;/p&gt;
+&lt;p&gt;We have two choices:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; to evaluate a Python expression.&lt;/li&gt;
+&lt;li&gt;Use a DSL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since this is a test scenario, the ridiculous arguments about &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; being &amp;quot;unsafe&amp;quot; are clearly worthy of ridicule.
+Any Evil Super Genius capable of writing a Gerkin test case that includes &lt;tt class="docutils literal"&gt;import os&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;import subprocess&lt;/tt&gt; has access to the source code and doesn't need to subvert the Gherkin language test scenarios.&lt;/p&gt;
+&lt;p&gt;While &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; is appealing because it's simple, it's not always ideal.
+In particular, some of the scenarios are long, and the sequence of input commands needs some supplemental information to follow through the actions and the responses to work out what the expected intermediate and final states will be.&lt;/p&gt;
+&lt;div class="section" id="the-context"&gt;
+&lt;h2&gt;The Context&lt;/h2&gt;
+&lt;p&gt;I'm working on a Rogue-Like game. The test scenarious involve walking around and collecting treasure,
+bashing monsters, and avoiding traps.
+The interactions aren't too complicated, but, I'd like these Gherkin-based acceptance tests to involve an absolute minimum of specialized test harness.
+A code tweak to seed the random number generator seems to be all that's appropriate.&lt;/p&gt;
+&lt;p&gt;In the long run, there's a potential to work through some clear definitions of the various features of the game using RDF.
+SPARQL queries might provide ways to locate the features of items or behaviors of monsters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-complication"&gt;
+&lt;h2&gt;The Complication&lt;/h2&gt;
+&lt;p&gt;What we want to have is something like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+o                          ⍝ acknowledge splash
+room 1≔ ⟨m l⟩×4 ⟨m u⟩×2 i  ⍝ to the room exit
+hall 1≔ ⟨m u⟩×5 i          ⍝ to the next room entrance
+done≔ q y
+&lt;/pre&gt;
+&lt;p&gt;We've wrapped the essential commands in a bunch of syntax to make the commands a bit more clear.
+I can include a label at the left end of the line, and a &amp;quot;comment&amp;quot; on the right end.&lt;/p&gt;
+&lt;p&gt;Here's what's tricky.&lt;/p&gt;
+&lt;p&gt;The test case string will contain &lt;em&gt;almost&lt;/em&gt; any ASCII character found on the keyboard.
+We don't want to have a lot of meta-punctuation that's &lt;strong&gt;also&lt;/strong&gt; on the keyboard.&lt;/p&gt;
+&lt;p&gt;This bumps into the same problem the classic Regular Expression language suffers from.
+We want to match characters.
+And we need the same set of characters to have meta-level meanings.
+Sometimes &lt;tt class="docutils literal"&gt;.&lt;/tt&gt; means the damn dot.  Sometimes &lt;tt class="docutils literal"&gt;.&lt;/tt&gt; means &amp;quot;any&amp;quot; character.
+So we have to use &lt;tt class="docutils literal"&gt;\.&lt;/tt&gt; vs. &lt;tt class="docutils literal"&gt;.&lt;/tt&gt;  to express the distinction.&lt;/p&gt;
+&lt;p&gt;I decided to do this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-unicode"&gt;
+&lt;h2&gt;Use Unicode&lt;/h2&gt;
+&lt;p&gt;I could wrestle with some &amp;quot;meta&amp;quot; characters for grouping and repetition.
+Indeed, I could parse the ordinar Regular Expression language.
+These are -- technically -- regular expressions that summarize long strings of characters for the test cases.&lt;/p&gt;
+&lt;p&gt;Or.&lt;/p&gt;
+&lt;p&gt;I could use a few Unicode characters separate from the ASCII keyboard characters that would be input.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;⟨ and ⟩ (MATHEMATICAL LEFT ANGLE BRACKET, and MATHEMATICAL RIGHT ANGLE BRACKET)&lt;/li&gt;
+&lt;li&gt;× (MULTIPLICATION SIGN)&lt;/li&gt;
+&lt;li&gt;≔ and ⍝ (COLON EQUALS, and APL FUNCTIONAL SYMBOL UP SHOE JOT)&lt;/li&gt;
+&lt;li&gt;␛, ␠, ␤ for Escape, Space, and Newline.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These eight additional characters are not on the keyboard.
+The game will never use these as input.
+I don't need to use fancy escape sequences to distinguish these meta-characters from the ASCII characters that are being generated.
+These few characters are difficult to type: you have to pluck them off the Unicode character pop-up window that Macos offers you.&lt;/p&gt;
+&lt;p&gt;The code to handle the Gherkin doesn't have to fuss around with hyper-complex-looking regular expressions to parse this DSL.
+The allowed input characters are &lt;tt class="docutils literal"&gt;.&lt;/tt&gt; and the meta-characters are simply presented as literal values in the regular expression.
+(As noted above, this DSL is a regular expression language. It's highly limited.)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="domain-specific language"></category><category term="dsl"></category></entry><entry><title>Joomla Conversion</title><link href="https://slott56.github.io/2025-02-08-joomla_conversion.html" rel="alternate"></link><published>2025-02-08T08:52:00-05:00</published><updated>2025-02-08T08:52:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-02-08:/2025-02-08-joomla_conversion.html</id><summary type="html">&lt;p&gt;Recently, we talked about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.
+This is a description of what comes next after the &amp;quot;low-level&amp;quot; conversion.
+Warning: it's complicated.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BLUF&lt;/strong&gt;: Take the time to get rid of SQL processing.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL …&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Recently, we talked about extracting data from complex relational databases.
+This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.
+This is a description of what comes next after the &amp;quot;low-level&amp;quot; conversion.
+Warning: it's complicated.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BLUF&lt;/strong&gt;: Take the time to get rid of SQL processing.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;KDP &lt;a class="reference external" href="https://www.amazon.com/dp/B0DDMFMXNW"&gt;https://www.amazon.com/dp/B0DDMFMXNW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lulu &lt;a class="reference external" href="https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4"&gt;https://www.lulu.com/shop/steven-lott/unlearning-sql/paperback/product-yvnm8zn.html?page=1&amp;amp;pageSize=4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Google Play &lt;a class="reference external" href="https://play.google.com/store/books/details?id=23WAEAAAQBAJ"&gt;https://play.google.com/store/books/details?id=23WAEAAAQBAJ&lt;/a&gt;&lt;/p&gt;
+&lt;p class="last"&gt;Apple Books &lt;a class="reference external" href="https://books.apple.com/us/book/unlearning-sql/id6443164060"&gt;https://books.apple.com/us/book/unlearning-sql/id6443164060&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2024-12-31_database_migration_part_i.html"&gt;Part I&lt;/a&gt;, we loaded a database and queried the metadata.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-07_database_migration_part_ii.html"&gt;Part II&lt;/a&gt;, we extracted the raw tables and loaded up a TAR Archive with NDJSON documents.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-14_database_migration_part_iii.html"&gt;Part III&lt;/a&gt;, we prepared native Python objects that had a complete representation for the various kinds of tree structures.
+These include assets, categories, forum topics, image galleries, amongst other things.
+In &lt;a class="reference external" href="https://slott56.github.io/2025-01-21_database_migration_part_iv.html"&gt;Part IV&lt;/a&gt;, we talked about some applications to examine the converted data, looking for useful values, keys, and relationships.&lt;/p&gt;
+&lt;p&gt;We're going to skip a lot of the icky Joomla! details and focus on how to create something potentially useful.&lt;/p&gt;
+&lt;div class="section" id="the-goal"&gt;
+&lt;h2&gt;The Goal&lt;/h2&gt;
+&lt;p&gt;Recall from Part IV, we thought we had several steaming heaps of content on the legacy site.
+After exploration, we think we have the following:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A home page with a few articles.&lt;/li&gt;
+&lt;li&gt;A right sidebar with two articles.&lt;/li&gt;
+&lt;li&gt;A few content pages, each of which has links to a dozen or so narrowly-focused articles in a few categories.&lt;/li&gt;
+&lt;li&gt;The master collection of articles, neatly organized by category. There's a hierarchy here, a SQL nightmare we've avoided by restructuring the data.&lt;/li&gt;
+&lt;li&gt;The Kunena forums collection categories, topics, and messages. There's a hierarchy here, another SQL nightmare.&lt;/li&gt;
+&lt;li&gt;The JoomGallery collection of images. Hierarchy.&lt;/li&gt;
+&lt;li&gt;The Phoca collection of download files. You guessed it, another hierarchy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These aren't the only hierarchues.
+Menus, modules, and assets have very tangled relationships, also.
+These are a SQL-query nightmare that we've turned into simple Python references among objects.&lt;/p&gt;
+&lt;p&gt;There's more, of course.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A hoard of Yahoo message-board posts which are not first-class parts of Joomla! but are first-class content.&lt;/li&gt;
+&lt;li&gt;Scans of the old paper newsletters. These, too, are not first-class parts of Joomla!, but are clearly very important content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We'd like to dump all of this into a form that the &lt;a class="reference external" href="https://gohugo.io"&gt;Hugo&lt;/a&gt; tool can use to approximate the original site's content and structure.
+We're not going to spend too much time on the original look and feel; we can fuss with CSS to maybe match the color scheme.&lt;/p&gt;
+&lt;p&gt;What we've got are two separate kinds of things in the resulting site:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &amp;quot;pages&amp;quot; which are Hugo Page Bundles with an &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; and maybe some image resources.
+Each article becomes a page.
+In the case of the Home page -- which has multiple articles plastered onto it -- we will need a special-case template to include the bodies of multiple articles in one place.
+The Yahoo! messages are -- essentially -- articles that require some extra effort to convert.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;collections&amp;quot; which are Hugo Sections, using an empty &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; and a section-index generated by the template.
+The old newsletters are little more than downloads; these &lt;em&gt;should&lt;/em&gt; be handled gracefully as a collection of Page Bundles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We've also got some things we're going to set aside.
+Specifically, the right side-bar for articles is a waste of screen real-estate.
+It's not present for Forum or Photo Gallery.&lt;/p&gt;
+&lt;p&gt;Many of the Hugo themes have a 3-column look: the top-level menu is on the left, and the page table-of-contents is on the right.
+This seems to be somewhat more useful.
+One very spare Hugo theme is the &lt;a class="reference external" href="https://themes.gohugo.io/themes/hugo-book"&gt;Book&lt;/a&gt; theme, which seems like a good place to start.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-processes"&gt;
+&lt;h2&gt;The Processes&lt;/h2&gt;
+&lt;p&gt;There are two separate kinds of migration processes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Bulk migration of the collections.  We have four, separate, unique subclasses.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The Converter Class Hierarchy" src="https://slott56.github.io/media/joomla_bulk.png" /&gt;
+&lt;p class="caption"&gt;The Converter Class Hierarchy&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Create the top-level pages that match the various pages of articles on the legacy site.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The MakePage Class Hierarchy" src="https://slott56.github.io/media/joomla_makepage.png" /&gt;
+&lt;p class="caption"&gt;The MakePage Class Hierarchy&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that the pages depend on the bulk-conversion results.
+The new path structure and new file names, and other details are (more-or-less) encapsulated in the converter classes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="things-that-aren-t-easy"&gt;
+&lt;h2&gt;Things That Aren't Easy&lt;/h2&gt;
+&lt;p&gt;While Hugo handles a large number of special cases and exceptions gracefully, we have legacy content that's a bit of a mess.
+Some of the mess may be my inability to ferret out all of the details of the Joomla! data model.
+Other aspects of the mess also seem to be a result of the way Joomla! decides what's &amp;quot;published&amp;quot; and what's not &amp;quot;published.&amp;quot;&lt;/p&gt;
+&lt;p&gt;First, and most obvious, we have HTML content.
+We can -- if we want -- generate HTML pages and leave the details to Hugo.
+In the long run, we'd like to move away from HTML.
+We'd really like to emphasize Markdown and make HTML an exception.&lt;/p&gt;
+&lt;p&gt;To do this, we state each page uses markdown, and wrap the HTML in &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;{{&amp;lt;html&amp;gt;}}...{{&amp;lt;/html&amp;gt;}}&lt;/span&gt;&lt;/tt&gt; &amp;quot;short tags&amp;quot;.
+This is -- well -- ugly.
+It sequesters the HTML in those few places where it's used.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;descriptions for galleries and downloads.&lt;/li&gt;
+&lt;li&gt;articles.&lt;/li&gt;
+&lt;li&gt;forum messages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It means a lot of code like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+print()
+print(&amp;quot;{{&amp;lt;html&amp;gt;}}&amp;quot;, article.fulltext, &amp;quot;{{&amp;lt;/html&amp;gt;}}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This gets us started with &amp;quot;safe&amp;quot; HTML everywhere.
+We can see a great deal of the site with this hack.&lt;/p&gt;
+&lt;p&gt;Hugo leaves HTML comments in places where unsafe HTML shows up.
+We can look for &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;lt;!--&lt;/span&gt; raw HTML omitted &lt;span class="pre"&gt;--&amp;gt;&lt;/span&gt;&lt;/tt&gt; in the generated HTML and include needed wrappers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="embedded-images-and-links"&gt;
+&lt;h2&gt;Embedded Images and Links&lt;/h2&gt;
+&lt;p&gt;There are two kinds of links that show up in articles, descriptions, and forum messages:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;&amp;lt;a &lt;span class="pre"&gt;href=&amp;quot;...&amp;quot;&amp;gt;&lt;/span&gt;&lt;/tt&gt; tags&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;&amp;lt;img &lt;span class="pre"&gt;src=&amp;quot;...&amp;quot;&amp;gt;&lt;/span&gt;&lt;/tt&gt; tags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These have a variety of forms:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Proper external references with a scheme and/or a &amp;quot;netloc&amp;quot; (host name.)&lt;/li&gt;
+&lt;li&gt;Redundant internal references with a scheme and netloc of the server currently hosting the legacy content.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;index.php?...&lt;/span&gt;&lt;/tt&gt; queries.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;#fragment&lt;/tt&gt; fragements of the current page.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;local/path/to/content&lt;/tt&gt; paths into the legacy site content.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;userupload/whatever&lt;/tt&gt; paths into the local directory tree outside what Joomla! manages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These devolve to three functions for link rewriting algorithms.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A filter to distinguish between &amp;quot;don't bother&amp;quot;, &amp;quot;query&amp;quot;, and &amp;quot;path&amp;quot; cases.
+A URL with a scheme or netloc (or both) is ignored.
+A URL that's only a fragment is also ignored.
+(We could try to clean up the fragments, but, there aren't many and they require divining the author's intent, something that's hard to automate.)&lt;/li&gt;
+&lt;li&gt;A function to rewrite the Joomla! queries into paths into the new content structure.&lt;/li&gt;
+&lt;li&gt;A function to examine the various paths that are used and restate these as part of the new content structure.
+Because we have four kinds of collections, plus the local filesystem references, we have a number of &amp;quot;search&amp;quot; functions for this case:&lt;ul&gt;
+&lt;li&gt;search galleries&lt;/li&gt;
+&lt;li&gt;search articles&lt;/li&gt;
+&lt;li&gt;search downloads&lt;/li&gt;
+&lt;li&gt;search forums&lt;/li&gt;
+&lt;li&gt;search image archive files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes. This is a &lt;strong&gt;large&lt;/strong&gt; pain.
+While there is some overlap, each collection is unique with unique names and a distinct resulting tree in the new content.
+No, there's no trivial way to impose a single, unifying, &amp;quot;one-ring-to-rule-them-all&amp;quot; content structure.
+The whole point is to respect the unique features of each category of content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-else-oh-right-section-index"&gt;
+&lt;h2&gt;What Else? Oh, Right, Section Index&lt;/h2&gt;
+&lt;p&gt;The Book theme doesn't (by default) include section indexes as a default structure.&lt;/p&gt;
+&lt;p&gt;If there's a &lt;tt class="docutils literal"&gt;layout/_defaults/section.html&lt;/tt&gt;, this is used for those &lt;tt class="docutils literal"&gt;_index.md&lt;/tt&gt; pages that are clearly the top of a section tree.&lt;/p&gt;
+&lt;p&gt;We don't need to do anything more than define the template for the index.
+Here's what we started with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+{{ define &amp;quot;main&amp;quot; }}
+  &amp;lt;main&amp;gt;
+    {{ .Content }}
+
+    {{ $pages := .Sections }}
+    {{ $paginator := .Paginate $pages 25 }}
+
+      &amp;lt;ul&amp;gt;
+    {{ range $paginator.Pages }}
+      &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;{{ .RelPermalink }}&amp;quot;&amp;gt;{{ .LinkTitle }}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+    {{ end }}
+      &amp;lt;/ul&amp;gt;
+
+    {{ template &amp;quot;_internal/pagination.html&amp;quot; . }}
+  &amp;lt;/main&amp;gt;
+{{ end }}
+&lt;/pre&gt;
+&lt;p&gt;This doesn't sort things properly, so we need to add metadata with weighting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="finally-broken-links"&gt;
+&lt;h2&gt;Finally, Broken Links&lt;/h2&gt;
+&lt;p&gt;We have two origins for broken links.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Stuff we couldn't find in the database.
+Or, more properly, things which appear to be named in the database, but we can't find anywhere.&lt;/li&gt;
+&lt;li&gt;Stuff we thought we found, but it still didn't work in Hugo.
+These are essentially bugs, and we're still working through the last five.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &amp;quot;stuff we could never find&amp;quot; includes things that were likely removed from the legacy site.
+Since we didn't take the time to work out all the &amp;quot;pubish this--don't publish that&amp;quot; rules, we've likely included things which were &amp;quot;unpublished&amp;quot; but not deleted.&lt;/p&gt;
+&lt;p&gt;Other things are &lt;tt class="docutils literal"&gt;&amp;lt;a &lt;span class="pre"&gt;href=&amp;quot;href=&amp;quot;&amp;gt;Something&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/tt&gt; kinds of HTML. That's just broken.
+There aren't many of these, and they need to be addressed manually.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Note the complexity of the migration.&lt;/p&gt;
+&lt;p&gt;There's not much that can be done to magically simplify all the special cases.&lt;/p&gt;
+&lt;p&gt;The time spent getting the database out of SQL and into Python objects gave us pleasantly simple Python objects to work with.&lt;/p&gt;
+&lt;p&gt;The class hierarchies evolved slowly.
+While it seems clear from the UML diagrams that these are &amp;quot;logical&amp;quot; designs, they didn't happen first.
+The initial design was not so clear and simple, leading to lots of redundant and inter-dependent code.&lt;/p&gt;
+&lt;p&gt;There's still a fair number of ultra-long methods that need to be decomposed into shorter, easier-to-understand methods.
+The remaining bugs involve two lost files and three &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;index.php?...&lt;/span&gt;&lt;/tt&gt; references that the link rewriter didn't handle correctly.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="database"></category><category term="sql"></category><category term="hugo"></category></entry><entry><title>Database Migration, Part IV</title><link href="https://slott56.github.io/2025-01-21_database_migration_part_iv.html" rel="alternate"></link><published>2025-01-21T07:21:00-05:00</published><updated>2025-01-21T07:21:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-01-21:/2025-01-21_database_migration_part_iv.html</id><summary type="html">&lt;p&gt;We're talking about extracting data from complex relational databases.
 This is -- in a way -- another case study for my &lt;em&gt;Unlearning SQL&lt;/em&gt; book.&lt;/p&gt;
 &lt;div class="sidebar"&gt;
 &lt;p class="first sidebar-title"&gt;&lt;em&gt;Unlearning SQL&lt;/em&gt;&lt;/p&gt;

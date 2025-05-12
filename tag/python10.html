@@ -78,6 +78,112 @@ S.Lott -- Software Architect            </a>
     <div class="row">
         <div class="col-sm-9">
             <article>
+                <h2><a href="https://slott56.github.io/2020_02_06-dictionary_clear_as_a_code_smell.html">Dictionary clear() as a code smell</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-02-06T16:50:00-05:00"> Thu 06 February 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/data-structure.html">data structure</a>
+        /
+	<a href="https://slott56.github.io/tag/algorithm.html">algorithm</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>Using the clear() method of a dict isn't *wrong*. But. The reasons
+have to be investigated. I got a question about this code not working
+&quot;properly.&quot; (&quot;Properly&quot;? Seems too vague to be useful.)</p>
+<p>Here's a summary of the example.</p>
+<pre class="literal-block">
+final_list = []
+temp_dict = {}
+for obj in some_source:
+    cool_function(obj, temp_dict)
+    final_list.append …</pre>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2020_02_06-dictionary_clear_as_a_code_smell.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2020_01_31-stingray_reader_rewrite.html">Stingray Reader Rewrite</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-01-31T10:39:00-05:00"> Fri 31 January 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/stingray-reader.html">stingray reader</a>
+        /
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/type-hints.html">type hints</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><p>See {filename}/blog/2020/01/2020_01_26-stingrayreader_upgrade.rst</p>
+<p>This drifted into some serious rethinking of bad design decisions.
+(If someone else did this, I'd call it weak, and suggest
+improvements. It was me. It was bad. I'm a bad programmer and I feel
+bad about it.)</p>
+<p>An an example, there's this …</p>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2020_01_31-stingray_reader_rewrite.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="https://slott56.github.io/2020_01_26-stingrayreader_upgrade.html">StingrayReader Upgrade</a></h2>
+                    <div class="well well-sm">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-01-26T12:27:00-05:00"> Sun 26 January 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/stingray-reader.html">stingray reader</a>
+        /
+	<a href="https://slott56.github.io/tag/python.html">#python</a>
+        /
+	<a href="https://slott56.github.io/tag/type-hints.html">type hints</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                <div class="summary"><div class="line-block">
+<div class="line">See <a class="reference external" href="https://github.com/slott56/Stingray-Reader">https://github.com/slott56/Stingray-Reader</a></div>
+<div class="line">It's time to add type hints.</div>
+<div class="line">And.</div>
+<div class="line">Learn some interesting lessons.</div>
+<div class="line">Here's the interesting problem:</div>
+</div>
+<pre class="literal-block">
+some_data = {name: source[name] for name in the_names}
+the_object = SomeClass(**some_data)
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">While valid, this concerns <strong>mypy</strong>.</div>
+<div class="line">The point here is to have a flexible source of data, source. Perhaps …</div></div>
+                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2020_01_26-stingrayreader_upgrade.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="https://slott56.github.io/2020_01_07-patreon_book_idea.html">Patreon Book Idea</a></h2>
                     <div class="well well-sm">
 <footer class="post-info">
@@ -293,90 +399,6 @@ Cookbook 2e. I'm working with Packt on a plan …</p>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="https://slott56.github.io/2019_11_12-python_2_remediation.html">Python 2 Remediation</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-11-12T08:00:00-05:00"> Tue 12 November 2019</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="https://slott56.github.io/tag/python.html">#python</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p><a class="reference external" href="https://medium.com/capital-one-tech/python-2-remediation-and-problems-at-sea-a58e805d6468">https://medium.com/capital-one-tech/python-2-remediation-and-problems-at-sea-a58e805d6468</a>
-We're about out of time for this effort.</p>
-
-                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2019_11_12-python_2_remediation.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="https://slott56.github.io/2019_11_03-building_skills_in_oo_design.html">Building Skills in OO Design</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-11-03T17:06:00-05:00"> Sun 03 November 2019</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="https://slott56.github.io/tag/python.html">#python</a>
-        /
-	<a href="https://slott56.github.io/tag/building-skills-books.html">building skills books</a>
-        /
-	<a href="https://slott56.github.io/tag/oo-design.html">OO design</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>See <a class="reference external" href="https://www.patreon.com/posts/30995708">https://www.patreon.com/posts/30995708</a>
-I've (finally) gotten the book content upgraded to Python 3.7.
-I've also deleted all the previous versions of the book. I had been
-keeping them on my web server because -- well -- because I don't know
-why. They go back to at least …</p>
-                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2019_11_03-building_skills_in_oo_design.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="https://slott56.github.io/2019_10_22-state_change_and_nosql_databases.html">State Change and NoSQL Databases</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-10-22T08:00:00-04:00"> Tue 22 October 2019</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="https://slott56.github.io/tag/python.html">#python</a>
-        /
-	<a href="https://slott56.github.io/tag/nosql.html">noSQL</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><div class="line-block">
-<div class="line">Let's take another look at F. L. Stevens spreadsheet with agencies and
-agents. It's -- of course -- an unholy mess. Why? It's difficult to
-handle state change and deduplication.</div>
-<div class="line">Let's look at state changes.</div>
-<div class="line">The author needs URL's and names and a list of genres the agent is
-interested in. This …</div></div>
-                    <a class="btn btn-default btn-xs" href="https://slott56.github.io/2019_10_22-state_change_and_nosql_databases.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev"><a href="https://slott56.github.io/tag/python9.html">&laquo;</a>
@@ -549,6 +571,18 @@ interested in. This …</div></div>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/May/index.html"><i class="fa fa-calendar fa-lg"></i>May 2025 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2025 (1)
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Feb/index.html"><i class="fa fa-calendar fa-lg"></i>February 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jan/index.html"><i class="fa fa-calendar fa-lg"></i>January 2025 (3)
           </a>
