@@ -33,6 +33,18 @@ pelican-themes -i ~/Documents/Writing/Blogs/pelican-themes/pelican-bootstrap3
 Update `pelicanconf.py` to include `THEME=pelican-bootstrap3`
 
 
+## Categories:
+
+Only these:
+
+- Architecture & Design
+- Books
+- FOSS
+- Management
+- News
+- Python
+- Technologies
+
 ## Updates
 
 See https://docs.getpelican.com/en/4.8.0/tips.html#user-pages

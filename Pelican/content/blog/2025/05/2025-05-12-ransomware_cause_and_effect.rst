@@ -2,7 +2,7 @@ Ransomware Cause and Effect
 ############################
 
 :date: 2025-05-12 07:45
-:tags: #python,domain-specific language,dsl
+:tags: ransomeware
 :slug: 2025-05-12-ransomware_cause_and_effect
 :category: Management
 :status: published

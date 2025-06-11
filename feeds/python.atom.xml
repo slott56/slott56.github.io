@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-03-11T15:52:00-04:00</updated><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-11T07:58:00-04:00</updated><entry><title>Comma Comma</title><link href="https://slott56.github.io/2025-06-11-comma_comma.html" rel="alternate"></link><published>2025-06-11T07:58:00-04:00</published><updated>2025-06-11T07:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-11:/2025-06-11-comma_comma.html</id><summary type="html">&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;A painful stretch of hours looking for a problem.
+Working on this: &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design"&gt;https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design&lt;/a&gt;.
+I need to address a performance problem and upgrade things generally to get them ready for 3.13 and 3.14.&lt;/p&gt;
+&lt;p&gt;You know how it goes, right?&lt;/p&gt;
+&lt;p&gt;I touched something …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;A painful stretch of hours looking for a problem.
+Working on this: &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design"&gt;https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design&lt;/a&gt;.
+I need to address a performance problem and upgrade things generally to get them ready for 3.13 and 3.14.&lt;/p&gt;
+&lt;p&gt;You know how it goes, right?&lt;/p&gt;
+&lt;p&gt;I touched something &amp;quot;minor&amp;quot; and all kinds of acceptance tests broke beacuse I also broke something central.&lt;/p&gt;
+&lt;p&gt;The horrible realization was this:&lt;/p&gt;
+&lt;blockquote&gt;
+There Was No Unit Test&lt;/blockquote&gt;
+&lt;p&gt;When the problem is not found first by a unit test, it means there's a feature that's only tested by the acceptance test suite.&lt;/p&gt;
+&lt;div class="section" id="where-do-we-stand"&gt;
+&lt;h2&gt;Where do we stand?&lt;/h2&gt;
+&lt;p&gt;Here are the causes for despair.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;We've got an acceptance test failure.&lt;/li&gt;
+&lt;li&gt;This reveals a gap in the unit tests.&lt;/li&gt;
+&lt;li&gt;This also reveals the stuff doesn't work because I touched &lt;em&gt;something&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h2&gt;What to do?&lt;/h2&gt;
+&lt;p&gt;Ideally?  Fix the unit tests.&lt;/p&gt;
+&lt;p&gt;Pragmatically?  Review the git change history to see what I've touched recently.&lt;/p&gt;
+&lt;p&gt;Aha. A trailing comma.&lt;/p&gt;
+&lt;p&gt;There was a &lt;tt class="docutils literal"&gt;{key: lambda x: some_expression, &lt;span class="pre"&gt;...}&lt;/span&gt;&lt;/tt&gt; data structure.
+I took the lambda out and replaced it with a proper &lt;tt class="docutils literal"&gt;def&lt;/tt&gt; function. With a name.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def some_new_function(x: type) -&amp;gt; type:
+    some_exression,
+&lt;/pre&gt;
+&lt;p&gt;You know how this goes.&lt;/p&gt;
+&lt;p&gt;Looks good, who can see the &lt;tt class="docutils literal"&gt;,&lt;/tt&gt;?&lt;/p&gt;
+&lt;p&gt;Doesn't work. &lt;tt class="docutils literal"&gt;tuple()&lt;/tt&gt; shows up in unexpected places.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="big-lesson"&gt;
+&lt;h2&gt;Big Lesson&lt;/h2&gt;
+&lt;p&gt;Fix the unit tests.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="syntax"></category><category term="cel-python"></category><category term="cloud custodian"></category><category term="open source"></category></entry><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
 &lt;p&gt;There are a few cases where a DSL can be …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;

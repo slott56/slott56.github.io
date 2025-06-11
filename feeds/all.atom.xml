@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-05-12T07:45:00-04:00</updated><entry><title>Ransomware Cause and Effect</title><link href="https://slott56.github.io/2025-05-12-ransomware_cause_and_effect.html" rel="alternate"></link><published>2025-05-12T07:45:00-04:00</published><updated>2025-05-12T07:45:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-05-12:/2025-05-12-ransomware_cause_and_effect.html</id><content type="html">&lt;p&gt;This: &lt;a class="reference external" href="https://www.theregister.com/2025/05/12/opinion_column_ransomware/"&gt;https://www.theregister.com/2025/05/12/opinion_column_ransomware/&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-11T07:58:00-04:00</updated><entry><title>Comma Comma</title><link href="https://slott56.github.io/2025-06-11-comma_comma.html" rel="alternate"></link><published>2025-06-11T07:58:00-04:00</published><updated>2025-06-11T07:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-11:/2025-06-11-comma_comma.html</id><summary type="html">&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;A painful stretch of hours looking for a problem.
+Working on this: &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design"&gt;https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design&lt;/a&gt;.
+I need to address a performance problem and upgrade things generally to get them ready for 3.13 and 3.14.&lt;/p&gt;
+&lt;p&gt;You know how it goes, right?&lt;/p&gt;
+&lt;p&gt;I touched something …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;A painful stretch of hours looking for a problem.
+Working on this: &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design"&gt;https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design&lt;/a&gt;.
+I need to address a performance problem and upgrade things generally to get them ready for 3.13 and 3.14.&lt;/p&gt;
+&lt;p&gt;You know how it goes, right?&lt;/p&gt;
+&lt;p&gt;I touched something &amp;quot;minor&amp;quot; and all kinds of acceptance tests broke beacuse I also broke something central.&lt;/p&gt;
+&lt;p&gt;The horrible realization was this:&lt;/p&gt;
+&lt;blockquote&gt;
+There Was No Unit Test&lt;/blockquote&gt;
+&lt;p&gt;When the problem is not found first by a unit test, it means there's a feature that's only tested by the acceptance test suite.&lt;/p&gt;
+&lt;div class="section" id="where-do-we-stand"&gt;
+&lt;h2&gt;Where do we stand?&lt;/h2&gt;
+&lt;p&gt;Here are the causes for despair.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;We've got an acceptance test failure.&lt;/li&gt;
+&lt;li&gt;This reveals a gap in the unit tests.&lt;/li&gt;
+&lt;li&gt;This also reveals the stuff doesn't work because I touched &lt;em&gt;something&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-to-do"&gt;
+&lt;h2&gt;What to do?&lt;/h2&gt;
+&lt;p&gt;Ideally?  Fix the unit tests.&lt;/p&gt;
+&lt;p&gt;Pragmatically?  Review the git change history to see what I've touched recently.&lt;/p&gt;
+&lt;p&gt;Aha. A trailing comma.&lt;/p&gt;
+&lt;p&gt;There was a &lt;tt class="docutils literal"&gt;{key: lambda x: some_expression, &lt;span class="pre"&gt;...}&lt;/span&gt;&lt;/tt&gt; data structure.
+I took the lambda out and replaced it with a proper &lt;tt class="docutils literal"&gt;def&lt;/tt&gt; function. With a name.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def some_new_function(x: type) -&amp;gt; type:
+    some_exression,
+&lt;/pre&gt;
+&lt;p&gt;You know how this goes.&lt;/p&gt;
+&lt;p&gt;Looks good, who can see the &lt;tt class="docutils literal"&gt;,&lt;/tt&gt;?&lt;/p&gt;
+&lt;p&gt;Doesn't work. &lt;tt class="docutils literal"&gt;tuple()&lt;/tt&gt; shows up in unexpected places.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="big-lesson"&gt;
+&lt;h2&gt;Big Lesson&lt;/h2&gt;
+&lt;p&gt;Fix the unit tests.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="#python"></category><category term="syntax"></category><category term="cel-python"></category><category term="cloud custodian"></category><category term="open source"></category></entry><entry><title>Ransomware Cause and Effect</title><link href="https://slott56.github.io/2025-05-12-ransomware_cause_and_effect.html" rel="alternate"></link><published>2025-05-12T07:45:00-04:00</published><updated>2025-05-12T07:45:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-05-12:/2025-05-12-ransomware_cause_and_effect.html</id><content type="html">&lt;p&gt;This: &lt;a class="reference external" href="https://www.theregister.com/2025/05/12/opinion_column_ransomware/"&gt;https://www.theregister.com/2025/05/12/opinion_column_ransomware/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Shabby IT infrastructure built with criminally low budgets.&lt;/p&gt;
 &lt;p&gt;What did we expect?&lt;/p&gt;
 &lt;p&gt;Of course there will be ruthless exploitation of weakness.&lt;/p&gt;
 &lt;p&gt;Clearly, minimal IT budgets -- just enought to &amp;quot;keep the lights on&amp;quot; -- will provide avenues for exploitation.&lt;/p&gt;
-</content><category term="Management"></category><category term="#python"></category><category term="domain-specific language"></category><category term="dsl"></category></entry><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
+</content><category term="Management"></category><category term="ransomeware"></category></entry><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
 &lt;p&gt;There are a few cases where a DSL can be …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
@@ -11732,93 +11775,4 @@ files in Python.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This feels ambitious because the original design was so weak.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="stingray reader"></category><category term="EBCDIC"></category><category term="COBOL"></category></entry><entry><title>I Have Code That Didn't Work. What Now?</title><link href="https://slott56.github.io/2021_08_17-i_have_code_that_didnt_work_what_now.html" rel="alternate"></link><published>2021-08-17T09:00:00-04:00</published><updated>2021-08-17T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-08-17:/2021_08_17-i_have_code_that_didnt_work_what_now.html</id><summary type="html">&lt;p&gt;I don't get many of these &amp;quot;I have code that doesn't work&amp;quot; requests. But
-I do see them once in a great while.&lt;/p&gt;
-&lt;p&gt;It might be something like the following two-part explanation with a
-following question.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I have this code&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-from base64 import b64encode
-def some_func(message):
-    msg = b64encode(message …&lt;/pre&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;I don't get many of these &amp;quot;I have code that doesn't work&amp;quot; requests. But
-I do see them once in a great while.&lt;/p&gt;
-&lt;p&gt;It might be something like the following two-part explanation with a
-following question.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I have this code&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-from base64 import b64encode
-def some_func(message):
-    msg = b64encode(message)
-
-msg = some_func(b'hello world')
-print(f&amp;quot;padding = {msg.count(b'=')}&amp;quot;)
-&lt;/pre&gt;
-&lt;p&gt;I'm getting this error.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Traceback (most recent call last):
-  File &amp;quot;/Users/slott/miniconda3/envs/CaseStudy39/lib/python3.9/site-packages/IPython/core/interactiveshell.py&amp;quot;, line 3437, in run_code
-    exec(code_obj, self.user_global_ns, self.user_ns)
-  File &amp;quot;&amp;lt;ipython-input-18-d54347890e97&amp;gt;&amp;quot;, line 7, in &amp;lt;module&amp;gt;
-    print(f&amp;quot;padding = {msg.count(b'=')}&amp;quot;)
-AttributeError: 'NoneType' object has no attribute 'count'
-&lt;/pre&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;What can I do?&lt;/p&gt;
-&lt;p&gt;&amp;lt;rant&amp;gt;As a personal note, I'm extremely grumpy when I get this in the
-form of a screen picture. I cannot work with images of code. It's really
-important to present code as text. Not a picture of text. &amp;lt;/rant&amp;gt;&lt;/p&gt;
-&lt;p&gt;There are two kinds of answers to this question.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;It's obvious (to me) what's wrong. While I can say what the problem
-is likely to be, that doesn't help the questioner.&lt;/li&gt;
-&lt;li&gt;The questioner needs a strategy for getting to working software.
-This, of course, can piss off some people because they insist all
-questions have simple answers and I'm just being unhelpful by giving
-them a bunch of steps they're supposed to follow.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I'm going to stick to answers of the second kind. I don't provide
-answers of the first kind.&lt;/p&gt;
-&lt;div class="section" id="the-two-general-answers"&gt;
-&lt;h2&gt;The Two General Answers&lt;/h2&gt;
-&lt;p&gt;There are two general answers of the second kind.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Use the debugger.&lt;/li&gt;
-&lt;li&gt;Add &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I'm told the debugger can be fun to use. I'm not skilled in using it, so
-I don't generally recommend it. I find it difficult to uncover state
-change using the debugger. It's great for exploring a data structure.&lt;/p&gt;
-&lt;p&gt;Adding &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; is something I find easier and more useful.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="add-print"&gt;
-&lt;h2&gt;Add print()&lt;/h2&gt;
-&lt;p&gt;Here's what folks can do to uncover a problem. This is all we ever need
-to do. There are no weird other cases or complex situations where this
-doesn't work.&lt;/p&gt;
-&lt;p&gt;The procedure for adding &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; works like this:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Find the line with the error. In the example, it's the final
-&lt;tt class="docutils literal"&gt;print()&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Look at all the variables. In this case, there's only one, &lt;tt class="docutils literal"&gt;msg&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;Put a &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; in front to show the values of all the variables.
-&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;print(f&amp;quot;{msg=}&amp;quot;)&lt;/span&gt;&lt;/tt&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This will reveal that &lt;tt class="docutils literal"&gt;msg is None&lt;/tt&gt; after the assignment statement.&lt;/p&gt;
-&lt;p&gt;Now we have to look at the function, &lt;tt class="docutils literal"&gt;some_func()&lt;/tt&gt;, that creates the
-value for &lt;tt class="docutils literal"&gt;msg&lt;/tt&gt;. We'll start from the end of this function and work
-forward, following the above three-step procedure faithfully. And
-recursively.&lt;/p&gt;
-&lt;p&gt;Eventually, we'll uncover the problem. It may not be blazingly obvious,
-but we will, without fail, find a missing state change or an unexpected
-state change. (In this case, it's missing.)&lt;/p&gt;
-&lt;p&gt;I can't emphasize enough that this is done as simply and directly as
-possible. If the code is hellishly complex, perhaps it should be
-refactored until this can be done. If the test case involves
-hyper-complex conditions before it fails, then perhaps the code needs to
-be refactored until this can be done.&lt;/p&gt;
-&lt;p&gt;This is the only answer I can ever give to &amp;quot;why doesn't my code work?&amp;quot;
-question: Add &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="debugging"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="stingray reader"></category><category term="EBCDIC"></category><category term="COBOL"></category></entry></feed>
