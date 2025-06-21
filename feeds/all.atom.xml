@@ -1,5 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-14T18:11:00-04:00</updated><entry><title>Testing Your AI</title><link href="https://slott56.github.io/2025-06-14-tesing_your_ai.html" rel="alternate"></link><published>2025-06-14T18:11:00-04:00</published><updated>2025-06-14T18:11:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-14:/2025-06-14-tesing_your_ai.html</id><summary type="html">&lt;p&gt;We test software.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-21T08:01:00-04:00</updated><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+Current me needs to go outside and do something that doesn't involve software or complexity.
+Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+Current me needs to go outside and do something that doesn't involve software or complexity.
+Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm of manageable complexity into that space of unknowable chaos.
+Considering the heliopause, I feel like there's a simpli-pause out there, and I'm drifting past it.&lt;/p&gt;
+&lt;div class="section" id="bluf-tl-dr"&gt;
+&lt;h2&gt;BLUF (TL;DR)&lt;/h2&gt;
+&lt;p&gt;There is no big, simple lesson up front.
+Except, maybe this: &amp;quot;Simplicity requires hard work.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Or maybe quote Pascal's apology:&lt;/p&gt;
+&lt;blockquote&gt;
+I have made this longer than usual because I have not had time to make it shorter.&lt;/blockquote&gt;
+&lt;p&gt;I think complexity stems from failure to budget enough time to find the useful patterns and simplify.&lt;/p&gt;
+&lt;p&gt;What concrete steps can we take to simplify? Read on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;We have the following conceptual model.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/cel_old.png" /&gt;
+&lt;p class="caption"&gt;An overview of some of the classes. There's more. Too much more.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The application will create an &lt;tt class="docutils literal"&gt;Environment&lt;/tt&gt;.
+It uses this to compile a CEL expression, and then create a &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to evaluate the expression.
+(This lets you cache the &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to reuse it.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; evaluates the expression in a &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; where variables, functions, and type definitions are found.
+While the &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; type is shown as a name for a Python &lt;tt class="docutils literal"&gt;dict[str, Value]&lt;/tt&gt;, it &lt;em&gt;could&lt;/em&gt; be a protobuf message with all the stuff in it.&lt;/p&gt;
+&lt;p&gt;Currently, the runner uses a subclass of &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; to interpret the AST.
+This involves a fair amount of navigating through the AST structure.
+This isn't too much overhead, but it can be reduced.&lt;/p&gt;
+&lt;p&gt;We want to explore some ways to reduce the overheads.
+Two seem clear:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Walk the syntax tree, appending operations to a sequence of function evaluations.
+To evaluate the expression, execute the sequence of operations.
+This is tidy, and not fraught with too much complexity until we get to conditional and iterative processing.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conditional processing&lt;/strong&gt; comes from the short-circuiting &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_?_:_&lt;/span&gt;&lt;/tt&gt; operators. (The CEL folks like to write their operators with &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; to show where operands go.) These involves skipping over the parts that don't need to be evaluated.
+Sadly, the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt; are commutative, so &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; are both &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;.  Use of a monad can make this tolerably simple.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Iterative processing&lt;/strong&gt; comes from &amp;quot;macro&amp;quot; evaluation.
+CEL expresses this with higher-order functions (map, filter, exists, etc.) that are applied to a sub-expression, and an object, &lt;tt class="docutils literal"&gt;[1, 2, &lt;span class="pre"&gt;3].map(x,&lt;/span&gt; 3*x+1)&lt;/tt&gt; sort of thing.
+This is similar to Python's &lt;tt class="docutils literal"&gt;map(lambda x: 3*x+1, [1, 2, 3])&lt;/tt&gt;.
+The concept behind the CEL specification calling this a &amp;quot;macro&amp;quot;, is that the sequence of operations involved in the iteration can be viewed as a single &amp;quot;macro&amp;quot; operation in the overall sequence. A &amp;quot;sub-interpreter&amp;quot; can handle the macro operation, returning a result.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transpile the syntax tree into Python.
+Use the built-in &lt;tt class="docutils literal"&gt;compile()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;exec()&lt;/tt&gt; functions to evaluate the expression.
+The transpile-and-compile creates byte code.
+This will be rather fast.
+And we can leverage projects like &lt;strong&gt;cython&lt;/strong&gt; (&lt;a class="reference external" href="https://cython.org"&gt;https://cython.org&lt;/a&gt;) if we want even more speed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In order to proceed, of course, we need some benchmarking data to show where the performance penalties might be hiding.
+The profiling data suggests transpiling doesn't hold much promise.
+But.
+It's also a logical feature to consider.
+In principle, the desgin permitted adding a compiled runner.
+In principle.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="container-component-code"&gt;
+&lt;h2&gt;Container, Component, Code&lt;/h2&gt;
+&lt;p&gt;In case it's helpful, CEL isn't a stand-alone application.
+It's an expression language that can be embedded anywhere you need expressions.
+A CEL-enabled version of &lt;tt class="docutils literal"&gt;bash&lt;/tt&gt;, for example, would be far more expressive than the  version that has &lt;tt class="docutils literal"&gt;(( ))&lt;/tt&gt; expressions and &lt;tt class="docutils literal"&gt;[ ]&lt;/tt&gt; expressions using different sub-languages.&lt;/p&gt;
+&lt;p&gt;The Pure-Python implementation does have a CLI and can replace &lt;strong&gt;jq&lt;/strong&gt;, but that's above and beyond the core language specification.&lt;/p&gt;
+&lt;p&gt;Code-wise, it depends on the &lt;strong&gt;Lark parser&lt;/strong&gt; (&lt;a class="reference external" href="https://lark-parser.readthedocs.io/en/latest/"&gt;https://lark-parser.readthedocs.io/en/latest/&lt;/a&gt;)  for the parser and abstract syntax tree definition.
+We add a package of CEL types to provide Go-like semantics instead of Python semantics.
+(This means offering &lt;tt class="docutils literal"&gt;int32&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;int64&lt;/tt&gt;, for example.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so-what"&gt;
+&lt;h2&gt;So, what?&lt;/h2&gt;
+&lt;p&gt;Good question. What's the complexity?&lt;/p&gt;
+&lt;p&gt;Clearly, only need a subclass of &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; that transpiles instead of interprets.&lt;/p&gt;
+&lt;p&gt;How hard can that be? Really?&lt;/p&gt;
+&lt;p&gt;I'm going to side-bar into the root-causes of complexity.
+You might want to skip down to &lt;a class="reference internal" href="#fine-it-was-complicated-what-did-i-do"&gt;Fine. It Was Complicated. What Did I Do?&lt;/a&gt;.
+This is how I took a step back from the complexity.&lt;/p&gt;
+&lt;p&gt;If you care, here's the complexity. In detail.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="brain-breaking"&gt;
+&lt;h2&gt;Brain-Breaking&lt;/h2&gt;
+&lt;p&gt;What broke my brain was the subtle differences in when an identifier must be bound to an object.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;When interpreting the syntax tree, the binding happens when you get to the identifier.
+You look it up in the collection of variables, add-on functions, add-on types,
+built-in functions, and built-in types.&lt;/p&gt;
+&lt;p&gt;Any given name will actually have two definitions: a value and a type annotation.
+In principle, both value and type are needed.
+Pragmatically -- in Python -- the type is already bound to the value, and we don't &lt;strong&gt;really&lt;/strong&gt; care very much about this detail.
+In other implementations (e.g. Go) the value is a bunch of bytes, and without the type information, nothing can happen.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When transpiling. Ah.
+This is interesting because the transpilation doesn't care about variable values.
+Where evaluation of the transpiled (and compiled) code does care about variable values.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When building Python from the CEL expression, we need to resolve type and function names to an implementation class or function.
+The class and function &lt;strong&gt;must&lt;/strong&gt; exist at transpile time so we can translate a CEL &lt;tt class="docutils literal"&gt;uint32&lt;/tt&gt; into the Python &lt;tt class="docutils literal"&gt;celtypes.Uint32Type&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;When executing the compiled code, we still need a context, but this is only the variable bindings, nothing else. The other names have already been resolved into local Python class and function references.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far, so good, right? What's brain-breaking about this?&lt;/p&gt;
+&lt;p&gt;The complexity was deeply buried in implementation details of the interpreter.
+Specifically, it maintained a pointless and unhelpful distinction between types, functions, and variables.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Types are a simple namespace.
+The &lt;tt class="docutils literal"&gt;celpy&lt;/tt&gt; module, for example, defines all the CEL-visible types. New types can be added, leading to a union of type names.
+Ideally, these have a precedence, so new types can replace the built-in types.
+But. It's all very simple.&lt;/li&gt;
+&lt;li&gt;Functions are a mapping from name to implementation.
+The &lt;tt class="docutils literal"&gt;celpy&lt;/tt&gt; module provides the built-in mapping from non-Pythonic names like &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;_&amp;amp;&amp;amp;_&amp;quot;&lt;/span&gt;&lt;/tt&gt; to the &lt;tt class="docutils literal"&gt;logical_and()&lt;/tt&gt; function.
+You're not supposed to override these names, but, it's a simple dictionary, so you can.&lt;/li&gt;
+&lt;li&gt;Variables are a pair of mappings: name to type, and (optionally) name to value.
+It's sensible to provide a type annotation for a variable that never gets a value.
+For example, in this expression,
+&lt;tt class="docutils literal"&gt;choice == &amp;quot;a&amp;quot; ? a / 42 : b / 42&lt;/tt&gt;, there must be a value for &lt;tt class="docutils literal"&gt;choice&lt;/tt&gt;.
+Whether or not a value is provided for &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;, however, depends on the value provided for &lt;tt class="docutils literal"&gt;choice&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the long run, the three varieties of identifiers are all the same.
+This simple uniformity was &lt;strong&gt;not&lt;/strong&gt; part of the original implementation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-bad-path-followed-badly"&gt;
+&lt;h2&gt;The Bad Path Followed Badly&lt;/h2&gt;
+&lt;p&gt;The type-function-variable distinction was a bad idea, followed through to it's logical confusion.&lt;/p&gt;
+&lt;p&gt;The implementation had two collections (not three!):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Type names and variable names.&lt;/li&gt;
+&lt;li&gt;Function names.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Three collections would have made more sense, but, there are slightly different use cases.
+These only became clear when transpiling:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Function name resolution happened at &amp;quot;compile&amp;quot; time.
+Even when doing interpreted evaluation of the parse tree, these names were evaluated on a distinct logic path from type names and variables.&lt;/li&gt;
+&lt;li&gt;Type and variable name resolution only happened at evaluation time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Want some extra complexity? When a type name is used like a function name in CEL.
+&lt;tt class="docutils literal"&gt;uint32(42)&lt;/tt&gt; is valid code.
+When interpreting, it required looking up the name &lt;tt class="docutils literal"&gt;&amp;quot;uint32&amp;quot;&lt;/tt&gt; in both the function and the type mappings.
+It wasn't too awkwardly complicated, but it was yet another complication buried in the interpreter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fine-it-was-complicated-what-did-i-do"&gt;
+&lt;h2&gt;Fine. It Was Complicated. What Did I Do?&lt;/h2&gt;
+&lt;p&gt;See the diagram up above?&lt;/p&gt;
+&lt;p&gt;I started by trying to draw pictures to capture the essence of the design.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;First, I drew some UML class diagrams to capture the legacy design.&lt;/li&gt;
+&lt;li&gt;Then, I draw some UML class diagrams to capture the new design.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Attempting to capture the class models make it clear how complicated the picture where.
+To cope with the complicated diagrams, I started writing an explanation for my future self to understand them.&lt;/p&gt;
+&lt;blockquote&gt;
+Complexity is hard to explain, and that makes it bad.&lt;/blockquote&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;I did not fire up some AI-based sparking autocomplete tool to &amp;quot;summarize&amp;quot; this for me.&lt;/p&gt;
+&lt;p class="last"&gt;I didn't want summary-like slop that included my software component names filling in placeholders in the text.
+I wanted to actually understand it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;As I started jotting down notes to describe the pictures, I began to see the essential truth here.&lt;/p&gt;
+&lt;blockquote&gt;
+If it's hard to explain, that reveals a problem: rewrite it.&lt;/blockquote&gt;
+&lt;p&gt;I could barely capture notes on how complicated it was.
+Here's what would happen.&lt;/p&gt;
+&lt;blockquote&gt;
+Instead of describing it, my brain kept trying to rewrite it.&lt;/blockquote&gt;
+&lt;p&gt;I've come to realize this feeling is profound, and helpful:&lt;/p&gt;
+&lt;blockquote&gt;
+When a rewrite seems to be less work than creating an explanation, do the rewrite.&lt;/blockquote&gt;
+&lt;div class="section" id="enterprise-management"&gt;
+&lt;h3&gt;Enterprise Management&lt;/h3&gt;
+&lt;p&gt;In a for-profit enterprise software development environment, there's pressure to call something &amp;quot;done&amp;quot; when it isn't really done.&lt;/p&gt;
+&lt;p&gt;Complexity is tolerated. Simplicity is sacrificed when it seems to be expensive.&lt;/p&gt;
+&lt;p&gt;In actuality, complexity is technical debt, and the liability's drag on the enterprise accumulates quickly.&lt;/p&gt;
+&lt;p&gt;I'm aware that a lot of managers are forced to say things like &amp;quot;But in the real world, we have to stop gold-plating and simply call it done.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This is nonsense, but it's also very hard to counter.&lt;/p&gt;
+&lt;p&gt;My advice for coping with pushy managers?
+Try asking them to draw the picture.
+Wait patiently, then you can the missing details.
+This may lead them to them telling you to make it simpler so it fits their concepts.
+When they tell you to fix the thing you want to fix, that's the ideal outcome; be sure to sulk anyway so they feel like they told you to do something you didn't want to do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="better-design"&gt;
+&lt;h3&gt;Better Design&lt;/h3&gt;
+&lt;p&gt;Eventually, it became clear that an identifier is a mapping from &lt;tt class="docutils literal"&gt;str&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;tuple[type, Any] | tuple[type]&lt;/tt&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;A type name like &lt;tt class="docutils literal"&gt;&amp;quot;Whatever&amp;quot;&lt;/tt&gt; maps to &lt;tt class="docutils literal"&gt;(celpy.TypeType, celpy.WhateverType)&lt;/tt&gt;.
+There's a type and a value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;A function name like &lt;tt class="docutils literal"&gt;size&lt;/tt&gt; maps to &lt;tt class="docutils literal"&gt;(celpy.CELFunction, size_function)&lt;/tt&gt;.
+And, yes, a more detailed signature &lt;strong&gt;could&lt;/strong&gt; be part of this, but -- for Python -- it doesn't really matter if it has 0, 1, 2, or 3 parameters.
+Any problem surfaces (later) as a &lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt; when trying to evaluate a function with improper arguments.&lt;/p&gt;
+&lt;p&gt;We could leverage the &lt;tt class="docutils literal"&gt;Callable&lt;/tt&gt; generic. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;(celpy.CELFunction[[Any,&lt;/span&gt; Any], celpy.BoolType], lambda x, y: x == y)&lt;/tt&gt;, could be the definition for &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;_==_&amp;quot;&lt;/span&gt;&lt;/tt&gt;.
+It doesn't add too much complexity, but, we'll generally ignore it, because it doesn't create much value to do this extra work.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;A variable has a type annotation (expected at compile time) supplemented by a value (required at evaluation time.)
+Initially a variable is a singleton tuple with a type, &lt;tt class="docutils literal"&gt;(celpy.Int32Type,)&lt;/tt&gt;.
+For evaluation, the context will replace this with a two-tuple that contains the actual value, &lt;tt class="docutils literal"&gt;(celpy.Int32Type, celpy.Int32Type(42))&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;What's important is that -- in Python -- the type information isn't &lt;strong&gt;required&lt;/strong&gt; at compile time.
+Since other CEL implementations need it, it's expected, and we can raise exceptions when it's not available, even though we don't use it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Identifier name resolution can be simplified: a name needs to map to a tuple.
+The first element is always present, and is the type.
+The second element may be missing; when present, this is the value.&lt;/p&gt;
+&lt;p&gt;The hard part is replacing the previous complexity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="uml"></category><category term="plantuml"></category><category term="solid"></category></entry><entry><title>Testing Your AI</title><link href="https://slott56.github.io/2025-06-14-tesing_your_ai.html" rel="alternate"></link><published>2025-06-14T18:11:00-04:00</published><updated>2025-06-14T18:11:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-14:/2025-06-14-tesing_your_ai.html</id><summary type="html">&lt;p&gt;We test software.
 We test people.&lt;/p&gt;
 &lt;p&gt;My lawyer, all my various doctors, even the coffee bar on main street is subject to testing.
 The coffee shop proudly posts their score from health inspections.
@@ -11473,235 +11681,5 @@ application and narrowing our focus onto the useful things it does.&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry><entry><title>We have an ancient Python2 CGI script -- what do we do?</title><link href="https://slott56.github.io/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html" rel="alternate"></link><published>2021-08-31T11:00:00-04:00</published><updated>2021-08-31T11:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-08-31:/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html</id><summary type="html">&lt;p&gt;This was a shocking email: the people have a Python 2 CGI script. They
-needed advice on Python 2 to 3 migration.&lt;/p&gt;
-&lt;p&gt;Here's my advice on a Python 2 CGI script: &lt;strong&gt;Throw It Away&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;A great deal of the CGI processing is part of the wsgi module, as well
-as …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a shocking email: the people have a Python 2 CGI script. They
-needed advice on Python 2 to 3 migration.&lt;/p&gt;
-&lt;p&gt;Here's my advice on a Python 2 CGI script: &lt;strong&gt;Throw It Away&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;A great deal of the CGI processing is part of the wsgi module, as well
-as tools like jinja and flask. This means that the ancient Python 2 CGI
-script has to be disentangled into two parts.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;All the stuff that deals with CGI and HTML. This isn't valuable and
-must be deleted.&lt;/li&gt;
-&lt;li&gt;Whatever additional, useful, interesting processing it does for the
-various user communities.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The second part -- the useful work -- needs to be preserved. The rest is
-junk.&lt;/p&gt;
-&lt;p&gt;With web services there are often at least three communities: the
-&amp;quot;interactive users&amp;quot;, &amp;quot;analysts&amp;quot;, and the administrators who keep it
-running. The names vary a lot with the problem domain. The interactive
-users may further decompose into anonymous visitors, people with
-privileges to make changes, and administrators to manage the privileges.
-There may be multiple flavors of analytical work based on the web
-transactions that are logged. A lot can go on, and each of these
-communities has a feature set they require.&lt;/p&gt;
-&lt;p&gt;The idea here is to look at the project as a rewrite where &lt;strong&gt;some&lt;/strong&gt; of
-the legacy code may be preserved. It's better to proceed as though this
-is new development with the legacy code providing examples and test
-cases. If we look at this as new, we'll start with some diagrams to
-provide a definition of done.&lt;/p&gt;
-&lt;div class="section" id="step-one"&gt;
-&lt;h2&gt;Step One&lt;/h2&gt;
-&lt;p&gt;Understand the user communities. Create a &lt;a class="reference external" href="https://c4model.com"&gt;4C&lt;/a&gt;
-Context Diagram to show who the users are and what the expect. Ideally,
-it's small with &amp;quot;users&amp;quot; and &amp;quot;administrators.&amp;quot; It may turn out to be big
-with complex privilege rules to segregate users.&lt;/p&gt;
-&lt;p&gt;It's hard to get this right. Everyone wants the code &amp;quot;converted&amp;quot;. But no
-one really knows all the things the code does. There's a lot of pressure
-to ignore this step.&lt;/p&gt;
-&lt;p&gt;This step creates the definition of done. Without this, there's no way
-to do anything with the CGI code and make sure that the original
-features still work.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-two"&gt;
-&lt;h2&gt;Step Two&lt;/h2&gt;
-&lt;p&gt;Create a &lt;a class="reference external" href="https://c4model.com"&gt;4C&lt;/a&gt; Container Diagram showing the
-Apache HTTPD (or whatever server you're using) that fires the CGI.
-Document all other ancillary things are going on. Ideally, there's
-nothing. Ideally, this is a minor, stand-alone server that no one
-noticed until today. Label this picture &amp;quot;As Is.&amp;quot; It will change, but you
-need a checklist of what's running right now.&lt;/p&gt;
-&lt;p&gt;(This should be very quick to produce. If it's not, go back to step one
-and make sure you really understand the context.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-three"&gt;
-&lt;h2&gt;Step Three&lt;/h2&gt;
-&lt;p&gt;Create a &lt;a class="reference external" href="https://c4model.com"&gt;4C&lt;/a&gt; Component Diagram, and label it
-&amp;quot;As Is&amp;quot;. This has all the parts of your code base. Be sure you locate
-all the things in the local site-packages directory that were added onto
-Python. Ideally, there isn't much, but -- of course -- there could be
-dozens of add-on libraries.&lt;/p&gt;
-&lt;p&gt;You will have several lists. One list has all the things in
-site-packages. If the &lt;tt class="docutils literal"&gt;PYTHONPATH&lt;/tt&gt; environment variable is used, all
-the things in the directories named in this environment variable. Plus.
-All the things named in &lt;tt class="docutils literal"&gt;import&lt;/tt&gt; statements.&lt;/p&gt;
-&lt;p&gt;These lists should overlap. Of course someone can install a package
-that's not used, so the site-packages list should be a superset of the
-import list.&lt;/p&gt;
-&lt;p&gt;This is a checklist of things that must be read (and possibly converted)
-to build the new features.&lt;/p&gt;
-&lt;p&gt;Step Four?&lt;/p&gt;
-&lt;p&gt;You'll need two suites of fully automated tests.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Unit tests for the Python code. This must have 100% code coverage and
-will not be easy.&lt;/li&gt;
-&lt;li&gt;Integration tests for the CGI. You will be using the WSGI module
-instead of Apache HTTPD (or whatever the server was) for this
-testing. You will NOT integrate with the original web server,
-because, that interface is no longer supported and is a security
-nightmare.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let's break this into two steps.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-four"&gt;
-&lt;h2&gt;Step Four&lt;/h2&gt;
-&lt;p&gt;You need automated unit tests. You need to reach at last 100% code
-coverage for the unit tests. This is going to be difficult for two
-reasons. First, the legacy code may not be easy to read or test. Second,
-Python 2 testing tools are no longer well supported. Many of them still
-work, but if you encounter problems, the tool will never be fixed.&lt;/p&gt;
-&lt;p&gt;If you can find a Python 2 version of &lt;strong&gt;coverage&lt;/strong&gt;, and a Python 2
-version of &lt;strong&gt;pytest&lt;/strong&gt;, I suggest using this combination to write a test
-suite, and make sure you have 100% code coverage.&lt;/p&gt;
-&lt;p&gt;This is a lot of work, and there's no way around it. Without automated
-testing, there's no way to prove that you're done and the software can
-be trusted in production.&lt;/p&gt;
-&lt;p&gt;You will find bugs. Don't fix them now. Log them by marking the test
-case with the proper answer different from the answer you're getting.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-five"&gt;
-&lt;h2&gt;Step Five&lt;/h2&gt;
-&lt;p&gt;Python has a built-in CGI server you can use.
-See &lt;a class="reference external" href="https://docs.python.org/3/library/http.server.html#http.server.CGIHTTPRequestHandler"&gt;https://docs.python.org/3/library/http.server.html#http.server.CGIHTTPRequestHandler&lt;/a&gt;
-for a handler that will provide core CGI features from a Python script
-allowing you to test without the overhead of Apache httpd or some other
-server.&lt;/p&gt;
-&lt;p&gt;You need an integration test suite for each user stories in the context
-you created in Step One. No exceptions. Each User. Each Story. A test to
-show that it works.&lt;/p&gt;
-&lt;p&gt;You'll likely want to use the CGIHTTPRequestHandler class in the
-http.server module to create a test server. You'll then create a pytest
-fixture that starts the web server before a test and then kills the
-process after the test. It's very important to use subprocess.Popen() to
-start and stop the target server to be sure the CGI interface works
-correctly.&lt;/p&gt;
-&lt;p&gt;It is common to find bugs. Don't fix them now. Log them by marking the
-test case with the proper answer different from the answer you're
-getting.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-six"&gt;
-&lt;h2&gt;Step Six&lt;/h2&gt;
-&lt;p&gt;Refactor. Now that you have automated tests to prove the legacy CGI
-script really works, you need to disentangle the Python code into three
-distinct components.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;A Component to parse the request: the methods, cookies, headers, and
-URL.&lt;/li&gt;
-&lt;li&gt;A Component that does useful work. This corresponds to the &amp;quot;model&amp;quot;
-and &amp;quot;control&amp;quot; part of the MVC design pattern.&lt;/li&gt;
-&lt;li&gt;A Component that builds the response: the status, headers, and
-content.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In many CGI scripts, there is often a hopeless jumble of bad code.
-Because you have tests in Step Four and Step Five, you can refactor and
-confirm the tests still pass.&lt;/p&gt;
-&lt;p&gt;If the code is already nicely structured, this step is easy. Don't plan
-on it being easy.&lt;/p&gt;
-&lt;p&gt;One goal is to eventually replace HTML page output creation with jinja.
-Similarly, another goal is to eventually replace parsing the request
-with flask. All of the remaining CGI-related features get pushed into a
-wsgi-compatible plug-in to a web server.&lt;/p&gt;
-&lt;p&gt;The component that does the useful work will have some underlying data
-model (resources, files, downloads, computations, something) and some
-control (post, get, different paths, queries.) We'd like to clean this
-up, too. For now, it can be one module.&lt;/p&gt;
-&lt;p&gt;After refactoring, you'll have a new working application. You'll have a
-new top-level CGI script that uses the built-in wsgi module to do
-request and response processing. This is temporary, but is required to
-pass the integration test suite.&lt;/p&gt;
-&lt;p&gt;You may want to create an intermediate Component diagram to describe the
-new structure of the code.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-seven"&gt;
-&lt;h2&gt;Step Seven&lt;/h2&gt;
-&lt;p&gt;Write an OpenAPI specification for the revised application.
-See &lt;a class="reference external" href="https://swagger.io/specification/"&gt;https://swagger.io/specification/&lt;/a&gt; for more information. Add the path
-processing so openapi.json (or openapi.yaml) will produce the
-specification. This means updating unit and integration tests to add
-this feature.&lt;/p&gt;
-&lt;p&gt;While this is new development, it is absolutely essential for building
-any kind of web service. It will implement the Context diagram, and most
-of the Container diagram. It will describe significant portions of the
-Component diagram, also. It is not optional. It's very likely this was
-not part of the legacy application.&lt;/p&gt;
-&lt;p&gt;Some of the document structures described in the OpenAPI specification
-will be based on the data model and control components factored out of
-the legacy code. It's essential to get these details write in the
-OpenAPI specification and the unit tests.&lt;/p&gt;
-&lt;p&gt;This may expose problems in the CGI's legacy behavior. Don't fix it now.
-Instead document the features that don't fit with modern API's. Don't be
-afraid to use # TODO comments to show what should be fixed.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-eight"&gt;
-&lt;h2&gt;Step Eight&lt;/h2&gt;
-&lt;p&gt;Use the 2to3 tool to convert ONLY the model and control components. Do
-not convert request parsing and response processing components; they
-will be discarded. This may involve additional redesign and rewrites
-depending on how bad the old code was.&lt;/p&gt;
-&lt;p&gt;Convert the unit tests for ONLY the model and control
-components components.&lt;/p&gt;
-&lt;p&gt;Get the unit tests for the model and control to work in Python 3. This
-is the foundation for the new web site. Update the C4 container,
-component, and code diagrams. Since there's no request handling or HTML
-processing, don't worry about code coverage for the project as a whole.
-Only get the model and control to have 100% coverage.&lt;/p&gt;
-&lt;p&gt;Do not start writing view functions or HTML templates until underlying
-model and control module works. This is the foundation of the
-application. It is not tied to HTTP, but must exist and be tested
-independently.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-nine"&gt;
-&lt;h2&gt;Step Nine&lt;/h2&gt;
-&lt;p&gt;Using Flask as a framework and the OpenAPI specification for the web
-application, build the view functions to exercise all the features of
-the application. Build Jinja templates for the HTML output. Use proper
-cookie management from Flask, discarding any legacy cookie management
-from the CGI. Use proper header parsing rules in Flask, discarding any
-legacy header processing.&lt;/p&gt;
-&lt;p&gt;Rewrite the remaining unit tests manually. These unit tests will now use
-the Flask test client. The goal is to get back to 100% code coverage.&lt;/p&gt;
-&lt;p&gt;Update the C4 container, component, and code diagrams.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-ten"&gt;
-&lt;h2&gt;Step Ten&lt;/h2&gt;
-&lt;p&gt;There are untold number of ways to deploy a Flask application. Pick
-something simple and secure. Do some test deployments to be sure you
-understand how this works. As one example, you can continue to use
-Apache httpd. As another example, some people prefer GUnicorn, others
-prefer to use NGINX. There's lots of advice in the Flask project on ways
-to deploy Flask applications.&lt;/p&gt;
-&lt;p&gt;Do not reuse the Apache httpd and CGI interface. This was terrible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-eleven"&gt;
-&lt;h2&gt;Step Eleven&lt;/h2&gt;
-&lt;p&gt;Create a pyproject.toml file that includes a tox section so that you
-have a fully-automated integration capability. You can automate the
-CI/CD pipeline. Once the new app is in production, you can archive the
-old code and never use it again for anything. Ever.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="step-twelve"&gt;
-&lt;h2&gt;Step Twelve&lt;/h2&gt;
-&lt;p&gt;Fix the bugs you found in Steps Four, Five, and Seven. You will be
-creating a new release with new, improved features.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;tl;dr&lt;/h2&gt;
-&lt;p&gt;This is a lot of work. There's no real alternative. CGI scripts need a
-lot of rework.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry></feed>

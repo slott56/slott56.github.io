@@ -1,5 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2023-02-14T08:00:00-05:00</updated><entry><title>Jupyter Notebook for Tide Table Analysis</title><link href="https://slott56.github.io/2023_02_14-tide_table_analysis.html" rel="alternate"></link><published>2023-02-14T08:00:00-05:00</published><updated>2023-02-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-02-14:/2023_02_14-tide_table_analysis.html</id><summary type="html">&lt;p&gt;I'm undecided if this goes into the next book.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-21T08:01:00-04:00</updated><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+Current me needs to go outside and do something that doesn't involve software or complexity.
+Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+Current me needs to go outside and do something that doesn't involve software or complexity.
+Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm of manageable complexity into that space of unknowable chaos.
+Considering the heliopause, I feel like there's a simpli-pause out there, and I'm drifting past it.&lt;/p&gt;
+&lt;div class="section" id="bluf-tl-dr"&gt;
+&lt;h2&gt;BLUF (TL;DR)&lt;/h2&gt;
+&lt;p&gt;There is no big, simple lesson up front.
+Except, maybe this: &amp;quot;Simplicity requires hard work.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Or maybe quote Pascal's apology:&lt;/p&gt;
+&lt;blockquote&gt;
+I have made this longer than usual because I have not had time to make it shorter.&lt;/blockquote&gt;
+&lt;p&gt;I think complexity stems from failure to budget enough time to find the useful patterns and simplify.&lt;/p&gt;
+&lt;p&gt;What concrete steps can we take to simplify? Read on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;We have the following conceptual model.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/cel_old.png" /&gt;
+&lt;p class="caption"&gt;An overview of some of the classes. There's more. Too much more.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The application will create an &lt;tt class="docutils literal"&gt;Environment&lt;/tt&gt;.
+It uses this to compile a CEL expression, and then create a &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to evaluate the expression.
+(This lets you cache the &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to reuse it.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; evaluates the expression in a &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; where variables, functions, and type definitions are found.
+While the &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; type is shown as a name for a Python &lt;tt class="docutils literal"&gt;dict[str, Value]&lt;/tt&gt;, it &lt;em&gt;could&lt;/em&gt; be a protobuf message with all the stuff in it.&lt;/p&gt;
+&lt;p&gt;Currently, the runner uses a subclass of &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; to interpret the AST.
+This involves a fair amount of navigating through the AST structure.
+This isn't too much overhead, but it can be reduced.&lt;/p&gt;
+&lt;p&gt;We want to explore some ways to reduce the overheads.
+Two seem clear:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Walk the syntax tree, appending operations to a sequence of function evaluations.
+To evaluate the expression, execute the sequence of operations.
+This is tidy, and not fraught with too much complexity until we get to conditional and iterative processing.&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conditional processing&lt;/strong&gt; comes from the short-circuiting &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_?_:_&lt;/span&gt;&lt;/tt&gt; operators. (The CEL folks like to write their operators with &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; to show where operands go.) These involves skipping over the parts that don't need to be evaluated.
+Sadly, the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt; are commutative, so &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; are both &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;.  Use of a monad can make this tolerably simple.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Iterative processing&lt;/strong&gt; comes from &amp;quot;macro&amp;quot; evaluation.
+CEL expresses this with higher-order functions (map, filter, exists, etc.) that are applied to a sub-expression, and an object, &lt;tt class="docutils literal"&gt;[1, 2, &lt;span class="pre"&gt;3].map(x,&lt;/span&gt; 3*x+1)&lt;/tt&gt; sort of thing.
+This is similar to Python's &lt;tt class="docutils literal"&gt;map(lambda x: 3*x+1, [1, 2, 3])&lt;/tt&gt;.
+The concept behind the CEL specification calling this a &amp;quot;macro&amp;quot;, is that the sequence of operations involved in the iteration can be viewed as a single &amp;quot;macro&amp;quot; operation in the overall sequence. A &amp;quot;sub-interpreter&amp;quot; can handle the macro operation, returning a result.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transpile the syntax tree into Python.
+Use the built-in &lt;tt class="docutils literal"&gt;compile()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;exec()&lt;/tt&gt; functions to evaluate the expression.
+The transpile-and-compile creates byte code.
+This will be rather fast.
+And we can leverage projects like &lt;strong&gt;cython&lt;/strong&gt; (&lt;a class="reference external" href="https://cython.org"&gt;https://cython.org&lt;/a&gt;) if we want even more speed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In order to proceed, of course, we need some benchmarking data to show where the performance penalties might be hiding.
+The profiling data suggests transpiling doesn't hold much promise.
+But.
+It's also a logical feature to consider.
+In principle, the desgin permitted adding a compiled runner.
+In principle.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="container-component-code"&gt;
+&lt;h2&gt;Container, Component, Code&lt;/h2&gt;
+&lt;p&gt;In case it's helpful, CEL isn't a stand-alone application.
+It's an expression language that can be embedded anywhere you need expressions.
+A CEL-enabled version of &lt;tt class="docutils literal"&gt;bash&lt;/tt&gt;, for example, would be far more expressive than the  version that has &lt;tt class="docutils literal"&gt;(( ))&lt;/tt&gt; expressions and &lt;tt class="docutils literal"&gt;[ ]&lt;/tt&gt; expressions using different sub-languages.&lt;/p&gt;
+&lt;p&gt;The Pure-Python implementation does have a CLI and can replace &lt;strong&gt;jq&lt;/strong&gt;, but that's above and beyond the core language specification.&lt;/p&gt;
+&lt;p&gt;Code-wise, it depends on the &lt;strong&gt;Lark parser&lt;/strong&gt; (&lt;a class="reference external" href="https://lark-parser.readthedocs.io/en/latest/"&gt;https://lark-parser.readthedocs.io/en/latest/&lt;/a&gt;)  for the parser and abstract syntax tree definition.
+We add a package of CEL types to provide Go-like semantics instead of Python semantics.
+(This means offering &lt;tt class="docutils literal"&gt;int32&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;int64&lt;/tt&gt;, for example.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so-what"&gt;
+&lt;h2&gt;So, what?&lt;/h2&gt;
+&lt;p&gt;Good question. What's the complexity?&lt;/p&gt;
+&lt;p&gt;Clearly, only need a subclass of &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; that transpiles instead of interprets.&lt;/p&gt;
+&lt;p&gt;How hard can that be? Really?&lt;/p&gt;
+&lt;p&gt;I'm going to side-bar into the root-causes of complexity.
+You might want to skip down to &lt;a class="reference internal" href="#fine-it-was-complicated-what-did-i-do"&gt;Fine. It Was Complicated. What Did I Do?&lt;/a&gt;.
+This is how I took a step back from the complexity.&lt;/p&gt;
+&lt;p&gt;If you care, here's the complexity. In detail.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="brain-breaking"&gt;
+&lt;h2&gt;Brain-Breaking&lt;/h2&gt;
+&lt;p&gt;What broke my brain was the subtle differences in when an identifier must be bound to an object.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;When interpreting the syntax tree, the binding happens when you get to the identifier.
+You look it up in the collection of variables, add-on functions, add-on types,
+built-in functions, and built-in types.&lt;/p&gt;
+&lt;p&gt;Any given name will actually have two definitions: a value and a type annotation.
+In principle, both value and type are needed.
+Pragmatically -- in Python -- the type is already bound to the value, and we don't &lt;strong&gt;really&lt;/strong&gt; care very much about this detail.
+In other implementations (e.g. Go) the value is a bunch of bytes, and without the type information, nothing can happen.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;When transpiling. Ah.
+This is interesting because the transpilation doesn't care about variable values.
+Where evaluation of the transpiled (and compiled) code does care about variable values.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When building Python from the CEL expression, we need to resolve type and function names to an implementation class or function.
+The class and function &lt;strong&gt;must&lt;/strong&gt; exist at transpile time so we can translate a CEL &lt;tt class="docutils literal"&gt;uint32&lt;/tt&gt; into the Python &lt;tt class="docutils literal"&gt;celtypes.Uint32Type&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;When executing the compiled code, we still need a context, but this is only the variable bindings, nothing else. The other names have already been resolved into local Python class and function references.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far, so good, right? What's brain-breaking about this?&lt;/p&gt;
+&lt;p&gt;The complexity was deeply buried in implementation details of the interpreter.
+Specifically, it maintained a pointless and unhelpful distinction between types, functions, and variables.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Types are a simple namespace.
+The &lt;tt class="docutils literal"&gt;celpy&lt;/tt&gt; module, for example, defines all the CEL-visible types. New types can be added, leading to a union of type names.
+Ideally, these have a precedence, so new types can replace the built-in types.
+But. It's all very simple.&lt;/li&gt;
+&lt;li&gt;Functions are a mapping from name to implementation.
+The &lt;tt class="docutils literal"&gt;celpy&lt;/tt&gt; module provides the built-in mapping from non-Pythonic names like &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;_&amp;amp;&amp;amp;_&amp;quot;&lt;/span&gt;&lt;/tt&gt; to the &lt;tt class="docutils literal"&gt;logical_and()&lt;/tt&gt; function.
+You're not supposed to override these names, but, it's a simple dictionary, so you can.&lt;/li&gt;
+&lt;li&gt;Variables are a pair of mappings: name to type, and (optionally) name to value.
+It's sensible to provide a type annotation for a variable that never gets a value.
+For example, in this expression,
+&lt;tt class="docutils literal"&gt;choice == &amp;quot;a&amp;quot; ? a / 42 : b / 42&lt;/tt&gt;, there must be a value for &lt;tt class="docutils literal"&gt;choice&lt;/tt&gt;.
+Whether or not a value is provided for &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;, however, depends on the value provided for &lt;tt class="docutils literal"&gt;choice&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the long run, the three varieties of identifiers are all the same.
+This simple uniformity was &lt;strong&gt;not&lt;/strong&gt; part of the original implementation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-bad-path-followed-badly"&gt;
+&lt;h2&gt;The Bad Path Followed Badly&lt;/h2&gt;
+&lt;p&gt;The type-function-variable distinction was a bad idea, followed through to it's logical confusion.&lt;/p&gt;
+&lt;p&gt;The implementation had two collections (not three!):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Type names and variable names.&lt;/li&gt;
+&lt;li&gt;Function names.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Three collections would have made more sense, but, there are slightly different use cases.
+These only became clear when transpiling:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Function name resolution happened at &amp;quot;compile&amp;quot; time.
+Even when doing interpreted evaluation of the parse tree, these names were evaluated on a distinct logic path from type names and variables.&lt;/li&gt;
+&lt;li&gt;Type and variable name resolution only happened at evaluation time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Want some extra complexity? When a type name is used like a function name in CEL.
+&lt;tt class="docutils literal"&gt;uint32(42)&lt;/tt&gt; is valid code.
+When interpreting, it required looking up the name &lt;tt class="docutils literal"&gt;&amp;quot;uint32&amp;quot;&lt;/tt&gt; in both the function and the type mappings.
+It wasn't too awkwardly complicated, but it was yet another complication buried in the interpreter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fine-it-was-complicated-what-did-i-do"&gt;
+&lt;h2&gt;Fine. It Was Complicated. What Did I Do?&lt;/h2&gt;
+&lt;p&gt;See the diagram up above?&lt;/p&gt;
+&lt;p&gt;I started by trying to draw pictures to capture the essence of the design.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;First, I drew some UML class diagrams to capture the legacy design.&lt;/li&gt;
+&lt;li&gt;Then, I draw some UML class diagrams to capture the new design.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Attempting to capture the class models make it clear how complicated the picture where.
+To cope with the complicated diagrams, I started writing an explanation for my future self to understand them.&lt;/p&gt;
+&lt;blockquote&gt;
+Complexity is hard to explain, and that makes it bad.&lt;/blockquote&gt;
+&lt;div class="admonition note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p&gt;I did not fire up some AI-based sparking autocomplete tool to &amp;quot;summarize&amp;quot; this for me.&lt;/p&gt;
+&lt;p class="last"&gt;I didn't want summary-like slop that included my software component names filling in placeholders in the text.
+I wanted to actually understand it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;As I started jotting down notes to describe the pictures, I began to see the essential truth here.&lt;/p&gt;
+&lt;blockquote&gt;
+If it's hard to explain, that reveals a problem: rewrite it.&lt;/blockquote&gt;
+&lt;p&gt;I could barely capture notes on how complicated it was.
+Here's what would happen.&lt;/p&gt;
+&lt;blockquote&gt;
+Instead of describing it, my brain kept trying to rewrite it.&lt;/blockquote&gt;
+&lt;p&gt;I've come to realize this feeling is profound, and helpful:&lt;/p&gt;
+&lt;blockquote&gt;
+When a rewrite seems to be less work than creating an explanation, do the rewrite.&lt;/blockquote&gt;
+&lt;div class="section" id="enterprise-management"&gt;
+&lt;h3&gt;Enterprise Management&lt;/h3&gt;
+&lt;p&gt;In a for-profit enterprise software development environment, there's pressure to call something &amp;quot;done&amp;quot; when it isn't really done.&lt;/p&gt;
+&lt;p&gt;Complexity is tolerated. Simplicity is sacrificed when it seems to be expensive.&lt;/p&gt;
+&lt;p&gt;In actuality, complexity is technical debt, and the liability's drag on the enterprise accumulates quickly.&lt;/p&gt;
+&lt;p&gt;I'm aware that a lot of managers are forced to say things like &amp;quot;But in the real world, we have to stop gold-plating and simply call it done.&amp;quot;&lt;/p&gt;
+&lt;p&gt;This is nonsense, but it's also very hard to counter.&lt;/p&gt;
+&lt;p&gt;My advice for coping with pushy managers?
+Try asking them to draw the picture.
+Wait patiently, then you can the missing details.
+This may lead them to them telling you to make it simpler so it fits their concepts.
+When they tell you to fix the thing you want to fix, that's the ideal outcome; be sure to sulk anyway so they feel like they told you to do something you didn't want to do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="better-design"&gt;
+&lt;h3&gt;Better Design&lt;/h3&gt;
+&lt;p&gt;Eventually, it became clear that an identifier is a mapping from &lt;tt class="docutils literal"&gt;str&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;tuple[type, Any] | tuple[type]&lt;/tt&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;A type name like &lt;tt class="docutils literal"&gt;&amp;quot;Whatever&amp;quot;&lt;/tt&gt; maps to &lt;tt class="docutils literal"&gt;(celpy.TypeType, celpy.WhateverType)&lt;/tt&gt;.
+There's a type and a value.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;A function name like &lt;tt class="docutils literal"&gt;size&lt;/tt&gt; maps to &lt;tt class="docutils literal"&gt;(celpy.CELFunction, size_function)&lt;/tt&gt;.
+And, yes, a more detailed signature &lt;strong&gt;could&lt;/strong&gt; be part of this, but -- for Python -- it doesn't really matter if it has 0, 1, 2, or 3 parameters.
+Any problem surfaces (later) as a &lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt; when trying to evaluate a function with improper arguments.&lt;/p&gt;
+&lt;p&gt;We could leverage the &lt;tt class="docutils literal"&gt;Callable&lt;/tt&gt; generic. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;(celpy.CELFunction[[Any,&lt;/span&gt; Any], celpy.BoolType], lambda x, y: x == y)&lt;/tt&gt;, could be the definition for &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;_==_&amp;quot;&lt;/span&gt;&lt;/tt&gt;.
+It doesn't add too much complexity, but, we'll generally ignore it, because it doesn't create much value to do this extra work.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;A variable has a type annotation (expected at compile time) supplemented by a value (required at evaluation time.)
+Initially a variable is a singleton tuple with a type, &lt;tt class="docutils literal"&gt;(celpy.Int32Type,)&lt;/tt&gt;.
+For evaluation, the context will replace this with a two-tuple that contains the actual value, &lt;tt class="docutils literal"&gt;(celpy.Int32Type, celpy.Int32Type(42))&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;What's important is that -- in Python -- the type information isn't &lt;strong&gt;required&lt;/strong&gt; at compile time.
+Since other CEL implementations need it, it's expected, and we can raise exceptions when it's not available, even though we don't use it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Identifier name resolution can be simplified: a name needs to map to a tuple.
+The first element is always present, and is the type.
+The second element may be missing; when present, this is the value.&lt;/p&gt;
+&lt;p&gt;The hard part is replacing the previous complexity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="uml"></category><category term="plantuml"></category><category term="solid"></category></entry><entry><title>Jupyter Notebook for Tide Table Analysis</title><link href="https://slott56.github.io/2023_02_14-tide_table_analysis.html" rel="alternate"></link><published>2023-02-14T08:00:00-05:00</published><updated>2023-02-14T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-02-14:/2023_02_14-tide_table_analysis.html</id><summary type="html">&lt;p&gt;I'm undecided if this goes into the next book.
 Maybe this is a teaser...
 And yes, this is a &lt;strong&gt;Python to the Rescue&lt;/strong&gt; story.&lt;/p&gt;
 &lt;p&gt;I live on a boat. See &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/index.html"&gt;Red Ranger Blog&lt;/a&gt; for details.
@@ -6911,38 +7119,5 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;div class="section" id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Thanks for the thoughtful comments.  Please post your competing benchmarks so I can see what can be improved in my situation.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="pl/sql"></category><category term="java"></category></entry><entry><title>PL/SQL vs. Java - Yet Again</title><link href="https://slott56.github.io/2007_05_26-plsql_vs_java_yet_again.html" rel="alternate"></link><published>2007-05-26T14:43:00-04:00</published><updated>2007-05-26T14:43:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-26:/2007_05_26-plsql_vs_java_yet_again.html</id><summary type="html">&lt;p&gt;There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth
-is a thought on management's discomfort with the truth.&lt;/p&gt;
-&lt;div class="section" id="response-1-denial"&gt;
-&lt;h2&gt;Response 1 -- Denial&lt;/h2&gt;
-&lt;p&gt;&amp;quot;1) How can using Java/... be faster ? You have to go up and down the architectural stack of …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;There appear to be four responses.  Two were numbered, the third is a rambling thought on scalability, and the fourth
-is a thought on management's discomfort with the truth.&lt;/p&gt;
-&lt;div class="section" id="response-1-denial"&gt;
-&lt;h2&gt;Response 1 -- Denial&lt;/h2&gt;
-&lt;p&gt;&amp;quot;1) How can using Java/... be faster ? You have to go up and down the architectural stack of JDBC over and over and you have the network in between.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Since the code is nearly identical, and the PL/SQL is slower, the &amp;quot;you have to go up and down the architectural stack&amp;quot; part must be false.  Indeed, that was the point of the posting in the first place.  This argument (PL/SQL has to be faster because it's &amp;quot;closer&amp;quot; to the RDBMS) is false.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Suggested response: Well, as in any perf. activity, you have to actually benchmark it in your specific env.&amp;quot;&lt;/p&gt;
-&lt;p&gt;My result shows that &amp;quot;specific env.&amp;quot; doesn't matter.  I'm convinced that in all environments PL/SQL will be slower than Java for the same algorithm.  It's slower because (1) the &amp;quot;closer to the RDBMS&amp;quot; statement is false, and (2) the PL/SQL virtual machine can't do JIT optimization.&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;benchmark&lt;/strong&gt;  is the critical issue here.  Dogmatic acceptance of the received truth of PL/SQL's performance is a mistake.  Benchmarking is essential when performance matters.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="response-2-negotiation"&gt;
-&lt;h2&gt;Response 2 -- Negotiation&lt;/h2&gt;
-&lt;p&gt;&amp;quot;2) You did not properly take advantage of PL/SQL&amp;quot;&lt;/p&gt;
-&lt;p&gt;That was the point.  Some algorithms are basic, transactional Insert-Update-Delete, where PL/SQL is as good as anything else.  Other algorithms, however, involve IF-statements, and PL/SQL doesn't do this well.&lt;/p&gt;
-&lt;p&gt;Further -- and this is hard to grasp at first -- RDBMS indexes are slow compared to in-memory Java collections.  Therefore, a Java program has all the advantages.  The RDBMS is good at persistence, transactional locking, and some kinds of ad-hoc query processing.  Focus on that, and put other kinds of large analytical and ETL processes outside the RDBMS.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="response-3-thoughts-on-scalability"&gt;
-&lt;h2&gt;Response 3 -- Thoughts on Scalability&lt;/h2&gt;
-&lt;p&gt;This wasn't part of my point, but it's interesting none the less.&lt;/p&gt;
-&lt;p&gt;&amp;quot;DB's don't scale... What about RAC, what about multi-master replication ?... Each DB has one and only 1 area that does sorting. ...  just get a  bigger CPU and more and faster disks. ... &amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;If &lt;em&gt;[you?]&lt;/em&gt;  used Java and properly architected the system, just add another cheap PC or another cheap single board computer and you are done.&amp;quot;&lt;/p&gt;
-&lt;p&gt;I suppose that's true.  If your Java application is too slow, you can throw more popcorn processors at the problem.  Indeed, the whole concurrency issue plays into this.  Modern Linux OS's will distribute processes among the processors and cores in multi-core processors, giving your Java applications wonderful levels of concurrent processing.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="response-4-anger"&gt;
-&lt;h2&gt;Response 4 -- Anger&lt;/h2&gt;
-&lt;p&gt;&amp;quot;I don't have Java resources or budget to buy more hardware. However, I already paid for the DB and I have people that [know] PL/SQL.&amp;quot;&lt;/p&gt;
-&lt;p&gt;If IT management says (1) performance matters and (2) don't make use of the benchmark results, then you have a serious problem with schizophrenia.  If, on the other hand, IT management doesn't care about performance, then why were you benchmarking in the first place?&lt;/p&gt;
-&lt;p&gt;If performance doesn't actually matter, PL/SQL is fine.  It's ugly and hard to maintain, but that's what management is all about.  Managers make the &amp;quot;hard&amp;quot; decisions.  For example, managers can elect to use a slow, complex language which is a maintenance nightmare.  But maintenance is paid for with &lt;a class="reference external" href="https://slott56.github.io/2007_02_18-its_drive_to_self_destruction.html"&gt;Next Year's Dollars&lt;/a&gt; , which don't matter.  It's a &lt;a class="reference external" href="https://slott56.github.io/2005_09_15-essay_11_management_trump_cards.html"&gt;Management Trump Card&lt;/a&gt; , and you can't beat it.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="pl/sql"></category><category term="java"></category></entry></feed>
