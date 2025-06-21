@@ -57,7 +57,7 @@ Two seem clear:
     This is tidy, and not fraught with too much complexity until we get to conditional and iterative processing.
 
     -   **Conditional processing** comes from the short-circuiting ``_&&_``, ``_||_``, and ``_?_:_`` operators. (The CEL folks like to write their operators with ``_`` to show where operands go.) These involves skipping over the parts that don't need to be evaluated.
-        Sadly, the ``_&&_``, ``_||_`` are commutative, so ``true || 42 / 0`` and ``true || 42 / 0`` are both ``true``.  Use of a monad can make this tolerably simple.
+        Sadly, the ``_&&_``, ``_||_`` are commutative, so ``true || 42 / 0`` and ``42 / 0 || true`` are both ``true``.  Use of a monad can make this tolerably simple. But that's not how it was implemented.
 
     -   **Iterative processing** comes from "macro" evaluation.
         CEL expresses this with higher-order functions (map, filter, exists, etc.) that are applied to a sub-expression, and an object, ``[1, 2, 3].map(x, 3*x+1)`` sort of thing.
@@ -108,25 +108,26 @@ If you care, here's the complexity. In detail.
 Brain-Breaking
 ==============
 
-What broke my brain was the subtle differences in when an identifier must be bound to an object.
+What broke my brain was the subtle differences between the binding of identifier to a type and (optionally) an object.
 
--   When interpreting the syntax tree, the binding happens when you get to the identifier.
-    You look it up in the collection of variables, add-on functions, add-on types,
+-   When interpreting the syntax tree, the binding must be discovered when interpreting the value of an identifier.
+    Clearly, this starts with looking it up in the collection of variables, add-on functions, add-on types,
     built-in functions, and built-in types.
 
-    Any given name will actually have two definitions: a value and a type annotation.
-    In principle, both value and type are needed.
-    Pragmatically -- in Python -- the type is already bound to the value, and we don't **really** care very much about this detail.
+    Any given name can have two definitions: a type annotation and an optional value.
+    In principle, the value needs an associated type.
+    Pragmatically -- in Python -- a Python type is already bound to the value, and we don't **really** care very much about this detail.
     In other implementations (e.g. Go) the value is a bunch of bytes, and without the type information, nothing can happen.
 
 -   When transpiling. Ah.
     This is interesting because the transpilation doesn't care about variable values.
     Where evaluation of the transpiled (and compiled) code does care about variable values.
 
-    -   When building Python from the CEL expression, we need to resolve type and function names to an implementation class or function.
+    -   When building Python from the CEL expression, we need to resolve type names and function names to an implementation class or function.
         The class and function **must** exist at transpile time so we can translate a CEL ``uint32`` into the Python ``celtypes.Uint32Type``.
 
-    -   When executing the compiled code, we still need a context, but this is only the variable bindings, nothing else. The other names have already been resolved into local Python class and function references.
+    -   When executing the compiled code, we still need a context, but this only needs the variable value bindings.
+        The other names have already been resolved into local Python class and function references.
 
 So far, so good, right? What's brain-breaking about this?
 

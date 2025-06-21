@@ -155,7 +155,7 @@ Two seem clear:</p>
 To evaluate the expression, execute the sequence of operations.
 This is tidy, and not fraught with too much complexity until we get to conditional and iterative processing.<ul>
 <li><strong>Conditional processing</strong> comes from the short-circuiting <tt class="docutils literal"><span class="pre">_&amp;&amp;_</span></tt>, <tt class="docutils literal"><span class="pre">_||_</span></tt>, and <tt class="docutils literal"><span class="pre">_?_:_</span></tt> operators. (The CEL folks like to write their operators with <tt class="docutils literal">_</tt> to show where operands go.) These involves skipping over the parts that don't need to be evaluated.
-Sadly, the <tt class="docutils literal"><span class="pre">_&amp;&amp;_</span></tt>, <tt class="docutils literal"><span class="pre">_||_</span></tt> are commutative, so <tt class="docutils literal">true || 42 / 0</tt> and <tt class="docutils literal">true || 42 / 0</tt> are both <tt class="docutils literal">true</tt>.  Use of a monad can make this tolerably simple.</li>
+Sadly, the <tt class="docutils literal"><span class="pre">_&amp;&amp;_</span></tt>, <tt class="docutils literal"><span class="pre">_||_</span></tt> are commutative, so <tt class="docutils literal">true || 42 / 0</tt> and <tt class="docutils literal">42 / 0 || true</tt> are both <tt class="docutils literal">true</tt>.  Use of a monad can make this tolerably simple. But that's not how it was implemented.</li>
 <li><strong>Iterative processing</strong> comes from &quot;macro&quot; evaluation.
 CEL expresses this with higher-order functions (map, filter, exists, etc.) that are applied to a sub-expression, and an object, <tt class="docutils literal">[1, 2, <span class="pre">3].map(x,</span> 3*x+1)</tt> sort of thing.
 This is similar to Python's <tt class="docutils literal">map(lambda x: 3*x+1, [1, 2, 3])</tt>.
@@ -197,23 +197,24 @@ This is how I took a step back from the complexity.</p>
 </div>
 <div class="section" id="brain-breaking">
 <h2>Brain-Breaking</h2>
-<p>What broke my brain was the subtle differences in when an identifier must be bound to an object.</p>
+<p>What broke my brain was the subtle differences between the binding of identifier to a type and (optionally) an object.</p>
 <ul>
-<li><p class="first">When interpreting the syntax tree, the binding happens when you get to the identifier.
-You look it up in the collection of variables, add-on functions, add-on types,
+<li><p class="first">When interpreting the syntax tree, the binding must be discovered when interpreting the value of an identifier.
+Clearly, this starts with looking it up in the collection of variables, add-on functions, add-on types,
 built-in functions, and built-in types.</p>
-<p>Any given name will actually have two definitions: a value and a type annotation.
-In principle, both value and type are needed.
-Pragmatically -- in Python -- the type is already bound to the value, and we don't <strong>really</strong> care very much about this detail.
+<p>Any given name can have two definitions: a type annotation and an optional value.
+In principle, the value needs an associated type.
+Pragmatically -- in Python -- a Python type is already bound to the value, and we don't <strong>really</strong> care very much about this detail.
 In other implementations (e.g. Go) the value is a bunch of bytes, and without the type information, nothing can happen.</p>
 </li>
 <li><p class="first">When transpiling. Ah.
 This is interesting because the transpilation doesn't care about variable values.
 Where evaluation of the transpiled (and compiled) code does care about variable values.</p>
 <ul class="simple">
-<li>When building Python from the CEL expression, we need to resolve type and function names to an implementation class or function.
+<li>When building Python from the CEL expression, we need to resolve type names and function names to an implementation class or function.
 The class and function <strong>must</strong> exist at transpile time so we can translate a CEL <tt class="docutils literal">uint32</tt> into the Python <tt class="docutils literal">celtypes.Uint32Type</tt>.</li>
-<li>When executing the compiled code, we still need a context, but this is only the variable bindings, nothing else. The other names have already been resolved into local Python class and function references.</li>
+<li>When executing the compiled code, we still need a context, but this only needs the variable value bindings.
+The other names have already been resolved into local Python class and function references.</li>
 </ul>
 </li>
 </ul>

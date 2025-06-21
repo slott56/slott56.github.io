@@ -38,7 +38,7 @@ Two seem clear:&lt;/p&gt;
 To evaluate the expression, execute the sequence of operations.
 This is tidy, and not fraught with too much complexity until we get to conditional and iterative processing.&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Conditional processing&lt;/strong&gt; comes from the short-circuiting &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_?_:_&lt;/span&gt;&lt;/tt&gt; operators. (The CEL folks like to write their operators with &lt;tt class="docutils literal"&gt;_&lt;/tt&gt; to show where operands go.) These involves skipping over the parts that don't need to be evaluated.
-Sadly, the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt; are commutative, so &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; are both &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;.  Use of a monad can make this tolerably simple.&lt;/li&gt;
+Sadly, the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt; are commutative, so &lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;42 / 0 || true&lt;/tt&gt; are both &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;.  Use of a monad can make this tolerably simple. But that's not how it was implemented.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Iterative processing&lt;/strong&gt; comes from &amp;quot;macro&amp;quot; evaluation.
 CEL expresses this with higher-order functions (map, filter, exists, etc.) that are applied to a sub-expression, and an object, &lt;tt class="docutils literal"&gt;[1, 2, &lt;span class="pre"&gt;3].map(x,&lt;/span&gt; 3*x+1)&lt;/tt&gt; sort of thing.
 This is similar to Python's &lt;tt class="docutils literal"&gt;map(lambda x: 3*x+1, [1, 2, 3])&lt;/tt&gt;.
@@ -80,23 +80,24 @@ This is how I took a step back from the complexity.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="brain-breaking"&gt;
 &lt;h2&gt;Brain-Breaking&lt;/h2&gt;
-&lt;p&gt;What broke my brain was the subtle differences in when an identifier must be bound to an object.&lt;/p&gt;
+&lt;p&gt;What broke my brain was the subtle differences between the binding of identifier to a type and (optionally) an object.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;When interpreting the syntax tree, the binding happens when you get to the identifier.
-You look it up in the collection of variables, add-on functions, add-on types,
+&lt;li&gt;&lt;p class="first"&gt;When interpreting the syntax tree, the binding must be discovered when interpreting the value of an identifier.
+Clearly, this starts with looking it up in the collection of variables, add-on functions, add-on types,
 built-in functions, and built-in types.&lt;/p&gt;
-&lt;p&gt;Any given name will actually have two definitions: a value and a type annotation.
-In principle, both value and type are needed.
-Pragmatically -- in Python -- the type is already bound to the value, and we don't &lt;strong&gt;really&lt;/strong&gt; care very much about this detail.
+&lt;p&gt;Any given name can have two definitions: a type annotation and an optional value.
+In principle, the value needs an associated type.
+Pragmatically -- in Python -- a Python type is already bound to the value, and we don't &lt;strong&gt;really&lt;/strong&gt; care very much about this detail.
 In other implementations (e.g. Go) the value is a bunch of bytes, and without the type information, nothing can happen.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p class="first"&gt;When transpiling. Ah.
 This is interesting because the transpilation doesn't care about variable values.
 Where evaluation of the transpiled (and compiled) code does care about variable values.&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;When building Python from the CEL expression, we need to resolve type and function names to an implementation class or function.
+&lt;li&gt;When building Python from the CEL expression, we need to resolve type names and function names to an implementation class or function.
 The class and function &lt;strong&gt;must&lt;/strong&gt; exist at transpile time so we can translate a CEL &lt;tt class="docutils literal"&gt;uint32&lt;/tt&gt; into the Python &lt;tt class="docutils literal"&gt;celtypes.Uint32Type&lt;/tt&gt;.&lt;/li&gt;
-&lt;li&gt;When executing the compiled code, we still need a context, but this is only the variable bindings, nothing else. The other names have already been resolved into local Python class and function references.&lt;/li&gt;
+&lt;li&gt;When executing the compiled code, we still need a context, but this only needs the variable value bindings.
+The other names have already been resolved into local Python class and function references.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
