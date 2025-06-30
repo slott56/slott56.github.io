@@ -34,7 +34,7 @@ See https://github.com/cloud-custodian/cel-python for the code base.
 We have the following conceptual model.
 
 ..  figure:: {static}/media/cel_old.png
-    :alt: The database migration path from SQL to an "intermediate" data structure.
+    :alt: CEL evaluation model
 
     An overview of some of the classes. There's more. Too much more.
 

@@ -66,9 +66,9 @@ We **were** looking at implementing the following conceptual model.
 Until we found the counter-example.
 
 ..  figure:: {static}/media/cel_notional.png
-    :alt: The database migration path from SQL to an "intermediate" data structure.
+    :alt: CEL evaluation model
 
-    An notional design overview of some of the classes for CEL Python.
+    A notional design overview of some of the classes for CEL Python.
     This has problems, it turns out.
 
 The application will create an ``Environment``.
@@ -325,7 +325,7 @@ In this case, it's about 1,000 lines of code that will be reworked.
 
 It took hours to create and debug the code I'm about to delete.
 
-It will take hours to replace them with something that's
+It will take hours to replace them with something that
 
 A. Actually works.
 
@@ -347,7 +347,7 @@ The dream of methodology designers everywhere is to placate managers with an app
 
 The dream is to be able to make this claim:
 
-    "Follow my method and you want pursue some rat-hole right up to a dead end."
+    "Follow my method and you won't waste time digging in some rat-hole right up to a dead end."
 
 What's nonsensical about this is that there needs to be some level of actual *thinking* going on.
 
