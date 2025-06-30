@@ -1,5 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-21T08:01:00-04:00</updated><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-29T09:06:00-04:00</updated><entry><title>An Investment in Learning</title><link href="https://slott56.github.io/2025-06-29-an_investment_in_learning.html" rel="alternate"></link><published>2025-06-29T09:06:00-04:00</published><updated>2025-06-29T09:06:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-29:/2025-06-29-an_investment_in_learning.html</id><summary type="html">&lt;p&gt;The back-story.
+See &lt;a class="reference external" href="https://slott56.github.io/2025-06-21-coping_with_complexity.html"&gt;Coping With Complexity&lt;/a&gt;.
+See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;I've reached the point where progress is clearly impossible.
+A bad decision a few weeks ago has reached it's inevitable conclusion.
+I've made a terrible mistake.
+About 1,000 lines of code -- and tons …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The back-story.
+See &lt;a class="reference external" href="https://slott56.github.io/2025-06-21-coping_with_complexity.html"&gt;Coping With Complexity&lt;/a&gt;.
+See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;I've reached the point where progress is clearly impossible.
+A bad decision a few weeks ago has reached it's inevitable conclusion.
+I've made a terrible mistake.
+About 1,000 lines of code -- and tons of time debugging -- are all wasted.&lt;/p&gt;
+&lt;p&gt;Or, were they?&lt;/p&gt;
+&lt;div class="section" id="bluf-tl-dr"&gt;
+&lt;h2&gt;BLUF (TL;DR)&lt;/h2&gt;
+&lt;p&gt;We make mistakes.&lt;/p&gt;
+&lt;p&gt;Generally, &amp;quot;mistake&amp;quot; is a synonym for &amp;quot;learning&amp;quot;.
+A mistake is a lesson in what not to do.&lt;/p&gt;
+&lt;p&gt;We can't avoid mistakes.
+Instead, we have to learn as much as possible from them.&lt;/p&gt;
+&lt;p&gt;(What about people who &amp;quot;don't learn from their mistakes&amp;quot;?
+They really &lt;strong&gt;do&lt;/strong&gt; learn.
+They also refuse to change their behavior in a way that avoids making substantially similar mistakes again.
+They often modify their behavior to avoid a few unpleasant aspects of a recent mistake while continuing to make related mistakes.)&lt;/p&gt;
+&lt;p&gt;Mistakes don't have a cost.
+They are an investment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
+&lt;p&gt;This is part of Cloud Custodian (C7N), to permit writing simpler logical expressions in more conventional notation.
+See &lt;a class="reference external" href="https://cloudcustodian.io/docs/filters.html"&gt;https://cloudcustodian.io/docs/filters.html&lt;/a&gt; for information on the YAML-based filter notation.
+It's &lt;strong&gt;very&lt;/strong&gt; sophisticated. But, sometimes hard to read.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="container"&gt;
+&lt;h2&gt;Container&lt;/h2&gt;
+&lt;p&gt;This runs in the lambda or other server context as part of Custodian.
+It's not a separate process in a separate container.
+It's an importable package that extends C7N's filter to include additional syntax.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="component"&gt;
+&lt;h2&gt;Component&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;We &lt;strong&gt;were&lt;/strong&gt; looking at implementing the following conceptual model.
+Until we found the counter-example.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/cel_notional.png" /&gt;
+&lt;p class="caption"&gt;An notional design overview of some of the classes for CEL Python.
+This has problems, it turns out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The application will create an &lt;tt class="docutils literal"&gt;Environment&lt;/tt&gt;.
+It uses this to compile a CEL expression, and then create a &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to evaluate the expression.
+(This lets you cache the &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to reuse it.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; evaluates the expression in a &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; where variables, functions, and type definitions are found.
+While the &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; type is shown as a name for a Python &lt;tt class="docutils literal"&gt;dict[str, Value]&lt;/tt&gt;, it &lt;em&gt;could&lt;/em&gt; be a protobuf message with all the stuff in it.&lt;/p&gt;
+&lt;p&gt;We're adding the new subclasses of &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;InterpretedRunner&lt;/tt&gt; uses a subclass of &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; to interpret the AST and compute a final value.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;CompiledRunner&lt;/tt&gt; uses a subclass of &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; to transpile the AST into Python.
+The Pythonic transpilation output is compiled, and the built-in &lt;tt class="docutils literal"&gt;exec()&lt;/tt&gt; function computes a final value from this.
+This runs at native Python speeds, and avoids the overhead of visiting AST nodes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code"&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;p&gt;Let's not go there.
+This is about design decisions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-wrong"&gt;
+&lt;h2&gt;What's Wrong&lt;/h2&gt;
+&lt;p&gt;In retrospect, it's clear -- perfectly and abundantly clear -- that the presence of CEL macros is a non-trivial feature.&lt;/p&gt;
+&lt;p&gt;CEL has &lt;tt class="docutils literal"&gt;some_object.map(x, some_expression_with_x)&lt;/tt&gt; as a construct.&lt;/p&gt;
+&lt;p&gt;Syntactically, it looks like a &lt;tt class="docutils literal"&gt;.map()&lt;/tt&gt; method of &lt;tt class="docutils literal"&gt;some_object&lt;/tt&gt;.
+The presence of a bind variable, &lt;tt class="docutils literal"&gt;x&lt;/tt&gt;, and an expression where &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; is a free variable suggests this is &lt;strong&gt;not&lt;/strong&gt; simply a method.
+This is nothing like the expression &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;some_string.startsWith('hello')&lt;/span&gt;&lt;/tt&gt;: a method with an argument value that can be immediately evaluated and produce a result.&lt;/p&gt;
+&lt;p&gt;CEL calls it a &amp;quot;macro&amp;quot; because it's really a higher-level construct.
+It's visually indistinguishable from a function, but it's semantically unrelated.&lt;/p&gt;
+&lt;p&gt;In Python, the syntax for this is &lt;tt class="docutils literal"&gt;(some_expression_with_x for x in some_object)&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;map(lambda x: some_expressions_with_x, some_object)&lt;/tt&gt;.
+The bind variable and expression have a distinctive syntax that makes them easy to work with.&lt;/p&gt;
+&lt;p&gt;CEL lacks a distinctive syntax. Sigh.
+For me, the function-like syntax was an attractive nuisance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="okay-there-are-macros"&gt;
+&lt;h2&gt;Okay, There are Macros&lt;/h2&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; is &amp;quot;bottom-up&amp;quot;.
+It visits leaf nodes and then higher and higher level nodes.&lt;/p&gt;
+&lt;p&gt;This means &lt;tt class="docutils literal"&gt;6 * 7&lt;/tt&gt; will visit the following nodes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;6&lt;/tt&gt;.  Nothing much to transpiling this into Python.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;7&lt;/tt&gt;.  Also, really easy to transpile into Python.&lt;/li&gt;
+&lt;li&gt;Multiplication node with two leaf nodes and an operator, &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;.  Also.  Easy to transpile.
+A template of &lt;tt class="docutils literal"&gt;&amp;quot;{left} * {right}&amp;quot;&lt;/tt&gt; works nicely.
+Or, maybe &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;operator.mul({left},&lt;/span&gt; &lt;span class="pre"&gt;{right})&amp;quot;&lt;/span&gt;&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This simple design is inadequate for macro processing.&lt;/p&gt;
+&lt;p&gt;Consider this: &lt;tt class="docutils literal"&gt;['foal', 'foo', &lt;span class="pre"&gt;'four'].exists_one(n,&lt;/span&gt; &lt;span class="pre"&gt;n.startsWith('fo'))&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;How is this visited?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;The left-hand side:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'foal'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'foo'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'four'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to assemble the three literals.&lt;/li&gt;
+&lt;li&gt;A &amp;quot;list literal&amp;quot; node built from the expression list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The right-hand side:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable.
+&lt;span class="text-warning font-weight-bold"&gt;Warning: This is not a sub-expression&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;'fo'&lt;/tt&gt; literal.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to build the one literal as a single-element list.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;dot ident arg&amp;quot; node with &lt;tt class="docutils literal"&gt;startsWith&lt;/tt&gt; as the identifier, and the expression list node.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable.  Again.&lt;/li&gt;
+&lt;li&gt;A complete &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; primary expression.
+At this point, it's not clear that &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is a bind variable that doesn't have a value in the default activation.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to build &lt;tt class="docutils literal"&gt;n&lt;/tt&gt;, and the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; expression as a list.
+&lt;span class="text-danger font-weight-bold"&gt;RED ALERT: This is not a list of expressions&lt;/span&gt;.
+This a bind variable name and an expression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The final expression as a whole:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;A &amp;quot;dot ident arg&amp;quot; node with &lt;tt class="docutils literal"&gt;exists_one&lt;/tt&gt; as the identifier, and the expression list node.
+This can't work because the &lt;tt class="docutils literal"&gt;exists_one&lt;/tt&gt; is a macro that needs a bind variable and sub-expression.
+It needs to bind multiple values to the bind variable and evaluate the sub-expression for each value.&lt;/p&gt;
+&lt;p&gt;Note that an expression &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; (See &lt;span class="text-warning font-weight-bold"&gt;Warning&lt;/span&gt;, above) and an expression list &lt;tt class="docutils literal"&gt;n, &lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; (see &lt;span class="text-danger font-weight-bold"&gt;RED ALERT&lt;/span&gt;, above) are not really part of this, but, well, they were visited and generated transpiled code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We wind up with some extra, irrelevant, transpiled code floating around in our internal data structures.&lt;/p&gt;
+&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;Bottom up is inappropriate when handling macros. The subsidiary parts -- the bind variable and the sub-expression -- need special handling.&lt;/p&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; is doesn't fit perfectly with the approach required for Transpiling.
+Stuff is visited that appears to be a useful sub-expression.
+But.
+It's not simply a sub-expression that can be evaluated and passed up the parse tree to compute a final answer.&lt;/p&gt;
+&lt;p&gt;First, the &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; sub-expression only makes sense in the context of a macro binding a value to it. It's not an expression at all. It's an identifier.&lt;/p&gt;
+&lt;p&gt;Second, the sub-expression with the &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable buried in it can't be evaluated outside the macro context.&lt;/p&gt;
+&lt;p&gt;Every other expression can be trivially evaluated and the result passed up the parse tree.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-duh-factor"&gt;
+&lt;h2&gt;The Duh Factor&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;InterpretedRunner&lt;/tt&gt; extended the &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; class.&lt;/p&gt;
+&lt;p&gt;At first blush, it seemed like transpiling might be different.
+We might be able to --- trivially --- rewrite the code from CEL to Python using the &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;After getting to a regression test failure, it is clear that we cannot &lt;strong&gt;trivially&lt;/strong&gt; transpile a macro into Python.
+The simplistic &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; design doesn't work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-wait"&gt;
+&lt;h2&gt;But Wait...&lt;/h2&gt;
+&lt;p&gt;The nuance here is that the transpiled pieces and parts -- in isolation -- actually &lt;strong&gt;are&lt;/strong&gt; useful.
+We need to to avoid &lt;strong&gt;trivially&lt;/strong&gt; conflating &lt;tt class="docutils literal"&gt;object.method(arg)&lt;/tt&gt;, which has a simple value, with &lt;tt class="docutils literal"&gt;object.macro(variable, expression)&lt;/tt&gt;, generates more complicated code.&lt;/p&gt;
+&lt;p&gt;This seems to be a two-pass operation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Phase I&lt;/strong&gt;. A &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; walks the parse tree and decorates AST nodes with a Python string transpilation of the node.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Literals get the Pythonic version of the CEL literal as a string.&lt;/li&gt;
+&lt;li&gt;Identifiers become an &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;activation.{name}:&lt;/span&gt;&lt;/tt&gt; string.&lt;/li&gt;
+&lt;li&gt;Operators, functions, and methods all get normalized to a template that pulls in the children strings to create a complete Python expression string.&lt;ul&gt;
+&lt;li&gt;If all the children are strings, then the template can be transformed into a string and treated as if it were a simple literal.  For example, the &lt;tt class="docutils literal"&gt;&amp;quot;{left} * {right}&amp;quot;&lt;/tt&gt; template can be filled in right away with two literals.&lt;/li&gt;
+&lt;li&gt;If any of the children are templates, short-circuits, or macros, the final creation of code has to wait for Phase II.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The short-circuit logic operators, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_?_:_&lt;/span&gt;&lt;/tt&gt; at this level are complicated templates.
+It's slightly easier to defer filling them until Phase II because they build multiple lines of code.&lt;/li&gt;
+&lt;li&gt;The macros (distinct from methods) require Phase II processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Phase II&lt;/strong&gt;. A second &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; walks the parse tree, looking for the already completed decorations on AST nodes, and the templates to be completed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Any unfilled templates require visiting the children, substituting them into the template, and updating the decoration from template to string.
+These become simple lambdas.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;operator_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;children&lt;/span&gt;&lt;span class="p"&gt;)}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Each child will be a single blob of text, built up from numerous children involving ordinary literals and operators.
+The resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Short-circuit operators are expanded into lambdas that may or may not raise exceptions that may or may not be ignored.
+&lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;. No exception is raised.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;logical_or_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ex_left&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ex_right&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;logical_or_function&lt;/tt&gt; will evaluate sub-expressions and silence exceptions as needed.&lt;/p&gt;
+&lt;p&gt;And yes, everything is a lambda, even the literals. It makes life simpler.&lt;/p&gt;
+&lt;p&gt;The resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Which brings us to macros. Example: &lt;tt class="docutils literal"&gt;['foal', 'foo', &lt;span class="pre"&gt;'four'].exists_one(n,&lt;/span&gt; &lt;span class="pre"&gt;n.startsWith('fo'))&lt;/span&gt;&lt;/tt&gt;.
+The left-hand side is an ordinary sub-expression. For Python's purposes, this object will be used by a generator expression to create sub-activations with the bind variable set.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foal&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;four&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;activation_gen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nested_activation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or, we could use &lt;tt class="docutils literal"&gt;map(lambda a: &lt;span class="pre"&gt;a.nested_activation(vars=dict({bind&lt;/span&gt; &lt;span class="pre"&gt;variable}=_value)),&lt;/span&gt; ex_{n}_left)&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Now, we can evaluate the macro.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;sub_activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;startsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sub_activation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_is_true&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ex_right&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;activation_gen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;_is_true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This resulting block of code, while bulky, captures the macro processing.
+Each of the macros has a unique expression structure, but they're all based on the built-in &lt;tt class="docutils literal"&gt;map()&lt;/tt&gt;.
+In this case, CEL &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;exists_one(...)&lt;/span&gt;&lt;/tt&gt; is an assertion that there was one result.&lt;/p&gt;
+&lt;p&gt;And, like everything else, the resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What's important here is that we use a lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; for this, not an &lt;tt class="docutils literal"&gt;Interpreter&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-the-distinction"&gt;
+&lt;h2&gt;What's The Distinction?&lt;/h2&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; always visits the children first.
+The results of the child visit are then available for the parent to use.
+The generic &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; class can be decorated with types for parameters and results to clarify how the evaluation works.&lt;/p&gt;
+&lt;p&gt;The approach is good for everything but macros.
+The literal nodes roll up into the primary nodes that roll up into various priorities of expression nodes.
+The final, top-most &lt;tt class="docutils literal"&gt;expr&lt;/tt&gt; node can be an amalgamation of all the visited children.
+Operations are properly nested by the AST definitions of relation, addition, and multiplication grammar productions.&lt;/p&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Interpreter&lt;/tt&gt; doesn't visit the children automatically.
+The application methods must explicitly call &lt;tt class="docutils literal"&gt;visit()&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;visit_children()&lt;/tt&gt; as needed.
+When interpreting the AST to evaluate it, this is an annoying detail until we get to macros.
+For macros, it's imperative to not trivially visit the children. See the &lt;span class="text-warning font-weight-bold"&gt;Warning&lt;/span&gt; and &lt;span class="text-danger font-weight-bold"&gt;RED ALERT&lt;/span&gt;, above.&lt;/p&gt;
+&lt;p&gt;For evaluation, processing must work like this.
+First, evaluate the left-hand side to get an object.
+The first child of the macro node has the bind variable.
+For each value in the object, create a sub-activation with the bind variable;
+then, visit only the second child of the macro node to get a value.
+This limited use of visiting children makes it easy to implement interpretation of a macro.&lt;/p&gt;
+&lt;p&gt;The same kind of processing can apply to transpiling a macro into Python.
+Or.
+As shown above, we can do two passes:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;the easy non-macro transpilation,&lt;/li&gt;
+&lt;li&gt;macro transpilation, which doesn't &lt;strong&gt;trivially&lt;/strong&gt; roll the children up into the parent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-cost-of-the-mistake"&gt;
+&lt;h2&gt;The Cost of the Mistake&lt;/h2&gt;
+&lt;p&gt;Mistakes don't have a cost.&lt;/p&gt;
+&lt;p&gt;This is a fallacy. A big one. One that cripples technical management.&lt;/p&gt;
+&lt;p&gt;Mistakes are an investment in learning.&lt;/p&gt;
+&lt;p&gt;In this case, it's about 1,000 lines of code that will be reworked.&lt;/p&gt;
+&lt;p&gt;It took hours to create and debug the code I'm about to delete.&lt;/p&gt;
+&lt;p&gt;It will take hours to replace them with something that's&lt;/p&gt;
+&lt;ol class="upperalpha simple"&gt;
+&lt;li&gt;Actually works.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Has a simple example that absolutely requires the more sophisticated design.&lt;/dt&gt;
+&lt;dd&gt;(Note that I didn't have this until a specific regression test failed.)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;Benefits from the the incorrect version, and working examples of the various kinds of lambda templates.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The final point is really important and under-valued:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Refactoring is Easier than Initial Development&lt;/strong&gt;&lt;/blockquote&gt;
+&lt;p&gt;Folks have an unwarranted fear of refactoring and the &amp;quot;cost&amp;quot; of rework.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="could-i-have-prevented-this"&gt;
+&lt;h2&gt;Could I Have Prevented This?&lt;/h2&gt;
+&lt;p&gt;The dream of methodology designers everywhere is to placate managers with an approach this will avoid this investment.&lt;/p&gt;
+&lt;p&gt;The dream is to be able to make this claim:&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;Follow my method and you want pursue some rat-hole right up to a dead end.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;What's nonsensical about this is that there needs to be some level of actual &lt;em&gt;thinking&lt;/em&gt; going on.&lt;/p&gt;
+&lt;p&gt;It's nonsense because someone has to deeply understand this problem, and leverage that understanding to avoid writing bad code.
+Someone has to put in hours understanding the problem to avoid the code.&lt;/p&gt;
+&lt;p&gt;What form does this detailed &amp;quot;understanding&amp;quot; take?&lt;/p&gt;
+&lt;p&gt;Clearly, the waterfall dream claim was a &amp;quot;detailed design document.&amp;quot;&lt;/p&gt;
+&lt;p&gt;And this document was based on what, exactly?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Staring at a whiteboard?&lt;/li&gt;
+&lt;li&gt;Expensive multi-person meetings?&lt;/li&gt;
+&lt;li&gt;Long, expensive, pointless conversations with an hallucinating AI tool.
+(Watch &lt;em&gt;2001: A Space Odyssey&lt;/em&gt; for more on hallucination-prone AI tools.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Or, is the detailed design document based on draft code that demonstrates a problem?
+The design-level draft is used to create a design document.
+Which is then used to create final code.&lt;/p&gt;
+&lt;p&gt;In the olden days this was considered a non-starter.
+Code was expensive.
+Those days are past.
+Draft code is part of the process.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="uml"></category><category term="plantuml"></category><category term="solid"></category></entry><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
 Current me needs to go outside and do something that doesn't involve software or complexity.
 Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
 Current me needs to go outside and do something that doesn't involve software or complexity.
@@ -149,7 +430,7 @@ It wasn't too awkwardly complicated, but it was yet another complication buried 
 &lt;li&gt;First, I drew some UML class diagrams to capture the legacy design.&lt;/li&gt;
 &lt;li&gt;Then, I draw some UML class diagrams to capture the new design.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Attempting to capture the class models make it clear how complicated the picture where.
+&lt;p&gt;Attempting to capture the class models made it clear how complicated the picture where.
 To cope with the complicated diagrams, I started writing an explanation for my future self to understand them.&lt;/p&gt;
 &lt;blockquote&gt;
 Complexity is hard to explain, and that makes it bad.&lt;/blockquote&gt;
@@ -178,7 +459,8 @@ When a rewrite seems to be less work than creating an explanation, do the rewrit
 &lt;p&gt;This is nonsense, but it's also very hard to counter.&lt;/p&gt;
 &lt;p&gt;My advice for coping with pushy managers?
 Try asking them to draw the picture.
-Wait patiently, then you can the missing details.
+Wait patiently, then you can add some missing details.
+It's important not to simply add overwhelming piles details, but add selected details to expose a bad complexity.
 This may lead them to them telling you to make it simpler so it fits their concepts.
 When they tell you to fix the thing you want to fix, that's the ideal outcome; be sure to sulk anyway so they feel like they told you to do something you didn't want to do.&lt;/p&gt;
 &lt;/div&gt;
@@ -279,7 +561,7 @@ def some_new_function(x: type) -&amp;gt; type:
 &lt;p&gt;What did we expect?&lt;/p&gt;
 &lt;p&gt;Of course there will be ruthless exploitation of weakness.&lt;/p&gt;
 &lt;p&gt;Clearly, minimal IT budgets -- just enought to &amp;quot;keep the lights on&amp;quot; -- will provide avenues for exploitation.&lt;/p&gt;
-</content><category term="Management"></category><category term="ransomeware"></category></entry><entry><title>Domnan-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
+</content><category term="Management"></category><category term="ransomeware"></category></entry><entry><title>Domnain-Specific Language</title><link href="https://slott56.github.io/2025-03-11-domain_specific_language.html" rel="alternate"></link><published>2025-03-11T15:52:00-04:00</published><updated>2025-03-11T15:52:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-03-11:/2025-03-11-domain_specific_language.html</id><summary type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
 &lt;p&gt;There are a few cases where a DSL can be …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Generally, I try to frown on Domain-Specific Languages.
 Often, a tidy set of related functions, or a group of class definitions with a few decorators can create something that's every bit as expressive as a DSL in native Python syntax.&lt;/p&gt;
@@ -11304,383 +11586,5 @@ code.&lt;/p&gt;
 These are the single most valuable part of the work. Given test cases
 that describe the old application, writing the new app using Flask is
 relatively easy.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry><entry><title>Found an ancient cgi script -- part II -- testing</title><link href="https://slott56.github.io/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html" rel="alternate"></link><published>2021-09-07T11:00:00-04:00</published><updated>2021-09-07T11:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-09-07:/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html"&gt;We have an ancient Python2 CGI script -- what do we
-do?&lt;/a&gt;&amp;quot;
-The previous post in this series provides an overview of the process of
-getting rid of legacy code.&lt;/p&gt;
-&lt;p&gt;Here's some code. I know it's painfully long; the point is to provide a
-super-specific, very concrete example of what …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html"&gt;We have an ancient Python2 CGI script -- what do we
-do?&lt;/a&gt;&amp;quot;
-The previous post in this series provides an overview of the process of
-getting rid of legacy code.&lt;/p&gt;
-&lt;p&gt;Here's some code. I know it's painfully long; the point is to provide a
-super-specific, very concrete example of what to keep and what to
-discard. (I've omitted the module docstring and the imports.)&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-try:
-    os.mkdir(&amp;quot;data&amp;quot;)
-except OSError:
-    pass
-
-path_elements = os.environ[&amp;quot;PATH_INFO&amp;quot;].split(&amp;quot;/&amp;quot;)
-if path_elements[0] == &amp;quot;&amp;quot; and path_elements[1] == &amp;quot;resources&amp;quot;:
-    if os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] == &amp;quot;POST&amp;quot;:
-        type_name = path_elements[2]
-        base = os.path.join(&amp;quot;data&amp;quot;, type_name)
-        try:
-            os.mkdir(base)
-        except OSError:
-            pass
-        name = str(uuid.uuid4())
-        full_name = os.path.join(base, name)
-        data = cgi.parse(sys.stdin)
-        output_file = open(full_name, 'w')
-        output_file.write(repr(data))
-        output_file.write('\n')
-        output_file.close()
-
-        print &amp;quot;Status: 201 CREATED&amp;quot;
-        print &amp;quot;Content-Type: text/html&amp;quot;
-        print
-        print &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Created New %s&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; % type_name
-        print &amp;quot;&amp;lt;body&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;h1&amp;gt;Created New %s&amp;lt;/h1&amp;gt;&amp;quot; % type_name
-        print &amp;quot;&amp;lt;p&amp;gt;Path: %s/%s&amp;lt;/p&amp;gt;&amp;quot; % (type_name, name)
-        print &amp;quot;&amp;lt;p&amp;gt;Content: &amp;lt;/p&amp;gt;&amp;lt;pre&amp;gt;&amp;quot;
-        print data
-        print &amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;/body&amp;gt;&amp;quot;
-        # cgi.print_environ()
-        print &amp;quot;&amp;lt;/html&amp;gt;&amp;quot;
-    elif os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] == &amp;quot;GET&amp;quot; and len(path_elements) == 3:
-        type_name = path_elements[2]
-        print &amp;quot;Status: 200 OK&amp;quot;
-        print &amp;quot;Content-Type: text/html&amp;quot;
-        print
-        print &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Query %s&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; % (type_name,)
-        print &amp;quot;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;Create new instance of &amp;lt;tt&amp;gt;%s&amp;lt;/tt&amp;gt;&amp;lt;/h1&amp;gt;&amp;quot; % type_name
-        print '&amp;lt;form action=&amp;quot;/cgi-bin/example.py/resources/%s&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;' % (type_name,)
-        print &amp;quot;&amp;quot;&amp;quot;
-          &amp;lt;label for=&amp;quot;fname&amp;quot;&amp;gt;First name:&amp;lt;/label&amp;gt;
-          &amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;fname&amp;quot; name=&amp;quot;fname&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
-          &amp;lt;label for=&amp;quot;lname&amp;quot;&amp;gt;Last name:&amp;lt;/label&amp;gt;
-          &amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;lname&amp;quot; name=&amp;quot;lname&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
-          &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot;&amp;gt;
-        &amp;quot;&amp;quot;&amp;quot;
-        print &amp;quot;&amp;lt;/form&amp;gt;&amp;quot;
-        # cgi.print_environ()
-        print &amp;quot;&amp;lt;/body&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;/html&amp;gt;&amp;quot;
-    elif os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] == &amp;quot;GET&amp;quot; and len(path_elements) == 4:
-        type_name = path_elements[2]
-        resource_name = path_elements[3]
-        full_name = os.path.join(&amp;quot;data&amp;quot;, type_name, resource_name)
-        input_file = open(full_name, 'r')
-        content = input_file.read()
-        input_file.close()
-
-        print &amp;quot;Status: 200 OK&amp;quot;
-        print &amp;quot;Content-Type: text/html&amp;quot;
-        print
-        print &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Document %s -- %s&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; % (type_name, resource_name)
-        print &amp;quot;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;Instance of &amp;lt;tt&amp;gt;%s&amp;lt;/tt&amp;gt;&amp;lt;/h1&amp;gt;&amp;quot; % type_name
-        print &amp;quot;&amp;lt;p&amp;gt;Path: %s/%s&amp;lt;/p&amp;gt;&amp;quot; % (type_name, resource_name)
-        print &amp;quot;&amp;lt;p&amp;gt;Content: &amp;lt;/p&amp;gt;&amp;lt;pre&amp;gt;&amp;quot;
-        print content
-        print &amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;/body&amp;gt;&amp;quot;
-        # cgi.print_environ()
-        print &amp;quot;&amp;lt;/html&amp;gt;&amp;quot;
-    else:
-        print &amp;quot;Status: 403 Forbidden&amp;quot;
-        print &amp;quot;Content-Type: text/html&amp;quot;
-        print
-        print &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;html&amp;gt;&amp;quot;
-        print &amp;quot;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Forbidden: %s to %s&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot;  % (os.environ[&amp;quot;REQUEST_METHOD&amp;quot;], path_elements)
-        cgi.print_environ()
-        print &amp;quot;&amp;lt;/html&amp;gt;&amp;quot;
-else:
-    print &amp;quot;Status: 404 Not Found&amp;quot;
-    print &amp;quot;Content-Type: text/html&amp;quot;
-    print                               # blank line, end of headers
-    print &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;
-    print &amp;quot;&amp;lt;html&amp;gt;&amp;quot;
-    print &amp;quot;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Not Found: %s&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;quot; % (os.environ[&amp;quot;PATH_INFO&amp;quot;], )
-    print &amp;quot;&amp;lt;h1&amp;gt;Error&amp;lt;/h1&amp;gt;&amp;quot;
-    print &amp;quot;&amp;lt;b&amp;gt;Resource &amp;lt;tt&amp;gt;%s&amp;lt;/tt&amp;gt; not found&amp;lt;/b&amp;gt;&amp;quot; % (os.environ[&amp;quot;PATH_INFO&amp;quot;], )
-    cgi.print_environ()
-    print &amp;quot;&amp;lt;/html&amp;gt;&amp;quot;
-&lt;/pre&gt;
-&lt;p&gt;At first glance you might notice (1) there are several resource types
-located on the URL path, and (2) there are several HTTP methods, also.
-These features aren't always obvious in a CGI script, and it's one of
-the reasons why CGI is simply horrible.&lt;/p&gt;
-&lt;p&gt;It's not clear from this what -- exactly -- the underlying data model is
-and what processing is done and what parts are merely CGI and HTML
-overheads.&lt;/p&gt;
-&lt;p&gt;This is why refactoring this code is absolutely essential to replacing
-it.&lt;/p&gt;
-&lt;p&gt;And.&lt;/p&gt;
-&lt;p&gt;We can't refactor without test cases.&lt;/p&gt;
-&lt;p&gt;And (bonus).&lt;/p&gt;
-&lt;p&gt;We can't have test cases without some vague idea of what this thing
-purports to do.&lt;/p&gt;
-&lt;p&gt;Let's tackle this in order. Starting with test cases.&lt;/p&gt;
-&lt;div class="section" id="unit-test-cases"&gt;
-&lt;h2&gt;Unit Test Cases&lt;/h2&gt;
-&lt;p&gt;We can't unit test this.&lt;/p&gt;
-&lt;p&gt;As written, it's a top-level script without so much as as single def or
-class. This style of programming -- while legitimate Python -- is an
-epic fail when it comes to testing.&lt;/p&gt;
-&lt;p&gt;Step 1, then, is to refactor a script file into a module with
-function(s) or class(es) that can be tested.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def main():
-    ... the original script ...
-
-if __name__ == &amp;quot;__main__&amp;quot;:  # pragma: no cover
-    main()
-&lt;/pre&gt;
-&lt;p&gt;For proper testability, there can be at most these two lines of code
-that are not easily tested. These two (and only these two) are marked
-with a special comment (&lt;tt class="docutils literal"&gt;# pragma: no cover&lt;/tt&gt;) so the coverage tool can
-politely ignore the fact that we won't try to test these two lines.&lt;/p&gt;
-&lt;p&gt;We can now provide a os.environ values that look like a CGI requests,
-and exercise this script with concrete unit test cases.&lt;/p&gt;
-&lt;p&gt;How many things does it do?&lt;/p&gt;
-&lt;p&gt;Reading the code is headache-inducing, so, a fall-back plan is to count
-the number of logic paths. Look at if/elif blocks and count those
-without thinking too deeply about why the code looks the way it looks.&lt;/p&gt;
-&lt;p&gt;There appear to be five distinct behaviors. Since there are
-possibilities of unhandled exceptions, there may be as many as 10 things
-this will do in production.&lt;/p&gt;
-&lt;p&gt;This leads to a unit test that looks like the following:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-import unittest
-import urllib
-import example_2
-import os
-import io
-import sys
-
-class MyTestCase(unittest.TestCase):
-    def setUp(self):
-        self.cwd = os.getcwd()
-        try:
-            os.mkdir(&amp;quot;test_path&amp;quot;)
-        except OSError:
-            pass
-        os.chdir(&amp;quot;test_path&amp;quot;)
-        self.output = io.BytesIO()
-        sys.stdout = self.output
-    def tearDown(self):
-        sys.stdout = sys.__stdout__
-        sys.stdin = sys.__stdin__
-        os.chdir(self.cwd)
-    def test_path_1(self):
-        &amp;quot;&amp;quot;&amp;quot;No /resources in path&amp;quot;&amp;quot;&amp;quot;
-        os.environ[&amp;quot;PATH_INFO&amp;quot;] = &amp;quot;/not/valid&amp;quot;
-        os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] = &amp;quot;invalid&amp;quot;
-        example_2.main()
-        out = self.output.getvalue()
-        first_line = out.splitlines()[0]
-        self.assertEqual(first_line, &amp;quot;Status: 404 Not Found&amp;quot;)
-    def test_path_2(self):
-        &amp;quot;&amp;quot;&amp;quot;Path /resources but bad method&amp;quot;&amp;quot;&amp;quot;
-        os.environ[&amp;quot;PATH_INFO&amp;quot;] = &amp;quot;/resources/example&amp;quot;
-        os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] = &amp;quot;invalid&amp;quot;
-        example_2.main()
-        out = self.output.getvalue()
-        first_line = out.splitlines()[0]
-        self.assertEqual(first_line, &amp;quot;Status: 403 Forbidden&amp;quot;)
-    def test_path_3(self):
-        os.environ[&amp;quot;PATH_INFO&amp;quot;] = &amp;quot;/resources/example&amp;quot;
-        os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] = &amp;quot;GET&amp;quot;
-        example_2.main()
-        out = self.output.getvalue()
-        first_line = out.splitlines()[0]
-        self.assertEqual(first_line, &amp;quot;Status: 200 OK&amp;quot;)
-        self.assertIn(&amp;quot;&amp;lt;form &amp;quot;, out)
-    def test_path_5(self):
-        os.environ[&amp;quot;PATH_INFO&amp;quot;] = &amp;quot;/resources/example&amp;quot;
-        os.environ[&amp;quot;REQUEST_METHOD&amp;quot;] = &amp;quot;POST&amp;quot;
-        os.environ[&amp;quot;CONTENT_TYPE&amp;quot;] = &amp;quot;application/x-www-form-urlencoded&amp;quot;
-        content = urllib.urlencode({&amp;quot;field1&amp;quot;: &amp;quot;value1&amp;quot;, &amp;quot;field2&amp;quot;: &amp;quot;value2&amp;quot;})
-        form_data = io.BytesIO(content)
-        os.environ[&amp;quot;CONTENT_LENGTH&amp;quot;] = str(len(content))
-        sys.stdin = form_data
-        example_2.main()
-        out = self.output.getvalue()
-        first_line = out.splitlines()[0]
-        self.assertEqual(first_line, &amp;quot;Status: 201 CREATED&amp;quot;)
-        self.assertIn(&amp;quot;'field2': ['value2']&amp;quot;, out)
-        self.assertIn(&amp;quot;'field1': ['value1']&amp;quot;, out)
-
-
-if __name__ == '__main__':
-    unittest.main()
-&lt;/pre&gt;
-&lt;p&gt;Does this have 100% code coverage? I'll leave it to the reader to
-copy-and-paste, add the &lt;tt class="docutils literal"&gt;coverage run&lt;/tt&gt; command and look at the output.
-What else is required?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="integration-test-case"&gt;
-&lt;h2&gt;Integration Test Case&lt;/h2&gt;
-&lt;p&gt;We can (barely) do an integration test on this. It's tricky because we
-don't want to run Apache httpd (or some other server.) We want to run a
-small Python script to be sure this works.&lt;/p&gt;
-&lt;p&gt;This means we need to (1) start a server as a separate process, and (2)
-use urllib to send requests to that separate process. This isn't too
-difficult. Right now, it's not &lt;em&gt;obviously&lt;/em&gt; required. The test cases
-above run the entire script from end to end, providing what we think are
-appropriate mock values. Emphasis on &amp;quot;what we think.&amp;quot; To be sure, we'll
-need to actually fire up a separate process.&lt;/p&gt;
-&lt;p&gt;As with the unit tests, we need to enumerate &lt;strong&gt;all&lt;/strong&gt; of the expected
-behaviors.&lt;/p&gt;
-&lt;p&gt;Unlike the unit tests, there are (generally) fewer edge cases.&lt;/p&gt;
-&lt;p&gt;It looks like this.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-import unittest
-import subprocess
-import time
-import urllib2
-
-class TestExample_2(unittest.TestCase):
-    def setUp(self):
-        self.proc = subprocess.Popen(
-            [&amp;quot;python2.7&amp;quot;, &amp;quot;mock_httpd.py&amp;quot;],
-            cwd=&amp;quot;previous&amp;quot;
-        )
-        time.sleep(0.25)
-    def tearDown(self):
-        self.proc.kill()
-        time.sleep(0.1)
-    def test(self):
-        req = urllib2.Request(&amp;quot;http://localhost:8000/cgi-bin/example.py/resources/example&amp;quot;)
-        result = urllib2.urlopen(req)
-        self.assertEqual(result.getcode(), 200)
-        self.assertEqual(set(result.info().keys()), set(['date', 'status', 'content-type', 'server']))
-        content = result.read()
-        self.assertEqual(content.splitlines()[0], &amp;quot;&amp;lt;!DOCTYPE html&amp;gt;&amp;quot;)
-        self.assertIn(&amp;quot;&amp;lt;form &amp;quot;, content)
-
-if __name__ == '__main__':
-    unittest.main()
-&lt;/pre&gt;
-&lt;p&gt;This will start a separate process and then make a request from that
-process. After the request, it kills the subprocess.&lt;/p&gt;
-&lt;p&gt;We've only covered one of the behaviors. A bunch more test cases are
-required. They're all going to be reasonably similar to the &lt;tt class="docutils literal"&gt;test()&lt;/tt&gt;
-method.&lt;/p&gt;
-&lt;p&gt;Note the &lt;tt class="docutils literal"&gt;mock_httpd.py&lt;/tt&gt; script. It's a tiny thing that invokes CGI's.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-import CGIHTTPServer
-import BaseHTTPServer
-
-server_class = BaseHTTPServer.HTTPServer
-handler_class = CGIHTTPServer.CGIHTTPRequestHandler
-
-server_address = ('', 8000)
-httpd = server_class(server_address, handler_class)
-httpd.serve_forever()
-&lt;/pre&gt;
-&lt;p&gt;This will run any script file in the cgi-bin directory, acting as a kind
-of mock for Apache httpd or other CGI servers.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tests-pass-now-what"&gt;
-&lt;h2&gt;Tests Pass, Now What?&lt;/h2&gt;
-&lt;p&gt;We need to formalize our knowledge with a some diagrams. This is a
-Context diagram in PlantUML. It draws a picture that we can use to
-discuss what this app does and who actually uses it.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;#64;startuml
-actor user
-usecase post
-usecase query
-usecase retrieve
-user --&amp;gt; post
-user --&amp;gt; query
-user --&amp;gt; retrieve
-
-usecase 404_not_found
-usecase 403_not_permitted
-user --&amp;gt; 404_not_found
-user --&amp;gt; 403_not_permitted
-
-retrieve &amp;lt;|-- 404_not_found
-&amp;#64;enduml
-&lt;/pre&gt;
-&lt;p&gt;We can also update the Container diagram. There's an &amp;quot;as-is&amp;quot; version and
-a &amp;quot;to-be&amp;quot; version.&lt;/p&gt;
-&lt;p&gt;Here's the as-is diagram of any CGI.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;#64;startuml
-interface HTTP
-
-node &amp;quot;web server&amp;quot; {
-    component httpd as  &amp;quot;Apache httpd&amp;quot;
-    interface cgi
-    component app
-    component python
-    python --&amp;gt; app
-    folder data
-    app --&amp;gt; data
-}
-
-HTTP --&amp;gt; httpd
-httpd -&amp;gt; cgi
-cgi -&amp;gt; python
-&amp;#64;enduml
-&lt;/pre&gt;
-&lt;p&gt;Here's a to-be diagram of a typical (small) Flask application.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-&amp;#64;startuml
-interface HTTP
-
-node &amp;quot;web server&amp;quot; {
-    component httpd as  &amp;quot;nginx&amp;quot;
-    component uwsgi
-    interface wsgi
-    component python
-    component app
-    component model
-    component flask
-    component jinja
-    folder data
-    folder static
-    httpd --&amp;gt; static
-    python --&amp;gt; wsgi
-    wsgi --&amp;gt; app
-    app --&amp;gt; flask
-    app --&amp;gt; jinja
-    app -&amp;gt; model
-    model --&amp;gt; data
-}
-
-HTTP --&amp;gt; httpd
-httpd -&amp;gt; uwsgi
-uwsgi -&amp;gt; python
-&amp;#64;enduml
-&lt;/pre&gt;
-&lt;p&gt;These diagrams can help to clarify how the CGI will be restructured. A
-complex CGI might have a database or external web services involved.
-These should be correctly depicted.&lt;/p&gt;
-&lt;p&gt;The previous post on this subject said we can now refactor this code.
-The unit tests are required before making any real changes. (Yes, we
-made one change to promote testability by repackaging a script to be a
-function.)&lt;/p&gt;
-&lt;p&gt;We're aimed to start disentangling the HTML and CGI overheads from the
-application and narrowing our focus onto the useful things it does.&lt;/p&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry></feed>

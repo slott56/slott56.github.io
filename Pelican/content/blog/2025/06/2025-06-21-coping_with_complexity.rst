@@ -187,7 +187,7 @@ I started by trying to draw pictures to capture the essence of the design.
 
 -   Then, I draw some UML class diagrams to capture the new design.
 
-Attempting to capture the class models make it clear how complicated the picture where.
+Attempting to capture the class models made it clear how complicated the picture where.
 To cope with the complicated diagrams, I started writing an explanation for my future self to understand them.
 
     Complexity is hard to explain, and that makes it bad.
@@ -225,7 +225,8 @@ This is nonsense, but it's also very hard to counter.
 
 My advice for coping with pushy managers?
 Try asking them to draw the picture.
-Wait patiently, then you can the missing details.
+Wait patiently, then you can add some missing details.
+It's important not to simply add overwhelming piles details, but add selected details to expose a bad complexity.
 This may lead them to them telling you to make it simpler so it fits their concepts.
 When they tell you to fix the thing you want to fix, that's the ideal outcome; be sure to sulk anyway so they feel like they told you to do something you didn't want to do.
 

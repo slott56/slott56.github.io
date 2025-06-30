@@ -1,5 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-21T08:01:00-04:00</updated><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-29T09:06:00-04:00</updated><entry><title>An Investment in Learning</title><link href="https://slott56.github.io/2025-06-29-an_investment_in_learning.html" rel="alternate"></link><published>2025-06-29T09:06:00-04:00</published><updated>2025-06-29T09:06:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-29:/2025-06-29-an_investment_in_learning.html</id><summary type="html">&lt;p&gt;The back-story.
+See &lt;a class="reference external" href="https://slott56.github.io/2025-06-21-coping_with_complexity.html"&gt;Coping With Complexity&lt;/a&gt;.
+See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;I've reached the point where progress is clearly impossible.
+A bad decision a few weeks ago has reached it's inevitable conclusion.
+I've made a terrible mistake.
+About 1,000 lines of code -- and tons …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The back-story.
+See &lt;a class="reference external" href="https://slott56.github.io/2025-06-21-coping_with_complexity.html"&gt;Coping With Complexity&lt;/a&gt;.
+See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;I've reached the point where progress is clearly impossible.
+A bad decision a few weeks ago has reached it's inevitable conclusion.
+I've made a terrible mistake.
+About 1,000 lines of code -- and tons of time debugging -- are all wasted.&lt;/p&gt;
+&lt;p&gt;Or, were they?&lt;/p&gt;
+&lt;div class="section" id="bluf-tl-dr"&gt;
+&lt;h2&gt;BLUF (TL;DR)&lt;/h2&gt;
+&lt;p&gt;We make mistakes.&lt;/p&gt;
+&lt;p&gt;Generally, &amp;quot;mistake&amp;quot; is a synonym for &amp;quot;learning&amp;quot;.
+A mistake is a lesson in what not to do.&lt;/p&gt;
+&lt;p&gt;We can't avoid mistakes.
+Instead, we have to learn as much as possible from them.&lt;/p&gt;
+&lt;p&gt;(What about people who &amp;quot;don't learn from their mistakes&amp;quot;?
+They really &lt;strong&gt;do&lt;/strong&gt; learn.
+They also refuse to change their behavior in a way that avoids making substantially similar mistakes again.
+They often modify their behavior to avoid a few unpleasant aspects of a recent mistake while continuing to make related mistakes.)&lt;/p&gt;
+&lt;p&gt;Mistakes don't have a cost.
+They are an investment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="context"&gt;
+&lt;h2&gt;Context&lt;/h2&gt;
+&lt;p&gt;This is part of Cloud Custodian (C7N), to permit writing simpler logical expressions in more conventional notation.
+See &lt;a class="reference external" href="https://cloudcustodian.io/docs/filters.html"&gt;https://cloudcustodian.io/docs/filters.html&lt;/a&gt; for information on the YAML-based filter notation.
+It's &lt;strong&gt;very&lt;/strong&gt; sophisticated. But, sometimes hard to read.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="container"&gt;
+&lt;h2&gt;Container&lt;/h2&gt;
+&lt;p&gt;This runs in the lambda or other server context as part of Custodian.
+It's not a separate process in a separate container.
+It's an importable package that extends C7N's filter to include additional syntax.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="component"&gt;
+&lt;h2&gt;Component&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
+&lt;p&gt;We &lt;strong&gt;were&lt;/strong&gt; looking at implementing the following conceptual model.
+Until we found the counter-example.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="The database migration path from SQL to an &amp;quot;intermediate&amp;quot; data structure." src="https://slott56.github.io/media/cel_notional.png" /&gt;
+&lt;p class="caption"&gt;An notional design overview of some of the classes for CEL Python.
+This has problems, it turns out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The application will create an &lt;tt class="docutils literal"&gt;Environment&lt;/tt&gt;.
+It uses this to compile a CEL expression, and then create a &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to evaluate the expression.
+(This lets you cache the &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; to reuse it.)&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt; evaluates the expression in a &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; where variables, functions, and type definitions are found.
+While the &lt;tt class="docutils literal"&gt;Context&lt;/tt&gt; type is shown as a name for a Python &lt;tt class="docutils literal"&gt;dict[str, Value]&lt;/tt&gt;, it &lt;em&gt;could&lt;/em&gt; be a protobuf message with all the stuff in it.&lt;/p&gt;
+&lt;p&gt;We're adding the new subclasses of &lt;tt class="docutils literal"&gt;Runner&lt;/tt&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;InterpretedRunner&lt;/tt&gt; uses a subclass of &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; to interpret the AST and compute a final value.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;CompiledRunner&lt;/tt&gt; uses a subclass of &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; to transpile the AST into Python.
+The Pythonic transpilation output is compiled, and the built-in &lt;tt class="docutils literal"&gt;exec()&lt;/tt&gt; function computes a final value from this.
+This runs at native Python speeds, and avoids the overhead of visiting AST nodes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code"&gt;
+&lt;h2&gt;Code&lt;/h2&gt;
+&lt;p&gt;Let's not go there.
+This is about design decisions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-wrong"&gt;
+&lt;h2&gt;What's Wrong&lt;/h2&gt;
+&lt;p&gt;In retrospect, it's clear -- perfectly and abundantly clear -- that the presence of CEL macros is a non-trivial feature.&lt;/p&gt;
+&lt;p&gt;CEL has &lt;tt class="docutils literal"&gt;some_object.map(x, some_expression_with_x)&lt;/tt&gt; as a construct.&lt;/p&gt;
+&lt;p&gt;Syntactically, it looks like a &lt;tt class="docutils literal"&gt;.map()&lt;/tt&gt; method of &lt;tt class="docutils literal"&gt;some_object&lt;/tt&gt;.
+The presence of a bind variable, &lt;tt class="docutils literal"&gt;x&lt;/tt&gt;, and an expression where &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; is a free variable suggests this is &lt;strong&gt;not&lt;/strong&gt; simply a method.
+This is nothing like the expression &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;some_string.startsWith('hello')&lt;/span&gt;&lt;/tt&gt;: a method with an argument value that can be immediately evaluated and produce a result.&lt;/p&gt;
+&lt;p&gt;CEL calls it a &amp;quot;macro&amp;quot; because it's really a higher-level construct.
+It's visually indistinguishable from a function, but it's semantically unrelated.&lt;/p&gt;
+&lt;p&gt;In Python, the syntax for this is &lt;tt class="docutils literal"&gt;(some_expression_with_x for x in some_object)&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;map(lambda x: some_expressions_with_x, some_object)&lt;/tt&gt;.
+The bind variable and expression have a distinctive syntax that makes them easy to work with.&lt;/p&gt;
+&lt;p&gt;CEL lacks a distinctive syntax. Sigh.
+For me, the function-like syntax was an attractive nuisance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="okay-there-are-macros"&gt;
+&lt;h2&gt;Okay, There are Macros&lt;/h2&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; is &amp;quot;bottom-up&amp;quot;.
+It visits leaf nodes and then higher and higher level nodes.&lt;/p&gt;
+&lt;p&gt;This means &lt;tt class="docutils literal"&gt;6 * 7&lt;/tt&gt; will visit the following nodes:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;6&lt;/tt&gt;.  Nothing much to transpiling this into Python.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;7&lt;/tt&gt;.  Also, really easy to transpile into Python.&lt;/li&gt;
+&lt;li&gt;Multiplication node with two leaf nodes and an operator, &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;.  Also.  Easy to transpile.
+A template of &lt;tt class="docutils literal"&gt;&amp;quot;{left} * {right}&amp;quot;&lt;/tt&gt; works nicely.
+Or, maybe &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;operator.mul({left},&lt;/span&gt; &lt;span class="pre"&gt;{right})&amp;quot;&lt;/span&gt;&lt;/tt&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This simple design is inadequate for macro processing.&lt;/p&gt;
+&lt;p&gt;Consider this: &lt;tt class="docutils literal"&gt;['foal', 'foo', &lt;span class="pre"&gt;'four'].exists_one(n,&lt;/span&gt; &lt;span class="pre"&gt;n.startsWith('fo'))&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;How is this visited?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;The left-hand side:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'foal'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'foo'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Leaf node with literal &lt;tt class="docutils literal"&gt;'four'&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to assemble the three literals.&lt;/li&gt;
+&lt;li&gt;A &amp;quot;list literal&amp;quot; node built from the expression list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The right-hand side:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable.
+&lt;span class="text-warning font-weight-bold"&gt;Warning: This is not a sub-expression&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;'fo'&lt;/tt&gt; literal.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to build the one literal as a single-element list.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;dot ident arg&amp;quot; node with &lt;tt class="docutils literal"&gt;startsWith&lt;/tt&gt; as the identifier, and the expression list node.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable.  Again.&lt;/li&gt;
+&lt;li&gt;A complete &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; primary expression.
+At this point, it's not clear that &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is a bind variable that doesn't have a value in the default activation.&lt;/li&gt;
+&lt;li&gt;An &amp;quot;expression list&amp;quot; node to build &lt;tt class="docutils literal"&gt;n&lt;/tt&gt;, and the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; expression as a list.
+&lt;span class="text-danger font-weight-bold"&gt;RED ALERT: This is not a list of expressions&lt;/span&gt;.
+This a bind variable name and an expression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The final expression as a whole:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;A &amp;quot;dot ident arg&amp;quot; node with &lt;tt class="docutils literal"&gt;exists_one&lt;/tt&gt; as the identifier, and the expression list node.
+This can't work because the &lt;tt class="docutils literal"&gt;exists_one&lt;/tt&gt; is a macro that needs a bind variable and sub-expression.
+It needs to bind multiple values to the bind variable and evaluate the sub-expression for each value.&lt;/p&gt;
+&lt;p&gt;Note that an expression &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; (See &lt;span class="text-warning font-weight-bold"&gt;Warning&lt;/span&gt;, above) and an expression list &lt;tt class="docutils literal"&gt;n, &lt;span class="pre"&gt;n.startsWith('fo')&lt;/span&gt;&lt;/tt&gt; (see &lt;span class="text-danger font-weight-bold"&gt;RED ALERT&lt;/span&gt;, above) are not really part of this, but, well, they were visited and generated transpiled code.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We wind up with some extra, irrelevant, transpiled code floating around in our internal data structures.&lt;/p&gt;
+&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;Bottom up is inappropriate when handling macros. The subsidiary parts -- the bind variable and the sub-expression -- need special handling.&lt;/p&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; is doesn't fit perfectly with the approach required for Transpiling.
+Stuff is visited that appears to be a useful sub-expression.
+But.
+It's not simply a sub-expression that can be evaluated and passed up the parse tree to compute a final answer.&lt;/p&gt;
+&lt;p&gt;First, the &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; sub-expression only makes sense in the context of a macro binding a value to it. It's not an expression at all. It's an identifier.&lt;/p&gt;
+&lt;p&gt;Second, the sub-expression with the &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; variable buried in it can't be evaluated outside the macro context.&lt;/p&gt;
+&lt;p&gt;Every other expression can be trivially evaluated and the result passed up the parse tree.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-duh-factor"&gt;
+&lt;h2&gt;The Duh Factor&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;InterpretedRunner&lt;/tt&gt; extended the &lt;tt class="docutils literal"&gt;lark.Interpreter&lt;/tt&gt; class.&lt;/p&gt;
+&lt;p&gt;At first blush, it seemed like transpiling might be different.
+We might be able to --- trivially --- rewrite the code from CEL to Python using the &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;After getting to a regression test failure, it is clear that we cannot &lt;strong&gt;trivially&lt;/strong&gt; transpile a macro into Python.
+The simplistic &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; design doesn't work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-wait"&gt;
+&lt;h2&gt;But Wait...&lt;/h2&gt;
+&lt;p&gt;The nuance here is that the transpiled pieces and parts -- in isolation -- actually &lt;strong&gt;are&lt;/strong&gt; useful.
+We need to to avoid &lt;strong&gt;trivially&lt;/strong&gt; conflating &lt;tt class="docutils literal"&gt;object.method(arg)&lt;/tt&gt;, which has a simple value, with &lt;tt class="docutils literal"&gt;object.macro(variable, expression)&lt;/tt&gt;, generates more complicated code.&lt;/p&gt;
+&lt;p&gt;This seems to be a two-pass operation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Phase I&lt;/strong&gt;. A &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; walks the parse tree and decorates AST nodes with a Python string transpilation of the node.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Literals get the Pythonic version of the CEL literal as a string.&lt;/li&gt;
+&lt;li&gt;Identifiers become an &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;&amp;quot;activation.{name}:&lt;/span&gt;&lt;/tt&gt; string.&lt;/li&gt;
+&lt;li&gt;Operators, functions, and methods all get normalized to a template that pulls in the children strings to create a complete Python expression string.&lt;ul&gt;
+&lt;li&gt;If all the children are strings, then the template can be transformed into a string and treated as if it were a simple literal.  For example, the &lt;tt class="docutils literal"&gt;&amp;quot;{left} * {right}&amp;quot;&lt;/tt&gt; template can be filled in right away with two literals.&lt;/li&gt;
+&lt;li&gt;If any of the children are templates, short-circuits, or macros, the final creation of code has to wait for Phase II.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The short-circuit logic operators, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_&amp;amp;&amp;amp;_&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_||_&lt;/span&gt;&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;_?_:_&lt;/span&gt;&lt;/tt&gt; at this level are complicated templates.
+It's slightly easier to defer filling them until Phase II because they build multiple lines of code.&lt;/li&gt;
+&lt;li&gt;The macros (distinct from methods) require Phase II processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Phase II&lt;/strong&gt;. A second &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; walks the parse tree, looking for the already completed decorations on AST nodes, and the templates to be completed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Any unfilled templates require visiting the children, substituting them into the template, and updating the decoration from template to string.
+These become simple lambdas.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;operator_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;children&lt;/span&gt;&lt;span class="p"&gt;)}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Each child will be a single blob of text, built up from numerous children involving ordinary literals and operators.
+The resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Short-circuit operators are expanded into lambdas that may or may not raise exceptions that may or may not be ignored.
+&lt;tt class="docutils literal"&gt;true || 42 / 0&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;true&lt;/tt&gt;. No exception is raised.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;logical_or_function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ex_left&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ex_right&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;logical_or_function&lt;/tt&gt; will evaluate sub-expressions and silence exceptions as needed.&lt;/p&gt;
+&lt;p&gt;And yes, everything is a lambda, even the literals. It makes life simpler.&lt;/p&gt;
+&lt;p&gt;The resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Which brings us to macros. Example: &lt;tt class="docutils literal"&gt;['foal', 'foo', &lt;span class="pre"&gt;'four'].exists_one(n,&lt;/span&gt; &lt;span class="pre"&gt;n.startsWith('fo'))&lt;/span&gt;&lt;/tt&gt;.
+The left-hand side is an ordinary sub-expression. For Python's purposes, this object will be used by a generator expression to create sub-activations with the bind variable set.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;foal&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;four&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;activation_gen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nested_activation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_left&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or, we could use &lt;tt class="docutils literal"&gt;map(lambda a: &lt;span class="pre"&gt;a.nested_activation(vars=dict({bind&lt;/span&gt; &lt;span class="pre"&gt;variable}=_value)),&lt;/span&gt; ex_{n}_left)&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Now, we can evaluate the macro.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ex_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="n"&gt;_right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;sub_activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;startsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sub_activation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;expr_&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_is_true&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ex_right&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;activation_gen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;activation&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;_is_true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This resulting block of code, while bulky, captures the macro processing.
+Each of the macros has a unique expression structure, but they're all based on the built-in &lt;tt class="docutils literal"&gt;map()&lt;/tt&gt;.
+In this case, CEL &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;exists_one(...)&lt;/span&gt;&lt;/tt&gt; is an assertion that there was one result.&lt;/p&gt;
+&lt;p&gt;And, like everything else, the resulting expression string used to decorate the parse tree is &lt;tt class="docutils literal"&gt;&amp;quot;expr_{n}&amp;quot;&lt;/tt&gt;, where &lt;tt class="docutils literal"&gt;n&lt;/tt&gt; is some unique number.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What's important here is that we use a lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; for this, not an &lt;tt class="docutils literal"&gt;Interpreter&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-the-distinction"&gt;
+&lt;h2&gt;What's The Distinction?&lt;/h2&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Visitor&lt;/tt&gt; always visits the children first.
+The results of the child visit are then available for the parent to use.
+The generic &lt;tt class="docutils literal"&gt;lark.Visitor&lt;/tt&gt; class can be decorated with types for parameters and results to clarify how the evaluation works.&lt;/p&gt;
+&lt;p&gt;The approach is good for everything but macros.
+The literal nodes roll up into the primary nodes that roll up into various priorities of expression nodes.
+The final, top-most &lt;tt class="docutils literal"&gt;expr&lt;/tt&gt; node can be an amalgamation of all the visited children.
+Operations are properly nested by the AST definitions of relation, addition, and multiplication grammar productions.&lt;/p&gt;
+&lt;p&gt;The Lark &lt;tt class="docutils literal"&gt;Interpreter&lt;/tt&gt; doesn't visit the children automatically.
+The application methods must explicitly call &lt;tt class="docutils literal"&gt;visit()&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;visit_children()&lt;/tt&gt; as needed.
+When interpreting the AST to evaluate it, this is an annoying detail until we get to macros.
+For macros, it's imperative to not trivially visit the children. See the &lt;span class="text-warning font-weight-bold"&gt;Warning&lt;/span&gt; and &lt;span class="text-danger font-weight-bold"&gt;RED ALERT&lt;/span&gt;, above.&lt;/p&gt;
+&lt;p&gt;For evaluation, processing must work like this.
+First, evaluate the left-hand side to get an object.
+The first child of the macro node has the bind variable.
+For each value in the object, create a sub-activation with the bind variable;
+then, visit only the second child of the macro node to get a value.
+This limited use of visiting children makes it easy to implement interpretation of a macro.&lt;/p&gt;
+&lt;p&gt;The same kind of processing can apply to transpiling a macro into Python.
+Or.
+As shown above, we can do two passes:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;the easy non-macro transpilation,&lt;/li&gt;
+&lt;li&gt;macro transpilation, which doesn't &lt;strong&gt;trivially&lt;/strong&gt; roll the children up into the parent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-cost-of-the-mistake"&gt;
+&lt;h2&gt;The Cost of the Mistake&lt;/h2&gt;
+&lt;p&gt;Mistakes don't have a cost.&lt;/p&gt;
+&lt;p&gt;This is a fallacy. A big one. One that cripples technical management.&lt;/p&gt;
+&lt;p&gt;Mistakes are an investment in learning.&lt;/p&gt;
+&lt;p&gt;In this case, it's about 1,000 lines of code that will be reworked.&lt;/p&gt;
+&lt;p&gt;It took hours to create and debug the code I'm about to delete.&lt;/p&gt;
+&lt;p&gt;It will take hours to replace them with something that's&lt;/p&gt;
+&lt;ol class="upperalpha simple"&gt;
+&lt;li&gt;Actually works.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Has a simple example that absolutely requires the more sophisticated design.&lt;/dt&gt;
+&lt;dd&gt;(Note that I didn't have this until a specific regression test failed.)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;Benefits from the the incorrect version, and working examples of the various kinds of lambda templates.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The final point is really important and under-valued:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;strong&gt;Refactoring is Easier than Initial Development&lt;/strong&gt;&lt;/blockquote&gt;
+&lt;p&gt;Folks have an unwarranted fear of refactoring and the &amp;quot;cost&amp;quot; of rework.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="could-i-have-prevented-this"&gt;
+&lt;h2&gt;Could I Have Prevented This?&lt;/h2&gt;
+&lt;p&gt;The dream of methodology designers everywhere is to placate managers with an approach this will avoid this investment.&lt;/p&gt;
+&lt;p&gt;The dream is to be able to make this claim:&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;Follow my method and you want pursue some rat-hole right up to a dead end.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;What's nonsensical about this is that there needs to be some level of actual &lt;em&gt;thinking&lt;/em&gt; going on.&lt;/p&gt;
+&lt;p&gt;It's nonsense because someone has to deeply understand this problem, and leverage that understanding to avoid writing bad code.
+Someone has to put in hours understanding the problem to avoid the code.&lt;/p&gt;
+&lt;p&gt;What form does this detailed &amp;quot;understanding&amp;quot; take?&lt;/p&gt;
+&lt;p&gt;Clearly, the waterfall dream claim was a &amp;quot;detailed design document.&amp;quot;&lt;/p&gt;
+&lt;p&gt;And this document was based on what, exactly?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Staring at a whiteboard?&lt;/li&gt;
+&lt;li&gt;Expensive multi-person meetings?&lt;/li&gt;
+&lt;li&gt;Long, expensive, pointless conversations with an hallucinating AI tool.
+(Watch &lt;em&gt;2001: A Space Odyssey&lt;/em&gt; for more on hallucination-prone AI tools.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Or, is the detailed design document based on draft code that demonstrates a problem?
+The design-level draft is used to create a design document.
+Which is then used to create final code.&lt;/p&gt;
+&lt;p&gt;In the olden days this was considered a non-starter.
+Code was expensive.
+Those days are past.
+Draft code is part of the process.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="uml"></category><category term="plantuml"></category><category term="solid"></category></entry><entry><title>Coping with Complexity</title><link href="https://slott56.github.io/2025-06-21-coping_with_complexity.html" rel="alternate"></link><published>2025-06-21T08:01:00-04:00</published><updated>2025-06-21T08:01:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-21:/2025-06-21-coping_with_complexity.html</id><summary type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
 Current me needs to go outside and do something that doesn't involve software or complexity.
 Sadly, current me is trying to make one small change and it feels like the software has  passed out of the realm …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm struggling with brain cramps trying to understand something my past self wrote.
 Current me needs to go outside and do something that doesn't involve software or complexity.
@@ -149,7 +430,7 @@ It wasn't too awkwardly complicated, but it was yet another complication buried 
 &lt;li&gt;First, I drew some UML class diagrams to capture the legacy design.&lt;/li&gt;
 &lt;li&gt;Then, I draw some UML class diagrams to capture the new design.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Attempting to capture the class models make it clear how complicated the picture where.
+&lt;p&gt;Attempting to capture the class models made it clear how complicated the picture where.
 To cope with the complicated diagrams, I started writing an explanation for my future self to understand them.&lt;/p&gt;
 &lt;blockquote&gt;
 Complexity is hard to explain, and that makes it bad.&lt;/blockquote&gt;
@@ -178,7 +459,8 @@ When a rewrite seems to be less work than creating an explanation, do the rewrit
 &lt;p&gt;This is nonsense, but it's also very hard to counter.&lt;/p&gt;
 &lt;p&gt;My advice for coping with pushy managers?
 Try asking them to draw the picture.
-Wait patiently, then you can the missing details.
+Wait patiently, then you can add some missing details.
+It's important not to simply add overwhelming piles details, but add selected details to expose a bad complexity.
 This may lead them to them telling you to make it simpler so it fits their concepts.
 When they tell you to fix the thing you want to fix, that's the ideal outcome; be sure to sulk anyway so they feel like they told you to do something you didn't want to do.&lt;/p&gt;
 &lt;/div&gt;
@@ -7081,44 +7363,4 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;p&gt;I think Mark was right, the complexity of software, and software development, makes people into bad leaders.&lt;/p&gt;
 &lt;p&gt;I think complexity and bad management are behind &lt;a class="reference external" href="https://slott56.github.io/2007_02_18-its_drive_to_self_destruction.html"&gt;IT's Drive To Self-Destruction&lt;/a&gt; .  My person gripe centers on Next Year's Dollars (NYD) being less valuable than this year's dollars.  Dumb, bad design can be forced into production because maintenance (which goes on for decades) is cheaper that getting something done by the fantasy dead-line date.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="softeware design"></category><category term="complexity"></category></entry><entry><title>PL/SQL and Java - The Benchmark Challenge (revised)</title><link href="https://slott56.github.io/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html" rel="alternate"></link><published>2007-05-27T13:07:00-04:00</published><updated>2007-05-27T13:07:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-05-27:/2007_05_27-plsql_and_java_the_benchmark_challenge_revised.html</id><summary type="html">&lt;p&gt;First, the confusion.  A couple of comments asked for code, offering to &amp;quot;fix&amp;quot; the problems.  Specifically, offering to optimize or improve the PL/SQL.  The code was already posted, but I failed to make that clear.  Here's a recap of the various blog entries on this subject.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_which_is_really_faster.html"&gt;PL/SQL vs …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;First, the confusion.  A couple of comments asked for code, offering to &amp;quot;fix&amp;quot; the problems.  Specifically, offering to optimize or improve the PL/SQL.  The code was already posted, but I failed to make that clear.  Here's a recap of the various blog entries on this subject.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_which_is_really_faster.html"&gt;PL/SQL vs. Java - Which is Really Faster?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_03_23-plsql_vs_java_additional_information.html"&gt;PL/SQL vs. Java - Additional Information&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://slott56.github.io/2007_05_26-plsql_vs_java_yet_again.html"&gt;PL/SQL vs. Java - Yet Again&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="section" id="sizing"&gt;
-&lt;h2&gt;Sizing&lt;/h2&gt;
-&lt;p&gt;Someone asked how a real-world problem can have so few (only a few thousand) invoices.  The answer is that the customer has a giant table of business records, from which they extract the business records to be processed.  That extraction isn't on the table as part of the overall performance problem.&lt;/p&gt;
-&lt;p&gt;It should be.  Indeed, they should have a data warehouse so that they aren't doing extracts of live data from history.  To them, in their real world, that's another problem.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="native-code"&gt;
-&lt;h2&gt;Native Code&lt;/h2&gt;
-&lt;p&gt;One interesting response lifted up Oracle's PL/SQL Native Compilation technique.  I think they're talking about Oracle® Database PL/SQL User's Guide and Reference, chapter 11, &lt;a class="reference external" href="http://download-east.oracle.com/docs/cd/B19306_01/appdev.102/b14261/tuning.htm"&gt;Tuning PL/SQL Applications for Performance&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;While an interesting approach, my customers are unlikely to agree to this as a solution to slowness.  They use PL/SQL precisely because it's flexible.  They like it for the same reasons people like Python -- it's (in effect) a scripting language.  The development overhead of native compilation is daunting.&lt;/p&gt;
-&lt;p&gt;Java doesn't have the level of complexity (i.e., C compilers, shared libraries, etc.) that this native compilation of PL/SQL has.  That doesn't eliminate the native compilation, it makes it undesirable as a solution.&lt;/p&gt;
-&lt;p&gt;However, if performance matters, I suppose this needs to to be put on the table.  It is complex -- far more complex than Java -- but it could be considered as a solution.  To run a comparison will take me some time to configure and install this under Fedora Core 6.  I'm not sure I want to go through the agony, when Java is already a solution in hand.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="in-the-real-world"&gt;
-&lt;h2&gt;In The Real World&lt;/h2&gt;
-&lt;p&gt;[&lt;em&gt;Digression&lt;/em&gt;.  One response included the disturbing magic words &amp;quot;in the real world&amp;quot;.  Often I stop reading there, because it's an attempted trump card.  It is a kind of power play; the claim is that the &amp;quot;real world&amp;quot; situation deserves more credence than other situations.  It subverts a useful comparison of constraints and priorities.  Your &amp;quot;real world&amp;quot; is no more real than my &amp;quot;real world&amp;quot;; you have different priorities and different values.  Let's talk about those in detail rather than summarily dismissing my customer's real world as being less real than your real world.]&lt;/p&gt;
-&lt;p&gt;One response noted that time is lost transferring big chunks of data.  That was specifically what I was trying to avoid in my benchmark.   The client code I was basing this on did not involve big chunks of data.  If the queries did involve big chunks of data, the application might work better in PL/SQL.  The issue centered on queries with small chunks of data; this doesn't work better in PL/SQL.&lt;/p&gt;
-&lt;p&gt;I didn't make it clear that I'm running a specific benchmark, for which I provided code.  If, in your world, things behave differently, provide the code, post your results.  &lt;strong&gt;Let's see this benchmark&lt;/strong&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="wrong-algorithm"&gt;
-&lt;h2&gt;Wrong Algorithm&lt;/h2&gt;
-&lt;p&gt;One response hinted that I was using entirely the wrong algorithm.  That's an interesting notion.  The claim is that 6 SELECT statements would do the same thing as the two-part business rule I fabricated.  I'm dying to see the 6 SELECT statements.  &lt;strong&gt;Let's see this benchmark&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;What I failed to make clear is that my benchmark is drawn from the situation where the business has a large number of business rules.  Consequently, they a large number of if-statements.  Worse, the if-statements interact with each other, so that you need to (effectively) union all of the rules together and determine the composite predicate for each rule.&lt;/p&gt;
-&lt;p&gt;With two rules, it's easy to work out the four conditions that apply.  For &lt;em&gt;n&lt;/em&gt;  rules, there are 2*n*  predicate combinations that need to be analyzed and optimized.  I'm daunted by the prospect, and don't see how a sizable collection of if-then-else business rules can be optimized into simple SELECTS.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="additional-processing"&gt;
-&lt;h2&gt;Additional Processing&lt;/h2&gt;
-&lt;p&gt;I raised the confusion level by leaving out the updates.  Since I only wanted to illustrate the basic business rules, I took out the update which is an essential operation for each kind of match (and non-match).  This makes the issue more that simple SELECT statements.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="conclusion"&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Thanks for the thoughtful comments.  Please post your competing benchmarks so I can see what can be improved in my situation.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="data structure"></category><category term="algorithm"></category><category term="pl/sql"></category><category term="java"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="softeware design"></category><category term="complexity"></category></entry></feed>

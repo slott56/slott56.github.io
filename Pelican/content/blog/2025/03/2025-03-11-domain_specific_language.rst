@@ -1,4 +1,4 @@
-Domnan-Specific Language
+Domnain-Specific Language
 ############################
 
 :date: 2025-03-11 15:52

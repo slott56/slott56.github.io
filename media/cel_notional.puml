@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+    class Environment {
+        package: str
+        annotations: dict[str, Annotation]
+        compile(text: str) -> lark.Tree
+        program(expr: lark.Tree, functions: dict) -> Runner
+    }
+
+    class Runner {
+        evaluate(context: Context) -> Value
+    }
+    Environment --> Runner
+
+    class InterpretedRunner
+    Runner <|-- InterpretedRunner
+
+    class Evaluator <<Adapter>>
+    InterpretedRunner *-- Evaluator
+    lark.Interpreter <|-- Evaluator
+
+    class CompiledRunner
+    Runner <|-- CompiledRunner
+
+    class Transpiler <<Adapter>>
+    CompiledRunner *-- Transpiler
+    lark.Visitor <|-- Transpiler
+
+    class Context <<dict[str, Value]>>
+    Runner - Context
+
+    class lark.Tree
+    Environment *-- Tree
+@enduml
