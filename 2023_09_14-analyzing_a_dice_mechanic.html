@@ -140,7 +140,7 @@ and a lot of ways to describe them.</p>
 </ol>
 <p>We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.</p>
 <p>Another really good alternative is to exhaustively enumerate the possible outcomes.
-With 3d6 there are only <span class="formula">6<sup>3</sup> = 216</span> ways the dice can fall. This doesn't seem
+With 3d6 there are only <span class="math">\(6^3 = 216\)</span> ways the dice can fall. This doesn't seem
 pleasant. We'll set it aside.</p>
 <p>Instead, we'll simulate.</p>
 <div class="sidebar">
@@ -148,7 +148,7 @@ pleasant. We'll set it aside.</p>
 <p>Some of the foundational statistical tests are designed to discern of outcomes
 are random or not. The &quot;Null Hypothesis&quot; is that the data's random.
 The various tests for the null hypothesis are often difficult to understand,
-and involve tables of magical numbers. The <span class="formula"><i>χ</i><sup>2</sup></span> test involves a
+and involve tables of magical numbers. The <span class="math">\(\chi^2\)</span> test involves a
 complicated computation to compare actual and expected and then you have to look
 up a number in a table.</p>
 <p class="last">In some cases, it's easier to create random data and compute the correlation between
@@ -322,10 +322,10 @@ distro_mid_3d6 = Counter(mid_3d6())
 <div class="section" id="but-wait-there-s-more">
 <h2>But wait, there's more</h2>
 <p>The worst-of-2d6 isn't too difficult to compute on paper.</p>
-<p>When will the lowest value be 6? This requires a (6, 6) tie, <span class="formula"><i>P</i>(6) = <span class="fraction"><span class="ignored">(</span><span class="numerator">1</span><span class="ignored">)/(</span><span class="denominator">36</span><span class="ignored">)</span></span></span>.</p>
-<p>It's a 5 when there's a (5, 5), (5, 6), or (6, 5)) pair. <span class="formula"><i>P</i>(5) = <span class="fraction"><span class="ignored">(</span><span class="numerator">3</span><span class="ignored">)/(</span><span class="denominator">36</span><span class="ignored">)</span></span></span>.</p>
-<p>It's a 4 when there's any of (4, 4), (4, 5), (4, 6), (5, 4), or (6, 4). <span class="formula"><i>P</i>(4) = <span class="fraction"><span class="ignored">(</span><span class="numerator">5</span><span class="ignored">)/(</span><span class="denominator">36</span><span class="ignored">)</span></span></span>.</p>
-<p>And so on for 3, 2, and 1.  <span class="formula"><i>P</i>(<i>n</i>) = <span class="fraction"><span class="ignored">(</span><span class="numerator">2(6 − <i>n</i>) + 1</span><span class="ignored">)/(</span><span class="denominator">36</span><span class="ignored">)</span></span></span>.</p>
+<p>When will the lowest value be 6? This requires a (6, 6) tie, <span class="math">\(P(6) = \frac{1}{36}\)</span>.</p>
+<p>It's a 5 when there's a (5, 5), (5, 6), or (6, 5)) pair. <span class="math">\(P(5) = \frac{3}{36}\)</span>.</p>
+<p>It's a 4 when there's any of (4, 4), (4, 5), (4, 6), (5, 4), or (6, 4). <span class="math">\(P(4) = \frac{5}{36}\)</span>.</p>
+<p>And so on for 3, 2, and 1.  <span class="math">\(P(n) = \frac{2(6-n)+1}{36}\)</span>.</p>
 <p>We can create prediction from this essential probability theory.</p>
 <pre class="literal-block">
 for n in range(6):
@@ -371,8 +371,8 @@ than to simulate. That's why I started with the simulation.</p>
 <div class="section" id="middle-of-3d6-theory">
 <h2>Middle of 3d6 Theory</h2>
 <p>This exceeds my skills.</p>
-<p>When will the median value be 6? This requires a (6, 6, 6) tie. Actually, it's a lot more than that. Anything with a pair of 6's means 6 will be the mid value. There are <span class="formula"><span class="fraction"><span class="ignored">(</span><span class="numerator">15</span><span class="ignored">)/(</span><span class="denominator">216</span><span class="ignored">)</span></span></span> ways to have a pair of sixes and another number. Think of (1, 6, 6) to (5, 6, 6), and (6, 1, 6) to (6, 5, 6), and (6, 6, 1) to (6, 6, 5). So, total, is <span class="formula"><i>P</i>(6) = <span class="fraction"><span class="ignored">(</span><span class="numerator">16</span><span class="ignored">)/(</span><span class="denominator">6<sup>3</sup></span><span class="ignored">)</span></span></span>.</p>
-<p>For 5's? Ugh. I can't enumerate them manually. So. I'll use <tt class="docutils literal">itertools</tt> to emit all <span class="formula">6<sup>3</sup> = 216</span> combinations.</p>
+<p>When will the median value be 6? This requires a (6, 6, 6) tie. Actually, it's a lot more than that. Anything with a pair of 6's means 6 will be the mid value. There are <span class="math">\(\frac{15}{216}\)</span> ways to have a pair of sixes and another number. Think of (1, 6, 6) to (5, 6, 6), and (6, 1, 6) to (6, 5, 6), and (6, 6, 1) to (6, 6, 5). So, total, is <span class="math">\(P(6) = \frac{16}{6^3}\)</span>.</p>
+<p>For 5's? Ugh. I can't enumerate them manually. So. I'll use <tt class="docutils literal">itertools</tt> to emit all <span class="math">\(6^3 = 216\)</span> combinations.</p>
 <p>This isn't quite the same as simulation. The simulation <em>probably</em> hit all the combinations.
 The <tt class="docutils literal">itertools</tt> approach will absolutely create all of the combinations.</p>
 <p>Here's the central part of enumerating all combinations:</p>
@@ -406,19 +406,80 @@ for k in sorted(mid_3d6):
 <pre class="literal-block">
 6 16 ['166', '266', '366', '466', '566', '616', '626', '636', '646', '656', '661', '662', '663', '664', '665', '666']
 </pre>
-<p>A 6 is the middle value <span class="formula"><span class="textfraction"><span class="ignored">(</span><span class="numerator">16</span><span class="ignored">)/(</span><span class="denominator">216</span><span class="ignored">)</span></span></span> times. And there are the 16 patterns, to make it perfectly clear what's going on.</p>
+<p>A 6 is the middle value <span class="math">\(\tfrac{16}{216}\)</span> times. And there are the 16 patterns, to make it perfectly clear what's going on.</p>
 <p>The sequence of 16-40-52-52-40-16 looks a lot like it is part of the binomial function.
 Looking at the text patterns, I can work out the following.</p>
 <ul class="simple">
-<li><span class="formula"><i>P</i>(6) = <i>P</i>(1) = <span class="fraction"><span class="ignored">(</span><span class="numerator">1 + 3×5</span><span class="ignored">)/(</span><span class="denominator">6<sup>3</sup></span><span class="ignored">)</span></span></span></li>
-<li><span class="formula"><i>P</i>(5) = <i>P</i>(2) = <span class="fraction"><span class="ignored">(</span><span class="numerator">1 + 3×5 + 6×4</span><span class="ignored">)/(</span><span class="denominator">6<sup>3</sup></span><span class="ignored">)</span></span></span></li>
-<li><span class="formula"><i>P</i>(4) = <i>P</i>(3) = <span class="fraction"><span class="ignored">(</span><span class="numerator">1 + 3×5 + 6×4 + 4×3</span><span class="ignored">)/(</span><span class="denominator">6<sup>3</sup></span><span class="ignored">)</span></span></span></li>
+<li><span class="math">\(P(6) = P(1) = \frac{1 + 3 \times 5}{6^3}\)</span></li>
+<li><span class="math">\(P(5) = P(2) = \frac{1 + 3 \times 5 + 6 \times 4}{6^3}\)</span></li>
+<li><span class="math">\(P(4) = P(3) = \frac{1 + 3 \times 5 + 6 \times 4 + 4 \times 3}{6^3}\)</span></li>
 </ul>
 <p>Beyond this, I'm lost.</p>
 <p>But.</p>
 <p>Simulation showed me the way forward, and it wasn't much code.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -495,6 +556,10 @@ Looking at the text patterns, I can work out the following.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

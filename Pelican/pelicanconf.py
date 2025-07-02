@@ -49,7 +49,7 @@ RELATIVE_URLS = True
 THEME = "/Users/slott/Documents/Writing/Blogs/pelican-themes/pelican-bootstrap3"
 
 PLUGIN_PATHS = ['/Users/slott/Documents/Writing/Blogs/pelican-plugins', ]
-PLUGINS = ['i18n_subsites', ]
+PLUGINS = ['i18n_subsites', 'render_math']
 JINJA_ENVIRONMENT = {
     'extensions': ['jinja2.ext.i18n'],
 }

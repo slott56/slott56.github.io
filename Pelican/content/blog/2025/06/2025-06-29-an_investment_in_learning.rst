@@ -2,7 +2,7 @@ An Investment in Learning
 ############################
 
 :date: 2025-06-29 09:06
-:tags: uml,plantuml,solid
+:tags: uml,plantuml,solid,cel-python,cloud custodian,open source,learning
 :slug: 2025-06-29-an_investment_in_learning
 :category: Architecture & Design
 :status: published

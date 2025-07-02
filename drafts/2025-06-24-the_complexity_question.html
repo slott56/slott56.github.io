@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://slott56.github.io/drafts/2025-06-24-the_complexity_question.html">
 
         <meta name="author" content="S.Lott" />
-        <meta name="keywords" content="solid,complexity,complication,chaos" />
+        <meta name="keywords" content="uml,plantuml,solid,cel-python,cloud custodian,open source,complexity" />
         <meta name="description" content="I was pointed at the Cynefin® Framework for understanding complexity. It&#39;s a trademark, and a product, and books, and consulting services. I can&#39;t say too much because I don&#39;t understand it very well, and haven&#39;t paid them any money. But. The idea that it&#39;s based on is elegant Complex and …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
@@ -22,10 +22,13 @@
         <meta property="og:description" content="I was pointed at the Cynefin® Framework for understanding complexity. It&#39;s a trademark, and a product, and books, and consulting services. I can&#39;t say too much because I don&#39;t understand it very well, and haven&#39;t paid them any money. But. The idea that it&#39;s based on is elegant Complex and …"/>
         <meta property="article:published_time" content="2025-06-24" />
             <meta property="article:section" content="Architecture & Design" />
+            <meta property="article:tag" content="uml" />
+            <meta property="article:tag" content="plantuml" />
             <meta property="article:tag" content="solid" />
+            <meta property="article:tag" content="cel-python" />
+            <meta property="article:tag" content="cloud custodian" />
+            <meta property="article:tag" content="open source" />
             <meta property="article:tag" content="complexity" />
-            <meta property="article:tag" content="complication" />
-            <meta property="article:tag" content="chaos" />
             <meta property="article:author" content="S.Lott" />
 
 
@@ -111,13 +114,19 @@ S.Lott -- Software Architect            </a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="https://slott56.github.io/tag/uml.html">uml</a>
+        /
+	<a href="https://slott56.github.io/tag/plantuml.html">plantuml</a>
+        /
 	<a href="https://slott56.github.io/tag/solid.html">solid</a>
         /
+	<a href="https://slott56.github.io/tag/cel-python.html">cel-python</a>
+        /
+	<a href="https://slott56.github.io/tag/cloud-custodian.html">cloud custodian</a>
+        /
+	<a href="https://slott56.github.io/tag/open-source.html">open source</a>
+        /
 	<a href="https://slott56.github.io/tag/complexity.html">complexity</a>
-        /
-	<a href="https://slott56.github.io/tag/complication.html">complication</a>
-        /
-	<a href="https://slott56.github.io/tag/chaos.html">chaos</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -185,7 +194,7 @@ How do we manage complications or even complexity where we may find some underly
 the problems are well-understood.</p>
 <p>A classic from my youth was implementing the Dijkstra algorithm find the shortest path between nodes in a graph.</p>
 <p>There are several well-known complications.
-A non-Dijkstra algorithm risks <span class="formula"><span class="textbf">O</span>(|<i>V</i>|<sup>2</sup>)</span> performance problems.
+A non-Dijkstra algorithm risks <span class="math">\(\textbf{O}({\lvert V \rvert}^2)\)</span> performance problems.
 Use of a priority queue reduces the search time for this path considerably.</p>
 <p>What's important is that the shallows are charted.
 Known.</p>
@@ -281,7 +290,68 @@ It's a degree of confusion.</p>
 </ul>
 <p>I think this is what the framework's good for: naming the degree of confusion.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -358,6 +428,10 @@ It's a degree of confusion.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

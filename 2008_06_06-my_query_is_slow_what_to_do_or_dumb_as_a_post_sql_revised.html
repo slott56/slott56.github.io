@@ -124,7 +124,7 @@ S.Lott -- Software Architect            </a>
                 <p>First, let me point out that the Data Cartel (&quot;DBA&quot; means Don't Bother Asking) won't release all the information I requested, so some of this is a guess.</p>
 <p>We'll look at a number of dumb-as-a-post SQL techniques.  This is proof -- if any were needed -- that bad SQL is worse than no SQL.</p>
 <p>The table appears to have 2 columns, a date and a floating-point value in the range 0.0 to 1.0.  Rows arrive at the rate of 500 an hour.</p>
-<p>Someone wants a weekly summary (about 90,000 rows) binned into 10 ranges 0.0 to 0.1, 0.1 to 0.2, 0.2 to 0.3, etc.  The algorithm might be slightly more complex (to separate <span class="formula"><i>n</i> = 0.1</span> from <span class="formula">0.1 &lt; <i>n</i> ≤ 0.2</span>.)</p>
+<p>Someone wants a weekly summary (about 90,000 rows) binned into 10 ranges 0.0 to 0.1, 0.1 to 0.2, 0.2 to 0.3, etc.  The algorithm might be slightly more complex (to separate <span class="math">\(n = 0.1\)</span> from <span class="math">\(0.1 &lt; n \leq 0.2\)</span>.)</p>
 <p>[Again, the DBA steadfastly refuses to provide the use cases, so I'm doing a lot of this with minimal information.  However, I did get a spreadsheet showing an Excel version of the algorithm.  Not PL/SQL, not pure SQL, not Java, but Excel.]</p>
 <div class="section" id="what-s-the-issue">
 <h2>What's the Issue?</h2>
@@ -226,7 +226,68 @@ import collections
 </ul>
 <p>All of these habits get in the way of a simple denormalization that makes the obvious query work at amazing speeds.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -303,6 +364,10 @@ import collections
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

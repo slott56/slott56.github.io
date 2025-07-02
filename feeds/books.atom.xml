@@ -340,7 +340,7 @@ Most of these are small-ish. Two are immensee blocks of LaTeX code.&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr class="field"&gt;&lt;th class="field-name"&gt;fvset:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This can be used to set the font for &amp;quot;fancyverb&amp;quot; verbatime environments.
 I use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\fvset{fontsize=\scriptsize}'&lt;/span&gt;&lt;/tt&gt; to make the font smaller so the examples fit
-in a &lt;span class="formula"&gt;6&lt;sup&gt;′′&lt;/sup&gt;×9&lt;sup&gt;′′&lt;/sup&gt;&lt;/span&gt; book.&lt;/p&gt;
+in a &lt;span class="math"&gt;\(6^{\prime\prime} \times 9^{\prime\prime}\)&lt;/span&gt; book.&lt;/p&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="field"&gt;&lt;th class="field-name"&gt;releasename:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This is really fussy. The word &amp;quot;release&amp;quot; seems too long, so I set this to &lt;tt class="docutils literal"&gt;v.&lt;/tt&gt;.&lt;/p&gt;
@@ -348,7 +348,7 @@ in a &lt;span class="formula"&gt;6&lt;sup&gt;′′&lt;/sup&gt;×9&lt;sup&gt;′
 &lt;/tr&gt;
 &lt;tr class="field"&gt;&lt;th class="field-name"&gt;geometry:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first"&gt;This defines the page layouts. It's quite long.
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;r'\usepackage[paperwidth=6in,&lt;/span&gt; paperheight=9in, inner=3.75pc, outer=3pc, top=2pc, bottom=3pc, includehead, includefoot, &lt;span class="pre"&gt;headheight=32pt]{geometry}'&lt;/span&gt;&lt;/tt&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;tt class="docutils literal"&gt;pc&lt;/tt&gt; unit is pica, &lt;span class="formula"&gt;&lt;span class="textfraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;1&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;6&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; of an inch. I'm not sure it's helpful to switch units like this.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;pc&lt;/tt&gt; unit is pica, &lt;span class="math"&gt;\(\tfrac{1}{6}\)&lt;/span&gt; of an inch. I'm not sure it's helpful to switch units like this.&lt;/p&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="field"&gt;&lt;th class="field-name"&gt;maketitle:&lt;/th&gt;&lt;td class="field-body"&gt;&lt;p class="first last"&gt;This is also quite large.&lt;/p&gt;
@@ -479,7 +479,68 @@ that can be uploaded for EPUB and print-on-demand.&lt;/p&gt;
 &lt;p&gt;There are still some odd, little glitches in the LaTeX.
 It's not &lt;strong&gt;perfect&lt;/strong&gt;, but it's really good.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Books"></category><category term="sphinx"></category><category term="RST"></category><category term="LaTeX"></category><category term="epub"></category><category term="PDF"></category></entry><entry><title>Unlearning SQL, revised</title><link href="https://slott56.github.io/2024-08-20-unlearning_sql.html" rel="alternate"></link><published>2024-08-20T16:31:00-04:00</published><updated>2024-08-20T16:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-08-20:/2024-08-20-unlearning_sql.html</id><summary type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Books"></category><category term="sphinx"></category><category term="RST"></category><category term="LaTeX"></category><category term="epub"></category><category term="PDF"></category></entry><entry><title>Unlearning SQL, revised</title><link href="https://slott56.github.io/2024-08-20-unlearning_sql.html" rel="alternate"></link><published>2024-08-20T16:31:00-04:00</published><updated>2024-08-20T16:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2024-08-20:/2024-08-20-unlearning_sql.html</id><summary type="html">&lt;p&gt;Book (pre) Announcement:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;dl class="first docutils"&gt;
 &lt;dt&gt;KDP - See &lt;a class="reference external" href="https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK"&gt;https://www.amazon.com/stores/Steven-Lott/author/B00HNRSLEK&lt;/a&gt; for my author's page.&lt;/dt&gt;

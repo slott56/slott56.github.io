@@ -127,19 +127,23 @@ and the test cases in the prior posts.</p>
 help us do the refactoring.</p>
 <p>It can help to think of a web server a function that maps a request to a
 response. The request is really a composite object with headers,
-<span class="formula"><i>h</i></span>, method verb, <span class="formula"><i>v</i></span>, and URL, <span class="formula"><i>u</i></span>. Similarly, the response
-is a composite with headers, <span class="formula"><i>h</i></span>, and content, <span class="formula"><i>c</i></span>.</p>
-<div class="formula">
-<i>h</i>, <i>c</i> = <i>s</i>(<i>h</i>, <i>v</i>, <i>u</i>)
+<span class="math">\(h\)</span>, method verb, <span class="math">\(v\)</span>, and URL, <span class="math">\(u\)</span>. Similarly, the response
+is a composite with headers, <span class="math">\(h\)</span>, and content, <span class="math">\(c\)</span>.</p>
+<div class="math">
+\begin{equation*}
+h, c = s(h, v, u)
+\end{equation*}
 </div>
 <p>The above is true for idempotent requests; usually, the method verb is
 GET.</p>
 <p>Some requests make a state change, however, and use method verbs like
 POST, PUT, PATCH, or DELETE.</p>
-<div class="formula">
-<i>h</i>, <i>c</i>;<i>Ŝ</i> = <i>s</i>(<i>h</i>, <i>v</i>, <i>u</i>;<i>S</i>)
+<div class="math">
+\begin{equation*}
+h, c; \hat S = s(h, v, u; S)
+\end{equation*}
 </div>
-<p>There's a state,  <span class="formula"><i>S</i></span>, which is transformed to a new state, <span class="formula"><i>Ŝ</i></span>, as part of making the request.</p>
+<p>There's a state,  <span class="math">\(S\)</span>, which is transformed to a new state, <span class="math">\(\hat S\)</span>, as part of making the request.</p>
 <p>For the most part, CGI scripts are limited to GET and POST methods. The
 GET method is (ideally) for idempotent, no-state-change requests. The
 POST should be limited to making state changes. In some cases, there
@@ -153,20 +157,24 @@ state transitions on GET and idempotent POST operations. Sigh.</p>
 instances. Often they will work with a number of instances of a variety
 of resource types. The degenerate case is a server providing content for
 a single instance of a single type.</p>
-<p>Each resource comes from the servers's universe of resources, <span class="formula"><i>R</i></span>.</p>
-<div class="formula">
-<i>r</i> ∈ <i>R</i>
+<p>Each resource comes from the servers's universe of resources, <span class="math">\(R\)</span>.</p>
+<div class="math">
+\begin{equation*}
+r \in R
+\end{equation*}
 </div>
-<p>Each resource type, <span class="formula"><i>t</i>(<i>r</i>)</span>, is part of some overall collection of
+<p>Each resource type, <span class="math">\(t(r )\)</span>, is part of some overall collection of
 types that describe the various resources. In some cases we'll identify
 resources with a path that includes the type of the resource,
-<span class="formula"><i>t</i>(<i>r</i>)</span>, and an identifier within that type, <span class="formula"><i>i</i>(<i>r</i>)</span>,
-<span class="formula">⟨<i>t</i>(<i>r</i>), <i>i</i>(<i>r</i>)⟩</span>. This often maps to a character string &quot;type/name&quot;
+<span class="math">\(t(r)\)</span>, and an identifier within that type, <span class="math">\(i(r )\)</span>,
+<span class="math">\(\langle t( r ), i( r ) \rangle\)</span>. This often maps to a character string &quot;type/name&quot;
 that's part of a URL's path.</p>
-<p>We can think of a response's content as the HTML markup, <span class="formula"><i>m</i><sub><i>h</i></sub></span>,
-around a resource, <span class="formula"><i>r</i></span>, managed by the web server.</p>
-<div class="formula">
-<i>c</i> = <i>m</i><sub><i>h</i></sub>(<i>r</i>)
+<p>We can think of a response's content as the HTML markup, <span class="math">\(m_h\)</span>,
+around a resource, <span class="math">\(r\)</span>, managed by the web server.</p>
+<div class="math">
+\begin{equation*}
+c = m_h( r )
+\end{equation*}
 </div>
 <p>This is a representation of the resource's state. The HTML
 representation can have both semantic and style components. We might,
@@ -178,68 +186,44 @@ information, but the HTML tags do.</p>
 <h2>Multiple Services</h2>
 <p>There are often multiple, closely-related services within a web server.
 A common design pattern is to have services that vary based on a path
-item, <span class="formula"><i>p</i>(<i>u</i>)</span>, within the url.</p>
-<div class="formula">
-<i>h</i>, <i>m</i><sub><i>h</i></sub>(<i>r</i>);<i>Ŝ</i> = <i>s</i>(<i>h</i>, <i>v</i>, <i>u</i>;<i>S</i>) = <span class="array"><span class="arrayrow"><span class="bracket align-l">⎧</span></span><span class="arrayrow"><span class="bracket align-l">⎪</span></span><span class="arrayrow"><span class="bracket align-l">⎨</span></span><span class="arrayrow"><span class="bracket align-l">⎪</span></span><span class="arrayrow"><span class="bracket align-l">⎩</span></span></span><span class="bracketcases">
-<span class="arrayrow">
-<span class="case align-l">
-<i>s</i><sub><i>x</i></sub>(<i>h</i>, <i>v</i>, <i>u</i>;<i>S</i>)<span class="textbf"> if $p(u) = x$ </span> 
-</span>
-
-</span>
-<span class="arrayrow">
-<span class="case align-l">
-  
-</span>
-
-</span>
-<span class="arrayrow">
-<span class="case align-l">
-<i>s</i><sub><i>y</i></sub>(<i>h</i>, <i>v</i>, <i>u</i>;<i>S</i>)<span class="textbf"> if $p(u) = y$ </span> 
-</span>
-
-</span>
-<span class="arrayrow">
-<span class="case align-l">
-  
-</span>
-
-</span>
-<span class="arrayrow">
-<span class="case align-l">
- 
-</span>
-
-</span>
-
-</span>
-
+item, <span class="math">\(p(u)\)</span>, within the url.</p>
+<div class="math">
+\begin{equation*}
+h, m_h(r ); \hat S = s(h, v, u; S) = \begin{cases}
+s_x(h, v, u; S) \textbf{ if $p(u) = x$ } \\
+s_y(h, v, u; S) \textbf{ if $p(u) = y$ } \\
+\end{cases}
+\end{equation*}
 </div>
 <p>There isn't, of course, any formal requirement for a tidy mapping from
-some element of the path, <span class="formula"><i>p</i>(<i>u</i>)</span>, to a type, <span class="formula"><i>t</i>(<i>r</i>)</span>, that
-characterizes a resource, <span class="formula"><i>r</i></span>. Utter chaos is allowed. Thankfully,
+some element of the path, <span class="math">\(p(u)\)</span>, to a type, <span class="math">\(t ( r )\)</span>, that
+characterizes a resource, <span class="math">\(r\)</span>. Utter chaos is allowed. Thankfully,
 it's not common.</p>
 <p>While there may not be a tidy type-based mapping, there must be a
-mapping from a triple and a state, <span class="formula">⟨<i>h</i>, <i>u</i>, <i>v</i>;<i>S</i>⟩</span>
-to a resource, <span class="formula"><i>r</i></span>. This mapping can be considered a database or
-filesystem query, <span class="formula"><i>q</i>(⟨<i>h</i>, <i>u</i>, <i>v</i>;<i>S</i>⟩)</span>. The request may
+mapping from a triple and a state, <span class="math">\(\langle h, u, v; S \rangle\)</span>
+to a resource, <span class="math">\(r\)</span>. This mapping can be considered a database or
+filesystem query, <span class="math">\(q(\langle h, u, v; S \rangle)\)</span>. The request may
 also involve state change.  It can help to think of the state as a
 function that can emit a new state for a request. This implies two
 low-level processing concepts:</p>
-<div class="formula">
-{<i>r</i> ∈ <i>R</i>|<i>q</i>(⟨<i>h</i>, <i>u</i>, <i>v</i>;<i>S</i>⟩, <i>r</i>)}
+<div class="math">
+\begin{equation*}
+\{ r \in R | q(\langle h, u, v; S \rangle, r) \}
+\end{equation*}
 </div>
 <p>And</p>
-<div class="formula">
-<i>Ŝ</i> = <i>S</i>(⟨<i>h</i>, <i>u</i>, <i>v</i>⟩)
+<div class="math">
+\begin{equation*}
+\hat S = S(\langle h, u, v \rangle)
+\end{equation*}
 </div>
 <p>The query processing to locate resources is one aspect of the underlying
 model. The state change for the universe of resources is another aspect
 of the underlying model. Each request must return a resource; it may
 also make a state change.</p>
-<p>What's essential, then, is to see how these various <span class="formula"><i>s</i><sub><i>x</i></sub></span> functions
-are related to the original code. The <span class="formula"><i>m</i><sub><i>h</i></sub>(<i>r</i>)</span> function,
-the <span class="formula"><i>p</i>(<i>u</i>)</span> mappings, and the <span class="formula"><i>s</i><sub><i>t</i>(<i>u</i>)</sub>(<i>h</i>, <i>v</i>, <i>u</i>;<i>S</i>)</span> functions are all
+<p>What's essential, then, is to see how these various <span class="math">\(s_x\)</span> functions
+are related to the original code. The <span class="math">\(m_h(r)\)</span> function,
+the <span class="math">\(p( u )\)</span> mappings, and the <span class="math">\(s_{t(u)}(h, v, u; S)\)</span> functions are all
 separate features that can be disentangled from each other.</p>
 </div>
 <div class="section" id="why-all-the-math">
@@ -425,7 +409,68 @@ These are the single most valuable part of the work. Given test cases
 that describe the old application, writing the new app using Flask is
 relatively easy.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -502,6 +547,10 @@ relatively easy.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

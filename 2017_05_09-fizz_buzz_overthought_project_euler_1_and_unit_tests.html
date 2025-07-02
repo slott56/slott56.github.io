@@ -161,12 +161,12 @@ of the rules.</p>
 rule_groups = set(powerset([fizz, buzz]))
 </pre>
 <p>&quot;Um,&quot; you say, &quot;Is that necessary? And powerset() isn't built-in.&quot;</p>
-<p>Try to add a third or fourth rule and the <span class="formula"><span class="textbf">O</span>(2<sup><i>n</i></sup>)</span>
+<p>Try to add a third or fourth rule and the <span class="math">\(\textbf{O}(2^n)\)</span>
 growth in complexity of checking all combinations of the rules
 will become readily apparent. For two rules,
-<span class="formula">4 = |<span class="scriptfont"> P</span>({<i>q</i>(3), <i>q</i>(5)})|</span>.</p>
+<span class="math">\(4 = \lvert\mathcal{P}(\{q(3), q(5)\})\rvert\)</span>.</p>
 <p>For a general set
-of rules, <span class="formula"><i>r</i></span>, it's <span class="formula">2<sup>|<i>r</i>|</sup> = |<span class="scriptfont">P</span>(<i>r</i>)|</span>.</p>
+of rules, <span class="math">\(r\)</span>, it's <span class="math">\(2^{\lvert r \rvert} = \lvert \mathcal{P}(r)\rvert\)</span>.</p>
 <p>Four rules? sixteen outcomes. It sure
 seems like the power set is absolutely necessary; it describes the
 domain of possible outcomes. How could it not be necessary?
@@ -176,10 +176,10 @@ built-in.</p>
 <p>The domain of possible responses form a power set. However, it's
 also clear that we aren't <strong>obligated</strong> to actually enumerate that
 set for each value we're testing. We do need to be aware that the
-complexity of the classification output is <span class="formula"><span class="textbf">O</span>(2<sup><i>n</i></sup>)</span>
-where <span class="formula"><i>n</i></span> is the number of rules.
+complexity of the classification output is <span class="math">\(\textbf{O}(2^n)\)</span>
+where <span class="math">\(n\)</span> is the number of rules.
 The processing to build each set of classifications, however, is
-<span class="formula"><span class="textbf">O</span>(<i>n</i>)</span>. Here's how it looks.</p>
+<span class="math">\(\textbf{O}(n)\)</span>. Here's how it looks.</p>
 <pre class="literal-block">
 for n in range(20):
     m = set(filter(None, (r(n) for r in [fizz, buzz])))
@@ -190,12 +190,73 @@ and buzz(), to the given value. The result of applying the rules
 is filtered to remove falsy values. The resulting set, m, has the
 values from all rules which matched. This will be one of the sets
 from the power set of applying the rules to each value. The match,
-<span class="formula"><i>m</i></span>, is an element of <span class="formula"><span class="scriptfont">P</span>({<i>q</i>(3), <i>q</i>(5)})</span>.</p>
+<span class="math">\(m\)</span>, is an element of <span class="math">\(\mathcal{P} (\{q(3), q(5)\})\)</span>.</p>
 <p>I'm delighted that Python has some support for creating partial
 functions in a variety of ways. When things are complex, we can
 use the <strong>def</strong> statement. We can use functools <tt class="docutils literal">partial()</tt>. When
 things are simple, we can even use lambdas.</p>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -272,6 +333,10 @@ things are simple, we can even use lambdas.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

@@ -180,7 +180,7 @@ often means a new data structure.)</p>
 <p>&quot;Tuning&quot; in any form is nothing more than nibbling around the edges to
 make a bad algorithm run 15% faster.</p>
 <p>Rewriting may replace
-<span class="formula"><span class="textbf">O</span>(2<sup><i>n</i></sup>)</span> with <span class="formula"><span class="textbf">O</span>(<i>n</i>log<i>n</i>)</span>.
+<span class="math">\(\textbf{O}(2^n)\)</span> with <span class="math">\(\textbf{O}(n \log n)\)</span>.
 This would be dramatically better. From seconds to milliseconds. You know, 1,000% faster.</p>
 <p>There's a disciplined approach to this. Here are the steps.</p>
 <ol class="arabic simple">
@@ -210,8 +210,10 @@ word assert? What's stopping you?&quot;</p>
 <h2>Post-Conditions</h2>
 <p>The post-condition is true when you're done. Let's look at my favorite,
 M must be the maximum of A and B.</p>
-<div class="formula">
-<i>M</i> ≥ <i>A</i><span class="textbf"> and </span><i>M</i> ≥ <i>B</i>
+<div class="math">
+\begin{equation*}
+M \geq A \textbf{ and } M \geq B
+\end{equation*}
 </div>
 <p>This becomes an <tt class="docutils literal">assert</tt> statement through (what seems to me, but boy
 was I wrong) the following kind of translation.</p>
@@ -222,16 +224,20 @@ assert M &gt;= A and M &gt;= B, f&quot;Algorithm Failed {M=} {A=} {B=}&quot;
 creating an <tt class="docutils literal">assert</tt> statement from a post condition was in any way
 clear. It's absolutely bewilderingly impossible.</p>
 <p>It's also important to note that the above condition is incomplete. The
-value <span class="formula"><i>M</i> = <i>A</i> + <i>B</i></span> will also satisfy the condition. We need to test our
+value <span class="math">\(M = A+B\)</span> will also satisfy the condition. We need to test our
 test cases to be sure they really do what we want.</p>
 <p>We really need to be more complete on what the domain of values for
-<span class="formula"><i>M</i></span> is.</p>
-<div class="formula">
-<i>M</i> = <i>A</i><span class="textbf"> or </span><i>M</i> = <i>B</i><span class="textbf"> and </span><i>M</i> ≥ <i>A</i><span class="textbf"> and </span><i>M</i> ≥ <i>B</i>
+<span class="math">\(M\)</span> is.</p>
+<div class="math">
+\begin{equation*}
+M = A \textbf{ or } M = B \textbf{ and } M \geq A \textbf{ and } M \geq B
+\end{equation*}
 </div>
 <p>We could rewrite this slightly to be</p>
-<div class="formula">
-<i>M</i> ∈ {<i>A</i>, <i>B</i>}<span class="textbf"> and </span><i>M</i> ≥ <i>A</i><span class="textbf"> and </span><i>M</i> ≥ <i>B</i>
+<div class="math">
+\begin{equation*}
+M \in \{A, B\} \textbf{ and } M \geq A \textbf{ and } M \geq B
+\end{equation*}
 </div>
 <p>This version directly suggests a potential set comprehension to compute
 the result:</p>
@@ -255,15 +261,15 @@ understand the assert statement.</p>
 </div>
 <div class="section" id="the-current-problem-s-post-condition">
 <h2>The Current Problem's Post-Condition</h2>
-<p>The problem at hand seems to involve a result set, <span class="formula"><i>R</i></span>, pulled from
-nodes of some hierarchy, <span class="formula"><i>H</i></span>, <span class="formula"><i>R</i> ⊆ <i>H</i></span>. Each element of
-the hierarchy, <span class="formula"><i>h</i> ∈ <i>H</i></span> has a set of strings, <span class="formula"><i>s</i>(<i>h</i>)</span>. It
-appears that a target string, <span class="formula"><i>t</i></span>, must be a member
-of <span class="formula"><i>t</i> ∈ <i>s</i>(<i>r</i>), <i>r</i> ∈ <i>R</i></span>. I think.</p>
+<p>The problem at hand seems to involve a result set, <span class="math">\(R\)</span>, pulled from
+nodes of some hierarchy, <span class="math">\(H\)</span>, <span class="math">\(R \subseteq H\)</span>. Each element of
+the hierarchy, <span class="math">\(h \in H\)</span> has a set of strings, <span class="math">\(s(h)\)</span>. It
+appears that a target string, <span class="math">\(t\)</span>, must be a member
+of <span class="math">\(t \in s(r), r \in R\)</span>. I think.</p>
 <p>Note that the hierarchy is nothing more than a collection of identified
 collections of strings. The parent-childness doesn't seem to matter for
 the search algorithm. Within the result set, there's some importance to
-the tier of the hierarchy, <span class="formula"><i>t</i>(<i>h</i>)</span>, and a node from tier 1 means all
+the tier of the hierarchy, <span class="math">\(t(h)\)</span>, and a node from tier 1 means all
 others are ignored or something. Can't be sure. (The endless backstory
 on the hierarchy was little more than a review of the algorithm to query
 it.)</p>
@@ -338,7 +344,68 @@ Or &quot;I don't want to be seen writing code.&quot; or &quot;I don't want you t
 critique my code.&quot;</p>
 <p>Dunno.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -415,6 +482,10 @@ critique my code.&quot;</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

@@ -1416,7 +1416,7 @@ often means a new data structure.)&lt;/p&gt;
 &lt;p&gt;&amp;quot;Tuning&amp;quot; in any form is nothing more than nibbling around the edges to
 make a bad algorithm run 15% faster.&lt;/p&gt;
 &lt;p&gt;Rewriting may replace
-&lt;span class="formula"&gt;&lt;span class="textbf"&gt;O&lt;/span&gt;(2&lt;sup&gt;&lt;i&gt;n&lt;/i&gt;&lt;/sup&gt;)&lt;/span&gt; with &lt;span class="formula"&gt;&lt;span class="textbf"&gt;O&lt;/span&gt;(&lt;i&gt;n&lt;/i&gt;log&lt;i&gt;n&lt;/i&gt;)&lt;/span&gt;.
+&lt;span class="math"&gt;\(\textbf{O}(2^n)\)&lt;/span&gt; with &lt;span class="math"&gt;\(\textbf{O}(n \log n)\)&lt;/span&gt;.
 This would be dramatically better. From seconds to milliseconds. You know, 1,000% faster.&lt;/p&gt;
 &lt;p&gt;There's a disciplined approach to this. Here are the steps.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -1446,8 +1446,10 @@ word assert? What's stopping you?&amp;quot;&lt;/p&gt;
 &lt;h2&gt;Post-Conditions&lt;/h2&gt;
 &lt;p&gt;The post-condition is true when you're done. Let's look at my favorite,
 M must be the maximum of A and B.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;A&lt;/i&gt;&lt;span class="textbf"&gt; and &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;B&lt;/i&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M \geq A \textbf{ and } M \geq B
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;This becomes an &lt;tt class="docutils literal"&gt;assert&lt;/tt&gt; statement through (what seems to me, but boy
 was I wrong) the following kind of translation.&lt;/p&gt;
@@ -1458,16 +1460,20 @@ assert M &amp;gt;= A and M &amp;gt;= B, f&amp;quot;Algorithm Failed {M=} {A=} {B
 creating an &lt;tt class="docutils literal"&gt;assert&lt;/tt&gt; statement from a post condition was in any way
 clear. It's absolutely bewilderingly impossible.&lt;/p&gt;
 &lt;p&gt;It's also important to note that the above condition is incomplete. The
-value &lt;span class="formula"&gt;&lt;i&gt;M&lt;/i&gt; = &lt;i&gt;A&lt;/i&gt; + &lt;i&gt;B&lt;/i&gt;&lt;/span&gt; will also satisfy the condition. We need to test our
+value &lt;span class="math"&gt;\(M = A+B\)&lt;/span&gt; will also satisfy the condition. We need to test our
 test cases to be sure they really do what we want.&lt;/p&gt;
 &lt;p&gt;We really need to be more complete on what the domain of values for
-&lt;span class="formula"&gt;&lt;i&gt;M&lt;/i&gt;&lt;/span&gt; is.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;M&lt;/i&gt; = &lt;i&gt;A&lt;/i&gt;&lt;span class="textbf"&gt; or &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; = &lt;i&gt;B&lt;/i&gt;&lt;span class="textbf"&gt; and &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;A&lt;/i&gt;&lt;span class="textbf"&gt; and &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;B&lt;/i&gt;
+&lt;span class="math"&gt;\(M\)&lt;/span&gt; is.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M = A \textbf{ or } M = B \textbf{ and } M \geq A \textbf{ and } M \geq B
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;We could rewrite this slightly to be&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;M&lt;/i&gt; ∈ {&lt;i&gt;A&lt;/i&gt;, &lt;i&gt;B&lt;/i&gt;}&lt;span class="textbf"&gt; and &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;A&lt;/i&gt;&lt;span class="textbf"&gt; and &lt;/span&gt;&lt;i&gt;M&lt;/i&gt; ≥ &lt;i&gt;B&lt;/i&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+M \in \{A, B\} \textbf{ and } M \geq A \textbf{ and } M \geq B
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;This version directly suggests a potential set comprehension to compute
 the result:&lt;/p&gt;
@@ -1491,15 +1497,15 @@ understand the assert statement.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="the-current-problem-s-post-condition"&gt;
 &lt;h2&gt;The Current Problem's Post-Condition&lt;/h2&gt;
-&lt;p&gt;The problem at hand seems to involve a result set, &lt;span class="formula"&gt;&lt;i&gt;R&lt;/i&gt;&lt;/span&gt;, pulled from
-nodes of some hierarchy, &lt;span class="formula"&gt;&lt;i&gt;H&lt;/i&gt;&lt;/span&gt;, &lt;span class="formula"&gt;&lt;i&gt;R&lt;/i&gt; ⊆ &lt;i&gt;H&lt;/i&gt;&lt;/span&gt;. Each element of
-the hierarchy, &lt;span class="formula"&gt;&lt;i&gt;h&lt;/i&gt; ∈ &lt;i&gt;H&lt;/i&gt;&lt;/span&gt; has a set of strings, &lt;span class="formula"&gt;&lt;i&gt;s&lt;/i&gt;(&lt;i&gt;h&lt;/i&gt;)&lt;/span&gt;. It
-appears that a target string, &lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt;&lt;/span&gt;, must be a member
-of &lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt; ∈ &lt;i&gt;s&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;), &lt;i&gt;r&lt;/i&gt; ∈ &lt;i&gt;R&lt;/i&gt;&lt;/span&gt;. I think.&lt;/p&gt;
+&lt;p&gt;The problem at hand seems to involve a result set, &lt;span class="math"&gt;\(R\)&lt;/span&gt;, pulled from
+nodes of some hierarchy, &lt;span class="math"&gt;\(H\)&lt;/span&gt;, &lt;span class="math"&gt;\(R \subseteq H\)&lt;/span&gt;. Each element of
+the hierarchy, &lt;span class="math"&gt;\(h \in H\)&lt;/span&gt; has a set of strings, &lt;span class="math"&gt;\(s(h)\)&lt;/span&gt;. It
+appears that a target string, &lt;span class="math"&gt;\(t\)&lt;/span&gt;, must be a member
+of &lt;span class="math"&gt;\(t \in s(r), r \in R\)&lt;/span&gt;. I think.&lt;/p&gt;
 &lt;p&gt;Note that the hierarchy is nothing more than a collection of identified
 collections of strings. The parent-childness doesn't seem to matter for
 the search algorithm. Within the result set, there's some importance to
-the tier of the hierarchy, &lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;h&lt;/i&gt;)&lt;/span&gt;, and a node from tier 1 means all
+the tier of the hierarchy, &lt;span class="math"&gt;\(t(h)\)&lt;/span&gt;, and a node from tier 1 means all
 others are ignored or something. Can't be sure. (The endless backstory
 on the hierarchy was little more than a review of the algorithm to query
 it.)&lt;/p&gt;
@@ -1574,7 +1580,68 @@ Or &amp;quot;I don't want to be seen writing code.&amp;quot; or &amp;quot;I don'
 critique my code.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Dunno.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="algorithm"></category><category term="software design"></category><category term="Design Principles"></category><category term="asycnio"></category><category term="faerie dust"></category></entry><entry><title>My algorithm performs badly, do I need asyncio?</title><link href="https://slott56.github.io/2022_12_06-my_algorithm_performs_badly_do_i_need_asyncio.html" rel="alternate"></link><published>2022-12-06T11:00:00-05:00</published><updated>2022-12-06T11:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-12-06:/2022_12_06-my_algorithm_performs_badly_do_i_need_asyncio.html</id><summary type="html">&lt;p&gt;Real Question (somewhat abbreviated): &amp;quot;My algorithm performs badly, do I
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Technologies"></category><category term="algorithm"></category><category term="software design"></category><category term="Design Principles"></category><category term="asycnio"></category><category term="faerie dust"></category></entry><entry><title>My algorithm performs badly, do I need asyncio?</title><link href="https://slott56.github.io/2022_12_06-my_algorithm_performs_badly_do_i_need_asyncio.html" rel="alternate"></link><published>2022-12-06T11:00:00-05:00</published><updated>2022-12-06T11:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-12-06:/2022_12_06-my_algorithm_performs_badly_do_i_need_asyncio.html</id><summary type="html">&lt;p&gt;Real Question (somewhat abbreviated): &amp;quot;My algorithm performs badly, do I
 need asyncio?&amp;quot;&lt;/p&gt;
 &lt;p&gt;Short answer: No.&lt;/p&gt;
 &lt;p&gt;Long answer: Sigh. No. Do you need a slap upside the head?&lt;/p&gt;
@@ -3952,8 +4019,10 @@ integers -- to create random numbers? Step 1 was to stop using the
 middle-squared generator. It doesn't work.&lt;/p&gt;
 &lt;p&gt;Step 2 is to find a Linear Congruential Generator that works. LCG's have
 a (relatively) simple form:&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt; + 1&lt;/sub&gt; = (&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;×&lt;i&gt;a&lt;/i&gt; + &lt;i&gt;c&lt;/i&gt;)&lt;span class="unknown"&gt;\bmod&lt;/span&gt;&lt;i&gt;m&lt;/i&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+X_{n+1} = (X_n \times a + c) \bmod m
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;In this case, the modulo value, &lt;em&gt;m&lt;/em&gt;, is 10,000. What's left is step 3:
 find &lt;em&gt;a&lt;/em&gt; and &lt;em&gt;c&lt;/em&gt; parameters.&lt;/p&gt;
@@ -4059,7 +4128,7 @@ little bit of coding smarts to get them to work correctly and quickly.&lt;/p&gt;
 &lt;p&gt;Here's one of the tests in the battery of chi-squared tests. This is the
 frequency test that examines values to see if they have the right number
 of occurrences. We pick a domain, &lt;em&gt;d&lt;/em&gt;, and parcel numbers out into this
-domain. We use &lt;span class="formula"&gt;&lt;br/&gt;&lt;i&gt;frac&lt;/i&gt;&lt;i&gt;d&lt;/i&gt;&lt;br/&gt;&lt;i&gt;times&lt;/i&gt;&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;10, 000&lt;/span&gt; because this tends
+domain. We use &lt;span class="math"&gt;\(\\frac{d \\times X_{n}}{10,000}\)&lt;/span&gt; because this tends
 to leverage the left-most digits which are somewhat more random than the
 right-most digits.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -4091,7 +4160,7 @@ fqt.chi2
 &lt;/pre&gt;
 &lt;p&gt;The test creates some samples, applies the frequency test. The next step
 is to examine the chi-squared value to see if it's in the allowable
-range, &lt;span class="formula"&gt;7.261&lt;br/&gt;&lt;i&gt;leq&lt;/i&gt;&lt;br/&gt;&lt;i&gt;chi&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; &amp;lt; 25&lt;/span&gt;.&lt;/p&gt;
+range, &lt;span class="math"&gt;\(7.261 \\leq \\chi^2 &amp;lt; 25\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="the-search-space"&gt;
 &lt;h3&gt;The search space&lt;/h3&gt;
@@ -4101,7 +4170,7 @@ combinations. It takes a bit of processing to look at all of those.&lt;/p&gt;
 &lt;p&gt;Looking more deeply, the values of &lt;em&gt;c&lt;/em&gt; are often small prime numbers. 1
 or 11 or some such. That really cuts down on the search. The values of
 &lt;em&gt;a&lt;/em&gt; have a number of other constraints with respect to the modulo value.
-Because 10,000 has factors of 4 and 5, this suggests values like &lt;span class="formula"&gt;20&lt;i&gt;k&lt;/i&gt; + 1&lt;/span&gt; will work. Sensible combinations are defined by the following
+Because 10,000 has factors of 4 and 5, this suggests values like &lt;span class="math"&gt;\(20k + 1\)&lt;/span&gt; will work. Sensible combinations are defined by the following
 domain:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 combinations = [
@@ -4186,7 +4255,68 @@ middle-squared nonsense that caused me to struggle with bad games that
 behaved badly.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="random numbers"></category><category term="multiprocessing"></category></entry><entry><title>The Old Days -- ca. 2000 -- Empirical Tests of Random Numbers (Python and Chi-Square Testing)</title><link href="https://slott56.github.io/2022_01_11-the_old_days_ca_2000_empirical_tests_of_random_numbers_python_and_chi_square_testing.html" rel="alternate"></link><published>2022-01-11T08:00:00-05:00</published><updated>2022-01-11T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-01-11:/2022_01_11-the_old_days_ca_2000_empirical_tests_of_random_numbers_python_and_chi_square_testing.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2021_12_28-the_old_old_days_ca_1968.html"&gt;The Old Days -- ca. 1974 Random Numbers Before
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Technologies"></category><category term="#python"></category><category term="random numbers"></category><category term="multiprocessing"></category></entry><entry><title>The Old Days -- ca. 2000 -- Empirical Tests of Random Numbers (Python and Chi-Square Testing)</title><link href="https://slott56.github.io/2022_01_11-the_old_days_ca_2000_empirical_tests_of_random_numbers_python_and_chi_square_testing.html" rel="alternate"></link><published>2022-01-11T08:00:00-05:00</published><updated>2022-01-11T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-01-11:/2022_01_11-the_old_days_ca_2000_empirical_tests_of_random_numbers_python_and_chi_square_testing.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2021_12_28-the_old_old_days_ca_1968.html"&gt;The Old Days -- ca. 1974 Random Numbers Before
 Python&lt;/a&gt;
 for some background.&lt;/p&gt;
 &lt;p&gt;We'll get to Python after reminiscing about the olden days. I want to
@@ -4215,9 +4345,9 @@ the kind of material we salivated over.&lt;/p&gt;
 &lt;p&gt;While there are an infinite number of bad algorithms, some math reveals
 that the Linear Congruential Generator (LCG) is simple and effective.
 Each new number is based on the previous number:
-&lt;span class="formula"&gt;&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt; + 1&lt;/sub&gt; = (&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;×&lt;i&gt;a&lt;/i&gt; + &lt;i&gt;c&lt;/i&gt;)&lt;span class="unknown"&gt;\bmod&lt;/span&gt;&lt;i&gt;m&lt;/i&gt;&lt;/span&gt;. There's a multiply and an add, modulo some
+&lt;span class="math"&gt;\(X_{n+1} = (X_n \times a + c) \bmod m\)&lt;/span&gt;. There's a multiply and an add, modulo some
 big number. The actual samples are often a subset of the bits in
-&lt;span class="formula"&gt;&lt;i&gt;X&lt;/i&gt;&lt;sub&gt;&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt;.&lt;/p&gt;
+&lt;span class="math"&gt;\(X_{n}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;After the Mersenne Twister became widely used, we essentially stopped
 looking at alternative random number algorithms. Before then -- well --
 things weren't so good.&lt;/p&gt;
@@ -4291,11 +4421,15 @@ but it's a handy reference.&lt;/p&gt;
 &lt;p&gt;We need to evaluate two functions: partial gamma and gamma. These are
 defined as integrals. And they're nasty levels of complexity. Nasty.&lt;/p&gt;
 &lt;p&gt;This kind of nasty:&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;γ&lt;/i&gt;(&lt;i&gt;s&lt;/i&gt;, &lt;i&gt;z&lt;/i&gt;) = &lt;span class="limits"&gt;&lt;sup class="limit"&gt;&lt;i&gt;z&lt;/i&gt;&lt;/sup&gt;&lt;span class="limit"&gt;&lt;span class="bigoperator integral"&gt;∫&lt;/span&gt;&lt;/span&gt;&lt;sub class="limit"&gt;0&lt;/sub&gt;&lt;/span&gt;&lt;i&gt;t&lt;/i&gt;&lt;sup&gt;&lt;i&gt;s&lt;/i&gt; − 1&lt;/sup&gt;&lt;i&gt;e&lt;/i&gt;&lt;sup&gt; − &lt;i&gt;t&lt;/i&gt;&lt;/sup&gt;&lt;i&gt;dt&lt;/i&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\gamma (s,z)=\int_{0}^{z}t^{s-1} e^{-t} dt
+\end{equation*}
 &lt;/div&gt;
-&lt;div class="formula"&gt;
-Γ(&lt;i&gt;z&lt;/i&gt;) = &lt;span class="limits"&gt;&lt;sup class="limit"&gt;∞&lt;/sup&gt;&lt;span class="limit"&gt;&lt;span class="bigoperator integral"&gt;∫&lt;/span&gt;&lt;/span&gt;&lt;sub class="limit"&gt;0&lt;/sub&gt;&lt;/span&gt;&lt;i&gt;t&lt;/i&gt;&lt;sup&gt;&lt;i&gt;z&lt;/i&gt; − 1&lt;/sup&gt;&lt;i&gt;e&lt;/i&gt;&lt;sup&gt; − &lt;i&gt;t&lt;/i&gt;&lt;/sup&gt;&lt;i&gt;dt&lt;/i&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+\Gamma (z)=\int_{0}^{\infty} t^{z-1} e^{-t} dt
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;These are not easy things to evaluate. Back to the ACM Collected
 Algorithms (CALGO) to find ways to evaluate these integrals. There are
@@ -4322,11 +4456,13 @@ Sum(z**s * exp(-z) * z**k / rf(s, k+1), (k, 0, oo)).simplify()
 &lt;/pre&gt;
 &lt;p&gt;I could use this in Jupyter Lab to display a computation for the partial
 gamma function.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;z&lt;/i&gt;&lt;sup&gt;&lt;i&gt;s&lt;/i&gt;&lt;/sup&gt;&lt;i&gt;e&lt;/i&gt;&lt;sup&gt; − &lt;i&gt;z&lt;/i&gt;&lt;/sup&gt;&lt;span class="limits"&gt;&lt;sup class="limit"&gt;∞&lt;/sup&gt;&lt;span class="limit"&gt;&lt;span class="bigoperator"&gt;∑&lt;/span&gt;&lt;/span&gt;&lt;sub class="limit"&gt;&lt;i&gt;k&lt;/i&gt; = 0&lt;/sub&gt;&lt;/span&gt;&lt;span class="fullfraction"&gt;&lt;span class="ignored"&gt;(&lt;/span&gt;&lt;span class="numerator"&gt;&lt;i&gt;z&lt;/i&gt;&lt;sup&gt;&lt;i&gt;k&lt;/i&gt;&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)/(&lt;/span&gt;&lt;span class="denominator"&gt;&lt;i&gt;s&lt;/i&gt;&lt;sup&gt;&lt;span class="overline"&gt;&lt;i&gt;k&lt;/i&gt; + 1&lt;/span&gt;&lt;/sup&gt;&lt;/span&gt;&lt;span class="ignored"&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+z^{s}e^{-z}\sum_{k=0}^{\infty }{\dfrac {z^{k}}{s^{\overline {k+1}}}}
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;This requires a fancy Rising Factorial computation,
-the &lt;span class="formula"&gt;&lt;i&gt;s&lt;/i&gt;&lt;sup&gt;&lt;span class="overline"&gt;&lt;i&gt;k&lt;/i&gt; + 1&lt;/span&gt;&lt;/sup&gt;&lt;/span&gt; term. This is available in &lt;tt class="docutils literal"&gt;sympy&lt;/tt&gt; as the &lt;tt class="docutils literal"&gt;rf(s, k+1)&lt;/tt&gt;
+the &lt;span class="math"&gt;\(s^{\overline {k+1}}\)&lt;/span&gt; term. This is available in &lt;tt class="docutils literal"&gt;sympy&lt;/tt&gt; as the &lt;tt class="docutils literal"&gt;rf(s, k+1)&lt;/tt&gt;
 expression.&lt;/p&gt;
 &lt;p&gt;It turns out that sympy offers lowergamma() and gamm() as first-class
 functions. I don't even need to work through the closed-form
@@ -4370,7 +4506,68 @@ beautifully hand-crafted antique algorithms. It acts as a kind of
 super-compiler. From Math to an intermediate AST to a concrete
 implementation.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="fortran"></category><category term="random numbers"></category></entry><entry><title>The Old Days -- ca. 1974 -- Random Numbers before Python</title><link href="https://slott56.github.io/2022_01_04-the_old_days_ca_1974_random_numbers_before_python.html" rel="alternate"></link><published>2022-01-04T20:52:00-05:00</published><updated>2022-01-04T20:52:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-01-04:/2022_01_04-the_old_days_ca_1974_random_numbers_before_python.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_12_28-the_old_old_days_ca_1968.html"&gt;The Old Old Days -- ca.
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Technologies"></category><category term="#python"></category><category term="fortran"></category><category term="random numbers"></category></entry><entry><title>The Old Days -- ca. 1974 -- Random Numbers before Python</title><link href="https://slott56.github.io/2022_01_04-the_old_days_ca_1974_random_numbers_before_python.html" rel="alternate"></link><published>2022-01-04T20:52:00-05:00</published><updated>2022-01-04T20:52:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-01-04:/2022_01_04-the_old_days_ca_1974_random_numbers_before_python.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_12_28-the_old_old_days_ca_1968.html"&gt;The Old Old Days -- ca.
 1968&lt;/a&gt;&amp;quot;
 for my first exposure to an actual computer. Nothing about Python there.
 But. It's what motivated me to get started learning to code -- I was
@@ -5774,19 +5971,23 @@ and the test cases in the prior posts.&lt;/p&gt;
 help us do the refactoring.&lt;/p&gt;
 &lt;p&gt;It can help to think of a web server a function that maps a request to a
 response. The request is really a composite object with headers,
-&lt;span class="formula"&gt;&lt;i&gt;h&lt;/i&gt;&lt;/span&gt;, method verb, &lt;span class="formula"&gt;&lt;i&gt;v&lt;/i&gt;&lt;/span&gt;, and URL, &lt;span class="formula"&gt;&lt;i&gt;u&lt;/i&gt;&lt;/span&gt;. Similarly, the response
-is a composite with headers, &lt;span class="formula"&gt;&lt;i&gt;h&lt;/i&gt;&lt;/span&gt;, and content, &lt;span class="formula"&gt;&lt;i&gt;c&lt;/i&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;c&lt;/i&gt; = &lt;i&gt;s&lt;/i&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;)
+&lt;span class="math"&gt;\(h\)&lt;/span&gt;, method verb, &lt;span class="math"&gt;\(v\)&lt;/span&gt;, and URL, &lt;span class="math"&gt;\(u\)&lt;/span&gt;. Similarly, the response
+is a composite with headers, &lt;span class="math"&gt;\(h\)&lt;/span&gt;, and content, &lt;span class="math"&gt;\(c\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+h, c = s(h, v, u)
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;The above is true for idempotent requests; usually, the method verb is
 GET.&lt;/p&gt;
 &lt;p&gt;Some requests make a state change, however, and use method verbs like
 POST, PUT, PATCH, or DELETE.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;c&lt;/i&gt;;&lt;i&gt;Ŝ&lt;/i&gt; = &lt;i&gt;s&lt;/i&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;)
+&lt;div class="math"&gt;
+\begin{equation*}
+h, c; \hat S = s(h, v, u; S)
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;There's a state,  &lt;span class="formula"&gt;&lt;i&gt;S&lt;/i&gt;&lt;/span&gt;, which is transformed to a new state, &lt;span class="formula"&gt;&lt;i&gt;Ŝ&lt;/i&gt;&lt;/span&gt;, as part of making the request.&lt;/p&gt;
+&lt;p&gt;There's a state,  &lt;span class="math"&gt;\(S\)&lt;/span&gt;, which is transformed to a new state, &lt;span class="math"&gt;\(\hat S\)&lt;/span&gt;, as part of making the request.&lt;/p&gt;
 &lt;p&gt;For the most part, CGI scripts are limited to GET and POST methods. The
 GET method is (ideally) for idempotent, no-state-change requests. The
 POST should be limited to making state changes. In some cases, there
@@ -5800,20 +6001,24 @@ state transitions on GET and idempotent POST operations. Sigh.&lt;/p&gt;
 instances. Often they will work with a number of instances of a variety
 of resource types. The degenerate case is a server providing content for
 a single instance of a single type.&lt;/p&gt;
-&lt;p&gt;Each resource comes from the servers's universe of resources, &lt;span class="formula"&gt;&lt;i&gt;R&lt;/i&gt;&lt;/span&gt;.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;r&lt;/i&gt; ∈ &lt;i&gt;R&lt;/i&gt;
+&lt;p&gt;Each resource comes from the servers's universe of resources, &lt;span class="math"&gt;\(R\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+r \in R
+\end{equation*}
 &lt;/div&gt;
-&lt;p&gt;Each resource type, &lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;)&lt;/span&gt;, is part of some overall collection of
+&lt;p&gt;Each resource type, &lt;span class="math"&gt;\(t(r )\)&lt;/span&gt;, is part of some overall collection of
 types that describe the various resources. In some cases we'll identify
 resources with a path that includes the type of the resource,
-&lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;)&lt;/span&gt;, and an identifier within that type, &lt;span class="formula"&gt;&lt;i&gt;i&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;)&lt;/span&gt;,
-&lt;span class="formula"&gt;⟨&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;), &lt;i&gt;i&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;)⟩&lt;/span&gt;. This often maps to a character string &amp;quot;type/name&amp;quot;
+&lt;span class="math"&gt;\(t(r)\)&lt;/span&gt;, and an identifier within that type, &lt;span class="math"&gt;\(i(r )\)&lt;/span&gt;,
+&lt;span class="math"&gt;\(\langle t( r ), i( r ) \rangle\)&lt;/span&gt;. This often maps to a character string &amp;quot;type/name&amp;quot;
 that's part of a URL's path.&lt;/p&gt;
-&lt;p&gt;We can think of a response's content as the HTML markup, &lt;span class="formula"&gt;&lt;i&gt;m&lt;/i&gt;&lt;sub&gt;&lt;i&gt;h&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt;,
-around a resource, &lt;span class="formula"&gt;&lt;i&gt;r&lt;/i&gt;&lt;/span&gt;, managed by the web server.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;c&lt;/i&gt; = &lt;i&gt;m&lt;/i&gt;&lt;sub&gt;&lt;i&gt;h&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;r&lt;/i&gt;)
+&lt;p&gt;We can think of a response's content as the HTML markup, &lt;span class="math"&gt;\(m_h\)&lt;/span&gt;,
+around a resource, &lt;span class="math"&gt;\(r\)&lt;/span&gt;, managed by the web server.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+c = m_h( r )
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;This is a representation of the resource's state. The HTML
 representation can have both semantic and style components. We might,
@@ -5825,68 +6030,44 @@ information, but the HTML tags do.&lt;/p&gt;
 &lt;h2&gt;Multiple Services&lt;/h2&gt;
 &lt;p&gt;There are often multiple, closely-related services within a web server.
 A common design pattern is to have services that vary based on a path
-item, &lt;span class="formula"&gt;&lt;i&gt;p&lt;/i&gt;(&lt;i&gt;u&lt;/i&gt;)&lt;/span&gt;, within the url.&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;m&lt;/i&gt;&lt;sub&gt;&lt;i&gt;h&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;r&lt;/i&gt;);&lt;i&gt;Ŝ&lt;/i&gt; = &lt;i&gt;s&lt;/i&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;) = &lt;span class="array"&gt;&lt;span class="arrayrow"&gt;&lt;span class="bracket align-l"&gt;⎧&lt;/span&gt;&lt;/span&gt;&lt;span class="arrayrow"&gt;&lt;span class="bracket align-l"&gt;⎪&lt;/span&gt;&lt;/span&gt;&lt;span class="arrayrow"&gt;&lt;span class="bracket align-l"&gt;⎨&lt;/span&gt;&lt;/span&gt;&lt;span class="arrayrow"&gt;&lt;span class="bracket align-l"&gt;⎪&lt;/span&gt;&lt;/span&gt;&lt;span class="arrayrow"&gt;&lt;span class="bracket align-l"&gt;⎩&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="bracketcases"&gt;
-&lt;span class="arrayrow"&gt;
-&lt;span class="case align-l"&gt;
-&lt;i&gt;s&lt;/i&gt;&lt;sub&gt;&lt;i&gt;x&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;)&lt;span class="textbf"&gt; if $p(u) = x$ &lt;/span&gt; 
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class="arrayrow"&gt;
-&lt;span class="case align-l"&gt;
-  
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class="arrayrow"&gt;
-&lt;span class="case align-l"&gt;
-&lt;i&gt;s&lt;/i&gt;&lt;sub&gt;&lt;i&gt;y&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;)&lt;span class="textbf"&gt; if $p(u) = y$ &lt;/span&gt; 
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class="arrayrow"&gt;
-&lt;span class="case align-l"&gt;
-  
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class="arrayrow"&gt;
-&lt;span class="case align-l"&gt;
- 
-&lt;/span&gt;
-
-&lt;/span&gt;
-
-&lt;/span&gt;
-
+item, &lt;span class="math"&gt;\(p(u)\)&lt;/span&gt;, within the url.&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+h, m_h(r ); \hat S = s(h, v, u; S) = \begin{cases}
+s_x(h, v, u; S) \textbf{ if $p(u) = x$ } \\
+s_y(h, v, u; S) \textbf{ if $p(u) = y$ } \\
+\end{cases}
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;There isn't, of course, any formal requirement for a tidy mapping from
-some element of the path, &lt;span class="formula"&gt;&lt;i&gt;p&lt;/i&gt;(&lt;i&gt;u&lt;/i&gt;)&lt;/span&gt;, to a type, &lt;span class="formula"&gt;&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;r&lt;/i&gt;)&lt;/span&gt;, that
-characterizes a resource, &lt;span class="formula"&gt;&lt;i&gt;r&lt;/i&gt;&lt;/span&gt;. Utter chaos is allowed. Thankfully,
+some element of the path, &lt;span class="math"&gt;\(p(u)\)&lt;/span&gt;, to a type, &lt;span class="math"&gt;\(t ( r )\)&lt;/span&gt;, that
+characterizes a resource, &lt;span class="math"&gt;\(r\)&lt;/span&gt;. Utter chaos is allowed. Thankfully,
 it's not common.&lt;/p&gt;
 &lt;p&gt;While there may not be a tidy type-based mapping, there must be a
-mapping from a triple and a state, &lt;span class="formula"&gt;⟨&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;⟩&lt;/span&gt;
-to a resource, &lt;span class="formula"&gt;&lt;i&gt;r&lt;/i&gt;&lt;/span&gt;. This mapping can be considered a database or
-filesystem query, &lt;span class="formula"&gt;&lt;i&gt;q&lt;/i&gt;(⟨&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;⟩)&lt;/span&gt;. The request may
+mapping from a triple and a state, &lt;span class="math"&gt;\(\langle h, u, v; S \rangle\)&lt;/span&gt;
+to a resource, &lt;span class="math"&gt;\(r\)&lt;/span&gt;. This mapping can be considered a database or
+filesystem query, &lt;span class="math"&gt;\(q(\langle h, u, v; S \rangle)\)&lt;/span&gt;. The request may
 also involve state change.  It can help to think of the state as a
 function that can emit a new state for a request. This implies two
 low-level processing concepts:&lt;/p&gt;
-&lt;div class="formula"&gt;
-{&lt;i&gt;r&lt;/i&gt; ∈ &lt;i&gt;R&lt;/i&gt;|&lt;i&gt;q&lt;/i&gt;(⟨&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;⟩, &lt;i&gt;r&lt;/i&gt;)}
+&lt;div class="math"&gt;
+\begin{equation*}
+\{ r \in R | q(\langle h, u, v; S \rangle, r) \}
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;And&lt;/p&gt;
-&lt;div class="formula"&gt;
-&lt;i&gt;Ŝ&lt;/i&gt; = &lt;i&gt;S&lt;/i&gt;(⟨&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;⟩)
+&lt;div class="math"&gt;
+\begin{equation*}
+\hat S = S(\langle h, u, v \rangle)
+\end{equation*}
 &lt;/div&gt;
 &lt;p&gt;The query processing to locate resources is one aspect of the underlying
 model. The state change for the universe of resources is another aspect
 of the underlying model. Each request must return a resource; it may
 also make a state change.&lt;/p&gt;
-&lt;p&gt;What's essential, then, is to see how these various &lt;span class="formula"&gt;&lt;i&gt;s&lt;/i&gt;&lt;sub&gt;&lt;i&gt;x&lt;/i&gt;&lt;/sub&gt;&lt;/span&gt; functions
-are related to the original code. The &lt;span class="formula"&gt;&lt;i&gt;m&lt;/i&gt;&lt;sub&gt;&lt;i&gt;h&lt;/i&gt;&lt;/sub&gt;(&lt;i&gt;r&lt;/i&gt;)&lt;/span&gt; function,
-the &lt;span class="formula"&gt;&lt;i&gt;p&lt;/i&gt;(&lt;i&gt;u&lt;/i&gt;)&lt;/span&gt; mappings, and the &lt;span class="formula"&gt;&lt;i&gt;s&lt;/i&gt;&lt;sub&gt;&lt;i&gt;t&lt;/i&gt;(&lt;i&gt;u&lt;/i&gt;)&lt;/sub&gt;(&lt;i&gt;h&lt;/i&gt;, &lt;i&gt;v&lt;/i&gt;, &lt;i&gt;u&lt;/i&gt;;&lt;i&gt;S&lt;/i&gt;)&lt;/span&gt; functions are all
+&lt;p&gt;What's essential, then, is to see how these various &lt;span class="math"&gt;\(s_x\)&lt;/span&gt; functions
+are related to the original code. The &lt;span class="math"&gt;\(m_h(r)\)&lt;/span&gt; function,
+the &lt;span class="math"&gt;\(p( u )\)&lt;/span&gt; mappings, and the &lt;span class="math"&gt;\(s_{t(u)}(h, v, u; S)\)&lt;/span&gt; functions are all
 separate features that can be disentangled from each other.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-all-the-math"&gt;
@@ -6072,7 +6253,68 @@ These are the single most valuable part of the work. Given test cases
 that describe the old application, writing the new app using Flask is
 relatively easy.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry><entry><title>Found an ancient cgi script -- part II -- testing</title><link href="https://slott56.github.io/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html" rel="alternate"></link><published>2021-09-07T11:00:00-04:00</published><updated>2021-09-07T11:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-09-07:/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html"&gt;We have an ancient Python2 CGI script -- what do we
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Technologies"></category><category term="Apache"></category><category term="wsgi"></category><category term="CGI"></category><category term="#python"></category></entry><entry><title>Found an ancient cgi script -- part II -- testing</title><link href="https://slott56.github.io/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html" rel="alternate"></link><published>2021-09-07T11:00:00-04:00</published><updated>2021-09-07T11:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-09-07:/2021_09_07-found_an_ancient_cgi_script_part_ii_testing.html</id><summary type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2021_08_31-we_have_an_ancient_python2_cgi_script_what_do_we_do.html"&gt;We have an ancient Python2 CGI script -- what do we
 do?&lt;/a&gt;&amp;quot;
 The previous post in this series provides an overview of the process of
 getting rid of legacy code.&lt;/p&gt;

@@ -177,8 +177,12 @@ distances between points on a sphere.</p>
 <p>It's not too bad. The formula are big-ish. But manageable.
 See <a class="reference external" href="http://www.edwilliams.org/avform.htm#Dist">http://www.edwilliams.org/avform.htm#Dist</a> for the great circle
 distance formula.</p>
-<div class="formula">
-<i>d</i> = 2×arcsin<span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root"><span class="bigdelimiter size3">(</span>sin<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>ϕ</i><sub>2</sub> − <i>ϕ</i><sub>1</sub></span><span class="ignored">)/(</span><span class="denominator">2</span><span class="ignored">)</span></span><span class="bigdelimiter size3">)</span><sup>2</sup> + cos<i>ϕ</i><sub>1</sub>×cos<i>ϕ</i><sub>2</sub>×<span class="bigdelimiter size3">(</span>sin<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>λ</i><sub>1</sub> − <i>λ</i><sub>2</sub></span><span class="ignored">)/(</span><span class="denominator">2</span><span class="ignored">)</span></span><span class="bigdelimiter size3">)</span><sup>2</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+d = 2 \times \arcsin \sqrt {
+    \bigg(\sin \frac {\phi_2-\phi_1} {2} \biggr)^2 + \cos \phi_1 \times \cos \phi_2 \times \bigg( \sin \frac {\lambda_1 - \lambda_2} {2} \bigg) ^2
+}
+\end{equation*}
 </div>
 <p>For airplanes and powered freighters crossing oceans, this is
 perfect.</p>
@@ -187,8 +191,12 @@ this level of complexity is craziness. While accurate, it doesn't
 really solve the problem I have.</p>
 <p>I don't actually need that much accuracy.</p>
 <p>I need this much accuracy.</p>
-<div class="formula">
-<i>d</i> = <span class="sqrt"><span class="radical">√</span><span class="ignored">(</span><span class="root">[<i>R</i>×(<i>ϕ</i><sub>2</sub> − <i>ϕ</i><sub>1</sub>)]<sup>2</sup> + [<i>R</i>×cos<i>ϕ</i><sub>1</sub>×(<i>λ</i><sub>2</sub> − <i>λ</i><sub>1</sub>)]<sup>2</sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+d = \sqrt{
+[R \times (\phi_2 - \phi_1)]^2 + [R \times \cos \phi_1 \times (\lambda_2 - \lambda_1)]^2
+}
+\end{equation*}
 </div>
 <p>And no more. This is the essential hypotenuse distance using an
 R-factor to convert the difference between latitudes and the distance
@@ -222,7 +230,68 @@ directions are essential when the boat's GPS reciever fails.)</p>
 <p>I don't really need the sophistication (and the potential for bugs)
 with haversine. It doesn't solve a problem I actually have.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -299,6 +368,10 @@ with haversine. It doesn't solve a problem I actually have.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

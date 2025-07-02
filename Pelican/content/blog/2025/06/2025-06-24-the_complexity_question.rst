@@ -2,7 +2,7 @@ The Complexity Question
 ############################
 
 :date: 2025-06-24 09:59
-:tags: solid,complexity,complication,chaos
+:tags: uml,plantuml,solid,cel-python,cloud custodian,open source,complexity
 :slug: 2025-06-24-the_complexity_question
 :category: Architecture & Design
 :status: draft

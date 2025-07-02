@@ -137,7 +137,7 @@ S.Lott -- Software Architect            </a>
 <h2>In The Real World</h2>
 <p>The examples in Gries and Dijkstra are pleasantly focused, bounded, and -- in some cases -- intentionally gnarly.  Real world problems tend to be vague, sprawly and rarely have gnarly parts.  For example, if we're matching financial documents (invoices with receipts) we have some common attributes, and some &quot;business rules&quot; that allow customers to partially pay, overpay, split invoices or combine invoices.  There's nothing gnarly about this.  Mostly, there's just vagueness and odd special cases, exceptions, and unstated assumptions.</p>
 <p>Proof techniques are appropriate for the complex nested loops of this application.  Partitioning the input into &quot;batches&quot; of documents which are likely to be related is an algorithm with a fairly easy to define post-condition, and a relatively low level of gnarl.</p>
-<p>The <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>2</sup>)</span> comparison of documents within a batch of likely matches, similarly, has a relatively simple post-condition, and a moderate level of gnarl.  It's the insertion of all the special cases that becomes tedious.  Except, of course, for abstraction.  All the special cases are subclass of a common &quot;Condition&quot; or &quot;DocCombo&quot; superclass.  We have to prove that our abstract superclasses have the right properties.  Once we have that, we simply prove that each subclass satisfies the superclass assertions.</p>
+<p>The <span class="math">\(\textbf{O}(n^2)\)</span> comparison of documents within a batch of likely matches, similarly, has a relatively simple post-condition, and a moderate level of gnarl.  It's the insertion of all the special cases that becomes tedious.  Except, of course, for abstraction.  All the special cases are subclass of a common &quot;Condition&quot; or &quot;DocCombo&quot; superclass.  We have to prove that our abstract superclasses have the right properties.  Once we have that, we simply prove that each subclass satisfies the superclass assertions.</p>
 <p>Did we specify &quot;everything?&quot;  Actually, no.  We omitted specifying the OS, the RDBMS, or the JVM.  We omitted specifying how the logger works; we just used it, with a blind level of trust that it was reasonably rigorously proven.</p>
 <p>Okay, did we specify &quot;everything at this level of abstraction?&quot;  Again, no.  We specified the core algorithms for batching and matching.  The post-processing involves an API call that has a loop through the batch.  Does this loop require a full, formal proof?  Or can we inspect it, determine that it fits a proven template, and leave it at that?</p>
 </div>
@@ -167,7 +167,68 @@ S.Lott -- Software Architect            </a>
 <p>As a practical matter, we aren't stupid.  We have a sense of what works and what doesn't.  We know what we've already proven to work.  We have an idea of what kind of algorithm is required.  We don't write a random post-condition based on the requirements.  When we're doing reading the requirements, we write a post-condition with a hidden agenda.  It isn't a random mapping of requirements words onto post-condition formalisms.  We write the post-condition for the program we intend to develop.  One that we intend to satisfy the mushy English-language requirements.</p>
 <p>Then we develop the program, using the post-condition as a formal statement of the goal.  It's hard to emphasize that textbook formal methods demonstrate that we can do <em>anything</em>.  Practically, we have some pretty specific requirements that constrain the space in which we're working.  We're not going to flail at random; we're going to take the minimal number of steps to eke out our victory.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -244,6 +305,10 @@ S.Lott -- Software Architect            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

@@ -211,10 +211,10 @@ month= monthCount % 12
 </tbody>
 </table>
 <p>This is common, and very easy to query incorrectly.</p>
-<p>Specifically, look at the dates labeled <em>end A</em> and <em>start B</em>.  We have two choices for ways to encode these date relationships.  In both cases, we're comparing some query date, <em>d</em>, for membership in a date range; between the start time, <span class="formula"><i>T</i><sub><i>s</i></sub></span>, and the end time, <span class="formula"><i>T</i><sub><i>e</i></sub></span>.</p>
+<p>Specifically, look at the dates labeled <em>end A</em> and <em>start B</em>.  We have two choices for ways to encode these date relationships.  In both cases, we're comparing some query date, <em>d</em>, for membership in a date range; between the start time, <span class="math">\(T_s\)</span>, and the end time, <span class="math">\(T_e\)</span>.</p>
 <ul class="simple">
-<li><strong>Closed Interval</strong>.  This is the case expressed by SQL BETWEEN: <tt class="docutils literal">d BETWEEN T_s AND T_e</tt>.  Some math textbooks might write this <span class="formula">[<i>T</i><sub><i>s</i></sub>, <i>T</i><sub><i>e</i></sub>]</span>.  We can also say <span class="formula"><i>T</i><sub><i>s</i></sub> ≤ <i>d</i> ≤ <i>T</i><sub><i>e</i></sub></span>.  Depending on the quantum resolution of time you're using, this can be pleasant or nasty.</li>
-<li><strong>Half-Open Interval</strong>.  This is the case expressed by <span class="formula"><i>T</i><sub><i>s</i></sub> ≤ <i>d</i> &lt; <i>T</i><sub><i>e</i></sub></span>.  Some math textbooks might write this <span class="formula">[<i>T</i><sub><i>s</i></sub>, <i>T</i><sub><i>e</i></sub>)</span>, to show that the interval doesn't include one end.  If you simply ban use of BETWEEN, this representation has several advantages.</li>
+<li><strong>Closed Interval</strong>.  This is the case expressed by SQL BETWEEN: <tt class="docutils literal">d BETWEEN T_s AND T_e</tt>.  Some math textbooks might write this <span class="math">\([T_s, T_e]\)</span>.  We can also say <span class="math">\(T_s \leq d \leq T_e\)</span>.  Depending on the quantum resolution of time you're using, this can be pleasant or nasty.</li>
+<li><strong>Half-Open Interval</strong>.  This is the case expressed by <span class="math">\(T_s \leq d &lt; T_e\)</span>.  Some math textbooks might write this <span class="math">\([T_s, T_e)\)</span>, to show that the interval doesn't include one end.  If you simply ban use of BETWEEN, this representation has several advantages.</li>
 </ul>
 <p>We'll look at each more closely to provide reasons why Closed Intervals (and the BETWEEN operator) are a problem waiting to happen.  Half-Open Intervals work out better.</p>
 </div>
@@ -245,7 +245,68 @@ month= monthCount % 12
 <h2>Summary</h2>
 <p>Time is simple.  Use DateTime.  Format DateTime values to show only the date portion if that's what users want.  Use Half-Open Intervals, and don't use BETWEEN.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -322,6 +383,10 @@ month= monthCount % 12
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

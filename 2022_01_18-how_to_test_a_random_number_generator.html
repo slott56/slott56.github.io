@@ -130,8 +130,10 @@ integers -- to create random numbers? Step 1 was to stop using the
 middle-squared generator. It doesn't work.</p>
 <p>Step 2 is to find a Linear Congruential Generator that works. LCG's have
 a (relatively) simple form:</p>
-<div class="formula">
-<i>X</i><sub><i>n</i> + 1</sub> = (<i>X</i><sub><i>n</i></sub>×<i>a</i> + <i>c</i>)<span class="unknown">\bmod</span><i>m</i>
+<div class="math">
+\begin{equation*}
+X_{n+1} = (X_n \times a + c) \bmod m
+\end{equation*}
 </div>
 <p>In this case, the modulo value, <em>m</em>, is 10,000. What's left is step 3:
 find <em>a</em> and <em>c</em> parameters.</p>
@@ -237,7 +239,7 @@ little bit of coding smarts to get them to work correctly and quickly.</p>
 <p>Here's one of the tests in the battery of chi-squared tests. This is the
 frequency test that examines values to see if they have the right number
 of occurrences. We pick a domain, <em>d</em>, and parcel numbers out into this
-domain. We use <span class="formula"><br/><i>frac</i><i>d</i><br/><i>times</i><i>X</i><sub><i>n</i></sub>10, 000</span> because this tends
+domain. We use <span class="math">\(\\frac{d \\times X_{n}}{10,000}\)</span> because this tends
 to leverage the left-most digits which are somewhat more random than the
 right-most digits.</p>
 <pre class="literal-block">
@@ -269,7 +271,7 @@ fqt.chi2
 </pre>
 <p>The test creates some samples, applies the frequency test. The next step
 is to examine the chi-squared value to see if it's in the allowable
-range, <span class="formula">7.261<br/><i>leq</i><br/><i>chi</i><sup>2</sup> &lt; 25</span>.</p>
+range, <span class="math">\(7.261 \\leq \\chi^2 &lt; 25\)</span>.</p>
 </div>
 <div class="section" id="the-search-space">
 <h3>The search space</h3>
@@ -279,7 +281,7 @@ combinations. It takes a bit of processing to look at all of those.</p>
 <p>Looking more deeply, the values of <em>c</em> are often small prime numbers. 1
 or 11 or some such. That really cuts down on the search. The values of
 <em>a</em> have a number of other constraints with respect to the modulo value.
-Because 10,000 has factors of 4 and 5, this suggests values like <span class="formula">20<i>k</i> + 1</span> will work. Sensible combinations are defined by the following
+Because 10,000 has factors of 4 and 5, this suggests values like <span class="math">\(20k + 1\)</span> will work. Sensible combinations are defined by the following
 domain:</p>
 <pre class="literal-block">
 combinations = [
@@ -364,7 +366,68 @@ middle-squared nonsense that caused me to struggle with bad games that
 behaved badly.</p>
 </div>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -441,6 +504,10 @@ behaved badly.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

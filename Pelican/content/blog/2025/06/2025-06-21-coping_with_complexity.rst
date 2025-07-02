@@ -2,7 +2,7 @@ Coping with Complexity
 ############################
 
 :date: 2025-06-21 08:01
-:tags: uml,plantuml,solid
+:tags: uml,plantuml,solid,cel-python,cloud custodian,open source
 :slug: 2025-06-21-coping_with_complexity
 :category: Architecture & Design
 :status: published

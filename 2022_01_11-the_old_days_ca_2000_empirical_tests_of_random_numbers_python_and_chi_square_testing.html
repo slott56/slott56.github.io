@@ -140,9 +140,9 @@ the kind of material we salivated over.</p>
 <p>While there are an infinite number of bad algorithms, some math reveals
 that the Linear Congruential Generator (LCG) is simple and effective.
 Each new number is based on the previous number:
-<span class="formula"><i>X</i><sub><i>n</i> + 1</sub> = (<i>X</i><sub><i>n</i></sub>×<i>a</i> + <i>c</i>)<span class="unknown">\bmod</span><i>m</i></span>. There's a multiply and an add, modulo some
+<span class="math">\(X_{n+1} = (X_n \times a + c) \bmod m\)</span>. There's a multiply and an add, modulo some
 big number. The actual samples are often a subset of the bits in
-<span class="formula"><i>X</i><sub><i>n</i></sub></span>.</p>
+<span class="math">\(X_{n}\)</span>.</p>
 <p>After the Mersenne Twister became widely used, we essentially stopped
 looking at alternative random number algorithms. Before then -- well --
 things weren't so good.</p>
@@ -216,11 +216,15 @@ but it's a handy reference.</p>
 <p>We need to evaluate two functions: partial gamma and gamma. These are
 defined as integrals. And they're nasty levels of complexity. Nasty.</p>
 <p>This kind of nasty:</p>
-<div class="formula">
-<i>γ</i>(<i>s</i>, <i>z</i>) = <span class="limits"><sup class="limit"><i>z</i></sup><span class="limit"><span class="bigoperator integral">∫</span></span><sub class="limit">0</sub></span><i>t</i><sup><i>s</i> − 1</sup><i>e</i><sup> − <i>t</i></sup><i>dt</i>
+<div class="math">
+\begin{equation*}
+\gamma (s,z)=\int_{0}^{z}t^{s-1} e^{-t} dt
+\end{equation*}
 </div>
-<div class="formula">
-Γ(<i>z</i>) = <span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="bigoperator integral">∫</span></span><sub class="limit">0</sub></span><i>t</i><sup><i>z</i> − 1</sup><i>e</i><sup> − <i>t</i></sup><i>dt</i>
+<div class="math">
+\begin{equation*}
+\Gamma (z)=\int_{0}^{\infty} t^{z-1} e^{-t} dt
+\end{equation*}
 </div>
 <p>These are not easy things to evaluate. Back to the ACM Collected
 Algorithms (CALGO) to find ways to evaluate these integrals. There are
@@ -247,11 +251,13 @@ Sum(z**s * exp(-z) * z**k / rf(s, k+1), (k, 0, oo)).simplify()
 </pre>
 <p>I could use this in Jupyter Lab to display a computation for the partial
 gamma function.</p>
-<div class="formula">
-<i>z</i><sup><i>s</i></sup><i>e</i><sup> − <i>z</i></sup><span class="limits"><sup class="limit">∞</sup><span class="limit"><span class="bigoperator">∑</span></span><sub class="limit"><i>k</i> = 0</sub></span><span class="fullfraction"><span class="ignored">(</span><span class="numerator"><i>z</i><sup><i>k</i></sup></span><span class="ignored">)/(</span><span class="denominator"><i>s</i><sup><span class="overline"><i>k</i> + 1</span></sup></span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+z^{s}e^{-z}\sum_{k=0}^{\infty }{\dfrac {z^{k}}{s^{\overline {k+1}}}}
+\end{equation*}
 </div>
 <p>This requires a fancy Rising Factorial computation,
-the <span class="formula"><i>s</i><sup><span class="overline"><i>k</i> + 1</span></sup></span> term. This is available in <tt class="docutils literal">sympy</tt> as the <tt class="docutils literal">rf(s, k+1)</tt>
+the <span class="math">\(s^{\overline {k+1}}\)</span> term. This is available in <tt class="docutils literal">sympy</tt> as the <tt class="docutils literal">rf(s, k+1)</tt>
 expression.</p>
 <p>It turns out that sympy offers lowergamma() and gamm() as first-class
 functions. I don't even need to work through the closed-form
@@ -295,7 +301,68 @@ beautifully hand-crafted antique algorithms. It acts as a kind of
 super-compiler. From Math to an intermediate AST to a concrete
 implementation.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -372,6 +439,10 @@ implementation.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

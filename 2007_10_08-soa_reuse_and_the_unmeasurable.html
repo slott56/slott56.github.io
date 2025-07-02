@@ -147,7 +147,7 @@ S.Lott -- Software Architect            </a>
 <div class="section" id="where-s-the-new-functionality">
 <h2>Where's the New Functionality?</h2>
 <p>The hair-splitting over reuse arrives with the &quot;what new thing are we getting?&quot; question.  It's hair-splitting because it still involves measuring something that didn't happen.  It involves creating a counter-factual argument:  &quot;What if we could have written all this code that we didn't actually write?&quot;  &quot;What if pigs flew?&quot;  &quot;What if flying pigs wrote this smaller set of code instead of the big set of code we planned on writing?&quot;</p>
-<p>The fantasy is that some bundle of features stems directly from some volume of code at a ratio of 1:1.  [X] features are based on [Y] lines of code.  Through reuse we are somehow able to reduce the volume of code to [rY] where <span class="formula"><i>r</i> &lt; 1</span>, giving us some new relationship between code and features.</p>
+<p>The fantasy is that some bundle of features stems directly from some volume of code at a ratio of 1:1.  [X] features are based on [Y] lines of code.  Through reuse we are somehow able to reduce the volume of code to [rY] where <span class="math">\(r &lt; 1\)</span>, giving us some new relationship between code and features.</p>
 <p>This is a fantasy because -- of course -- we can't ever estimate the amount of code required to deliver any specific feature.  Some features may be available through training of the users.  A feature may be a consequence of using the right framework or the right persistence/ORM tool.  Some features are emergent consequences of other engineering choices.  Is this &quot;reuse&quot; or is this a simple consequence of good engineering?</p>
 <p>Isn't a framework reuse?  Isn't a database reuse?  What about xalan?  If we use XSLT based on Xalan, that's reuse, isn't it?  Isn't an operating system a kind of reuse?</p>
 <p>How should we credit our project managers with the technological insight to use an OS, database, framework, or open source project?  Perhaps reuse is too hard to measure.</p>
@@ -165,7 +165,68 @@ S.Lott -- Software Architect            </a>
 <p>Yes, reuse of the services <em>did</em>  happen.  I never said it wouldn't.  But, we can't measure the ROI of that reuse.  Therefore, we're not going to try and leverage that reuse as the central value proposition for SOA.</p>
 <p>We can measure the ROI of agility, since we put features into the hands of users.  It's the business value of those features that are the value of SOA.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -242,6 +303,10 @@ S.Lott -- Software Architect            </a>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>

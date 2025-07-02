@@ -157,9 +157,9 @@ things can become needlessly complex and create havoc.</p>
 <h2>The Problem</h2>
 <p>The definition of the problem 2.3-7 seems so straightforward.</p>
 <blockquote>
-&quot;Describe a <span class="formula">Θ(<i>n</i>log<i>n</i>)</span>-time algorithm that, given a set
-<span class="formula"><i>S</i></span> of <span class="formula"><i>n</i></span> integers and another integer <span class="formula"><i>x</i></span>, determines whether or
-not there exist two elements in <span class="formula"><i>S</i></span> whose sum is exactly <span class="formula"><i>x</i></span>.&quot;</blockquote>
+&quot;Describe a <span class="math">\(\Theta(n \log n)\)</span>-time algorithm that, given a set
+<span class="math">\(S\)</span> of <span class="math">\(n\)</span> integers and another integer <span class="math">\(x\)</span>, determines whether or
+not there exist two elements in <span class="math">\(S\)</span> whose sum is exactly <span class="math">\(x\)</span>.&quot;</blockquote>
 <p>This brings us to problem #1. The blog post is unable to actually
 repeat the problem. Here's the quote:</p>
 <!--  -->
@@ -246,7 +246,7 @@ Now, let's talk about the number of computations involved in using
 nested for loops to examine all the possible addition
 permutations. Here I am using the term permutation as it is
 strictly defined in mathematics.</blockquote>
-<p>First. The algorithm uses all combinations. <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>2</sup>)</span>.</p>
+<p>First. The algorithm uses all combinations. <span class="math">\(\textbf{O}(n^2)\)</span>.</p>
 <p>Second. &quot;as it is strictly defined in mathematics&quot; should go without
 saying. If you feel the need to say this, it calls the entire blog
 post into question.</p>
@@ -261,11 +261,14 @@ the problem doesn't permit replacement.</p>
 </div>
 <div class="section" id="the-n-things-taken-r-or-2-at-a-time-problem">
 <h2>The n things taken r or 2 at a time problem</h2>
-<p>There's a table with values for <span class="formula"><span class="fraction"><span class="ignored">(</span><span class="numerator"><i>n</i>!</span><span class="ignored">)/(</span><span class="denominator">(<i>n</i> − <i>r</i>)!</span><span class="ignored">)</span></span></span>
+<p>There's a table with values for <span class="math">\(\frac{n!}{(n-r)!}\)</span>
 No hint is given as to what this table is or why it's here.  I think
 it's supposed to be because of this:</p>
-<div class="formula">
-<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>n</i>!</span><span class="ignored">)/(</span><span class="denominator"><i>r</i>!(<i>n</i> − <i>r</i>)!</span><span class="ignored">)</span></span><span class="text"> with </span><i>r</i> = 2 ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>n</i>!</span><span class="ignored">)/(</span><span class="denominator">2(<i>n</i> − 2)!</span><span class="ignored">)</span></span> ≡ <span class="fraction"><span class="ignored">(</span><span class="numerator"><i>n</i>×(<i>n</i> − 1)</span><span class="ignored">)/(</span><span class="denominator">2</span><span class="ignored">)</span></span>
+<div class="math">
+\begin{equation*}
+\frac{n!}{r!(n-r)!} \text{ with } r=2 \equiv
+\frac{n!}{2(n-2)!} \equiv \frac{n\times(n-1)}{2}
+\end{equation*}
 </div>
 <p>It's hard to say why commutativity of addition gets a paragraph,
 but this gets no explanation at all. To me, it shows a disregard
@@ -317,8 +320,10 @@ way to arrive at this code.</p>
 <blockquote>
 Even though the number of computations is cut in half</blockquote>
 <p>The rules for Big-O are in the cited CLRS book.</p>
-<div class="formula">
-<span class="textbf">O</span>(<span class="fraction"><span class="ignored">(</span><span class="numerator"><i>n</i><sup>2</sup></span><span class="ignored">)/(</span><span class="denominator">2</span><span class="ignored">)</span></span>) = <span class="textbf"> O</span>(<i>n</i><sup>2</sup>)
+<div class="math">
+\begin{equation*}
+\textbf{O}(\frac{n^2}{2}) = \textbf{O}(n^2)
+\end{equation*}
 </div>
 <p>The &quot;cut in half&quot; doesn't count when describing the overall
 worst-case complexity. It needs to be emphasized that &quot;cut in half&quot;
@@ -328,7 +333,7 @@ solving the problem. And it's unreadable. Maybe it's a
 counter-example? An elaborate &quot;don't do this&quot;?</p>
 <p>The idea of <tt class="docutils literal">for i in <span class="pre">range(len(S)):</span> for j in range(i): ...</tt> seems to
 be an inescapable approach to processing the upper half of a matrix,
-and it seems to be obviously <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>2</sup>)</span>.</p>
+and it seems to be obviously <span class="math">\(\textbf{O}(n^2)\)</span>.</p>
 </div>
 <div class="section" id="the-binary-search">
 <h2>The Binary Search</h2>
@@ -359,7 +364,7 @@ matrix have values of N/A</blockquote>
 Secondly, we should remove the integer that we are on from the
 binary search</blockquote>
 <p>This is a consequence of the initial confusion that decided that
-<span class="formula"><i>x</i> ≠ <i>y</i></span> was somehow part of the problem. When it wasn't. These two
+<span class="math">\(x \neq y\)</span> was somehow part of the problem. When it wasn't. These two
 sentences indicate a level of profound confusion about the essential
 requirements. Which leads to havoc.</p>
 </div>
@@ -380,7 +385,7 @@ Nor could I find out what any of this meant.</p>
 <div class="section" id="the-kicker">
 <h2>The Kicker</h2>
 <p>The kicker is some code that solves the problem in
-<span class="formula"><span class="textbf">O</span>(<i>n</i>)</span> time. Without using a set, which is interesting.</p>
+<span class="math">\(\textbf{O}(n)\)</span> time. Without using a set, which is interesting.</p>
 <p>This was not part of the CLRS exercise 2.3-7. I suppose it's just
 there to point out something about something. Maybe it's a &quot;other
 people are smarter than CLRS&quot;? Or maybe it's a &quot;just google for
@@ -390,7 +395,7 @@ see why the other result is there.</p>
 </div>
 <div class="section" id="lessons-learned">
 <h2>Lessons Learned</h2>
-<p>Some people like to add complexity to the problem. The <span class="formula"><i>x</i><br/><i>neq</i><i>y</i></span>
+<p>Some people like to add complexity to the problem. The <span class="math">\(x \\neq y\)</span>
 business is fabricated from thin air. It adds to the code complexity,
 but is clearly not part of the problem space.
 This creates havoc. Simple havoc.</p>
@@ -412,7 +417,7 @@ True
 <p>This follows directly from the analysis. It doesn't add anything new
 or different. It just uses Python code rather than indented
 assembler.</p>
-<p>This first example is <span class="formula"><span class="textbf">O</span>(<i>n</i><sup>2</sup>)</span> because the in operator is
+<p>This first example is <span class="math">\(\textbf{O}(n^2)\)</span> because the in operator is
 applied to a list. We can, however, use <tt class="docutils literal">bisect()</tt> instead of the <tt class="docutils literal">in</tt>
 operator.</p>
 <pre class="literal-block">
@@ -430,7 +435,7 @@ which we should insert a new value to maintain order. It doesn't
 return the location of a found item. Indeed, if the item isn't found,
 it will still return a position into which a new item should be
 inserted.</p>
-<p>If we want this to be <span class="formula"><span class="textbf">O</span>(<i>n</i>)</span>, we can use this:</p>
+<p>If we want this to be <span class="math">\(\textbf{O}(n)\)</span>, we can use this:</p>
 <pre class="literal-block">
 &gt;&gt;&gt; S = [1,2,3,4,5,6]
 &gt;&gt;&gt; S_set = set(S)
@@ -439,14 +444,75 @@ inserted.</p>
 True
 </pre>
 <p>This replaces the linear list with a set, <tt class="docutils literal">S_set</tt>.
-The <tt class="docutils literal"><span class="pre">(x-n)</span> in S_set</tt> operation is <span class="formula"><span class="textbf">O</span>(1)</span>, leading to the overall operation
-being <span class="formula"><span class="textbf">O</span>(<i>n</i>)</span>.</p>
+The <tt class="docutils literal"><span class="pre">(x-n)</span> in S_set</tt> operation is <span class="math">\(\textbf{O}(1)\)</span>, leading to the overall operation
+being <span class="math">\(\textbf{O}(n)\)</span>.</p>
 <p>If you want to shave a little time, you can use <tt class="docutils literal">any()</tt> instead of
 <tt class="docutils literal"><span class="pre">bool([])</span></tt>. If you're not returning the pairs, you can reduce it to
 <tt class="docutils literal"><span class="pre">any(x-n</span> in S_set for n in S_set)</tt>. Try it with timeit to see what the
 impact is. It's surprisingly small.</p>
 </div>
+<script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -523,6 +589,10 @@ impact is. It's surprisingly small.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2025/Jul/index.html"><i class="fa fa-calendar fa-lg"></i>July 2025 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2025/Jun/index.html"><i class="fa fa-calendar fa-lg"></i>June 2025 (4)
           </a>
