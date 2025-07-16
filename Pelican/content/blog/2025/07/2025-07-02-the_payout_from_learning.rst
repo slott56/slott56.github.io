@@ -38,7 +38,7 @@ Details
     June 29,34,Post about a better design
     July 2,37,All tests pass.
 
-June I posted a a note about this mess on the June 29, reflecting 34 days of frustrating work.
+In June I posted a a note about this mess on the June 29, reflecting 34 days of frustrating work.
 There are important
 
 It took 4 days to clean up the mess. About :math:`\frac{1}{12}` of the overall time.
