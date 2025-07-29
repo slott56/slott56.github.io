@@ -1,5 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-07-16T11:20:00-04:00</updated><entry><title>Some Recommended Reading</title><link href="https://slott56.github.io/2025-07-16-recommended_reading.html" rel="alternate"></link><published>2025-07-16T11:20:00-04:00</published><updated>2025-07-16T11:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-07-16:/2025-07-16-recommended_reading.html</id><summary type="html">&lt;p&gt;Q: &amp;quot;Can you recommend  books that are good for a beginner wanting to learn python?&amp;quot;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-07-29T09:54:00-04:00</updated><entry><title>Gloom and Despair -- LaTeX Edition</title><link href="https://slott56.github.io/2025-07-29-the_gloom_despair_latex.html" rel="alternate"></link><published>2025-07-29T09:54:00-04:00</published><updated>2025-07-29T09:54:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-07-29:/2025-07-29-the_gloom_despair_latex.html</id><summary type="html">&lt;p&gt;I write all my books using LaTeX.
+Parts of LaTeX are (at first) confusing.&lt;/p&gt;
+&lt;p&gt;Recently, I had a moment of despair when my LaTeX processing tools no longer worked.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Don't panic. Gather the data.&lt;/p&gt;
+&lt;p&gt;If the logs aren't good enough to reveal what's going on, fix the logs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-story"&gt;
+&lt;h2&gt;The …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I write all my books using LaTeX.
+Parts of LaTeX are (at first) confusing.&lt;/p&gt;
+&lt;p&gt;Recently, I had a moment of despair when my LaTeX processing tools no longer worked.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Don't panic. Gather the data.&lt;/p&gt;
+&lt;p&gt;If the logs aren't good enough to reveal what's going on, fix the logs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-story"&gt;
+&lt;h2&gt;The Story&lt;/h2&gt;
+&lt;p&gt;LaTeX has numerous advantages over strugging with .DOCX files in Libre Office (or MS-Word.)
+In particular, having to get the styles &lt;strong&gt;right&lt;/strong&gt; in a &amp;quot;What You See Is All You Get&amp;quot; visual editor is brutal.
+The boundaries for the styles are utterly occluded and there's no real way to be sure the bullet items aren't also part of the code highlighting.&lt;/p&gt;
+&lt;p&gt;LaTeX is text. Any text editor produces perfect LaTeX.
+No complicated pointing and clicking.&lt;/p&gt;
+&lt;p&gt;But. It's also more than text. Hence the gloom and despair.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-quirk"&gt;
+&lt;h2&gt;The Quirk&lt;/h2&gt;
+&lt;p&gt;LaTeX has a quirk.
+And it's a big one.&lt;/p&gt;
+&lt;p&gt;LaTeX is not really &amp;quot;markup&amp;quot; in the sames sense as XML or RST or Markdown.&lt;/p&gt;
+&lt;p&gt;LaTeX is code with embedded literal text.
+What's important is the text doesn't always have quotes or clear boundaries.
+There's a &amp;quot;if it's not in a macro, it's text&amp;quot; kind of rule.&lt;/p&gt;
+&lt;p&gt;LaTeX processing isn't really translating Text + Markup ==&amp;gt; PDF.
+A LaTeX engine evaluates a program you wrote in the TeX language.
+The side-effect of evaluating this program is to write a &amp;quot;DVI&amp;quot; file.
+This file can then translated into a PDF.&lt;/p&gt;
+&lt;p&gt;This nuanced distinction matters because your LaTeX can (and frequently does) include new macro definitions that change the behavior of the rest of your program.
+The parser is -- in effect -- stateful; some constructs change the parser's internal state.
+The consequence of this is that it's difficult to trivially parse LaTeX.&lt;/p&gt;
+&lt;p&gt;We can't write an app to look for regular expression patterns like &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;\w+\{\w+\}&lt;/span&gt;&lt;/tt&gt; to parse the LaTeX.
+It requires a more sophisticated algorithm.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-do-we-do"&gt;
+&lt;h2&gt;What Do We Do?&lt;/h2&gt;
+&lt;p&gt;I've been using the &lt;tt class="docutils literal"&gt;pylatexenc&lt;/tt&gt; library.  &lt;a class="reference external" href="https://pypi.org/project/pylatexenc/"&gt;https://pypi.org/project/pylatexenc/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is focused on some edge cases of converting Unicode to LaTeX and LaTeX to Unicode.&lt;/p&gt;
+&lt;p&gt;However, it does have an elegant LaTeX parser, that -- with a proper context database -- can process a wide variety of LaTeX.&lt;/p&gt;
+&lt;p&gt;I've got two use cases.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Cleanup Pandoc LaTeX. Legacy .DOCX files can be converted to LaTeX by Pandoc. &lt;a class="reference external" href="https://pandoc.org"&gt;https://pandoc.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;However. The LaTeX created from .DOCX is a large pain in the neck and requires a healthy dose of conversion and correction to make it useful. (The &lt;tt class="docutils literal"&gt;\textquotesingle&lt;/tt&gt; is used all over the place.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Analyze Overleaf LaTeX. I need to get summaries of the outlines decorated with page counts.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And this second use case baffled me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-broke"&gt;
+&lt;h2&gt;What Broke&lt;/h2&gt;
+&lt;p&gt;A few days ago, I tried to get an outline from a finished project.
+My outline parser crashed hard.
+It's a simple app that examines all the &lt;tt class="docutils literal"&gt;.TEX&lt;/tt&gt; files gathering structure information.
+And it was unable to parse the book's outline.&lt;/p&gt;
+&lt;p&gt;Some tools worked.&lt;/p&gt;
+&lt;p&gt;Some didn't.&lt;/p&gt;
+&lt;p&gt;Ugh.&lt;/p&gt;
+&lt;p&gt;I had a number of questions and assumptions.&lt;/p&gt;
+&lt;div class="section" id="question-1-what-went-wrong-what-changed"&gt;
+&lt;h3&gt;Question 1: What went wrong? What changed?&lt;/h3&gt;
+&lt;p&gt;Clearly, the book's content changed. Somewhere in the writing process, I changed something.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="question-2-what-content-change-could-baffle-the-the-pylatexenc-library"&gt;
+&lt;h3&gt;Question 2: What content change could baffle the the &lt;tt class="docutils literal"&gt;pylatexenc&lt;/tt&gt; library?&lt;/h3&gt;
+&lt;p&gt;Just as clearly, it was the presence of a macro or an environment that had never been used before.
+This has to be something I introduced during revisions or code review or something.
+Some macro or environment is new.&lt;/p&gt;
+&lt;p&gt;But.  There's nothing in the output that helps identify the location of the problem.&lt;/p&gt;
+&lt;p&gt;All I had was a chorus of &amp;quot;Gloom, Despair, and Agony on Me.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Which wasn't appropriate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="my-first-mistake"&gt;
+&lt;h2&gt;My First Mistake&lt;/h2&gt;
+&lt;p&gt;As these tools evolved over the past few books, I'd been pretty fast and loose with my debugging.
+I'd been using the following technique:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;something&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# some code&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;something&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# more code&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This was handy when I was poking at the code daily.
+This isn't something I'm posting to PyPI.
+It has a suite of unit tests, but there are odd special cases and edge cases all through it.&lt;/p&gt;
+&lt;p&gt;This seemed like a sensible approach.&lt;/p&gt;
+&lt;p&gt;Returning to the code after 7 months, this kind of debugging was opaque.
+There's no good reason for this kind of thing.&lt;/p&gt;
+&lt;p&gt;I had no idea where I'd put these, or what they were going to reveal when I set &lt;tt class="docutils literal"&gt;DEBUG&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;True&lt;/tt&gt;.
+Indeed, I hadn't provided any handy way to set &lt;tt class="docutils literal"&gt;DEBUG&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;True&lt;/tt&gt; from the command line.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-i-fixed"&gt;
+&lt;h2&gt;What I Fixed&lt;/h2&gt;
+&lt;p&gt;Every &lt;tt class="docutils literal"&gt;if DEBUG:&lt;/tt&gt; had to be rewritten as &lt;tt class="docutils literal"&gt;logger.debug()&lt;/tt&gt;.
+The &lt;tt class="docutils literal"&gt;print(f&amp;quot;whatever {arg1} &lt;span class="pre"&gt;{arg2}&amp;quot;)&lt;/span&gt;&lt;/tt&gt; had to become &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;logger.debug(&amp;quot;whatever&lt;/span&gt; %s %s&amp;quot;, arg1, arg2)&lt;/tt&gt;.
+This is not a substantial rewrite.
+It's the work of a few mninutes to fix all 35 locations.&lt;/p&gt;
+&lt;p&gt;This revealed a lot. A lot.&lt;/p&gt;
+&lt;p&gt;The most important revelation was the &lt;tt class="docutils literal"&gt;pylatexenc&lt;/tt&gt; library was already using the logger.
+And I had not been making any use of that.&lt;/p&gt;
+&lt;p&gt;Foolishly.&lt;/p&gt;
+&lt;p&gt;Between adding proper debugging and enabling logging, I found out what was &lt;strong&gt;actually&lt;/strong&gt; wrong.&lt;/p&gt;
+&lt;p&gt;And it had nothing to do with LaTeX parsing.&lt;/p&gt;
+&lt;p&gt;My assumptions were mostly wrong.
+Well, about &lt;span class="math"&gt;\(\frac{1}{2}\)&lt;/span&gt; wrong.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-real-mistake"&gt;
+&lt;h2&gt;The Real Mistake&lt;/h2&gt;
+&lt;p&gt;It took a few exepriments to figure out what debugging was needed and what was too much of the wrong kind of detail.
+My corrected logging revealed that LaTeX parsing was &lt;strong&gt;not&lt;/strong&gt; broken.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;pylatexenc&lt;/tt&gt; library produces a syntax tree from the LaTeX.
+The parsing phase (the LatexWalker) creates this tree.
+Then the application can visit the tree with a visitor subclass.&lt;/p&gt;
+&lt;p&gt;It became clear that the problem was related to the &lt;strong&gt;Visitor&lt;/strong&gt; traversing the parsed LaTeX.
+My application's visitor subclass used a &lt;strong&gt;Builder&lt;/strong&gt; that accumulated the various structure macros into an outline.
+The original design was predicated on a structure where each chapter stood more-or-less alone.&lt;/p&gt;
+&lt;p&gt;The publisher's style wraps each &lt;tt class="docutils literal"&gt;\chapter{}&lt;/tt&gt; in a &lt;tt class="docutils literal"&gt;\begin{chapterenv}&lt;/tt&gt; environment.
+My &lt;strong&gt;Builder&lt;/strong&gt; didn't work well with this extra environment wrapper around the chapter.&lt;/p&gt;
+&lt;p&gt;Ah.&lt;/p&gt;
+&lt;p&gt;The problemn &lt;strong&gt;was&lt;/strong&gt; something I introduced.&lt;/p&gt;
+&lt;p&gt;But it &lt;strong&gt;wasn not&lt;/strong&gt; a novel macro or environment.&lt;/p&gt;
+&lt;p&gt;It was an environment that baffled &lt;tt class="docutils literal"&gt;OutlineBuilder&lt;/tt&gt;.
+A small change and I'm back in business.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Books"></category><category term="python"></category><category term="learning"></category><category term="latex"></category></entry><entry><title>Some Recommended Reading</title><link href="https://slott56.github.io/2025-07-16-recommended_reading.html" rel="alternate"></link><published>2025-07-16T11:20:00-04:00</published><updated>2025-07-16T11:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-07-16:/2025-07-16-recommended_reading.html</id><summary type="html">&lt;p&gt;Q: &amp;quot;Can you recommend  books that are good for a beginner wanting to learn python?&amp;quot;&lt;/p&gt;
 &lt;p&gt;Me: &amp;quot;Depends on the person’s background...&amp;quot;&lt;/p&gt;
 &lt;p&gt;Q: &amp;quot;They has a deep background in the problem domain. Recently they've been doing a lot of reporting and analytics using SQL.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Okay. That's excellent.&lt;/p&gt;
@@ -11455,249 +11653,4 @@ code.&lt;/p&gt;
 &lt;div class="line-block"&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="building skills"></category></entry><entry><title>Python and the "Syntactic Whitespace Problem"</title><link href="https://slott56.github.io/2021_09_27-python_and_the_syntactic_whitespace_problem.html" rel="alternate"></link><published>2021-09-27T16:04:00-04:00</published><updated>2021-09-27T16:04:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-09-27:/2021_09_27-python_and_the_syntactic_whitespace_problem.html</id><summary type="html">&lt;p&gt;Check out this list of questions on Stack Overflow:&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://stackoverflow.com/search?q=%5Bpython%5D+whitespace+syntax"&gt;http://stackoverflow.com/search?q=%5Bpython%5D+whitespace+syntax&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;About 10% of these are really just complaints about Python's syntax.
-Almost every Stack Overflow question on Python's use of syntactic
-whitespace is really just a complaint.&lt;/p&gt;
-&lt;p&gt;Here's today's example: &amp;quot;&lt;a class="reference external" href="http://stackoverflow.com/questions/3994765/python-without-whitespace-requirements"&gt;Python without …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Check out this list of questions on Stack Overflow:&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://stackoverflow.com/search?q=%5Bpython%5D+whitespace+syntax"&gt;http://stackoverflow.com/search?q=%5Bpython%5D+whitespace+syntax&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;About 10% of these are really just complaints about Python's syntax.
-Almost every Stack Overflow question on Python's use of syntactic
-whitespace is really just a complaint.&lt;/p&gt;
-&lt;p&gt;Here's today's example: &amp;quot;&lt;a class="reference external" href="http://stackoverflow.com/questions/3994765/python-without-whitespace-requirements"&gt;Python without whitespace requirements&lt;/a&gt;&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Here's the money quote: &amp;quot;I could potentially be interested in
-learning Python but the whitespace restrictions are an absolute no-go
-for me.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Here's the reality.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;strong&gt;Everyone Indents Correctly All The Time In All Languages.&lt;/strong&gt;&lt;/blockquote&gt;
-&lt;p&gt;Everyone. All the time. Always.&lt;/p&gt;
-&lt;p&gt;It's amazing how well, and how carefully people indent code. Not
-Python code.&lt;/p&gt;
-&lt;p&gt;All Code. XML. HTML. CSS. Java. C++. SQL. All Code.&lt;/p&gt;
-&lt;p&gt;Everyone indents. And they always indent &lt;strong&gt;correctly&lt;/strong&gt;. It's truly
-amazing how well people indent. In particular, when the syntax
-doesn't require any indentation, they still indent beautifully.&lt;/p&gt;
-&lt;p&gt;Consider this snippet of C code.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-if( a == 0 )
-   printf( &amp;quot;a is zero&amp;quot; );
-   r = 1;
-else
-   printf( &amp;quot;a is non-zero&amp;quot; );
-   r = a % 2;
-&lt;/pre&gt;
-&lt;p&gt;Over the last few decades, I've probably spent a complete man-year
-reading code like that and trying to figure out why it doesn't work.
-It's not easy to debug.&lt;/p&gt;
-&lt;p&gt;The indentation completely and accurately reflects the programmer's
-intention. Everyone gets the indentation right. All the time. In
-every language.&lt;/p&gt;
-&lt;p&gt;And people still complain about Python, even when they indent
-beautifully in other languages.&lt;/p&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="when-first-learning-python-i-found-the-use-of-whit"&gt;
-&lt;h2&gt;When first learning python I found the use of whit...&lt;/h2&gt;
-&lt;p&gt;Mark&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 08:53:12.128000-04:00&lt;/p&gt;
-&lt;p&gt;When first learning python I found the use of whitespace for defining
-blocks odd too. What was especially troublesome was the notion of tabs
-vs. spaces for the whitespace. Once you get a decent python aware editor
-that problem is no longer a problem and you are left with a language
-that helps enforce readability. Maybe &amp;quot;get a good python aware editor&amp;quot;
-should be the first step to every tutorial.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="every-one-indents-correctly-all-the-time-in"&gt;
-&lt;h2&gt;&amp;quot;Every[one] Indents Correctly All The Time In...&lt;/h2&gt;
-&lt;p&gt;Robin Norwood&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 11:45:18.435000-04:00&lt;/p&gt;
-&lt;p&gt;&amp;quot;Every[one] Indents Correctly All The Time In All Languages.&amp;quot;
-Oh, if only that were true. Look at pretty much any Javascript code that
-isn't part of a framework. For some reason, JS coders seem to treat
-mis-indentation as an obfuscation technique.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="attempting-to-do-templating-with-django-templating"&gt;
-&lt;h2&gt;Attempting to do templating with django templating...&lt;/h2&gt;
-&lt;p&gt;Travis&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 13:00:24.648000-04:00&lt;/p&gt;
-&lt;p&gt;Attempting to do templating with django templating language can be ugly
-and horrifying, but jinja2 fixes most of those problems.&lt;/p&gt;
-&lt;p&gt;What I find fascinating is that HAML, a syntax for HTML and XML that
-represents structure using indentation and a syntax similar to CSS, is
-written in ruby. It's also an extremely popular ruby library. There's no
-popular alternative for python.&lt;/p&gt;
-&lt;p&gt;The same is true for its' whitespace significant CSS syntax, SASS, but
-that's understandable... since it's a product that has no barrier to
-using it standalone other than a zealotry for having everything in your
-language of choice.&lt;/p&gt;
-&lt;p&gt;I miss HAML working with python. :/&lt;/p&gt;
-&lt;p&gt;s/not and error free/not as error free/
-sorry
-----------------------------------------------&lt;/p&gt;
-&lt;p&gt;matt harrison&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 12:04:22.431000-04:00&lt;/p&gt;
-&lt;p&gt;s/not and error free/not as error free/
-sorry&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="whenever-you-respond-to-complaints-you-should-ask"&gt;
-&lt;h2&gt;Whenever you respond to complaints, you should ask...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 19:33:59.273000-04:00&lt;/p&gt;
-&lt;p&gt;Whenever you respond to complaints, you should ask yourself whether the
-complaint is worth answering.&lt;/p&gt;
-&lt;p&gt;I think people who make a reflexive judgement based on whitespace (or
-even any syntax, so long as the syntax is internally reflective) are
-likely to either be zealots for some other technology, irrational, or -
-most likely - very inexperienced with real-world development. In other
-words, they are people whose acceptance the Python community (or any
-community) does not need.&lt;/p&gt;
-&lt;p&gt;Python's whitespace requirement is a trade-off like any other. I find it
-easy to work with and aesthetically pleasing. It does have some pitfalls
-(tabs vs. spaces when working with poorly configured editors; pasting a
-block at a different level of statement nesting than the level it was
-copied from), but those are just different trade-offs to other languages
-where e.g. you may have more superfluous syntax or less consistency in
-code layout (which makes debugging other people's code and co-operation
-harder).
-Martin&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="there-are-a-couple-of-times-the-whitespace-bites-y"&gt;
-&lt;h2&gt;There are a couple of times the whitespace bites y...&lt;/h2&gt;
-&lt;p&gt;matt harrison&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 12:02:40.573000-04:00&lt;/p&gt;
-&lt;p&gt;There are a couple of times the whitespace bites you in Python (and not
-in non-whitespace aware languages).&lt;/p&gt;
-&lt;p&gt;One is pasting code. If you are at different levels of the block or the
-pasted code contains tabs instead of spaces it's annoying. Other
-languages don't have this.&lt;/p&gt;
-&lt;p&gt;Automatic re-indent is not and error free as in other languages.
-This also makes Python a bad language for (html) templating. Python
-based template languages end up looking like ruby (with end statements).
-But ... people don't mention these, they only say that it's hard to use
-whitespace. Well the rule is easy (replace { with : and indent
-consistently), not sure what the holdup is since no one seems to mention
-what I've just said.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="ok-having-a-look-at-your-post-once-more-i-now-d"&gt;
-&lt;h2&gt;Ok, having a look at your post once more, I now d...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-27 06:24:54.731000-04:00&lt;/p&gt;
-&lt;p&gt;Ok, having a look at your post once more, I now *do* think that was
-exactly your point (people getting indentation right when not getting
-the braces right)...&lt;/p&gt;
-&lt;p&gt;Sorry about that stupid comment :-)&lt;/p&gt;
-&lt;p&gt;Is there a Python auto-formatter?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="because-i-don"&gt;
-&lt;h2&gt;Because I don&amp;amp;#...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 12:50:22.324000-04:00&lt;/p&gt;
-&lt;p&gt;Is there a Python auto-formatter?
-Because I don't format my code any more. I let tools format it. And I
-don't fool with it. I used to spend a lot of time on indentation, but I
-ended up letting it go and I'm a lot more productive now. (C#, SQL)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="i-loved-the-significant-whitespace-in-python-from"&gt;
-&lt;h2&gt;I loved the significant whitespace in Python from ...&lt;/h2&gt;
-&lt;p&gt;Unknown&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 13:23:48.083000-04:00&lt;/p&gt;
-&lt;p&gt;I loved the significant whitespace in Python from the first time I saw
-it.&lt;/p&gt;
-&lt;p&gt;&amp;#64;matt harrison:
-Cut and paste will mess up a program more ways than whitespace. I very
-often regret doing it. If the same code is repeated often it should be
-refactored into a function.&lt;/p&gt;
-&lt;p&gt;&amp;#64;cade:
-Many editors/IDEs have Python formatters. emacs comes to mind.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="i-39-m-not-100-whether-this-actually-might-be-yo"&gt;
-&lt;h2&gt;I&amp;amp;#39;m not 100% whether this actually might be yo...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-27 06:19:52.348000-04:00&lt;/p&gt;
-&lt;p&gt;I'm not 100% whether this actually might be your point about the C
-example, but: This C code will not compile.&lt;/p&gt;
-&lt;p&gt;The indentation hides the fact that the &amp;quot;if&amp;quot; only refers to the next
-statement. The &amp;quot;else&amp;quot; therefore has no matching &amp;quot;if&amp;quot; and the compiler
-will throw an error. In those archaic languages you need braces {...}
-:-)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="there-are-people-who-don-39-t-indent-correctly-w"&gt;
-&lt;h2&gt;There are people who don&amp;amp;#39;t indent correctly. W...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-28 15:25:07.925000-04:00&lt;/p&gt;
-&lt;p&gt;There are people who don't indent correctly. When I was a TA for
-Programming 101, there was a student in the class that indented Every.
-Single. Line. Differently. I had to reformat his code to see what the
-heck he was up to.&lt;/p&gt;
-&lt;p&gt;He was the only one who did this, though.&lt;/p&gt;
-&lt;p&gt;&amp;amp;quot;Everyone Indents&amp;amp;quot;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="oh-man-you-don-39"&gt;
-&lt;h2&gt;Oh man, you don&amp;amp;#39;...&lt;/h2&gt;
-&lt;p&gt;Herberth Amaral&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-27 10:38:01.125000-04:00&lt;/p&gt;
-&lt;p&gt;&amp;quot;Everyone Indents&amp;quot;&lt;/p&gt;
-&lt;p&gt;Oh man, you don't know non-experienced programmers. In the beginning,
-make them indent their code is like make an turtle climb a mountain:
-they don't do.&lt;/p&gt;
-&lt;p&gt;Python solves this problem in a very elegant way, by throwing syntax
-errors when indentation aren't done right.&lt;/p&gt;
-&lt;p&gt;For me, at least, whitespace is a Python's killer feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="i-believe-you-meant-quot-everyone-indents-quo"&gt;
-&lt;h2&gt;I believe you meant &amp;amp;quot;Everyone indents ...&amp;amp;quo...&lt;/h2&gt;
-&lt;p&gt;André Roberge&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2010-10-26 21:45:30.073000-04:00&lt;/p&gt;
-&lt;p&gt;I believe you meant &amp;quot;Everyone indents ...&amp;quot; when you wrote &amp;quot;Every indents
-...&amp;quot;. Also, for the commenter who mentions missing HAML, lookup shpaml
-...&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="sorry-but-you-have-no-idea-what-youre-talking-ab"&gt;
-&lt;h2&gt;Sorry, but you have no idea what you’re talking ab...&lt;/h2&gt;
-&lt;p&gt;Anonymous&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2011-10-05 06:00:12.819000-04:00&lt;/p&gt;
-&lt;p&gt;Sorry, but you have no idea what you’re talking about. When writing in
-C#, I don’t indent correctly. I don’t bother, because I don’t have to.
-Visual Studio fixes all indentation for me. If I did what you said, I
-would end up with wrong programs, as demonstrated in your own example.
-Instead I rely on Visual Studio’s formatting to tell me what I
-*actually* wrote. Your example demonstrates how to end up with a wrong
-program that doesn’t mean what you think it does. I get the feedback
-that tells me that my code structure is *actually* what I mean it to
-be.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="so-good-topic-really-i-like-any-post-talking-about"&gt;
-&lt;h2&gt;So good topic really i like any post talking about...&lt;/h2&gt;
-&lt;p&gt;Smart Spanish Blogs&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2012-05-05 06:13:16.655000-04:00&lt;/p&gt;
-&lt;p&gt;So good topic really i like any post talking about &lt;a class="reference external" href="javascript:void(0);"&gt;STD symptoms
-pictures&lt;/a&gt; and more , you shall search in Google
-and Wikipedia about that .... thanks a gain ,,,&lt;/p&gt;
-&lt;p&gt;&amp;amp;quot;Consider this snippet of C code.&amp;amp;quot;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="i-do"&gt;
-&lt;h2&gt;I do...&lt;/h2&gt;
-&lt;p&gt;Earth&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2013-03-26 08:12:00.003000-04:00&lt;/p&gt;
-&lt;p&gt;&amp;quot;Consider this snippet of C code.&amp;quot;
-I don't understand your example. Is it correctly indented or badly
-indented? What does it do and what should it do?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="indeed-no-one-in-their-right-mind-would-write-c"&gt;
-&lt;h2&gt;Indeed.  No one in their right mind would write C ...&lt;/h2&gt;
-&lt;p&gt;drichardson&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2013-07-09 18:04:35.162000-04:00&lt;/p&gt;
-&lt;p&gt;Indeed. No one in their right mind would write C code (or code in any
-language with C-like syntax) that looks like that.&lt;/p&gt;
-&lt;p&gt;This same example is repeated over and over on the web. It seems
-Python's goofy syntactic whitespace solves only a single problem -- a
-problem that no one has ever actually had.&lt;/p&gt;
-&lt;p&gt;The problems Python's syntactic whitespace causes, however, are varied
-and numerous. The astonishing number of apologetic articles like this
-are a testament to that.&lt;/p&gt;
-&lt;p&gt;I'm sure replies will follow with all the usual &amp;quot;rules&amp;quot; (PEP 8, only use
-spaces, use a special editor) to solve the problems that Python
-apologists refuse to acknowledge actually exist!&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="building skills"></category></entry></feed>
