@@ -1,5 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-06-11T07:58:00-04:00</updated><entry><title>Comma Comma</title><link href="https://slott56.github.io/2025-06-11-comma_comma.html" rel="alternate"></link><published>2025-06-11T07:58:00-04:00</published><updated>2025-06-11T07:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-11:/2025-06-11-comma_comma.html</id><summary type="html">&lt;p&gt;Ugh.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-09-28T09:46:00-04:00</updated><entry><title>The eval() Conundrum</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an Evil Super Genius (ESG™) will surreptitiously inject malicious code into a configuration file or something.
+This claim ignores the fact that all Python code is plain text.
+Any idiot can change the code.
+An ESG would find they are over-qualified to make a mess of a Python app.&lt;/p&gt;
+&lt;p&gt;For services (shared by multiple users), &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; can raise havoc for all concerned.
+So can a clumsy, marginally compentent admin.
+Indeed, bad admin mistakes are a considerably larger problem than some mysterious ESG's cleverness.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dsl-rant"&gt;
+&lt;h2&gt;DSL Rant&lt;/h2&gt;
+&lt;p&gt;I'm not a big fan of inventing whole new DSL's.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Them: &amp;quot;I'll solve this problem by inventing a DSL.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Me: &amp;quot;Now you have two problems.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Also. We're surrounded by DSL's. There's a baffling variety.
+Even within a general-purpose programming language like Python,
+there are &amp;quot;mini-languages&amp;quot;.
+Formatting. Regular Expressions. DSL's should be viewed with suspicion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-python-as-dsl-example"&gt;
+&lt;h2&gt;A Python-as-DSL Example&lt;/h2&gt;
+&lt;p&gt;(Thanks for your patience with the ranting.)&lt;/p&gt;
+&lt;p&gt;In many cases, Python object expressions are a perfectly useful DSL.&lt;/p&gt;
+&lt;p&gt;We don't need to invent any syntax or write a parser.
+Instead, we write Python class declarations and define objects.
+We rely on the prefectly wonderful Python parser.&lt;/p&gt;
+&lt;p&gt;For those who play #TTRPG's, there's a mini-language around the description of a handful of polyhedral dice.&lt;/p&gt;
+&lt;p&gt;Example &lt;strong&gt;3d6+2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means &amp;quot;find 3 6-sided dice, roll them, and add 2&amp;quot;.
+There are some variants, but none of them are much more complicated than this example.&lt;/p&gt;
+&lt;p&gt;Let's say, we're writing some TTRPG design tools, and we want to compute the expected range, mean, and (really important) standard deviation of a handful of dice.&lt;/p&gt;
+&lt;p&gt;The goal is this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dice&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdev&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;12.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.9580398915498076&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This &lt;tt class="docutils literal"&gt;rule&lt;/tt&gt; object can do more, of course.&lt;/p&gt;
+&lt;p&gt;The core feature here is replacing the traditional specification string, &lt;tt class="docutils literal"&gt;3d6+2&lt;/tt&gt; with a (very) slightly differerent syntax: &lt;tt class="docutils literal"&gt;3*D6+2&lt;/tt&gt;.
+We've made the &lt;tt class="docutils literal"&gt;d&lt;/tt&gt; uppercase for no good reason.
+We've added a &lt;tt class="docutils literal"&gt;*&lt;/tt&gt; so the expression is valid Python.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so"&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;Next step is to wrap the D6 object with a CLI.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3*D6+2&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;D6&lt;span class="w"&gt; &lt;/span&gt;+2
+range:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;
+mean:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;.50
+standard&lt;span class="w"&gt; &lt;/span&gt;deviation:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.958
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There's a catch to this.
+Some will say it's a security nightmare.
+We're parsing Python code provided as a command lime argument.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This opens the application to exploit by an ESG.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Folks will announce, one should &lt;strong&gt;never&lt;/strong&gt; accept Python code from the command-line.
+See &lt;a class="reference internal" href="#eval-rant"&gt;Eval() Rant&lt;/a&gt;, above: an Evil Super Genius (ESG™) will surreptitiously inject malicious code into the command-line parameters.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;import subprocess; subprocess.run(&amp;quot;format c:&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Everyone knows this &lt;strong&gt;will&lt;/strong&gt; happen.
+Maybe it will be out of malice.
+Or, more likely, it will be simple incompetence.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="safe-eval"&gt;
+&lt;h2&gt;Safe eval()&lt;/h2&gt;
+&lt;div class="admonition warning"&gt;
+&lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p class="last"&gt;Control the Globals&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here's my little example of how I like to use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;code_obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;argument&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eval&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;code_obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;BaseException&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The dice expression &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt; does not compute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I like to break it into two steps.
+In this case, they're in a single &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; block.
+In some cases, it makes sense to use two, distinct &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; blocks.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;If there are syntax errors from the &lt;tt class="docutils literal"&gt;compile()&lt;/tt&gt; function, these are caught in one block. These errors are often innocent, and some good error displays can be useful.&lt;/li&gt;
+&lt;li&gt;If there are evaluation errors from the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function, these are caught in a separate block. Other than a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt;, exceptions here indicate potential bugs somewhere in the underlying class definitions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;namespace&lt;/tt&gt; parameter is the &lt;strong&gt;short&lt;/strong&gt; list of all the global variables and names available at eval time.
+For this application, it's the defined set of polyhedral dice.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D12&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D20&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;PCT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's all there is.
+Any name not in this mapping will raise a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt; exception and the end of processing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="in-case-it-matters"&gt;
+&lt;h2&gt;In Case It Matters&lt;/h2&gt;
+&lt;p&gt;Here's a glimpse at the &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; class.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__rmul__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;D4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D8&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The DSL itself is essentially a class and some global objects.
+The syntax is pure Python.&lt;/p&gt;
+&lt;p&gt;I'm a big fan of avoiding writing parsers.
+Using Python as the DSL makes it relatively easy to test the DSL.
+After all, simple doctests provide ready confirmation the DSL works as advertised.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Don't fear &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;. Control the globals.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="games"></category><category term="ttrpg"></category><category term="dsl"></category></entry><entry><title>Comma Comma</title><link href="https://slott56.github.io/2025-06-11-comma_comma.html" rel="alternate"></link><published>2025-06-11T07:58:00-04:00</published><updated>2025-06-11T07:58:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-06-11:/2025-06-11-comma_comma.html</id><summary type="html">&lt;p&gt;Ugh.&lt;/p&gt;
 &lt;p&gt;A painful stretch of hours looking for a problem.
 Working on this: &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design"&gt;https://github.com/cloud-custodian/cel-python/wiki/Evaluation-Design&lt;/a&gt;.
 I need to address a performance problem and upgrade things generally to get them ready for 3.13 and 3.14.&lt;/p&gt;

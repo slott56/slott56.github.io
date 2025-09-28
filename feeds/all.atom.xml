@@ -1,5 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-09-10T16:02:00-04:00</updated><entry><title>Humble Bundle Offer</title><link href="https://slott56.github.io/2025-09-10-humble_bundle_offer.html" rel="alternate"></link><published>2025-09-10T16:02:00-04:00</published><updated>2025-09-10T16:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-10:/2025-09-10-humble_bundle_offer.html</id><content type="html">&lt;p&gt;This is delightful: Packt has this &lt;a class="reference external" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;Humble Bundle&lt;/a&gt; including
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-09-28T09:46:00-04:00</updated><entry><title>The eval() Conundrum</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an Evil Super Genius (ESG™) will surreptitiously inject malicious code into a configuration file or something.
+This claim ignores the fact that all Python code is plain text.
+Any idiot can change the code.
+An ESG would find they are over-qualified to make a mess of a Python app.&lt;/p&gt;
+&lt;p&gt;For services (shared by multiple users), &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; can raise havoc for all concerned.
+So can a clumsy, marginally compentent admin.
+Indeed, bad admin mistakes are a considerably larger problem than some mysterious ESG's cleverness.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dsl-rant"&gt;
+&lt;h2&gt;DSL Rant&lt;/h2&gt;
+&lt;p&gt;I'm not a big fan of inventing whole new DSL's.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Them: &amp;quot;I'll solve this problem by inventing a DSL.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Me: &amp;quot;Now you have two problems.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Also. We're surrounded by DSL's. There's a baffling variety.
+Even within a general-purpose programming language like Python,
+there are &amp;quot;mini-languages&amp;quot;.
+Formatting. Regular Expressions. DSL's should be viewed with suspicion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-python-as-dsl-example"&gt;
+&lt;h2&gt;A Python-as-DSL Example&lt;/h2&gt;
+&lt;p&gt;(Thanks for your patience with the ranting.)&lt;/p&gt;
+&lt;p&gt;In many cases, Python object expressions are a perfectly useful DSL.&lt;/p&gt;
+&lt;p&gt;We don't need to invent any syntax or write a parser.
+Instead, we write Python class declarations and define objects.
+We rely on the prefectly wonderful Python parser.&lt;/p&gt;
+&lt;p&gt;For those who play #TTRPG's, there's a mini-language around the description of a handful of polyhedral dice.&lt;/p&gt;
+&lt;p&gt;Example &lt;strong&gt;3d6+2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means &amp;quot;find 3 6-sided dice, roll them, and add 2&amp;quot;.
+There are some variants, but none of them are much more complicated than this example.&lt;/p&gt;
+&lt;p&gt;Let's say, we're writing some TTRPG design tools, and we want to compute the expected range, mean, and (really important) standard deviation of a handful of dice.&lt;/p&gt;
+&lt;p&gt;The goal is this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dice&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdev&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;12.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.9580398915498076&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This &lt;tt class="docutils literal"&gt;rule&lt;/tt&gt; object can do more, of course.&lt;/p&gt;
+&lt;p&gt;The core feature here is replacing the traditional specification string, &lt;tt class="docutils literal"&gt;3d6+2&lt;/tt&gt; with a (very) slightly differerent syntax: &lt;tt class="docutils literal"&gt;3*D6+2&lt;/tt&gt;.
+We've made the &lt;tt class="docutils literal"&gt;d&lt;/tt&gt; uppercase for no good reason.
+We've added a &lt;tt class="docutils literal"&gt;*&lt;/tt&gt; so the expression is valid Python.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so"&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;Next step is to wrap the D6 object with a CLI.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3*D6+2&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;D6&lt;span class="w"&gt; &lt;/span&gt;+2
+range:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;
+mean:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;.50
+standard&lt;span class="w"&gt; &lt;/span&gt;deviation:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.958
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There's a catch to this.
+Some will say it's a security nightmare.
+We're parsing Python code provided as a command lime argument.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This opens the application to exploit by an ESG.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Folks will announce, one should &lt;strong&gt;never&lt;/strong&gt; accept Python code from the command-line.
+See &lt;a class="reference internal" href="#eval-rant"&gt;Eval() Rant&lt;/a&gt;, above: an Evil Super Genius (ESG™) will surreptitiously inject malicious code into the command-line parameters.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;import subprocess; subprocess.run(&amp;quot;format c:&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Everyone knows this &lt;strong&gt;will&lt;/strong&gt; happen.
+Maybe it will be out of malice.
+Or, more likely, it will be simple incompetence.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="safe-eval"&gt;
+&lt;h2&gt;Safe eval()&lt;/h2&gt;
+&lt;div class="admonition warning"&gt;
+&lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p class="last"&gt;Control the Globals&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here's my little example of how I like to use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;code_obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;argument&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eval&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;code_obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;BaseException&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The dice expression &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt; does not compute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I like to break it into two steps.
+In this case, they're in a single &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; block.
+In some cases, it makes sense to use two, distinct &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; blocks.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;If there are syntax errors from the &lt;tt class="docutils literal"&gt;compile()&lt;/tt&gt; function, these are caught in one block. These errors are often innocent, and some good error displays can be useful.&lt;/li&gt;
+&lt;li&gt;If there are evaluation errors from the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function, these are caught in a separate block. Other than a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt;, exceptions here indicate potential bugs somewhere in the underlying class definitions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;namespace&lt;/tt&gt; parameter is the &lt;strong&gt;short&lt;/strong&gt; list of all the global variables and names available at eval time.
+For this application, it's the defined set of polyhedral dice.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D12&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D20&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;PCT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's all there is.
+Any name not in this mapping will raise a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt; exception and the end of processing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="in-case-it-matters"&gt;
+&lt;h2&gt;In Case It Matters&lt;/h2&gt;
+&lt;p&gt;Here's a glimpse at the &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; class.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__rmul__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;D4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D8&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The DSL itself is essentially a class and some global objects.
+The syntax is pure Python.&lt;/p&gt;
+&lt;p&gt;I'm a big fan of avoiding writing parsers.
+Using Python as the DSL makes it relatively easy to test the DSL.
+After all, simple doctests provide ready confirmation the DSL works as advertised.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Don't fear &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;. Control the globals.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="games"></category><category term="ttrpg"></category><category term="dsl"></category></entry><entry><title>Humble Bundle Offer</title><link href="https://slott56.github.io/2025-09-10-humble_bundle_offer.html" rel="alternate"></link><published>2025-09-10T16:02:00-04:00</published><updated>2025-09-10T16:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-10:/2025-09-10-humble_bundle_offer.html</id><content type="html">&lt;p&gt;This is delightful: Packt has this &lt;a class="reference external" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;Humble Bundle&lt;/a&gt; including
 &lt;em&gt;The Modern Python Cookbook&lt;/em&gt;.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;a class="reference external image-reference" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;
@@ -11438,212 +11596,4 @@ develop expertise in the wrong things. And they want automation where
 the benefits are minor. Automating the spreadsheet-to-PDF is wrong.
 Replacing the spreadsheet is right.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="navtools"></category><category term="navigation"></category><category term="object-oriented design"></category><category term="#python"></category></entry><entry><title>New to Python -- How to manage architecture choices</title><link href="https://slott56.github.io/2021_10_05-new_to_python_how_to_manage_architecture_choices.html" rel="alternate"></link><published>2021-10-05T10:00:00-04:00</published><updated>2021-10-05T10:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-10-05:/2021_10_05-new_to_python_how_to_manage_architecture_choices.html</id><summary type="html">&lt;p&gt;This is a problem folks new to Python have, and sometimes can't
-articulate that they have it.&lt;/p&gt;
-&lt;p&gt;They don't know which package is the &amp;quot;right&amp;quot; one to use. Tox vs. Nox.
-Click vs. Argparse vs. getopts? What's the &amp;quot;best&amp;quot; choice?&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;Response 1&lt;/strong&gt;. The whole Python ecosystem is chaos and the …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;This is a problem folks new to Python have, and sometimes can't
-articulate that they have it.&lt;/p&gt;
-&lt;p&gt;They don't know which package is the &amp;quot;right&amp;quot; one to use. Tox vs. Nox.
-Click vs. Argparse vs. getopts? What's the &amp;quot;best&amp;quot; choice?&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;Response 1&lt;/strong&gt;. The whole Python ecosystem is chaos and the language
-is just a &amp;quot;toy&amp;quot;. You don't have this many choices with (pick your
-language: e.g., Go or Rust or Scala).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Response 2&lt;/strong&gt;. We need a way to make architectural choices that the
-team understands and can use.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Response 1 is remarkably common. It's hard to argue against. If someone
-thinks innovation is chaos, they -- perhaps -- shouldn't be in
-technology to begin with. &lt;strong&gt;Innovation IS chaos&lt;/strong&gt;. That's the essential
-definition!&lt;/p&gt;
-&lt;p&gt;However, they may be a project owner (or the manager of an old-school
-waterfall-style project) or -- worse -- someone responsible for
-architecture, and complain about chaos. If so, they're not really cut
-out for managing rapid technological change, and they need to be
-bypassed.&lt;/p&gt;
-&lt;p&gt;Yes. Bypassed. Ignore them. Go to their meetings. Nod politely when they
-rant about chaos. Then build working software. Eventually, they'll grow
-to understand that a large ecosystem is NOT chaos. Rapid innovation is
-not chaos. They may come to understand that filters are required to
-reject some of the noise that comes from innovation.&lt;/p&gt;
-&lt;div class="section" id="response-2-how-do-we-make-choices"&gt;
-&lt;h2&gt;Response 2 -- How do we make choices?&lt;/h2&gt;
-&lt;p&gt;Glad you asked.&lt;/p&gt;
-&lt;p&gt;I have seen four common approaches.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;strong&gt;HiPPO&lt;/strong&gt;: The Highest-Paid Person's Opinion.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tech Oracle&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;HashTAG&lt;/strong&gt;: Hyperconnected And Socially Helpful Tech Advisory Group.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Peer Pressure&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Let's look at each of these.&lt;/p&gt;
-&lt;div class="section" id="hippo"&gt;
-&lt;h3&gt;HiPPO&lt;/h3&gt;
-&lt;p&gt;The Highest-Paid Person's Opinion isn't easy to dismiss. They're an
-executive or the product owner and they think their position in the
-company gives them a magical ability to somehow predict the technical
-shortcomings of a component or a framework or a language.&lt;/p&gt;
-&lt;p&gt;Once upon a time, when all components were licensed, someone negotiated
-contracts for support and training. The contracts (and negotiations)
-were a Big Sweaty Deal (BSD™). The HiPPO needed to justify all the time
-and money spent with the vendor. Okay. Sure. Then their opinion on
-continuing to invest in a losing proposition makes a lot of sense. Since
-they've already spent money with the vendor, they'd like us to continue
-to spend money with the vendor, even if the vendor's product isn't
-really very good.&lt;/p&gt;
-&lt;p&gt;Those times are past. Most everything is open source nowadays, and we
-pay for support reluctantly. We often have POC's to chose among
-alternatives. We can fire a vendor quickly. We don't invest heavily in
-inking a deal. (In the olden days, I got lots of plane rides and hotels
-from vendors. Getting to a deal was fun back then.)&lt;/p&gt;
-&lt;p&gt;The HiPPO needs to be informed that their opinion isn't helpful unless
-they can back it up with a POC. If they can't supply the POC, then the
-technical folks will keep arguing until they have competing POC's to
-help make a technical choice.&lt;/p&gt;
-&lt;p&gt;With good languages (like Python) and large ecosystems, POC's are cheap
-insurance to back up an opinion.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tech-oracle"&gt;
-&lt;h3&gt;Tech Oracle&lt;/h3&gt;
-&lt;p&gt;The Tech Oracle is expected to provide an opinion on everything. In many
-cases, this can work.&lt;/p&gt;
-&lt;p&gt;If the architecture is reasonably well known to the Oracle, then picking
-open-source projects to help build a solution isn't too difficult.
-Filters like &amp;quot;date of last update&amp;quot; and &amp;quot;volume of changes on GitHub&amp;quot; can
-be useful ways for the Oracle to locate better components and
-frameworks.&lt;/p&gt;
-&lt;p&gt;The Oracle should be producing POC's. This makes it hard for them also
-to produce production code. Not impossible, but hard. Their role isn't
-quite the same as other devs, since they have to provide up-front
-justification before too much real work is invested.&lt;/p&gt;
-&lt;p&gt;If the Oracle can't provide POC's, that's a bit of a problem. I've met
-architects who don't code. I couldn't find a way to trust them. Yes,
-they may know a lot. They're wonderfully articulate. Great slide decks.
-Good choices of lunch places where they try to influence you. But... I
-don't trust architects who don't code. Sorry. Personal weakness.&lt;/p&gt;
-&lt;p&gt;Architecture diagrams are an essential work product in addition to
-POC's. Usually, they're focused on a specific project, rather than
-providing general-purpose guidance. Generally, the overall ecosystem
-moves so quickly that the idea of a general-purpose, one-size-fits-all
-architecture isn't a good idea.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="hashtag"&gt;
-&lt;h3&gt;HashTAG&lt;/h3&gt;
-&lt;p&gt;The Hyperconnected And Socially Helpful Tech Advisory Group is often a
-really good thing. It's best when there are multiple teams who need to
-coordinate. It can be slow-ish, however, and time needs to be invested
-in this. TAG meetings deserve stories on the storyboard. TAG time needs
-to be prioritized above individual team needs.&lt;/p&gt;
-&lt;p&gt;A TAG needs to look at choices, and publish recommendations. That often
-means reviewing POC's. And that means folks have to take POC's to the
-TAG for them to weigh in on the difficult-to-quantify &amp;quot;better solution&amp;quot;.&lt;/p&gt;
-&lt;p&gt;These are interesting demos. The TAG should be looking at the same (or
-similar) functionality from competing POC's to render a final, binding
-judgement. There needs to be an agenda, strict time-lines for the
-presentation, and a final -- almost objective -- score-card to show the
-elements of the final decision.&lt;/p&gt;
-&lt;p&gt;Decisions are an essential work product. Published. Socialized.
-Well-known. Easy-to-find. A whole GitHub repo with decisions is
-essential.&lt;/p&gt;
-&lt;p&gt;Architecture diagrams are also an essential work product. These should
-provide general-purpose guidance. A team should be able to start with
-one of these, eliminate the parts they don't need, plug in their product
-name, and move forward quickly.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="peer-pressure"&gt;
-&lt;h3&gt;Peer Pressure&lt;/h3&gt;
-&lt;p&gt;This is the HashTAG reduced to a single team. Given a choice, the
-members of the team need to look at filters the way the Tech Oracle
-should. They need to weigh things like More stars in GitHub? Fewer bug
-reports? Documentation? And they need to capture the decision in
-something more than a conversation.&lt;/p&gt;
-&lt;p&gt;If it's hard to reach consensus, this means the team has to commit to
-dueling POC's. This needs to be time-boxed work. It's enough of a POC to
-show how competing libraries or frameworks *could* be used in the
-implementation. It's important not to run down the road to a candidate
-implementation. The POC should point the implementers in the right
-direction.&lt;/p&gt;
-&lt;p&gt;(A candidate implementation becomes a kind of &lt;em&gt;fait accompli&lt;/em&gt;: &amp;quot;I've
-already built it, we might as well use it. This dilutes consensus in
-favor of fast coding.)&lt;/p&gt;
-&lt;p&gt;Ideally, the POC shows what code could look like. It might include
-benchmarks. Test cases. Concrete things that can be compared -- line by
-line if necessary -- to show some measurable aspect of &amp;quot;better.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The decision and the diagram are part of the team's legacy. It has to
-live with the code. The number of decisions that get redebated after a
-few sprints needs to be minimal. It's never zero, but the team needs to
-put stories on the board for finalizing tech documentation with
-architectural decisions, reasons, and links to the POC that backs up the
-decision.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="wait-what-about-python"&gt;
-&lt;h2&gt;Wait. What about Python?&lt;/h2&gt;
-&lt;p&gt;This, clearly, has nothing to do with Python.&lt;/p&gt;
-&lt;p&gt;The vastness and rapidity of change in the Python ecosystem surfaces a
-need for some kind of formal decision-making process.&lt;/p&gt;
-&lt;p&gt;But Python isn't the cause of the problem. All open source software
-moves quickly. A popular language like Python has more potential sources
-of confusion than a more specialized language/framework like R.&lt;/p&gt;
-&lt;p&gt;Embrace the community nature of decision-making. Python is about
-community building and collective solutions to difficult problems.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="but-all-those-proofs-of-concept"&gt;
-&lt;h2&gt;But. All those Proofs of Concept...&lt;/h2&gt;
-&lt;p&gt;Yes, there will be POC's. In the case of a HashTAG or TechOracle, these
-need to be preserved and maintained and upgraded all the time. It's real
-work. It's a lot of real work.&lt;/p&gt;
-&lt;p&gt;Remember, the Python ecosystem moves rapidly. There's a lot of
-innovation, and it needs to be actively tracked. (Unlike the olden days
-where a C compiler update was an annual affair buried in an annual OS
-upgrade.)&lt;/p&gt;
-&lt;p&gt;This leads to defining projects via project templates.
-See &lt;a class="reference external" href="https://cookiecutter.readthedocs.io/en/1.7.2/"&gt;https://cookiecutter.readthedocs.io/en/1.7.2/&lt;/a&gt; for a good approach to
-this. You want to create cookie cutters that include enough skeleton
-code that you can run a complete 100% code coverage unit test.&lt;/p&gt;
-&lt;p&gt;You can then use &lt;a class="reference external" href="https://tox.readthedocs.io/en/latest/"&gt;tox&lt;/a&gt; (or
-&lt;a class="reference external" href="https://nox.thea.codes/en/stable/"&gt;nox&lt;/a&gt;) to define your component
-and framework versions as variant virtual environments. As components
-evolve, you update the versions and rerun your test suite. You can
-publish internal update trackers for project teams to make sure they're
-testing with the latest-and-greatest environments.&lt;/p&gt;
-&lt;p&gt;You'll also have to watch Python version changes. These can creep up on
-organizations. The PEP's and the schedules need to be central to folks
-using Python. See &lt;a class="reference external" href="https://endoflife.date/python"&gt;https://endoflife.date/python&lt;/a&gt; for a handy
-visualization.&lt;/p&gt;
-&lt;div class="section" id="the-billboard"&gt;
-&lt;h3&gt;The Billboard&lt;/h3&gt;
-&lt;p&gt;Enterprise developers all discover that there's no way to share code
-&lt;strong&gt;easily&lt;/strong&gt; within an enterprise. Everyone is isolated in their teams,
-and each team winds up reinventing some wheel or other. It's been an
-ongoing problem since IT organizations grew beyond a single team.&lt;/p&gt;
-&lt;p&gt;Python is no different. Teams solving related problems don't talk
-enough. If you have lots of meetings to share things, no real work gets
-done.&lt;/p&gt;
-&lt;p&gt;Python uses a Package Index to track popular useful packages. Visit
-&lt;a class="reference external" href="https://pypi.org"&gt;https://pypi.org&lt;/a&gt; if you haven't seen it yet. You have two paths forward
-in an enterprise.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Your own PyPI. This is easy and fun. You can have the internal PyPI
-shadow the global PyPI.&lt;/li&gt;
-&lt;li&gt;Use JFrog Artifactory. &lt;a class="reference external" href="https://jfrog.com/artifact-management/"&gt;https://jfrog.com/artifact-management/&lt;/a&gt; This
-involves spending money to track in-house artifacts as well as global
-PyPI artifacts.&lt;/li&gt;
-&lt;li&gt;A GitHub Billboard organization. This is an organization that serves
-as a place to post links to other repos. It needs a little bit of
-curation. As an implementation, the organization's repositories are a
-lot of small project advertisements. The degenerate case is a README.md.
-A better case is the POC repo showing how to use the real project. In
-the middle is a cookie cutter. This is your in-house advertising. It's
-relatively easy to search because you're looking at one organization's
-list of repositories. Each is a pithy, focused summary of another
-project. Choose names that reflect why someone wants to look more deeply
-at the project.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The point here is to embrace the chaos that stems from innovation and
-make it visible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="architecture"></category><category term="community"></category><category term="management"></category></entry></feed>
+</content><category term="Technologies"></category><category term="navtools"></category><category term="navigation"></category><category term="object-oriented design"></category><category term="#python"></category></entry></feed>
