@@ -1,5 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-09-28T09:46:00-04:00</updated><entry><title>The eval() Conundrum</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-01T09:46:00-04:00</updated><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Working with Liskov Substitution can make it difficult to navigate through an IDE.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;ABC's are only &lt;strong&gt;required&lt;/strong&gt; as a way to do earlier validation that a class is complete.&lt;/p&gt;
+&lt;p&gt;Otherwise, they're not required.&lt;/p&gt;
+&lt;p&gt;They can be helpful when planning dependency injection.
+The SOLID Dependency Inversion Principle advises us to depend on abstractions, not concrete, specialized subclasses.&lt;/p&gt;
+&lt;p&gt;In Python, we don't &lt;strong&gt;need&lt;/strong&gt; an abstraction at the base of a class hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="purely-oo-design"&gt;
+&lt;h2&gt;Purely OO Design?&lt;/h2&gt;
+&lt;p&gt;First, I want to talk a little bit about OO design and &amp;quot;purely&amp;quot; OO languages.&lt;/p&gt;
+&lt;p&gt;Unlike Java or C++, Python is purely object-oriented. Not that it actually matters.&lt;/p&gt;
+&lt;p&gt;A functional style of Python depends on functions which are -- essentially -- callable objects.
+They have one method, &lt;tt class="docutils literal"&gt;__call__()&lt;/tt&gt;.
+They have attributes.
+Because they descend from the &lt;tt class="docutils literal"&gt;object&lt;/tt&gt; class, you can add attributes to a function.
+They're instances of a type, &lt;tt class="docutils literal"&gt;function&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Java and C++ have &amp;quot;primitive&amp;quot; types which aren't objects; they're not &amp;quot;purely&amp;quot; OO.
+Python doesn't have this quirk.
+Python is more purely object-oriented than Java.
+Which suggests any OO purity test doesn't really matter.&lt;/p&gt;
+&lt;p&gt;OO Design Principles and Functional Design Principles can all be used with Python.
+Indeed, some of the old COBOL design patterns can be used, too.
+(Not all, of course. COBOL had GOTO's, an ALTER statement, and a very weird PERFORM THRU that make it right weird to map to Python.)&lt;/p&gt;
+&lt;p&gt;OO Purity? Doesn't matter.&lt;/p&gt;
+&lt;p&gt;Let's move on to look at Python's ABC's.
+After that, we'll look at the SOLID principles in general.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="to-abc-or-not-to-abc"&gt;
+&lt;h2&gt;To ABC or not to ABC?&lt;/h2&gt;
+&lt;p&gt;C++ and Java (and many other languages) are built around separately-built binaries that are linked together.
+Some linkage can be done at compile time, some can be done at run time by the OS loader.
+Since they're separately-built binaries, everyone &lt;strong&gt;must&lt;/strong&gt; agree on the binary interface.
+Change cannot be tolerated.&lt;/p&gt;
+&lt;p&gt;I'll emphasize that.&lt;/p&gt;
+&lt;div class="admonition admonition-emphasis"&gt;
+&lt;p class="first admonition-title"&gt;Emphasis&lt;/p&gt;
+&lt;p class="last"&gt;C++ and Java emphasize a style of design where interface changes cannot be tolerated.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Pragmatically, we now have computers that are so fast that recompiling a very large Java or C++ app is no longer a nightmare of waiting for hours.
+When these languages were designed, a development team might do one nightly build of everything.
+During the day, you were limited to compiling the classes you were working on.
+Nothing more.
+Getting the interfaces to be stable was an important risk reduction technique.&lt;/p&gt;
+&lt;p&gt;Abstract Base Classes were a way to minimize recompilation.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;Abstract vs. Concrete&lt;/p&gt;
+&lt;p class="last"&gt;There are abstract base classes and concrete base classes.
+The &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt; module introduces a whole bunch of stuff to support abstraction.
+Ordinary &lt;tt class="docutils literal"&gt;class Special(Die):&lt;/tt&gt; inheritance from a concrete base class
+involves no abstraction, and no &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Python eschews strict class hierarhcies, and replaces this with &amp;quot;Duck Typing&amp;quot;.
+All an object requires is to have the method defined.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html"&gt;The eval() Conundrum and Python-as-DSL&lt;/a&gt;.
+Way at the end is this snippet of code.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__rmul__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;roll&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;D4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D8&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This means an object like &lt;tt class="docutils literal"&gt;D4&lt;/tt&gt; can be used with the &lt;tt class="docutils literal"&gt;*&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operators.
+In very limited ways.&lt;/p&gt;
+&lt;p&gt;The expression &lt;tt class="docutils literal"&gt;6 * D4&lt;/tt&gt; is legal, where &lt;tt class="docutils literal"&gt;D4 * 6&lt;/tt&gt; is not.
+The way Duck Type works, there's a search for a method to implement &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Consider &lt;tt class="docutils literal"&gt;6 * D4&lt;/tt&gt;.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Does &lt;tt class="docutils literal"&gt;6&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__mul__()&lt;/tt&gt;?  It does.
+However, when &lt;tt class="docutils literal"&gt;int.__mul__()&lt;/tt&gt; is evalated with a &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object, the result is &lt;tt class="docutils literal"&gt;NotImplemented&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Does &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__rmul__()&lt;/tt&gt;?  It does.
+When &lt;tt class="docutils literal"&gt;Die.__rmul__()&lt;/tt&gt; is evaluated with an &lt;tt class="docutils literal"&gt;int&lt;/tt&gt; object, the result is a new &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;(There's actually a first step, omitted for brevity. See the sidebar.)&lt;/p&gt;
+&lt;p&gt;Here's the bottom line.&lt;/p&gt;
+&lt;blockquote&gt;
+The Duck Typing two-step search for matching method names doesn't respect the class hierarchy.&lt;/blockquote&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;The other step?&lt;/p&gt;
+&lt;p&gt;There's an initial check which &lt;strong&gt;does&lt;/strong&gt; in a limited way, reflect the class hierachy.&lt;/p&gt;
+&lt;p&gt;Is &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; a sublass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;?
+If &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; was a subclass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;, then &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; must be considered first to permit a subclass to override a superclass.
+This reverses the &lt;strong&gt;order&lt;/strong&gt; of the other two steps.&lt;/p&gt;
+&lt;p class="last"&gt;A class hierachy can shift the order of the Duck-Typing Two-Step.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;A &lt;tt class="docutils literal"&gt;Protocol&lt;/tt&gt; formalizes the Duck-Typing Two-Step in a way that tools can be sure the whole&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;When using only Python, most developers don't need to care about separately-compiled binaries.
+(When writing Rust or C extensions, of course, separately-compiled binaries are a big deal.)&lt;/li&gt;
+&lt;li&gt;Duck typing eliminates a &lt;strong&gt;requirement&lt;/strong&gt; for ABCs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;div class="section" id="is-an-abstract-base-class-still-helpful"&gt;
+&lt;h3&gt;Is an Abstract Base Class &lt;strong&gt;still&lt;/strong&gt; helpful?&lt;/h3&gt;
+&lt;p&gt;Yes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when"&gt;
+&lt;h3&gt;When?&lt;/h3&gt;
+&lt;p&gt;When you need it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when-is-it-necessary"&gt;
+&lt;h3&gt;When is it necessary?&lt;/h3&gt;
+&lt;p&gt;The use case for an ABC in Python is to push the Duck-Typing Two-Step so it happens earlier.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ABC's permit type hint checking to be sure the code is likely to work.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;At run time, ABC's prevent instantiating an incomplete object. Code may crash earlier.&lt;/dt&gt;
+&lt;dd&gt;Most important: the exception is much more clear when a method is missing.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ABC's promote early detection of design problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when-is-it-superflous"&gt;
+&lt;h3&gt;When is it superflous?&lt;/h3&gt;
+&lt;p&gt;When your base class is concrete, don't waste time on an ABC.
+Just use a concrete base class and extend it as needed.&lt;/p&gt;
+&lt;p&gt;That's enough on ABC's for now. Let's move on to the SOLID principles.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="abc"></category></entry><entry><title>The eval() Conundrum and Python-as-DSL</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
 &lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
 &lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
@@ -33,7 +208,7 @@ Indeed, bad admin mistakes are a considerably larger problem than some mysteriou
 &lt;/div&gt;
 &lt;div class="section" id="dsl-rant"&gt;
 &lt;h2&gt;DSL Rant&lt;/h2&gt;
-&lt;p&gt;I'm not a big fan of inventing whole new DSL's.&lt;/p&gt;
+&lt;p&gt;I'm not a big fan of inventing whole new Domain-Specific Languages (DSL's).&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Them: &amp;quot;I'll solve this problem by inventing a DSL.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Me: &amp;quot;Now you have two problems.&amp;quot;&lt;/p&gt;
@@ -11383,217 +11558,4 @@ Another Repetitive Rant On Whitespace (YARROW).&lt;/p&gt;
 &lt;p&gt;I used to whine about the lack of case/switch statements until a) people
 showed me how to work around it and b) it got fixed in 3.10.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="PEP"></category></entry><entry><title>Legacy Software is a Sticky Mess</title><link href="https://slott56.github.io/2021_10_12-legacy_software_is_a_sticky_mess.html" rel="alternate"></link><published>2021-10-12T08:00:00-04:00</published><updated>2021-10-12T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-10-12:/2021_10_12-legacy_software_is_a_sticky_mess.html</id><summary type="html">&lt;p&gt;I'll get to legacy software. First, however, some backstory on
-observability.&lt;/p&gt;
-&lt;p&gt;Sailors will sometimes create &amp;quot;Float Plans&amp;quot;. Like aircraft flight plans,
-they have an itinerary to make it slightly easier to find us when
-something goes wrong. Unlike airspace, which is tightly controlled by
-the FAA, the seas are more-or-less …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'll get to legacy software. First, however, some backstory on
-observability.&lt;/p&gt;
-&lt;p&gt;Sailors will sometimes create &amp;quot;Float Plans&amp;quot;. Like aircraft flight plans,
-they have an itinerary to make it slightly easier to find us when
-something goes wrong. Unlike airspace, which is tightly controlled by
-the FAA, the seas are more-or-less chaos.&lt;/p&gt;
-&lt;p&gt;The practice then, is to create float plan and give it to a trusted
-shore-side party, go out sailing, check in periodically, and cancel the
-whole thing when you're done sailing. If you miss a check-in, they can
-call an appropriate Search-And-Rescue agency like the US Coast Guard or
-BASRA or local cops with jurisdiction over a lake or river.&lt;/p&gt;
-&lt;p&gt;How much detail should be in this plan? For a long or complex trip, it
-doesn't seem sensible to say &amp;quot;Going to the Bahamas&amp;quot; as your float plan.
-That's a little thin on details. The bare minimum is to provide an
-Estimated Time of Arrival (ETA). But. When you summarize 36 hours of
-sailing to a single ETA, you invite observability problems. It's a
-sailboat, and you could be becalmed. Things are fine, you're just going
-to be late.&lt;/p&gt;
-&lt;p&gt;Late, of course is relative. Simply late means you missed your ETA. If
-you're becalmed to the point where you're running low on supplies, then,
-this can become a bit of a problem.&lt;/p&gt;
-&lt;p&gt;The general policy followed by SAR is to allow several hours past the
-ETA before activating SAR resources. (The US Coast announces overdue
-mariners on the VHF radio so others can keep a lookout for them and
-render assistance.)&lt;/p&gt;
-&lt;p&gt;If you have a one-checkin-plan that summarizes 36 hours of sailing with
-a single ETA, you're going to be waiting for many hours after the ETA
-for help. So. Total systems failure after the first hour means 35 hours
-of drifting before someone will even alert SAR folks. And then the SAR
-folks will wait several hours after the ETA in case you're only slow.&lt;/p&gt;
-&lt;p&gt;What seems better is to have a sequence of waypoints with ETA's at each
-waypoint. That way you have incremental evidence of success or failure,
-and you're not waiting a LOOOONG time for your one-and-only ETA to pass
-without a check-in.&lt;/p&gt;
-&lt;p&gt;This leads us to software. And legacy software.&lt;/p&gt;
-&lt;div class="section" id="creating-the-plan"&gt;
-&lt;h2&gt;Creating the Plan&lt;/h2&gt;
-&lt;p&gt;To create a sensible plan, you have waypoints as Latitude, Longitude
-pairs. These are angles on a sphere, not distances on a plane, so
-computing the length of a leg isn't a simple hypotenuse.&lt;/p&gt;
-&lt;p&gt;It is a lot like a hypotenuse. For short distances, we can assume the
-earth is more-or-less flat. We can then use a relatively simple
-conversion (cosine of the latitude) to compress the longitudes toward
-the poles. We can convert lat and lon to distances and use a hypotenuse
-and get a really close answer.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def range_bearing(p1: LatLon, p2: LatLon, R: float = NM) -&amp;gt; tuple[float, Angle]:
-    &amp;quot;&amp;quot;&amp;quot;Rhumb-line course from :py:data:`p1` to :py:data:`p2`.
-
-    See :ref:`calc.range_bearing`.
-    This is the equirectangular approximation.
-    Without even the minimal corrections for non-spherical Earth.
-
-    :param p1: a :py:class:`LatLon` starting point
-    :param p2: a :py:class:`LatLon` ending point
-    :param R: radius of the earth in appropriate units;
-        default is nautical miles.
-        Values include :py:data:`KM` for kilometers,
-        :py:data:`MI` for statute miles and :py:data:`NM` for nautical miles.
-    :returns: 2-tuple of range and bearing from p1 to p2.
-
-    &amp;quot;&amp;quot;&amp;quot;
-    d_NS = R * (p2.lat.radians - p1.lat.radians)
-    d_EW = (
-        R
-        * math.cos((p2.lat.radians + p1.lat.radians) / 2)
-        * (p2.lon.radians - p1.lon.radians)
-    )
-    d = math.hypot(d_NS, d_EW)
-    tc = math.atan2(d_EW, d_NS) % (2 * math.pi)
-    theta = Angle(tc)
-    return d, theta
-&lt;/pre&gt;
-&lt;p&gt;This means we can't trivially write down a list of waypoints. We need to
-do some fancy math to compute distances.&lt;/p&gt;
-&lt;p&gt;For years and years. (Since our first &amp;quot;big&amp;quot; trip in 2007.) I've used
-spreadsheets in various forms to work out the waypoints, distances,
-estimated time enroute (ETE) and ETA.&lt;/p&gt;
-&lt;p&gt;The math isn't too far beyond what a spreadsheet can do. But. There's a
-complication.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="complications"&gt;
-&lt;h2&gt;Complications&lt;/h2&gt;
-&lt;p&gt;File formats are a complication.&lt;/p&gt;
-&lt;p&gt;There are KML files, GPX files, and CSV files that are used by various
-pieces of software. This is only the tip of the iceberg, because some of
-Navionics devices have an even more interesting USR file that contains
-everything in your chartplotter. It's cool. But complicated.&lt;/p&gt;
-&lt;p&gt;The file formats are -- clearly -- way outside the box for a
-spreadsheet.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="python-to-the-rescue"&gt;
-&lt;h2&gt;Python to the rescue.&lt;/h2&gt;
-&lt;p&gt;Since I'm a Python hack (and have been since well before 2007) I've got
-all kinds of file conversion tools.
-See &lt;a class="reference external" href="https://github.com/slott56/navtools"&gt;https://github.com/slott56/navtools&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;But.&lt;/p&gt;
-&lt;p&gt;And here's where legacy enters the picture. (Music Cue.)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;Fear that rattles in men's ears&lt;/div&gt;
-&lt;div class="line"&gt;And rears its hideous head&lt;/div&gt;
-&lt;div class="line"&gt;Dread ... Death ... in the wind ...&lt;/div&gt;
-&lt;/div&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Spreadsheets.&lt;/p&gt;
-&lt;p&gt;Up until yesterday, the final planning tool was a spreadsheet with
-waypoints and times. Mac OS X Numbers is GREAT for this. I can pile in
-boat information, crew information, safety information, the itinerary,
-and SAR contact details in one spreadsheet, save it as a PDF, and email
-it to my shore-side contacts.&lt;/p&gt;
-&lt;p&gt;The BEST part of this was tinkering with the departure time while we
-waited for weather. We could plug in the day we're leaving, get revised
-ETA's for the waypoints, push the document, and take off.&lt;/p&gt;
-&lt;p&gt;(We use an old &lt;a class="reference external" href="https://www.findmespot.com/en-us/"&gt;Spot Navigator&lt;/a&gt; to
-provide notifications at midnight to show progress. We're going to
-upgrade to a SpotX so we can send messages a little more flexibly.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-legacy-spreadsheet"&gt;
-&lt;h2&gt;The Legacy Spreadsheet&lt;/h2&gt;
-&lt;p&gt;The legacy spreadsheet has a lot of good UX features. It's really
-adequate for some user stories. Save as PDF rocks.&lt;/p&gt;
-&lt;p&gt;However.&lt;/p&gt;
-&lt;p&gt;For the more advanced route planning, it isn't ideal. Specifically,
-spreadsheets can be weak on multiple &amp;quot;what-if&amp;quot; scenarios.&lt;/p&gt;
-&lt;p&gt;The genesis of spreadsheets (I'm old, I was there, I remember VisiCalc)
-was &amp;quot;what-if&amp;quot; analysis. Change an assumption and follow the consequences
-through the lattice of dependent cells. These are hard to save. You can
-&amp;quot;Save As&amp;quot; to make a copy of the spreadsheet. You can save pages within a
-single spreadsheet. These are terrible because you can't really make a
-more fundamental change very easily. You have to make the same change to
-all the copies in your pile of &amp;quot;what-if&amp;quot; alternatives.&lt;/p&gt;
-&lt;p&gt;To be very specific. I often need to plan for different boat speeds. We
-have a sailboat; wind and water matter a lot. Slow is about 5 knots.
-Fast is about 6 knots. Our theoretical top speed is 8 knots, but we've
-rarely seen that without a river flowing along with us. Sailing at that
-speed means a lot of sail wrestling, something we'd rather not do.&lt;/p&gt;
-&lt;p&gt;Fine. That's 3 scenarios, one for each speed: 5, 5.5, and 6. No big
-deal.&lt;/p&gt;
-&lt;p&gt;Until we add a waypoint. Or move a waypoint. Now we have to reset all
-three spreadsheets with a different itinerary. Since it's a different
-number of rows, we have the usual copy-and-paste problems in
-spreadsheets.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-s-better"&gt;
-&lt;h2&gt;What's Better?&lt;/h2&gt;
-&lt;p&gt;Jupyter notebooks crush the life out of spreadsheets.&lt;/p&gt;
-&lt;p&gt;Here's the revised workflow.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Create the route. Use tools like OpenCPN so the route can be exported
-as a GPX or CSV file.&lt;/li&gt;
-&lt;li&gt;Use a notebook to parse the route file, creating an internal Route
-object.&lt;/li&gt;
-&lt;li&gt;Manipulate the Route object, providing different ETA's and speed
-assumptions. These assumptions lead to multiple cells in the
-notebook. They can all share details so that one fundamental change
-leads to lots and lots of recomputation of itineraries. We can
-include all kinds of headings and markdown notes and thoughts and
-considerations.&lt;/li&gt;
-&lt;li&gt;Finalize a route that's part of the plan. Still working in the
-confines of a longish notebook.&lt;/li&gt;
-&lt;li&gt;Emit a Markdown file with Vessel Identification, Itinerary, Notes,
-and SAR Contact sections. Run &lt;a class="reference external" href="https://pandoc.org"&gt;pandoc&lt;/a&gt; to make
-a PDF. (This is the foundation for the nbconvert utility.)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This workflow creates two categories results:&lt;/p&gt;
-&lt;p&gt;One result is a Notebook with all of the planning details and thoughts
-and contingencies and considerations.&lt;/p&gt;
-&lt;p&gt;The other result(s) are float plan documents as PDF's that can be shared
-widely.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="why-did-this-take-so-long"&gt;
-&lt;h2&gt;Why did this take so long?&lt;/h2&gt;
-&lt;p&gt;I used spreadsheets from 2007 to 2021. Why switch now? Some reasons.&lt;/p&gt;
-&lt;p&gt;Legacy solutions are sticky. This has a lot of consequences. I built up
-&amp;quot;expertise&amp;quot; in making the legacy work. I had become an &amp;quot;expert&amp;quot; in
-working around the hinky little problems with multiple what-if scenarios
-and propagating changes from the route into the what-ifs. For example, I
-limited the number of what-if scenarios I would consider because more
-than two got confusing.&lt;/p&gt;
-&lt;p&gt;New solutions are sometimes invisible. I only learned about Jupyter
-Notebooks about three years ago. I did not realize how powerful they
-were. I've since rearranged my thinking.&lt;/p&gt;
-&lt;p&gt;I've known about RST and Markdown and Pandoc for years. But. Getting
-from spreadsheet-like flexibility to a Markdown document was never a
-clear step. Without something like Jupyter Lab.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="pulling-it-all-together"&gt;
-&lt;h2&gt;Pulling it all together&lt;/h2&gt;
-&lt;p&gt;Does it require some kind of catalyst to force change?&lt;/p&gt;
-&lt;p&gt;Is it a slow accretion of evidence that the legacy software isn't
-working?&lt;/p&gt;
-&lt;p&gt;I'm pretty sure I had a long, slow Aha! moment as I realized that the
-Numbers spreadsheet was a large pain in the ass and a notebook would be
-simpler. It took a few days of fiddling to become really, really sure
-Numbers was not working out.&lt;/p&gt;
-&lt;p&gt;I think one of the biggest issues was a third &amp;quot;what-if&amp;quot; scenario. It was
-helpful to visualize arrival times. But. It was a huge pain in the neck
-to fiddle with the spreadsheets to get the right waypoints in there and
-summarize the alternatives.&lt;/p&gt;
-&lt;p&gt;I think the lesson here is to avoid automating anything unless you
-actually are the user.&lt;/p&gt;
-&lt;p&gt;If an organization wants software, a developer needs to do the job
-manually to *really* understand what the pain points are. Users
-develop expertise in the wrong things. And they want automation where
-the benefits are minor. Automating the spreadsheet-to-PDF is wrong.
-Replacing the spreadsheet is right.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="navtools"></category><category term="navigation"></category><category term="object-oriented design"></category><category term="#python"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="PEP"></category></entry></feed>

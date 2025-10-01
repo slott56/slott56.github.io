@@ -1,5 +1,5 @@
-The eval() Conundrum
-############################
+The eval() Conundrum and Python-as-DSL
+#######################################
 
 :date: 2025-09-28 09:46
 :tags: python,games,ttrpg,dsl
@@ -33,7 +33,7 @@ Indeed, bad admin mistakes are a considerably larger problem than some mysteriou
 DSL Rant
 --------
 
-I'm not a big fan of inventing whole new DSL's.
+I'm not a big fan of inventing whole new Domain-Specific Languages (DSL's).
 
 
     Them: "I'll solve this problem by inventing a DSL."

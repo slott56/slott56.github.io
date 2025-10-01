@@ -1,5 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-09-28T09:46:00-04:00</updated><entry><title>The eval() Conundrum</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Python</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-01T09:46:00-04:00</updated><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Working with Liskov Substitution can make it difficult to navigate through an IDE.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;ABC's are only &lt;strong&gt;required&lt;/strong&gt; as a way to do earlier validation that a class is complete.&lt;/p&gt;
+&lt;p&gt;Otherwise, they're not required.&lt;/p&gt;
+&lt;p&gt;They can be helpful when planning dependency injection.
+The SOLID Dependency Inversion Principle advises us to depend on abstractions, not concrete, specialized subclasses.&lt;/p&gt;
+&lt;p&gt;In Python, we don't &lt;strong&gt;need&lt;/strong&gt; an abstraction at the base of a class hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="purely-oo-design"&gt;
+&lt;h2&gt;Purely OO Design?&lt;/h2&gt;
+&lt;p&gt;First, I want to talk a little bit about OO design and &amp;quot;purely&amp;quot; OO languages.&lt;/p&gt;
+&lt;p&gt;Unlike Java or C++, Python is purely object-oriented. Not that it actually matters.&lt;/p&gt;
+&lt;p&gt;A functional style of Python depends on functions which are -- essentially -- callable objects.
+They have one method, &lt;tt class="docutils literal"&gt;__call__()&lt;/tt&gt;.
+They have attributes.
+Because they descend from the &lt;tt class="docutils literal"&gt;object&lt;/tt&gt; class, you can add attributes to a function.
+They're instances of a type, &lt;tt class="docutils literal"&gt;function&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Java and C++ have &amp;quot;primitive&amp;quot; types which aren't objects; they're not &amp;quot;purely&amp;quot; OO.
+Python doesn't have this quirk.
+Python is more purely object-oriented than Java.
+Which suggests any OO purity test doesn't really matter.&lt;/p&gt;
+&lt;p&gt;OO Design Principles and Functional Design Principles can all be used with Python.
+Indeed, some of the old COBOL design patterns can be used, too.
+(Not all, of course. COBOL had GOTO's, an ALTER statement, and a very weird PERFORM THRU that make it right weird to map to Python.)&lt;/p&gt;
+&lt;p&gt;OO Purity? Doesn't matter.&lt;/p&gt;
+&lt;p&gt;Let's move on to look at Python's ABC's.
+After that, we'll look at the SOLID principles in general.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="to-abc-or-not-to-abc"&gt;
+&lt;h2&gt;To ABC or not to ABC?&lt;/h2&gt;
+&lt;p&gt;C++ and Java (and many other languages) are built around separately-built binaries that are linked together.
+Some linkage can be done at compile time, some can be done at run time by the OS loader.
+Since they're separately-built binaries, everyone &lt;strong&gt;must&lt;/strong&gt; agree on the binary interface.
+Change cannot be tolerated.&lt;/p&gt;
+&lt;p&gt;I'll emphasize that.&lt;/p&gt;
+&lt;div class="admonition admonition-emphasis"&gt;
+&lt;p class="first admonition-title"&gt;Emphasis&lt;/p&gt;
+&lt;p class="last"&gt;C++ and Java emphasize a style of design where interface changes cannot be tolerated.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Pragmatically, we now have computers that are so fast that recompiling a very large Java or C++ app is no longer a nightmare of waiting for hours.
+When these languages were designed, a development team might do one nightly build of everything.
+During the day, you were limited to compiling the classes you were working on.
+Nothing more.
+Getting the interfaces to be stable was an important risk reduction technique.&lt;/p&gt;
+&lt;p&gt;Abstract Base Classes were a way to minimize recompilation.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;Abstract vs. Concrete&lt;/p&gt;
+&lt;p class="last"&gt;There are abstract base classes and concrete base classes.
+The &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt; module introduces a whole bunch of stuff to support abstraction.
+Ordinary &lt;tt class="docutils literal"&gt;class Special(Die):&lt;/tt&gt; inheritance from a concrete base class
+involves no abstraction, and no &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Python eschews strict class hierarhcies, and replaces this with &amp;quot;Duck Typing&amp;quot;.
+All an object requires is to have the method defined.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html"&gt;The eval() Conundrum and Python-as-DSL&lt;/a&gt;.
+Way at the end is this snippet of code.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__rmul__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;roll&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;D4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D8&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This means an object like &lt;tt class="docutils literal"&gt;D4&lt;/tt&gt; can be used with the &lt;tt class="docutils literal"&gt;*&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operators.
+In very limited ways.&lt;/p&gt;
+&lt;p&gt;The expression &lt;tt class="docutils literal"&gt;6 * D4&lt;/tt&gt; is legal, where &lt;tt class="docutils literal"&gt;D4 * 6&lt;/tt&gt; is not.
+The way Duck Type works, there's a search for a method to implement &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Consider &lt;tt class="docutils literal"&gt;6 * D4&lt;/tt&gt;.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Does &lt;tt class="docutils literal"&gt;6&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__mul__()&lt;/tt&gt;?  It does.
+However, when &lt;tt class="docutils literal"&gt;int.__mul__()&lt;/tt&gt; is evalated with a &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object, the result is &lt;tt class="docutils literal"&gt;NotImplemented&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Does &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__rmul__()&lt;/tt&gt;?  It does.
+When &lt;tt class="docutils literal"&gt;Die.__rmul__()&lt;/tt&gt; is evaluated with an &lt;tt class="docutils literal"&gt;int&lt;/tt&gt; object, the result is a new &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;(There's actually a first step, omitted for brevity. See the sidebar.)&lt;/p&gt;
+&lt;p&gt;Here's the bottom line.&lt;/p&gt;
+&lt;blockquote&gt;
+The Duck Typing two-step search for matching method names doesn't respect the class hierarchy.&lt;/blockquote&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first sidebar-title"&gt;The other step?&lt;/p&gt;
+&lt;p&gt;There's an initial check which &lt;strong&gt;does&lt;/strong&gt; in a limited way, reflect the class hierachy.&lt;/p&gt;
+&lt;p&gt;Is &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; a sublass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;?
+If &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; was a subclass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;, then &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; must be considered first to permit a subclass to override a superclass.
+This reverses the &lt;strong&gt;order&lt;/strong&gt; of the other two steps.&lt;/p&gt;
+&lt;p class="last"&gt;A class hierachy can shift the order of the Duck-Typing Two-Step.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;A &lt;tt class="docutils literal"&gt;Protocol&lt;/tt&gt; formalizes the Duck-Typing Two-Step in a way that tools can be sure the whole&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;When using only Python, most developers don't need to care about separately-compiled binaries.
+(When writing Rust or C extensions, of course, separately-compiled binaries are a big deal.)&lt;/li&gt;
+&lt;li&gt;Duck typing eliminates a &lt;strong&gt;requirement&lt;/strong&gt; for ABCs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;div class="section" id="is-an-abstract-base-class-still-helpful"&gt;
+&lt;h3&gt;Is an Abstract Base Class &lt;strong&gt;still&lt;/strong&gt; helpful?&lt;/h3&gt;
+&lt;p&gt;Yes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when"&gt;
+&lt;h3&gt;When?&lt;/h3&gt;
+&lt;p&gt;When you need it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when-is-it-necessary"&gt;
+&lt;h3&gt;When is it necessary?&lt;/h3&gt;
+&lt;p&gt;The use case for an ABC in Python is to push the Duck-Typing Two-Step so it happens earlier.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ABC's permit type hint checking to be sure the code is likely to work.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;At run time, ABC's prevent instantiating an incomplete object. Code may crash earlier.&lt;/dt&gt;
+&lt;dd&gt;Most important: the exception is much more clear when a method is missing.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ABC's promote early detection of design problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="when-is-it-superflous"&gt;
+&lt;h3&gt;When is it superflous?&lt;/h3&gt;
+&lt;p&gt;When your base class is concrete, don't waste time on an ABC.
+Just use a concrete base class and extend it as needed.&lt;/p&gt;
+&lt;p&gt;That's enough on ABC's for now. Let's move on to the SOLID principles.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="abc"></category></entry><entry><title>The eval() Conundrum and Python-as-DSL</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
 &lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
 &lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
@@ -33,7 +208,7 @@ Indeed, bad admin mistakes are a considerably larger problem than some mysteriou
 &lt;/div&gt;
 &lt;div class="section" id="dsl-rant"&gt;
 &lt;h2&gt;DSL Rant&lt;/h2&gt;
-&lt;p&gt;I'm not a big fan of inventing whole new DSL's.&lt;/p&gt;
+&lt;p&gt;I'm not a big fan of inventing whole new Domain-Specific Languages (DSL's).&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Them: &amp;quot;I'll solve this problem by inventing a DSL.&amp;quot;&lt;/p&gt;
 &lt;p&gt;Me: &amp;quot;Now you have two problems.&amp;quot;&lt;/p&gt;
