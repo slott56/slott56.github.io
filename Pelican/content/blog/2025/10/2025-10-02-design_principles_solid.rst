@@ -5,7 +5,7 @@ OO Design Principles: SOLID
 :tags: python,oo,oodesign,design principles,solid
 :slug: 2025-10-02-oo_design_principles_solid
 :category: Python
-:status: draft
+:status: published
 
 ..  background:
 

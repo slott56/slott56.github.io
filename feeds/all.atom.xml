@@ -1,5 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-01T09:46:00-04:00</updated><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-02T09:46:00-04:00</updated><entry><title>OO Design Principles: SOLID</title><link href="https://slott56.github.io/2025-10-02-oo_design_principles_solid.html" rel="alternate"></link><published>2025-10-02T09:46:00-04:00</published><updated>2025-10-02T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-02:/2025-10-02-oo_design_principles_solid.html</id><summary type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Working with Liskov Substitution can make it difficult to navigate through an IDE.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Apply the design principles with a kind of priority mind-set.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Interface Segregation. Always.&lt;/li&gt;
+&lt;li&gt;Liskov Substitution where you actually have base classes or protocols.&lt;/li&gt;
+&lt;li&gt;Open/Closed. Always.&lt;/li&gt;
+&lt;li&gt;Dependency &amp;quot;Inversion&amp;quot; (I prefer &amp;quot;Injection&amp;quot;). Think of this as an optimization.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Single Responsibility. Here is where various GRASP patterns apply at this point here to help implement a &amp;quot;single&amp;quot; responsibility.&lt;/dt&gt;
+&lt;dd&gt;Remember, GRASP are implementation patterns not quite the same as design principles.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="solid-principles"&gt;
+&lt;h2&gt;SOLID Principles&lt;/h2&gt;
+&lt;p&gt;I find the SOLID acronym is confusing. Mostly because the principles are presented in a funny order.
+While the &amp;quot;Single Responsibility&amp;quot; principle is first, and seems most important, it's really more of a summary.&lt;/p&gt;
+&lt;div class="section" id="isp"&gt;
+&lt;h3&gt;ISP&lt;/h3&gt;
+&lt;p&gt;The &amp;quot;Interface Segregration&amp;quot; principle is -- perhaps -- the most important.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;Interface Segregration Principle&lt;/p&gt;
+&lt;p class="last"&gt;ISP == Cut the fluff seen by collabators.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In a C++ or Java context, the more that's exposed to a collaborator, the wider the ripples from a change.&lt;/p&gt;
+&lt;p&gt;In a Python context, a too-rich interface is just annoying to understand, maintain, extend, and test.&lt;/p&gt;
+&lt;p&gt;One metric for paring down an interface is the number of mock objects needed for an isolated unit test.&lt;/p&gt;
+&lt;p&gt;(Some Facade and Adapter designs will have a lot of mocks because they're wrapping complicated things in a simple interface.
+Don't apply the &amp;quot;minimize mocks&amp;quot; metric blindly.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lsp"&gt;
+&lt;h3&gt;LSP&lt;/h3&gt;
+&lt;p&gt;Remember, Python has duck typing. LSP is something that applies if -- and only if -- inheritance is being used.
+A bunch of classes can all implement a common protocol without being suclasses of each other.&lt;/p&gt;
+&lt;p&gt;An Abstract Base Class has the abstract methods marked so that an object cannot be created.
+When all of the methods are defined by some subclass, it's now concrete and an object &lt;strong&gt;can&lt;/strong&gt; be created.&lt;/p&gt;
+&lt;p&gt;A concrete base class can be extended as needed, and any class in the hierarchy is usable.
+There won't be any &amp;quot;Can't instantiate abstract class&amp;quot; exception.&lt;/p&gt;
+&lt;p&gt;In order to make LSP work, it's very helpful for subclasses to &lt;strong&gt;add&lt;/strong&gt; features to base classes.
+Base classes should be a minimal foundation; think of them as a generalization.
+The extensions should add features; they will be specializations.
+(It's not mandatory, it's just kind of tedious to write &amp;quot;do nothing&amp;quot; methods for a subclass to take away a base class feature.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ocp"&gt;
+&lt;h3&gt;OCP&lt;/h3&gt;
+&lt;p&gt;This requires some consideration of the sources of change and the kinds of extensions that might be necessary.&lt;/p&gt;
+&lt;p&gt;It's rather difficult to do well when working on a problem domain that's not well understood.
+After creating some code -- and living with it -- it's easier to see what's likely to change and what's likely essential.
+Once the change vectors are more clear, it becomes easier to see what parts of a class are likely to be extended.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;Open/Closed Principle&lt;/p&gt;
+&lt;p&gt;There are no &amp;quot;bug fix&amp;quot; changes where you modify a class.&lt;/p&gt;
+&lt;p&gt;Instead, think about extending a broken class with a subclass that has less buggy implementations of methods.
+The app then needs to use the subclass that's not as broken.
+Change happens through extension, not modification.&lt;/p&gt;
+&lt;p class="last"&gt;Doing this means &amp;quot;Dependency Injection Principle&amp;quot; needs to be used &lt;strong&gt;also.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dip"&gt;
+&lt;h3&gt;DIP&lt;/h3&gt;
+&lt;p&gt;Dependency &amp;quot;Inversion&amp;quot; really means don't have simple names of classes everywhere.&lt;/p&gt;
+&lt;p&gt;In Java and C++ collaborators with a class would have a reference to that class compiled into them.
+Change some class, and the collaborators all need to be recompiled.
+No one likes this.&lt;/p&gt;
+&lt;p&gt;In Python, the name resolution happens at run-time, and there's no additional overhead from making a change.
+(The name lookups are an overhead that's inherent in Python.)&lt;/p&gt;
+&lt;p&gt;In Python, the dependency injection means assigning a target class to a variable instead of simply using it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeThing&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;this&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;that&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Collaborator&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;what_to_build&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;SomeThing&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SomeThing&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;something&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SomeThing&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;what_to_build&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;this&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The name of the thing to build is a class variable in the &lt;tt class="docutils literal"&gt;Collaborator&lt;/tt&gt; class.
+Making a change to the class used internally by the &lt;tt class="docutils literal"&gt;Collaborator&lt;/tt&gt; class is isolated to this variable.&lt;/p&gt;
+&lt;p&gt;We can make a subclass of &lt;tt class="docutils literal"&gt;Collaborator&lt;/tt&gt; with a new value for &lt;tt class="docutils literal"&gt;what_to_build&lt;/tt&gt; and change it's behavior.
+We can go further, of course, and have some centralized configuration that names the classes to use.
+That can be handy in very complicated applications where a lot of things are likely to change.&lt;/p&gt;
+&lt;p&gt;As a practical matter, very few things change.
+A small configuration object with a few critical class references is all that's really required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="srp"&gt;
+&lt;h3&gt;SRP&lt;/h3&gt;
+&lt;p&gt;The most difficult of of the SOLID design principles is identifying a &amp;quot;single&amp;quot; responsibility.
+The question of responsibility often requires some qualifiers.
+It's important to consider responsibilities from which collaborator's perspective.&lt;/p&gt;
+&lt;p&gt;A class may do a bunch of things internally.
+But -- viewed from outside -- it's a single, atomic behavior.&lt;/p&gt;
+&lt;p&gt;This is where the nine GRASP patterns can come in handy, to implement a class with a single responsibility.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Apply the SOLID principles carefully.&lt;/p&gt;
+&lt;p&gt;Always apply ISP, OCD, and DIP.  Use LSP when there's inheritance involved.
+The SRP requires some careful thought, and -- from different perspectives -- can be awkwardly complicated.&lt;/p&gt;
+&lt;p&gt;The GRASP patterns can be helpful for implementation. Sometimes they are overly focused on Java and C++.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="solid"></category></entry><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -11361,201 +11503,4 @@ not narrowly constrained by inheritance rules.&lt;/p&gt;
 with respect to implementation type details. It allows a single Facade
 to contain a number of implementations.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="protocols"></category><category term="annotations"></category><category term="type hints"></category></entry><entry><title>Welcome to Python: Some hints for ways to explain how truly bad the language is</title><link href="https://slott56.github.io/2021_11_02-welcome_to_python_some_hints_for_ways_to_explain_how_truly_bad_the_language_is.html" rel="alternate"></link><published>2021-11-02T14:55:00-04:00</published><updated>2021-11-02T14:55:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-11-02:/2021_11_02-welcome_to_python_some_hints_for_ways_to_explain_how_truly_bad_the_language_is.html</id><summary type="html">&lt;p&gt;As an author with many books on Python, I'm captivated by people's hot
-takes on why Python is so epically bad. Really Bad. Uselessly Bad.
-Profoundly Broken. etc.&lt;/p&gt;
-&lt;p&gt;I'll provide some hints on topics that get repeated a lot. If you really
-need to write a blog post about how …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As an author with many books on Python, I'm captivated by people's hot
-takes on why Python is so epically bad. Really Bad. Uselessly Bad.
-Profoundly Broken. etc.&lt;/p&gt;
-&lt;p&gt;I'll provide some hints on topics that get repeated a lot. If you really
-need to write a blog post about how bad Python is, please try to take a
-unique approach on any of these common complaints.  If you have a blog
-post half-written, skip to the &lt;strong&gt;tl;dr&lt;/strong&gt; section to see if your ideas
-are truly unique.&lt;/p&gt;
-&lt;div class="section" id="whitespace"&gt;
-&lt;h2&gt;Whitespace&lt;/h2&gt;
-&lt;p&gt;Please don't waste time complaining about having to use whitespace in
-your code. I'm sure it's a burden on your soul to configure your editor
-to indent in groups of four spaces. I'm sorry it's so painful. But.
-Python isn't the only language with whitespace.&lt;/p&gt;
-&lt;p&gt;The shell scripting language has semantic whitespace. (It's not used for
-indentation, but please try &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;cat$HOME/.bashrc&lt;/span&gt;&lt;/tt&gt; (without any spaces)
-and tell me what happens. Spaces matter in a lot of languages.&lt;/p&gt;
-&lt;p&gt;Even in C, some whitespace is semantic. The rest of the whitespace is
-for humans to read your code.&lt;/p&gt;
-&lt;p&gt;If you're *sure* that indentation is a fatal problem, please provide
-an example in the language of your choice where the &lt;tt class="docutils literal"&gt;{}&lt;/tt&gt;'s or the&lt;/p&gt;
-&lt;p&gt;case/esac&lt;/p&gt;
-&lt;p&gt;was *required* because ordinary, readable indentation didn't --
-somehow -- express the nesting.&lt;/p&gt;
-&lt;p&gt;The example can be the basis for a Python Enhancement Proposal (PEP) to
-fix the whitespace problem you've identified.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-self-instance-variable"&gt;
-&lt;h2&gt;The &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; Instance Variable&lt;/h2&gt;
-&lt;p&gt;Using &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; everywhere is simpler than using &lt;tt class="docutils literal"&gt;this&lt;/tt&gt; in those
-obscure special cases where it's ambiguous. Python developers are sure
-that being uniformly explicit is a terrible burden on your soul. If you
-really feel that obscure special cases are required, consider writing a
-pre-processor to sort out the special cases for us.&lt;/p&gt;
-&lt;p&gt;I'm sure there's a way to inject another level of name resolution into
-the local v. global choices. Maybe local-self-global or
-self-local-global could be introduced.&lt;/p&gt;
-&lt;p&gt;Please include examples. From this a Python Enhancement Proposal can be
-drafted to clarify what the improvement is.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="no-formal-constants"&gt;
-&lt;h2&gt;No Formal Constants&lt;/h2&gt;
-&lt;p&gt;Python doesn't waste too much time on keywords, like &lt;tt class="docutils literal"&gt;const&lt;/tt&gt;, to alter
-the behavior of assignment. Instead, we tend to rely on tools to check
-our code.&lt;/p&gt;
-&lt;p&gt;Other languages have compilers to look for assignment to consts. Python
-has tools like flake8, pyflakes, pylint, and others, to look for this
-kind of thing. Conventionally, variables at the module level with
-ALL_CAPS names are likely to be constants. Multiple assignment
-statements would be a problem. Got it.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Why can't the language check?&amp;quot; you ask. Python doesn't normally have a
-separate compile pass to pre-check the code. But. As I said above, you
-can use tools to create a pre-checking pass. That's what most of us do.&lt;/p&gt;
-&lt;p&gt;&amp;quot;But what if someone accidentally overwrites a constant?&amp;quot; you insist.
-Many folks would suggest some better documentation to explain the
-consequences an clarify how unit tests will fail when this happens.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Why should I write unit tests to be sure a constant wasn't changed?&amp;quot;
-you demand. I'm not really insisting on it. But you said you had
-developers who would &amp;quot;accidentally&amp;quot; overwrite a constant in an
-assignment statement, and you couldn't use tools like pylint to check
-for it. So. I suggested another choice. If you don't like that, use
-enums. Or write documentation and explain which global items can be
-changed and which can't be changed.&lt;/p&gt;
-&lt;p&gt;BTW. If you have global variables that are NOT constants, consider this
-a code smell.&lt;/p&gt;
-&lt;p&gt;If you really need a mixture of constants and variables as module
-globals, you can use the &lt;tt class="docutils literal"&gt;enum&lt;/tt&gt; module to create named attribute
-values of a class definition. You get constants and a namespace. It's
-pretty sweet.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="lack-of-privacy"&gt;
-&lt;h2&gt;Lack of Privacy&lt;/h2&gt;
-&lt;p&gt;It appears to be an article of faith that a &lt;tt class="docutils literal"&gt;private&lt;/tt&gt; keyword is
-&lt;em&gt;unconditionally&lt;/em&gt; required.&lt;/p&gt;
-&lt;p&gt;Looking at the history of OO languages, it looks like &lt;tt class="docutils literal"&gt;private&lt;/tt&gt; seems
-to have been introduced with C++. Not every OO language has the same
-notion of private the C++ has. CLU has no concept of private. Smalltalk
-considers instance variables equivalent to C++ &lt;tt class="docutils literal"&gt;protected&lt;/tt&gt;, not
-&lt;tt class="docutils literal"&gt;private&lt;/tt&gt;. Eiffel has a particularly sophisticated feature exportation
-that doesn't involve a trivial private/public distinction.&lt;/p&gt;
-&lt;p&gt;Since many languages that aren't C++ or Java have a variety of
-approaches, it appears private isn't required. The next question, then,
-is it necessary?&lt;/p&gt;
-&lt;p&gt;It really helps to have a concrete example of a place where a private
-method or attribute was absolutely essential. And it helps to do this in
-a way that a leading _ on the variable name -- every time it's used --
-is &lt;strong&gt;more&lt;/strong&gt; confusing than a keyword like private somewhere else in the
-code.&lt;/p&gt;
-&lt;p&gt;It also helps when the example does not involve a hypothetical Idiot
-Developer who (a) doesn't read the documentation and (b) doesn't
-understand the &lt;tt class="docutils literal"&gt;_leading_underscore&lt;/tt&gt; variable, and can still manage to
-use the class. It's not that this developer doesn't exist; it's
-questionable whether or not a complex language feature is better than a
-little time spent on a code review.&lt;/p&gt;
-&lt;p&gt;It helps when the example does not include the mysterious Evil Genius
-Developer who (a) reads the documentation, and (b) leverages
-the &lt;tt class="docutils literal"&gt;_leading_underscore&lt;/tt&gt; variable to format one of the OS disks or
-something. This is far-fetched because the Evil Genius Developer had
-access to the Python source, and didn't need a sophisticated subclassing
-subterfuge. They could simply edit the code to remove the magical
-privacy features.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="no-declarations"&gt;
-&lt;h2&gt;No Declarations&lt;/h2&gt;
-&lt;p&gt;Python is not the only language where variables don't have type
-declarations. In some languages, there are implied types associated with
-certain kinds of names. In other languages, there are naming conventions
-to help a reader understand what's going on.&lt;/p&gt;
-&lt;p&gt;It's an article of faith that variable declarations are essential. C
-programmers will insist that a &lt;tt class="docutils literal"&gt;void *&lt;/tt&gt; pointer is still helpful even
-though the thing to which it points is left specifically undeclared.&lt;/p&gt;
-&lt;p&gt;C (and C++) let you cast a pointer to -- well -- anything. With
-resulting spectacular run-time crashes. Java has some limitations on
-casting. Python doesn't have casting. An object is a member of a class
-and that's the end of that. There's no wiggle-room to push it up or down
-the class hierarchy.&lt;/p&gt;
-&lt;p&gt;Since Python isn't the only language without variable declarations, it
-raises the question: are they necessary?&lt;/p&gt;
-&lt;p&gt;It really helps to have a concrete example of a place where a variable
-declaration was absolutely essential for preventing some kind of
-behavior that could not be prevented with a pylint check or a unit test.
-While I think it's impossible to find a situation that's untestable and
-can only be detected by careful scrutiny of the source, I welcome the
-counter-example that proves me wrong.&lt;/p&gt;
-&lt;p&gt;And. Please avoid this example.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-for data in some_list_of_int:
-    if data == 42:
-        print(&amp;quot;data is int&amp;quot;)
-for data in some_list_of_str:
-    if data == &amp;quot;bletch&amp;quot;:
-        print(&amp;quot;data is str&amp;quot;)
-&lt;/pre&gt;
-&lt;p&gt;This requires reusing a variable name. Not really a good look for code.
-If you have an example where there's a problem that's not fixed by
-better variable names, I'm looking forward to it.&lt;/p&gt;
-&lt;p&gt;This will change the world of Python type annotations. It will become an
-epic PEP.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="murky-call-by-value-semantics"&gt;
-&lt;h2&gt;Murky Call-By-Value Semantics&lt;/h2&gt;
-&lt;p&gt;Python doesn't have primitive types. There are no call-by-value
-semantics. It's not that the semantics are confusing: they don't exist.
-Everything is a reference. It seems simpler to avoid the special case of
-a few classes of objects that don't have classes.&lt;/p&gt;
-&lt;p&gt;The complex special cases surrounding unique semantics for bytes or ints
-or strings or something requires an example. Since this likely involves
-a lot of hand-waving about performance (e.g., primitive types are faster
-for certain things) then benchmarking is also required. Sorry to make
-you do all that work, but the layer of complexity requires some
-justification.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="no-compiler-or-all-errors-are-runtime-errors"&gt;
-&lt;h2&gt;No Compiler (or All Errors are Runtime Errors)&lt;/h2&gt;
-&lt;p&gt;This isn't completely true. Even without a &amp;quot;compiler&amp;quot; there are a lot of
-ways to check for errors prior to runtime. Tools like flake8, pyflakes,
-pylint, and mypy can check code for a number of common problems. Unit
-tests are another common way to look for problems.&lt;/p&gt;
-&lt;p&gt;Code that passes a unit test suite and crashes at runtime doesn't seem
-to be a language problem. It seems to be a unit testing problem.&lt;/p&gt;
-&lt;p&gt;&amp;quot;I prefer the compiler/IDE/something else find my errors,&amp;quot; you say.
-Think of pylint as the compiler. Many Python IDE's actually do some
-static analysis. If you think unit tests aren't appropriate for finding
-and preventing problems, perhaps programming isn't your calling.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;tl;dr&lt;/h2&gt;
-&lt;p&gt;You may have some unique insight. If you do, please share that.&lt;/p&gt;
-&lt;p&gt;If on the other hand, you're writing about these topics, please realize
-that Python has been around for over 30 years. These topics are not new.
-For the following, please try to provide something unique:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Whitespace&lt;/li&gt;
-&lt;li&gt;The self Instance Variable&lt;/li&gt;
-&lt;li&gt;No Formal Constants&lt;/li&gt;
-&lt;li&gt;Lack of Privacy&lt;/li&gt;
-&lt;li&gt;No Declarations&lt;/li&gt;
-&lt;li&gt;Murky Call-By-Value Semantics&lt;/li&gt;
-&lt;li&gt;No Compiler (or All Errors Are Run-Time Errors)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It helps to provide a distinctive spin on these problems. It helps even
-more when you provide a concrete example. It really helps to write up a
-Python Enhancement Proposal. Otherwise, we can seem dismissive of Yet
-Another Repetitive Rant On Whitespace (YARROW).&lt;/p&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="i-used-to-whine-about-the-lack-of-case-switch-stat"&gt;
-&lt;h2&gt;I used to whine about the lack of case/switch stat...&lt;/h2&gt;
-&lt;p&gt;Jim Collins&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2021-11-17 13:22:29.382000-05:00&lt;/p&gt;
-&lt;p&gt;I used to whine about the lack of case/switch statements until a) people
-showed me how to work around it and b) it got fixed in 3.10.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="PEP"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="protocols"></category><category term="annotations"></category><category term="type hints"></category></entry></feed>
