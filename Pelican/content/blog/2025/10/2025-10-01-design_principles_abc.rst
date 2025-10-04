@@ -99,7 +99,7 @@ Abstract Base Classes were a way to minimize recompilation.
     Ordinary ``class Special(Die):`` inheritance from a concrete base class
     involves no abstraction, and no ``abc``.
 
-Python eschews strict class hierarhcies, and replaces this with "Duck Typing".
+Python eschews strict class hierarchies, and replaces this with "Duck Typing".
 All an object requires is to have the method defined.
 
 See `The eval() Conundrum and Python-as-DSL <{filename}/blog/2025/09/2025-09-28-the_eval_conundrum.rst>`_.
@@ -137,7 +137,7 @@ The way Duck Type works, there's a search for a method to implement ``*``.
 Consider ``6 * D4``.
 
 1.  Does ``6`` implement ``__mul__()``?  It does.
-    However, when ``int.__mul__()`` is evalated with a ``Die`` object, the result is ``NotImplemented``.
+    However, when ``int.__mul__()`` is evaluated with a ``Die`` object, the result is ``NotImplemented``.
 
 2.  Does ``Die`` implement ``__rmul__()``?  It does.
     When ``Die.__rmul__()`` is evaluated with an ``int`` object, the result is a new ``Die`` object.
@@ -150,13 +150,13 @@ Here's the bottom line.
 
 ..  sidebar:: The other step?
 
-    There's an initial check which **does** in a limited way, reflect the class hierachy.
+    There's an initial check which **does** in a limited way, reflect the class hierarchy.
 
-    Is ``Die`` a sublass of ``int``?
+    Is ``Die`` a subclass of ``int``?
     If ``Die`` was a subclass of ``int``, then ``Die`` must be considered first to permit a subclass to override a superclass.
     This reverses the **order** of the other two steps.
 
-    A class hierachy can shift the order of the Duck-Typing Two-Step.
+    A class hierarchy can shift the order of the Duck-Typing Two-Step.
 
 A ``Protocol`` formalizes the Duck-Typing Two-Step in a way that tools can be sure the whole
 
@@ -192,8 +192,8 @@ The use case for an ABC in Python is to push the Duck-Typing Two-Step so it happ
 
 ABC's promote early detection of design problems.
 
-When is it superflous?
-----------------------
+When is it superfluous?
+-----------------------
 
 When your base class is concrete, don't waste time on an ABC.
 Just use a concrete base class and extend it as needed.

@@ -1,5 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-02T09:46:00-04:00</updated><entry><title>OO Design Principles: SOLID</title><link href="https://slott56.github.io/2025-10-02-oo_design_principles_solid.html" rel="alternate"></link><published>2025-10-02T09:46:00-04:00</published><updated>2025-10-02T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-02:/2025-10-02-oo_design_principles_solid.html</id><summary type="html">&lt;!-- background:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-04T09:46:00-04:00</updated><entry><title>OO Design Principles: GRASP patterns</title><link href="https://slott56.github.io/2025-10-04-oo_design_principles_grasp_patterns.html" rel="alternate"></link><published>2025-10-04T09:46:00-04:00</published><updated>2025-10-04T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-04:/2025-10-04-oo_design_principles_grasp_patterns.html</id><summary type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Working with Liskov Substitution can make it difficult to navigate through an IDE.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The GRASP patterns can be helpful reminders.&lt;/p&gt;
+&lt;p&gt;Some GRASP patterns sound like design principles, and seem to overlap with the SOLID principles.&lt;/p&gt;
+&lt;p&gt;Other GRASP patterns seem like summaries, with a number of fine-grained implementation choices.&lt;/p&gt;
+&lt;p&gt;Controller and Pure Fabrication seem most helpful.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;Gang of Four&amp;quot; Object-Oriented Design Patterns seem to be more useful and have more supporting details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="grasp-patterns"&gt;
+&lt;h2&gt;GRASP Patterns&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://www.geeksforgeeks.org/system-design/grasp-design-principles-in-ooad/"&gt;https://www.geeksforgeeks.org/system-design/grasp-design-principles-in-ooad/&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="controller"&gt;
+&lt;h3&gt;Controller&lt;/h3&gt;
+&lt;p&gt;See also the &amp;quot;Model-View-Control&amp;quot; pattern.&lt;/p&gt;
+&lt;p&gt;There's an internal model of reality. A description of the real-world stuff.
+Maybe this is simply CRUD rules over a database (as if a database is reality -- it's only a model.)
+Maybe this is an OO model that gets serialized into something persistent when the application exits (you know, like a word processor or spreadsheet.)
+Maybe this is an OO model of a game where there's a state-of-play saved when you specifically ask to save.
+Maybe this is a real-time controller of a device like a cruise control on a car where the model has the car's current speed and the target speed (and not much else, TBH.)
+Maybe this is an anchoring position indicator with a position where the boat is expected to be and the most recent few minutes of GPS positions indicating if it's within a safe distance of the anchor or not and what direction the boat seems to be going (i.e., it is adrift?)&lt;/p&gt;
+&lt;p&gt;There's a view of reality, displaying the state of the model.
+You fiddle with the view to update the model.
+Maybe look at the number on the dashboard or push buttons on the cruise control.
+Maybe type a bunch of stuff into fields on a form.&lt;/p&gt;
+&lt;p&gt;And there's the controller.&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;The controller is defined as the first object beyond the UI layer that receives and coordinates (&amp;quot;controls&amp;quot;) a system operation. &amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;This applies widely.
+In some applications -- programs like &lt;tt class="docutils literal"&gt;grep&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; -- the UI is really tiny and not interactive.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The input is command-line parsing (via &lt;tt class="docutils literal"&gt;argparse&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;click&lt;/tt&gt; or whatever).&lt;/li&gt;
+&lt;li&gt;The output is stdout and stderr (via &lt;tt class="docutils literal"&gt;logging&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; or whatever).&lt;/li&gt;
+&lt;li&gt;There's a model (the file being processed, the text in that file, the patterns and commands).&lt;/li&gt;
+&lt;li&gt;There's a &lt;strong&gt;tiny&lt;/strong&gt; controller that gets the input, then iterates through the model's visible state changes, writing the outputs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is one essence of &lt;strong&gt;Clean Design&lt;/strong&gt;. Separating the inputs and outputs from the model and control.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creator"&gt;
+&lt;h3&gt;Creator&lt;/h3&gt;
+&lt;p&gt;There's potential overlap between Creator and &lt;a class="reference internal" href="#information-expert"&gt;Information Expert&lt;/a&gt;.
+Creators have the information required to create an instance of a collaborator.
+Which sometimes means the creator is also an expert.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="indirection"&gt;
+&lt;h3&gt;Indirection&lt;/h3&gt;
+&lt;p&gt;Sometimes helpful. The Gang-of-Four design patterns subdivide this many ways.
+You might have an Adapter or Facade to wrap one (or more) collaborators.
+You might have a State or Strategy class hierarchy that wraps up alternative implementation choices into a tidy structure.&lt;/p&gt;
+&lt;p&gt;Note there are two layers of indirection.
+Objects can have indirect access to other objects, perhaps mediated by the current state.
+Classes &lt;strong&gt;should&lt;/strong&gt; have indirect access to other class definitions, per the SOLID &lt;strong&gt;Dependency Inversion Principle&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="information-expert"&gt;
+&lt;h3&gt;Information Expert&lt;/h3&gt;
+&lt;p&gt;The SOLID &lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;, restated. Nice to see everyone agrees on this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="low-coupling"&gt;
+&lt;h3&gt;Low Coupling&lt;/h3&gt;
+&lt;p&gt;This is a desirable feature of object design.
+This is more of a principle that echoes the SOLID &lt;strong&gt;Interface Segregation Principle&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="high-cohesion"&gt;
+&lt;h3&gt;High Cohesion&lt;/h3&gt;
+&lt;p&gt;This is also a very desirable feature of object design.
+This isn't (explicitly) a SOLID design principle, but lurks in she shadows of the SOLID &lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;.
+In order to have a single Responsibility, there must be a cohesive design to the class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="polymorphism"&gt;
+&lt;h3&gt;Polymorphism&lt;/h3&gt;
+&lt;p&gt;This is a mechanism as well as a &lt;strong&gt;large&lt;/strong&gt; number of patterns.
+The mechanism is a way to reuse code in a class hierarchy.
+It saves repeating things when we have related classes.&lt;/p&gt;
+&lt;p&gt;The reason why we have a SOLID &lt;strong&gt;Liskov Substitution Principle&lt;/strong&gt; is to manage polymorphism.&lt;/p&gt;
+&lt;p&gt;The entire Gang-of-Four design patterns book is an extended set of patterns for applying polymorphism.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="protected-variations"&gt;
+&lt;h3&gt;Protected Variations&lt;/h3&gt;
+&lt;p&gt;This is a restatement of the SOLID &lt;strong&gt;Open/Closed Principle&lt;/strong&gt;.
+Open to extension (via variations.)
+Closed to modification (the &amp;quot;protected&amp;quot; part of this.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pure-fabrication"&gt;
+&lt;h3&gt;Pure Fabrication&lt;/h3&gt;
+&lt;p&gt;I often call these fabricated classes part of the &amp;quot;Solution Domain&amp;quot; distinct from the &amp;quot;Problem Domain.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The model is part of the Problem Domain.
+It represents the real-world things in software space.
+This should map to the problem domain with a high degree of fidelity.&lt;/p&gt;
+&lt;p&gt;The view presents this to users.
+It's part of the UI, which is part of the solution.
+It can overlap with the problem domain, however, and may happen to match the model.
+A CRUD application, for example, may display the data more-or-less directly and the view may match the model.&lt;/p&gt;
+&lt;p&gt;In some cases, the view twists and transforms the model into what people think they want to see.
+Think of the aggregated data in a data warehouse.
+Details are elided. It's a summary -- it's not the reality.
+A great deal of twisting and turning happens during ETL and aggregation processing to provide a view the users can understand and act on.&lt;/p&gt;
+&lt;p&gt;A controller, however, has nothing to do with the problem domain.
+It's &lt;em&gt;purely&lt;/em&gt; part of the solution domain.
+It reflects the purpose behind the software -- show status, update things, allow interaction, summarize, whatever.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The GRASP patterns can be helpful reminders of different kinds of solutions.&lt;/p&gt;
+&lt;p&gt;They overlap with -- and can provide some amplification for -- the SOLID design patterns.&lt;/p&gt;
+&lt;p&gt;The Pure Fabrication and Controller GRASP patterns seem to be more significant than the others.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="grasp"></category><category term="patterns"></category></entry><entry><title>OO Design Principles: CUPID</title><link href="https://slott56.github.io/2025-10-03-oo_design_principles_cupid.html" rel="alternate"></link><published>2025-10-03T09:46:00-04:00</published><updated>2025-10-03T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-03:/2025-10-03-oo_design_principles_cupid.html</id><summary type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;!-- background:
+
+I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
+
+If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC. I think as long as we do not have concrete methods in the base class, this could be a protocol instead.
+
+However, I've been thinking about the general meaning of SOLID for Python. I can see these principles in an object-oriented only language like Java. Since this is the first language I learned, my intuition tells me that the language is perfect for following the principles. Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes. Often it's just easier to use a functional approach. An example would be the strategy pattern, where instead of having a construct of different classes that handle a specific strategy, we just have different functions. The intent for a developer is very explicit when using those, and I don't see the need for an ABC and inheritance from it. The only advantage I would see is to put it in a class that uses Protocols to enable type hints.
+
+I've also read about the GRASP principles, but some parts of it don't feel very natural to me in Python either. For example, very obviously, polymorphism, which is also not needed in Python. Of course, low coupling and high cohesion are rather language-agnostic concepts, and they seem to fit very well with Python.
+
+I know that these principles are not a religion, and I don't have to follow any specific one. I know I can take ideas from multiple ones and stack them together. However, I like the basic idea of dependency inversion, interface segregation and Liskov Substitution and used it in one of my products. Working with Liskov Substitution can make it difficult to navigate through an IDE. This plus explanations I’ve read in Fluent Python make me think that I've made my life more difficult with it, but I wonder what would be pythonic here?
+
+Since I couldn't find a helpful discussion online, I was wondering what others experience is and how they approach this? Do you follow any principles like SOLID or GRASP or do you find a mix to be the best option? I've been looking for articles that discuss this but haven't found a great resource. I'd love to hear your thoughts and experiences and if you know of a great resource. --&gt;
+&lt;p&gt;Some quotes to provide context.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;If I look at a principle like SOLID, where we have the Liskov Substitution Principle, the interface separation principle, and the dependency inversion principle, they all rely on a base class, which of course is created by inheriting from ABC.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Python, on the other hand, does not have the strong need to be object-oriented, but most of the principles assume that we are working with classes.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Working with Liskov Substitution can make it difficult to navigate through an IDE.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Very important: Composable, Predictable, Domain-based.&lt;/p&gt;
+&lt;p&gt;These are consistent with the idea that software is knowledge capture.&lt;/p&gt;
+&lt;p&gt;Maybe less important: Unix-Philosophy and Idiomatic.
+While nice ideas, they feel a bit redundant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cupid"&gt;
+&lt;h2&gt;CUPID&lt;/h2&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://cupid.dev/properties/"&gt;https://cupid.dev/properties/&lt;/a&gt;&lt;/p&gt;
+&lt;div class="section" id="composable"&gt;
+&lt;h3&gt;Composable&lt;/h3&gt;
+&lt;p&gt;Highly desirable to have small pieces that compose into something useful.
+This fits with SOLID &lt;strong&gt;Interface Segregation Principle&lt;/strong&gt;, and provides an answer to &amp;quot;but, why?&amp;quot;
+We segregate the interfaces to create something composable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unix-philosophy"&gt;
+&lt;h3&gt;Unix-Philosophy&lt;/h3&gt;
+&lt;p&gt;This &lt;strong&gt;also&lt;/strong&gt; implies composability.
+It goes a step further to incorporate the idea of the SOLID Single Responsibility Principle.
+The Unix design patterns provides concrete examples of how to decompose a large problem into smaller pieces;
+each piece does one thing well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="predictable"&gt;
+&lt;h3&gt;Predictable&lt;/h3&gt;
+&lt;p&gt;This decomposes into three distinct aspects:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A component behaves as expected. This is sometimes called the Principle of Least Astonishment.&lt;/li&gt;
+&lt;li&gt;A component's behavior is consistent and deterministic.&lt;/li&gt;
+&lt;li&gt;A component's behavior needs to be observable, also.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are all critical features, especially observability.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="idiomatic"&gt;
+&lt;h3&gt;Idiomatic&lt;/h3&gt;
+&lt;p&gt;Yes, follow language idioms. Please do not boldly go where no programmer has gone before.&lt;/p&gt;
+&lt;p&gt;This seems to go without saying. It does help fill up the acronym, though.
+And, perhaps, it's necessary advice.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="domain-based"&gt;
+&lt;h3&gt;Domain-based&lt;/h3&gt;
+&lt;p&gt;The solution code should mirror the problem domain. This is really important, and not present in other sets of design principles.&lt;/p&gt;
+&lt;p&gt;Indeed, I don't think it can be emphasized enough.&lt;/p&gt;
+&lt;p&gt;OO modeling and design isn't about optimization or code reuse.
+It's about fidelity to the problem domain.&lt;/p&gt;
+&lt;p&gt;Code reuse is nice to have.
+Providing common behavior among the problem domain objects that are being modelled is the point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;These are nice. They're very useful in conjunction with SOLID design principles.&lt;/p&gt;
+&lt;p&gt;It helps to have guideposts to help clarify an underlying &amp;quot;why&amp;quot; we design software.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="cupid"></category></entry><entry><title>OO Design Principles: SOLID</title><link href="https://slott56.github.io/2025-10-02-oo_design_principles_solid.html" rel="alternate"></link><published>2025-10-02T09:46:00-04:00</published><updated>2025-10-02T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-02:/2025-10-02-oo_design_principles_solid.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -56,11 +288,11 @@ Since I couldn't find a helpful discussion online, I was wondering what others e
 While the &amp;quot;Single Responsibility&amp;quot; principle is first, and seems most important, it's really more of a summary.&lt;/p&gt;
 &lt;div class="section" id="isp"&gt;
 &lt;h3&gt;ISP&lt;/h3&gt;
-&lt;p&gt;The &amp;quot;Interface Segregration&amp;quot; principle is -- perhaps -- the most important.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;Interface Segregation&amp;quot; principle is -- perhaps -- the most important.&lt;/p&gt;
 &lt;div class="admonition important"&gt;
 &lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
-&lt;p&gt;Interface Segregration Principle&lt;/p&gt;
-&lt;p class="last"&gt;ISP == Cut the fluff seen by collabators.&lt;/p&gt;
+&lt;p&gt;Interface Segregation Principle&lt;/p&gt;
+&lt;p class="last"&gt;ISP == Cut the fluff seen by collaborators.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In a C++ or Java context, the more that's exposed to a collaborator, the wider the ripples from a change.&lt;/p&gt;
 &lt;p&gt;In a Python context, a too-rich interface is just annoying to understand, maintain, extend, and test.&lt;/p&gt;
@@ -71,7 +303,7 @@ Don't apply the &amp;quot;minimize mocks&amp;quot; metric blindly.)&lt;/p&gt;
 &lt;div class="section" id="lsp"&gt;
 &lt;h3&gt;LSP&lt;/h3&gt;
 &lt;p&gt;Remember, Python has duck typing. LSP is something that applies if -- and only if -- inheritance is being used.
-A bunch of classes can all implement a common protocol without being suclasses of each other.&lt;/p&gt;
+A bunch of classes can all implement a common protocol without being subclasses of each other.&lt;/p&gt;
 &lt;p&gt;An Abstract Base Class has the abstract methods marked so that an object cannot be created.
 When all of the methods are defined by some subclass, it's now concrete and an object &lt;strong&gt;can&lt;/strong&gt; be created.&lt;/p&gt;
 &lt;p&gt;A concrete base class can be extended as needed, and any class in the hierarchy is usable.
@@ -230,7 +462,7 @@ The &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt; module introduces a whole 
 Ordinary &lt;tt class="docutils literal"&gt;class Special(Die):&lt;/tt&gt; inheritance from a concrete base class
 involves no abstraction, and no &lt;tt class="docutils literal"&gt;abc&lt;/tt&gt;.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Python eschews strict class hierarhcies, and replaces this with &amp;quot;Duck Typing&amp;quot;.
+&lt;p&gt;Python eschews strict class hierarchies, and replaces this with &amp;quot;Duck Typing&amp;quot;.
 All an object requires is to have the method defined.&lt;/p&gt;
 &lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html"&gt;The eval() Conundrum and Python-as-DSL&lt;/a&gt;.
 Way at the end is this snippet of code.&lt;/p&gt;
@@ -262,7 +494,7 @@ The way Duck Type works, there's a search for a method to implement &lt;tt class
 &lt;p&gt;Consider &lt;tt class="docutils literal"&gt;6 * D4&lt;/tt&gt;.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Does &lt;tt class="docutils literal"&gt;6&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__mul__()&lt;/tt&gt;?  It does.
-However, when &lt;tt class="docutils literal"&gt;int.__mul__()&lt;/tt&gt; is evalated with a &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object, the result is &lt;tt class="docutils literal"&gt;NotImplemented&lt;/tt&gt;.&lt;/li&gt;
+However, when &lt;tt class="docutils literal"&gt;int.__mul__()&lt;/tt&gt; is evaluated with a &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object, the result is &lt;tt class="docutils literal"&gt;NotImplemented&lt;/tt&gt;.&lt;/li&gt;
 &lt;li&gt;Does &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; implement &lt;tt class="docutils literal"&gt;__rmul__()&lt;/tt&gt;?  It does.
 When &lt;tt class="docutils literal"&gt;Die.__rmul__()&lt;/tt&gt; is evaluated with an &lt;tt class="docutils literal"&gt;int&lt;/tt&gt; object, the result is a new &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; object.&lt;/li&gt;
 &lt;/ol&gt;
@@ -272,11 +504,11 @@ When &lt;tt class="docutils literal"&gt;Die.__rmul__()&lt;/tt&gt; is evaluated w
 The Duck Typing two-step search for matching method names doesn't respect the class hierarchy.&lt;/blockquote&gt;
 &lt;div class="sidebar"&gt;
 &lt;p class="first sidebar-title"&gt;The other step?&lt;/p&gt;
-&lt;p&gt;There's an initial check which &lt;strong&gt;does&lt;/strong&gt; in a limited way, reflect the class hierachy.&lt;/p&gt;
-&lt;p&gt;Is &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; a sublass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;?
+&lt;p&gt;There's an initial check which &lt;strong&gt;does&lt;/strong&gt; in a limited way, reflect the class hierarchy.&lt;/p&gt;
+&lt;p&gt;Is &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; a subclass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;?
 If &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; was a subclass of &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;, then &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; must be considered first to permit a subclass to override a superclass.
 This reverses the &lt;strong&gt;order&lt;/strong&gt; of the other two steps.&lt;/p&gt;
-&lt;p class="last"&gt;A class hierachy can shift the order of the Duck-Typing Two-Step.&lt;/p&gt;
+&lt;p class="last"&gt;A class hierarchy can shift the order of the Duck-Typing Two-Step.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;A &lt;tt class="docutils literal"&gt;Protocol&lt;/tt&gt; formalizes the Duck-Typing Two-Step in a way that tools can be sure the whole&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Summary&lt;/strong&gt;:&lt;/p&gt;
@@ -309,8 +541,8 @@ This reverses the &lt;strong&gt;order&lt;/strong&gt; of the other two steps.&lt;
 &lt;/ol&gt;
 &lt;p&gt;ABC's promote early detection of design problems.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="when-is-it-superflous"&gt;
-&lt;h3&gt;When is it superflous?&lt;/h3&gt;
+&lt;div class="section" id="when-is-it-superfluous"&gt;
+&lt;h3&gt;When is it superfluous?&lt;/h3&gt;
 &lt;p&gt;When your base class is concrete, don't waste time on an ABC.
 Just use a concrete base class and extend it as needed.&lt;/p&gt;
 &lt;p&gt;That's enough on ABC's for now. Let's move on to the SOLID principles.&lt;/p&gt;
@@ -11290,217 +11522,4 @@ where language problems were introduced.&lt;/p&gt;
 uses non-standard python syntax on definitions functions etc&amp;quot;. The type
 hints have been part of the language since PEP 484, and it seems
 inappropriate to describe them as non-standard.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="python"></category><category term="writing"></category></entry><entry><title>Processing Apple Numbers Files</title><link href="https://slott56.github.io/2021_12_01-processing_apple_numbers_files.html" rel="alternate"></link><published>2021-12-01T07:00:00-05:00</published><updated>2021-12-01T07:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-12-01:/2021_12_01-processing_apple_numbers_files.html</id><summary type="html">&lt;p&gt;Apple's freebie tools -- Pages, Numbers, Keynote, Garage Band, etc. --
-are wonderful things. I really like Numbers. I'm tolerant of Pages. I've
-used Pages to write books and publish them to the Apple Bookstore.
-(Shameless Plug: &lt;a class="reference external" href="https://books.apple.com/us/book/id1586977675"&gt;Pivot to
-Python&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;These tools have a significant problem. Protobuf.&lt;/p&gt;
-&lt;div class="section" id="some-history"&gt;
-&lt;h2&gt;Some History&lt;/h2&gt;
-&lt;p&gt;Once upon a …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Apple's freebie tools -- Pages, Numbers, Keynote, Garage Band, etc. --
-are wonderful things. I really like Numbers. I'm tolerant of Pages. I've
-used Pages to write books and publish them to the Apple Bookstore.
-(Shameless Plug: &lt;a class="reference external" href="https://books.apple.com/us/book/id1586977675"&gt;Pivot to
-Python&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;These tools have a significant problem. Protobuf.&lt;/p&gt;
-&lt;div class="section" id="some-history"&gt;
-&lt;h2&gt;Some History&lt;/h2&gt;
-&lt;p&gt;Once upon a time, Numbers used an XML-based format. This was back in
-'09, I think. At some point, version 10 of Numbers (2013?) switched to
-Protobuf.&lt;/p&gt;
-&lt;p&gt;I had already unwound XLSX and ODS files, which are XML. I had also
-unwound Numbers '09 in XML. I had a sense of what a spreadsheet needed
-to look like.&lt;/p&gt;
-&lt;p&gt;The switch to Protobuf also meant using Snappy compression. Back in
-2014? I worked out my own version of the Snappy decompression algorithm
-in pure Python. I think I knew about
-&lt;a class="reference external" href="https://github.com/andrix/python-snappy"&gt;python-snappy&lt;/a&gt; but didn't
-want the complex binary dependency. I wrote my own instead.&lt;/p&gt;
-&lt;p&gt;I found the
-&lt;a class="reference external" href="https://github.com/obriensp/iWorkFileFormat"&gt;iWorkFileFormat&lt;/a&gt;
-project. From this, and a lot of prior knowledge about the XML formats,
-I worked out a way to unpack the protobuf bytes into Python objects. I
-didn't leverage the formal protobuf definitions; instead I lazily mapped
-the objects to a dictionary of keys and bytes. If a field had a complex
-internal structure, I parsed the subset of bytes.&lt;/p&gt;
-&lt;p&gt;(I vaguely recall the Protobuf definitions are in XCode somewhere. But.
-I didn't want to write a protobuf compiler to make a pure-Python
-implementation. See the
-&lt;a class="reference external" href="https://github.com/eigenein/protobuf"&gt;protobuf&lt;/a&gt; project for what I
-was looking for, but didn't have at the time.)&lt;/p&gt;
-&lt;p&gt;Which brings us to today's discovery.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="state-of-the-art"&gt;
-&lt;h2&gt;State of the Art&lt;/h2&gt;
-&lt;p&gt;Someone has taken the steps necessary to properly unpack Numbers files.
-See &lt;a class="reference external" href="https://github.com/masaccio/numbers-parser"&gt;numbers-parser&lt;/a&gt;.
-This has first-class snappy and protobuf processing. It installs
-cleanly. It has an issue, and I may try to work on it.&lt;/p&gt;
-&lt;p&gt;I'm rewriting my own Stingray Reader with intent to dispose of my own
-XLSX, ODS, and Numbers processing. These can (and should) be imported
-separately. It's a huge simplification to stand on the shoulders of
-giants and write a dumb &lt;strong&gt;Facade&lt;/strong&gt; over their work.&lt;/p&gt;
-&lt;p&gt;Ideally, all the various spreadsheet parsing folks would adopt some kind
-of standard API. This could be analogous to the database API used by SQL
-processing in Python. The folks with &lt;a class="reference external" href="https://www.excelpython.org"&gt;https://www.excelpython.org&lt;/a&gt;
-or &lt;a class="reference external" href="http://www.python-excel.org"&gt;http://www.python-excel.org&lt;/a&gt; might be a place to start, since they
-list a number of packages.&lt;/p&gt;
-&lt;p&gt;The bonus part? Seeing my name in the &lt;a class="reference external" href="https://github.com/masaccio/numbers-parser#credits"&gt;Credits for
-numbers-parser&lt;/a&gt;.
-That was delightful.&lt;/p&gt;
-&lt;p&gt;At some point, I need to make a coherent pitch for a common API with
-permits external JSON Schema as part of extracting data from
-spreadsheets.&lt;/p&gt;
-&lt;p&gt;First. I need to get Stingray Reader into a more final form.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="open source"></category><category term="#python"></category><category term="workbook"></category><category term="spreadsheet"></category><category term="jsonschema"></category><category term="stingray reader"></category></entry><entry><title>Reading Spreadsheets with Stingray Reader and Type Hinting</title><link href="https://slott56.github.io/2021_11_16-reading_spreadsheets_with_stingray_reader_and_type_hinting.html" rel="alternate"></link><published>2021-11-16T08:00:00-05:00</published><updated>2021-11-16T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-11-16:/2021_11_16-reading_spreadsheets_with_stingray_reader_and_type_hinting.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2021_08_24-spreadsheets_cobol_and_schema_driven_file_processing.html"&gt;Spreadsheets, COBOL, and schema-driven file
-processing&lt;/a&gt;,
-etc. for some history on this project.&lt;/p&gt;
-&lt;p&gt;Also, see
-&lt;a class="reference external" href="https://github.com/slott56/Stingray-Reader"&gt;Stingray-Reader&lt;/a&gt; for the
-current state of this effort.&lt;/p&gt;
-&lt;p&gt;(This started almost 20 years ago, I've been refining and revising a
-lot.)&lt;/p&gt;
-&lt;div class="section" id="big-lesson-up-front"&gt;
-&lt;h2&gt;Big Lesson Up Front&lt;/h2&gt;
-&lt;p&gt;Python is very purely driven by the idea that …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2021_08_24-spreadsheets_cobol_and_schema_driven_file_processing.html"&gt;Spreadsheets, COBOL, and schema-driven file
-processing&lt;/a&gt;,
-etc. for some history on this project.&lt;/p&gt;
-&lt;p&gt;Also, see
-&lt;a class="reference external" href="https://github.com/slott56/Stingray-Reader"&gt;Stingray-Reader&lt;/a&gt; for the
-current state of this effort.&lt;/p&gt;
-&lt;p&gt;(This started almost 20 years ago, I've been refining and revising a
-lot.)&lt;/p&gt;
-&lt;div class="section" id="big-lesson-up-front"&gt;
-&lt;h2&gt;Big Lesson Up Front&lt;/h2&gt;
-&lt;p&gt;Python is very purely driven by the idea that everything you write is
-generic with respect to type. Adding type hints narrows the type domain,
-removing the concept of &amp;quot;generic&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Generally, this is good.&lt;/p&gt;
-&lt;p&gt;But not universally.&lt;/p&gt;
-&lt;p&gt;Duck Typing -- and Python's generic approach to types -- is made visible
-via Protocols and Generics.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="an-ugly-type-hinting-problem"&gt;
-&lt;h2&gt;An Ugly Type Hinting Problem&lt;/h2&gt;
-&lt;p&gt;One type hint complication arises when writing code that really is
-generic. Decorators are a canonical example of functions that are
-generic with respect to the function being decorated. This, then, leads
-to kind of complicated-looking type hints.&lt;/p&gt;
-&lt;p&gt;See the mypy page on &lt;a class="reference external" href="https://mypy.readthedocs.io/en/stable/generics.html?highlight=typevar#declaring-decorators"&gt;declaring
-decorators&lt;/a&gt;.
-The use of a &lt;tt class="docutils literal"&gt;TypeVar&lt;/tt&gt; to show that how a decorator's argument type
-matches the the return type is big help. Not all decorators follow the
-simple pattern, but many do.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-from typing import TypeVar
-F = TypeVar('F', bound=Callable[..., Any])
-def myDecorator(function: F) -&amp;gt; F:
-    etc.
-&lt;/pre&gt;
-&lt;p&gt;The Stingray Reader problem is that a number of abstractions are generic
-with respect to an underlying instance object.&lt;/p&gt;
-&lt;p&gt;If we're working with CSV files, the instance is a &lt;tt class="docutils literal"&gt;tuple[str]&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;If we're working with ND JSON objects, the instance is some JSON type.&lt;/p&gt;
-&lt;p&gt;If we're working with some Workbook (e.g., via xlrd, openpyxl, or
-pyexcel) then, the instance is defined by one of these external
-libraries.&lt;/p&gt;
-&lt;p&gt;If we're working with COBOL files, then the instances may be str or may
-be bytes. The &lt;tt class="docutils literal"&gt;typing.AnyStr&lt;/tt&gt; type provides a useful generic
-definition.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="traditional-oo-design-is-the-problem"&gt;
-&lt;h2&gt;Traditional OO Design Is The Problem&lt;/h2&gt;
-&lt;p&gt;Once upon a time, in the dark days, we had exactly one design choice:
-inheritance.&lt;/p&gt;
-&lt;p&gt;Actually, we had two, but so many writers get focused on &amp;quot;explaining&amp;quot; OO
-programming, that they tend to gloss over composition. The focus on the
-sort-of novel concept of inheritance.&lt;/p&gt;
-&lt;p&gt;And this leads to folks arguing that inheritance shouldn't be thought of
-as central. Which is a kind of moot argument over what we're doing when
-we're writing about OO design. We have to cover both. Inheritance has
-more drama, so it becomes a bit more visible than composition. Indeed,
-inheritance creates a number of design constraints, and that's where the
-drama surfaces.&lt;/p&gt;
-&lt;p&gt;Any discussion of design patterns tends to be more balanced. Many
-patterns -- like &lt;strong&gt;Strategy&lt;/strong&gt; and &lt;strong&gt;State&lt;/strong&gt; -- are compositional
-patterns. Inheritance actually plays a relatively minor role until you
-reach interesting boundary cases.&lt;/p&gt;
-&lt;p&gt;Specifically.&lt;/p&gt;
-&lt;p&gt;What do you do when you have a &lt;strong&gt;Strategy&lt;/strong&gt; class hierarchy and ONE of
-those strategies has an unique type hint for a parameter? Most of the
-classes use one type. One unique subclass needs a distinct type. For
-example, this outlier among the &lt;strong&gt;Strategy&lt;/strong&gt; alternatives uses a str
-parameter instead of float.&lt;/p&gt;
-&lt;p&gt;Do you push that type distinction up to the top of the hierarchy? Maybe
-define it as &lt;tt class="docutils literal"&gt;edge_case: Optional[Union[str, float]] = None&lt;/tt&gt;?&lt;/p&gt;
-&lt;p&gt;You can't simply change the parameter's value in one subclass with
-impunity. mypy will catch you at this, and tell you you have Liskov
-Substitution problems.&lt;/p&gt;
-&lt;p&gt;Traditionally, we would often take this to mean that we have a larger
-problem here. We have a leaky abstraction. Some implementation details
-are surfacing in a bad way and we need more abstract classes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="it-s-a-protocol-duck-typing"&gt;
-&lt;h2&gt;It's A Protocol (&amp;quot;Duck Typing&amp;quot;)&lt;/h2&gt;
-&lt;p&gt;When I started rewriting Stingray Reader, I started with a fair number
-of abstract classes. These classes were supposed to have widely varying
-implementations, but common semantics.&lt;/p&gt;
-&lt;p&gt;Applying a schema definition to a CSV file means that data values can be
-converted from strings to something more useful,&lt;/p&gt;
-&lt;p&gt;Applying a schema to a JSON file means doing a validation pass to be
-sure the loaded object meets the schema's expectations.&lt;/p&gt;
-&lt;p&gt;Applying a schema to a Workbook file is a kind of hybrid between CSV
-processing and JSON processing. The workbook's values will have been
-unpacked by the interface module. Each row will look like a
-&lt;tt class="docutils literal"&gt;list[Any]&lt;/tt&gt; that can be subject to JSON schema validation.&lt;/p&gt;
-&lt;p&gt;Apply a schema to COBOL means using the schema details to figure out how
-to unpack the bytes. This is suddenly a lot more complex than the other
-cases.&lt;/p&gt;
-&lt;p&gt;The concepts of inheritance and composition aren't really applicable.&lt;/p&gt;
-&lt;p&gt;This is something even more open-ended. It's a protocol.&lt;/p&gt;
-&lt;p&gt;We want a common interface and common semantics. But. We're not really
-going to leverage any common code.&lt;/p&gt;
-&lt;p&gt;This unwinds a lot abstract superclasses, replacing them with
-&lt;tt class="docutils literal"&gt;Protocol&lt;/tt&gt; class definitions.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-class Workbook(abc.ABC):
-    &amp;#64;abc.abstractmethod
-    def sheet(self, name: str, schema: Schema) -&amp;gt; Sheet:
-        ...
-    def row_iter(self) -&amp;gt; Iterator[list[Union[str, bytes, int, float, etc.]]]:
-        ...
-&lt;/pre&gt;
-&lt;p&gt;The above is not universally useful. Liskov Substitution has to apply.
-In some cases, we don't have a tidy set of relationships. Here's the
-alternative&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-class Workbook(Protocol):
-    def sheet(self, name: str, schema: Schema) -&amp;gt; Sheet:
-        ...
-    def row_iter(self) -&amp;gt; Iterator[list[Any]]:
-        ...
-&lt;/pre&gt;
-&lt;p&gt;This gives us the ability to define classes that adhere to the Workbook
-Protocol but don't have a simple, strict subclass-superclass-Liskov
-substitution relationship.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="it-s-a-generic-protocol"&gt;
-&lt;h2&gt;It's A Generic Protocol&lt;/h2&gt;
-&lt;p&gt;It turns out, this isn't quite right. What's really required is a
-&lt;tt class="docutils literal"&gt;Generic[Type]&lt;/tt&gt;, not the simple &lt;tt class="docutils literal"&gt;Protocol&lt;/tt&gt;.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-class Workbook(Generic[Instance]):
-    def sheet(self, name: str, schema: Schema) -&amp;gt; Sheet:
-        ...
-    def row_iter(self) -&amp;gt; Iterator[list[Instance]]:
-        ...
-&lt;/pre&gt;
-&lt;p&gt;This lets us create Workbook variants that are highly type-specific, but
-not narrowly constrained by inheritance rules.&lt;/p&gt;
-&lt;p&gt;This type hinting technique describes Python code that really is generic
-with respect to implementation type details. It allows a single Facade
-to contain a number of implementations.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="protocols"></category><category term="annotations"></category><category term="type hints"></category></entry></feed>
+</content><category term="Technologies"></category><category term="python"></category><category term="writing"></category></entry></feed>

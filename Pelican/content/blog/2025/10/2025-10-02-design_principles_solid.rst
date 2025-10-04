@@ -57,11 +57,11 @@ While the "Single Responsibility" principle is first, and seems most important, 
 ISP
 ---
 
-The "Interface Segregration" principle is -- perhaps -- the most important.
+The "Interface Segregation" principle is -- perhaps -- the most important.
 
-..  important:: Interface Segregration Principle
+..  important:: Interface Segregation Principle
 
-    ISP == Cut the fluff seen by collabators.
+    ISP == Cut the fluff seen by collaborators.
 
 In a C++ or Java context, the more that's exposed to a collaborator, the wider the ripples from a change.
 
@@ -77,7 +77,7 @@ LSP
 ---
 
 Remember, Python has duck typing. LSP is something that applies if -- and only if -- inheritance is being used.
-A bunch of classes can all implement a common protocol without being suclasses of each other.
+A bunch of classes can all implement a common protocol without being subclasses of each other.
 
 An Abstract Base Class has the abstract methods marked so that an object cannot be created.
 When all of the methods are defined by some subclass, it's now concrete and an object **can** be created.

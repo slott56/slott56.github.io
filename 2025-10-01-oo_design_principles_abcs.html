@@ -198,7 +198,7 @@ The <tt class="docutils literal">abc</tt> module introduces a whole bunch of stu
 Ordinary <tt class="docutils literal">class Special(Die):</tt> inheritance from a concrete base class
 involves no abstraction, and no <tt class="docutils literal">abc</tt>.</p>
 </div>
-<p>Python eschews strict class hierarhcies, and replaces this with &quot;Duck Typing&quot;.
+<p>Python eschews strict class hierarchies, and replaces this with &quot;Duck Typing&quot;.
 All an object requires is to have the method defined.</p>
 <p>See <a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html">The eval() Conundrum and Python-as-DSL</a>.
 Way at the end is this snippet of code.</p>
@@ -230,7 +230,7 @@ The way Duck Type works, there's a search for a method to implement <tt class="d
 <p>Consider <tt class="docutils literal">6 * D4</tt>.</p>
 <ol class="arabic simple">
 <li>Does <tt class="docutils literal">6</tt> implement <tt class="docutils literal">__mul__()</tt>?  It does.
-However, when <tt class="docutils literal">int.__mul__()</tt> is evalated with a <tt class="docutils literal">Die</tt> object, the result is <tt class="docutils literal">NotImplemented</tt>.</li>
+However, when <tt class="docutils literal">int.__mul__()</tt> is evaluated with a <tt class="docutils literal">Die</tt> object, the result is <tt class="docutils literal">NotImplemented</tt>.</li>
 <li>Does <tt class="docutils literal">Die</tt> implement <tt class="docutils literal">__rmul__()</tt>?  It does.
 When <tt class="docutils literal">Die.__rmul__()</tt> is evaluated with an <tt class="docutils literal">int</tt> object, the result is a new <tt class="docutils literal">Die</tt> object.</li>
 </ol>
@@ -240,11 +240,11 @@ When <tt class="docutils literal">Die.__rmul__()</tt> is evaluated with an <tt c
 The Duck Typing two-step search for matching method names doesn't respect the class hierarchy.</blockquote>
 <div class="sidebar">
 <p class="first sidebar-title">The other step?</p>
-<p>There's an initial check which <strong>does</strong> in a limited way, reflect the class hierachy.</p>
-<p>Is <tt class="docutils literal">Die</tt> a sublass of <tt class="docutils literal">int</tt>?
+<p>There's an initial check which <strong>does</strong> in a limited way, reflect the class hierarchy.</p>
+<p>Is <tt class="docutils literal">Die</tt> a subclass of <tt class="docutils literal">int</tt>?
 If <tt class="docutils literal">Die</tt> was a subclass of <tt class="docutils literal">int</tt>, then <tt class="docutils literal">Die</tt> must be considered first to permit a subclass to override a superclass.
 This reverses the <strong>order</strong> of the other two steps.</p>
-<p class="last">A class hierachy can shift the order of the Duck-Typing Two-Step.</p>
+<p class="last">A class hierarchy can shift the order of the Duck-Typing Two-Step.</p>
 </div>
 <p>A <tt class="docutils literal">Protocol</tt> formalizes the Duck-Typing Two-Step in a way that tools can be sure the whole</p>
 <p><strong>Summary</strong>:</p>
@@ -277,8 +277,8 @@ This reverses the <strong>order</strong> of the other two steps.</p>
 </ol>
 <p>ABC's promote early detection of design problems.</p>
 </div>
-<div class="section" id="when-is-it-superflous">
-<h3>When is it superflous?</h3>
+<div class="section" id="when-is-it-superfluous">
+<h3>When is it superfluous?</h3>
 <p>When your base class is concrete, don't waste time on an ABC.
 Just use a concrete base class and extend it as needed.</p>
 <p>That's enough on ABC's for now. Let's move on to the SOLID principles.</p>
@@ -362,7 +362,7 @@ Just use a concrete base class and extend it as needed.</p>
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
         <li class="list-group-item">
-          <a href="https://slott56.github.io/posts/2025/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2025 (2)
+          <a href="https://slott56.github.io/posts/2025/Oct/index.html"><i class="fa fa-calendar fa-lg"></i>October 2025 (4)
           </a>
         </li>
         <li class="list-group-item">

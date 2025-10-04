@@ -5,7 +5,7 @@ OO Design Principles: GRASP patterns
 :tags: python,oo,oodesign,design principles,grasp,patterns
 :slug: 2025-10-04-oo_design_principles_grasp_patterns
 :category: Python
-:status: draft
+:status: published
 
 ..  background:
 
@@ -81,7 +81,7 @@ In some applications -- programs like ``grep`` and ``sed`` -- the UI is really t
 
 -   There's a **tiny** controller that gets the input, then iterates through the model's visible state changes, writing the outputs.
 
-This is one essence of **Clean Design**. Seperating the inputs and outputs from the model and control.
+This is one essence of **Clean Design**. Separating the inputs and outputs from the model and control.
 
 Creator
 -------
@@ -93,9 +93,9 @@ Which sometimes means the creator is also an expert.
 Indirection
 -----------
 
-Somestimes helpful. The Gang-of-Four design patterns subdivide this many ways.
+Sometimes helpful. The Gang-of-Four design patterns subdivide this many ways.
 You might have an Adapter or Facade to wrap one (or more) collaborators.
-You might have a State or Strategy class hierarhcy that wraps up alternative implementation choices into a tidy structure.
+You might have a State or Strategy class hierarchy that wraps up alternative implementation choices into a tidy structure.
 
 Note there are two layers of indirection.
 Objects can have indirect access to other objects, perhaps mediated by the current state.
@@ -104,7 +104,7 @@ Classes **should** have indirect access to other class definitions, per the SOLI
 Information Expert
 ------------------
 
-The SOLID **Single Responsibilty Principle**, restated. Nice to see everyone agrees on this.
+The SOLID **Single Responsibility Principle**, restated. Nice to see everyone agrees on this.
 
 Low Coupling
 ------------
@@ -116,8 +116,8 @@ High Cohesion
 -------------
 
 This is also a very desirable feature of object design.
-This isn't (explicitly) a SOLID design principle, but lurks in she shadows of the SOLID **Single Responsibilty Principle**.
-In order to have a single responsibility, there must be a cohesive design to the class.
+This isn't (explicitly) a SOLID design principle, but lurks in she shadows of the SOLID **Single Responsibility Principle**.
+In order to have a single Responsibility, there must be a cohesive design to the class.
 
 Polymorphism
 ------------
@@ -140,7 +140,7 @@ Closed to modification (the "protected" part of this.)
 Pure Fabrication
 ----------------
 
-I often call these frabricated classes part of the "Solution Domain" distinct from the "Problem Domain."
+I often call these fabricated classes part of the "Solution Domain" distinct from the "Problem Domain."
 
 The model is part of the Problem Domain.
 It represents the real-world things in software space.
@@ -166,6 +166,6 @@ Conclusion
 
 The GRASP patterns can be helpful reminders of different kinds of solutions.
 
-They overlap with -- and can provide some amplication for -- the SOLID design patterns.
+They overlap with -- and can provide some amplification for -- the SOLID design patterns.
 
 The Pure Fabrication and Controller GRASP patterns seem to be more significant than the others.

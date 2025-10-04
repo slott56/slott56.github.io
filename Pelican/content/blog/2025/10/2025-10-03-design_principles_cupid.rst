@@ -5,7 +5,7 @@ OO Design Principles: CUPID
 :tags: python,oo,oodesign,design principles,cupid
 :slug: 2025-10-03-oo_design_principles_cupid
 :category: Python
-:status: draft
+:status: published
 
 ..  background:
 
@@ -34,9 +34,12 @@ Some quotes to provide context.
 BLUF
 ====
 
-Important: Composable, Predictable, Domain-based.
+Very important: Composable, Predictable, Domain-based.
 
-Maybe less important: Unix-Philosophy and Idiomatic
+These are consistent with the idea that software is knowledge capture.
+
+Maybe less important: Unix-Philosophy and Idiomatic.
+While nice ideas, they feel a bit redundant.
 
 CUPID
 =======
@@ -54,7 +57,7 @@ Unix-Philosophy
 ---------------
 
 This **also** implies composability.
-It goes a step further to incorporate the idea of the SOLID Single Responsibility Prinple.
+It goes a step further to incorporate the idea of the SOLID Single Responsibility Principle.
 The Unix design patterns provides concrete examples of how to decompose a large problem into smaller pieces;
 each piece does one thing well.
 
@@ -69,17 +72,32 @@ This decomposes into three distinct aspects:
 
 -   A component's behavior needs to be observable, also.
 
+These are all critical features, especially observability.
+
 Idiomatic
 ---------
 
 Yes, follow language idioms. Please do not boldly go where no programmer has gone before.
+
+This seems to go without saying. It does help fill up the acronym, though.
+And, perhaps, it's necessary advice.
 
 Domain-based
 -------------
 
 The solution code should mirror the problem domain. This is really important, and not present in other sets of design principles.
 
+Indeed, I don't think it can be emphasized enough.
+
+OO modeling and design isn't about optimization or code reuse.
+It's about fidelity to the problem domain.
+
+Code reuse is nice to have.
+Providing common behavior among the problem domain objects that are being modelled is the point.
+
 Conclusion
 ===========
 
-These are nice. They're useful in conjuction with SOLID design principles.
+These are nice. They're very useful in conjunction with SOLID design principles.
+
+It helps to have guideposts to help clarify an underlying "why" we design software.
