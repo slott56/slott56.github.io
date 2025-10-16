@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-04T09:46:00-04:00</updated><entry><title>OO Design Principles: GRASP patterns</title><link href="https://slott56.github.io/2025-10-04-oo_design_principles_grasp_patterns.html" rel="alternate"></link><published>2025-10-04T09:46:00-04:00</published><updated>2025-10-04T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-04:/2025-10-04-oo_design_principles_grasp_patterns.html</id><summary type="html">&lt;!-- background:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-10-16T13:08:00-04:00</updated><entry><title>A get_object_size() Function</title><link href="https://slott56.github.io/2025-10-16-get_object_size_function.html" rel="alternate"></link><published>2025-10-16T13:08:00-04:00</published><updated>2025-10-16T13:08:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-16:/2025-10-16-get_object_size_function.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;You rarely need this.
+Python handles memory management for you.
+Except in an edge case where you have a &lt;strong&gt;lot&lt;/strong&gt; of objects to work with.&lt;/p&gt;
+&lt;p&gt;How many is a lot?  Enough that your app crashes with &lt;tt class="docutils literal"&gt;MemoryError&lt;/tt&gt; exception.
+Or, is consuming so much memory other processes have trouble working …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;You rarely need this.
+Python handles memory management for you.
+Except in an edge case where you have a &lt;strong&gt;lot&lt;/strong&gt; of objects to work with.&lt;/p&gt;
+&lt;p&gt;How many is a lot?  Enough that your app crashes with &lt;tt class="docutils literal"&gt;MemoryError&lt;/tt&gt; exception.
+Or, is consuming so much memory other processes have trouble working.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;One of the significant benefits of using Python is memory management.
+Python creates and disposes of objects as needed, without a lot of complicated-looking code.
+The reference counting often works flawlessly.&lt;/p&gt;
+&lt;p&gt;Often.&lt;/p&gt;
+&lt;p&gt;Sometimes there are circular references, and objects can't (trivially) be collected.
+Object A refers to object B and (sadly) object B &lt;em&gt;also&lt;/em&gt; refers to object A.
+They both have non-zero reference counts.&lt;/p&gt;
+&lt;p&gt;Weak references can sort this out, preventing a core leak that leads to unreliable software.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case"&gt;
+&lt;h2&gt;Use Case&lt;/h2&gt;
+&lt;p&gt;Python has a way to reduce the size of objects.
+It alters a few minor details of how an object works, but is generally transparent.&lt;/p&gt;
+&lt;p&gt;This is an example of a rare case where you are doing memory management in Python.&lt;/p&gt;
+&lt;p&gt;You can use the &lt;tt class="docutils literal"&gt;__slots__&lt;/tt&gt; feature of a class to name the attributes that are present,
+and prevent the creation of the usual &lt;tt class="docutils literal"&gt;__dict__&lt;/tt&gt; structure to hold the attributes.&lt;/p&gt;
+&lt;p&gt;When playing with this, it's often easiest to use the &lt;tt class="docutils literal"&gt;&amp;#64;dataclass(slots=True)&lt;/tt&gt; decorator apply this to a class.&lt;/p&gt;
+&lt;p&gt;This will save memory.&lt;/p&gt;
+&lt;p&gt;How much memory?&lt;/p&gt;
+&lt;p&gt;It's hard to say, because you need to know the &amp;quot;without &lt;tt class="docutils literal"&gt;slots=True&lt;/tt&gt;&amp;quot; and &amp;quot;with &lt;tt class="docutils literal"&gt;slots=True&lt;/tt&gt;&amp;quot; sizes.
+Generally, &lt;tt class="docutils literal"&gt;slots=True&lt;/tt&gt; will be smaller.
+If you've chosen the right class to shrink, you may find improved performance, also.&lt;/p&gt;
+&lt;p&gt;To determine the savings, we need to know the actual size of the collection of objects that are crushing the life out of our application and leading to &lt;tt class="docutils literal"&gt;MemoryError&lt;/tt&gt; exceptions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-object-size-problem"&gt;
+&lt;h2&gt;The Object Size Problem&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;sys&lt;/tt&gt; module has a function, &lt;tt class="docutils literal"&gt;sys.getsizeof()&lt;/tt&gt;, that will provide the size of an object.&lt;/p&gt;
+&lt;p&gt;This is the object &lt;strong&gt;in isolation&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;&lt;tt class="docutils literal"&gt;sys.getsizeof()&lt;/tt&gt; doesn't include contained objects&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;What does it matter of it doesn't include contained objects?&lt;/p&gt;
+&lt;p&gt;Consider a &lt;tt class="docutils literal"&gt;list[int]&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; import sys
+&amp;gt;&amp;gt;&amp;gt; small_list = list(range(10))
+&amp;gt;&amp;gt;&amp;gt; large_list = list(range(10_000))
+&amp;gt;&amp;gt;&amp;gt; sys.getsizeof(small_list)
+136
+&amp;gt;&amp;gt;&amp;gt; sys.getsizeof(large_list)
+80056
+&lt;/pre&gt;
+&lt;p&gt;Okay. Superficially, it seems like each integer in the small list takes up about 13 bytes.&lt;/p&gt;
+&lt;p&gt;Weirdly, each integer in the large list seems to take about 8 bytes.&lt;/p&gt;
+&lt;p&gt;This can't be right.&lt;/p&gt;
+&lt;p&gt;Consider an &lt;tt class="docutils literal"&gt;int&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; sys.getsizeof(42)
+28
+&lt;/pre&gt;
+&lt;p&gt;Okay.
+That's really, really weird.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;list[int]&lt;/tt&gt; size is the size of the &lt;tt class="docutils literal"&gt;list&lt;/tt&gt; object.
+It doesn't include the 10 (or 10,000) &lt;tt class="docutils literal"&gt;int&lt;/tt&gt; objects that are members of the list.&lt;/p&gt;
+&lt;p&gt;Total memory for the short list, then is (136 + 10 times 28 = 416).
+Total memory for the large list would be (80,056 + 10,000 times 28 = 360,056).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-documentation-says"&gt;
+&lt;h2&gt;The Documentation Says&lt;/h2&gt;
+&lt;p&gt;Check the documentation for &lt;tt class="docutils literal"&gt;sys.getsizeof()&lt;/tt&gt;. You'll see this.&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;quot;See &lt;a class="reference external" href="https://code.activestate.com/recipes/577504-compute-memory-footprint-of-an-object-and-its-cont/"&gt;recursive sizeof recipe&lt;/a&gt; for an example of using getsizeof() recursively to find the size of containers and all their contents.&amp;quot;&lt;/blockquote&gt;
+&lt;p&gt;The documentation doesn't say &amp;quot;And read all the comments and integrate all those ideas into one function.&amp;quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-i-did"&gt;
+&lt;h2&gt;What I Did&lt;/h2&gt;
+&lt;p&gt;This function computes the total size of just about anything.
+This includes all the built-in collections.
+It also includes &amp;quot;custom classes&amp;quot;, both the &lt;tt class="docutils literal"&gt;__slots__&lt;/tt&gt; and the non-&lt;tt class="docutils literal"&gt;__slots__&lt;/tt&gt; variants.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;deque&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_object_size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;some_object&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Any&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    For built-in collections, the size is clear.&lt;/span&gt;
+&lt;span class="sd"&gt;    For classes, however, it&amp;#39;s a hair more complicated.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    See https://code.activestate.com/recipes/577504-compute-memory-footprint-of-an-object-and-its-cont/&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;default_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;seen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;elements&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;deque&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;some_object&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;popleft&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;seen&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;continue&lt;/span&gt;
+        &lt;span class="n"&gt;seen&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;default_size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;match&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;deque&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;frozenset&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+                &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+                &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+                &lt;span class="k"&gt;pass&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__dict__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getsizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__dict__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__dict__&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__slots__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="n"&gt;elements&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                    &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__slots__&lt;/span&gt;
+                    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;_&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;pass&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that this walks an entire structure without &lt;em&gt;actually&lt;/em&gt; being recursive.
+If you've got a complicated application, and a &lt;strong&gt;very&lt;/strong&gt; large data structure,
+the overhead of a lot of stack frames may be unmanageable.&lt;/p&gt;
+&lt;p&gt;This assumes that a collection &lt;strong&gt;always&lt;/strong&gt; contains heterogeneous types.
+This means computing the size of each item in the list.&lt;/p&gt;
+&lt;p&gt;This uses a big &lt;tt class="docutils literal"&gt;deque&lt;/tt&gt;, which can involve impossible overhead, also.&lt;/p&gt;
+&lt;p&gt;In some cases, you may need to create a more complicated special-purpose benchmark app that builds your big data structure using your distinct storage alternatives.
+Use your special benchmark test-bed to uncover the implementation that meets all the criteria for storage use and CPU time.&lt;/p&gt;
+&lt;p&gt;The data that is used for the benchmark would need to reflect real-world data with respect to string lengths, and collection sizes.
+Creating synthetic data for an object size benchmark can be a challenge.
+See &lt;a class="reference external" href="https://slott56.github.io/2024-06-29-synthetic_data.html"&gt;Synthetic Data&lt;/a&gt;.
+And, also see &lt;a class="reference external" href="https://slott56.github.io/2024-07-25-synthetic_data_tool.html"&gt;Synthetic Data Tools&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You won't often need this.
+But. I've posted it here so I won't lose it.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category></entry><entry><title>OO Design Principles: GRASP patterns</title><link href="https://slott56.github.io/2025-10-04-oo_design_principles_grasp_patterns.html" rel="alternate"></link><published>2025-10-04T09:46:00-04:00</published><updated>2025-10-04T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-04:/2025-10-04-oo_design_principles_grasp_patterns.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -11477,49 +11618,4 @@ details. It was a long time ago.)&lt;/p&gt;
 generating pseudo-random numbers with digital computers. I'll be posting
 some more thoughts on random numbers and -- I promise -- there will be
 Python code.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="history"></category><category term="learning"></category><category term="simulation"></category><category term="random numbers"></category></entry><entry><title>Some Harsh Criticism for Python Object-Oriented Programming 4th ed.</title><link href="https://slott56.github.io/2021_12_26-some_harsh_criticism_for_python_object_oriented_programming_4th_ed.html" rel="alternate"></link><published>2021-12-26T11:11:00-05:00</published><updated>2021-12-26T11:11:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2021-12-26:/2021_12_26-some_harsh_criticism_for_python_object_oriented_programming_4th_ed.html</id><summary type="html">&lt;p&gt;Here are some links to
-reviews: &lt;a class="reference external" href="https://www.amazon.com/product-reviews/1801077266/ref=cm_cr_unknown?ie=UTF8&amp;amp;filterByStar=one_star&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber=1#reviews-filter-bar"&gt;https://www.amazon.com/product-reviews/1801077266/ref=cm_cr_unknown?ie=UTF8&amp;amp;filterByStar=one_star&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber=1#reviews-filter-bar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.amazon.ca/product-reviews/1801077266/ref=acr_dp_hist_3?ie=UTF8&amp;amp;filterByStar=three_star&amp;amp;reviewerType=all_reviews#reviews-filter-bar"&gt;https://www.amazon.ca/product-reviews/1801077266/ref=acr_dp_hist_3?ie=UTF8&amp;amp;filterByStar=three_star&amp;amp;reviewerType=all_reviews#reviews-filter-bar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;These are reviews of &lt;a class="reference external" href="https://subscription.packtpub.com/book/programming/9781801077262/2"&gt;Python Object-Oriented Programming: Build robust
-and maintainable object-oriented …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are some links to
-reviews: &lt;a class="reference external" href="https://www.amazon.com/product-reviews/1801077266/ref=cm_cr_unknown?ie=UTF8&amp;amp;filterByStar=one_star&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber=1#reviews-filter-bar"&gt;https://www.amazon.com/product-reviews/1801077266/ref=cm_cr_unknown?ie=UTF8&amp;amp;filterByStar=one_star&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber=1#reviews-filter-bar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://www.amazon.ca/product-reviews/1801077266/ref=acr_dp_hist_3?ie=UTF8&amp;amp;filterByStar=three_star&amp;amp;reviewerType=all_reviews#reviews-filter-bar"&gt;https://www.amazon.ca/product-reviews/1801077266/ref=acr_dp_hist_3?ie=UTF8&amp;amp;filterByStar=three_star&amp;amp;reviewerType=all_reviews#reviews-filter-bar&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;These are reviews of &lt;a class="reference external" href="https://subscription.packtpub.com/book/programming/9781801077262/2"&gt;Python Object-Oriented Programming: Build robust
-and maintainable object-oriented Python applications and libraries, 4th
-Edition&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;All reviews are helpful, even ones that are critical. We're constantly
-striving to improve this content. Also, we're aware we can't please
-everyone. I like reviews with clearly-stated points. The one-star review
-had three important points.&lt;/p&gt;
-&lt;p&gt;First. &amp;quot;There are enough typed and strongly typed languages in the
-world&amp;quot;. I don't think this is something I can address in a book about
-Python. &lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0484/"&gt;PEP 484&lt;/a&gt; dates
-from 2014. Back then, this opinion may have been more influential. As it
-is, the comment is perhaps too late to be useful. The annotations are a
-feature of the language, and it seems important to include them in a
-book about the language.&lt;/p&gt;
-&lt;p&gt;Perhaps, the criticism isn't about the Python language. Perhaps this is
-really a criticism of presenting type annotations as a central part of
-the book. The comment seems to be about the language more than the
-book.&lt;/p&gt;
-&lt;p&gt;Second. &amp;quot;...the k-NN example seems too incongruous...&amp;quot; and &amp;quot;... it was
-more of an hindrance...&amp;quot; This is interesting. The book covers the k-NN
-algorithm from a variety of perspectives. The intent was to provide
-multiple partial solutions, each illustrating only techniques shown in a
-given chapter. I can see how this might be confusing, and perhaps the
-examples need to be refactored to reduce overlap between them.&lt;/p&gt;
-&lt;p&gt;Or. Perhaps k-NN is too simple. Or. It might be that k-NN is already
-solved in a number of packages like scikit learn. It seemed like a
-algorithm with a moderate level of complexity and direct application to
-analytics and data science.&lt;/p&gt;
-&lt;p&gt;Third, &amp;quot;The English is not always good ... the book could have done with
-a bit more proofreading.&amp;quot; I'd love some concrete examples. I suspect the
-problem is my Americanisms have caused problems for non-American
-readers. Perhaps I didn't try hard enough to match Dusty's
-conversational tone in the 3rd edition. Examples would help to point out
-where language problems were introduced.&lt;/p&gt;
-&lt;p&gt;The three-star review had a misleading statement, &amp;quot;This edition also
-uses non-standard python syntax on definitions functions etc&amp;quot;. The type
-hints have been part of the language since PEP 484, and it seems
-inappropriate to describe them as non-standard.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="python"></category><category term="writing"></category></entry></feed>
+</content><category term="Technologies"></category><category term="history"></category><category term="learning"></category><category term="simulation"></category><category term="random numbers"></category></entry></feed>
