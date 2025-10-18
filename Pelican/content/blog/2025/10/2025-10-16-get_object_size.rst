@@ -1,4 +1,4 @@
-A get_object_size() Function
+A get_object_size() Function [Updated]
 #######################################
 
 :date: 2025-10-16 13:08
@@ -16,6 +16,7 @@ Except in an edge case where you have a **lot** of objects to work with.
 
 How many is a lot?  Enough that your app crashes with ``MemoryError`` exception.
 Or, is consuming so much memory other processes have trouble working.
+Or, it's slow because of all the garbage collection going on.
 
 Background
 ==========
@@ -119,9 +120,13 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
 ..  code-block:: python
 
     from collections import deque
+    from collections.abc import Sequence, Mapping, Set, Iterable
     import sys
+    from textwrap import shorten
+    from typing import Any
 
-    def get_object_size(some_object: Any) -> int:
+
+    def get_object_size(some_object: Any, verbose: bool = False) -> int:
         """
         For built-in collections, the size is clear.
         For classes, however, it's a hair more complicated.
@@ -131,23 +136,29 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
         default_size = sys.getsizeof(0)
         seen = set()
         elements = deque([some_object])
-        size = 0
+        sizes: list[int] = []
         while elements:
             obj = elements.popleft()
             if id(obj) in seen:
                 continue
             seen.add(id(obj))
-            size += sys.getsizeof(obj, default_size)
+
+            if verbose:
+                print(f"{id(obj):8x} {type(obj)}, {shorten(repr(obj), 32)}", file=sys.stderr)
+
+            sizes.append(sys.getsizeof(obj, default_size))
             match obj:
-                case tuple() | list() | deque() | set() | frozenset():
-                    elements.extend(iter(obj))
-                case dict():
-                    elements.extend(obj.items())
                 case str():
                     pass
+                case Sequence() | Set():
+                    elements.extend(iter(obj))
+                case Mapping():
+                    elements.extend(obj.keys())
+                    elements.extend(obj.values())
                 case object() if hasattr(obj, '__dict__'):
-                    size += sys.getsizeof(obj.__dict__)
-                    elements.extend(obj.__dict__.items())
+                    sizes.append(sys.getsizeof(obj.__dict__))
+                    elements.extend(obj.__dict__.keys())
+                    elements.extend(obj.__dict__.values())
                 case object() if hasattr(obj, '__slots__'):
                     elements.extend(
                         getattr(obj, name)
@@ -156,11 +167,14 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
                     )
                 case _:
                     pass
-        return size
+        return sum(sizes)
+
 
 Note that this walks an entire structure without *actually* being recursive.
-If you've got a complicated application, and a **very** large data structure,
+If you've got a complicated application, and a **very** deeply-nested data structure,
 the overhead of a lot of stack frames may be unmanageable.
+
+(There are other optimization approaches to this problem.)
 
 This assumes that a collection **always** contains heterogeneous types.
 This means computing the size of each item in the list.
@@ -178,3 +192,8 @@ And, also see `Synthetic Data Tools <{filename}/blog/2024/07/2024-07-25-syntheti
 
 You won't often need this.
 But. I've posted it here so I won't lose it.
+
+TODO
+====
+
+Handle ``numpy`` types, also.

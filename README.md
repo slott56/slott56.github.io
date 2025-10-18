@@ -70,7 +70,7 @@ git commit -m "Blog updates through yyyy-mmm-dd"
 git push origin master
 ```
 
-Or, better yet:
+Or, better yet, run this in the ``Pelican`` directory:
 
 ```commandline
 make github
