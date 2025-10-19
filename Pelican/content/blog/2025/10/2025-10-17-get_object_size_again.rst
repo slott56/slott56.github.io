@@ -39,19 +39,41 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
 
 ..  code-block:: python
 
-    from collections.abc import Sequence, Mapping, Set
+    from collections.abc import Sequence, Mapping, Set, Iterable, Callable
     import itertools
     import sys
     from textwrap import shorten
     from typing import Any
 
 
-    def get_object_size(some_object: Any, verbose: bool = False) -> int:
+    def get_object_size(
+        some_object: Any,
+        additional_types: Callable[[Any], int | None] | None = None,
+        verbose: bool = False,
+    ) -> int:
         """
-        For built-in collections, the size is clear.
-        For classes, however, it's a hair more complicated.
+        Computes the size of the given object.
+        This expands on the recipe cited in the documentation for :py:func:`sys.getsizeof`.
 
-        See https://code.activestate.com/recipes/577504-compute-memory-footprint-of-an-object-and-its-cont/
+        :param some_object: Any Python object.
+        :param additional_types: A function that can return the size for an object for a type not handled here.
+        :param verbose: True to print object information as the size is computed.
+        :return: aggregate size of the object and all the related objects.
+
+        The sizes are **highly** implementation specific.
+
+        The types handled here are the built-in collections
+        defined in :py:mod:`collections.abc`:
+        ``str``, ``Sequence``, ``Set``, ``Mapping``.
+        Additionally, this will look at any instance of class derived from :py:class:`object`,
+        handling the default ``__dict__`` as well as ``__slots__``.
+
+        >>> get_object_size("Hello, world!")
+        54
+        >>> get_object_size("!")
+        42
+        >>> get_object_size(list(range(10)))
+        416
         """
         default_size = sys.getsizeof(0)
         seen: set[int] = set()
@@ -63,10 +85,11 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
             seen.add(id(obj))
 
             if verbose:
-                print(f"{id(obj):8x} {type(obj)}, {shorten(repr(obj), 32)}", file=sys.stderr)
+                print(
+                    f"{id(obj):8x} {type(obj)}, {shorten(repr(obj), 32)}", file=sys.stderr
+                )
 
-            base = [sys.getsizeof(obj, default_size)]
-            items = iter([])
+            items: Iterable[int] = iter([])
             match obj:
                 case str():
                     pass
@@ -75,24 +98,25 @@ It also includes "custom classes", both the ``__slots__`` and the non-``__slots_
                 case Mapping() as mapping:
                     items = itertools.chain(
                         map(component_size, mapping.keys()),
-                        map(component_size, mapping.values())
+                        map(component_size, mapping.values()),
                     )
-                case object() as obj_dict if hasattr(obj, '__dict__'):
-                    base.append(sys.getsizeof(obj_dict.__dict__))
+                case object() as obj_dict if hasattr(obj, "__dict__"):
                     items = itertools.chain(
                         map(component_size, obj_dict.__dict__.keys()),
-                        map(component_size, obj_dict.__dict__.values())
+                        map(component_size, obj_dict.__dict__.values()),
                     )
-                case object() as obj_slot if hasattr(obj, '__slots__'):
-                    values = (getattr(obj_slot, name)
+                case object() as obj_slot if hasattr(obj, "__slots__"):
+                    values = (
+                        getattr(obj_slot, name)
                         for name in obj_slot.__slots__
                         if hasattr(obj_slot, name)
                     )
                     items = map(component_size, values)
                 case _:
-                    print(f"skipping {type(obj)}")
-                    pass
+                    if additional_types and (obj_size := additional_types(obj)) is not None:
+                        items = iter([obj_size])
 
+            base = [sys.getsizeof(obj, default_size)]
             sizes = itertools.chain(base, items)
             return sum(sizes)
 
@@ -105,4 +129,5 @@ It creates iterable generators with size details.
 You won't often need this.
 But. I've posted it here so I won't lose it.
 
-And. Because the first version was based on a few faulty assumptions.
+And. I like to think through alternative implementations.
+One of these is probably faster.
