@@ -1,4 +1,4 @@
-Domnain-Specific Language
+Domain-Specific Language
 ############################
 
 :date: 2025-03-11 15:52
