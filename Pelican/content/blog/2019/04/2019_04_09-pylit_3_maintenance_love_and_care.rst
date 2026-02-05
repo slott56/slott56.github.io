@@ -2,9 +2,9 @@ PyLit-3 Maintenance, Love and Care
 ==================================
 
 :date: 2019-04-09 08:00
-:tags: literate programming,PyLit,#python
+:tags: PyLit,#python
 :slug: 2019_04_09-pylit_3_maintenance_love_and_care
-:category: Technologies
+:category: literate programming
 :status: published
 
 The PyLit tool dates from 2009. Here's a historical

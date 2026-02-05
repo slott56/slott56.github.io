@@ -2,9 +2,9 @@ pyWeb Literate Programming Tool | Download pyWeb Literate Programming Tool softw
 ===============================================================================================================
 
 :date: 2010-12-30 13:31
-:tags: #python,pyWeb,literate programming
+:tags: #python,pyWeb
 :slug: 2010_12_30-pyweb_literate_programming_tool_download_pyweb_literate_programming_tool_software_for_free_at_sourceforgenet
-:category: Technologies
+:category: literate programming
 :status: published
 
 I've (finally) updated the pyWeb Literate Programming Tool.

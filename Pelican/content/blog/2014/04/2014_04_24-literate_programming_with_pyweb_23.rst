@@ -2,9 +2,9 @@ Literate Programming with pyWeb 2.3
 ===================================
 
 :date: 2014-04-24 08:00
-:tags: #python,pyWeb,literate programming
+:tags: #python,pyWeb
 :slug: 2014_04_24-literate_programming_with_pyweb_23
-:category: Technologies
+:category: literate programming
 :status: published
 
 Updates completed.

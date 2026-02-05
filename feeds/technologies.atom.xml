@@ -2566,99 +2566,7 @@ time to start retiring some languages. If Adding Another Tool is a
 problem, it's worth examining the existing tool chain to see why it's
 such a burden. If the idea of change is terrifying, perhaps the
 ongoing change is not being watched carefully enough.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="enterprise"></category></entry><entry><title>Tragedy Averted</title><link href="https://slott56.github.io/2022_08_09-tragedy_averted.html" rel="alternate"></link><published>2022-08-09T08:00:00-04:00</published><updated>2022-08-09T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-08-09:/2022_08_09-tragedy_averted.html</id><summary type="html">&lt;p&gt;I almost made a terrible blunder.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for some background. This is
-a &amp;quot;Literate Programming&amp;quot; tool. I started fooling around with this kind
-of thing back in '05 (maybe even earlier.) This is not the blunder. The
-whole idea of literate programming is not very …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I almost made a terrible blunder.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for some background. This is
-a &amp;quot;Literate Programming&amp;quot; tool. I started fooling around with this kind
-of thing back in '05 (maybe even earlier.) This is not the blunder. The
-whole idea of literate programming is not very popular. I'm a fan of
-&lt;a class="reference external" href="https://jupyterbook.org/en/stable/intro.html"&gt;Jupyter{Book}&lt;/a&gt; as the
-state of the art in sophisticated literate programming, if you're
-interested in it.&lt;/p&gt;
-&lt;p&gt;In my case, I started this project so long ago, I
-used &lt;a class="reference external" href="https://docutils.sourceforge.io"&gt;docutils&lt;/a&gt;. This was
-long before &lt;a class="reference external" href="https://github.com/sphinx-doc/sphinx"&gt;Sphinx&lt;/a&gt; arrived on
-the scene. I never updated my little project to use Sphinx. The point
-was to have a kind of pure literate programming tool that could work
-with a variety of markup languages, including (but not limited to) RST.&lt;/p&gt;
-&lt;p&gt;Recently, I learned about &lt;a class="reference external" href="https://plantuml.com"&gt;PlantUML&lt;/a&gt;. The idea
-of a text description of a diagram is appealing. I don't really need to
-draw it; I just need to specify what's in it and let
-&lt;a class="reference external" href="https://graphviz.org"&gt;graphviz&lt;/a&gt; do the rest. This tool is very, very
-cool. You can capture ideas quickly. You can refine and expand on ideas
-until you reach a point where code makes more sense than a picture of
-code.&lt;/p&gt;
-&lt;p&gt;For some things, you can gather data and draw a picture of things *as
-they are*. This is particularly valuable for cloud-based infrastructure
-where a few queries leads to PlantUML source that is depicted very
-nicely.&lt;/p&gt;
-&lt;p&gt;Which leads to the idea of Literate Programming including UML diagrams.&lt;/p&gt;
-&lt;p&gt;Doesn't sound too difficult. I can create an extension to &lt;strong&gt;docutils&lt;/strong&gt;
-to introduce a UML directive. The resulting RST would look like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-..  uml::
-
-    left to right direction
-    skinparam actorStyle awesome
-
-    actor &amp;quot;Developer&amp;quot; as Dev
-    rectangle PyWeb {
-        usecase &amp;quot;Tangle Source&amp;quot; as UC_Tangle
-        usecase &amp;quot;Weave Document&amp;quot; as UC_Weave
-    }
-    rectangle IDE {
-        usecase &amp;quot;Create WEB&amp;quot; as UC_Create
-        usecase &amp;quot;Run Tests&amp;quot; as UC_Test
-    }
-    Dev --&amp;gt; UC_Tangle
-    Dev --&amp;gt; UC_Weave
-    Dev --&amp;gt; UC_Create
-    Dev --&amp;gt; UC_Test
-
-    UC_Test --&amp;gt; UC_Tangle
-&lt;/pre&gt;
-&lt;p&gt;This could be handy to have the diagrams as part of the documentation
-that tangles the working the code. One source for all of it.&lt;/p&gt;
-&lt;p&gt;I started down the path of researching &lt;strong&gt;docutils&lt;/strong&gt; extensions. Got
-pretty far. Far enough that I had an empty repository and everything. I
-was about ready to start creating spike solutions.&lt;/p&gt;
-&lt;p&gt;Then.&lt;/p&gt;
-&lt;p&gt;[&lt;em&gt;music cue&lt;/em&gt;] *&lt;a class="reference external" href="https://www.youtube.com/watch?v=9mSVzGnKsXw"&gt;duh duh
-duuuuuuh&lt;/a&gt;*&lt;/p&gt;
-&lt;p&gt;I found that Sphinx already has an extension for PlantUML. I almost
-started reading the code to see how it worked.&lt;/p&gt;
-&lt;p&gt;Then I realized how dumb that was. It already works. Why read the code?
-Why not install it?&lt;/p&gt;
-&lt;p&gt;I had a choice to make.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Continue building my own &lt;strong&gt;docutils&lt;/strong&gt; plug-in.&lt;/li&gt;
-&lt;li&gt;Switch to Sphinx.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Some complications:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;My Literate Programming tool produces RST that *may* not be
-compatible with Sphinx.&lt;/li&gt;
-&lt;li&gt;It's yet another dependency in a tool that started out with zero
-dependencies. I've added pytest and tox. What next?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What to do?&lt;/p&gt;
-&lt;p&gt;I have to say that Git is amazing. I can make a branch for the spike. If
-it works, pull request. If it doesn't work, delete the branch. This
-continues to be game-changing to me. I'm old. I remember when we had to
-back up the whole project directory tree before making this kind of
-change.&lt;/p&gt;
-&lt;p&gt;It worked. My tool's RST (with one exception) worked perfectly with
-Sphinx. The one exception was an obscure directive, &lt;tt class="docutils literal"&gt;.. class:: name&lt;/tt&gt;,
-used to provide an HTML class name for the following block. This always
-should have been the &lt;strong&gt;docutils&lt;/strong&gt; &lt;tt class="docutils literal"&gt;.. container:: name&lt;/tt&gt; directive.
-With this fix, we're good to go.&lt;/p&gt;
-&lt;p&gt;I'm happy I avoided the trap of reimplementing something. Instead of
-that, I upgraded from &amp;quot;bare&amp;quot; &lt;strong&gt;docutils&lt;/strong&gt; with my own CSS to Sphinx with
-it's sophisticated templates and HTML Themes.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="sphinx"></category><category term="#python"></category><category term="literate programming"></category><category term="docutils"></category><category term="plantuml"></category><category term="pyWeb"></category></entry><entry><title>Books! Books! Books!</title><link href="https://slott56.github.io/2022_08_02-books_books_books.html" rel="alternate"></link><published>2022-08-02T08:00:00-04:00</published><updated>2022-08-02T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-08-02:/2022_08_02-books_books_books.html</id><summary type="html">&lt;p&gt;First, there's&lt;/p&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="enterprise"></category></entry><entry><title>Books! Books! Books!</title><link href="https://slott56.github.io/2022_08_02-books_books_books.html" rel="alternate"></link><published>2022-08-02T08:00:00-04:00</published><updated>2022-08-02T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-08-02:/2022_08_02-books_books_books.html</id><summary type="html">&lt;p&gt;First, there's&lt;/p&gt;
 &lt;div class="section" id="pivot-to-python"&gt;
 &lt;h2&gt;Pivot to Python&lt;/h2&gt;
 &lt;div class="section" id="a-guide-for-professionals-and-skilled-beginners"&gt;
@@ -2949,515 +2857,7 @@ a party.&lt;/li&gt;
 encodes enterprise knowledge. Preserving this knowledge in a more modern
 language is a value-maintaining exercise. Indeed, the improved clarity
 may be a value-creating exercise.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="COBOL"></category><category term="stingray reader"></category></entry><entry><title>Revised Understanding --&gt; Revised Data Structures --&gt; Revised Type Hints</title><link href="https://slott56.github.io/2022_07_05-revised_understanding_revised_data_structures_revised_type_hints.html" rel="alternate"></link><published>2022-07-05T08:00:00-04:00</published><updated>2022-07-05T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-07-05:/2022_07_05-revised_understanding_revised_data_structures_revised_type_hints.html</id><summary type="html">&lt;p&gt;My literate programming tool, pyWeb, has moved to version 3.1 --
-supporting modern Python.&lt;/p&gt;
-&lt;p&gt;Next up, version 3.2. This is a massive reworking of the data structures
-involved. The rework lets me use Jinja2 for templates. There's a lot of
-fiddliness to getting the end-of-line spacing right. Jinja has …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My literate programming tool, pyWeb, has moved to version 3.1 --
-supporting modern Python.&lt;/p&gt;
-&lt;p&gt;Next up, version 3.2. This is a massive reworking of the data structures
-involved. The rework lets me use Jinja2 for templates. There's a lot of
-fiddliness to getting the end-of-line spacing right. Jinja has the
-following:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-{% for construct in container -%}
-{{construct}}
-{%- endfor %}
-&lt;/pre&gt;
-&lt;p&gt;The easy-to-overlook hyphens suppress spacing, allowing the construct to
-be spread onto multiple lines without introducing extra newlines into
-the output. This makes it a little easier to debug the templates.&lt;/p&gt;
-&lt;p&gt;It now works. But. Until I get past strict type checks, there's no
-reason for calling it done.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Found 94 errors in 1 file (checked 3 source files)
-&lt;/pre&gt;
-&lt;p&gt;The bulk of the remaining problems seem to be new methods where I forgot
-to include a type hint. The more pernicious problems are places where I
-have inconsistent hints and Liskov substitution problems. The worst a
-places where I had a last-minute change change and switched from &lt;tt class="docutils literal"&gt;str&lt;/tt&gt;
-to &lt;tt class="docutils literal"&gt;int&lt;/tt&gt; and did not actually follow-through and make required
-changes.&lt;/p&gt;
-&lt;p&gt;The biggest issue?&lt;/p&gt;
-&lt;p&gt;When building an AST, it's common to have a union of a wide variety of
-types. This union often has a discriminator value to separate
-&lt;tt class="docutils literal"&gt;NamedChunk&lt;/tt&gt; from &lt;tt class="docutils literal"&gt;OutputChunk&lt;/tt&gt;. This is &amp;quot;type narrowing&amp;quot; and there
-are a variety of approaches. I think my best choice is a &lt;tt class="docutils literal"&gt;TypeGuard&lt;/tt&gt;
-declaration. This is new to me, so I've got to do some learning before I
-can properly define the required type guard function(s).
-(See &lt;a class="reference external" href="https://mypy.readthedocs.io/en/stable/type_narrowing.html#user-defined-type-guards"&gt;https://mypy.readthedocs.io/en/stable/type_narrowing.html#user-defined-type-guards&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;I'm looking forward (eagerly) to finishing the cleanup.&lt;/p&gt;
-&lt;p&gt;The problem is that I'm -- also -- working on the updates to &lt;a class="reference external" href="https://www.google.com/search?client=safari&amp;amp;rls=en&amp;amp;q=packt+functional+python+programming+2e&amp;amp;ie=UTF-8&amp;amp;oe=UTF-8"&gt;Functional
-Python
-Programming&lt;/a&gt;.
-The PyWeb project is a way to relax my brain from editing the book.&lt;/p&gt;
-&lt;p&gt;Which means the pyWeb updates have to wait for Chapter 4 and 5 edits.
-(Sigh.)&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="pyWeb"></category><category term="literate programming"></category></entry><entry><title>Massive Rework of Data Structures</title><link href="https://slott56.github.io/2022_06_28-massive_rework_of_data_structures.html" rel="alternate"></link><published>2022-06-28T08:00:00-04:00</published><updated>2022-06-28T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-06-28:/2022_06_28-massive_rework_of_data_structures.html</id><summary type="html">&lt;p&gt;As noted in &lt;a class="reference external" href="https://slott56.github.io/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html"&gt;My Shifting Understanding and A Terrible Design
-Mistake&lt;/a&gt;,
-I had a design that focused on serialization instead of proper modeling
-of the objects in question.&lt;/p&gt;
-&lt;p&gt;Specifically, I didn't start with a suitable abstract syntax tree (AST)
-structure. I started with an algorithmic view of &amp;quot;weaving&amp;quot; and
-&amp;quot;tangling …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As noted in &lt;a class="reference external" href="https://slott56.github.io/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html"&gt;My Shifting Understanding and A Terrible Design
-Mistake&lt;/a&gt;,
-I had a design that focused on serialization instead of proper modeling
-of the objects in question.&lt;/p&gt;
-&lt;p&gt;Specifically, I didn't start with a suitable abstract syntax tree (AST)
-structure. I started with an algorithmic view of &amp;quot;weaving&amp;quot; and
-&amp;quot;tangling&amp;quot; to transform a WEB of definitions into documentation and
-code. The weaving and tangling are two of the three distinct
-serializations of a common AST.&lt;/p&gt;
-&lt;p&gt;The third serialization is the common source format that underpins the
-WEB of definitions. Here's an example that contains a number of
-definitions and a tangled output file.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Fast Exponentiation
-===================
-
-A classic divide-and-conquer algorithm.
-
-&amp;#64;d fast exp &amp;#64;{
-def fast_exp(n: int, p: int) -&amp;gt; int:
-    match p:
-        case 0:
-            return 1
-        case _ if p % 2 == 0:
-            t = fast_exp(n, p // 2)
-            return t * t
-        case _ if p % 1 == 0:
-            return n * fast_exp(n, p - 1)
-&amp;#64;| fast_exp
-&amp;#64;}
-
-With a test case.
-
-&amp;#64;d test case &amp;#64;{
-&amp;gt;&amp;gt;&amp;gt; fast_exp(2, 30)
-1073741824
-&amp;#64;}
-
-&amp;#64;o example.py &amp;#64;{
-&amp;#64;&amp;lt; fast exp &amp;#64;&amp;gt;
-
-__test__ = {
-    &amp;quot;test 1&amp;quot;: '''
-&amp;#64;&amp;lt; test case &amp;#64;&amp;gt;
-    '''
-}
-&amp;#64;| __test__
-&amp;#64;}
-
-Use ``python -m doctest`` to test.
-
-Macros
-------
-
-&amp;#64;m
-
-Names
------
-
-&amp;#64;u
-&lt;/pre&gt;
-&lt;p&gt;This example uses RST as the markup language for the woven document. A
-tool can turn this simplified document into complete RST with
-appropriate wrappers around the code blocks. The tool can also weave the
-&lt;tt class="docutils literal"&gt;example.py&lt;/tt&gt; file from the source document.&lt;/p&gt;
-&lt;p&gt;The author can focus on exposition, explaining the algorithm. The reader
-gets the key points without the clutter of programming language
-overheads and complications.&lt;/p&gt;
-&lt;p&gt;The compiler gets a tangled source.&lt;/p&gt;
-&lt;p&gt;The key point is to have a tool that's (mostly) agnostic with respect to
-programming language and markup language. Being fully agnostic isn't
-possible, of course. The &lt;tt class="docutils literal"&gt;&amp;#64;d name &amp;#64;{code&amp;#64;}&lt;/tt&gt; constructs are transformed
-into markup blocks of some sophistication. The &lt;tt class="docutils literal"&gt;&amp;#64;&amp;lt;name&amp;#64;&amp;gt;&lt;/tt&gt; becomes a
-hyperlink, with suitable markup. Similarly, the cross
-reference-generating commands, &lt;tt class="docutils literal"&gt;&amp;#64;m&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&amp;#64;u&lt;/tt&gt;, generate a fair amount
-of markup content.&lt;/p&gt;
-&lt;p&gt;I now have Jinja templates to do this in RST. I'll also have to provide
-LaTeX and HTML. Further, I need to provide generic LaTeX along with
-LaTeX I can use with PacktPub's LaTeX publishing pipeline. But let's not
-look too far down the road. First things first.&lt;/p&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;TL;DR&lt;/h2&gt;
-&lt;p&gt;Here's today's progress measurement.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-==================== 67 failed, 13 passed, 1 error in 1.53s ====================
-&lt;/pre&gt;
-&lt;p&gt;This comforts me a great deal. Some elements of the original structure
-still work. There are two kinds of failures: new test fixtures that
-require &lt;tt class="docutils literal"&gt;TestCase.setUp()&lt;/tt&gt; methods, and tests for features that are no
-longer part of the design.&lt;/p&gt;
-&lt;p&gt;In order to get the refactoring to a place where it would even run, I
-had to incorporate some legacy methods that -- it appears -- will
-&lt;em&gt;eventually&lt;/em&gt; become dead code. It's not totally dead, yet, because I'm
-still mid-way through the refactoring.&lt;/p&gt;
-&lt;p&gt;But. I'm no longer beating back and forth trying to see if I've got a
-better design. I'm now on the downwind broad reach of finding and fixing
-the 67 test cases that are broken.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="Test-Driven Development"></category><category term="#python"></category><category term="pyWeb"></category><category term="literate programming"></category></entry><entry><title>My Shifting Understanding and A Terrible Design Mistake</title><link href="https://slott56.github.io/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html" rel="alternate"></link><published>2022-06-21T08:00:00-04:00</published><updated>2022-06-21T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-06-21:/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html</id><summary type="html">&lt;p&gt;I've been fascinated by Literate Programming forever.&lt;/p&gt;
-&lt;p&gt;I have two utterly divergent takes on this.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/PyLit-3"&gt;https://github.com/slott56/PyLit-3&lt;/a&gt; for one.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for another.&lt;/p&gt;
-&lt;p&gt;And yet, I've still done a really bad design job. Before we get to the
-design, a little bit …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been fascinated by Literate Programming forever.&lt;/p&gt;
-&lt;p&gt;I have two utterly divergent takes on this.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/PyLit-3"&gt;https://github.com/slott56/PyLit-3&lt;/a&gt; for one.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for another.&lt;/p&gt;
-&lt;p&gt;And yet, I've still done a really bad design job. Before we get to the
-design, a little bit of back story.&lt;/p&gt;
-&lt;div class="section" id="back-story"&gt;
-&lt;h2&gt;Back Story&lt;/h2&gt;
-&lt;p&gt;Why two separate literate programming projects? Because it's not
-&lt;strong&gt;clear&lt;/strong&gt; what's best. It's a field without too many boundaries and a
-lot of questions about the value produced.&lt;/p&gt;
-&lt;p&gt;PyLit I found, forked, and upgraded to Python 3. I didn't design it.
-It's far more clever than something I'd design.&lt;/p&gt;
-&lt;p&gt;Py-Web-Tool is something I wrote based on using a whole bunch of tools
-that follow along behind the original WEB tools. Nothing to do with web
-servers or web.py.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-problem-domain"&gt;
-&lt;h2&gt;The Problem Domain&lt;/h2&gt;
-&lt;p&gt;The design problem is, in retrospect, pretty obvious. I set it out here
-as a cautionary tale.&lt;/p&gt;
-&lt;p&gt;I'm looking at the markup languages for doing literate programming. The
-idea is to have named blocks of code in your document, presented in an
-order that makes sense to your reader. A tool will &amp;quot;weave&amp;quot; a document
-from your source. It will also &amp;quot;tangle&amp;quot; source code by rearranging the
-code snippets from presentation order into compiler-friendly order.&lt;/p&gt;
-&lt;p&gt;This means you can present your core algorithm first, even though it's
-buried in the middle of some module in the middle of your package.&lt;/p&gt;
-&lt;p&gt;The presentation order is *not* tied to the order needed by your
-language's toolchain.&lt;/p&gt;
-&lt;p&gt;For languages like C this is huge freedom. For Python, it's not such a
-gigantic win.&lt;/p&gt;
-&lt;p&gt;The source material is a &amp;quot;web&amp;quot; of code and information about the code. A
-web file may look like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Important insight.
-
-&amp;#64;d core feature you need to know about first &amp;#64;{
-    def somecode() -&amp;gt; None:
-        pass
-&amp;#64;}
-
-And see how this fits into a larger context?
-
-&amp;#64;d something more expansive &amp;#64;{
-def this() -&amp;gt; None:
-    pass
-
-def that() -&amp;gt; None:
-    pass
-
-&amp;#64;&amp;lt;core feature you need to know about first&amp;#64;&amp;gt;
-&amp;#64;}
-
-See how that works?
-&lt;/pre&gt;
-&lt;p&gt;This is easy to write and (relatively) easy to read. The
-&lt;tt class="docutils literal"&gt;&amp;#64;&amp;lt;core feature you need to know about first&amp;#64;&amp;gt;&lt;/tt&gt; becomes a hyperlink in
-the published documentation. So you can flip between the sections. It's
-physically expanded inline to tangle the code, but you don't often need
-to look at the tangled code.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-design-question"&gt;
-&lt;h2&gt;The Design Question&lt;/h2&gt;
-&lt;p&gt;The essential Literate Programming tool is a compiler with two outputs:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The &amp;quot;woven&amp;quot; document with markup and such&lt;/li&gt;
-&lt;li&gt;The &amp;quot;tangled&amp;quot; code files which are code, largely untouched, but
-reordered.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We've got four related problems.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Parsing the input&lt;/li&gt;
-&lt;li&gt;An AST we can process&lt;/li&gt;
-&lt;li&gt;Emitting tangled output from the AST&lt;/li&gt;
-&lt;li&gt;Emitting woven output form the AST&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Or, we can look at it as three classic problems: deserialization, AST
-representation, and serialization. Additionally, we have two distinct
-serialization alternatives.&lt;/p&gt;
-&lt;p&gt;What did I do?&lt;/p&gt;
-&lt;p&gt;I tackled serialization first. Came up with a cool bunch of classes and
-methods to serialize the two kinds of documents.&lt;/p&gt;
-&lt;p&gt;Then I wrote the deserialization (or parsing) of the source WEB file.
-This is pretty easy, since the markup is designed to be as trivial as
-possible.&lt;/p&gt;
-&lt;p&gt;The representation is little more than glue between the two.&lt;/p&gt;
-&lt;p&gt;What a mistake.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="a-wrong-answer"&gt;
-&lt;h2&gt;A Wrong Answer&lt;/h2&gt;
-&lt;p&gt;Focusing on serialization was an epic mistake.&lt;/p&gt;
-&lt;p&gt;I want to try using
-&lt;a class="reference external" href="https://jinja.palletsprojects.com/en/3.1.x/"&gt;Jinja2&lt;/a&gt; for the markup
-templates instead of
-&lt;a class="reference external" href="https://docs.python.org/3/library/string.html#template-strings"&gt;string.Template&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;However.&lt;/p&gt;
-&lt;p&gt;My AST was such a bad hack job it was essentially impossible to use it.
-It was a quagmire of inconsistent ad-hoc methods to solve a specific
-serialization issue.&lt;/p&gt;
-&lt;p&gt;As I start down the Jinja road, I found a need to be able to build an
-AST without the overhead of parsing.&lt;/p&gt;
-&lt;p&gt;Which caused me to realize that the AST was -- while structurally
-sensible -- far from the simple ideal.&lt;/p&gt;
-&lt;p&gt;What's the ideal?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-right-answer"&gt;
-&lt;h2&gt;The Right Answer&lt;/h2&gt;
-&lt;p&gt;This ideal AST is something that lets me build test fixtures like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-example = Web(
-   chunks=[
-       TextChunk(&amp;quot;\n&amp;quot;),
-       NamedCodeChunk(name=&amp;quot;core feature you need to know about first&amp;quot;, lines=[&amp;quot;def someconme() -&amp;gt; None: ...&amp;quot;, &amp;quot;pass&amp;quot;])),
-       TextChunk(&amp;quot;\nAnd see how this fits into a larger context?\n&amp;quot;),
-       NamedCodeChunk(name=&amp;quot;something more expansive&amp;quot;, lines=[etc. etc.])
-   ]
-)
-&lt;/pre&gt;
-&lt;p&gt;Here's my test for usability: I can build the AST &amp;quot;manually&amp;quot; without a
-parser.&lt;/p&gt;
-&lt;p&gt;The parser can build one, also, but I can build it as a sensible,
-readable, first-class Python object.&lt;/p&gt;
-&lt;p&gt;This has pointed me to a better design for the overall constructs of the
-WEB source document. Bonus. It's helping me define Jinja templates that
-can render this as a sensible woven document.&lt;/p&gt;
-&lt;p&gt;Tangling does not need Jinja. It's simpler. And -- by convention -- the
-tangled code does not have anything injected into it. The woven code is
-in a markup language (Markdown, RST, HTML, LaTeX, ASCII DOC, whatever)
-and some markup is required to create hyperlinks and code sections.
-Jinja is super helpful here.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;TL;DR&lt;/h2&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;The essence of the problem is rarely serialization or deserialization.&lt;/dt&gt;
-&lt;dd&gt;It's the internal representation.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="when-learning-how-to-use-a-word-processor-it-turn"&gt;
-&lt;h2&gt;When learning how to use a word processor, it turn...&lt;/h2&gt;
-&lt;p&gt;Unknown&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2022-07-16 13:24:35.832000-04:00&lt;/p&gt;
-&lt;p&gt;When learning how to use a word processor, it turns out the second word
-processor you learn takes longer than the first. As you explore the
-second one, the core ideas get contemplated and refined. The third one
-on is just &amp;quot;where's the quick reference&amp;quot;. We do the same with rewriting
-code, as you are discovering. One point of literate programming is to
-explain the insights we gain.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="literate programming"></category><category term="jinja"></category><category term="pyWeb"></category><category term="PyLit3"></category></entry><entry><title>A LaTeX Thing I Did -- And A ToDo:</title><link href="https://slott56.github.io/2022_06_14-a_latex_thing_i_did_and_a_todo.html" rel="alternate"></link><published>2022-06-14T08:00:00-04:00</published><updated>2022-06-14T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-06-14:/2022_06_14-a_latex_thing_i_did_and_a_todo.html</id><summary type="html">&lt;p&gt;When writing about code in LaTeX, the essential strategy is to use an
-environment to format the code so it stands out from surrounding text.
-There are a few of these environments available as LaTeX add-on
-packages. The three popular ones are:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;verbatim&lt;/strong&gt;. I think this is built-in to LaTeX …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;When writing about code in LaTeX, the essential strategy is to use an
-environment to format the code so it stands out from surrounding text.
-There are a few of these environments available as LaTeX add-on
-packages. The three popular ones are:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;verbatim&lt;/strong&gt;. I think this is built-in to LaTeX. It's not very
-clever, but it is simple to use.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;listings&lt;/strong&gt;. See &lt;a class="reference external" href="https://www.overleaf.com/learn/latex/Code_listing"&gt;https://www.overleaf.com/learn/latex/Code_listing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;minted&lt;/strong&gt;.
-See &lt;a class="reference external" href="https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted"&gt;https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These are nice for making code readable and distinct from the
-surrounding text.&lt;/p&gt;
-&lt;p&gt;A common way to talk about the code is to use inline verbatim
-&lt;tt class="docutils literal"&gt;\verb|code|&lt;/tt&gt; sections. I prefer inline &lt;tt class="docutils literal"&gt;\lstinline|code|&lt;/tt&gt;, but, my
-editor prefers &lt;tt class="docutils literal"&gt;\verb&lt;/tt&gt;. (I have trouble getting all the moving parts
-of minted installed properly, so I use &lt;strong&gt;listings&lt;/strong&gt;.)&lt;/p&gt;
-&lt;p&gt;Also. And more important.&lt;/p&gt;
-&lt;p&gt;There's the
-&lt;tt class="docutils literal"&gt;\lstinputlisting[language=Python, firstline=2, &lt;span class="pre"&gt;lastline=12]{some_module.py}&lt;/span&gt;&lt;/tt&gt;
-command. This lets an author incorporate examples from working, tested
-modules. Minted doesn't seem to have this, but it might work with an
-&lt;tt class="docutils literal"&gt;\input&lt;/tt&gt; command. Don't know. Haven't tried.&lt;/p&gt;
-&lt;p&gt;Let's talk about workflow.&lt;/p&gt;
-&lt;div class="section" id="workflow"&gt;
-&lt;h2&gt;Workflow&lt;/h2&gt;
-&lt;p&gt;The idea behind these tools is you have code and after that, you write
-about the code. I call this &lt;strong&gt;code first&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Doing this means you can include code snippets from a file.&lt;/p&gt;
-&lt;p&gt;Which is okay, but, there's another point of view: you have a document
-that contains the code. This is closer to the Literate Programming POV.
-I call this &lt;strong&gt;document first&lt;/strong&gt;. I've got all the code in the document
-you're reading, I've just broken it up and spread it around in an order
-to serve my purpose as a writer, not serve the limitations of a parser
-or compiler.&lt;/p&gt;
-&lt;p&gt;There is a development environment --
-&lt;a class="reference external" href="https://texfaq.org/FAQ-webpkgs"&gt;WEB&lt;/a&gt; -- to create code that can be
-run through the Weave and Tangle tools to create working code and usable
-documentation. This is appealing in many ways.&lt;/p&gt;
-&lt;p&gt;For now, I'm settling for the following workflow:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Write the document with code samples. Use &lt;tt class="docutils literal"&gt;\lstlisting&lt;/tt&gt; environment
-with explicit unique labels for each snippet. The idea is to focus on
-the documentation with explanations.&lt;/li&gt;
-&lt;li&gt;Write a Jinja template that references the code samples. This is a
-lot of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;{{extract['lst:listing_1']}}&lt;/span&gt;&lt;/tt&gt; kind of references. There's a
-bit more that can go in here, we'll return to the templates in a
-moment.&lt;/li&gt;
-&lt;li&gt;Run a tool to extract all the &lt;tt class="docutils literal"&gt;\lstlisting&lt;/tt&gt; environments to a
-dictionary with the label as the key and the block of text as the
-value. This serializes nicely as a JSON (or TOML or YAML) file. It
-can even be pickled, but I prefer to be able to look at the file to
-see what's in it.&lt;/li&gt;
-&lt;li&gt;The tool to populate the template is a kind of trivial thing to build
-a Jinja environment, load up the template, fill in the code samples,
-and write the result.&lt;/li&gt;
-&lt;li&gt;I can then use &lt;strong&gt;tox&lt;/strong&gt; (and &lt;strong&gt;doctest&lt;/strong&gt; and &lt;strong&gt;pytest&lt;/strong&gt; and &lt;strong&gt;mypy&lt;/strong&gt;)
-to test the resulting module to be sure it works.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This tangles code from a source document. There's no weave step, since
-the source is already designed for publication. This does require me to
-make changes to the LaTeX document I'm writing and run a &lt;tt class="docutils literal"&gt;make test&lt;/tt&gt;
-command to extract, tangle, and test. This is not a huge burden. Indeed,
-it's easy to implement in PyCharm, because the latest release of PyCharm
-understands Makefiles and tox. Since each chapter is a distinct
-environment, I can use &lt;tt class="docutils literal"&gt;tox &lt;span class="pre"&gt;-e&lt;/span&gt; ch01&lt;/tt&gt; to limit the testing to only the
-chapter I'm working on.&lt;/p&gt;
-&lt;p&gt;I like this because it lets me focus on explanation, not implementation
-details. It helps me make sure that all the code in the book is fully
-tested.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-templates"&gt;
-&lt;h2&gt;The Templates&lt;/h2&gt;
-&lt;p&gt;The template files for an example module have these three kinds of code
-blocks:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Ordinary Listings. These fall into two subclasses.&lt;/li&gt;
-&lt;li&gt;&lt;ol class="first arabic"&gt;
-&lt;li&gt;Complete function or class definitions.&lt;/li&gt;
-&lt;li&gt;Lines of code taken out of context.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;REPL Examples.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;These have three different testing requirements. We'll start with the
-&amp;quot;complete function or class definitions.&amp;quot;  For these, the template might
-look like the following&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-{{extract['lst:listing_1']}}
-
-def test_listing_1() -&amp;gt; None:
-    assert listing_1(42)
-    assert not listing_1(None)
-&lt;/pre&gt;
-&lt;p&gt;This has both the reference to the code in the text of the book and a
-test case for the code.&lt;/p&gt;
-&lt;p&gt;For lines of code out of context, we have to be more careful. We might
-have this.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def some_example(arg: int) -&amp;gt; bool:
-    {{extract['lst:listing_2']}}
-
-def test_listing_2() -&amp;gt; None:
-    assert listing_2(42)
-    assert not listing_2(None)
-&lt;/pre&gt;
-&lt;p&gt;This is similar to a complete definition, but it has a fiddly
-indentation that needs to be properly managed, also. Jinja's generally
-good about not inserting spaces. The template, however, is full of what
-&lt;em&gt;could&lt;/em&gt; appear to be syntax errors, so the code editor &lt;strong&gt;could&lt;/strong&gt; have a
-conniption with all those &lt;tt class="docutils literal"&gt;{}&lt;/tt&gt; blocks of code. They happen to be valid
-Python set literals, so, they're tolerated. PyCharm's type checking
-hates them.&lt;/p&gt;
-&lt;p&gt;The REPL examples, look like this.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-REPL_listing_3 = &amp;quot;&amp;quot;&amp;quot;
-{{extract['lst:listing_3']}}
-&amp;quot;&amp;quot;&amp;quot;
-&lt;/pre&gt;
-&lt;p&gt;I collect these into a &lt;tt class="docutils literal"&gt;__test__&lt;/tt&gt; variable to make them easy for
-doctest to find. The extra fussiness of  a &lt;tt class="docutils literal"&gt;__test__&lt;/tt&gt; variable isn't
-needed, but it provides a handy audit for me to make sure everything has
-a home.&lt;/p&gt;
-&lt;p&gt;The following line of code is in most (not all) templates.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-__test__ = {
-    name: value
-    for name, value in globals().items()
-    if name.startswith(&amp;quot;REPL&amp;quot;)
-}
-&lt;/pre&gt;
-&lt;p&gt;This will locate all of the global variables with names starting with
-REPL and put them in the &lt;tt class="docutils literal"&gt;__test__&lt;/tt&gt; mapping. The REPL names then
-become the test case names, making any test failures easier to spot.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="my-goal"&gt;
-&lt;h2&gt;My Goal&lt;/h2&gt;
-&lt;p&gt;I do have some Literate Programming tools that I might be able to
-leverage to make myself a Weaver that produces useful LaTeX my publisher
-can work with. I should do this because it would be slightly simpler.
-The problem is my Web/Weave/Tangle tooling has a bunch of dumb
-assumptions about the weave and tangle outputs; a problem I really need
-to fix.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;py-web-tool&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The idea here is to mimic other WEB-based tooling. These are the two
-primary applications:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;Weave&lt;/strong&gt;. This makes documentation in a fairly transparent way from
-the source. There are a bunch of substitutions required to fill in
-HTML or LaTeX or Markdown or RST around the generic source. Right
-now, this is pretty inept and almost impossible to configure.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tangle&lt;/strong&gt;. This makes code from the source. The point here is the
-final source file is not necessarily built in any &lt;em&gt;obvious&lt;/em&gt; order.
-It's a tangle of things from the documentation, put into the order
-required by parser or compiler or build system or whatever.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The weaving requires a better way to provide the various templates that
-fill in missing bits. Markdown, for example, works well with fenced
-blocks. RST uses a code directive that leads to an extra level of
-indentation that needs to be carefully excised. Futher, most markup
-languages have a mountain of cruft that goes around the content. This is
-unpleasantly complex, and very much subject to odd little changes that
-don't track against the content, but are part of the evolution of the
-markup language.&lt;/p&gt;
-&lt;p&gt;My going-in assumption on tangling was the document contained &lt;strong&gt;all&lt;/strong&gt;
-the code. All of it. Without question or exception. For C/C++ this means
-all the fiddly little pre-processor directives that add no semantic
-clarity yet must be in the code file. This means the preprocessor
-nonsense had to be relegated to an appendix of &amp;quot;yet more code that just
-has to be there.&amp;quot;&lt;/p&gt;
-&lt;p&gt;After writing a tangler to pull code from a book into a variety of
-contexts, I'm thinking I need to have a tangler that works with a
-template engine. I think there would be the following two use cases:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;No-Template Case&lt;/strong&gt;. The WEB source is complete. This works well for
-a lot of languages that don't have the kind of cruft that C/C++ has.
-It generally means a WEB source document will contain definition(s)
-for the final code file(s) as a bunch of references to the
-previously-explained bits. For C/C++, this final presentation can
-include the fiddly bits of preprocessor cruft.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Template Case&lt;/strong&gt;. A template is used to with the source to create
-the tangled output. This is what I have now for pulling book content
-into a context where it is testable. For the most part, the template
-files are quite small because the book includes test cases in the
-form of REPL blocks. This presents a bit of a problem because it
-breaks the &amp;quot;all in one place&amp;quot; principle of a WEB project. I have a
-WEB source file with the visible content plus one or more templates
-with invisible content.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What I like about this is an attempt to reduce some of the cruftiness of
-the various tools.&lt;/p&gt;
-&lt;p&gt;I think my py-web-tool might be expanded to handle my expanded
-understanding of literate programming.&lt;/p&gt;
-&lt;p&gt;I have a book to finish, first, though. Then I can look at improving my
-workflow. (And yes, this is backwards from a properly Agile approach.)&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="literate programming"></category><category term="packtpub"></category><category term="#python"></category></entry><entry><title>Code so bad it causes me physical pain</title><link href="https://slott56.github.io/2022_05_23-code_so_bad_it_causes_me_physical_pain.html" rel="alternate"></link><published>2022-05-23T20:38:00-04:00</published><updated>2022-05-23T20:38:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-05-23:/2022_05_23-code_so_bad_it_causes_me_physical_pain.html</id><summary type="html">&lt;p&gt;Here's the code.&lt;/p&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="COBOL"></category><category term="stingray reader"></category></entry><entry><title>Code so bad it causes me physical pain</title><link href="https://slott56.github.io/2022_05_23-code_so_bad_it_causes_me_physical_pain.html" rel="alternate"></link><published>2022-05-23T20:38:00-04:00</published><updated>2022-05-23T20:38:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-05-23:/2022_05_23-code_so_bad_it_causes_me_physical_pain.html</id><summary type="html">&lt;p&gt;Here's the code.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 def get_categories(file):
     &amp;quot;&amp;quot;&amp;quot;
@@ -10198,4 +9598,449 @@ something better&lt;/li&gt;
 &lt;li&gt;No simple unit test environment to support refactoring&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="Design Principles"></category><category term="architecture"></category></entry></feed>
+</content><category term="Technologies"></category><category term="Design Principles"></category><category term="architecture"></category></entry><entry><title>Patreon Book Idea</title><link href="https://slott56.github.io/2020_01_07-patreon_book_idea.html" rel="alternate"></link><published>2020-01-07T08:00:00-05:00</published><updated>2020-01-07T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2020-01-07:/2020_01_07-patreon_book_idea.html</id><content type="html">&lt;p&gt;See &amp;quot;&lt;a class="reference external" href="https://www.patreon.com/posts/32521611"&gt;Additional, Related
+Content&lt;/a&gt;&amp;quot;. It's one of the
+posts here: &lt;a class="reference external" href="https://www.patreon.com/slott"&gt;https://www.patreon.com/slott&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I think there's space for a &lt;em&gt;Building Skills in Functional Python&lt;/em&gt;
+title next to the &lt;em&gt;Building Skills in OO Design&lt;/em&gt;.&lt;/p&gt;
+</content><category term="Technologies"></category><category term="functional python programming"></category><category term="#python"></category></entry><entry><title>Christmas Ornament</title><link href="https://slott56.github.io/2019_12_31-christmas_ornament.html" rel="alternate"></link><published>2019-12-31T08:00:00-05:00</published><updated>2019-12-31T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2019-12-31:/2019_12_31-christmas_ornament.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/cpx-xmas-ornament"&gt;https://github.com/slott56/cpx-xmas-ornament&lt;/a&gt;
+You'll need a Circuit Playground Express
+&lt;a class="reference external" href="https://www.adafruit.com/product/3333"&gt;https://www.adafruit.com/product/3333&lt;/a&gt;
+Install the code. Enjoy the noise and blinky lights.
+The MML translation isn't as complete as you might like. The upper/lower
+case for the various commands isn't handled quite as cleanly …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/cpx-xmas-ornament"&gt;https://github.com/slott56/cpx-xmas-ornament&lt;/a&gt;
+You'll need a Circuit Playground Express
+&lt;a class="reference external" href="https://www.adafruit.com/product/3333"&gt;https://www.adafruit.com/product/3333&lt;/a&gt;
+Install the code. Enjoy the noise and blinky lights.
+The MML translation isn't as complete as you might like. The upper/lower
+case for the various commands isn't handled quite as cleanly as it could
+be. AFAIK, case shouldn't matter, but I omitted any lower() functions,
+making the  MML parser case sensitive. It only mattered for one of the
+four songs, and it was easier to edit the song.
+The processing leaves a great deal of &amp;quot;clickiness&amp;quot; in the start_tone()
+processing. I think I know how to address it.
+There are barely 96 or so different tones available in MML compositions.
+It might be possible to generate the wave shapes in advance to have a
+smoother music experience.
+One could image having an off-line translator to transform the MML text
+into a sequence of bytes with note number and duration. This would
+slightly compress the song, but would speed up processing by eliminating
+the overhead of parsing.
+Additionally, having 96 wave tables could speed up tone production. The
+tiny bit of time to recompute the sine wave at a given frequency would
+be eliminated. But. Memory is limited.&lt;/p&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="CircuitPlayground"></category></entry><entry><title>Walrusing Around</title><link href="https://slott56.github.io/2019_12_26-walrusing_around.html" rel="alternate"></link><published>2019-12-26T12:00:00-05:00</published><updated>2019-12-26T12:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2019-12-26:/2019_12_26-walrusing_around.html</id><summary type="html">&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;This is -- well -- it is what it is. I don't have to like it.&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; t_s = (8063599, 0)
+&amp;gt;&amp;gt;&amp;gt; fields = [(t_s := divmod(t_s[0], b))[1] for b in (60, 60, 24, 7)]
+&amp;gt;&amp;gt;&amp;gt; list(reversed(fields + [t_s[0]]))
+[13, 2, 7, 53, 19]
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;It works and shows how the assignment operator works …&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;This is -- well -- it is what it is. I don't have to like it.&lt;/div&gt;
+&lt;/div&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; t_s = (8063599, 0)
+&amp;gt;&amp;gt;&amp;gt; fields = [(t_s := divmod(t_s[0], b))[1] for b in (60, 60, 24, 7)]
+&amp;gt;&amp;gt;&amp;gt; list(reversed(fields + [t_s[0]]))
+[13, 2, 7, 53, 19]
+&lt;/pre&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;It works and shows how the assignment operator works.&lt;/div&gt;
+&lt;div class="line"&gt;The point here is to convert a timestamp into ISO week, day, hour,
+minute, second. 13th week, 2nd day, 7h, 53m, 19s.&lt;/div&gt;
+&lt;div class="line"&gt;The divmod() function returns a two-tuple, which the assignment
+operator can't decompose. Instead, we decompose it by wrapping the
+whole thing in ()[1].&lt;/div&gt;
+&lt;div class="line"&gt;Works.&lt;/div&gt;
+&lt;div class="line"&gt;Do Not Recommend.&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="section" id="black-fails-to-format-over-length-line-containing"&gt;
+&lt;h2&gt;Black fails to format over-length line containing ...&lt;/h2&gt;
+&lt;p&gt;Robert Lucente&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;2019-12-27 14:45:40.359000-05:00&lt;/p&gt;
+&lt;p&gt;Black fails to format over-length line containing walrus operator
+&lt;a class="reference external" href="https://github.com/psf/black/issues/1194"&gt;https://github.com/psf/black/issues/1194&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="walrus"></category><category term="#python"></category></entry><entry><title>Plannng a Linked-in Learning Course (and using the := walrus operator)</title><link href="https://slott56.github.io/2019_12_17-plannng_a_linked_in_learning_course_and_using_the_walrus_operator.html" rel="alternate"></link><published>2019-12-17T08:00:00-05:00</published><updated>2019-12-17T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2019-12-17:/2019_12_17-plannng_a_linked_in_learning_course_and_using_the_walrus_operator.html</id><summary type="html">&lt;p&gt;I've recorded two courses for LinkedIn
+Learning &lt;a class="reference external" href="https://www.linkedin.com/learning/me"&gt;https://www.linkedin.com/learning/me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let me emphasize that their production values take a lot of work.
+While I think I'm a pretty good live presenter, a few days in the
+recording booth with a producer, reveals all my weaknesses. so. um …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've recorded two courses for LinkedIn
+Learning &lt;a class="reference external" href="https://www.linkedin.com/learning/me"&gt;https://www.linkedin.com/learning/me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let me emphasize that their production values take a lot of work.
+While I think I'm a pretty good live presenter, a few days in the
+recording booth with a producer, reveals all my weaknesses. so. um.
+you know?&lt;/p&gt;
+&lt;p&gt;I'm starting down the road to at least one more, maybe another one or
+two after that.&lt;/p&gt;
+&lt;p&gt;Which leads to code. Of course. And the code uses the assignment
+expression (&amp;quot;walrus&amp;quot;) operator.&lt;/p&gt;
+&lt;p&gt;Here's what's going on. I've got a directory full of CSV files with
+the slide-by-slide scripts. Each file has a bunch of tabs, and the
+relevant tables have a fixed heading that the production folks use.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+target_headings = ['Part', 'Voice', 'Visual Description', 'Storyboard / Description']
+&lt;/pre&gt;
+&lt;p&gt;The &amp;quot;Voice&amp;quot; column in these tables is the script. Each row is a slide
+or other visual. The overall management of the resources with all of
+these spreadsheets doesn't seem ideal to me. However, it's the way
+skilled professionals prefer to manage these multi-media assets.&lt;/p&gt;
+&lt;p&gt;The question is: &amp;quot;which sections are too long?&amp;quot;&lt;/p&gt;
+&lt;p&gt;Generally, we speak at a consistent rate. During rehearsals, I can
+use my stopwatch to get timing for a particular script. This gives me
+a seconds/word or words/second rate metric. Given an average rate,
+and a script, I can predict a likely duration given the text of the
+script.&lt;/p&gt;
+&lt;p&gt;The data is in spreadsheets -- generally the root cause of many
+complications. There's no word-count in Numbers. So. Time to apply
+Python. (I'm sure someone has a bunch of Excel macros that can do
+word-counts. Good for you. I don't own a copy of Excel.)&lt;/p&gt;
+&lt;p&gt;Here's how this shakes out. There are three parts to the analysis,
+modeling, and applying the model. The first is a functional flattener
+to turn all of the files and tabs and tables into a single stream of
+useful rows.&lt;/p&gt;
+&lt;div class="section" id="the-data-gathering"&gt;
+&lt;h2&gt;The Data Gathering&lt;/h2&gt;
+&lt;p&gt;The essential data gathering has to flatten the relatively complex
+file/sheet/table structure into something we can extract features
+from. A sequence of the final text of the scripts is what we want.
+Each script can be a mapping from the slide label to the voice
+content. It's this content -- the script text -- where we'll find the
+interesting features.&lt;/p&gt;
+&lt;p&gt;Here's how this starts.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from pathlib import Path
+from fractions import Fraction
+import csv
+import re
+from typing import Tuple, Dict, Iterator, List
+
+sheet_table_pattern = re.compile(f&amp;quot;^(\w+): (.+)$&amp;quot;)
+target_headings = ['Part', 'Voice', 'Visual Description', 'Storyboard / Description']
+
+def script_iter(source: Path) -&amp;gt; Iterator[Tuple[str, Dict[str, str]]]:
+    for script_path in sorted(source.glob(&amp;quot;*.csv&amp;quot;)):
+        # print(script_path)
+        with script_path.open() as script_file:
+            reader = csv.reader(script_file)
+            row_iter = iter(reader)
+            for row in row_iter:
+                if len(row) == 1 and (match := sheet_table_pattern.match(row[0])):
+                    if match and match.group(2).startswith('Table '):
+                        headings = next(row_iter)
+                        if headings == target_headings:
+                            section = match.group(1)
+                            text = {}
+                            # print(f&amp;quot;Analyzing {section}&amp;quot;)
+                            for sub_row in row_iter:
+                                if len(sub_row) == 0:
+                                    break
+                                dict_sub_row = dict(zip(headings, sub_row))
+                                text[dict_sub_row['Part']] = dict_sub_row['Voice']
+                            yield section, text
+&lt;/pre&gt;
+&lt;p&gt;The outermost &lt;tt class="docutils literal"&gt;for&lt;/tt&gt; statement locates all &lt;tt class="docutils literal"&gt;.csv&lt;/tt&gt; files. All the rows
+within a file will belong to a number of sheets and tables within
+each sheet. The separator is a line with a Sheet: Table string,
+described by the sheet_table_pattern. The second for statement picks
+all the rows from a given sheet, looking for the separators.&lt;/p&gt;
+&lt;p&gt;There are a bunch of irrelevant tables. Hence the tall stack of
+if-statements. The useful parts of the script all have names that
+start with &lt;tt class="docutils literal"&gt;'Table '&lt;/tt&gt;. Weird, but true.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;match.group(2).startswith('Table&lt;/span&gt; ')&lt;/tt&gt; check feels like some casual
+ad-hoc test and should probably be made more visible and
+configurable.&lt;/p&gt;
+&lt;p&gt;Once we've found a table with the right headings, we can iterate over
+the following rows until we get to a blank line at end-of-table. We
+accumulate a dictionary, named text, which has the 'Part' and 'Voice'
+column values as a handy &lt;tt class="docutils literal"&gt;Dict[str, str]&lt;/tt&gt; mapping.&lt;/p&gt;
+&lt;p&gt;Note that we're sharing an iterator, the row_iter variable, among two
+for statements. This is a very handy trick when doing this kind of
+partitioning. The outermost use of the iterator is rejecting
+irrelevant rows. The inner use of the iterator is assembling
+composite objects from a subset of rows, effectively partitioning the
+raw data.&lt;/p&gt;
+&lt;p&gt;This &lt;em&gt;can&lt;/em&gt; be decomposed into separate functions. Further
+refactoring is left as an exercise for the reader.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-benchmark-data"&gt;
+&lt;h2&gt;The Benchmark Data&lt;/h2&gt;
+&lt;p&gt;The result of benchmarking is a &lt;tt class="docutils literal"&gt;Fraction&lt;/tt&gt; object with my unique
+reading pace. And yes, a Fraction makes more sense than a float
+value. We're working in int space, and introducing float seems wrong.&lt;/p&gt;
+&lt;p&gt;Here's the benchmarking to create a model.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def rate() -&amp;gt; Fraction:
+    Benchmarks = [
+        {'time': 3*60 + 29, 'words': 568},  # 01_01
+        {'time': 5*60 + 32, 'words': 732},  # 01_04
+        {'time': 5*60 + 54, 'words': 985},  # 02_04
+        {'time': 4*60 + 58, 'words': 663},  # 02_05
+        {'time': 8*60 + 48, 'words': 1192},  # 03_02 (draft)
+    ]
+    time_bm = sum(b['time'] for b in Benchmarks)
+    words_bm = sum(b['words'] for b in Benchmarks)
+    time_per_word = Fraction(time_bm/words_bm)
+    return time_per_word
+&lt;/pre&gt;
+&lt;p&gt;For some sample sections, I read through the material in my best NPR
+professional broadcasting voice. The sums of words and times give us
+a time-per-word Fraction object. The resulting value is near 31
+seconds for 75 words.&lt;/p&gt;
+&lt;p&gt;I really like using Fraction instead of float for this kind of
+thing. The data doesn't support even one decimal place of supposed
+accuracy.&lt;/p&gt;
+&lt;p&gt;Note that I didn't factor in any slide count. I &lt;strong&gt;assumed&lt;/strong&gt; this is a
+linear model from words to time. If I was a real scientist I might
+have tried a bunch of models.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="applying-the-model"&gt;
+&lt;h2&gt;Applying the Model&lt;/h2&gt;
+&lt;p&gt;The model is linear. It's a scaling factor applied to a specific
+feature, the number of words. Here's one version of the code. I'm not
+sure I like it.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def main() -&amp;gt; None:
+    time_per_word = rate()
+    source = Path.cwd()
+    print(f&amp;quot;script, slides, words, time&amp;quot;)
+    for script, body in script_iter(source):
+        word_count = sum(len(text.split()) for text in body.values())
+        slide_count = sum(1 for text in body.values() if len(text) &amp;gt; 0)
+        m, s = divmod(int(word_count*time_per_word), 60)
+        print(f&amp;quot;{script}, {slide_count}, {word_count}, {m}:{s:02d}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;There are three mappings going on here. This makes it a little tricky
+to create a simple function to map from raw data to something the
+model can use, then applying the model.&lt;/p&gt;
+&lt;p&gt;The 'word_count' is a mapping from raw data to one feature. The
+'slide_count' is another mapping from raw data to a secondary
+feature. The 'm' and 's' values represent another mapping from the
+word_count to the estimated time.&lt;/p&gt;
+&lt;p&gt;We can hack this around to find another use for the assignment
+operator.  But the following seems insane:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+divmod(int(word_count:=sum(len(text.split()) for text in body.values())*time_per_word), 60)
+&lt;/pre&gt;
+&lt;p&gt;Let's not consider this assignment expression example as particularly
+helpful. The above turns two simple statements into a mess.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="alternative-implementation"&gt;
+&lt;h2&gt;Alternative Implementation&lt;/h2&gt;
+&lt;p&gt;The relationships among the mappings can be built a pure functional
+programming, but seems flirt with needless complexity. We can have a
+pair of functions to map the body.values() to some named tuple with
+feature values. We can use a third function to apply the model.&lt;/p&gt;
+&lt;p&gt;Something like this is an alternative that's slightly more
+functional.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Features(NamedTuple):
+    body: Dict[str, str]
+    &amp;#64;property
+    def word_count(self) -&amp;gt; int:
+        return sum(len(text.split()) for text in self.body.values())
+    &amp;#64;property
+    def slide_count(self) -&amp;gt; int:
+        return sum(1 for text in self.body.values() if len(text) &amp;gt; 0)
+    def duration(self, time_per_word: Fraction) -&amp;gt; int:
+        return int(self.word_count*time_per_word)
+
+def main_2() -&amp;gt; None:
+    time_per_word = rate()
+    source = Path.cwd()
+    print(f&amp;quot;script, slides, words, time&amp;quot;)
+    for script, body in script_iter(source):
+        details = Features(body)
+        m, s = divmod(details.duration(time_per_word), 60)
+        print(f&amp;quot;{script}, {details.slide_count}, {details.word_count}, {m}:{s:02d}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;I'm not sure this is dramatically &amp;quot;better&amp;quot;. It isolates some aspects
+of feature collection and model application. It also harbors a secret
+inefficiency. The two feature values should be cached to avoid
+recomputing them.&lt;/p&gt;
+&lt;p&gt;I'll leave the refactoring for the interested reader.
+The durations over &amp;gt; 5:00 (300 seconds) need some rework. That's the
+actual useful output: the list of scripts with excessive time becomes
+the queue of content that needs rework.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="functional python programming"></category><category term="Data Science"></category></entry><entry><title>Functional programming design pattern: Nested Iterators == Flattening</title><link href="https://slott56.github.io/2019_12_15-functional_programming_design_pattern_nested_iterators_flattening.html" rel="alternate"></link><published>2019-12-15T10:29:00-05:00</published><updated>2019-12-15T10:29:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2019-12-15:/2019_12_15-functional_programming_design_pattern_nested_iterators_flattening.html</id><summary type="html">&lt;p&gt;Here's a functional programming design pattern I uncovered. This may
+not be news to you, but it was a surprise to me. It cropped up when
+looking at something that needs parallelization to reduced the
+elapsed run time.&lt;/p&gt;
+&lt;p&gt;Consider this data collection process.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+for h in some_high_level_collection(arg1):
+    for l …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;Here's a functional programming design pattern I uncovered. This may
+not be news to you, but it was a surprise to me. It cropped up when
+looking at something that needs parallelization to reduced the
+elapsed run time.&lt;/p&gt;
+&lt;p&gt;Consider this data collection process.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+for h in some_high_level_collection(arg1):
+    for l in h.some_low_level_collection(arg2):
+        if some_filter(l):
+            logger.info(&amp;quot;Processing %s %s&amp;quot;, h, l)
+            some_function(h, l)
+&lt;/pre&gt;
+&lt;p&gt;This is pretty common in devops world. You might be looking at
+all repositories in all github organizations. You might be
+looking at all keys in all AWS S3 buckets under a specific
+account. You might be looking at all tables owned by all
+schemas in a database.&lt;/p&gt;
+&lt;p&gt;It's helpful -- for the moment -- to stay away from taller tree
+structures like the file system. Traversing the file system
+involves recursion, and the pattern is slightly different
+there. We'll get to it, but what made this clear to me was a
+&amp;quot;simpler&amp;quot; walk through a two-layer hierarchy.&lt;/p&gt;
+&lt;p&gt;The nested for-statements aren't really ideal. We can't apply
+any itertools techniques here. We can't trivially change this
+to a multiprocessing.map().&lt;/p&gt;
+&lt;p&gt;In fact, the more we look at this, the worse it is.
+Here's something that's a little easier to work with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def h_l_iter(arg1, arg2):
+    for h in some_high_level_collection(arg1):
+        for l in h.some_low_level_collection(arg2):
+            if some_filter(l):
+                logger.info(&amp;quot;Processing %s %s&amp;quot;, h, l)
+                yield h, l
+&lt;/pre&gt;
+&lt;pre class="literal-block"&gt;
+itertools.starmap(some_function, h_l_iter(arg1, arg2))
+&lt;/pre&gt;
+&lt;p&gt;The data gathering has expanded to a few more lines of code. It
+gained a lot of flexibility. Once we have something that can be used
+with starmap, it can also be used with other itertools functions to
+do additional processing steps without breaking the loops into
+horrible pieces.&lt;/p&gt;
+&lt;p&gt;I think the pattern here is a kind of &amp;quot;Flattened Map&amp;quot; transformation.
+The initial design, with nested loops wrapping a process wasn't a
+good plan. A better plan is to think of the nested loops as a way to
+flatten the two tiers of the hierarchy into a single iterator. Then a
+mapping can be applied to process each item from that flat iterator.&lt;/p&gt;
+&lt;div class="section" id="extracting-the-filter"&gt;
+&lt;h2&gt;Extracting the Filter&lt;/h2&gt;
+&lt;p&gt;We can now tease apart the nested loops to expose the filter. In the
+version above, the body of the h_l_iter() function binds log-writing
+with the yield. If we take those two apart, we gain the flexibility
+of being able to change the filter (or the logging) without an
+awfully complex rewrite.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+T = TypeVar('T')
+def logging_iter(source: Iterable[T]) -&amp;gt; Iterator[T]:
+    for item in source:
+        logger.info(&amp;quot;Processing %s&amp;quot;, item)
+        yield item
+
+def h_l_iter(arg1, arg2):
+    for h in some_high_level_collection(arg1):
+        for l in h.some_low_level_collection(arg2):
+            yield h, l
+
+raw_data = h_l_iter(arg1, arg2)
+filtered_subset = logging_iter(filter(some_filter, raw_data))
+itertools.starmap(some_function, filtered_subset)
+&lt;/pre&gt;
+&lt;p&gt;Yes, this is still longer, but all of the details are now exposed
+in a way that lets me change filters without further breakage.
+Now, I can introduce various forms of multiprocessing to improve
+concurrency.&lt;/p&gt;
+&lt;p&gt;This transformed a hard-wired set of nest loops, if, and function
+evaluation into a &amp;quot;Flattener&amp;quot; that can be combined with off-the
+shelf filtering and mapping functions.&lt;/p&gt;
+&lt;p&gt;I've snuck in a kind of &amp;quot;tee&amp;quot; operation that writes an iterable
+sequence to a log. This can be injected at any point in the
+processing.&lt;/p&gt;
+&lt;p&gt;Logging the entire &amp;quot;item&amp;quot; value isn't really a great idea. Another
+mapping is required to create sensible log messages from each
+item. I've left that out to keep this exposition more focused.&lt;/p&gt;
+&lt;p&gt;I'm sure others have seen this pattern, but it was eye-opening to
+me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="full-flattening"&gt;
+&lt;h2&gt;Full Flattening&lt;/h2&gt;
+&lt;p&gt;The h_l_iter() function is actually a generator expression. A
+function isn't needed.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+h_l_iter = (
+    (h, l)
+    for h in some_high_level_collection(arg1)
+        for l in h.some_low_level_collection(arg2)
+)
+&lt;/pre&gt;
+&lt;p&gt;This simplification doesn't add much value, but it seems to be
+general truth. In Python, it's a small change in syntax and
+therefore, an easy optimization to make.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-about-the-file-system"&gt;
+&lt;h2&gt;What About The File System?&lt;/h2&gt;
+&lt;p&gt;When we're working with some a more deeply-nested structure, like
+the File System, we'll make a small change. We'll replace the
+h_l_iter() function with a recursive_walk() function.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def recursive_walk(path: Path) -&amp;gt; Iterator[Path]:
+    for item in path.glob():
+        if item.is_file():
+            yield item
+        elif item.is_dir():
+            yield from recursive_walk(item)
+&lt;/pre&gt;
+&lt;p&gt;This function has, effectively the same signature as h_l_iter().
+It walks a complex structure yielding a flat sequence of items.
+The other functions used for filtering, logging, and processing
+don't change, allowing us to build new features from various
+combinations of these functions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tl-dr"&gt;
+&lt;h2&gt;tl;dr&lt;/h2&gt;
+&lt;p&gt;The too-long version of this is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Replace&lt;/strong&gt; &lt;tt class="docutils literal"&gt;for item in iter: process(item)&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;with&lt;/strong&gt; &lt;tt class="docutils literal"&gt;map(process, iter)&lt;/tt&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This pattern works for simple, flat items, nested structures, and
+even recursively-defined trees. It introduces flexibility with no
+real cost.&lt;/p&gt;
+&lt;p&gt;The other pattern in play is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Any&lt;/strong&gt; &lt;tt class="docutils literal"&gt;for item in iter: for &lt;span class="pre"&gt;sub-item&lt;/span&gt; in item:&lt;/tt&gt;
+&lt;strong&gt;processing is &amp;quot;flattening&amp;quot; a hierarchy into a sequence.&lt;/strong&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;Replace it with&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;(sub-item&lt;/span&gt; for item in iter for &lt;span class="pre"&gt;sub-item&lt;/span&gt; in item)&lt;/tt&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;These felt like blinding revelations to me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="section" id="having-just-been-exposed-to-fp-and-wanting-to-impl"&gt;
+&lt;h2&gt;Having just been exposed to FP and wanting to impl...&lt;/h2&gt;
+&lt;p&gt;Fanchen Bao&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;2019-12-06 17:53:21.676000-05:00&lt;/p&gt;
+&lt;p&gt;Having just been exposed to FP and wanting to implement FP in Python,
+this post definitely resonates with me. Will definitely check out your
+Functional Python Programming book. Thanks.&lt;/p&gt;
+&lt;p&gt;Nice breakdown :-)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="one-small-typo-under-extractin"&gt;
+&lt;h2&gt;One small typo under Extractin...&lt;/h2&gt;
+&lt;p&gt;Unknown&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;2019-12-11 12:50:58.834000-05:00&lt;/p&gt;
+&lt;p&gt;Nice breakdown :-)
+One small typo under Extracting the Filter:
+`Iteratble[T]` should be `Iterable[T]`&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="great-examples-thanks-a-lot"&gt;
+&lt;h2&gt;Great examples, thanks a lot&lt;/h2&gt;
+&lt;p&gt;Unknown&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;2019-12-11 12:52:39.138000-05:00&lt;/p&gt;
+&lt;p&gt;Great examples, thanks a lot&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="#python"></category><category term="functional programming"></category></entry></feed>

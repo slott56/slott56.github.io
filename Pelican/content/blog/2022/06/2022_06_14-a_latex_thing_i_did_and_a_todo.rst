@@ -2,9 +2,9 @@ A LaTeX Thing I Did -- And A ToDo:
 ==================================
 
 :date: 2022-06-14 08:00
-:tags: literate programming,packtpub,#python
+:tags: packtpub,#python
 :slug: 2022_06_14-a_latex_thing_i_did_and_a_todo
-:category: Technologies
+:category: literate programming
 :status: published
 
 When writing about code in LaTeX, the essential strategy is to use an

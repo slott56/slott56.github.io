@@ -2,9 +2,9 @@ Literate Programming: PyLit3
 ============================
 
 :date: 2013-10-15 08:00
-:tags: #python,PyLit,literate programming
+:tags: #python,PyLit
 :slug: 2013_10_15-literate_programming_pylit3
-:category: Technologies
+:category: literate programming
 :status: published
 
 I've revised PyLit to work with Python3.

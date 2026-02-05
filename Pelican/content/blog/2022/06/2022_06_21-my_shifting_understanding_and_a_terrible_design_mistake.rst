@@ -2,9 +2,9 @@ My Shifting Understanding and A Terrible Design Mistake
 =======================================================
 
 :date: 2022-06-21 08:00
-:tags: #python,literate programming,jinja,pyWeb,PyLit3
+:tags: #python,jinja,pyWeb,PyLit3
 :slug: 2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake
-:category: Technologies
+:category: literate programming
 :status: published
 
 I've been fascinated by Literate Programming forever.

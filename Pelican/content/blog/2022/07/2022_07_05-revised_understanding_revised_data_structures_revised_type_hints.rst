@@ -2,9 +2,9 @@ Revised Understanding --> Revised Data Structures --> Revised Type Hints
 ========================================================================
 
 :date: 2022-07-05 08:00
-:tags: #python,pyWeb,literate programming
+:tags: #python,pyWeb
 :slug: 2022_07_05-revised_understanding_revised_data_structures_revised_type_hints
-:category: Technologies
+:category: literate programming
 :status: published
 
 My literate programming tool, pyWeb, has moved to version 3.1 --

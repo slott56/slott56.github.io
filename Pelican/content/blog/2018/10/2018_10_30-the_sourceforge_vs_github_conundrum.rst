@@ -4,7 +4,7 @@ The SourceForge vs. GitHub Conundrum
 :date: 2018-10-30 08:00
 :tags: open source,stingray reader,github,source forge
 :slug: 2018_10_30-the_sourceforge_vs_github_conundrum
-:category: Technologies
+:category: Literate Programming
 :status: published
 
 Or "When is it time to move?"

@@ -2,7 +2,7 @@ Coding and "Inspiration"
 ========================
 
 :date: 2017-04-04 08:00
-:tags: Design Principles,architecture
+:tags: Design Principles,architecture,literate programming
 :slug: 2017_04_04-coding_and_inspiration
 :category: Technologies
 :status: published

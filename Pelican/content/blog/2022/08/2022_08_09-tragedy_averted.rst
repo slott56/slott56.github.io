@@ -2,9 +2,9 @@ Tragedy Averted
 ===============
 
 :date: 2022-08-09 08:00
-:tags: sphinx,#python,literate programming,docutils,plantuml,pyWeb
+:tags: sphinx,#python,docutils,plantuml,pyWeb
 :slug: 2022_08_09-tragedy_averted
-:category: Technologies
+:category: literate programming
 :status: published
 
 I almost made a terrible blunder.

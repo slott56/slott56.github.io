@@ -4,7 +4,7 @@ Editing DocBook XML
 :date: 2007-02-02 12:03
 :tags: books,docbook,xml
 :slug: 2007_02_02-editing_docbook_xml
-:category: Technologies
+:category: Literate Programming
 :status: published
 
 

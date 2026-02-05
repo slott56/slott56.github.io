@@ -2,9 +2,9 @@ Literate Programming
 ====================
 
 :date: 2010-03-14 12:02
-:tags: open source,#python,literate programming
+:tags: open source,#python
 :slug: 2010_03_14-literate_programming
-:category: Technologies
+:category: Literate Programming
 :status: published
 
 About a decade ago, I discovered the concept of Literate Programming.

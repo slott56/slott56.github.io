@@ -2,9 +2,9 @@ Navigation: Latitude, Longitude, Haversine, and all that
 ========================================================
 
 :date: 2015-11-24 08:00
-:tags: longitude,#python,literate programming,haversine,latitude,navigation,navtools
+:tags: longitude,#python,haversine,latitude,navigation,navtools
 :slug: 2015_11_24-navigation_latitude_longitude_haversine_and_all_that
-:category: Technologies
+:category: literate programming
 :status: published
 
 | For a few years, I was a tech nomad. See `Team Red

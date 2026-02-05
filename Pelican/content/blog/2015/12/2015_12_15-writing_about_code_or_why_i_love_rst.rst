@@ -2,9 +2,9 @@ Writing About Code -- Or -- Why I love RST
 ==========================================
 
 :date: 2015-12-15 08:00
-:tags: PyLit,literate programming
+:tags: PyLit
 :slug: 2015_12_15-writing_about_code_or_why_i_love_rst
-:category: Technologies
+:category: literate programming
 :status: published
 
 

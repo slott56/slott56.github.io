@@ -2,9 +2,9 @@ Functional Python, Literate Programming & Trello Board Analysis
 ===============================================================
 
 :date: 2017-05-02 08:00
-:tags: #python,literate programming,functional python programming
+:tags: #python,functional python programming
 :slug: 2017_05_02-functional_python_literate_programming_trello_board_analysis
-:category: Technologies
+:category: Literate Programming
 :status: published
 
 | The general advice to people using Kanban/Agile Project boards of

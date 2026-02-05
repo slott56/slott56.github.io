@@ -2,9 +2,9 @@ Literate Programming and PyLit
 ==============================
 
 :date: 2013-10-03 08:00
-:tags: #python,literate programming,PyLit,pyWeb
+:tags: #python,PyLit,pyWeb
 :slug: 2013_10_03-literate_programming_and_pylit
-:category: Technologies
+:category: literate programming
 :status: published
 
 Even though I wrote a literate programming tool

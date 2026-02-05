@@ -2,9 +2,9 @@ Literate Programming Life Cycle
 ===============================
 
 :date: 2017-05-13 10:11
-:tags: #python,F#,literate programming
+:tags: #python,F#
 :slug: 2017_05_13-literate_programming_life_cycle
-:category: Technologies
+:category: literate programming
 :status: published
 
 The question is a deep one. What is the Literate Programming Life

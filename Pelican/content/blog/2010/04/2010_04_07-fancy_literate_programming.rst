@@ -2,9 +2,9 @@ Fancy Literate Programming
 ==========================
 
 :date: 2010-04-07 08:00
-:tags: literate programming
+:tags: restructured text,rst
 :slug: 2010_04_07-fancy_literate_programming
-:category: Technologies
+:category: Literate Programming
 :status: published
 
 My bias is toward "printable" documents. I like the idea of an HTML

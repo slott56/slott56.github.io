@@ -2,9 +2,9 @@ Massive Rework of Data Structures
 =================================
 
 :date: 2022-06-28 08:00
-:tags: Test-Driven Development,#python,pyWeb,literate programming
+:tags: Test-Driven Development,#python,pyWeb
 :slug: 2022_06_28-massive_rework_of_data_structures
-:category: Technologies
+:category: literate programming
 :status: published
 
 As noted in `My Shifting Understanding and A Terrible Design
