@@ -2,9 +2,9 @@ TTRPG Progress Report
 ###########################
 
 :date: 2026-01-31 10:31
-:tags: #python,games,ttrpg,dsl
+:tags: #python,games,dsl
 :slug: 2026-01-31_ttrpg_progress
-:category: Python
+:category: TTRPG
 :status: published
 
 See `The eval() Conundrum <{filename}/blog/2025/09/2025-09-28-the_eval_conundrum.rst>`_ for background.

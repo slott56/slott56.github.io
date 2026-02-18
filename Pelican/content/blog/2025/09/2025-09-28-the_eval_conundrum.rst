@@ -2,9 +2,9 @@ The eval() Conundrum and Python-as-DSL
 #######################################
 
 :date: 2025-09-28 09:46
-:tags: python,games,ttrpg,dsl
+:tags: python,games,dsl
 :slug: 2025-09-28-the_eval_conundrum
-:category: Python
+:category: TTRPG
 :status: published
 
 Many people will proclaim that the ``eval()`` function is reprentnatly evil.

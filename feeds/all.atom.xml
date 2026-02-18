@@ -1,5 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-02-05T11:13:00-05:00</updated><entry><title>LLM Vibe Coding or Illiterate Programming</title><link href="https://slott56.github.io/2026-01-31_llm_vibe_coding_or_illiterate_programming.html" rel="alternate"></link><published>2026-02-05T11:13:00-05:00</published><updated>2026-02-05T11:13:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-05:/2026-01-31_llm_vibe_coding_or_illiterate_programming.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-02-18T13:28:00-05:00</updated><entry><title>OpenD6 TTRPG DSL -- Spell Definitions</title><link href="https://slott56.github.io/2026-02-18_opend6_ttrpg_dsl_spell_definition.html" rel="alternate"></link><published>2026-02-18T13:28:00-05:00</published><updated>2026-02-18T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-18:/2026-02-18_opend6_ttrpg_dsl_spell_definition.html</id><summary type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
+For me, the accounting suggested a need for software tools.
+This -- in turn -- forced me to invent a Domain-Specific Language (DSL) to work with OpenD6 spells.&lt;/p&gt;
+&lt;p&gt;I like the OpenD6 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
+For me, the accounting suggested a need for software tools.
+This -- in turn -- forced me to invent a Domain-Specific Language (DSL) to work with OpenD6 spells.&lt;/p&gt;
+&lt;p&gt;I like the OpenD6 rules because (a) they have a cool mechanic, and (b) the Open Gaming License (OGL) that lets me work on extensions.
+While I haven't done must TTRPG in the last few years, I spent a lot of time playing TTRPG's from 1977-ish to 1995-ish.&lt;/p&gt;
+&lt;p&gt;I throw out an example, then I'll touch a little on why create a DSL.&lt;/p&gt;
+&lt;div class="section" id="what-it-looks-like"&gt;
+&lt;h2&gt;What It Looks Like&lt;/h2&gt;
+&lt;p&gt;Here's an example spell definition:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;charm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Spell&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Charm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;skill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Temperamental Alteration&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;notes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;With a smile and a friendly gesture, the caster improves his charm skill by for one minute. (If he no charm skill, add the bonus to the character’s Charisma attribute.) As this is an illusory spell, if the intended target of the charm disbelieves it, any effect the charm attempt had wears off immediately.&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;effect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SkillEffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;charm skill&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+4D&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;duration&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DurationAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1 minute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;RangeAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;casting_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;CastingTimeAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1 round&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;speed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SpeedAspect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;based_on&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;range&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;other_aspects&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;gesture&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GesturesAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;Smile and make a gesture of welcome or admiration&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;simple&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;unreal_effect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UnrealEffectAspect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;based_on&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;effect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt;
+                                                     &lt;span class="s2"&gt;&amp;quot;difficulty 13&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;other_conditions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="n"&gt;GenericAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;difficulty&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;May only be used on humanoids who understand the caster’s language and can hear the caster&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This was extracted from the rules through a multi-step process.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Gather the text from the PDF's available at &lt;a class="reference external" href="https://ogc.rpglibrary.org/index.php?title=OpenD6"&gt;https://ogc.rpglibrary.org/index.php?title=OpenD6&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Write a Minimal DSL that captured the parsed text and supported some tooling
+for difficulty computation and publication.&lt;/li&gt;
+&lt;li&gt;Refine the DSL to support more complete computations of difficulty.&lt;/li&gt;
+&lt;li&gt;Refine the DSL even more to make the special cases less special.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-a-dsl-why-not-use-a-spreadsheet"&gt;
+&lt;h2&gt;Why a DSL? Why not use a spreadsheet?&lt;/h2&gt;
+&lt;p&gt;Working with TTRPG's means there are two competing needs.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Design of the campaign/world/scenario.
+This means making sure monsters and treasures and what-not are commensurate.
+Big monster. Big Risks. Big Skill Use. Big Rewards.
+In OpenD6 terms the difficulties should be reasonably consistent.&lt;/li&gt;
+&lt;li&gt;Publication of notes for GM's and players.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The design needs spreadsheets. These aren't great for publication.&lt;/p&gt;
+&lt;p&gt;The publication needs a word processor. This is not great for fiddling with the design details and recomputing spell difficulties.&lt;/p&gt;
+&lt;p&gt;I'm happiest with writing in plain text and using tools like &lt;strong&gt;Sphinx&lt;/strong&gt; (or &lt;strong&gt;Hugo&lt;/strong&gt;) to convert the text to HTML or PDF or whatever.&lt;/p&gt;
+&lt;p&gt;I can then use a DSL to define spells and a little toolchain to extract properly-formatted output from the spell DSL.&lt;/p&gt;
+&lt;p&gt;Using ReStructured Text, I can have a &lt;tt class="docutils literal"&gt;..&amp;nbsp; include:: some_spells.txt&lt;/tt&gt; in the document.
+I can then have a &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt; with recipes to make the &lt;tt class="docutils literal"&gt;some_spells.txt&lt;/tt&gt; from the &lt;tt class="docutils literal"&gt;some_spells.py&lt;/tt&gt; source.&lt;/p&gt;
+&lt;p&gt;I can tweak the source and republish the document without having to manually reformat the spreadsheet for publication.
+Or, worse, copy and paste from spreadsheet to word-processor.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-so-complicated"&gt;
+&lt;h2&gt;What's so complicated?&lt;/h2&gt;
+&lt;p&gt;There are several complications in Spell definitions.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Some aspects involve measures (in Kilometer-Meter-Second units) that need to be converted to difficulty values.
+The math is a &lt;span class="math"&gt;\(v = 5 \log_{10} m\)&lt;/span&gt;, and the rules provide a big table.
+Who wants to look that up each time?&lt;/li&gt;
+&lt;li&gt;Some aspects involve dice codes; something like &amp;quot;3D+2&amp;quot;. Not difficult to work with.
+But, also, not a KMS measure. Can we keep this straight? Or will we overlook one?&lt;/li&gt;
+&lt;li&gt;Some aspects depend on other aspects. There aren't too many cases, but speed almost always depends on range.
+Change one, you have to change the other to assure the spell is instantaneous.
+Who wants to manually check this each time?&lt;/li&gt;
+&lt;li&gt;There's a kind of double-entry debits-and-credits structure to a spell's difficulty computation.
+Some aspects increase difficulty. Some aspects decrease difficulty.
+It's usually clear, but, it's also an annoying bit of accounting.
+When you're trying to design a fun campaign, who wants to be bogged down in details of spell design?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These all add up to a need for a DSL so tools can handle the details cleanly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-about-items"&gt;
+&lt;h2&gt;What about Items?&lt;/h2&gt;
+&lt;p&gt;Yes. OpenD6 items are spells cooked into a thing (ring, rod, wand, staff, amulet, etc., etc.)&lt;/p&gt;
+&lt;p&gt;The distinction is that items don't usually have a casting time.
+Also, items have a few built-in limitations -- like they can be taken away from the wielder.&lt;/p&gt;
+&lt;p&gt;The DSL is similar to the spell DSL, with a few distinct constraints.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-about-creatures-or-characters"&gt;
+&lt;h2&gt;What about Creatures? or Characters?&lt;/h2&gt;
+&lt;p&gt;Creatures and Characters also involve some accounting, but it's &lt;strong&gt;much&lt;/strong&gt; simpler.
+There's a dice budget, and the dice can be spread around among attributes and skils.
+The DSL doesn't really involve too much computation.&lt;/p&gt;
+&lt;p&gt;However, it's not to have things done consistently.&lt;/p&gt;
+&lt;p&gt;Here's an example monster:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;giant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Creature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Giant&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;agility&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Agility&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fighting&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;melee combat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;coordination&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Coordination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;throwing&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;physique&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Physique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lifting&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;running&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;intellect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Intellect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;acumen&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Acumen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tracking&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;charisma&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Charisma&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;intimidation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;strength_damage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;advantages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Large, scale value 6&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt;
+    &lt;span class="c1"&gt;# disadvantages=[],&lt;/span&gt;
+    &lt;span class="n"&gt;special_abilities&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="n"&gt;Hypermovement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;+4 to Move&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;IncreasedAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Physique, +3 to all Physique totals&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;equipment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Large club (damage +2D)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The point of the DSL is to make it easy to tweak something like &lt;tt class="docutils literal"&gt;body&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;advantages&lt;/tt&gt; to create a spectrum of giants of various sizes.
+Additionally, we could also tweak skills and attributes to make sure the clever ones weren't as tough and the tough ones suffered from an abysmal lack of other skills.&lt;/p&gt;
+&lt;p&gt;What's helpful is having a &lt;tt class="docutils literal"&gt;budget()&lt;/tt&gt; method, so &lt;tt class="docutils literal"&gt;giant.budget&lt;/tt&gt; can be compared with player characters, other monsters, and the rewards available.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;One glaring issue in the code base is the way the &lt;tt class="docutils literal"&gt;DieCode&lt;/tt&gt; processing works.
+The &lt;strong&gt;Charm&lt;/strong&gt; spell has this: &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;SkillEffect(&amp;quot;charm&lt;/span&gt; skill&amp;quot;, &amp;quot;+4D&amp;quot;)&lt;/tt&gt;, which uses a string version of a DieCode.
+The &lt;strong&gt;Giant&lt;/strong&gt; uses this: &lt;tt class="docutils literal"&gt;Intellect(2*D)&lt;/tt&gt; where &lt;tt class="docutils literal"&gt;D&lt;/tt&gt; is a constant used to construct Die Codes.
+(Even within &lt;strong&gt;Giant&lt;/strong&gt;, the &lt;tt class="docutils literal"&gt;strength_damage&lt;/tt&gt; -- which is computed from &lt;em&gt;physique&lt;/em&gt; -- is shown as a string.)
+This DieCode business needs to be reified into a single definition that characters and spells can share.&lt;/p&gt;
+&lt;p&gt;Also, the various skills are provided as strings.
+The rules enumerate all of the skills.
+The DSL should also work with enumerated skill types.&lt;/p&gt;
+&lt;p&gt;Since spells can confer skills (and improve attributes) there are some additional overlaps between spells and characters.
+We don't want to write tools to support &lt;strong&gt;play&lt;/strong&gt;. We're only interested in design.
+(And, to a limited extent, preservation of the source documents in a more useful form.)&lt;/p&gt;
+&lt;p&gt;Eventually, this will wind up on GitHub.&lt;/p&gt;
+&lt;p&gt;And, sometime after that, an &lt;strong&gt;OpenD6&lt;/strong&gt; world-book may also show up somewhere.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="DSL"></category><category term="OpenD6"></category></entry><entry><title>LLM Vibe Coding or Illiterate Programming</title><link href="https://slott56.github.io/2026-01-31_llm_vibe_coding_or_illiterate_programming.html" rel="alternate"></link><published>2026-02-05T11:13:00-05:00</published><updated>2026-02-05T11:13:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-05:/2026-01-31_llm_vibe_coding_or_illiterate_programming.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Your LLM conversations are emphatically &lt;strong&gt;not&lt;/strong&gt; Literate Programming.
 The term &amp;quot;Literate Programming&amp;quot; cannot include code with separate documentation.&lt;/p&gt;
@@ -376,7 +576,7 @@ These map to &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; subclasses.&lt;/
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="Python"></category><category term="#python"></category><category term="games"></category><category term="ttrpg"></category><category term="dsl"></category></entry><entry><title>LLM Conference Talks 2</title><link href="https://slott56.github.io/2026-01-07_llm_conference_talks_2.html" rel="alternate"></link><published>2026-01-07T10:25:00-05:00</published><updated>2026-01-07T10:25:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-01-07:/2026-01-07_llm_conference_talks_2.html</id><summary type="html">&lt;p&gt;Please do &lt;strong&gt;not&lt;/strong&gt; use an LLM to create a conference talk.&lt;/p&gt;
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>LLM Conference Talks 2</title><link href="https://slott56.github.io/2026-01-07_llm_conference_talks_2.html" rel="alternate"></link><published>2026-01-07T10:25:00-05:00</published><updated>2026-01-07T10:25:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-01-07:/2026-01-07_llm_conference_talks_2.html</id><summary type="html">&lt;p&gt;Please do &lt;strong&gt;not&lt;/strong&gt; use an LLM to create a conference talk.&lt;/p&gt;
 &lt;p&gt;Please.&lt;/p&gt;
 &lt;p&gt;If you can't be bothered to put in the effort to write your own material,
 why should we put in effort to read the LLM slop you had your LLM post to the submission form?&lt;/p&gt;
@@ -1538,7 +1738,7 @@ After all, simple doctests provide ready confirmation the DSL works as advertise
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Don't fear &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;. Control the globals.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="games"></category><category term="ttrpg"></category><category term="dsl"></category></entry><entry><title>Humble Bundle Offer</title><link href="https://slott56.github.io/2025-09-10-humble_bundle_offer.html" rel="alternate"></link><published>2025-09-10T16:02:00-04:00</published><updated>2025-09-10T16:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-10:/2025-09-10-humble_bundle_offer.html</id><content type="html">&lt;p&gt;This is delightful: Packt has this &lt;a class="reference external" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;Humble Bundle&lt;/a&gt; including
+</content><category term="TTRPG"></category><category term="python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>Humble Bundle Offer</title><link href="https://slott56.github.io/2025-09-10-humble_bundle_offer.html" rel="alternate"></link><published>2025-09-10T16:02:00-04:00</published><updated>2025-09-10T16:02:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-10:/2025-09-10-humble_bundle_offer.html</id><content type="html">&lt;p&gt;This is delightful: Packt has this &lt;a class="reference external" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;Humble Bundle&lt;/a&gt; including
 &lt;em&gt;The Modern Python Cookbook&lt;/em&gt;.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;a class="reference external image-reference" href="https://www.humblebundle.com/books/ultimate-programming-languages-bundle-packt-books"&gt;
@@ -6566,7 +6766,7 @@ Looking at the text patterns, I can work out the following.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="Python"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023_09_05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023_09_05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023_09_05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023_09_05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
 &lt;p&gt;Each has a description, and approach, and deliverables.
 It's a lot like ordinary development work, but with some detailed guidance from the author.
 (And no deadline imposed by your team lead or manager.)&lt;/p&gt;
@@ -7745,7 +7945,7 @@ While it might be fun to imagine publishing them to HeroGames or Roll20, they're
 So. It's a hobby project that pleases only me.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="patterns"></category><category term="python"></category><category term="games"></category></entry><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
+</content><category term="TTRPG"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="patterns"></category><category term="python"></category><category term="games"></category></entry><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
 &lt;p&gt;This is tricky because -- well -- so many patterns appear and re-appear in software.
 Picking a few from the vast world of patterns is fraught with difficulties.&lt;/p&gt;
 &lt;p&gt;Here are some thoughts:&lt;/p&gt;
@@ -11464,38 +11664,4 @@ loose on the RSS and (perhaps) skip steps 1, 2, and 3, entirely.&lt;/p&gt;
 &lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="RST"></category><category term="#python"></category><category term="blogging"></category><category term="markdown"></category><category term="static site generator"></category></entry><entry><title>LaTeX Mysteries and an algorithmicx thing I learned.</title><link href="https://slott56.github.io/2022_02_15-latex_mysteries_and_an_algorithmicx_thing_i_learned.html" rel="alternate"></link><published>2022-02-15T08:00:00-05:00</published><updated>2022-02-15T08:00:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-02-15:/2022_02_15-latex_mysteries_and_an_algorithmicx_thing_i_learned.html</id><summary type="html">&lt;p&gt;I've been an on-and-off user of LaTeX since the very, very beginning.
-Back in the dark days when the one laser printer that could render the
-images was in a closely-guarded secret location to prevent everyone from
-using it and exhausting the (expensive) toner cartridges.&lt;/p&gt;
-&lt;p&gt;A consequence of this is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been an on-and-off user of LaTeX since the very, very beginning.
-Back in the dark days when the one laser printer that could render the
-images was in a closely-guarded secret location to prevent everyone from
-using it and exhausting the (expensive) toner cartridges.&lt;/p&gt;
-&lt;p&gt;A consequence of this is I think the various algorithm environments are
-a ton of fun. Pseudo-code with math embedded in it. It's marvelous. It's
-a pain in the neck with this clunky blogging package, so I can't easily
-show off the coolness. But. You can go
-to &lt;a class="reference external" href="https://www.overleaf.com/learn/latex/Algorithms"&gt;https://www.overleaf.com/learn/latex/Algorithms&lt;/a&gt; to see some examples.&lt;/p&gt;
-&lt;p&gt;None of which have try/except blocks. Not a thing.&lt;/p&gt;
-&lt;p&gt;Why not? I suspect it's because &amp;quot;algorithmic&amp;quot; meant &amp;quot;Algol-60&amp;quot; for
-years. The language didn't have exceptions and so, the presentation of
-algorithms continues to this day without exceptions.&lt;/p&gt;
-&lt;p&gt;What can one do?&lt;/p&gt;
-&lt;p&gt;This.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-\algblock{Try}{EndTry}
-\algcblock[Try]{Try}{Except}{EndTry}
-\algcblockdefx{Try}{Except}{EndTry}
-   [1][Exception]{\textbf{except} \texttt{#1}}
-
-\algrenewtext{Try}{\textbf{try}}
-&lt;/pre&gt;
-&lt;p&gt;This will extend the notation to add &lt;tt class="docutils literal"&gt;\Try&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;\Except&lt;/tt&gt;, and
-&lt;tt class="docutils literal"&gt;\EndTry&lt;/tt&gt; commands. I think I've done it all more-or-less correctly.
-I'm vague on where the &lt;tt class="docutils literal"&gt;\algnotext{EndTry}&lt;/tt&gt; goes, but it seems to be
-needed in each &lt;tt class="docutils literal"&gt;\Try&lt;/tt&gt; block to silence the &lt;tt class="docutils literal"&gt;\EndTry&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;As far as I know, I'm the only person who seems to care. There seems to
-be little about this anywhere online. I'm guessing it's because the
-basics work perfectly, and no one wants this kind of weird add-on.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="writing"></category><category term="latex"></category><category term="markup"></category></entry></feed>
+</content><category term="Technologies"></category><category term="RST"></category><category term="#python"></category><category term="blogging"></category><category term="markdown"></category><category term="static site generator"></category></entry></feed>

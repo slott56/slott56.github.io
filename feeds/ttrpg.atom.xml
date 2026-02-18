@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-02-18T13:28:00-05:00</updated><entry><title>OpenD6 TTRPG DSL -- Spell Definitions</title><link href="https://slott56.github.io/2026-02-18_opend6_ttrpg_dsl_spell_definition.html" rel="alternate"></link><published>2026-02-18T13:28:00-05:00</published><updated>2026-02-18T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-18:/2026-02-18_opend6_ttrpg_dsl_spell_definition.html</id><summary type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
+For me, the accounting suggested a need for software tools.
+This -- in turn -- forced me to invent a Domain-Specific Language (DSL) to work with OpenD6 spells.&lt;/p&gt;
+&lt;p&gt;I like the OpenD6 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
+For me, the accounting suggested a need for software tools.
+This -- in turn -- forced me to invent a Domain-Specific Language (DSL) to work with OpenD6 spells.&lt;/p&gt;
+&lt;p&gt;I like the OpenD6 rules because (a) they have a cool mechanic, and (b) the Open Gaming License (OGL) that lets me work on extensions.
+While I haven't done must TTRPG in the last few years, I spent a lot of time playing TTRPG's from 1977-ish to 1995-ish.&lt;/p&gt;
+&lt;p&gt;I throw out an example, then I'll touch a little on why create a DSL.&lt;/p&gt;
+&lt;div class="section" id="what-it-looks-like"&gt;
+&lt;h2&gt;What It Looks Like&lt;/h2&gt;
+&lt;p&gt;Here's an example spell definition:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;charm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Spell&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Charm&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;skill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Temperamental Alteration&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;notes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;With a smile and a friendly gesture, the caster improves his charm skill by for one minute. (If he no charm skill, add the bonus to the character’s Charisma attribute.) As this is an illusory spell, if the intended target of the charm disbelieves it, any effect the charm attempt had wears off immediately.&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;effect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SkillEffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;charm skill&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+4D&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;duration&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DurationAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1 minute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;RangeAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;self&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;casting_time&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;CastingTimeAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;measure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1 round&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;speed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SpeedAspect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;based_on&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;range&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;other_aspects&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;gesture&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GesturesAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;Smile and make a gesture of welcome or admiration&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;simple&amp;quot;&lt;/span&gt;
+        &lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;unreal_effect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;UnrealEffectAspect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;based_on&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;effect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt;
+                                                     &lt;span class="s2"&gt;&amp;quot;difficulty 13&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;other_conditions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="n"&gt;GenericAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;difficulty&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;May only be used on humanoids who understand the caster’s language and can hear the caster&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This was extracted from the rules through a multi-step process.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Gather the text from the PDF's available at &lt;a class="reference external" href="https://ogc.rpglibrary.org/index.php?title=OpenD6"&gt;https://ogc.rpglibrary.org/index.php?title=OpenD6&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Write a Minimal DSL that captured the parsed text and supported some tooling
+for difficulty computation and publication.&lt;/li&gt;
+&lt;li&gt;Refine the DSL to support more complete computations of difficulty.&lt;/li&gt;
+&lt;li&gt;Refine the DSL even more to make the special cases less special.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-a-dsl-why-not-use-a-spreadsheet"&gt;
+&lt;h2&gt;Why a DSL? Why not use a spreadsheet?&lt;/h2&gt;
+&lt;p&gt;Working with TTRPG's means there are two competing needs.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Design of the campaign/world/scenario.
+This means making sure monsters and treasures and what-not are commensurate.
+Big monster. Big Risks. Big Skill Use. Big Rewards.
+In OpenD6 terms the difficulties should be reasonably consistent.&lt;/li&gt;
+&lt;li&gt;Publication of notes for GM's and players.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The design needs spreadsheets. These aren't great for publication.&lt;/p&gt;
+&lt;p&gt;The publication needs a word processor. This is not great for fiddling with the design details and recomputing spell difficulties.&lt;/p&gt;
+&lt;p&gt;I'm happiest with writing in plain text and using tools like &lt;strong&gt;Sphinx&lt;/strong&gt; (or &lt;strong&gt;Hugo&lt;/strong&gt;) to convert the text to HTML or PDF or whatever.&lt;/p&gt;
+&lt;p&gt;I can then use a DSL to define spells and a little toolchain to extract properly-formatted output from the spell DSL.&lt;/p&gt;
+&lt;p&gt;Using ReStructured Text, I can have a &lt;tt class="docutils literal"&gt;..&amp;nbsp; include:: some_spells.txt&lt;/tt&gt; in the document.
+I can then have a &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt; with recipes to make the &lt;tt class="docutils literal"&gt;some_spells.txt&lt;/tt&gt; from the &lt;tt class="docutils literal"&gt;some_spells.py&lt;/tt&gt; source.&lt;/p&gt;
+&lt;p&gt;I can tweak the source and republish the document without having to manually reformat the spreadsheet for publication.
+Or, worse, copy and paste from spreadsheet to word-processor.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-so-complicated"&gt;
+&lt;h2&gt;What's so complicated?&lt;/h2&gt;
+&lt;p&gt;There are several complications in Spell definitions.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Some aspects involve measures (in Kilometer-Meter-Second units) that need to be converted to difficulty values.
+The math is a &lt;span class="math"&gt;\(v = 5 \log_{10} m\)&lt;/span&gt;, and the rules provide a big table.
+Who wants to look that up each time?&lt;/li&gt;
+&lt;li&gt;Some aspects involve dice codes; something like &amp;quot;3D+2&amp;quot;. Not difficult to work with.
+But, also, not a KMS measure. Can we keep this straight? Or will we overlook one?&lt;/li&gt;
+&lt;li&gt;Some aspects depend on other aspects. There aren't too many cases, but speed almost always depends on range.
+Change one, you have to change the other to assure the spell is instantaneous.
+Who wants to manually check this each time?&lt;/li&gt;
+&lt;li&gt;There's a kind of double-entry debits-and-credits structure to a spell's difficulty computation.
+Some aspects increase difficulty. Some aspects decrease difficulty.
+It's usually clear, but, it's also an annoying bit of accounting.
+When you're trying to design a fun campaign, who wants to be bogged down in details of spell design?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These all add up to a need for a DSL so tools can handle the details cleanly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-about-items"&gt;
+&lt;h2&gt;What about Items?&lt;/h2&gt;
+&lt;p&gt;Yes. OpenD6 items are spells cooked into a thing (ring, rod, wand, staff, amulet, etc., etc.)&lt;/p&gt;
+&lt;p&gt;The distinction is that items don't usually have a casting time.
+Also, items have a few built-in limitations -- like they can be taken away from the wielder.&lt;/p&gt;
+&lt;p&gt;The DSL is similar to the spell DSL, with a few distinct constraints.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-about-creatures-or-characters"&gt;
+&lt;h2&gt;What about Creatures? or Characters?&lt;/h2&gt;
+&lt;p&gt;Creatures and Characters also involve some accounting, but it's &lt;strong&gt;much&lt;/strong&gt; simpler.
+There's a dice budget, and the dice can be spread around among attributes and skils.
+The DSL doesn't really involve too much computation.&lt;/p&gt;
+&lt;p&gt;However, it's not to have things done consistently.&lt;/p&gt;
+&lt;p&gt;Here's an example monster:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;giant&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Creature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Giant&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;agility&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Agility&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fighting&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;melee combat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;coordination&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Coordination&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;throwing&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;physique&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Physique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lifting&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;running&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;intellect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Intellect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;acumen&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Acumen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tracking&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;charisma&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Charisma&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;intimidation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;}),&lt;/span&gt;
+    &lt;span class="n"&gt;move&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;10&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;strength_damage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;advantages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Large, scale value 6&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt;
+    &lt;span class="c1"&gt;# disadvantages=[],&lt;/span&gt;
+    &lt;span class="n"&gt;special_abilities&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="n"&gt;Hypermovement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;+4 to Move&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;IncreasedAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Physique, +3 to all Physique totals&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;equipment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Large club (damage +2D)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The point of the DSL is to make it easy to tweak something like &lt;tt class="docutils literal"&gt;body&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;advantages&lt;/tt&gt; to create a spectrum of giants of various sizes.
+Additionally, we could also tweak skills and attributes to make sure the clever ones weren't as tough and the tough ones suffered from an abysmal lack of other skills.&lt;/p&gt;
+&lt;p&gt;What's helpful is having a &lt;tt class="docutils literal"&gt;budget()&lt;/tt&gt; method, so &lt;tt class="docutils literal"&gt;giant.budget&lt;/tt&gt; can be compared with player characters, other monsters, and the rewards available.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;One glaring issue in the code base is the way the &lt;tt class="docutils literal"&gt;DieCode&lt;/tt&gt; processing works.
+The &lt;strong&gt;Charm&lt;/strong&gt; spell has this: &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;SkillEffect(&amp;quot;charm&lt;/span&gt; skill&amp;quot;, &amp;quot;+4D&amp;quot;)&lt;/tt&gt;, which uses a string version of a DieCode.
+The &lt;strong&gt;Giant&lt;/strong&gt; uses this: &lt;tt class="docutils literal"&gt;Intellect(2*D)&lt;/tt&gt; where &lt;tt class="docutils literal"&gt;D&lt;/tt&gt; is a constant used to construct Die Codes.
+(Even within &lt;strong&gt;Giant&lt;/strong&gt;, the &lt;tt class="docutils literal"&gt;strength_damage&lt;/tt&gt; -- which is computed from &lt;em&gt;physique&lt;/em&gt; -- is shown as a string.)
+This DieCode business needs to be reified into a single definition that characters and spells can share.&lt;/p&gt;
+&lt;p&gt;Also, the various skills are provided as strings.
+The rules enumerate all of the skills.
+The DSL should also work with enumerated skill types.&lt;/p&gt;
+&lt;p&gt;Since spells can confer skills (and improve attributes) there are some additional overlaps between spells and characters.
+We don't want to write tools to support &lt;strong&gt;play&lt;/strong&gt;. We're only interested in design.
+(And, to a limited extent, preservation of the source documents in a more useful form.)&lt;/p&gt;
+&lt;p&gt;Eventually, this will wind up on GitHub.&lt;/p&gt;
+&lt;p&gt;And, sometime after that, an &lt;strong&gt;OpenD6&lt;/strong&gt; world-book may also show up somewhere.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="DSL"></category><category term="OpenD6"></category></entry><entry><title>TTRPG Progress Report</title><link href="https://slott56.github.io/2026-01-31_ttrpg_progress.html" rel="alternate"></link><published>2026-01-31T10:31:00-05:00</published><updated>2026-01-31T10:31:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-01-31:/2026-01-31_ttrpg_progress.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html"&gt;The eval() Conundrum&lt;/a&gt; for background.
+Also, see &lt;a class="reference external" href="https://github.com/slott56/writing-tools"&gt;https://github.com/slott56/writing-tools&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Permit me a long story about budgeting and a language to describe magic.
+The story leaves footprints that reveal the impossibility of making the right design choices up front.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;TL;DR.&lt;/p&gt;
+&lt;p class="last"&gt;Almost all software design seems …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html"&gt;The eval() Conundrum&lt;/a&gt; for background.
+Also, see &lt;a class="reference external" href="https://github.com/slott56/writing-tools"&gt;https://github.com/slott56/writing-tools&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Permit me a long story about budgeting and a language to describe magic.
+The story leaves footprints that reveal the impossibility of making the right design choices up front.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p&gt;TL;DR.&lt;/p&gt;
+&lt;p class="last"&gt;Almost all software design seems to require making bad choices and fixing them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The story takes place in the world of Table-Top Role-Playing Games (#TTRPG), a fairly complicated subject because the games are designed by folks who (generally) like action and adventure stories.
+(There are those folks like to sniff and say “genre fiction” as if action and adventure and fantasy and sci-fi and all that are somehow less worthy than “literary fiction.” Bah. Humbug.)&lt;/p&gt;
+&lt;p&gt;The folks who write the TTRPG rules are — in effect — writing meta-fiction.
+Game rules are -- in a way -- an analysis of a genre; they summarize the important features of a genre.
+The writing is aimed at a broad segment of casual game players, not data analysis or software architecture professionals,
+This isn't a sophisticated ontology.&lt;/p&gt;
+&lt;p&gt;I think of the game designers as comic-book writers distilling their experience of writing comic books to create a tidy set rules we can use to play around with the tropes of our favorite genre.&lt;/p&gt;
+&lt;p&gt;My goal is to extend published &lt;strong&gt;OpenD6&lt;/strong&gt; rules with some rules of my own.
+I have some world-building and campaign ideas I'd like to capture.
+I like the &lt;strong&gt;OpenD6&lt;/strong&gt; system because it has an Open Game License (OGL), see &lt;a class="reference external" href="https://opengamingfoundation.org/licenses.html"&gt;https://opengamingfoundation.org/licenses.html&lt;/a&gt;.
+While I spent a lot of time on the Hero V4 game system, it's not easy for new, casual players.
+The &lt;strong&gt;OpenD6&lt;/strong&gt; has some of the sophistication of Hero with an easier on-ramp.&lt;/p&gt;
+&lt;p&gt;One feature I really like about the Hero system and the &lt;strong&gt;OpenD6&lt;/strong&gt; system is
+the presence of budgeting rules to constrain characters or powers or devices or effects.
+These are a necessary part of story-telling.
+For example, Aladdin’s djinni suffered from a constraint of being imprisoned in a lamp.
+Clearly, the djinni has some profound weakness that can be exploited by an enemy.&lt;/p&gt;
+&lt;div class="section" id="game-mechanics"&gt;
+&lt;h2&gt;Game Mechanics&lt;/h2&gt;
+&lt;p&gt;Budgets are hard, but necessary.
+The &lt;strong&gt;OpenD6&lt;/strong&gt; rules have an elegantly simple budget mechanic for creating characters.
+I’ll spare you the details.&lt;/p&gt;
+&lt;p&gt;Additionally, &lt;strong&gt;OpenD6&lt;/strong&gt; assigns an elegantly simple difficulty level to activities.
+Things like falling down the stairs or spilling coffee into your keyboard have very low difficulties.
+Other things, like debugging software, have a much higher difficulty.
+During game play, the Game Master may introduce other confounding factors or conditions: tired, confused, shivering in the cold of a Western North Carolina winter.
+These can all increase the difficulty to a level where the character may need to ...
+(I’ll spare you the game details of game play, also.)&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;OpenD6&lt;/strong&gt; rules for determining the difficulty of a magical spell are very complicated. Very.&lt;/p&gt;
+&lt;p&gt;The complications in the magic systems rules make it difficult to extend the published rules with any confidence.
+There's no easy test to see if what you’re doing is right.
+Careful reading of the rules uncovers small discrepancies: is it my understanding or is there an error in a specific spell's difficulty summary?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="following-the-paper-trail"&gt;
+&lt;h2&gt;Following the Paper Trail&lt;/h2&gt;
+&lt;p&gt;I started out with some PDF's of OpenD6 rules.
+In order to really understand the magic system, I created a Domain-Specific Language (DSL.)
+This let me transform the text display of a spell into a data structure that preserved the content.
+A little bit of text parsing would uncover the essential difficulty numbers for the various aspects of a spell.&lt;/p&gt;
+&lt;p&gt;(With a tiny bit of processing, I could emit Restructured Text that would reproduce the printed material.)&lt;/p&gt;
+&lt;p&gt;A few places didn't add up properly, but that's to be expected.
+It's a big book with a lot of rules.&lt;/p&gt;
+&lt;p&gt;I have V1 of the Domain-Specific Language for OpenD6 spells.
+The overall syntax is Python.&lt;/p&gt;
+&lt;p&gt;Looking back, the footprints proceed from book to code pretty directly.
+One can feel good about one's progress when it follows such a straight line.&lt;/p&gt;
+&lt;p&gt;This V1 DSL is not ideal.
+It lacks an important feature.
+The big gap is the difficulty values are simply stated: they're a literal number.
+They are not derived from the details of the spell.
+We can't change anything without also having to manually compute a revised difficulty and updating the literal number.&lt;/p&gt;
+&lt;p&gt;All the V1 DSL does is sum the difficulties for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="proper-computations"&gt;
+&lt;h2&gt;Proper Computations&lt;/h2&gt;
+&lt;p&gt;Computing the difficulty of each individual aspect of a spell is -- for the most part -- elegant.
+A lot of the &lt;strong&gt;OpenD6&lt;/strong&gt; spell aspects are based on ordinary Kilogram-Meter-Second (KMS) measurements.
+(Yes, the magic has a thin veneer of physics.)&lt;/p&gt;
+&lt;p&gt;There's a &amp;quot;measure-to-value&amp;quot; transformation.
+Given a measure, &lt;span class="math"&gt;\(m\)&lt;/span&gt;, the value, &lt;span class="math"&gt;\(v\)&lt;/span&gt;, is this:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+v = \begin{cases}
+ &amp;amp;\lceil 5 \log_{10}(m) \rceil_{u} \textbf{ if $m &amp;lt; 10$}\\
+ &amp;amp;\lceil 5 \log_{10}(m) \rceil \textbf{ if $m \geq 10$}
+\end{cases}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Where &lt;span class="math"&gt;\(\rceil_{u}\)&lt;/span&gt; uses &lt;tt class="docutils literal"&gt;decimal.ROUND_UP&lt;/tt&gt;,
+and &lt;span class="math"&gt;\(\rceil\)&lt;/span&gt; uses &lt;tt class="docutils literal"&gt;decimal.ROUND_HALF_UP&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The rules provide a handy table for this.
+The rules even provide some benchmark values to save you from having to look up the mass of something like a warhorse.
+The associated value is 14.
+(The number of kilograms is &lt;span class="math"&gt;\(10^{\frac{14}{5}} = 630.9\)&lt;/span&gt;, FWIW.)&lt;/p&gt;
+&lt;p&gt;This isn't always elegant.
+From the various rule books, I extracted over 400 spells.
+A bunch of text parsing (and manual cleanup) created the V1 spells.&lt;/p&gt;
+&lt;p&gt;Creating the V2 DSL, on the other hand, required revisiting each of the dozen or so effect types, and thirty or so aspect types.
+This -- it turns out -- is not a simple linear path from V1 to V2.
+Some wrong turns were made.&lt;/p&gt;
+&lt;p&gt;Many of the effects and aspects follow the elegant KMS measure to Value rules.
+It was easy to separate the difficulty numbers from the base measurements.
+The DSL processing could parse the measurement, and compute the difficulty.
+The originally published numbers from the V1 DSL became unit test expected results for the V2 DSL.&lt;/p&gt;
+&lt;p&gt;This effort uncovers a number of things.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Ordinary editing errors, where the numbers aren't &lt;strong&gt;exactly&lt;/strong&gt; right.
+A common problem looks like the author's rounding was inconsistent.
+Or, perhaps, the author made a change and didn't check all the math carefully.&lt;/li&gt;
+&lt;li&gt;A few gaps where the spell details simply don't add up.
+(Not many of these, the quality of the publication really is quite good.)&lt;/li&gt;
+&lt;li&gt;Places where the text of the rules is impenetrable.
+Assumptions need to be made.
+If the code written around the assumptions reproduces the printed rules, the code is not &lt;strong&gt;wrong&lt;/strong&gt;.
+But, since the code doesn't obviously fit the explanatory text, it's not &lt;strong&gt;right&lt;/strong&gt;, either.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;based-on&amp;quot; rules.
+There are four kinds of aspects where the difficulty is derived from another aspect.
+(Skipping the details...)
+Only two cases are similar.
+The other two are utterly unique.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Going through 40+ effect and aspect definitions has consequences.
+Potentially bad consequences.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-organic-evolution-path"&gt;
+&lt;h2&gt;The Organic Evolution Path&lt;/h2&gt;
+&lt;p&gt;First, and foremost: since I didn't write the rules, I have no &amp;quot;big picture&amp;quot; overview of &lt;strong&gt;OpenD6&lt;/strong&gt;.
+I'm building the big picture by starting with individual details.
+This is inductive discovery.
+Review the parable of the blind men trying to understand the shape of an elephant by touching individual parts of the animal's body.&lt;/p&gt;
+&lt;p&gt;Everything is the design of V2 DSL is going along swimmingly until I stumble into the first &amp;quot;based-on&amp;quot; aspect.&lt;/p&gt;
+&lt;p&gt;The overall architecture had been really simple.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;All aspect difficulties (and the effect difficulty) are based on measure, modifiers, and factors.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A spell's difficulty is the sum of the effect and aspect difficulties.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(I've omitted some details about the debit-and-credit feature of the aspects.)&lt;/p&gt;
+&lt;p&gt;We can say:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+d(A) = f(p(t))
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The difficulty of an Aspect, &lt;span class="math"&gt;\(d(A)\)&lt;/span&gt;, is a function of parsing the text of the aspect, &lt;span class="math"&gt;\(p(t)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;And,&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+d(S) = \frac{\sum\limits_{A \in \mathbb{C}}{d(A)} - \sum\limits_{A \in \mathbb{D}}{d(A)}}{2}
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;The difficulty of the Spell, &lt;span class="math"&gt;\(d(A)\)&lt;/span&gt;, is based on the sum of the difficulties of the aspects.
+(Some aspects are credits, &lt;span class="math"&gt;\(\mathbb{C}\)&lt;/span&gt;, while the others are debits, &lt;span class="math"&gt;\(\mathbb{D}\)&lt;/span&gt;.
+The rules use the term &amp;quot;negative modifiers&amp;quot; for the debits, all the rest are credits.
+We could use &lt;span class="math"&gt;\(\mathbb{N}\)&lt;/span&gt; for the debits and &lt;span class="math"&gt;\(\mathbb{A}-\mathbb{N}\)&lt;/span&gt; for the universe of attributes, &lt;span class="math"&gt;\(\mathbb{A}\)&lt;/span&gt;, without the negative modifiers for the credits. Too much detail. Sorry.
+)&lt;/p&gt;
+&lt;p&gt;The simple rules are broken.
+Each aspect is not simply an independent computation.&lt;/p&gt;
+&lt;p&gt;We need to backtrack and refactor to accommodate a special case.
+The overall architecture is now this.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;There are two classes of Aspects:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;An Independent Aspect difficulty is based on measure, modifiers, and factors.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A Dependent Aspect depends on another aspect.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The Effect difficulty behaves like an Independent Aspect.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A Spell's difficulty is the sum of the effect and aspect difficulties.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means we need to do a topological sort of aspects to put them into an order
+so the independent ones are computed first, and the dependent ones are computed second.&lt;/p&gt;
+&lt;p&gt;So?&lt;/p&gt;
+&lt;p&gt;Here's what we've learned (again.)&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;The object model evolves, based on the examples found by wandering around a featureless plain, littered with requirements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We can't foresee the coming complications and special case exceptions.
+We're going to break things and refactor each time we learn something.
+There are 40+ aspect and effect definitions.
+We've got all but two types of aspects working.
+Of the 400+ spells, many are working correctly, computing the difficulties from the details.&lt;/p&gt;
+&lt;p&gt;Back when the waterfull project plans where considered important,
+I was always troubled when the team was constrained by a fantasy plan, written long before anyone had a clear idea what was going on.
+The more I learn, the more I learn that putting a time box around learning was evil.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="that-s-not-right"&gt;
+&lt;h2&gt;That's Not Right&lt;/h2&gt;
+&lt;p&gt;The V2 DSL effort includes two surprisingly complicated aspect class definitions.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;An aspect that doesn't depend on another aspect, but depends on the spell's central effect.
+This isn't all that complicated: the effect is a special case of the other aspects.
+But, it's unique.
+And could not be foreseen, and leads to backtracking and refactoring.&lt;/li&gt;
+&lt;li&gt;An aspect that depends on the effect and a modifier.
+This is, also, unique.
+And requires yet more backtracking and refactoring.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The overall data model isn't &lt;strong&gt;broken&lt;/strong&gt; in the sense that it doesn't work.
+Indeed, the type hints all work out perfectly.
+The test cases all pass.&lt;/p&gt;
+&lt;p&gt;The organic evolution of the object model has been a wandering path across a nearly trackless plain littered with aspect types.
+As we explored the aspects, we found reasons to go back to the beginning and make changes with profound ripple effects.
+This created a number of problems.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Code that feels like an &lt;em&gt;ad hoc&lt;/em&gt; solution because we found it later in our wandering through the requirements.&lt;/li&gt;
+&lt;li&gt;Code that's clearly copied-and-pasted because some inheritance v. composition issue was not resolved well.&lt;/li&gt;
+&lt;li&gt;Code that doesn't map to the explanatory text of the rules in any clear way.
+It may produce the right answer, but it doesn't really capture the meaning or the intent in the explanation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-far-side-of-the-world"&gt;
+&lt;h2&gt;The Far Side of the World&lt;/h2&gt;
+&lt;p&gt;Where are we?&lt;/p&gt;
+&lt;p&gt;V3.1 of the DSL passes the unit tests.&lt;/p&gt;
+&lt;p&gt;It seems to be defensible.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;based-on&amp;quot; complications are minimized and regularized.
+A few classes have special methods to handle the three based-on cases.&lt;/p&gt;
+&lt;p&gt;It feels like all of the class definitions can be partitioned into two families:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The code comes from the rules in a direct and obvious way.
+For example, a lot of the &lt;strong&gt;OpenD6&lt;/strong&gt; rules include a table of alternatives.
+These map to &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; subclasses.&lt;/li&gt;
+&lt;li&gt;The code is a purely technical part of the Python DSL and feels almost generic.
+(&lt;em&gt;Almost&lt;/em&gt; generic. This is a TTRPG DSL, so it's not truly Standard Library generic.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Time to move on to the type checking.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>The eval() Conundrum and Python-as-DSL</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+&lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
+&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is relatively easy to work with.&lt;/p&gt;
+&lt;div class="admonition important"&gt;
+&lt;p class="first admonition-title"&gt;Important&lt;/p&gt;
+&lt;p class="last"&gt;Limit the globals to the fewest possible names.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="eval-rant"&gt;
+&lt;h2&gt;Eval() Rant&lt;/h2&gt;
+&lt;p&gt;A too-common claim is that we can't use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; because an Evil Super Genius (ESG™) will surreptitiously inject malicious code into a configuration file or something.
+This claim ignores the fact that all Python code is plain text.
+Any idiot can change the code.
+An ESG would find they are over-qualified to make a mess of a Python app.&lt;/p&gt;
+&lt;p&gt;For services (shared by multiple users), &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; can raise havoc for all concerned.
+So can a clumsy, marginally compentent admin.
+Indeed, bad admin mistakes are a considerably larger problem than some mysterious ESG's cleverness.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dsl-rant"&gt;
+&lt;h2&gt;DSL Rant&lt;/h2&gt;
+&lt;p&gt;I'm not a big fan of inventing whole new Domain-Specific Languages (DSL's).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Them: &amp;quot;I'll solve this problem by inventing a DSL.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Me: &amp;quot;Now you have two problems.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Also. We're surrounded by DSL's. There's a baffling variety.
+Even within a general-purpose programming language like Python,
+there are &amp;quot;mini-languages&amp;quot;.
+Formatting. Regular Expressions. DSL's should be viewed with suspicion.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-python-as-dsl-example"&gt;
+&lt;h2&gt;A Python-as-DSL Example&lt;/h2&gt;
+&lt;p&gt;(Thanks for your patience with the ranting.)&lt;/p&gt;
+&lt;p&gt;In many cases, Python object expressions are a perfectly useful DSL.&lt;/p&gt;
+&lt;p&gt;We don't need to invent any syntax or write a parser.
+Instead, we write Python class declarations and define objects.
+We rely on the prefectly wonderful Python parser.&lt;/p&gt;
+&lt;p&gt;For those who play #TTRPG's, there's a mini-language around the description of a handful of polyhedral dice.&lt;/p&gt;
+&lt;p&gt;Example &lt;strong&gt;3d6+2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This means &amp;quot;find 3 6-sided dice, roll them, and add 2&amp;quot;.
+There are some variants, but none of them are much more complicated than this example.&lt;/p&gt;
+&lt;p&gt;Let's say, we're writing some TTRPG design tools, and we want to compute the expected range, mean, and (really important) standard deviation of a handful of dice.&lt;/p&gt;
+&lt;p&gt;The goal is this.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dice&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rule&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdev&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;12.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.9580398915498076&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This &lt;tt class="docutils literal"&gt;rule&lt;/tt&gt; object can do more, of course.&lt;/p&gt;
+&lt;p&gt;The core feature here is replacing the traditional specification string, &lt;tt class="docutils literal"&gt;3d6+2&lt;/tt&gt; with a (very) slightly differerent syntax: &lt;tt class="docutils literal"&gt;3*D6+2&lt;/tt&gt;.
+We've made the &lt;tt class="docutils literal"&gt;d&lt;/tt&gt; uppercase for no good reason.
+We've added a &lt;tt class="docutils literal"&gt;*&lt;/tt&gt; so the expression is valid Python.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so"&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;Next step is to wrap the D6 object with a CLI.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3*D6+2&amp;#39;&lt;/span&gt;
+&lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="w"&gt; &lt;/span&gt;D6&lt;span class="w"&gt; &lt;/span&gt;+2
+range:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;
+mean:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;.50
+standard&lt;span class="w"&gt; &lt;/span&gt;deviation:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;.958
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There's a catch to this.
+Some will say it's a security nightmare.
+We're parsing Python code provided as a command lime argument.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This opens the application to exploit by an ESG.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Folks will announce, one should &lt;strong&gt;never&lt;/strong&gt; accept Python code from the command-line.
+See &lt;a class="reference internal" href="#eval-rant"&gt;Eval() Rant&lt;/a&gt;, above: an Evil Super Genius (ESG™) will surreptitiously inject malicious code into the command-line parameters.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%&lt;span class="w"&gt; &lt;/span&gt;python&lt;span class="w"&gt; &lt;/span&gt;dice.py&lt;span class="w"&gt; &lt;/span&gt;--expected&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;import subprocess; subprocess.run(&amp;quot;format c:&amp;quot;)&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Everyone knows this &lt;strong&gt;will&lt;/strong&gt; happen.
+Maybe it will be out of malice.
+Or, more likely, it will be simple incompetence.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="safe-eval"&gt;
+&lt;h2&gt;Safe eval()&lt;/h2&gt;
+&lt;div class="admonition warning"&gt;
+&lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+&lt;p class="last"&gt;Control the Globals&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here's my little example of how I like to use &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;code_obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;argument&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eval&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;code_obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;BaseException&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;err&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The dice expression &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;expression&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt; does not compute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I like to break it into two steps.
+In this case, they're in a single &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; block.
+In some cases, it makes sense to use two, distinct &lt;tt class="docutils literal"&gt;try:&lt;/tt&gt; blocks.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;If there are syntax errors from the &lt;tt class="docutils literal"&gt;compile()&lt;/tt&gt; function, these are caught in one block. These errors are often innocent, and some good error displays can be useful.&lt;/li&gt;
+&lt;li&gt;If there are evaluation errors from the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function, these are caught in a separate block. Other than a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt;, exceptions here indicate potential bugs somewhere in the underlying class definitions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;namespace&lt;/tt&gt; parameter is the &lt;strong&gt;short&lt;/strong&gt; list of all the global variables and names available at eval time.
+For this application, it's the defined set of polyhedral dice.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D4&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D10&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D12&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D20&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;D100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;PCT&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;D100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That's all there is.
+Any name not in this mapping will raise a &lt;tt class="docutils literal"&gt;NameError&lt;/tt&gt; exception and the end of processing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="in-case-it-matters"&gt;
+&lt;h2&gt;In Case It Matters&lt;/h2&gt;
+&lt;p&gt;Here's a glimpse at the &lt;tt class="docutils literal"&gt;Die&lt;/tt&gt; class.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;faces&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__rmul__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__add__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Die&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="nd"&gt;@property&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="n"&gt;D4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;D8&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Die&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The DSL itself is essentially a class and some global objects.
+The syntax is pure Python.&lt;/p&gt;
+&lt;p&gt;I'm a big fan of avoiding writing parsers.
+Using Python as the DSL makes it relatively easy to test the DSL.
+After all, simple doctests provide ready confirmation the DSL works as advertised.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Don't fear &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;. Control the globals.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="TTRPG"></category><category term="python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023_09_14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+We'll use Python to see how the dice shake out.&lt;/p&gt;
+&lt;div class="section" id="a-little-backstory"&gt;
+&lt;h2&gt;A little backstory&lt;/h2&gt;
+&lt;p&gt;For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win,
+2, 3 …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+We'll use Python to see how the dice shake out.&lt;/p&gt;
+&lt;div class="section" id="a-little-backstory"&gt;
+&lt;h2&gt;A little backstory&lt;/h2&gt;
+&lt;p&gt;For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win,
+2, 3, or 12 for an immediate loss, and the other numbers establish a point.
+You continue to roll until you get your point or a 7. That's a mechanic.
+Kind of complicated -- by design.&lt;/p&gt;
+&lt;p&gt;Many Table-Top Role-Playing Games (TTRPG) include game mechanics that involve dice.
+The original D&amp;amp;D used the Platonic regular polyhedra. They were summarized as &amp;quot;d6&amp;quot;
+for the 6-sided die folks often think of. The term &amp;quot;3d8&amp;quot; was interpreted as &amp;quot;3 eight-sided dice.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It, of course, gets more complicated &amp;quot;3d6+1&amp;quot; is add one to three six-sided dice.&lt;/p&gt;
+&lt;p&gt;And, there are things like &amp;quot;4d6-low&amp;quot; to discard the lowest of 4 dice.
+Or maybe &amp;quot;ll4d6&amp;quot; for &amp;quot;lose lowest&amp;quot;. Clever people have worked out a lot of mechanics,
+and a lot of ways to describe them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-mechanics-in-question"&gt;
+&lt;h2&gt;The mechanics in question&lt;/h2&gt;
+&lt;p&gt;We want to compare two mechanics:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers.&lt;/li&gt;
+&lt;li&gt;Middle of 3d6. This -- well -- does it tend to favor low numbers, also?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.&lt;/p&gt;
+&lt;p&gt;Another really good alternative is to exhaustively enumerate the possible outcomes.
+With 3d6 there are only &lt;span class="math"&gt;\(6^3 = 216\)&lt;/span&gt; ways the dice can fall. This doesn't seem
+pleasant. We'll set it aside.&lt;/p&gt;
+&lt;p&gt;Instead, we'll simulate.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first"&gt;This isn't as dumb as it might sound.&lt;/p&gt;
+&lt;p&gt;Some of the foundational statistical tests are designed to discern of outcomes
+are random or not. The &amp;quot;Null Hypothesis&amp;quot; is that the data's random.
+The various tests for the null hypothesis are often difficult to understand,
+and involve tables of magical numbers. The &lt;span class="math"&gt;\(\chi^2\)&lt;/span&gt; test involves a
+complicated computation to compare actual and expected and then you have to look
+up a number in a table.&lt;/p&gt;
+&lt;p class="last"&gt;In some cases, it's easier to create random data and compute the correlation between
+actual and random. High correlation? Accept the Null Hypothesis.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We'll start by building a simulation of each mechanic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="worst-of-2d6"&gt;
+&lt;h2&gt;Worst of 2d6&lt;/h2&gt;
+&lt;p&gt;Here's the code to roll a handful of dice.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from random import randint
+
+def nd6(n: int) -&amp;gt; list[int]:
+    return [randint(1, 6) for _ in range(n)]
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;nd6(2)&lt;/tt&gt; expression gives us a pair of dice as a tiny little list.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def worst(dice: list[int]) -&amp;gt; int:
+    return min(dice)
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;worst(some_dice)&lt;/tt&gt; expression returns the worst of the two values.
+If we were more clever, we might write something like.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def worst(dice: list[int]) -&amp;gt; int:
+    d_1, d_2 = dice
+    return d_1 if d_1 &amp;lt;= d_2 else d_2
+&lt;/pre&gt;
+&lt;p&gt;Which would be faster when it runs.
+But this is a lot more coding.
+Efficiency isn't the goal.
+We're comparing two dice mechanics.&lt;/p&gt;
+&lt;p&gt;Finally, this will apply the &lt;tt class="docutils literal"&gt;worst()&lt;/tt&gt; decision to &lt;tt class="docutils literal"&gt;nd6(2)&lt;/tt&gt; to
+capture the worst numbers.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from collections.abc import Iterator
+
+def worst_2d6(samples=1000) -&amp;gt; Iterator[int]:
+    yield from (
+        worst(nd6(2)) for _ in range(samples)
+    )
+&lt;/pre&gt;
+&lt;p&gt;This function is a kind of generator. It doesn't simply compute a value the way
+the &lt;tt class="docutils literal"&gt;nd6()&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;worst()&lt;/tt&gt; functions did. This will yield a result
+each time it's asked for something. It iterates over a sequence of &lt;tt class="docutils literal"&gt;worst(nd6(2))&lt;/tt&gt; values.&lt;/p&gt;
+&lt;p&gt;(The &lt;tt class="docutils literal"&gt;range(samples)&lt;/tt&gt; defines how long the sequence will be.)&lt;/p&gt;
+&lt;p&gt;The point of the generator is to avoid producing a giant list with a thousand values
+when all we're going to do is summarize the list into a small result.&lt;/p&gt;
+&lt;p&gt;Here's the summary.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from collections import Counter
+
+distro_worst_2d6 = Counter(worst_2d6())
+&lt;/pre&gt;
+&lt;p&gt;We'll create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; object from the values generated when evaluating the &lt;tt class="docutils literal"&gt;worst(nd6(2))&lt;/tt&gt; expression 1,000 times.&lt;/p&gt;
+&lt;p&gt;Here's the result:&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;304&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;242&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;202&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;132&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That fits our expectation, more-or-less.&lt;/p&gt;
+&lt;p&gt;And it wasn't too hard to create.&lt;/p&gt;
+&lt;p&gt;Let's look at the other mechanic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="middle-of-3d6"&gt;
+&lt;h2&gt;Middle of 3d6&lt;/h2&gt;
+&lt;p&gt;We're going to reuse the &lt;tt class="docutils literal"&gt;nd6()&lt;/tt&gt; function. It works delightfully well for 3 dice as well as 2 dice.&lt;/p&gt;
+&lt;p&gt;Here's an approach to picking the middle value.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def mid(dice: list[int]) -&amp;gt; int:
+    return sorted(dice)[1]
+&lt;/pre&gt;
+&lt;p&gt;We've sorted the three dice, and taken the one in position 1.
+Position 0 has the least, and position 2 has the most.
+In the middle is the target value.&lt;/p&gt;
+&lt;p&gt;We can optimize this, of course.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+d_0, d_1, d_2 = dice
+return (
+    d_0 if d_1 &amp;lt;= d_0 &amp;lt;= d_2 else
+    d_1 if d_0 &amp;lt;= d_1 &amp;lt;= d_2 else
+    d_2
+)
+&lt;/pre&gt;
+&lt;p&gt;Who needs that kind of optimization? Not me.&lt;/p&gt;
+&lt;p&gt;Here's a generator to provide the needed 1,000 samples.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def mid_3d6(samples=1000):
+    yield from (
+        mid(nd6(3)) for _ in range(samples)
+    )
+&lt;/pre&gt;
+&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming.)&lt;/p&gt;
+&lt;p&gt;Here's the distribution:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+distro_mid_3d6 = Counter(mid_3d6())
+&lt;/pre&gt;
+&lt;p&gt;What's it look like? This.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;72&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;192&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;245&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;226&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;185&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Seriously? It's weighted toward 3's and 4's?&lt;/p&gt;
+&lt;p&gt;That shouldn't be too surprising. Maybe it is.&lt;/p&gt;
+&lt;p&gt;I had no idea.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so-far-so-good"&gt;
+&lt;h2&gt;So Far, So Good&lt;/h2&gt;
+&lt;p&gt;The point is to compare dice mechanics.&lt;/p&gt;
+&lt;p&gt;The strategy is to simulate them.&lt;/p&gt;
+&lt;p&gt;We wrote some functions to apply the mechanic.&lt;/p&gt;
+&lt;p&gt;We sampled it 1,000 times to create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; with the distribution of the 1,000 samples.&lt;/p&gt;
+&lt;p&gt;And now, you can decide if that's acceptable for the game you're designing.&lt;/p&gt;
+&lt;p&gt;Or, you can press on and do a little more math.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-wait-there-s-more"&gt;
+&lt;h2&gt;But wait, there's more&lt;/h2&gt;
+&lt;p&gt;The worst-of-2d6 isn't too difficult to compute on paper.&lt;/p&gt;
+&lt;p&gt;When will the lowest value be 6? This requires a (6, 6) tie, &lt;span class="math"&gt;\(P(6) = \frac{1}{36}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;It's a 5 when there's a (5, 5), (5, 6), or (6, 5)) pair. &lt;span class="math"&gt;\(P(5) = \frac{3}{36}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;It's a 4 when there's any of (4, 4), (4, 5), (4, 6), (5, 4), or (6, 4). &lt;span class="math"&gt;\(P(4) = \frac{5}{36}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;And so on for 3, 2, and 1.  &lt;span class="math"&gt;\(P(n) = \frac{2(6-n)+1}{36}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We can create prediction from this essential probability theory.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+for n in range(6):
+    print(n+1, int(1000 * (2*(5-n)+1) / 36))
+&lt;/pre&gt;
+&lt;p&gt;The predicted distribution is this.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="50%" /&gt;
+&lt;col width="50%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;n&lt;/th&gt;
+&lt;th class="head"&gt;count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;305&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;250&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;194&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;138&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;83&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That looks pretty close to the random simulation. It was more work to do the theory
+than to simulate. That's why I started with the simulation.&lt;/p&gt;
+&lt;p&gt;This part is to convince any doubters that simulation gives useful results.&lt;/p&gt;
+&lt;p&gt;We'll continue to flog that point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="middle-of-3d6-theory"&gt;
+&lt;h2&gt;Middle of 3d6 Theory&lt;/h2&gt;
+&lt;p&gt;This exceeds my skills.&lt;/p&gt;
+&lt;p&gt;When will the median value be 6? This requires a (6, 6, 6) tie. Actually, it's a lot more than that. Anything with a pair of 6's means 6 will be the mid value. There are &lt;span class="math"&gt;\(\frac{15}{216}\)&lt;/span&gt; ways to have a pair of sixes and another number. Think of (1, 6, 6) to (5, 6, 6), and (6, 1, 6) to (6, 5, 6), and (6, 6, 1) to (6, 6, 5). So, total, is &lt;span class="math"&gt;\(P(6) = \frac{16}{6^3}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;For 5's? Ugh. I can't enumerate them manually. So. I'll use &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; to emit all &lt;span class="math"&gt;\(6^3 = 216\)&lt;/span&gt; combinations.&lt;/p&gt;
+&lt;p&gt;This isn't quite the same as simulation. The simulation &lt;em&gt;probably&lt;/em&gt; hit all the combinations.
+The &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; approach will absolutely create all of the combinations.&lt;/p&gt;
+&lt;p&gt;Here's the central part of enumerating all combinations:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import itertools
+
+d6 = [n+1 for n in range(6)]
+for c in itertools.product(d6, d6, d6):
+    # do something with c
+&lt;/pre&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;itertools.product()&lt;/tt&gt; will enumerate all 3-item combinations of the values in the &lt;tt class="docutils literal"&gt;d6&lt;/tt&gt; sequence.&lt;/p&gt;
+&lt;p&gt;Here it is in context.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+import itertools
+from collections import defaultdict
+
+d6 = [n+1 for n in range(6)]
+mid_3d6 = defaultdict(list)
+for c in itertools.product(d6, d6, d6):
+    mid_3d6[mid(c)].append(c)
+for k in sorted(mid_3d6):
+    print(k, len(mid_3d6[k]), [''.join(map(str, v)) for v in mid_3d6[k]])
+&lt;/pre&gt;
+&lt;p&gt;We created a &lt;tt class="docutils literal"&gt;defaultdict&lt;/tt&gt; object, a dictionary that will -- if a key is not found -- jam in a an empty &lt;tt class="docutils literal"&gt;list&lt;/tt&gt;. When we evaluate  &lt;tt class="docutils literal"&gt;mid_3d6[mid(c)]&lt;/tt&gt; it will either&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;find a list in the dictionary, because this value of &lt;tt class="docutils literal"&gt;mid(c)&lt;/tt&gt; has been seen before, OR&lt;/li&gt;
+&lt;li&gt;jam a new empty list into the dictionary, because the value has not been seen before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Either way, &lt;tt class="docutils literal"&gt;mid_3d6[mid(c)]&lt;/tt&gt; is a list, and we can &lt;tt class="docutils literal"&gt;append(c)&lt;/tt&gt; to put another combination into that list. Why save them?&lt;/p&gt;
+&lt;p&gt;So we can display the count and all the patterns.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+6 16 ['166', '266', '366', '466', '566', '616', '626', '636', '646', '656', '661', '662', '663', '664', '665', '666']
+&lt;/pre&gt;
+&lt;p&gt;A 6 is the middle value &lt;span class="math"&gt;\(\tfrac{16}{216}\)&lt;/span&gt; times. And there are the 16 patterns, to make it perfectly clear what's going on.&lt;/p&gt;
+&lt;p&gt;The sequence of 16-40-52-52-40-16 looks a lot like it is part of the binomial function.
+Looking at the text patterns, I can work out the following.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P(6) = P(1) = \frac{1 + 3 \times 5}{6^3}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P(5) = P(2) = \frac{1 + 3 \times 5 + 6 \times 4}{6^3}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P(4) = P(3) = \frac{1 + 3 \times 5 + 6 \times 4 + 4 \times 3}{6^3}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beyond this, I'm lost.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrites_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrites_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
+This will let me talk about OO programming and Python Type Hints. (really)
+And doing OO design for things that are as pervasive (and transparent) as air.
+Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
+any documentation.&lt;/p&gt;
+&lt;p&gt;In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
+This will let me talk about OO programming and Python Type Hints. (really)
+And doing OO design for things that are as pervasive (and transparent) as air.
+Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
+any documentation.&lt;/p&gt;
+&lt;p&gt;In the early 90's the Hero Game System, 4ed had just come out.
+PC's were an expensive luxury item. But the Macintosh was there to help us think different.&lt;/p&gt;
+&lt;p&gt;My TTRPG group is loving the Hero Game System. Complicated stories. Super heroes. Sophisticated game mechanics.
+The Fantasy Hero rules were a delight, and lead to many long, involved campaigns.&lt;/p&gt;
+&lt;p&gt;There's no overt OO programming to it (yet.) And, of course, Python has barely been invented.&lt;/p&gt;
+&lt;p&gt;But there's a down-side to the Hero Game System:&lt;/p&gt;
+&lt;div class="section" id="accounting"&gt;
+&lt;h2&gt;Accounting&lt;/h2&gt;
+&lt;p&gt;The game requires a fairly scrupulous accounting of &amp;quot;Character Points&amp;quot;.
+Some are assigned at the outset. A hero, for example, may have a base budget of 75 points.
+Some are purchased by taking on disadvantages. For example Paranoia, or Hunted and Watched by Authorities,
+or a Dependence, or a Weakness you'd like to keep secret, can all add to the budget of character points.&lt;/p&gt;
+&lt;p&gt;All of the powers, skills, talents, perks, and what-not are purchased
+with character points.&lt;/p&gt;
+&lt;p&gt;And it all has to balance.&lt;/p&gt;
+&lt;p&gt;Too high a skill in Guns means ripping away some strength or intelligence.
+Or reducing other skills.&lt;/p&gt;
+&lt;p&gt;So what can we do to make sure our character's, gadgets, vehicles, and bases
+are all designed properly?&lt;/p&gt;
+&lt;p&gt;Clearly, the answer is tools. Eventually, there will be OO design in here, I promise.
+We'll work through the history, though.&lt;/p&gt;
+&lt;div class="section" id="paper-and-pencil"&gt;
+&lt;h3&gt;Paper and Pencil&lt;/h3&gt;
+&lt;p&gt;In the 90's, I played the game using actual paper spreadsheets. 3-column accounting pads to tally up base
+points, advantages, and limitations to compute the net points after adjustments.&lt;/p&gt;
+&lt;p&gt;After all, we're talking about table-top role-playing.
+Paper and pencil gaming. Of course we have 3-column ledger pads.
+Along with hex mapping paper. And Dice. Lots of dice.&lt;/p&gt;
+&lt;p&gt;It's the 90's. I've got Macintosh LC (?) I think.
+I remember the Mac+. I remember the iMac. In between the two was a slim pizza box with a front-loading CD.&lt;/p&gt;
+&lt;p&gt;Software tools are ramping up quickly to the point where they can be used casually
+for gaming.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software"&gt;
+&lt;h3&gt;Software&lt;/h3&gt;
+&lt;p&gt;It didn't take too long to start using spreadsheet software. Appleworks. Then Clarisworks.&lt;/p&gt;
+&lt;p&gt;It's clunky, but the computations aren't complicated. It's just a lot of typing.&lt;/p&gt;
+&lt;p&gt;First, you have to be super-careful to type all the stuff from the rule books into the spreadsheet properly.&lt;/p&gt;
+&lt;p&gt;Second -- it's the early 90's -- laptops are still very expensive. This means I'm going to
+design offline, print, and use paper on game night to play.&lt;/p&gt;
+&lt;p&gt;Remember, it's a spreadsheet: it introduces as many problems as it solves.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-v2-hypercard"&gt;
+&lt;h3&gt;Software V2: Hypercard&lt;/h3&gt;
+&lt;p&gt;HyperCard -- if you've never seen it -- isn't easy to understand.&lt;/p&gt;
+&lt;p&gt;With some work, I created cards for each power/skill/perk/talent/whatever.&lt;/p&gt;
+&lt;p&gt;I can use those cards to create new cards for a character with abilities, and references to powers, skills, talents, perks, whatever.&lt;/p&gt;
+&lt;p&gt;I can then sum up the points to be sure the Character Points balance. I can tweak the card and try
+again until I make the budget add up properly.&lt;/p&gt;
+&lt;p&gt;And.&lt;/p&gt;
+&lt;p&gt;With a little care, I can serialize the output as a CSV file that can be pumped into a spreadsheet and formatted.&lt;/p&gt;
+&lt;p&gt;This was heavenly.&lt;/p&gt;
+&lt;p&gt;I built elaborate campaigns, worlds, scenarios, adventures. All the things designed with HyperCard.
+The pubishing involved spreadsheet formatting and some word-processing to tie it together.&lt;/p&gt;
+&lt;p&gt;But. All good things come to an end. 2004 was the end of Hypercard.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-v3-python-and-oop"&gt;
+&lt;h3&gt;Software V3: Python and OOP&lt;/h3&gt;
+&lt;p&gt;(See, I told you we'd get to OOP, eventually.)&lt;/p&gt;
+&lt;p&gt;When you consider the problem domain
+it's a classic Object-Oriented Programming problem.
+(I'd been thinking about it for well over decade at this point in the historial narrative.)&lt;/p&gt;
+&lt;p&gt;Classic. OOP.&lt;/p&gt;
+&lt;p&gt;There's tons of Inheritance. Tons of Delegation. Lots of Composition.  Lots of Instances of Classes.&lt;/p&gt;
+&lt;p&gt;It's all there. And it's pretty simple. There are relatively few exceptions.
+And the exceptions are trivially handled by footnotes to the &amp;quot;Game Master&amp;quot; (me).&lt;/p&gt;
+&lt;p&gt;This means I have to drag all of the work I already did out of Hypercard and rewrite it into Python.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Once that's done, I can now use a block of code like the following:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+normal1 = hero.Character(
+    &amp;quot;Normal&amp;quot;,
+    hero.NORMAL,
+    # Characteristics
+    hero.STR(13),
+    hero.DEX(12),
+    hero.CON(10),
+    hero.BODY(12),
+    hero.INT(10),
+    hero.EGO(8),
+    hero.PRE(13),
+    hero.COM(9),
+    # Skills, Talents, Perks, Powers
+    hero.skills.WeaponFamiliarity_Category(&amp;quot;Common Melee&amp;quot;, 1),
+    hero.skills.TransportFamiliarity_Single(&amp;quot;Horses&amp;quot;),
+    hero.skills.Familiarity(&amp;quot;Jungle&amp;quot;, 1),
+    hero.skills.Familiarity(&amp;quot;Town&amp;quot;, 1),
+    hero.skills.AnimalHandling(1),
+    # Disadvantages
+    hero.disadvantages.Coward(),
+)
+&lt;/pre&gt;
+&lt;p&gt;If the points don't balance, the class initializer will print a message.&lt;/p&gt;
+&lt;p&gt;There's a serializer to produce CSV files for incorporation into spreadsheets.
+This means the characters can format nicely for game night.&lt;/p&gt;
+&lt;p&gt;We're back in business. I introduced my kids to TTRPG. Some of my nephews.
+But I could balance the books on my laptop to make sure their characters were legit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-v4-python-3-and-type-hints"&gt;
+&lt;h3&gt;Software V4: Python 3 and Type Hints&lt;/h3&gt;
+&lt;p&gt;So now it's 2023.&lt;/p&gt;
+&lt;p&gt;I don't play Hero games much anymore.
+In spite of not playing regularly,
+the TTRPG topic surfaces from time to time. Maybe once every few years, now.&lt;/p&gt;
+&lt;p&gt;And the OO Design topic is -- in the back of my mind -- evergreen.&lt;/p&gt;
+&lt;p&gt;As a kind of mental palate cleansing &lt;em&gt;Amuse Bouche&lt;/em&gt; I decided to clean up the type hints
+and unit tests and make sure my hobby stuff still ran in Python 3.11 or 3.12.
+I did this in the unlikely event I ever wind up playing this TTRPG again.&lt;/p&gt;
+&lt;p&gt;The cleanup inovolved a fair amount of work spread over almost a week.&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;Getting the type hints right revealed problems.
+There are two parts to why this took so much work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="type-hint-fundamentals"&gt;
+&lt;h2&gt;Type Hint Fundamentals&lt;/h2&gt;
+&lt;p&gt;One issue is in the way the various columns of a standard
+&amp;quot;Full Character Sheet&amp;quot; are formatted.
+The publication guidelines are for paper-and-pencil, hard-copy kind of adventure guides and campaing books.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &amp;quot;Cost&amp;quot; column isn't -- universally -- numeric. Sometimes there's text.&lt;/li&gt;
+&lt;li&gt;Same for the &amp;quot;Endurance&amp;quot; column. It may have text explanations comingled with numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is not a big deal when serializing the data for a spreadsheet.
+Mixtures of numbers and words and what-not are tolerated politely.&lt;/p&gt;
+&lt;p&gt;Using &lt;strong&gt;mypy&lt;/strong&gt; to check the type hints revealed a number of bad mistakes.&lt;/p&gt;
+&lt;p&gt;Eventually, I could distinguish between the internal cost computations,
+and the external presentation. This cleanly isolated the essentially numeric
+accounting. (Which, if you roll back to the top of this post, was why we started this
+in the first place: accounting.)&lt;/p&gt;
+&lt;p&gt;Thst's not all, though.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-issues"&gt;
+&lt;h2&gt;Use Case Issues&lt;/h2&gt;
+&lt;p&gt;The more fundamental issue was the conflation of &lt;tt class="docutils literal"&gt;Character | Gadget | Base | Vehicle&lt;/tt&gt;.
+This requires some care in writing type hints and doing OO design to make
+sure that any differences are essential differences in these classes of objects.&lt;/p&gt;
+&lt;p&gt;For the most part, everything's a &amp;quot;Framework&amp;quot; that has a collection of features,
+advantages, and limitations. A Power is a Feature, so Frameworks can nest.&lt;/p&gt;
+&lt;p&gt;From a usability perspective there are two distinct kinds of things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Raw Materials. Powers, Skills, Talents, etc., with a cost.
+Ideally, these are all class definitions. They change very slowly, if at all.
+An instance of one these classes has a CP cost and a list of effects.&lt;/p&gt;
+&lt;p&gt;The Raw Materials are all &lt;tt class="docutils literal"&gt;class SomePower(Power): effects: list[Effect] = &lt;span class="pre"&gt;[STRBonus(+10)]&lt;/span&gt;&lt;/tt&gt; kind of definitions.
+More-or-less right out of the rules, rewritten into Python.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Finished Goods. Things like Characters have a budget, which must balance the sum of the costs of the Raw Materials that make up the Character.
+The characters in a game will be instances of some generic class, popuulated by instances raw material classes.
+The &lt;tt class="docutils literal"&gt;Character&lt;/tt&gt; class definition has a few features that are distinct from the raw materials classes.&lt;/p&gt;
+&lt;p&gt;The Finished goods are built with &lt;tt class="docutils literal"&gt;character = hero.Character(THIS(10), THAT(10), &lt;span class="pre"&gt;...)&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This distinction makes for some gnarly OO design decisions to reflect the variety of use cases.&lt;/p&gt;
+&lt;p&gt;A raw material has a fairly fixed definition, and there's a direct mapping
+from the desired effects to the required cost. (The mapping isn't always &lt;strong&gt;simple&lt;/strong&gt;
+because there are advantages and disadvantages that are figured in.)&lt;/p&gt;
+&lt;p&gt;A finished good is built &amp;quot;on the fly&amp;quot; as a collection of instances of raw materials.&lt;/p&gt;
+&lt;p&gt;Right now, the distinction is kind of buried: the classes &lt;tt class="docutils literal"&gt;Character&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Gadget&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Base&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;Vehicle&lt;/tt&gt;
+lack a unifying abstraction or protocol. This needs to be fixed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="oo-design-advice"&gt;
+&lt;h2&gt;OO Design Advice&lt;/h2&gt;
+&lt;p&gt;It's not at all clear this distinction between raw material and finished good &lt;strong&gt;needs&lt;/strong&gt; to be present.
+Superficially, it seems like everything's a &lt;tt class="docutils literal"&gt;Feature&lt;/tt&gt; and that's all we need to know.&lt;/p&gt;
+&lt;p&gt;The use cases for design based on raw materials are an unstated element of the rules.
+Technicall, we can argue that it's stated because design the essential purpose of
+most of the rulebook. But. It's not stated as a simple &amp;quot;Here are things you'll design
+based on raw materials we've already designed.&amp;quot; And &amp;quot;When you design a Campaign, you'll often
+be extending the pool of raw materials.&amp;quot; Instead, it's assumed that you -- the reader --
+understand the two kinds of design.&lt;/p&gt;
+&lt;p&gt;This is a chronic problem in software architecture.&lt;/p&gt;
+&lt;p&gt;There are things that are essential, but are -- like the atmosphere -- so pervasive
+and invisble no one things to mention them.&lt;/p&gt;
+&lt;p&gt;There's more (of course.)&lt;/p&gt;
+&lt;div class="section" id="software-v5-python-3"&gt;
+&lt;h3&gt;Software V5: Python 3&lt;/h3&gt;
+&lt;p&gt;Interactivity was part of HyperCard (and the spreadsheets that preceeded it.)&lt;/p&gt;
+&lt;p&gt;The Python 2 and Python 3 definitions of a Character was something
+I implemented as a simple script.
+This isn't &lt;strong&gt;too&lt;/strong&gt; interactive. You have an edit-run-crash cycle.&lt;/p&gt;
+&lt;p&gt;The scripts aren't complicated, and a simple &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt; rule can be used to rebuild
+all the CSV's after a software bug fix or after a change to some Power definition.&lt;/p&gt;
+&lt;p&gt;The work flow is tweak something. execute the script, look for error messages. Not too bad
+when compared with paper-and-pencil of thirty years ago.&lt;/p&gt;
+&lt;p&gt;Yesterday... (Seriously. Yesterday...)&lt;/p&gt;
+&lt;p&gt;It occurred to me that Jupyter Lab is a way to restore the original HyperCard interactivity.
+The Character/Gadget/Vehicle/Base can be a cell.
+I can run the notebook to validate the budgets for all the various bad guys in the scenario.&lt;/p&gt;
+&lt;p&gt;Over-budget? Tweak a definition until the cell stops printing the &amp;quot;over/under budget&amp;quot; error.&lt;/p&gt;
+&lt;p&gt;And.&lt;/p&gt;
+&lt;p&gt;I can write the supplemental stuff as Markdown. Right there. In the notebook.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="software-v6-adventure-books"&gt;
+&lt;h3&gt;Software V6: Adventure Books&lt;/h3&gt;
+&lt;p&gt;There's a very small, dedicated markeplace for Hero content.&lt;/p&gt;
+&lt;p&gt;(See &lt;a class="reference external" href="https://www.herogames.com"&gt;https://www.herogames.com&lt;/a&gt;, &lt;a class="reference external" href="https://www.patreon.com/hero_games"&gt;https://www.patreon.com/hero_games&lt;/a&gt;, and &lt;a class="reference external" href="https://roll20.net/compendium/HERO/BookIndex#content"&gt;https://roll20.net/compendium/HERO/BookIndex#content&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;While I'll never be a proper game author,
+I can still write up a scenario in a tidy format as if it's still 1995 and I might
+get a few bucks for an Adventurer's Club submission.&lt;/p&gt;
+&lt;p&gt;And this means using Sphinx, ReStructured Text (or maybe Markdown) to create a Scenario book.&lt;/p&gt;
+&lt;p&gt;I will slowly unearth my old campaign books (written in Pages) and convert them
+to Python/Sphinx projects.
+While it might be fun to imagine publishing them to HeroGames or Roll20, they're based 4th ed out-of-date rules.
+So. It's a hobby project that pleases only me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="TTRPG"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="patterns"></category><category term="python"></category><category term="games"></category></entry></feed>

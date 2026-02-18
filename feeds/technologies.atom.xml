@@ -335,224 +335,7 @@ We can all see the implementation.
 The notion of &amp;quot;private&amp;quot; is -- at best -- a suggestion.&lt;/p&gt;
 &lt;p&gt;(Tangentially related: &lt;a class="reference external" href="https://slott56.github.io/2015_12_08-python_big_picture_whats_the_roadmap_revised.html"&gt;Python Big Picture -- What's the &amp;quot;roadmap&amp;quot;?&lt;/a&gt;.)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="architecture"></category><category term="software design"></category><category term="design patterns"></category><category term="python"></category></entry><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrites_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrites_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
-This will let me talk about OO programming and Python Type Hints. (really)
-And doing OO design for things that are as pervasive (and transparent) as air.
-Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
-any documentation.&lt;/p&gt;
-&lt;p&gt;In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
-This will let me talk about OO programming and Python Type Hints. (really)
-And doing OO design for things that are as pervasive (and transparent) as air.
-Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
-any documentation.&lt;/p&gt;
-&lt;p&gt;In the early 90's the Hero Game System, 4ed had just come out.
-PC's were an expensive luxury item. But the Macintosh was there to help us think different.&lt;/p&gt;
-&lt;p&gt;My TTRPG group is loving the Hero Game System. Complicated stories. Super heroes. Sophisticated game mechanics.
-The Fantasy Hero rules were a delight, and lead to many long, involved campaigns.&lt;/p&gt;
-&lt;p&gt;There's no overt OO programming to it (yet.) And, of course, Python has barely been invented.&lt;/p&gt;
-&lt;p&gt;But there's a down-side to the Hero Game System:&lt;/p&gt;
-&lt;div class="section" id="accounting"&gt;
-&lt;h2&gt;Accounting&lt;/h2&gt;
-&lt;p&gt;The game requires a fairly scrupulous accounting of &amp;quot;Character Points&amp;quot;.
-Some are assigned at the outset. A hero, for example, may have a base budget of 75 points.
-Some are purchased by taking on disadvantages. For example Paranoia, or Hunted and Watched by Authorities,
-or a Dependence, or a Weakness you'd like to keep secret, can all add to the budget of character points.&lt;/p&gt;
-&lt;p&gt;All of the powers, skills, talents, perks, and what-not are purchased
-with character points.&lt;/p&gt;
-&lt;p&gt;And it all has to balance.&lt;/p&gt;
-&lt;p&gt;Too high a skill in Guns means ripping away some strength or intelligence.
-Or reducing other skills.&lt;/p&gt;
-&lt;p&gt;So what can we do to make sure our character's, gadgets, vehicles, and bases
-are all designed properly?&lt;/p&gt;
-&lt;p&gt;Clearly, the answer is tools. Eventually, there will be OO design in here, I promise.
-We'll work through the history, though.&lt;/p&gt;
-&lt;div class="section" id="paper-and-pencil"&gt;
-&lt;h3&gt;Paper and Pencil&lt;/h3&gt;
-&lt;p&gt;In the 90's, I played the game using actual paper spreadsheets. 3-column accounting pads to tally up base
-points, advantages, and limitations to compute the net points after adjustments.&lt;/p&gt;
-&lt;p&gt;After all, we're talking about table-top role-playing.
-Paper and pencil gaming. Of course we have 3-column ledger pads.
-Along with hex mapping paper. And Dice. Lots of dice.&lt;/p&gt;
-&lt;p&gt;It's the 90's. I've got Macintosh LC (?) I think.
-I remember the Mac+. I remember the iMac. In between the two was a slim pizza box with a front-loading CD.&lt;/p&gt;
-&lt;p&gt;Software tools are ramping up quickly to the point where they can be used casually
-for gaming.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="software"&gt;
-&lt;h3&gt;Software&lt;/h3&gt;
-&lt;p&gt;It didn't take too long to start using spreadsheet software. Appleworks. Then Clarisworks.&lt;/p&gt;
-&lt;p&gt;It's clunky, but the computations aren't complicated. It's just a lot of typing.&lt;/p&gt;
-&lt;p&gt;First, you have to be super-careful to type all the stuff from the rule books into the spreadsheet properly.&lt;/p&gt;
-&lt;p&gt;Second -- it's the early 90's -- laptops are still very expensive. This means I'm going to
-design offline, print, and use paper on game night to play.&lt;/p&gt;
-&lt;p&gt;Remember, it's a spreadsheet: it introduces as many problems as it solves.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="software-v2-hypercard"&gt;
-&lt;h3&gt;Software V2: Hypercard&lt;/h3&gt;
-&lt;p&gt;HyperCard -- if you've never seen it -- isn't easy to understand.&lt;/p&gt;
-&lt;p&gt;With some work, I created cards for each power/skill/perk/talent/whatever.&lt;/p&gt;
-&lt;p&gt;I can use those cards to create new cards for a character with abilities, and references to powers, skills, talents, perks, whatever.&lt;/p&gt;
-&lt;p&gt;I can then sum up the points to be sure the Character Points balance. I can tweak the card and try
-again until I make the budget add up properly.&lt;/p&gt;
-&lt;p&gt;And.&lt;/p&gt;
-&lt;p&gt;With a little care, I can serialize the output as a CSV file that can be pumped into a spreadsheet and formatted.&lt;/p&gt;
-&lt;p&gt;This was heavenly.&lt;/p&gt;
-&lt;p&gt;I built elaborate campaigns, worlds, scenarios, adventures. All the things designed with HyperCard.
-The pubishing involved spreadsheet formatting and some word-processing to tie it together.&lt;/p&gt;
-&lt;p&gt;But. All good things come to an end. 2004 was the end of Hypercard.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="software-v3-python-and-oop"&gt;
-&lt;h3&gt;Software V3: Python and OOP&lt;/h3&gt;
-&lt;p&gt;(See, I told you we'd get to OOP, eventually.)&lt;/p&gt;
-&lt;p&gt;When you consider the problem domain
-it's a classic Object-Oriented Programming problem.
-(I'd been thinking about it for well over decade at this point in the historial narrative.)&lt;/p&gt;
-&lt;p&gt;Classic. OOP.&lt;/p&gt;
-&lt;p&gt;There's tons of Inheritance. Tons of Delegation. Lots of Composition.  Lots of Instances of Classes.&lt;/p&gt;
-&lt;p&gt;It's all there. And it's pretty simple. There are relatively few exceptions.
-And the exceptions are trivially handled by footnotes to the &amp;quot;Game Master&amp;quot; (me).&lt;/p&gt;
-&lt;p&gt;This means I have to drag all of the work I already did out of Hypercard and rewrite it into Python.&lt;/p&gt;
-&lt;p&gt;But.&lt;/p&gt;
-&lt;p&gt;Once that's done, I can now use a block of code like the following:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-normal1 = hero.Character(
-    &amp;quot;Normal&amp;quot;,
-    hero.NORMAL,
-    # Characteristics
-    hero.STR(13),
-    hero.DEX(12),
-    hero.CON(10),
-    hero.BODY(12),
-    hero.INT(10),
-    hero.EGO(8),
-    hero.PRE(13),
-    hero.COM(9),
-    # Skills, Talents, Perks, Powers
-    hero.skills.WeaponFamiliarity_Category(&amp;quot;Common Melee&amp;quot;, 1),
-    hero.skills.TransportFamiliarity_Single(&amp;quot;Horses&amp;quot;),
-    hero.skills.Familiarity(&amp;quot;Jungle&amp;quot;, 1),
-    hero.skills.Familiarity(&amp;quot;Town&amp;quot;, 1),
-    hero.skills.AnimalHandling(1),
-    # Disadvantages
-    hero.disadvantages.Coward(),
-)
-&lt;/pre&gt;
-&lt;p&gt;If the points don't balance, the class initializer will print a message.&lt;/p&gt;
-&lt;p&gt;There's a serializer to produce CSV files for incorporation into spreadsheets.
-This means the characters can format nicely for game night.&lt;/p&gt;
-&lt;p&gt;We're back in business. I introduced my kids to TTRPG. Some of my nephews.
-But I could balance the books on my laptop to make sure their characters were legit.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="software-v4-python-3-and-type-hints"&gt;
-&lt;h3&gt;Software V4: Python 3 and Type Hints&lt;/h3&gt;
-&lt;p&gt;So now it's 2023.&lt;/p&gt;
-&lt;p&gt;I don't play Hero games much anymore.
-In spite of not playing regularly,
-the TTRPG topic surfaces from time to time. Maybe once every few years, now.&lt;/p&gt;
-&lt;p&gt;And the OO Design topic is -- in the back of my mind -- evergreen.&lt;/p&gt;
-&lt;p&gt;As a kind of mental palate cleansing &lt;em&gt;Amuse Bouche&lt;/em&gt; I decided to clean up the type hints
-and unit tests and make sure my hobby stuff still ran in Python 3.11 or 3.12.
-I did this in the unlikely event I ever wind up playing this TTRPG again.&lt;/p&gt;
-&lt;p&gt;The cleanup inovolved a fair amount of work spread over almost a week.&lt;/p&gt;
-&lt;p&gt;Why?&lt;/p&gt;
-&lt;p&gt;Getting the type hints right revealed problems.
-There are two parts to why this took so much work.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="section" id="type-hint-fundamentals"&gt;
-&lt;h2&gt;Type Hint Fundamentals&lt;/h2&gt;
-&lt;p&gt;One issue is in the way the various columns of a standard
-&amp;quot;Full Character Sheet&amp;quot; are formatted.
-The publication guidelines are for paper-and-pencil, hard-copy kind of adventure guides and campaing books.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The &amp;quot;Cost&amp;quot; column isn't -- universally -- numeric. Sometimes there's text.&lt;/li&gt;
-&lt;li&gt;Same for the &amp;quot;Endurance&amp;quot; column. It may have text explanations comingled with numbers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is not a big deal when serializing the data for a spreadsheet.
-Mixtures of numbers and words and what-not are tolerated politely.&lt;/p&gt;
-&lt;p&gt;Using &lt;strong&gt;mypy&lt;/strong&gt; to check the type hints revealed a number of bad mistakes.&lt;/p&gt;
-&lt;p&gt;Eventually, I could distinguish between the internal cost computations,
-and the external presentation. This cleanly isolated the essentially numeric
-accounting. (Which, if you roll back to the top of this post, was why we started this
-in the first place: accounting.)&lt;/p&gt;
-&lt;p&gt;Thst's not all, though.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="use-case-issues"&gt;
-&lt;h2&gt;Use Case Issues&lt;/h2&gt;
-&lt;p&gt;The more fundamental issue was the conflation of &lt;tt class="docutils literal"&gt;Character | Gadget | Base | Vehicle&lt;/tt&gt;.
-This requires some care in writing type hints and doing OO design to make
-sure that any differences are essential differences in these classes of objects.&lt;/p&gt;
-&lt;p&gt;For the most part, everything's a &amp;quot;Framework&amp;quot; that has a collection of features,
-advantages, and limitations. A Power is a Feature, so Frameworks can nest.&lt;/p&gt;
-&lt;p&gt;From a usability perspective there are two distinct kinds of things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Raw Materials. Powers, Skills, Talents, etc., with a cost.
-Ideally, these are all class definitions. They change very slowly, if at all.
-An instance of one these classes has a CP cost and a list of effects.&lt;/p&gt;
-&lt;p&gt;The Raw Materials are all &lt;tt class="docutils literal"&gt;class SomePower(Power): effects: list[Effect] = &lt;span class="pre"&gt;[STRBonus(+10)]&lt;/span&gt;&lt;/tt&gt; kind of definitions.
-More-or-less right out of the rules, rewritten into Python.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Finished Goods. Things like Characters have a budget, which must balance the sum of the costs of the Raw Materials that make up the Character.
-The characters in a game will be instances of some generic class, popuulated by instances raw material classes.
-The &lt;tt class="docutils literal"&gt;Character&lt;/tt&gt; class definition has a few features that are distinct from the raw materials classes.&lt;/p&gt;
-&lt;p&gt;The Finished goods are built with &lt;tt class="docutils literal"&gt;character = hero.Character(THIS(10), THAT(10), &lt;span class="pre"&gt;...)&lt;/span&gt;&lt;/tt&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This distinction makes for some gnarly OO design decisions to reflect the variety of use cases.&lt;/p&gt;
-&lt;p&gt;A raw material has a fairly fixed definition, and there's a direct mapping
-from the desired effects to the required cost. (The mapping isn't always &lt;strong&gt;simple&lt;/strong&gt;
-because there are advantages and disadvantages that are figured in.)&lt;/p&gt;
-&lt;p&gt;A finished good is built &amp;quot;on the fly&amp;quot; as a collection of instances of raw materials.&lt;/p&gt;
-&lt;p&gt;Right now, the distinction is kind of buried: the classes &lt;tt class="docutils literal"&gt;Character&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Gadget&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Base&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;Vehicle&lt;/tt&gt;
-lack a unifying abstraction or protocol. This needs to be fixed.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="oo-design-advice"&gt;
-&lt;h2&gt;OO Design Advice&lt;/h2&gt;
-&lt;p&gt;It's not at all clear this distinction between raw material and finished good &lt;strong&gt;needs&lt;/strong&gt; to be present.
-Superficially, it seems like everything's a &lt;tt class="docutils literal"&gt;Feature&lt;/tt&gt; and that's all we need to know.&lt;/p&gt;
-&lt;p&gt;The use cases for design based on raw materials are an unstated element of the rules.
-Technicall, we can argue that it's stated because design the essential purpose of
-most of the rulebook. But. It's not stated as a simple &amp;quot;Here are things you'll design
-based on raw materials we've already designed.&amp;quot; And &amp;quot;When you design a Campaign, you'll often
-be extending the pool of raw materials.&amp;quot; Instead, it's assumed that you -- the reader --
-understand the two kinds of design.&lt;/p&gt;
-&lt;p&gt;This is a chronic problem in software architecture.&lt;/p&gt;
-&lt;p&gt;There are things that are essential, but are -- like the atmosphere -- so pervasive
-and invisble no one things to mention them.&lt;/p&gt;
-&lt;p&gt;There's more (of course.)&lt;/p&gt;
-&lt;div class="section" id="software-v5-python-3"&gt;
-&lt;h3&gt;Software V5: Python 3&lt;/h3&gt;
-&lt;p&gt;Interactivity was part of HyperCard (and the spreadsheets that preceeded it.)&lt;/p&gt;
-&lt;p&gt;The Python 2 and Python 3 definitions of a Character was something
-I implemented as a simple script.
-This isn't &lt;strong&gt;too&lt;/strong&gt; interactive. You have an edit-run-crash cycle.&lt;/p&gt;
-&lt;p&gt;The scripts aren't complicated, and a simple &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt; rule can be used to rebuild
-all the CSV's after a software bug fix or after a change to some Power definition.&lt;/p&gt;
-&lt;p&gt;The work flow is tweak something. execute the script, look for error messages. Not too bad
-when compared with paper-and-pencil of thirty years ago.&lt;/p&gt;
-&lt;p&gt;Yesterday... (Seriously. Yesterday...)&lt;/p&gt;
-&lt;p&gt;It occurred to me that Jupyter Lab is a way to restore the original HyperCard interactivity.
-The Character/Gadget/Vehicle/Base can be a cell.
-I can run the notebook to validate the budgets for all the various bad guys in the scenario.&lt;/p&gt;
-&lt;p&gt;Over-budget? Tweak a definition until the cell stops printing the &amp;quot;over/under budget&amp;quot; error.&lt;/p&gt;
-&lt;p&gt;And.&lt;/p&gt;
-&lt;p&gt;I can write the supplemental stuff as Markdown. Right there. In the notebook.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="software-v6-adventure-books"&gt;
-&lt;h3&gt;Software V6: Adventure Books&lt;/h3&gt;
-&lt;p&gt;There's a very small, dedicated markeplace for Hero content.&lt;/p&gt;
-&lt;p&gt;(See &lt;a class="reference external" href="https://www.herogames.com"&gt;https://www.herogames.com&lt;/a&gt;, &lt;a class="reference external" href="https://www.patreon.com/hero_games"&gt;https://www.patreon.com/hero_games&lt;/a&gt;, and &lt;a class="reference external" href="https://roll20.net/compendium/HERO/BookIndex#content"&gt;https://roll20.net/compendium/HERO/BookIndex#content&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;While I'll never be a proper game author,
-I can still write up a scenario in a tidy format as if it's still 1995 and I might
-get a few bucks for an Adventurer's Club submission.&lt;/p&gt;
-&lt;p&gt;And this means using Sphinx, ReStructured Text (or maybe Markdown) to create a Scenario book.&lt;/p&gt;
-&lt;p&gt;I will slowly unearth my old campaign books (written in Pages) and convert them
-to Python/Sphinx projects.
-While it might be fun to imagine publishing them to HeroGames or Roll20, they're based 4th ed out-of-date rules.
-So. It's a hobby project that pleases only me.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="patterns"></category><category term="python"></category><category term="games"></category></entry><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
+</content><category term="Technologies"></category><category term="architecture"></category><category term="software design"></category><category term="design patterns"></category><category term="python"></category></entry><entry><title>Some Design Pattern Thoughts</title><link href="https://slott56.github.io/2023_04_25-some_design_pattern_thoughts.html" rel="alternate"></link><published>2023-04-25T08:00:00-04:00</published><updated>2023-04-25T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-04-25:/2023_04_25-some_design_pattern_thoughts.html</id><summary type="html">&lt;p&gt;The question was &amp;quot;Favorite Design Patterns.&amp;quot;&lt;/p&gt;
 &lt;p&gt;This is tricky because -- well -- so many patterns appear and re-appear in software.
 Picking a few from the vast world of patterns is fraught with difficulties.&lt;/p&gt;
 &lt;p&gt;Here are some thoughts:&lt;/p&gt;
@@ -10043,4 +9826,119 @@ One small typo under Extracting the Filter:
 &lt;p&gt;2019-12-11 12:52:39.138000-05:00&lt;/p&gt;
 &lt;p&gt;Great examples, thanks a lot&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="functional programming"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="functional programming"></category></entry><entry><title>Creating Palindromes -- if possible -- from a string of letters.</title><link href="https://slott56.github.io/2019_12_04-creating_palindromes_if_possible_from_a_string_of_letters.html" rel="alternate"></link><published>2019-12-04T19:07:00-05:00</published><updated>2019-12-04T19:07:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2019-12-04:/2019_12_04-creating_palindromes_if_possible_from_a_string_of_letters.html</id><summary type="html">&lt;p&gt;This can be an interesting exercise. I think it is something that can
+help people learn to code well. I found this in the LinkedIn Python
+community:  &lt;a class="reference external" href="https://www.linkedin.com/groups/25827/"&gt;https://www.linkedin.com/groups/25827/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Palindrome Problem:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Make a function that makes a palindrome out of the letters in a
+string …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;This can be an interesting exercise. I think it is something that can
+help people learn to code well. I found this in the LinkedIn Python
+community:  &lt;a class="reference external" href="https://www.linkedin.com/groups/25827/"&gt;https://www.linkedin.com/groups/25827/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The Palindrome Problem:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Make a function that makes a palindrome out of the letters in a
+string and
+returns -1 if this is not possible.
+Convert a list of strings with the function.&lt;/p&gt;
+&lt;p&gt;Some test cases:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; palify('eedd')
+'edde' (or 'deed')
+&amp;gt;&amp;gt;&amp;gt; palify('wgerar')
+&amp;gt;&amp;gt;&amp;gt; palify('uiuiqii')
+'uiiqiiu' or several similar variants.
+&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let's not get too carried away. I like *some* of this problem.&lt;/p&gt;
+&lt;p&gt;I don't like the idea of Union[str, int] as a return type from this
+function. Yes, it's valid Python, but it seems like a code smell.
+Since the intent is to build lists, a None would be more sensible than
+a number; we'd have Optional[str] which seems better overall.&lt;/p&gt;
+&lt;p&gt;The solution that was posted was interesting. It did way too much
+work, but it was acceptable-looking Python. (It started with a big
+block comment with &amp;quot;#&amp;quot; on each line instead of a docstring, so...
+there were minor style problems, but otherwise, it was not bad.)&lt;/p&gt;
+&lt;p&gt;Here's what popped into my head, to act as a concrete response to the
+request for comments.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;quot;&amp;quot;&amp;quot;
+Make a function that makes a palindrome out of the letters in a string and
+returns -1 if this is not possible.
+Convert a list of strings with the function.
+Some test cases:
+
+&amp;gt;&amp;gt;&amp;gt; palify('eedd')
+'edde'
+&amp;gt;&amp;gt;&amp;gt; palify('wgerar')
+&amp;gt;&amp;gt;&amp;gt; palify('uiuiqii')
+'uiiqiiu'
+&amp;quot;&amp;quot;&amp;quot;
+from typing import Optional, Set
+
+
+def palify(source: str) -&amp;gt; Optional[str]:
+    &amp;quot;&amp;quot;&amp;quot;Core palindromic conversion.&amp;quot;&amp;quot;&amp;quot;
+    singletons: Set[str] = set()
+    pairs = list()
+    for c in source:
+        if c in singletons:
+            pairs.append(c)
+            singletons.remove(c)
+        else:
+            singletons.add(c)
+
+    if pairs and len(singletons) &amp;lt;= 1:
+        # presuming a single letter can't be palindromic.
+        return ''.join(pairs+list(singletons)+pairs[::-1])
+    return None
+
+if __name__ == &amp;quot;__main__&amp;quot;:
+    s =  ['eedd', 'wgerar', 'uiuiqii']
+    p = list(map(palify, s))
+    print(f&amp;quot;from {s=}, we get {p=}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;The core problem statement is interesting. And the ancillary
+requirement is almost as interesting as the problem.&lt;/p&gt;
+&lt;p&gt;The simple-seeming &amp;quot;Make a palindrome out of the letters of the
+string&amp;quot; has two parts. First, there's the question of &amp;quot;can it even
+become a palindrome&amp;quot;? Which implies validating the source data against
+some set of rules. After that, we have to emit one of the many
+possible palindromes from the source material.&lt;/p&gt;
+&lt;p&gt;The original post had a complicated survey of the data. This was
+followed by an elegant way of creating a palindrome from the survey
+data. Since we're looking for a bunch of pairs and a singleton, I
+elided the more complex survey and opted to collect pairs and
+singletons into two separate collections.&lt;/p&gt;
+&lt;p&gt;When we've consumed the input, we will have partitioned the characters
+into their two pools and we can decide if the pools have the right
+sizes to proceed. The emission of the palindrome is a lazy assembly of
+the resulting data, first as a list, and then transformed to a single
+string.&lt;/p&gt;
+&lt;p&gt;The ancillary requirement is interesting in its own right. When a
+bundle of letters can't form a palindrome, that seems like a
+ValueError exception to me. Doing bulk transformations in the presence
+of ValueErrors seems wrong-ish. I already griefed about the -1
+response above: it seems very bad. A None is less bad than -1. An
+Exception, however, seems like a more right thing to do.&lt;/p&gt;
+&lt;div class="section" id="code-review-response"&gt;
+&lt;h2&gt;Code Review Response&lt;/h2&gt;
+&lt;p&gt;I think my response to the original code should be follow-up questions
+on why a defaultdict(int) was used to survey the data in the first
+place. A Counter() is a better idea, and requires less code.&lt;/p&gt;
+&lt;p&gt;The survey involved trying to locate singletons -- a laudable goal.
+There may have been a better approach to looking for the presence of a
+singleton letter in the Counter values.&lt;/p&gt;
+&lt;p&gt;More fundamentally, there are few states for each letter. There are
+two stark algorithmic choices: a structure keyed by letter or
+collections of letters. I've shown the collections, and hinted at the
+collection. The student response used a collection.&lt;/p&gt;
+&lt;p&gt;I think this problem serves as a good discussion for algorithmic
+alternatives. The core problem of detecting the possibility of
+palindromicity for a bunch of letters is cool. There are two choices.
+The handling of the exceptional case (-1, None or ValueError) is
+another bundle of choices.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Technologies"></category><category term="#python"></category></entry></feed>

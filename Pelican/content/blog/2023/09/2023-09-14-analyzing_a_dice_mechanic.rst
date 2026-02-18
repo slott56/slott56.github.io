@@ -4,7 +4,7 @@ Analyzing a Dice Mechanic
 :date: 2023-09-14 14:57
 :tags: games,tutorial
 :slug: 2023_09_14-analyzing_a_dice_mechanic
-:category: Python
+:category: TTRPG
 :status: published
 
 A "Dice Mechanic"? Yes. The thing you do with the dice to determine an outcome.
