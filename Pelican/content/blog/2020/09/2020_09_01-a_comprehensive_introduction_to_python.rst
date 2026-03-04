@@ -2,7 +2,7 @@ A Comprehensive Introduction to Python
 =======================================
 
 :date: 2020-09-01 08:00
-:tags: #python
+:tags: #python,BookReview
 :slug: 2020_09_01-a_comprehensive_introduction_to_python
 :category: Books
 :status: published
