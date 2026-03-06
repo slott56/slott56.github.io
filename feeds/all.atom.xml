@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-03-04T13:28:00-05:00</updated><entry><title>Python Illustrated -- a Purrfect Book for New Programmers</title><link href="https://slott56.github.io/2026-03-04_python_illustrated.html" rel="alternate"></link><published>2026-03-04T13:28:00-05:00</published><updated>2026-03-04T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-04:/2026-03-04_python_illustrated.html</id><summary type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-03-05T16:20:00-05:00</updated><entry><title>OpenD6 Deep Dive -- Area Effect Aspect</title><link href="https://slott56.github.io/2026-03-05_opend6_deep_dive.html" rel="alternate"></link><published>2026-03-05T16:20:00-05:00</published><updated>2026-03-05T16:20:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-05:/2026-03-05_opend6_deep_dive.html</id><summary type="html">&lt;p&gt;I went deep into OpenD6, chasing an idea through a maze of strange shapes.&lt;/p&gt;
+&lt;p&gt;See this extract from a Jupyter Notebook: &lt;a class="reference external" href="https://slott56.github.io/pages/area-effect-aspect-volume-computations.html"&gt;Area Effect Aspect Volume Computations&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It was a lot of fun to uncover two errors in the rules, and work out what &lt;em&gt;could&lt;/em&gt; have been used instead.&lt;/p&gt;
+&lt;div class="section" id="tl-dr"&gt;
+&lt;h2&gt;TL;DR …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;I went deep into OpenD6, chasing an idea through a maze of strange shapes.&lt;/p&gt;
+&lt;p&gt;See this extract from a Jupyter Notebook: &lt;a class="reference external" href="https://slott56.github.io/pages/area-effect-aspect-volume-computations.html"&gt;Area Effect Aspect Volume Computations&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It was a lot of fun to uncover two errors in the rules, and work out what &lt;em&gt;could&lt;/em&gt; have been used instead.&lt;/p&gt;
+&lt;div class="section" id="tl-dr"&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;Here are the revised shape rules.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Shape&lt;/th&gt;
+&lt;th class="head"&gt;Measures&lt;/th&gt;
+&lt;th class="head"&gt;Equivalent Sphere R&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Hemisphere&lt;/td&gt;
+&lt;td&gt;radius &lt;span class="math"&gt;\(r\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(0.79 r\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Cone&lt;/td&gt;
+&lt;td&gt;height &lt;span class="math"&gt;\(h\)&lt;/span&gt;, base radius &lt;span class="math"&gt;\(r\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(0.63 \sqrt[3]{h r^{2}}\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Cuboid&lt;/td&gt;
+&lt;td&gt;height &lt;span class="math"&gt;\(h\)&lt;/span&gt;, width &lt;span class="math"&gt;\(w\)&lt;/span&gt;, depth &lt;span class="math"&gt;\(d\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(0.62 \sqrt[3]{d h w}\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Cylinder&lt;/td&gt;
+&lt;td&gt;height &lt;span class="math"&gt;\(h\)&lt;/span&gt;, radius &lt;span class="math"&gt;\(r\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(0.91 \sqrt[3]{h r^{2}}\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Pyramid&lt;/td&gt;
+&lt;td&gt;height &lt;span class="math"&gt;\(h\)&lt;/span&gt;, base width &lt;span class="math"&gt;\(w\)&lt;/span&gt;, base length &lt;span class="math"&gt;\(l\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math"&gt;\(0.43 \sqrt[3]{h l w}\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The difficulty is &lt;span class="math"&gt;\(5R\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-wait"&gt;
+&lt;h2&gt;But Wait...&lt;/h2&gt;
+&lt;p&gt;There are two positions we can adopt on the Area Effect aspect options shown (in detail) in the attached article.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;It's too complicated. Find a way to simplify the difficulty computation.&lt;/li&gt;
+&lt;li&gt;It's a necessary evil, and there aren't too many ways around it without a massive rethinking of that aspect.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="too-complicated"&gt;
+&lt;h2&gt;Too Complicated&lt;/h2&gt;
+&lt;p&gt;Yes, the math involves a cube root. My phone's calculator has the needed &lt;span class="math"&gt;\(\sqrt[3]X\)&lt;/span&gt; button.&lt;/p&gt;
+&lt;p&gt;The problem is multi-dimensional objects. Take the &amp;quot;cuboid&amp;quot;, with a height, width and depth.&lt;/p&gt;
+&lt;p&gt;Let's say some spell's space is going to be 3.5m by 3.5m by 3.5m (an actual cube.)
+This is 42.875 cubic meters. What's the difficulty supposed to be? The (unpublished) &lt;em&gt;OpenD6 Magic Guide&lt;/em&gt; rules don't actually say.
+Is it 43? That seems absurdly high.
+If we use the measure-to-value table, we get 8. That's a bit low.&lt;/p&gt;
+&lt;p&gt;A 33 cubic meter sphere has a difficulty of 10. A 43 cubic meter should be more than 10. How mich more?
+It's 30% larger; does that mean 30% more difficulty?&lt;/p&gt;
+&lt;p&gt;Not when dealing with volumes, where the growth is cubic.&lt;/p&gt;
+&lt;p&gt;It's equivalent to a 2.17m radius sphere; difficulty 11.&lt;/p&gt;
+&lt;p&gt;(If 2.17m radius seems small, the diameter will be 4.34m, just slightly larger than the 3.5m cube.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="it-s-a-necessary-evil"&gt;
+&lt;h2&gt;It's A Necessary Evil&lt;/h2&gt;
+&lt;p&gt;A lot of these &amp;quot;classic&amp;quot; TTRPG rules assume calculators and computers are a rarity.&lt;/p&gt;
+&lt;p&gt;It is true that lots and lots of GM's and player don't have a strong math background.&lt;/p&gt;
+&lt;p&gt;It seems like those folks may be less likely to be designing new spells with complicated Area of Effect aspects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I don't know which is better. I like the explicit detail of this version as a way to help spell designers.&lt;/p&gt;
+&lt;p&gt;It has little impact on play; the difficulty, skills and dice rolls impact play more than this detail.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="math"></category></entry><entry><title>Python Illustrated -- a Purrfect Book for New Programmers</title><link href="https://slott56.github.io/2026-03-04_python_illustrated.html" rel="alternate"></link><published>2026-03-04T13:28:00-05:00</published><updated>2026-03-04T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-04:/2026-03-04_python_illustrated.html</id><summary type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
 &lt;p&gt;No, you’re not reading …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
 &lt;p&gt;No, you’re not reading a review of a new fiction title.&lt;/p&gt;
 &lt;p&gt;Unlike too many books on Python, this book features two cute animals on an exploration of the Python landscape. Zia the cat is knowledgeable, patient and crafty, while Wiesje the dog seems to be looking past Python to the doors new skills might open, described in Chapter 11, Next Steps.&lt;/p&gt;
@@ -11543,49 +11684,4 @@ better might look like, this is click-bait whining.&lt;/p&gt;
 starting from Dartmouth Basic or FORTH as the standard against which
 Python is measured.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="click-bait"></category></entry><entry><title>Pelican and Static Web Content</title><link href="https://slott56.github.io/2022_04_12-pelican_and_static_web_content.html" rel="alternate"></link><published>2022-04-12T08:00:00-04:00</published><updated>2022-04-12T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-04-12:/2022_04_12-pelican_and_static_web_content.html</id><summary type="html">&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2022_03_01-static_site_blues.html"&gt;Static Site
-Blues&lt;/a&gt;
-I was wringing my hands over ways to convert a &lt;strong&gt;ton&lt;/strong&gt; of content from a
-two different proprietary tools (the very old iWeb, and the merely old
-Sandvox) into something I could work with.&lt;/p&gt;
-&lt;p&gt;After a bit of fiddling around, I'm delighted with
-&lt;a class="reference external" href="https://blog.getpelican.com"&gt;Pelican&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;First, of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2022_03_01-static_site_blues.html"&gt;Static Site
-Blues&lt;/a&gt;
-I was wringing my hands over ways to convert a &lt;strong&gt;ton&lt;/strong&gt; of content from a
-two different proprietary tools (the very old iWeb, and the merely old
-Sandvox) into something I could work with.&lt;/p&gt;
-&lt;p&gt;After a bit of fiddling around, I'm delighted with
-&lt;a class="reference external" href="https://blog.getpelican.com"&gt;Pelican&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;First, of course, I had to extract all the iWeb and Sandvox content.
-This was emphatically not fun. While both used XML, they used it in
-subtly different ways. Apple's frameworks serialize internal state as
-XML in a way that preserves a lot of semantic details. It also preserves
-endless irrelevant details.&lt;/p&gt;
-&lt;p&gt;I wound up with a Markdown data structure definition, plus a
-higher-level &amp;quot;content model&amp;quot; with sites, pages, blogs, blog entries and
-images. Plus the iWeb extractor and the Sandvox extractor. It's a lot of
-code, much of which lacks solid unit test cases. It worked -- once --
-and I was tolerant of the results.&lt;/p&gt;
-&lt;p&gt;I also wound up writing tools to walk the resulting tree of Markdown
-files doing some post-extraction cleanup. There's a lot of cleanup that
-should be done.&lt;/p&gt;
-&lt;p&gt;But.&lt;/p&gt;
-&lt;p&gt;I can now add to the blog with the state of my voyaging. I've been able
-to keep &lt;a class="reference external" href="https://itmaybeahack.com/TeamRedCruising2/"&gt;Team Red
-Cruising&lt;/a&gt; up to date.&lt;/p&gt;
-&lt;p&gt;Eventually (i.e., when the boat is laid up for Hurricane Season) I may
-make an effort to clean up the older content and make it more
-consistent. In particular, I need to add some annotations around
-anchorages to make it possible to locate all of the legs of all of the
-journeys. Since the HTML is what most people can see, that means a class
-identifier for lat-lon pairs.&lt;/p&gt;
-&lt;p&gt;As it is, the blog entries are *mostly* markdown. Getting images and
-blockquotes even close to readable requires dropping to HTML to make
-direct use of the bootstrap CSS. This also requires some comprehensive
-cleanup to properly use the Bootstrap classes. (I think I've may have
-introduced some misspelled CSS classes into the HTML that aren't doing
-anything.)&lt;/p&gt;
-&lt;p&gt;For now, however, it works. I'm still tweaking small things that require
-republishing *all* the HTML.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="blogging"></category><category term="markdown"></category><category term="static site generator"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="click-bait"></category></entry></feed>

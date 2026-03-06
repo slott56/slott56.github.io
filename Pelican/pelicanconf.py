@@ -8,6 +8,7 @@ PATH = 'content'
 STATIC_PATHS = [
   'media',
 ]
+PAGE_PATHS = ['pages']
 
 TIMEZONE = 'US/Eastern'
 
