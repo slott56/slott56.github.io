@@ -9,7 +9,7 @@ OpenD6 Deep Dive -- Area Effect Aspect
 
 I went deep into OpenD6, chasing an idea through a maze of strange shapes.
 
-See this extract from a Jupyter Notebook: `Area Effect Aspect Volume Computations <{static}/pages/area-effect-aspect-volume-computations.html>`_.
+See this extract from a Jupyter Notebook: `Area Effect Aspect Volume Computations <{filename}/pages/area_effect_computations.rst>`_.
 
 It was a lot of fun to uncover two errors in the rules, and work out what *could* have been used instead.
 
