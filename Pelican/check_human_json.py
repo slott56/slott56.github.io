@@ -4,7 +4,6 @@ Check content of content/media/human.json
 import json
 from pathlib import Path
 import urllib.request
-import sys
 
 from jsonschema import Draft202012Validator
 
