@@ -20,7 +20,16 @@ python -m pip install install "pelican[markdown]"
 python -m pip install pymdown-extensions
 python -m pip install -e ~/github/local/navtools
 python -m pip install ghp-import
+python -m pip install jsonschema
 ```
+
+Pelican Upgrade...
+
+```commandline
+python -m pip install --upgrade "pelican[markdown]" pymdown-extensions ghp-import jsonschema
+```
+
+Currently 4.11.0 as of 2026-Mar-21
 
 Theme Installation
 
@@ -30,7 +39,14 @@ cd Pelican
 pelican-themes -i ~/Documents/Writing/Blogs/pelican-themes/pelican-bootstrap3
 ```
 
-Update `pelicanconf.py` to include `THEME=pelican-bootstrap3`
+Theme Upgrade:
+
+1. Stash any changes.
+2. Fetch the latest repo.
+3. Reapply any stashed changes.
+
+
+Set `pelicanconf.py` to include `THEME=pelican-bootstrap3`
 
 
 ## Categories:

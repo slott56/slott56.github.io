@@ -6,7 +6,7 @@ with one of the output directories.
 
 Note that the output directories are defined in the ``Makefile``.
 This application is run by make, and executes a series of
-``pelicon`` steps.
+``pelican`` steps.
 
 1. Examine output. Compare with input(s) to see what needs
 to be rebuilt.
