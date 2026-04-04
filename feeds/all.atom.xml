@@ -1,7 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-03-20T09:20:00-04:00</updated><entry><title>The human.json Protocol</title><link href="https://slott56.github.io/2026-03-20_human_json.html" rel="alternate"></link><published>2026-03-20T09:20:00-04:00</published><updated>2026-03-20T09:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-20:/2026-03-20_human_json.html</id><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://codeberg.org/robida/human.json"&gt;https://codeberg.org/robida/human.json&lt;/a&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-04T15:37:00-04:00</updated><entry><title>Another D6 Dice Mechanic -- Equiprobable Choices</title><link href="https://slott56.github.io/2026-04-04_another_d6_mechanic.html" rel="alternate"></link><published>2026-04-04T15:37:00-04:00</published><updated>2026-04-04T15:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-04:/2026-04-04_another_d6_mechanic.html</id><summary type="html">&lt;p&gt;When playing a game using D6 -- and only D6 -- we're sometimes confronted with a need to
+make a selection from equiprobable items.&lt;/p&gt;
+&lt;p&gt;For example, pick a random day of the week: 7 choices, but only 6 sides to a die.&lt;/p&gt;
+&lt;p&gt;What can we do?&lt;/p&gt;
+&lt;p&gt;How can we select fairly among …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When playing a game using D6 -- and only D6 -- we're sometimes confronted with a need to
+make a selection from equiprobable items.&lt;/p&gt;
+&lt;p&gt;For example, pick a random day of the week: 7 choices, but only 6 sides to a die.&lt;/p&gt;
+&lt;p&gt;What can we do?&lt;/p&gt;
+&lt;p&gt;How can we select fairly among 7 choices using only a handful of 6-sided dice?&lt;/p&gt;
+&lt;p&gt;See this extract from a Jupyter Notebook:
+&lt;a class="reference external" href="https://slott56.github.io/pages/dice-mechanics-equal-probability-outcomes-from-d6.html"&gt;Dice Mechanics: Equal Probability Outcomes from D6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For direct computation of the exact distribution of a handfull of dice, we need a lesson in multinomials.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://towardsdatascience.com/modelling-the-probability-distributions-of-dice-b6ecf87b24ea/"&gt;https://towardsdatascience.com/modelling-the-probability-distributions-of-dice-b6ecf87b24ea/&lt;/a&gt;.
+From this we learn the following (amongst other things).
+For &lt;span class="math"&gt;\(n\)&lt;/span&gt; dice of &lt;span class="math"&gt;\(s\)&lt;/span&gt; sides (6 in our case), the probability of getting the target value &lt;span class="math"&gt;\(T\)&lt;/span&gt; is this:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+P(n, s, T) = \Bigl(\sum\limits_{k=0}^{\lfloor \frac{T-n}{s} \rfloor}\bigl(-1\bigr)^k \frac{n!}{(n-k)!k!} \frac{(T-sk-1)!}{(T-sk-n)!(n-1)!}\Bigr)\Bigl(\frac{1}{s}\Bigr)^n
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Which has a lot of maths, but is very helpful.&lt;/p&gt;
+&lt;div class="section" id="tl-dr"&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt;Mechanic Alternatives&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="9%" /&gt;
+&lt;col width="91%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Outcomes&lt;/th&gt;
+&lt;th class="head"&gt;D6 Mechanic&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1D [1-3, 4-6]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1D [1-2, 3-4, 5-6]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;1D with reroll {5, 6}
+or 2D with weights of 2, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;1D with reroll {6}
+or 4D [4-10, 11-12, 13-14, 15-16, 17-24]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;1D &lt;em&gt;Do we even need to include this?&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;Use 8 outcomes with a reroll {7}
+or 5D [5-12, 13-14, 15-16, 17, 18-19, 20-21, 22-30]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;4D [4-9, 10-11, 12, 13, 14, 15, 16-17, 18-24]
+or 3D with weights of 4, 2, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;5D [5-12, 13-14, 15, 16, 17, 18, 19, 20-21, 22-30]
+or 2D with weights of 3, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;3D [3-6, 7, 8, 9, 10, 11, 12, 13, 14, 15-18]
+or 5 outcomes combined with 2 outcomes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;Use 12 outcomes with reroll {11}
+or 5D [5-11, 12-13, 14, 15, 16, 17, 18, 19, 20, 21-22, 23-30]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;Use 6 outcomes, combined with 2 outcomes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;above 12&lt;/td&gt;
+&lt;td&gt;Decompose into 2 or more tables; use a chain of rolls&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="DSL"></category><category term="OpenD6"></category><category term="#python"></category><category term="dice"></category><category term="mechanic"></category></entry><entry><title>The human.json Protocol</title><link href="https://slott56.github.io/2026-03-20_human_json.html" rel="alternate"></link><published>2026-03-20T09:20:00-04:00</published><updated>2026-03-20T09:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-20:/2026-03-20_human_json.html</id><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://codeberg.org/robida/human.json"&gt;https://codeberg.org/robida/human.json&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This content is human-generated. All the mistakes are mine, without the taint of AI slop.&lt;/p&gt;
-&lt;p&gt;I've added a the needed &lt;a class="reference external" href="https://slott56.github.io/media/human.json"&gt;human.json&lt;/a&gt;, and can update it if you want me to vouch for your content, also.&lt;/p&gt;
+&lt;p&gt;I've added the needed &lt;a class="reference external" href="https://slott56.github.io/media/human.json"&gt;human.json&lt;/a&gt;, and can update it if you want me to vouch for your content, also.&lt;/p&gt;
 </content><category term="Technology"></category><category term="#noAI"></category><category term="#humanjson"></category></entry><entry><title>OpenD6 Deep Dive -- Area Effect Aspect</title><link href="https://slott56.github.io/2026-03-05_opend6_deep_dive.html" rel="alternate"></link><published>2026-03-05T16:20:00-05:00</published><updated>2026-03-05T16:20:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-05:/2026-03-05_opend6_deep_dive.html</id><summary type="html">&lt;p&gt;I went deep into OpenD6, chasing an idea through a maze of strange shapes.&lt;/p&gt;
 &lt;p&gt;See this extract from a Jupyter Notebook: &lt;a class="reference external" href="https://slott56.github.io/pages/area-effect-aspect-volume-computations.html"&gt;Area Effect Aspect Volume Computations&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It was a lot of fun to uncover two errors in the rules, and work out what &lt;em&gt;could&lt;/em&gt; have been used instead.&lt;/p&gt;
@@ -143,7 +285,7 @@ It's 30% larger; does that mean 30% more difficulty?&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="math"></category></entry><entry><title>Python Illustrated -- a Purrfect Book for New Programmers</title><link href="https://slott56.github.io/2026-03-04_python_illustrated.html" rel="alternate"></link><published>2026-03-04T13:28:00-05:00</published><updated>2026-03-04T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-04:/2026-03-04_python_illustrated.html</id><summary type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="math"></category><category term="mechanic"></category></entry><entry><title>Python Illustrated -- a Purrfect Book for New Programmers</title><link href="https://slott56.github.io/2026-03-04_python_illustrated.html" rel="alternate"></link><published>2026-03-04T13:28:00-05:00</published><updated>2026-03-04T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-04:/2026-03-04_python_illustrated.html</id><summary type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
 &lt;p&gt;No, you’re not reading …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Maaike and Imke van Putten’s delightful &lt;a class="reference external" href="https://www.packtpub.com/en-us/product/python-illustrated-9781836646327"&gt;Python Illustrated&lt;/a&gt; follows innocent Wiesje on a journey to learn the secrets only Zia seems to know. The journey is long and filled with discoveries about Python as well as the ways Wiesje needs to adapt and grow.&lt;/p&gt;
 &lt;p&gt;No, you’re not reading a review of a new fiction title.&lt;/p&gt;
 &lt;p&gt;Unlike too many books on Python, this book features two cute animals on an exploration of the Python landscape. Zia the cat is knowledgeable, patient and crafty, while Wiesje the dog seems to be looking past Python to the doors new skills might open, described in Chapter 11, Next Steps.&lt;/p&gt;
@@ -6552,7 +6694,7 @@ Beginners don't know about stack frames.&lt;/blockquote&gt;
 &lt;p&gt;The points in the blog posts are sound: better debugging, additional support for evaluating expressions.&lt;/p&gt;
 &lt;p&gt;The &amp;quot;audience of beginners&amp;quot; is my only quibble.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023_09_14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+</content><category term="Python"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Analyzing the "Worst-of-2D6" Dice Mechanic</title><link href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023_09_14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
 We'll use Python to see how the dice shake out.&lt;/p&gt;
 &lt;div class="section" id="a-little-backstory"&gt;
 &lt;h2&gt;A little backstory&lt;/h2&gt;
@@ -6572,13 +6714,15 @@ for the 6-sided die folks often think of. The term &amp;quot;3d8&amp;quot; was i
 &lt;p&gt;And, there are things like &amp;quot;4d6-low&amp;quot; to discard the lowest of 4 dice.
 Or maybe &amp;quot;ll4d6&amp;quot; for &amp;quot;lose lowest&amp;quot;. Clever people have worked out a lot of mechanics,
 and a lot of ways to describe them.&lt;/p&gt;
+&lt;p&gt;(See &lt;a class="reference external" href="https://tacticaldice.com/delspec"&gt;https://tacticaldice.com/delspec&lt;/a&gt;, for a complete specification.)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="the-mechanics-in-question"&gt;
 &lt;h2&gt;The mechanics in question&lt;/h2&gt;
 &lt;p&gt;We want to compare two mechanics:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers.&lt;/li&gt;
-&lt;li&gt;Middle of 3d6. This -- well -- does it tend to favor low numbers, also?&lt;/li&gt;
+&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers. We're tossing two dice, and keeping the lowest.&lt;/li&gt;
+&lt;li&gt;Middle of 3d6. We're tossing three dice and keeping the one in the middle.
+Does this favor the same mixture of low numbers as worst of 2D6?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.&lt;/p&gt;
 &lt;p&gt;Another really good alternative is to exhaustively enumerate the possible outcomes.
@@ -6693,7 +6837,6 @@ def mid(dice: list[int]) -&amp;gt; int:
 &lt;p&gt;We've sorted the three dice, and taken the one in position 1.
 Position 0 has the least, and position 2 has the most.
 In the middle is the target value.&lt;/p&gt;
-&lt;p&gt;We can optimize this, of course.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 d_0, d_1, d_2 = dice
 return (
@@ -6702,7 +6845,8 @@ return (
     d_2
 )
 &lt;/pre&gt;
-&lt;p&gt;Who needs that kind of optimization? Not me.&lt;/p&gt;
+&lt;p&gt;We can optimize this, of course.
+Who needs that kind of optimization? Not me.&lt;/p&gt;
 &lt;p&gt;Here's a generator to provide the needed 1,000 samples.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 def mid_3d6(samples=1000):
@@ -6710,8 +6854,10 @@ def mid_3d6(samples=1000):
         mid(nd6(3)) for _ in range(samples)
     )
 &lt;/pre&gt;
-&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
-(I wrote a whole book on Functional Python Programming.)&lt;/p&gt;
+&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function.
+And, yes, the two could be refactored to eliminate a tiny blot of redundant code.
+And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming; reuse can be important.)&lt;/p&gt;
 &lt;p&gt;Here's the distribution:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 distro_mid_3d6 = Counter(mid_3d6())
@@ -6749,12 +6895,12 @@ distro_mid_3d6 = Counter(mid_3d6())
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Seriously? It's weighted toward 3's and 4's?&lt;/p&gt;
-&lt;p&gt;That shouldn't be too surprising. Maybe it is.&lt;/p&gt;
-&lt;p&gt;I had no idea.&lt;/p&gt;
+&lt;p&gt;That shouldn't be too surprising. It was to me.
+I had no idea.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="so-far-so-good"&gt;
 &lt;h2&gt;So Far, So Good&lt;/h2&gt;
-&lt;p&gt;The point is to compare dice mechanics.&lt;/p&gt;
+&lt;p&gt;The goal is to compare two dice mechanics.&lt;/p&gt;
 &lt;p&gt;The strategy is to simulate them.&lt;/p&gt;
 &lt;p&gt;We wrote some functions to apply the mechanic.&lt;/p&gt;
 &lt;p&gt;We sampled it 1,000 times to create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; with the distribution of the 1,000 samples.&lt;/p&gt;
@@ -6858,7 +7004,8 @@ Looking at the text patterns, I can work out the following.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Beyond this, I'm lost.&lt;/p&gt;
 &lt;p&gt;But.&lt;/p&gt;
-&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.&lt;/p&gt;
+&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.
+The abstract math is going to be correct, but it exceeds my abilities.&lt;/p&gt;
 &lt;/div&gt;
 &lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -6921,7 +7068,7 @@ Looking at the text patterns, I can work out the following.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023_09_05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023_09_05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category><category term="dice"></category><category term="mechanic"></category></entry><entry><title>Preorder the Python Real-World Projects Book</title><link href="https://slott56.github.io/2023_09_05-preorder_project_book.html" rel="alternate"></link><published>2023-09-05T09:00:00-04:00</published><updated>2023-09-05T09:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-05:/2023_09_05-preorder_project_book.html</id><summary type="html">&lt;p&gt;Want a book with dozens of project ideas?&lt;/p&gt;
 &lt;p&gt;Each has a description, and approach, and deliverables.
 It's a lot like ordinary development work, but with some detailed guidance from the author.
 (And no deadline imposed by your team lead or manager.)&lt;/p&gt;
@@ -11418,123 +11565,4 @@ understanding of literate programming.&lt;/p&gt;
 &lt;p&gt;I have a book to finish, first, though. Then I can look at improving my
 workflow. (And yes, this is backwards from a properly Agile approach.)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="literate programming"></category><category term="packtpub"></category><category term="#python"></category></entry><entry><title>Code so bad it causes me physical pain</title><link href="https://slott56.github.io/2022_05_23-code_so_bad_it_causes_me_physical_pain.html" rel="alternate"></link><published>2022-05-23T20:38:00-04:00</published><updated>2022-05-23T20:38:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-05-23:/2022_05_23-code_so_bad_it_causes_me_physical_pain.html</id><summary type="html">&lt;p&gt;Here's the code.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def get_categories(file):
-    &amp;quot;&amp;quot;&amp;quot;
-    Get categories.
-    &amp;quot;&amp;quot;&amp;quot;
-    verify_file(file)
-
-    categories = set()
-
-    with open(file, &amp;quot;r&amp;quot;) as cat_file:
-        while line := cat_file.readline().rstrip():
-            categories.add(line)
-
-    return categories
-&lt;/pre&gt;
-&lt;p&gt;To me this was terrible. truly and deeply horrifying. Let me count the
-ways.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;The docstring repeats the name of the function …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Here's the code.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-def get_categories(file):
-    &amp;quot;&amp;quot;&amp;quot;
-    Get categories.
-    &amp;quot;&amp;quot;&amp;quot;
-    verify_file(file)
-
-    categories = set()
-
-    with open(file, &amp;quot;r&amp;quot;) as cat_file:
-        while line := cat_file.readline().rstrip():
-            categories.add(line)
-
-    return categories
-&lt;/pre&gt;
-&lt;p&gt;To me this was terrible. truly and deeply horrifying. Let me count the
-ways.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;The docstring repeats the name of the function providing no
-additional information.&lt;/li&gt;
-&lt;li&gt;The &lt;tt class="docutils literal"&gt;verify_file()&lt;/tt&gt; function checks are pure, useless LBYL code. It
-seemed designed to map a lot of detailed exceptions to a
-&lt;tt class="docutils literal"&gt;RuntimeError&lt;/tt&gt;. Which is misleading.&lt;/li&gt;
-&lt;li&gt;The use &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;readline()&lt;/tt&gt; to iterate through the lines of
-a file is -- I guess -- reasonable if we're working Pascal or
-Modula-2. But we're not. Use of the walrus operator isn't really
-getting any bonus points because -- well -- this is terrible.&lt;/li&gt;
-&lt;li&gt;While pathlib is used elsewhere in this module, it's not used here.
-This function works with a filename string, assigned to the &lt;tt class="docutils literal"&gt;file&lt;/tt&gt;
-parameter.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Actually, taking a step back, it's not that the author is being
-malicious. They just missed all the features of files and sets. And --
-somehow -- were able to learn about the walrus operator while never
-figuring out how files work.&lt;/p&gt;
-&lt;p&gt;This is something like:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-source = Path(&amp;quot;some_file.txt&amp;quot;)
-with source.open() as source_file:
-    categories = set(source_file)
-&lt;/pre&gt;
-&lt;p&gt;And that's it.&lt;/p&gt;
-&lt;div class="section" id="it-gets-worse"&gt;
-&lt;h2&gt;It Gets Worse&lt;/h2&gt;
-&lt;p&gt;This was part of some category mapping application.&lt;/p&gt;
-&lt;p&gt;They've got a CSV file with some string values. And they want to map
-those string values to summary category values.&lt;/p&gt;
-&lt;p&gt;Most folks think of a dictionary for a mapping from one string to
-another string.&lt;/p&gt;
-&lt;p&gt;The code I was sent -- I kid you not -- used a list of two-tuples. I'll
-repeat that for those who are skimming. It use &lt;strong&gt;A LIST OF TWO-TUPLES
-INSTEAD OF A DICTIONARY&lt;/strong&gt;.  It used a colossally bad search through an
-unsorted list of tuples to find matches. (The only search that would
-have been worse was random probes instead of iteration.)&lt;/p&gt;
-&lt;p&gt;It really did.&lt;/p&gt;
-&lt;p&gt;It can't even show you that code, it's such a horrifyingly bad design.&lt;/p&gt;
-&lt;p&gt;They had a question. Was the looping over a list of two-tuples
-ineffective? That's why they asked for help.&lt;/p&gt;
-&lt;p&gt;It was like they had never heard of a dictionary. Nor seen a tutorial
-with a dictionary. Nor read a book that mentioned dictionaries. They had
-managed to learn enough Python to see the walrus operator without
-hearing of dictionaries.&lt;/p&gt;
-&lt;p&gt;A list of two-tuples, when provided to the &lt;tt class="docutils literal"&gt;dict()&lt;/tt&gt; function, will
-make a dictionary. They were ignorant of this.&lt;/p&gt;
-&lt;p&gt;A dictionary that does &lt;strong&gt;O&lt;/strong&gt;(1) lookups and avoids looping over a list
-of two-tuples. This was a mystery to them..&lt;/p&gt;
-&lt;p&gt;When someone doesn't know the Python dictionary exists, what is the
-appropriate response?&lt;/p&gt;
-&lt;p&gt;How can you politely say &amp;quot;Find another tutorial and do the ENTIRE thing
-all of it!&amp;quot;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="that-s-not-all"&gt;
-&lt;h2&gt;That's Not All&lt;/h2&gt;
-&lt;p&gt;There's this nugget of &amp;quot;You can't be serious.&amp;quot;&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-category_counts = {element: 0 for element in categories}
-&lt;/pre&gt;
-&lt;p&gt;And&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-category_counts[category] += 1
-&lt;/pre&gt;
-&lt;p&gt;Yes. They used a dictionary to count instances of the categories. They
-did not understand &lt;tt class="docutils literal"&gt;collections.defaultdict&lt;/tt&gt; or
-&lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt;. But they understood a dictionary well enough to
-use it here. But not use it elsewhere for the central functionality of
-the app.&lt;/p&gt;
-&lt;p&gt;So. They couldn't use a dictionary, but could use a dictionary.&lt;/p&gt;
-&lt;p&gt;They couldn't use the csv module, so they wrote their own (bad) CSV
-parser.&lt;/p&gt;
-&lt;p&gt;It's almost impossible to write a polite code review.&lt;/p&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="hopefully-you-have-tests-on-it-and-can-refactor-or"&gt;
-&lt;h2&gt;Hopefully you have tests on it and can refactor or...&lt;/h2&gt;
-&lt;p&gt;McSee&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2021-10-19 13:03:56.467000-04:00&lt;/p&gt;
-&lt;p&gt;Hopefully you have tests on it and can refactor or write it again from
-scratch&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="data structure"></category><category term="#python"></category></entry></feed>
+</content><category term="literate programming"></category><category term="packtpub"></category><category term="#python"></category></entry></feed>

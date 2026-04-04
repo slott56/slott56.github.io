@@ -2,6 +2,9 @@ Area Effect Aspect Volume Computations
 ======================================
 
 :status: hidden
+:category: TTRPG
+:tags: dice,mechanic
+
 
 The *OpenD6 Fantasy* rules define an Area of Effect aspect that applies
 to magical spells and religious invocations. This aspect has a

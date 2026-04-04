@@ -2,7 +2,7 @@ OpenD6 Deep Dive -- Area Effect Aspect
 #########################################################
 
 :date: 2026-03-05 16:20
-:tags: #python,math
+:tags: #python,math,mechanic
 :slug: 2026-03-05_opend6_deep_dive
 :category: TTRPG
 :status: published

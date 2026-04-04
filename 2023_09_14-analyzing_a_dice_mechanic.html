@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Analyzing a Dice Mechanic - S.Lott -- Software Architect</title>
+    <title>Analyzing the "Worst-of-2D6" Dice Mechanic - S.Lott -- Software Architect</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,18 +12,20 @@
 <link rel="canonical" href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html">
 
         <meta name="author" content="S.Lott" />
-        <meta name="keywords" content="games,tutorial" />
+        <meta name="keywords" content="games,tutorial,dice,mechanic" />
         <meta name="description" content="A &#34;Dice Mechanic&#34;? Yes. The thing you do with the dice to determine an outcome. We&#39;ll use Python to see how the dice shake out. A little backstory For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win, 2, 3 …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Analyzing a Dice Mechanic"/>
+        <meta property="og:title" content="Analyzing the &#34;Worst-of-2D6&#34; Dice Mechanic"/>
         <meta property="og:url" content="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html"/>
         <meta property="og:description" content="A &#34;Dice Mechanic&#34;? Yes. The thing you do with the dice to determine an outcome. We&#39;ll use Python to see how the dice shake out. A little backstory For a casino game of craps, the roll of the dice can be 7 or 11 for an immediate win, 2, 3 …"/>
         <meta property="article:published_time" content="2023-09-14" />
             <meta property="article:section" content="TTRPG" />
             <meta property="article:tag" content="games" />
             <meta property="article:tag" content="tutorial" />
+            <meta property="article:tag" content="dice" />
+            <meta property="article:tag" content="mechanic" />
             <meta property="article:author" content="S.Lott" />
 
 
@@ -91,8 +93,8 @@ S.Lott -- Software Architect            </a>
                 <h1>
                     <a href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html"
                        rel="bookmark"
-                       title="Permalink to Analyzing a Dice Mechanic">
-                        Analyzing a Dice Mechanic
+                       title="Permalink to Analyzing the "Worst-of-2D6" Dice Mechanic">
+                        Analyzing the &quot;Worst-of-2D6&quot; Dice Mechanic
                     </a>
                 </h1>
             </header>
@@ -113,6 +115,10 @@ S.Lott -- Software Architect            </a>
 	<a href="https://slott56.github.io/tag/games.html">games</a>
         /
 	<a href="https://slott56.github.io/tag/tutorial.html">tutorial</a>
+        /
+	<a href="https://slott56.github.io/tag/dice.html">dice</a>
+        /
+	<a href="https://slott56.github.io/tag/mechanic.html">mechanic</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -131,13 +137,15 @@ for the 6-sided die folks often think of. The term &quot;3d8&quot; was interpret
 <p>And, there are things like &quot;4d6-low&quot; to discard the lowest of 4 dice.
 Or maybe &quot;ll4d6&quot; for &quot;lose lowest&quot;. Clever people have worked out a lot of mechanics,
 and a lot of ways to describe them.</p>
+<p>(See <a class="reference external" href="https://tacticaldice.com/delspec">https://tacticaldice.com/delspec</a>, for a complete specification.)</p>
 </div>
 <div class="section" id="the-mechanics-in-question">
 <h2>The mechanics in question</h2>
 <p>We want to compare two mechanics:</p>
 <ol class="arabic simple">
-<li>Worst of 2d6. This tends to have a lot of low numbers.</li>
-<li>Middle of 3d6. This -- well -- does it tend to favor low numbers, also?</li>
+<li>Worst of 2d6. This tends to have a lot of low numbers. We're tossing two dice, and keeping the lowest.</li>
+<li>Middle of 3d6. We're tossing three dice and keeping the one in the middle.
+Does this favor the same mixture of low numbers as worst of 2D6?</li>
 </ol>
 <p>We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.</p>
 <p>Another really good alternative is to exhaustively enumerate the possible outcomes.
@@ -252,7 +260,6 @@ def mid(dice: list[int]) -&gt; int:
 <p>We've sorted the three dice, and taken the one in position 1.
 Position 0 has the least, and position 2 has the most.
 In the middle is the target value.</p>
-<p>We can optimize this, of course.</p>
 <pre class="literal-block">
 d_0, d_1, d_2 = dice
 return (
@@ -261,7 +268,8 @@ return (
     d_2
 )
 </pre>
-<p>Who needs that kind of optimization? Not me.</p>
+<p>We can optimize this, of course.
+Who needs that kind of optimization? Not me.</p>
 <p>Here's a generator to provide the needed 1,000 samples.</p>
 <pre class="literal-block">
 def mid_3d6(samples=1000):
@@ -269,8 +277,10 @@ def mid_3d6(samples=1000):
         mid(nd6(3)) for _ in range(samples)
     )
 </pre>
-<p>It's really similar to the <tt class="docutils literal">worst_2d6()</tt> function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
-(I wrote a whole book on Functional Python Programming.)</p>
+<p>It's really similar to the <tt class="docutils literal">worst_2d6()</tt> function.
+And, yes, the two could be refactored to eliminate a tiny blot of redundant code.
+And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming; reuse can be important.)</p>
 <p>Here's the distribution:</p>
 <pre class="literal-block">
 distro_mid_3d6 = Counter(mid_3d6())
@@ -308,12 +318,12 @@ distro_mid_3d6 = Counter(mid_3d6())
 </tbody>
 </table>
 <p>Seriously? It's weighted toward 3's and 4's?</p>
-<p>That shouldn't be too surprising. Maybe it is.</p>
-<p>I had no idea.</p>
+<p>That shouldn't be too surprising. It was to me.
+I had no idea.</p>
 </div>
 <div class="section" id="so-far-so-good">
 <h2>So Far, So Good</h2>
-<p>The point is to compare dice mechanics.</p>
+<p>The goal is to compare two dice mechanics.</p>
 <p>The strategy is to simulate them.</p>
 <p>We wrote some functions to apply the mechanic.</p>
 <p>We sampled it 1,000 times to create a <tt class="docutils literal">Counter</tt> with the distribution of the 1,000 samples.</p>
@@ -417,7 +427,8 @@ Looking at the text patterns, I can work out the following.</p>
 </ul>
 <p>Beyond this, I'm lost.</p>
 <p>But.</p>
-<p>Simulation showed me the way forward, and it wasn't much code.</p>
+<p>Simulation showed me the way forward, and it wasn't much code.
+The abstract math is going to be correct, but it exceeds my abilities.</p>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -566,6 +577,10 @@ Looking at the text patterns, I can work out the following.</p>
 <li class="list-group-item">
   <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Archive</span></h4>
   <ul class="list-group" id="archive">
+        <li class="list-group-item">
+          <a href="https://slott56.github.io/posts/2026/Apr/index.html"><i class="fa fa-calendar fa-lg"></i>April 2026 (1)
+          </a>
+        </li>
         <li class="list-group-item">
           <a href="https://slott56.github.io/posts/2026/Mar/index.html"><i class="fa fa-calendar fa-lg"></i>March 2026 (3)
           </a>

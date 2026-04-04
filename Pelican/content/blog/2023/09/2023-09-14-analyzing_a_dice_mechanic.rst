@@ -1,8 +1,8 @@
-Analyzing a Dice Mechanic
+Analyzing the "Worst-of-2D6" Dice Mechanic
 ===============================================
 
 :date: 2023-09-14 14:57
-:tags: games,tutorial
+:tags: games,tutorial,dice,mechanic
 :slug: 2023_09_14-analyzing_a_dice_mechanic
 :category: TTRPG
 :status: published
@@ -28,14 +28,17 @@ And, there are things like "4d6-low" to discard the lowest of 4 dice.
 Or maybe "ll4d6" for "lose lowest". Clever people have worked out a lot of mechanics,
 and a lot of ways to describe them.
 
+(See https://tacticaldice.com/delspec, for a complete specification.)
+
 The mechanics in question
 -------------------------
 
 We want to compare two mechanics:
 
-1. Worst of 2d6. This tends to have a lot of low numbers.
+1.  Worst of 2d6. This tends to have a lot of low numbers. We're tossing two dice, and keeping the lowest.
 
-2. Middle of 3d6. This -- well -- does it tend to favor low numbers, also?
+2.  Middle of 3d6. We're tossing three dice and keeping the one in the middle.
+    Does this favor the same mixture of low numbers as worst of 2D6?
 
 We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.
 
@@ -159,8 +162,6 @@ We've sorted the three dice, and taken the one in position 1.
 Position 0 has the least, and position 2 has the most.
 In the middle is the target value.
 
-We can optimize this, of course.
-
 ::
 
     d_0, d_1, d_2 = dice
@@ -170,6 +171,7 @@ We can optimize this, of course.
         d_2
     )
 
+We can optimize this, of course.
 Who needs that kind of optimization? Not me.
 
 Here's a generator to provide the needed 1,000 samples.
@@ -181,8 +183,10 @@ Here's a generator to provide the needed 1,000 samples.
             mid(nd6(3)) for _ in range(samples)
         )
 
-It's really similar to the ``worst_2d6()`` function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
-(I wrote a whole book on Functional Python Programming.)
+It's really similar to the ``worst_2d6()`` function.
+And, yes, the two could be refactored to eliminate a tiny blot of redundant code.
+And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming; reuse can be important.)
 
 Here's the distribution:
 
@@ -204,14 +208,13 @@ What's it look like? This.
 
 Seriously? It's weighted toward 3's and 4's?
 
-That shouldn't be too surprising. Maybe it is.
-
+That shouldn't be too surprising. It was to me.
 I had no idea.
 
 So Far, So Good
 ---------------
 
-The point is to compare dice mechanics.
+The goal is to compare two dice mechanics.
 
 The strategy is to simulate them.
 
@@ -330,3 +333,4 @@ Beyond this, I'm lost.
 But.
 
 Simulation showed me the way forward, and it wasn't much code.
+The abstract math is going to be correct, but it exceeds my abilities.

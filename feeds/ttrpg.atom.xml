@@ -1,5 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-03-05T16:20:00-05:00</updated><entry><title>OpenD6 Deep Dive -- Area Effect Aspect</title><link href="https://slott56.github.io/2026-03-05_opend6_deep_dive.html" rel="alternate"></link><published>2026-03-05T16:20:00-05:00</published><updated>2026-03-05T16:20:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-05:/2026-03-05_opend6_deep_dive.html</id><summary type="html">&lt;p&gt;I went deep into OpenD6, chasing an idea through a maze of strange shapes.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-04T15:37:00-04:00</updated><entry><title>Another D6 Dice Mechanic -- Equiprobable Choices</title><link href="https://slott56.github.io/2026-04-04_another_d6_mechanic.html" rel="alternate"></link><published>2026-04-04T15:37:00-04:00</published><updated>2026-04-04T15:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-04:/2026-04-04_another_d6_mechanic.html</id><summary type="html">&lt;p&gt;When playing a game using D6 -- and only D6 -- we're sometimes confronted with a need to
+make a selection from equiprobable items.&lt;/p&gt;
+&lt;p&gt;For example, pick a random day of the week: 7 choices, but only 6 sides to a die.&lt;/p&gt;
+&lt;p&gt;What can we do?&lt;/p&gt;
+&lt;p&gt;How can we select fairly among …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When playing a game using D6 -- and only D6 -- we're sometimes confronted with a need to
+make a selection from equiprobable items.&lt;/p&gt;
+&lt;p&gt;For example, pick a random day of the week: 7 choices, but only 6 sides to a die.&lt;/p&gt;
+&lt;p&gt;What can we do?&lt;/p&gt;
+&lt;p&gt;How can we select fairly among 7 choices using only a handful of 6-sided dice?&lt;/p&gt;
+&lt;p&gt;See this extract from a Jupyter Notebook:
+&lt;a class="reference external" href="https://slott56.github.io/pages/dice-mechanics-equal-probability-outcomes-from-d6.html"&gt;Dice Mechanics: Equal Probability Outcomes from D6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For direct computation of the exact distribution of a handfull of dice, we need a lesson in multinomials.&lt;/p&gt;
+&lt;p&gt;See &lt;a class="reference external" href="https://towardsdatascience.com/modelling-the-probability-distributions-of-dice-b6ecf87b24ea/"&gt;https://towardsdatascience.com/modelling-the-probability-distributions-of-dice-b6ecf87b24ea/&lt;/a&gt;.
+From this we learn the following (amongst other things).
+For &lt;span class="math"&gt;\(n\)&lt;/span&gt; dice of &lt;span class="math"&gt;\(s\)&lt;/span&gt; sides (6 in our case), the probability of getting the target value &lt;span class="math"&gt;\(T\)&lt;/span&gt; is this:&lt;/p&gt;
+&lt;div class="math"&gt;
+\begin{equation*}
+P(n, s, T) = \Bigl(\sum\limits_{k=0}^{\lfloor \frac{T-n}{s} \rfloor}\bigl(-1\bigr)^k \frac{n!}{(n-k)!k!} \frac{(T-sk-1)!}{(T-sk-n)!(n-1)!}\Bigr)\Bigl(\frac{1}{s}\Bigr)^n
+\end{equation*}
+&lt;/div&gt;
+&lt;p&gt;Which has a lot of maths, but is very helpful.&lt;/p&gt;
+&lt;div class="section" id="tl-dr"&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt;Mechanic Alternatives&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="9%" /&gt;
+&lt;col width="91%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Outcomes&lt;/th&gt;
+&lt;th class="head"&gt;D6 Mechanic&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1D [1-3, 4-6]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1D [1-2, 3-4, 5-6]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;1D with reroll {5, 6}
+or 2D with weights of 2, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;1D with reroll {6}
+or 4D [4-10, 11-12, 13-14, 15-16, 17-24]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;1D &lt;em&gt;Do we even need to include this?&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;Use 8 outcomes with a reroll {7}
+or 5D [5-12, 13-14, 15-16, 17, 18-19, 20-21, 22-30]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;4D [4-9, 10-11, 12, 13, 14, 15, 16-17, 18-24]
+or 3D with weights of 4, 2, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;5D [5-12, 13-14, 15, 16, 17, 18, 19, 20-21, 22-30]
+or 2D with weights of 3, 1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;3D [3-6, 7, 8, 9, 10, 11, 12, 13, 14, 15-18]
+or 5 outcomes combined with 2 outcomes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;Use 12 outcomes with reroll {11}
+or 5D [5-11, 12-13, 14, 15, 16, 17, 18, 19, 20, 21-22, 23-30]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;Use 6 outcomes, combined with 2 outcomes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;above 12&lt;/td&gt;
+&lt;td&gt;Decompose into 2 or more tables; use a chain of rolls&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="DSL"></category><category term="OpenD6"></category><category term="#python"></category><category term="dice"></category><category term="mechanic"></category></entry><entry><title>OpenD6 Deep Dive -- Area Effect Aspect</title><link href="https://slott56.github.io/2026-03-05_opend6_deep_dive.html" rel="alternate"></link><published>2026-03-05T16:20:00-05:00</published><updated>2026-03-05T16:20:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-03-05:/2026-03-05_opend6_deep_dive.html</id><summary type="html">&lt;p&gt;I went deep into OpenD6, chasing an idea through a maze of strange shapes.&lt;/p&gt;
 &lt;p&gt;See this extract from a Jupyter Notebook: &lt;a class="reference external" href="https://slott56.github.io/pages/area-effect-aspect-volume-computations.html"&gt;Area Effect Aspect Volume Computations&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It was a lot of fun to uncover two errors in the rules, and work out what &lt;em&gt;could&lt;/em&gt; have been used instead.&lt;/p&gt;
 &lt;div class="section" id="tl-dr"&gt;
@@ -140,7 +282,7 @@ It's 30% larger; does that mean 30% more difficulty?&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="math"></category></entry><entry><title>OpenD6 TTRPG DSL -- Spell Definitions</title><link href="https://slott56.github.io/2026-02-18_opend6_ttrpg_dsl_spell_definition.html" rel="alternate"></link><published>2026-02-18T13:28:00-05:00</published><updated>2026-02-18T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-18:/2026-02-18_opend6_ttrpg_dsl_spell_definition.html</id><summary type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="#python"></category><category term="math"></category><category term="mechanic"></category></entry><entry><title>OpenD6 TTRPG DSL -- Spell Definitions</title><link href="https://slott56.github.io/2026-02-18_opend6_ttrpg_dsl_spell_definition.html" rel="alternate"></link><published>2026-02-18T13:28:00-05:00</published><updated>2026-02-18T13:28:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-02-18:/2026-02-18_opend6_ttrpg_dsl_spell_definition.html</id><summary type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
 For me, the accounting suggested a need for software tools.
 This -- in turn -- forced me to invent a Domain-Specific Language (DSL) to work with OpenD6 spells.&lt;/p&gt;
 &lt;p&gt;I like the OpenD6 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The OpenD6 Table-Top Role-Playing Game (TTRPG) has a complicated bit of accounting around the definition for magical spells and invocations.
@@ -782,7 +924,7 @@ After all, simple doctests provide ready confirmation the DSL works as advertise
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Don't fear &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt;. Control the globals.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="TTRPG"></category><category term="python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>Analyzing a Dice Mechanic</title><link href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023_09_14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
+</content><category term="TTRPG"></category><category term="python"></category><category term="games"></category><category term="dsl"></category></entry><entry><title>Analyzing the "Worst-of-2D6" Dice Mechanic</title><link href="https://slott56.github.io/2023_09_14-analyzing_a_dice_mechanic.html" rel="alternate"></link><published>2023-09-14T14:57:00-04:00</published><updated>2023-09-14T14:57:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-09-14:/2023_09_14-analyzing_a_dice_mechanic.html</id><summary type="html">&lt;p&gt;A &amp;quot;Dice Mechanic&amp;quot;? Yes. The thing you do with the dice to determine an outcome.
 We'll use Python to see how the dice shake out.&lt;/p&gt;
 &lt;div class="section" id="a-little-backstory"&gt;
 &lt;h2&gt;A little backstory&lt;/h2&gt;
@@ -802,13 +944,15 @@ for the 6-sided die folks often think of. The term &amp;quot;3d8&amp;quot; was i
 &lt;p&gt;And, there are things like &amp;quot;4d6-low&amp;quot; to discard the lowest of 4 dice.
 Or maybe &amp;quot;ll4d6&amp;quot; for &amp;quot;lose lowest&amp;quot;. Clever people have worked out a lot of mechanics,
 and a lot of ways to describe them.&lt;/p&gt;
+&lt;p&gt;(See &lt;a class="reference external" href="https://tacticaldice.com/delspec"&gt;https://tacticaldice.com/delspec&lt;/a&gt;, for a complete specification.)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="the-mechanics-in-question"&gt;
 &lt;h2&gt;The mechanics in question&lt;/h2&gt;
 &lt;p&gt;We want to compare two mechanics:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers.&lt;/li&gt;
-&lt;li&gt;Middle of 3d6. This -- well -- does it tend to favor low numbers, also?&lt;/li&gt;
+&lt;li&gt;Worst of 2d6. This tends to have a lot of low numbers. We're tossing two dice, and keeping the lowest.&lt;/li&gt;
+&lt;li&gt;Middle of 3d6. We're tossing three dice and keeping the one in the middle.
+Does this favor the same mixture of low numbers as worst of 2D6?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;We could -- if we had a big brain -- work out the odds.  But we don't have a big brain.&lt;/p&gt;
 &lt;p&gt;Another really good alternative is to exhaustively enumerate the possible outcomes.
@@ -923,7 +1067,6 @@ def mid(dice: list[int]) -&amp;gt; int:
 &lt;p&gt;We've sorted the three dice, and taken the one in position 1.
 Position 0 has the least, and position 2 has the most.
 In the middle is the target value.&lt;/p&gt;
-&lt;p&gt;We can optimize this, of course.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 d_0, d_1, d_2 = dice
 return (
@@ -932,7 +1075,8 @@ return (
     d_2
 )
 &lt;/pre&gt;
-&lt;p&gt;Who needs that kind of optimization? Not me.&lt;/p&gt;
+&lt;p&gt;We can optimize this, of course.
+Who needs that kind of optimization? Not me.&lt;/p&gt;
 &lt;p&gt;Here's a generator to provide the needed 1,000 samples.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 def mid_3d6(samples=1000):
@@ -940,8 +1084,10 @@ def mid_3d6(samples=1000):
         mid(nd6(3)) for _ in range(samples)
     )
 &lt;/pre&gt;
-&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function. And, yes, the two could be refactored to eliminate a tiny blot of redundant code. And, no, I won't spend a lot of time on that optimization.
-(I wrote a whole book on Functional Python Programming.)&lt;/p&gt;
+&lt;p&gt;It's really similar to the &lt;tt class="docutils literal"&gt;worst_2d6()&lt;/tt&gt; function.
+And, yes, the two could be refactored to eliminate a tiny blot of redundant code.
+And, no, I won't spend a lot of time on that optimization.
+(I wrote a whole book on Functional Python Programming; reuse can be important.)&lt;/p&gt;
 &lt;p&gt;Here's the distribution:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 distro_mid_3d6 = Counter(mid_3d6())
@@ -979,12 +1125,12 @@ distro_mid_3d6 = Counter(mid_3d6())
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Seriously? It's weighted toward 3's and 4's?&lt;/p&gt;
-&lt;p&gt;That shouldn't be too surprising. Maybe it is.&lt;/p&gt;
-&lt;p&gt;I had no idea.&lt;/p&gt;
+&lt;p&gt;That shouldn't be too surprising. It was to me.
+I had no idea.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="so-far-so-good"&gt;
 &lt;h2&gt;So Far, So Good&lt;/h2&gt;
-&lt;p&gt;The point is to compare dice mechanics.&lt;/p&gt;
+&lt;p&gt;The goal is to compare two dice mechanics.&lt;/p&gt;
 &lt;p&gt;The strategy is to simulate them.&lt;/p&gt;
 &lt;p&gt;We wrote some functions to apply the mechanic.&lt;/p&gt;
 &lt;p&gt;We sampled it 1,000 times to create a &lt;tt class="docutils literal"&gt;Counter&lt;/tt&gt; with the distribution of the 1,000 samples.&lt;/p&gt;
@@ -1088,7 +1234,8 @@ Looking at the text patterns, I can work out the following.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Beyond this, I'm lost.&lt;/p&gt;
 &lt;p&gt;But.&lt;/p&gt;
-&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.&lt;/p&gt;
+&lt;p&gt;Simulation showed me the way forward, and it wasn't much code.
+The abstract math is going to be correct, but it exceeds my abilities.&lt;/p&gt;
 &lt;/div&gt;
 &lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -1151,7 +1298,7 @@ Looking at the text patterns, I can work out the following.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category></entry><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrites_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrites_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
+&lt;/script&gt;</content><category term="TTRPG"></category><category term="games"></category><category term="tutorial"></category><category term="dice"></category><category term="mechanic"></category></entry><entry><title>Software Rewrites to Add Hints</title><link href="https://slott56.github.io/2023_05_04-software_rewrites_to_add_hints.html" rel="alternate"></link><published>2023-05-04T08:00:00-04:00</published><updated>2023-05-04T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2023-05-04:/2023_05_04-software_rewrites_to_add_hints.html</id><summary type="html">&lt;p&gt;Let's reach way, way back. 1989 - 1990.
 This will let me talk about OO programming and Python Type Hints. (really)
 And doing OO design for things that are as pervasive (and transparent) as air.
 Things that &lt;strong&gt;need&lt;/strong&gt; to be part of a design, but don't appear in
