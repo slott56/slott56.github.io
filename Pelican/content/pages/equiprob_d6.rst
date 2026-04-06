@@ -198,12 +198,13 @@ We can leverage the :math:`\lvert R \rvert=3` rules using 2D.
    Compute :math:`R = R_3\times 3 + R_1\times 1 + 1`. Or
    :math:`\sum R_x\times x + 1`.
 
-In English > Use two distinctly colored die: say white and green. The
-green die as a weight of 3. The white die has a weight of one. > We’ll
-transform each die’s value into the range 0, 1, 2, and then multiply by
-the weight. > This means 3 times the green die’s value (0, 1 or 2) plus
-the white die’s value (0, 1, or 2) plus 1 more to make a number from 1
-to 9.
+In English:
+
+    Use two distinctly colored die: say white and green.
+    The green die as a weight of 3. The white die has a weight of one.
+
+    We’ll transform each die’s value into the range 0, 1, 2, and then multiply by the weight.
+    This means 3 times the green die’s value (0, 1 or 2) plus the white die’s value (0, 1, or 2) plus 1 more to make a number from 1 to 9.
 
 This isn’t quite as simple as using :math:`\lvert R \rvert=2` rule,
 where we can keep or discard dice. We’re stuck with adding and
