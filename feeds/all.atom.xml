@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-23T14:37:00-04:00</updated><entry><title>A Writing Project -- perhaps a bad idea</title><link href="https://slott56.github.io/2026-04-23_a_writing_project.html" rel="alternate"></link><published>2026-04-23T14:37:00-04:00</published><updated>2026-04-23T14:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-23:/2026-04-23_a_writing_project.html</id><summary type="html">&lt;p&gt;I'm trying to push the envelope in my writing.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-30T17:37:00-04:00</updated><entry><title>Revisiting Old Ideas</title><link href="https://slott56.github.io/2026-04-30_revisting_old_ideas.html" rel="alternate"></link><published>2026-04-30T17:37:00-04:00</published><updated>2026-04-30T17:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-30:/2026-04-30_revisting_old_ideas.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
+I'm trying to dig around in my old notes to pull together a &amp;quot;World Book&amp;quot; with a fantasy setting I think has a lot of good gaming opportunities. More important, I've got a pile of details for a fairly lengthy campaign.&lt;/p&gt;
+&lt;p&gt;This isn't …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
+I'm trying to dig around in my old notes to pull together a &amp;quot;World Book&amp;quot; with a fantasy setting I think has a lot of good gaming opportunities. More important, I've got a pile of details for a fairly lengthy campaign.&lt;/p&gt;
+&lt;p&gt;This isn't easy.&lt;/p&gt;
+&lt;p&gt;As I've noted earlier, a lot of my notes were written in the late 90's using ClarisWorks.
+I carefully saved the files, but -- of course -- the software to read those files no longer exists in a handy, useful form.
+I've found that &lt;a class="reference external" href="https://www.libreoffice.org"&gt;LibreOffice&lt;/a&gt; reads ClarisWorks files.&lt;/p&gt;
+&lt;p&gt;Generally.&lt;/p&gt;
+&lt;p&gt;But not universally.&lt;/p&gt;
+&lt;p&gt;In a few cases, sadly, I have files with some feature that confuses LibreOffice.
+The result wasn't wonderfully meaningful content. Nothing I could rewrite into my TTRPG Campaign Book.&lt;/p&gt;
+&lt;p&gt;What started as a kind of lark has turned into real work.&lt;/p&gt;
+&lt;div class="section" id="clarisworks-struggles"&gt;
+&lt;h2&gt;ClarisWorks Struggles&lt;/h2&gt;
+&lt;p&gt;The underlying library that LibreOffice uses to read ClarisWorks is &lt;strong&gt;libmwaw&lt;/strong&gt;. See &lt;a class="reference external" href="https://sourceforge.net/p/libmwaw/wiki/Home/"&gt;https://sourceforge.net/p/libmwaw/wiki/Home/&lt;/a&gt;.
+(I imagine it starts as MacWorks/AppleWorks, and grew from there to encompass many other formats.)&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;libmwaw&lt;/strong&gt; approach isn't easy to understand for three reasons.
+First, it handles a vast number of file formats, leading to a source directory with 382 files.
+Second, it has to support a narrow interface that converts a source document into a LibreOffice data structure.
+Finally, it's focused on the old, pre-XML, pre-Protobuf file formats, where everything's just a pile of bytes.&lt;/p&gt;
+&lt;p&gt;My scope is narrow:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I'm only interested in the ClarisWorks features, which is a tiny subset what &lt;strong&gt;libmwaw&lt;/strong&gt; can decode.&lt;/li&gt;
+&lt;li&gt;Further, I'm looking at identifying what -- precisely -- is making &lt;strong&gt;libmwaw&lt;/strong&gt;  choke on a few specific files.&lt;/li&gt;
+&lt;li&gt;And. Bonus. I'd rather not relearn techniques for debugging C++ code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(I was told to try using Anthropic's Claude for this kind of problem.
+Really. For understanding 300,000 lines of C++.
+To locate a place where the code isn't properly parsing the graphics primitives.
+Ahem. I may be chasing after my childhood TTRPG toys, but let's be realistic about LLM's.)&lt;/p&gt;
+&lt;p&gt;What I did was rewrite parts of the &lt;strong&gt;libmwaw&lt;/strong&gt; into Python, using the &lt;tt class="docutils literal"&gt;struct&lt;/tt&gt; module to try and extract meaningful bits of the file.
+The resulting code is very, very ugly.
+(I won't share it. It's that bad.)
+It's a lot of &lt;tt class="docutils literal"&gt;struct.unpack()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; function calls.&lt;/p&gt;
+&lt;p&gt;Ideally, it would be something like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+thing = SomeClass(
+    *struct.unpack(
+        SomeClass.format,
+        buffer[start:start+SomeClass.size]
+    )
+)
+start += SomeClass.size
+&lt;/pre&gt;
+&lt;p&gt;This has some encapsulation problems, but it's easier to debug.&lt;/p&gt;
+&lt;p&gt;In the long run, a really tidy form like this is ideal.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+thing = SomeClass.parse_bytes(buffer, start)
+start += SomeClass.size
+&lt;/pre&gt;
+&lt;p&gt;Pragmatically, I never quite bashed the design into this pattern.
+I was exploring the bytes, not creating a final library.
+Each step forward was a lot of experimental code that failed in very obscure ways.&lt;/p&gt;
+&lt;p&gt;After all, bytes are bytes.
+You can overlook some C++ obscurity that skips 4 bytes of the file.
+You have no way to know until some seemingly unrelated data structure has unholy attribute values.
+And it's hard to be &lt;strong&gt;sure&lt;/strong&gt; they're unholy.&lt;/p&gt;
+&lt;p&gt;During my exploration, I found a sequence of graphic primitives (I think they were supposed to be polygons) that could not be parsed.
+The format of the bytes had some unexpected feature; the &lt;strong&gt;libmwaw&lt;/strong&gt; C++ code simply skipped the whole structure, moving on to something that could be parsed.
+I poked around for a while, unsuccessfully, trying to understand the bytes.
+And failed.&lt;/p&gt;
+&lt;p&gt;What I &lt;strong&gt;did&lt;/strong&gt; find were the base rectangles that contained the various graphic items.
+In many cases, the objects were simple lines and rectangles and regions with text.
+There were a few arcs.
+Some of the polygons could be recovered, until the &amp;quot;oopsie&amp;quot; point, where the file was uninterpretable.&lt;/p&gt;
+&lt;p&gt;This sequence of rectangles was -- actually -- good enough for my purpose.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-did-i-mean-by-that"&gt;
+&lt;h2&gt;What Did I Mean By That?&lt;/h2&gt;
+&lt;p&gt;I was trying to recover some maps from my old ClarisWorks files.
+I had the text descriptions that explained the maps, but, those notes about traps, secret doors, and hidden altars made precious little sense.
+They were terse bits of text to back up a diagram that LibreOffice couldn't parse.
+Without the diagram, the text wasn't helpful.&lt;/p&gt;
+&lt;p&gt;With my Python hacking around, the recovered images looked like this:&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Sketch extracted from Clarisworks as a collection of colored rectangles." src="https://slott56.github.io/media/Xorn Cave 1.png" style="height: 8cm;" /&gt;
+&lt;/div&gt;
+&lt;p&gt;The picture is hideous, but, the clumps of rectangles and the room numbers helped me
+understand the text notes that went with the map.&lt;/p&gt;
+&lt;p&gt;(Note the axes have two sets of numbers: integers from 0 to 160,000, and float from 1.0 down to 0.0.
+The C++ converts everything to float.
+This doesn't seem necessary when tools like &lt;strong&gt;matplotlib&lt;/strong&gt; will gracefully work with any units,
+so some of the object coordinates are unconverted, and a few are converted.
+The picture was useful enough without resolving this inconsistency.)&lt;/p&gt;
+&lt;p&gt;My text notes were terse. Just hints for myself, really.
+This campaign was for a standing TTRPG group that I hung around with for years and years.
+We played frequently (often weekly) from maybe 1990-ish to about 1995.&lt;/p&gt;
+&lt;p&gt;Because of this, I could get away with a very sketchy design.
+After all, I knew the players.
+The players knew the world the campaign existed in.
+The details were a mythos that was evolving as part of our shared story-telling.&lt;/p&gt;
+&lt;p&gt;(Also. No campaign design survives contact with players.
+I didn't dwell on details that would clearly evaporate on day one when Dave would have his character really push the envelope on the world, the other players, and me.)&lt;/p&gt;
+&lt;p&gt;Now, thirty years down the road, I'm trying to reconstruct that group's collective understanding and collaborative discovery of this campaign.
+I can now see my intent.
+And 2026 me can see some weak design 1996 me had included.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="status"&gt;
+&lt;h2&gt;Status&lt;/h2&gt;
+&lt;p&gt;Uncovering the lost maps took many weeks. (Maybe as much as two months. It was very hard work.)&lt;/p&gt;
+&lt;p&gt;Redrawing the maps in &lt;a class="reference external" href="https://worldographer.com"&gt;Worldographer&lt;/a&gt; took another few weeks.&lt;/p&gt;
+&lt;p&gt;Now, I can address the sketchy notes.&lt;/p&gt;
+&lt;p&gt;This is the fun part: capturing enough detail that a GM can spin a good yarn from my campaign notes.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="TTRPG"></category><category term="OpenD6"></category><category term="#python"></category></entry><entry><title>A Writing Project -- perhaps a bad idea</title><link href="https://slott56.github.io/2026-04-23_a_writing_project.html" rel="alternate"></link><published>2026-04-23T14:37:00-04:00</published><updated>2026-04-23T14:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-23:/2026-04-23_a_writing_project.html</id><summary type="html">&lt;p&gt;I'm trying to push the envelope in my writing.&lt;/p&gt;
 &lt;p&gt;I write a fair amount of non-fiction.  &lt;a class="reference external" href="https://www.goodreads.com/author/list/4537706.Steven_F_Lott"&gt;https://www.goodreads.com/author/list/4537706.Steven_F_Lott&lt;/a&gt;.
 This is a comfortable spot for me.&lt;/p&gt;
 &lt;p&gt;I've got some self-published titles:&lt;/p&gt;
@@ -11313,163 +11418,4 @@ still mid-way through the refactoring.&lt;/p&gt;
 better design. I'm now on the downwind broad reach of finding and fixing
 the 67 test cases that are broken.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="literate programming"></category><category term="Test-Driven Development"></category><category term="#python"></category><category term="pyWeb"></category></entry><entry><title>My Shifting Understanding and A Terrible Design Mistake</title><link href="https://slott56.github.io/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html" rel="alternate"></link><published>2022-06-21T08:00:00-04:00</published><updated>2022-06-21T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-06-21:/2022_06_21-my_shifting_understanding_and_a_terrible_design_mistake.html</id><summary type="html">&lt;p&gt;I've been fascinated by Literate Programming forever.&lt;/p&gt;
-&lt;p&gt;I have two utterly divergent takes on this.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/PyLit-3"&gt;https://github.com/slott56/PyLit-3&lt;/a&gt; for one.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for another.&lt;/p&gt;
-&lt;p&gt;And yet, I've still done a really bad design job. Before we get to the
-design, a little bit …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been fascinated by Literate Programming forever.&lt;/p&gt;
-&lt;p&gt;I have two utterly divergent takes on this.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/PyLit-3"&gt;https://github.com/slott56/PyLit-3&lt;/a&gt; for one.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/py-web-tool"&gt;https://github.com/slott56/py-web-tool&lt;/a&gt; for another.&lt;/p&gt;
-&lt;p&gt;And yet, I've still done a really bad design job. Before we get to the
-design, a little bit of back story.&lt;/p&gt;
-&lt;div class="section" id="back-story"&gt;
-&lt;h2&gt;Back Story&lt;/h2&gt;
-&lt;p&gt;Why two separate literate programming projects? Because it's not
-&lt;strong&gt;clear&lt;/strong&gt; what's best. It's a field without too many boundaries and a
-lot of questions about the value produced.&lt;/p&gt;
-&lt;p&gt;PyLit I found, forked, and upgraded to Python 3. I didn't design it.
-It's far more clever than something I'd design.&lt;/p&gt;
-&lt;p&gt;Py-Web-Tool is something I wrote based on using a whole bunch of tools
-that follow along behind the original WEB tools. Nothing to do with web
-servers or web.py.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-problem-domain"&gt;
-&lt;h2&gt;The Problem Domain&lt;/h2&gt;
-&lt;p&gt;The design problem is, in retrospect, pretty obvious. I set it out here
-as a cautionary tale.&lt;/p&gt;
-&lt;p&gt;I'm looking at the markup languages for doing literate programming. The
-idea is to have named blocks of code in your document, presented in an
-order that makes sense to your reader. A tool will &amp;quot;weave&amp;quot; a document
-from your source. It will also &amp;quot;tangle&amp;quot; source code by rearranging the
-code snippets from presentation order into compiler-friendly order.&lt;/p&gt;
-&lt;p&gt;This means you can present your core algorithm first, even though it's
-buried in the middle of some module in the middle of your package.&lt;/p&gt;
-&lt;p&gt;The presentation order is *not* tied to the order needed by your
-language's toolchain.&lt;/p&gt;
-&lt;p&gt;For languages like C this is huge freedom. For Python, it's not such a
-gigantic win.&lt;/p&gt;
-&lt;p&gt;The source material is a &amp;quot;web&amp;quot; of code and information about the code. A
-web file may look like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-Important insight.
-
-&amp;#64;d core feature you need to know about first &amp;#64;{
-    def somecode() -&amp;gt; None:
-        pass
-&amp;#64;}
-
-And see how this fits into a larger context?
-
-&amp;#64;d something more expansive &amp;#64;{
-def this() -&amp;gt; None:
-    pass
-
-def that() -&amp;gt; None:
-    pass
-
-&amp;#64;&amp;lt;core feature you need to know about first&amp;#64;&amp;gt;
-&amp;#64;}
-
-See how that works?
-&lt;/pre&gt;
-&lt;p&gt;This is easy to write and (relatively) easy to read. The
-&lt;tt class="docutils literal"&gt;&amp;#64;&amp;lt;core feature you need to know about first&amp;#64;&amp;gt;&lt;/tt&gt; becomes a hyperlink in
-the published documentation. So you can flip between the sections. It's
-physically expanded inline to tangle the code, but you don't often need
-to look at the tangled code.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-design-question"&gt;
-&lt;h2&gt;The Design Question&lt;/h2&gt;
-&lt;p&gt;The essential Literate Programming tool is a compiler with two outputs:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;The &amp;quot;woven&amp;quot; document with markup and such&lt;/li&gt;
-&lt;li&gt;The &amp;quot;tangled&amp;quot; code files which are code, largely untouched, but
-reordered.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We've got four related problems.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Parsing the input&lt;/li&gt;
-&lt;li&gt;An AST we can process&lt;/li&gt;
-&lt;li&gt;Emitting tangled output from the AST&lt;/li&gt;
-&lt;li&gt;Emitting woven output form the AST&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Or, we can look at it as three classic problems: deserialization, AST
-representation, and serialization. Additionally, we have two distinct
-serialization alternatives.&lt;/p&gt;
-&lt;p&gt;What did I do?&lt;/p&gt;
-&lt;p&gt;I tackled serialization first. Came up with a cool bunch of classes and
-methods to serialize the two kinds of documents.&lt;/p&gt;
-&lt;p&gt;Then I wrote the deserialization (or parsing) of the source WEB file.
-This is pretty easy, since the markup is designed to be as trivial as
-possible.&lt;/p&gt;
-&lt;p&gt;The representation is little more than glue between the two.&lt;/p&gt;
-&lt;p&gt;What a mistake.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="a-wrong-answer"&gt;
-&lt;h2&gt;A Wrong Answer&lt;/h2&gt;
-&lt;p&gt;Focusing on serialization was an epic mistake.&lt;/p&gt;
-&lt;p&gt;I want to try using
-&lt;a class="reference external" href="https://jinja.palletsprojects.com/en/3.1.x/"&gt;Jinja2&lt;/a&gt; for the markup
-templates instead of
-&lt;a class="reference external" href="https://docs.python.org/3/library/string.html#template-strings"&gt;string.Template&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;However.&lt;/p&gt;
-&lt;p&gt;My AST was such a bad hack job it was essentially impossible to use it.
-It was a quagmire of inconsistent ad-hoc methods to solve a specific
-serialization issue.&lt;/p&gt;
-&lt;p&gt;As I start down the Jinja road, I found a need to be able to build an
-AST without the overhead of parsing.&lt;/p&gt;
-&lt;p&gt;Which caused me to realize that the AST was -- while structurally
-sensible -- far from the simple ideal.&lt;/p&gt;
-&lt;p&gt;What's the ideal?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-right-answer"&gt;
-&lt;h2&gt;The Right Answer&lt;/h2&gt;
-&lt;p&gt;This ideal AST is something that lets me build test fixtures like this:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-example = Web(
-   chunks=[
-       TextChunk(&amp;quot;\n&amp;quot;),
-       NamedCodeChunk(name=&amp;quot;core feature you need to know about first&amp;quot;, lines=[&amp;quot;def someconme() -&amp;gt; None: ...&amp;quot;, &amp;quot;pass&amp;quot;])),
-       TextChunk(&amp;quot;\nAnd see how this fits into a larger context?\n&amp;quot;),
-       NamedCodeChunk(name=&amp;quot;something more expansive&amp;quot;, lines=[etc. etc.])
-   ]
-)
-&lt;/pre&gt;
-&lt;p&gt;Here's my test for usability: I can build the AST &amp;quot;manually&amp;quot; without a
-parser.&lt;/p&gt;
-&lt;p&gt;The parser can build one, also, but I can build it as a sensible,
-readable, first-class Python object.&lt;/p&gt;
-&lt;p&gt;This has pointed me to a better design for the overall constructs of the
-WEB source document. Bonus. It's helping me define Jinja templates that
-can render this as a sensible woven document.&lt;/p&gt;
-&lt;p&gt;Tangling does not need Jinja. It's simpler. And -- by convention -- the
-tangled code does not have anything injected into it. The woven code is
-in a markup language (Markdown, RST, HTML, LaTeX, ASCII DOC, whatever)
-and some markup is required to create hyperlinks and code sections.
-Jinja is super helpful here.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="tl-dr"&gt;
-&lt;h2&gt;TL;DR&lt;/h2&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;The essence of the problem is rarely serialization or deserialization.&lt;/dt&gt;
-&lt;dd&gt;It's the internal representation.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;div class="line-block"&gt;
-&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr class="docutils" /&gt;
-&lt;div class="section" id="when-learning-how-to-use-a-word-processor-it-turn"&gt;
-&lt;h2&gt;When learning how to use a word processor, it turn...&lt;/h2&gt;
-&lt;p&gt;Unknown&amp;lt;&lt;a class="reference external" href="mailto:noreply&amp;#64;blogger.com"&gt;noreply&amp;#64;blogger.com&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;2022-07-16 13:24:35.832000-04:00&lt;/p&gt;
-&lt;p&gt;When learning how to use a word processor, it turns out the second word
-processor you learn takes longer than the first. As you explore the
-second one, the core ideas get contemplated and refined. The third one
-on is just &amp;quot;where's the quick reference&amp;quot;. We do the same with rewriting
-code, as you are discovering. One point of literate programming is to
-explain the insights we gain.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="literate programming"></category><category term="#python"></category><category term="jinja"></category><category term="pyWeb"></category><category term="PyLit3"></category></entry></feed>
+</content><category term="literate programming"></category><category term="Test-Driven Development"></category><category term="#python"></category><category term="pyWeb"></category></entry></feed>

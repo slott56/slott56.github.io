@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-23T14:37:00-04:00</updated><entry><title>A Writing Project -- perhaps a bad idea</title><link href="https://slott56.github.io/2026-04-23_a_writing_project.html" rel="alternate"></link><published>2026-04-23T14:37:00-04:00</published><updated>2026-04-23T14:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-23:/2026-04-23_a_writing_project.html</id><summary type="html">&lt;p&gt;I'm trying to push the envelope in my writing.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-04-30T17:37:00-04:00</updated><entry><title>Revisiting Old Ideas</title><link href="https://slott56.github.io/2026-04-30_revisting_old_ideas.html" rel="alternate"></link><published>2026-04-30T17:37:00-04:00</published><updated>2026-04-30T17:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-30:/2026-04-30_revisting_old_ideas.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
+I'm trying to dig around in my old notes to pull together a &amp;quot;World Book&amp;quot; with a fantasy setting I think has a lot of good gaming opportunities. More important, I've got a pile of details for a fairly lengthy campaign.&lt;/p&gt;
+&lt;p&gt;This isn't …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
+I'm trying to dig around in my old notes to pull together a &amp;quot;World Book&amp;quot; with a fantasy setting I think has a lot of good gaming opportunities. More important, I've got a pile of details for a fairly lengthy campaign.&lt;/p&gt;
+&lt;p&gt;This isn't easy.&lt;/p&gt;
+&lt;p&gt;As I've noted earlier, a lot of my notes were written in the late 90's using ClarisWorks.
+I carefully saved the files, but -- of course -- the software to read those files no longer exists in a handy, useful form.
+I've found that &lt;a class="reference external" href="https://www.libreoffice.org"&gt;LibreOffice&lt;/a&gt; reads ClarisWorks files.&lt;/p&gt;
+&lt;p&gt;Generally.&lt;/p&gt;
+&lt;p&gt;But not universally.&lt;/p&gt;
+&lt;p&gt;In a few cases, sadly, I have files with some feature that confuses LibreOffice.
+The result wasn't wonderfully meaningful content. Nothing I could rewrite into my TTRPG Campaign Book.&lt;/p&gt;
+&lt;p&gt;What started as a kind of lark has turned into real work.&lt;/p&gt;
+&lt;div class="section" id="clarisworks-struggles"&gt;
+&lt;h2&gt;ClarisWorks Struggles&lt;/h2&gt;
+&lt;p&gt;The underlying library that LibreOffice uses to read ClarisWorks is &lt;strong&gt;libmwaw&lt;/strong&gt;. See &lt;a class="reference external" href="https://sourceforge.net/p/libmwaw/wiki/Home/"&gt;https://sourceforge.net/p/libmwaw/wiki/Home/&lt;/a&gt;.
+(I imagine it starts as MacWorks/AppleWorks, and grew from there to encompass many other formats.)&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;libmwaw&lt;/strong&gt; approach isn't easy to understand for three reasons.
+First, it handles a vast number of file formats, leading to a source directory with 382 files.
+Second, it has to support a narrow interface that converts a source document into a LibreOffice data structure.
+Finally, it's focused on the old, pre-XML, pre-Protobuf file formats, where everything's just a pile of bytes.&lt;/p&gt;
+&lt;p&gt;My scope is narrow:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I'm only interested in the ClarisWorks features, which is a tiny subset what &lt;strong&gt;libmwaw&lt;/strong&gt; can decode.&lt;/li&gt;
+&lt;li&gt;Further, I'm looking at identifying what -- precisely -- is making &lt;strong&gt;libmwaw&lt;/strong&gt;  choke on a few specific files.&lt;/li&gt;
+&lt;li&gt;And. Bonus. I'd rather not relearn techniques for debugging C++ code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(I was told to try using Anthropic's Claude for this kind of problem.
+Really. For understanding 300,000 lines of C++.
+To locate a place where the code isn't properly parsing the graphics primitives.
+Ahem. I may be chasing after my childhood TTRPG toys, but let's be realistic about LLM's.)&lt;/p&gt;
+&lt;p&gt;What I did was rewrite parts of the &lt;strong&gt;libmwaw&lt;/strong&gt; into Python, using the &lt;tt class="docutils literal"&gt;struct&lt;/tt&gt; module to try and extract meaningful bits of the file.
+The resulting code is very, very ugly.
+(I won't share it. It's that bad.)
+It's a lot of &lt;tt class="docutils literal"&gt;struct.unpack()&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; function calls.&lt;/p&gt;
+&lt;p&gt;Ideally, it would be something like this.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+thing = SomeClass(
+    *struct.unpack(
+        SomeClass.format,
+        buffer[start:start+SomeClass.size]
+    )
+)
+start += SomeClass.size
+&lt;/pre&gt;
+&lt;p&gt;This has some encapsulation problems, but it's easier to debug.&lt;/p&gt;
+&lt;p&gt;In the long run, a really tidy form like this is ideal.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+thing = SomeClass.parse_bytes(buffer, start)
+start += SomeClass.size
+&lt;/pre&gt;
+&lt;p&gt;Pragmatically, I never quite bashed the design into this pattern.
+I was exploring the bytes, not creating a final library.
+Each step forward was a lot of experimental code that failed in very obscure ways.&lt;/p&gt;
+&lt;p&gt;After all, bytes are bytes.
+You can overlook some C++ obscurity that skips 4 bytes of the file.
+You have no way to know until some seemingly unrelated data structure has unholy attribute values.
+And it's hard to be &lt;strong&gt;sure&lt;/strong&gt; they're unholy.&lt;/p&gt;
+&lt;p&gt;During my exploration, I found a sequence of graphic primitives (I think they were supposed to be polygons) that could not be parsed.
+The format of the bytes had some unexpected feature; the &lt;strong&gt;libmwaw&lt;/strong&gt; C++ code simply skipped the whole structure, moving on to something that could be parsed.
+I poked around for a while, unsuccessfully, trying to understand the bytes.
+And failed.&lt;/p&gt;
+&lt;p&gt;What I &lt;strong&gt;did&lt;/strong&gt; find were the base rectangles that contained the various graphic items.
+In many cases, the objects were simple lines and rectangles and regions with text.
+There were a few arcs.
+Some of the polygons could be recovered, until the &amp;quot;oopsie&amp;quot; point, where the file was uninterpretable.&lt;/p&gt;
+&lt;p&gt;This sequence of rectangles was -- actually -- good enough for my purpose.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-did-i-mean-by-that"&gt;
+&lt;h2&gt;What Did I Mean By That?&lt;/h2&gt;
+&lt;p&gt;I was trying to recover some maps from my old ClarisWorks files.
+I had the text descriptions that explained the maps, but, those notes about traps, secret doors, and hidden altars made precious little sense.
+They were terse bits of text to back up a diagram that LibreOffice couldn't parse.
+Without the diagram, the text wasn't helpful.&lt;/p&gt;
+&lt;p&gt;With my Python hacking around, the recovered images looked like this:&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Sketch extracted from Clarisworks as a collection of colored rectangles." src="https://slott56.github.io/media/Xorn Cave 1.png" style="height: 8cm;" /&gt;
+&lt;/div&gt;
+&lt;p&gt;The picture is hideous, but, the clumps of rectangles and the room numbers helped me
+understand the text notes that went with the map.&lt;/p&gt;
+&lt;p&gt;(Note the axes have two sets of numbers: integers from 0 to 160,000, and float from 1.0 down to 0.0.
+The C++ converts everything to float.
+This doesn't seem necessary when tools like &lt;strong&gt;matplotlib&lt;/strong&gt; will gracefully work with any units,
+so some of the object coordinates are unconverted, and a few are converted.
+The picture was useful enough without resolving this inconsistency.)&lt;/p&gt;
+&lt;p&gt;My text notes were terse. Just hints for myself, really.
+This campaign was for a standing TTRPG group that I hung around with for years and years.
+We played frequently (often weekly) from maybe 1990-ish to about 1995.&lt;/p&gt;
+&lt;p&gt;Because of this, I could get away with a very sketchy design.
+After all, I knew the players.
+The players knew the world the campaign existed in.
+The details were a mythos that was evolving as part of our shared story-telling.&lt;/p&gt;
+&lt;p&gt;(Also. No campaign design survives contact with players.
+I didn't dwell on details that would clearly evaporate on day one when Dave would have his character really push the envelope on the world, the other players, and me.)&lt;/p&gt;
+&lt;p&gt;Now, thirty years down the road, I'm trying to reconstruct that group's collective understanding and collaborative discovery of this campaign.
+I can now see my intent.
+And 2026 me can see some weak design 1996 me had included.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="status"&gt;
+&lt;h2&gt;Status&lt;/h2&gt;
+&lt;p&gt;Uncovering the lost maps took many weeks. (Maybe as much as two months. It was very hard work.)&lt;/p&gt;
+&lt;p&gt;Redrawing the maps in &lt;a class="reference external" href="https://worldographer.com"&gt;Worldographer&lt;/a&gt; took another few weeks.&lt;/p&gt;
+&lt;p&gt;Now, I can address the sketchy notes.&lt;/p&gt;
+&lt;p&gt;This is the fun part: capturing enough detail that a GM can spin a good yarn from my campaign notes.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="TTRPG"></category><category term="OpenD6"></category><category term="#python"></category></entry><entry><title>A Writing Project -- perhaps a bad idea</title><link href="https://slott56.github.io/2026-04-23_a_writing_project.html" rel="alternate"></link><published>2026-04-23T14:37:00-04:00</published><updated>2026-04-23T14:37:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-04-23:/2026-04-23_a_writing_project.html</id><summary type="html">&lt;p&gt;I'm trying to push the envelope in my writing.&lt;/p&gt;
 &lt;p&gt;I write a fair amount of non-fiction.  &lt;a class="reference external" href="https://www.goodreads.com/author/list/4537706.Steven_F_Lott"&gt;https://www.goodreads.com/author/list/4537706.Steven_F_Lott&lt;/a&gt;.
 This is a comfortable spot for me.&lt;/p&gt;
 &lt;p&gt;I've got some self-published titles:&lt;/p&gt;
