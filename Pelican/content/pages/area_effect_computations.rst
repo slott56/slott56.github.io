@@ -1,5 +1,5 @@
-Area Effect Aspect Volume Computations
-======================================
+Area Effect Aspect Volume Computations [V2]
+===========================================
 
 The *OpenD6 Fantasy* rules define an Area of Effect aspect that applies
 to magical spells and religious invocations. This aspect has a
@@ -345,7 +345,7 @@ fourth includes a volume variable, :math:`V`.
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_21_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_21_0.svg
 
 
 
@@ -534,7 +534,7 @@ constant arguments, and single variable argument to the top-level
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_41_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_41_0.svg
 
 
 
@@ -602,7 +602,7 @@ it.
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_48_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_48_0.svg
 
 
 
@@ -727,7 +727,7 @@ then solve for the equilavent sphere’s radius, :math:`R`.
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_56_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_56_0.svg
 
 
 
@@ -786,7 +786,7 @@ radius, :math:`r`.
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_61_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_61_0.svg
 
 
 
@@ -850,7 +850,7 @@ complication.
 
 
 
-.. image:: area_effect_computations_files/area_effect_computations_67_0.svg
+.. image:: {static}/pages/area_effect_computations_files/area_effect_computations_67_0.svg
 
 
 
