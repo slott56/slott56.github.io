@@ -75,7 +75,7 @@ volume of 5 cubic meters means
 :math:`r = \sqrt[3]{\frac{3V}{4\pi}} \approx 1.06`.
 
 Superficially, this does not follow the rules. The rules say “**+5 per
-meter radius**”; this statement means a 1m radius sphere must a cost of
+meter radius**”; this statement means a 1m radius sphere must have a cost of
 5.
 
 Either the cost is wrong for some of these spells. Or the “+5 per meter
@@ -344,7 +344,7 @@ fourth includes a volume variable, :math:`V`.
 
 
 
-We can see the four arguments, with errors flying out of the overall
+We can see the four arguments, with arrows flying out of the overall
 ``Mul`` operator node. A cube root operation, :math:`\sqrt[3]x`, is
 represented internally using a ``Pow`` node, meaning
 :math:`x^\frac{1}{3}`, which seems kind of awkward at first. However,
