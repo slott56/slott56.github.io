@@ -21,14 +21,12 @@ Here are the revised shape rules.
 ..  csv-table::
     :header-rows: 1
 
-    Shape,Measures,Equivalent Sphere R
-    Hemisphere,radius :math:`r`,:math:`0.79 r`
-    Cone,"height :math:`h`, base radius :math:`r`",:math:`0.63 \sqrt[3]{h r^{2}}`
-    Cuboid,"height :math:`h`, width :math:`w`, depth :math:`d`",:math:`0.62 \sqrt[3]{d h w}`
-    Cylinder,"height :math:`h`, radius :math:`r`",:math:`0.91 \sqrt[3]{h r^{2}}`
-    Pyramid,"height :math:`h`, base width :math:`w`, base length :math:`l`",:math:`0.43 \sqrt[3]{h l w}`
-
-The difficulty is :math:`5R`.
+    Shape,Measures,Equivalent Sphere R,Difficulty
+    Hemisphere,radius :math:`r`,:math:`0.79 r`,:math:`4.0 r`
+    Cone,"height :math:`h`, base radius :math:`r`",:math:`0.63 \sqrt[3]{h r^{2}}`,:math:`3.1 \sqrt[3]{h r^{2}}`
+    Cuboid,"height :math:`h`, width :math:`w`, depth :math:`d`",:math:`0.62 \sqrt[3]{d h w}`,:math:`3.1 \sqrt[3]{d h w}`
+    Cylinder,"height :math:`h`, radius :math:`r`",:math:`0.91 \sqrt[3]{h r^{2}}`,:math:`4.5 \sqrt[3]{h r^{2}}`
+    Pyramid,"height :math:`h`, base width :math:`w`, base length :math:`l`",:math:`0.43 \sqrt[3]{h l w}`,:math:`2.2 \sqrt[3]{h l w}`
 
 But Wait...
 ===========

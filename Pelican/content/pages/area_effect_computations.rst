@@ -1,11 +1,6 @@
 Area Effect Aspect Volume Computations
 ======================================
 
-:status: hidden
-:category: TTRPG
-:tags: dice,mechanic
-
-
 The *OpenD6 Fantasy* rules define an Area of Effect aspect that applies
 to magical spells and religious invocations. This aspect has a
 relatively simple set of rules:
@@ -22,19 +17,22 @@ relatively simple set of rules:
 
    Fluid shape (shape may change any time during spell’s duration): +6 to area effect modifier.
 
-We can break the rule text into two kinds of statements:
+We can break this rule text into two kinds of statements:
 
-1. Shape definitions (2D circle vs. 3D sphere).
-2. Modifiers (alternate shapes and fluid shape).
+1. **Shape definitions**. Examples: 2D circle vs. 3D sphere.
+2. **Modifiers**. This includes the idea of alternate shapes and fluid
+   shape.
 
-However, from spells in the *OpenD6 Fantasy Locations*, it appears ths
+Seems simple, right?
+
+Sadly, there are spells in the *OpenD6 Fantasy Locations*, where the
 sphere definition harbors a subtle error. This was uncovered by
-wrestling four four spells that have “fluid shape” modifiers. This
-involves a short journey into some relatively simple math to uncover a
+wrestling four four spells that have “fluid shape” modifiers. We’ll need
+to take a short journey into some relatively simple math to uncover a
 small piece of treasure.
 
-Further, the (unpublished) *OpenD6 Magic Guide* has a number of shapes,
-and the rules for these seem to be broken. This will be a longer
+It gets worse. The (unpublished) *OpenD6 Magic Guide* has a number of
+shapes, and the rules for these seem to be broken. This will be a longer
 journey, deep into a wilderness that involves more serious algebra. This
 will yield a delightful, but, hardly useful piece of treasure. A kind of
 trophy with little practical value.
@@ -42,44 +40,52 @@ trophy with little practical value.
 OpenD6 Fantasy Locations spells
 -------------------------------
 
-Our journey begins when we uncover four spells that are examples of the
-Fluid Shape variant of the Area of Effect aspect in the *OpenD6 Fantasy
-Locations* rules:
+Our journey begins in the the *OpenD6 Fantasy Locations* rules. There,
+we will uncover four spells with the *Fluid Shape* variant of the *Area
+of Effect* aspect:
 
--  The **Basic Shelter** spell, has an area effect difficulty of 6. The
-   difficulty corresponds to the “Fluid Shape” modifier, but the spell
-   fails to explicitly state a shape. The spell does describe a volume
-   of :math:`1.25 \times 2 \times 2 = 5` cubic meters. The *OpenD6
-   Fantasy* rules provide no definition for a rectilinear (“cuboid”)
-   shape.
+-  The **Basic Shelter** spell, has an area effect difficulty of 6.
+
+   The difficulty matches the “Fluid Shape” modifier, but the spell
+   definition fails to explicitly state a shape. The spell does describe
+   a volume of :math:`1.25 \times 2 \times 2 = 5` cubic meters. The
+   *OpenD6 Fantasy* rules provide no definition for a rectilinear
+   (“cuboid”) shape.
 
 -  The **Improved Hut** spell, with an area effect difficulty of 11.
-   This could be the “Fluid Shape” modifier with an implied shape with a
-   difficulty of 5. The spell describes a volume of
-   :math:`4 \times 4 \times 2 = 32` cubic meters.
+
+   This has the “Fluid Shape” modifier. But, it also seems to have an
+   implied – but not stated – shape with a difficulty of 5. The spell
+   describes a volume of :math:`4 \times 4 \times 2 = 32` cubic meters.
 
 -  The **Small Long-Lasting Tower** and **Keep-in-the Air** spells have
-   an area effect difficulty of 26. This also seems to use the “Fluid
-   Shape” with an implied shape with a difficulty of 20. The spell
-   describes a volume not to exceed 268 cubic meters.
+   an area effect difficulty of 26.
 
-The problem here is that “Fluid Shape” appears to be a modifier to a
-shape definition. There’s no irrefutable evidence of this
-interpretation, since there are no examples of fluid shapes in the
-*OpenD6 Fantasy* rules. It is a pretty clear intent, however.
+   These two spells also seems to use the “Fluid Shape” with an implied
+   shape that starts with a difficulty of 20. The spell describes a
+   volume not to exceed 268 cubic meters.
 
-With the assumption that Fluid Shape as a modifier (worth 6), the
-conclusion is a 5 cubic meter sphere has a difficulty of zero. The
-volume of a sphere is :math:`V = \frac{4}{3} \pi r^3`. The radius for
-volume of 5 cubic meters means
-:math:`r = \sqrt[3]{\frac{3V}{4\pi}} \approx 1.06`.
+The problem here is that the *Fluid Shape* modifier seems to require a
+base shape definition. There’s no irrefutable evidence of this
+requirement, since there are no examples of fluid shapes in the *OpenD6
+Fantasy* rules. It is a pretty clear intent, however.
 
-Superficially, this does not follow the rules. The rules say “**+5 per
-meter radius**”; this statement means a 1m radius sphere must have a cost of
-5.
+With the assumption that the *Fluid Shape* modifier (worth 6) applies to
+some base shape, we have to conclude this shape is a 5 cubic meter
+sphere with a difficulty of zero. The volume of a sphere is
+:math:`V = \frac{4}{3} \pi r^3`. The radius for volume of 5 cubic meters
+means :math:`r = \sqrt[3]{\frac{3V}{4\pi}} \approx 1.06`.
 
-Either the cost is wrong for some of these spells. Or the “+5 per meter
-radius” statement is wrong. There are two distinct consequences:
+Superficially, this conclusion does not follow the rules. The rules say
+“**+5 per meter radius**”: a 1m radius sphere must a cost of 5. Not
+zero.
+
+We have one of two problems: Either
+
+-  the cost is wrong for some of these spells, or
+-  the “+5 per meter radius” statement is wrong.
+
+There are consequences to which of these problems the rules suffer from:
 
 -  Assuming the proper rule was supposed to be **+5 per meter after the
    first; a 1m sphere has a cost of zero.**, then the **Small
@@ -96,29 +102,28 @@ conclusive evidence the rule – as written – was correct. The two spells
 (**Basic Shelter** and **Improved Shelter**) have the wrong difficulties
 for their areas of effect.
 
-[*The rules have numerous “off-by-one” errors, many due to rounding.
-This isn’t unusual.*]
+[*The rules also have numerous “off-by-one” errors, many due to
+rounding. This isn’t a serious problem.*]
 
 This leads to the following table of sphere sizes and difficulty values:
 
-.. code:: python 
+.. code:: python
 
     from IPython.display import display, Markdown
+    from tabulate import tabulate
     from contextlib import redirect_stdout
     from io import StringIO
 
-.. code:: python 
+.. code:: python
 
     from sympy import pi
     
-    buffer = StringIO()
-    with redirect_stdout(buffer):
-        print("| r (meters) | volume (cubic meters) | difficulty |")
-        print("|---|--------|------------|")
-        for r in range(1, 7):
-            print(f"| {r}| {(4/3)*pi*r**3:.2f} | +{r*5} |")
-    
-    md = Markdown(buffer.getvalue())
+    header = ["r (meters)", "volume (cubic meters)", "difficulty"]
+    data = [
+        [r, f"{(4/3)*pi*r**3:.2f}", f"+{r*5}"]
+        for r in range(1,7)
+    ]
+    md = Markdown(tabulate(data, headers=header, tablefmt="pipe"))
     display(md)
 
 
@@ -128,9 +133,9 @@ r (meters) volume (cubic meters) difficulty
 ========== ===================== ==========
 1          4.19                  +5
 2          33.51                 +10
-3          113.10                +15
+3          113.1                 +15
 4          268.08                +20
-5          523.60                +25
+5          523.6                 +25
 6          904.78                +30
 ========== ===================== ==========
 
@@ -212,7 +217,7 @@ A little setup: we’ll import the package, initialize formula printing,
 and define a few symbols that will be used through the rest of the
 story.
 
-.. code:: python 
+.. code:: python
 
     from sympy import *
     init_printing()
@@ -224,7 +229,7 @@ We’ll start with spheres because the answers are known. This easily
 generalizes to any shape that has a volume. What matters is the value
 for :math:`V`.
 
-.. code:: python 
+.. code:: python
 
     sphere = Eq(V, Rational(4,3)*pi*r**3)
     sphere
@@ -240,7 +245,7 @@ for :math:`V`.
 
 We can solve this for :math:`r`.
 
-.. code:: python 
+.. code:: python
 
     Eq(r, solve(sphere, r)[0])
 
@@ -255,8 +260,8 @@ We can solve this for :math:`r`.
 
 In the sphere case, computing volume from radius and then solving for
 the radius is obviously pointless. In all other cases, however, we will
-start with some formula that gives us a volume. From that, volume, we
-can then deduce the equivalent sphere radius and the difficulty for the
+start with some formula that gives us a volume. From that volume, we can
+then deduce the equivalent sphere radius and the difficulty for the
 given shape.
 
 The problem with solving for :math:`r` is we get an ugly-looking
@@ -274,11 +279,11 @@ cone, :math:`S_u` for cuboid, :math:`S_y` for cylinder and :math:`S_p`
 for a pyramid.
 
 We can, with some patience, manually extract the constant factor
-($:raw-latex:`\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}` $) from the above
+(:math:`\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}`) from the above
 equation. This is an unpleasant, error-prone manual operation. Here’s
 what it looks like.
 
-.. code:: python 
+.. code:: python
 
     N((6**(1/3))/(2*pi**(1/3)))*V**Rational(1,3)
 
@@ -295,7 +300,7 @@ We can confirm that the algebra was done error-free, by trying to
 simplify it. The messy-looking code blob represents the :math:`R_s`
 constant value from the original equation.
 
-.. code:: python 
+.. code:: python
 
     nsimplify((6**(1/3))/(2*pi**(1/3)), [pi])
 
@@ -329,18 +334,18 @@ What we see is the overall form of the equation is a multiplication. It
 has four arguments, the first three of which are constants, and the
 fourth includes a volume variable, :math:`V`.
 
-.. code:: python 
+.. code:: python
 
     import graphviz
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(sphere, r)[0]))
 
 
 
 
-.. image:: {static}output_21_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_21_0.svg
 
 
 
@@ -351,7 +356,7 @@ represented internally using a ``Pow`` node, meaning
 the pretty-printed output looks like an ordinary cube-root, allowing us
 to disregard the nuances of the internal structure.
 
-.. code:: python 
+.. code:: python
 
     solve(sphere, r)[0].args
 
@@ -368,7 +373,7 @@ We can compute the product of the first three factors, the constant
 part. From these we can compute a simple-looking weighting factor that
 converts the shape’s volume to the radius of a sphere.
 
-.. code:: python 
+.. code:: python
 
     N(solve(sphere, r)[0].args[0] * solve(sphere, r)[0].args[1] * solve(sphere, r)[0].args[2])
 
@@ -391,7 +396,7 @@ This is true for the five shapes we’re working with.
 
 It avoids the need to do algebra manually.
 
-.. code:: python 
+.. code:: python
 
     def constants(expr):
         """Only looks at the top-level Mul() node for constants and non-constant parts."""
@@ -408,7 +413,7 @@ constants and the variables. Note that when we multiple the constant
 product by the variable product, the equation is unchanged. This is
 proof we haven’t damaged anything.
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(sphere, r)[0])
     cons * vars
@@ -422,7 +427,7 @@ proof we haven’t damaged anything.
 
 
 
-.. code:: python 
+.. code:: python
 
     cons * vars == solve(sphere, r)[0]
 
@@ -440,10 +445,10 @@ radius. It doesn’t *seem* useful because it involves a bunch of
 irrational numbers.
 
 We can compute a useful approximation for the contant factor,
-$:raw-latex:`\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}` $, which isn’t so
+:math:`\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}`, which isn’t so
 ugly.
 
-.. code:: python 
+.. code:: python
 
     N(cons) * vars
 
@@ -471,7 +476,7 @@ Hemisphere
 A Hemisphere has a smaller volume for a given radius, :math:`r`. As with
 a sphere, the volume is characterized by a single number, :math:`r`.
 
-.. code:: python 
+.. code:: python
 
     hemisphere = Eq(Rational(2,3)*pi*r**3, Rational(4,3)*pi*R**3)
     hemisphere
@@ -488,7 +493,7 @@ a sphere, the volume is characterized by a single number, :math:`r`.
 We can solve for :math:`R` to find the effective radius of a sphere with
 the same volume.
 
-.. code:: python 
+.. code:: python
 
     Eq(R, solve(hemisphere, R)[0])
 
@@ -504,7 +509,7 @@ the same volume.
 We can extract the constants and compute an approximate value that’s
 easier to use.
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(hemisphere, R)[0])
     N(cons) * vars
@@ -522,14 +527,14 @@ Here’s a depiction of the formula, just to show that there are only two
 constant arguments, and single variable argument to the top-level
 ``Mul`` node.
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(hemisphere, R)[0]))
 
 
 
 
-.. image:: {static}output_41_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_41_0.svg
 
 
 
@@ -540,7 +545,7 @@ A cone’s volume is described by a height, :math:`h`, and a radius,
 :math:`r`. We’ll define an equation using the cone’s parameters and the
 radius, :math:`R`, of the equivalent sphere.
 
-.. code:: python 
+.. code:: python
 
     cone = Eq(Rational(1,3)*h*pi*r**2, Rational(4,3)*pi*R**3)
     cone
@@ -554,7 +559,7 @@ radius, :math:`R`, of the equivalent sphere.
 
 
 
-.. code:: python 
+.. code:: python
 
     Eq(R, solve(cone, R)[0])
 
@@ -571,7 +576,7 @@ We can decompose this into a constant value and a volume-related
 expression. This gives us a computation for :math:`R`, from which we get
 difficulty, :math:`5R`.
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(cone, R)[0])
     N(cons) * vars
@@ -589,7 +594,7 @@ Here’s a depiction of the formula showing the first two arguments, which
 are the constants, and the third argument, which has the variables in
 it.
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(cone, R)[0]))
 
@@ -597,9 +602,74 @@ it.
 
 
 
-.. image:: {static}output_48_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_48_0.svg
 
 
+
+In the *OpenD6 Magic Guide* the cone has a simplified computation of
+difficulty.
+
+::
+
+       +5 for a basic cone two meters long and a base with
+       a one-meter radius
+
+       and +1 for each additional half meter of
+       length or meter of base radius.
+
+       Example: A cone
+       that’s three meters long with a base two meters wide (radius
+       of one meter) has a cost of +7.
+
+This is :math:`2h+r`. Let’s compare.
+
+.. code:: python
+
+    data = []
+    for h_val in range(2, 7):
+        for r_val in range(1, 4):
+            R_val = (cons * vars).evalf(subs={"h": h_val, "r": r_val})
+            D_val = R_val * 5
+            d_val = 2*h_val + r_val
+            if D_val-2 <= d_val < D_val+3:
+                error = "close"
+            else:
+                error = f"{abs(D_val - d_val):.1f}"
+            data.append(
+                [h_val, r_val, f"{D_val:.1f}", d_val, error]
+            )
+    
+    md = Markdown(
+        tabulate(data, headers=["h","r","exact","approx","error"], tablefmt="pipe")
+    )
+    display(md)
+
+
+
+= = ===== ====== =====
+h r exact approx error
+= = ===== ====== =====
+2 1 4     5      close
+2 2 6.3   6      close
+2 3 8.3   7      close
+3 1 4.5   7      close
+3 2 7.2   8      close
+3 3 9.4   9      close
+4 1 5     9      4.0
+4 2 7.9   10     close
+4 3 10.4  11     close
+5 1 5.4   11     5.6
+5 2 8.5   12     3.5
+5 3 11.2  13     close
+6 1 5.7   13     7.3
+6 2 9.1   14     4.9
+6 3 11.9  15     3.1
+= = ===== ====== =====
+
+
+For a few values of :math:`h` and :math:`r` the :math:`2h+r` difficulty
+is close to the exact difficulty based on volume. As the cone gets
+longer (6m or more), the error increases.
 
 Cuboid
 ~~~~~~
@@ -608,7 +678,7 @@ A Cuboid’s volume is decribed by the height, :math:`h`, width,
 :math:`w`, and depth, :math:`d`. We can compute the cuboid volume, and
 then solve for the equilavent sphere’s radius, :math:`R`.
 
-.. code:: python 
+.. code:: python
 
     cuboid = Eq(h*w*d, Rational(4,3)*pi*R**3)
     cuboid
@@ -622,7 +692,7 @@ then solve for the equilavent sphere’s radius, :math:`R`.
 
 
 
-.. code:: python 
+.. code:: python
 
     Eq(R, solve(cuboid, R)[0])
 
@@ -635,7 +705,7 @@ then solve for the equilavent sphere’s radius, :math:`R`.
 
 
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(cuboid, R)[0])
     N(cons) * vars
@@ -649,7 +719,7 @@ then solve for the equilavent sphere’s radius, :math:`R`.
 
 
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(cuboid, R)[0]))
 
@@ -657,7 +727,7 @@ then solve for the equilavent sphere’s radius, :math:`R`.
 
 
 
-.. image:: {static}output_53_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_56_0.svg
 
 
 
@@ -667,7 +737,7 @@ Cylinder
 A Cylinder’s volume is described by the a height, :math:`h`, and a
 radius, :math:`r`.
 
-.. code:: python 
+.. code:: python
 
     cylinder = Eq(h*pi*r**2, Rational(4,3)*pi*R**3)
     cylinder
@@ -681,7 +751,7 @@ radius, :math:`r`.
 
 
 
-.. code:: python 
+.. code:: python
 
     Eq(R, solve(cylinder, R)[0])
 
@@ -694,7 +764,7 @@ radius, :math:`r`.
 
 
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(cylinder, R)[0])
     N(cons) * vars
@@ -708,7 +778,7 @@ radius, :math:`r`.
 
 
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(cylinder, R)[0]))
 
@@ -716,7 +786,7 @@ radius, :math:`r`.
 
 
 
-.. image:: {static}output_58_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_61_0.svg
 
 
 
@@ -728,7 +798,7 @@ A Pyramid has a height, :math:`h`, and a base width and length,
 that’s not square. As we’ll see, a square base is not a signficant
 simplification.
 
-.. code:: python 
+.. code:: python
 
     pyramid = Eq(Rational(1,3)*h*w*l, Rational(4,3)*pi*R**3)
     pyramid
@@ -742,7 +812,7 @@ simplification.
 
 
 
-.. code:: python 
+.. code:: python
 
     Eq(R, solve(pyramid, R)[0])
 
@@ -755,7 +825,7 @@ simplification.
 
 
 
-.. code:: python 
+.. code:: python
 
     cons, vars = constants(solve(pyramid, R)[0])
     N(cons) * vars
@@ -772,7 +842,7 @@ simplification.
 For a square-based pyramid, :math:`l=w`. Not a very intersting
 complication.
 
-.. code:: python 
+.. code:: python
 
     graphviz.Source(dotprint(solve(pyramid, R)[0]))
 
@@ -780,7 +850,7 @@ complication.
 
 
 
-.. image:: {static}output_64_0.svg
+.. image:: area_effect_computations_files/area_effect_computations_67_0.svg
 
 
 
@@ -794,61 +864,67 @@ difficulty, as :math:`5R`.
 Let’s summarize this in a tidy table we can use when designing spells
 with complicated areas of effect.
 
-.. code:: python 
+.. code:: python
 
-    from IPython.display import display, Markdown
-    from contextlib import redirect_stdout
-    from io import StringIO
+    from pathlib import Path
+    import csv
+    import re
 
-.. code:: python 
+.. code:: python
 
     details = {
         'Hemisphere': ("radius $r$", hemisphere),
         'Cone': ("height $h$, base radius $r$", cone),
         'Cuboid': ("height $h$, width $w$, depth $d$", cuboid),
-        'Cylinder': ("eight $h$, radius $r$", cylinder),
+        'Cylinder': ("height $h$, radius $r$", cylinder),
         'Pyramid': ("height $h$, base width $w$, base length $l$", pyramid),
     }
     
-    buffer = StringIO()
-    with redirect_stdout(buffer):
-        print("| Shape  | Measures                                    | Equivalent Sphere R     |")
-        print("|--------|---------------------------------------------|-------------------------|")
-        print("| Sphere | radius $r$                                  | $R = r$                 |")
+    def rules() -> tuple[str, str, float, str, str]:
+        """Yields shape name, arg text, constant, and Latex for base formula, and difficulty formula."""
         for shape, (arg, eq) in details.items():
             cons, vars = constants(solve(eq, R)[0])
-            print(f"| {shape} | {arg} | $R = {latex(cons.evalf(2) * vars)}$ |")
-        print()
-        print(r"Difficulty is $5 \times R$.")
-        
-    md = Markdown(buffer.getvalue())
+            cons_r = cons.evalf(2)
+            yield shape, arg, cons, latex(cons_r * vars), latex(cons_r * 5 * vars)
+    
+    rule_supplement_path = Path.cwd() / "area_effect_shapes.csv"
+    with open(rule_supplement_path, "w") as rules_file:
+        writer = csv.writer(rules_file)
+        writer.writerow(["Shape", "Measures", "Equivalent Sphere R", "Difficulty"])
+        rst_form = (
+            [shape, re.sub(r"\$(\w+)\$", r":math:`\1`", arg), f":math:`{radius_formula}`", f":math:`{diff_formula}`"]
+            for shape, arg, cons, radius_formula, diff_formula in rules()
+        )
+        writer.writerows(rst_form)
+    print("See", rule_supplement_path)
+    
+    header = [
+        "Shape","Measures","Equivalent Sphere R","Difficulty Weight"
+    ]
+    data = [
+        ["Sphere", "radius $r$", "$R = r$", "$5r$"]
+    ]
+    
+    for shape, arg, cons, radius_formula, diff_formula in rules():
+        data.append(
+            [shape, arg, f"$R = {radius_formula}$", f"${diff_formula}$"]
+        )
+    
+    md = Markdown(tabulate(data, headers=header, tablefmt="pipe"))
     display(md)
 
 
+.. parsed-literal::
 
-+------+----------------------------------------+----------------------+
-| S    | Measures                               | Equivalent Sphere R  |
-| hape |                                        |                      |
-+======+========================================+======================+
-| Sp   | radius :math:`r`                       | :math:`R = r`        |
-| here |                                        |                      |
-+------+----------------------------------------+----------------------+
-| He   | radius :math:`r`                       | :math:`R = 0.79 r`   |
-| misp |                                        |                      |
-| here |                                        |                      |
-+------+----------------------------------------+----------------------+
-| Cone | height :math:`h`, base radius          | :math:`R = 0.6       |
-|      | :math:`r`                              | 3 \sqrt[3]{h r^{2}}` |
-+------+----------------------------------------+----------------------+
-| Cu   | height :math:`h`, width :math:`w`,     | :math:`R = 0         |
-| boid | depth :math:`d`                        | .62 \sqrt[3]{d h w}` |
-+------+----------------------------------------+----------------------+
-| Cyli | eight :math:`h`, radius :math:`r`      | :math:`R = 0.9       |
-| nder |                                        | 1 \sqrt[3]{h r^{2}}` |
-+------+----------------------------------------+----------------------+
-| Pyr  | height :math:`h`, base width           | :math:`R = 0         |
-| amid | :math:`w`, base length :math:`l`       | .43 \sqrt[3]{h l w}` |
-+------+----------------------------------------+----------------------+
+    See /Users/slott/Documents/Hobbies/Gaming/OpenD6/opend6-tools/notebooks/area_effect_shapes.csv
 
-Difficulty is :math:`5 \times R`.
 
+..  csv-table::
+    :header-rows: 1
+
+    Shape,Measures,Equivalent Sphere R,Difficulty
+    Hemisphere,radius :math:`r`,:math:`0.79 r`,:math:`4.0 r`
+    Cone,"height :math:`h`, base radius :math:`r`",:math:`0.63 \sqrt[3]{h r^{2}}`,:math:`3.1 \sqrt[3]{h r^{2}}`
+    Cuboid,"height :math:`h`, width :math:`w`, depth :math:`d`",:math:`0.62 \sqrt[3]{d h w}`,:math:`3.1 \sqrt[3]{d h w}`
+    Cylinder,"height :math:`h`, radius :math:`r`",:math:`0.91 \sqrt[3]{h r^{2}}`,:math:`4.5 \sqrt[3]{h r^{2}}`
+    Pyramid,"height :math:`h`, base width :math:`w`, base length :math:`l`",:math:`0.43 \sqrt[3]{h l w}`,:math:`2.2 \sqrt[3]{h l w}`

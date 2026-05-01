@@ -54,6 +54,9 @@ S.Lott -- Software Architect            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
+                         <li class="active"><a href="https://slott56.github.io/pages/area-effect-aspect-volume-computations.html">
+                             Area Effect Aspect Volume Computations
+                          </a></li>
                          <li><a href="https://slott56.github.io/pages/other-articles.html">
                              Other Articles
                           </a></li>
@@ -96,56 +99,66 @@ Several alternate shapes (specific one chosen at time of casting): +3 to area ef
 
 Fluid shape (shape may change any time during spell’s duration): +6 to area effect modifier.
 </pre>
-<p>We can break the rule text into two kinds of statements:</p>
+<p>We can break this rule text into two kinds of statements:</p>
 <ol class="arabic simple">
-<li>Shape definitions (2D circle vs. 3D sphere).</li>
-<li>Modifiers (alternate shapes and fluid shape).</li>
+<li><strong>Shape definitions</strong>. Examples: 2D circle vs.&nbsp;3D sphere.</li>
+<li><strong>Modifiers</strong>. This includes the idea of alternate shapes and fluid
+shape.</li>
 </ol>
-<p>However, from spells in the <em>OpenD6 Fantasy Locations</em>, it appears ths
+<p>Seems simple, right?</p>
+<p>Sadly, there are spells in the <em>OpenD6 Fantasy Locations</em>, where the
 sphere definition harbors a subtle error. This was uncovered by
-wrestling four four spells that have “fluid shape” modifiers. This
-involves a short journey into some relatively simple math to uncover a
+wrestling four four spells that have “fluid shape” modifiers. We’ll need
+to take a short journey into some relatively simple math to uncover a
 small piece of treasure.</p>
-<p>Further, the (unpublished) <em>OpenD6 Magic Guide</em> has a number of shapes,
-and the rules for these seem to be broken. This will be a longer
+<p>It gets worse. The (unpublished) <em>OpenD6 Magic Guide</em> has a number of
+shapes, and the rules for these seem to be broken. This will be a longer
 journey, deep into a wilderness that involves more serious algebra. This
 will yield a delightful, but, hardly useful piece of treasure. A kind of
 trophy with little practical value.</p>
 <div class="section" id="opend6-fantasy-locations-spells">
 <h2>OpenD6 Fantasy Locations spells</h2>
-<p>Our journey begins when we uncover four spells that are examples of the
-Fluid Shape variant of the Area of Effect aspect in the <em>OpenD6 Fantasy
-Locations</em> rules:</p>
-<ul class="simple">
-<li>The <strong>Basic Shelter</strong> spell, has an area effect difficulty of 6. The
-difficulty corresponds to the “Fluid Shape” modifier, but the spell
-fails to explicitly state a shape. The spell does describe a volume
-of <span class="math">\(1.25 \times 2 \times 2 = 5\)</span> cubic meters. The <em>OpenD6
-Fantasy</em> rules provide no definition for a rectilinear (“cuboid”)
-shape.</li>
-<li>The <strong>Improved Hut</strong> spell, with an area effect difficulty of 11.
-This could be the “Fluid Shape” modifier with an implied shape with a
-difficulty of 5. The spell describes a volume of
-<span class="math">\(4 \times 4 \times 2 = 32\)</span> cubic meters.</li>
-<li>The <strong>Small Long-Lasting Tower</strong> and <strong>Keep-in-the Air</strong> spells have
-an area effect difficulty of 26. This also seems to use the “Fluid
-Shape” with an implied shape with a difficulty of 20. The spell
-describes a volume not to exceed 268 cubic meters.</li>
+<p>Our journey begins in the the <em>OpenD6 Fantasy Locations</em> rules. There,
+we will uncover four spells with the <em>Fluid Shape</em> variant of the <em>Area
+of Effect</em> aspect:</p>
+<ul>
+<li><p class="first">The <strong>Basic Shelter</strong> spell, has an area effect difficulty of 6.</p>
+<p>The difficulty matches the “Fluid Shape” modifier, but the spell
+definition fails to explicitly state a shape. The spell does describe
+a volume of <span class="math">\(1.25 \times 2 \times 2 = 5\)</span> cubic meters. The
+<em>OpenD6 Fantasy</em> rules provide no definition for a rectilinear
+(“cuboid”) shape.</p>
+</li>
+<li><p class="first">The <strong>Improved Hut</strong> spell, with an area effect difficulty of 11.</p>
+<p>This has the “Fluid Shape” modifier. But, it also seems to have an
+implied – but not stated – shape with a difficulty of 5. The spell
+describes a volume of <span class="math">\(4 \times 4 \times 2 = 32\)</span> cubic meters.</p>
+</li>
+<li><p class="first">The <strong>Small Long-Lasting Tower</strong> and <strong>Keep-in-the Air</strong> spells have
+an area effect difficulty of 26.</p>
+<p>These two spells also seems to use the “Fluid Shape” with an implied
+shape that starts with a difficulty of 20. The spell describes a
+volume not to exceed 268 cubic meters.</p>
+</li>
 </ul>
-<p>The problem here is that “Fluid Shape” appears to be a modifier to a
-shape definition. There’s no irrefutable evidence of this
-interpretation, since there are no examples of fluid shapes in the
-<em>OpenD6 Fantasy</em> rules. It is a pretty clear intent, however.</p>
-<p>With the assumption that Fluid Shape as a modifier (worth 6), the
-conclusion is a 5 cubic meter sphere has a difficulty of zero. The
-volume of a sphere is <span class="math">\(V = \frac{4}{3} \pi r^3\)</span>. The radius for
-volume of 5 cubic meters means
-<span class="math">\(r = \sqrt[3]{\frac{3V}{4\pi}} \approx 1.06\)</span>.</p>
-<p>Superficially, this does not follow the rules. The rules say “<strong>+5 per
-meter radius</strong>”; this statement means a 1m radius sphere must have a cost of
-5.</p>
-<p>Either the cost is wrong for some of these spells. Or the “+5 per meter
-radius” statement is wrong. There are two distinct consequences:</p>
+<p>The problem here is that the <em>Fluid Shape</em> modifier seems to require a
+base shape definition. There’s no irrefutable evidence of this
+requirement, since there are no examples of fluid shapes in the <em>OpenD6
+Fantasy</em> rules. It is a pretty clear intent, however.</p>
+<p>With the assumption that the <em>Fluid Shape</em> modifier (worth 6) applies to
+some base shape, we have to conclude this shape is a 5 cubic meter
+sphere with a difficulty of zero. The volume of a sphere is
+<span class="math">\(V = \frac{4}{3} \pi r^3\)</span>. The radius for volume of 5 cubic meters
+means <span class="math">\(r = \sqrt[3]{\frac{3V}{4\pi}} \approx 1.06\)</span>.</p>
+<p>Superficially, this conclusion does not follow the rules. The rules say
+“<strong>+5 per meter radius</strong>”: a 1m radius sphere must a cost of 5. Not
+zero.</p>
+<p>We have one of two problems: Either</p>
+<ul class="simple">
+<li>the cost is wrong for some of these spells, or</li>
+<li>the “+5 per meter radius” statement is wrong.</li>
+</ul>
+<p>There are consequences to which of these problems the rules suffer from:</p>
 <ul class="simple">
 <li>Assuming the proper rule was supposed to be <strong>+5 per meter after the
 first; a 1m sphere has a cost of zero.</strong>, then the <strong>Small
@@ -160,25 +173,24 @@ Shelter</strong> spell difficulty needs to be 16 (not 11).</li>
 conclusive evidence the rule – as written – was correct. The two spells
 (<strong>Basic Shelter</strong> and <strong>Improved Shelter</strong>) have the wrong difficulties
 for their areas of effect.</p>
-<p>[<em>The rules have numerous “off-by-one” errors, many due to rounding.
-This isn’t unusual.</em>]</p>
+<p>[<em>The rules also have numerous “off-by-one” errors, many due to
+rounding. This isn’t a serious problem.</em>]</p>
 <p>This leads to the following table of sphere sizes and difficulty values:</p>
 <pre class="code python literal-block">
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="w">
+</span><span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span><span class="w">
 </span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">redirect_stdout</span><span class="w">
 </span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
 </pre>
 <pre class="code python literal-block">
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">pi</span><span class="w">
 
-</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span><span class="w">
-</span><span class="k">with</span> <span class="n">redirect_stdout</span><span class="p">(</span><span class="n">buffer</span><span class="p">):</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| r (meters) | volume (cubic meters) | difficulty |&quot;</span><span class="p">)</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|---|--------|------------|&quot;</span><span class="p">)</span><span class="w">
-</span>    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span><span class="w">
-</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">| </span><span class="si">{</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | +</span><span class="si">{</span><span class="n">r</span><span class="o">*</span><span class="mi">5</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">)</span><span class="w">
-
-</span><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span><span class="w">
+</span><span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;r (meters)&quot;</span><span class="p">,</span> <span class="s2">&quot;volume (cubic meters)&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="p">]</span><span class="w">
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="w">
+</span>    <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;+</span><span class="si">{</span><span class="n">r</span><span class="o">*</span><span class="mi">5</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;pipe&quot;</span><span class="p">))</span><span class="w">
 </span><span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
 </pre>
 <table border="1" class="docutils">
@@ -203,7 +215,7 @@ This isn’t unusual.</em>]</p>
 <td>+10</td>
 </tr>
 <tr><td>3</td>
-<td>113.10</td>
+<td>113.1</td>
 <td>+15</td>
 </tr>
 <tr><td>4</td>
@@ -211,7 +223,7 @@ This isn’t unusual.</em>]</p>
 <td>+20</td>
 </tr>
 <tr><td>5</td>
-<td>523.60</td>
+<td>523.6</td>
 <td>+25</td>
 </tr>
 <tr><td>6</td>
@@ -313,8 +325,8 @@ for <span class="math">\(V\)</span>.</p>
 </div>
 <p>In the sphere case, computing volume from radius and then solving for
 the radius is obviously pointless. In all other cases, however, we will
-start with some formula that gives us a volume. From that, volume, we
-can then deduce the equivalent sphere radius and the difficulty for the
+start with some formula that gives us a volume. From that volume, we can
+then deduce the equivalent sphere radius and the difficulty for the
 given shape.</p>
 <p>The problem with solving for <span class="math">\(r\)</span> is we get an ugly-looking
 formula. Really paralyzingly ugly. Kind of turn-to-stone if you look at
@@ -328,7 +340,7 @@ We’re going to work out <span class="math">\(S_h\)</span> for hemisphere, <spa
 cone, <span class="math">\(S_u\)</span> for cuboid, <span class="math">\(S_y\)</span> for cylinder and <span class="math">\(S_p\)</span>
 for a pyramid.</p>
 <p>We can, with some patience, manually extract the constant factor
-($:raw-latex:<cite>frac{sqrt[3]{6}}{2 sqrt[3]{pi}}</cite> $) from the above
+(<span class="math">\(\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}\)</span>) from the above
 equation. This is an unpleasant, error-prone manual operation. Here’s
 what it looks like.</p>
 <pre class="code python literal-block">
@@ -372,7 +384,7 @@ fourth includes a volume variable, <span class="math">\(V\)</span>.</p>
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">r</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_21_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_21_0.svg" type="image/svg+xml"></object>
 <p>We can see the four arguments, with arrows flying out of the overall
 <tt class="docutils literal">Mul</tt> operator node. A cube root operation, <span class="math">\(\sqrt[3]x\)</span>, is
 represented internally using a <tt class="docutils literal">Pow</tt> node, meaning
@@ -439,7 +451,7 @@ True
 radius. It doesn’t <em>seem</em> useful because it involves a bunch of
 irrational numbers.</p>
 <p>We can compute a useful approximation for the contant factor,
-$:raw-latex:<cite>frac{sqrt[3]{6}}{2 sqrt[3]{pi}}</cite> $, which isn’t so
+<span class="math">\(\frac{\sqrt[3]{6}}{2 \sqrt[3]{\pi}}\)</span>, which isn’t so
 ugly.</p>
 <pre class="code python literal-block">
 <span class="n">N</span><span class="p">(</span><span class="n">cons</span><span class="p">)</span> <span class="o">*</span> <span class="nb">vars</span>
@@ -497,7 +509,7 @@ constant arguments, and single variable argument to the top-level
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">hemisphere</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_41_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_41_0.svg" type="image/svg+xml"></object>
 </div>
 <div class="section" id="cone">
 <h3>Cone</h3>
@@ -539,7 +551,153 @@ it.</p>
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">cone</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_48_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_48_0.svg" type="image/svg+xml"></object>
+<p>In the <em>OpenD6 Magic Guide</em> the cone has a simplified computation of
+difficulty.</p>
+<pre class="literal-block">
++5 for a basic cone two meters long and a base with
+a one-meter radius
+
+and +1 for each additional half meter of
+length or meter of base radius.
+
+Example: A cone
+that’s three meters long with a base two meters wide (radius
+of one meter) has a cost of +7.
+</pre>
+<p>This is <span class="math">\(2h+r\)</span>. Let’s compare.</p>
+<pre class="code python literal-block">
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span><span class="w">
+</span><span class="k">for</span> <span class="n">h_val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span><span class="w">
+</span>    <span class="k">for</span> <span class="n">r_val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span><span class="w">
+</span>        <span class="n">R_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">cons</span> <span class="o">*</span> <span class="nb">vars</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="n">h_val</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="n">r_val</span><span class="p">})</span><span class="w">
+</span>        <span class="n">D_val</span> <span class="o">=</span> <span class="n">R_val</span> <span class="o">*</span> <span class="mi">5</span><span class="w">
+</span>        <span class="n">d_val</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">h_val</span> <span class="o">+</span> <span class="n">r_val</span><span class="w">
+</span>        <span class="k">if</span> <span class="n">D_val</span><span class="o">-</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">d_val</span> <span class="o">&lt;</span> <span class="n">D_val</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="w">
+</span>            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;close&quot;</span><span class="w">
+</span>        <span class="k">else</span><span class="p">:</span><span class="w">
+</span>            <span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">D_val</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">d_val</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">
+</span>        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="w">
+</span>            <span class="p">[</span><span class="n">h_val</span><span class="p">,</span> <span class="n">r_val</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">D_val</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">d_val</span><span class="p">,</span> <span class="n">error</span><span class="p">]</span><span class="w">
+</span>        <span class="p">)</span><span class="w">
+
+</span><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="w">
+</span>    <span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span><span class="s2">&quot;approx&quot;</span><span class="p">,</span><span class="s2">&quot;error&quot;</span><span class="p">],</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;pipe&quot;</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+</pre>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="28%" />
+<col width="33%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">h</th>
+<th class="head">r</th>
+<th class="head">exact</th>
+<th class="head">approx</th>
+<th class="head">error</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>2</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>close</td>
+</tr>
+<tr><td>2</td>
+<td>2</td>
+<td>6.3</td>
+<td>6</td>
+<td>close</td>
+</tr>
+<tr><td>2</td>
+<td>3</td>
+<td>8.3</td>
+<td>7</td>
+<td>close</td>
+</tr>
+<tr><td>3</td>
+<td>1</td>
+<td>4.5</td>
+<td>7</td>
+<td>close</td>
+</tr>
+<tr><td>3</td>
+<td>2</td>
+<td>7.2</td>
+<td>8</td>
+<td>close</td>
+</tr>
+<tr><td>3</td>
+<td>3</td>
+<td>9.4</td>
+<td>9</td>
+<td>close</td>
+</tr>
+<tr><td>4</td>
+<td>1</td>
+<td>5</td>
+<td>9</td>
+<td>4.0</td>
+</tr>
+<tr><td>4</td>
+<td>2</td>
+<td>7.9</td>
+<td>10</td>
+<td>close</td>
+</tr>
+<tr><td>4</td>
+<td>3</td>
+<td>10.4</td>
+<td>11</td>
+<td>close</td>
+</tr>
+<tr><td>5</td>
+<td>1</td>
+<td>5.4</td>
+<td>11</td>
+<td>5.6</td>
+</tr>
+<tr><td>5</td>
+<td>2</td>
+<td>8.5</td>
+<td>12</td>
+<td>3.5</td>
+</tr>
+<tr><td>5</td>
+<td>3</td>
+<td>11.2</td>
+<td>13</td>
+<td>close</td>
+</tr>
+<tr><td>6</td>
+<td>1</td>
+<td>5.7</td>
+<td>13</td>
+<td>7.3</td>
+</tr>
+<tr><td>6</td>
+<td>2</td>
+<td>9.1</td>
+<td>14</td>
+<td>4.9</td>
+</tr>
+<tr><td>6</td>
+<td>3</td>
+<td>11.9</td>
+<td>15</td>
+<td>3.1</td>
+</tr>
+</tbody>
+</table>
+<p>For a few values of <span class="math">\(h\)</span> and <span class="math">\(r\)</span> the <span class="math">\(2h+r\)</span> difficulty
+is close to the exact difficulty based on volume. As the cone gets
+longer (6m or more), the error increases.</p>
 </div>
 <div class="section" id="cuboid">
 <h3>Cuboid</h3>
@@ -575,7 +733,7 @@ then solve for the equilavent sphere’s radius, <span class="math">\(R\)</span>
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">cuboid</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_53_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_56_0.svg" type="image/svg+xml"></object>
 </div>
 <div class="section" id="cylinder">
 <h3>Cylinder</h3>
@@ -610,7 +768,7 @@ radius, <span class="math">\(r\)</span>.</p>
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">cylinder</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_58_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_61_0.svg" type="image/svg+xml"></object>
 </div>
 <div class="section" id="pyramid">
 <h3>Pyramid</h3>
@@ -649,7 +807,7 @@ complication.</p>
 <pre class="code python literal-block">
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dotprint</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">pyramid</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
 </pre>
-<object data="https://slott56.github.io/pages/output_64_0.svg" type="image/svg+xml"></object>
+<object data="area_effect_computations_files/area_effect_computations_67_0.svg" type="image/svg+xml"></object>
 </div>
 </div>
 <div class="section" id="additional-shapes-and-difficulty-computations">
@@ -660,87 +818,97 @@ difficulty, as <span class="math">\(5R\)</span>.</p>
 <p>Let’s summarize this in a tidy table we can use when designing spells
 with complicated areas of effect.</p>
 <pre class="code python literal-block">
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="w">
-</span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">redirect_stdout</span><span class="w">
-</span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">csv</span><span class="w">
+</span><span class="kn">import</span> <span class="nn">re</span>
 </pre>
 <pre class="code python literal-block">
 <span class="n">details</span> <span class="o">=</span> <span class="p">{</span><span class="w">
 </span>    <span class="s1">'Hemisphere'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;radius $r$&quot;</span><span class="p">,</span> <span class="n">hemisphere</span><span class="p">),</span><span class="w">
 </span>    <span class="s1">'Cone'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;height $h$, base radius $r$&quot;</span><span class="p">,</span> <span class="n">cone</span><span class="p">),</span><span class="w">
 </span>    <span class="s1">'Cuboid'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;height $h$, width $w$, depth $d$&quot;</span><span class="p">,</span> <span class="n">cuboid</span><span class="p">),</span><span class="w">
-</span>    <span class="s1">'Cylinder'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;eight $h$, radius $r$&quot;</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">),</span><span class="w">
+</span>    <span class="s1">'Cylinder'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;height $h$, radius $r$&quot;</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">),</span><span class="w">
 </span>    <span class="s1">'Pyramid'</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;height $h$, base width $w$, base length $l$&quot;</span><span class="p">,</span> <span class="n">pyramid</span><span class="p">),</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span><span class="w">
-</span><span class="k">with</span> <span class="n">redirect_stdout</span><span class="p">(</span><span class="n">buffer</span><span class="p">):</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| Shape  | Measures                                    | Equivalent Sphere R     |&quot;</span><span class="p">)</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|--------|---------------------------------------------|-------------------------|&quot;</span><span class="p">)</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| Sphere | radius $r$                                  | $R = r$                 |&quot;</span><span class="p">)</span><span class="w">
+</span><span class="k">def</span> <span class="nf">rules</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span><span class="w">
+    </span><span class="sd">&quot;&quot;&quot;Yields shape name, arg text, constant, and Latex for base formula, and difficulty formula.&quot;&quot;&quot;</span><span class="w">
 </span>    <span class="k">for</span> <span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">eq</span><span class="p">)</span> <span class="ow">in</span> <span class="n">details</span><span class="o">.</span><span class="n">items</span><span class="p">():</span><span class="w">
 </span>        <span class="n">cons</span><span class="p">,</span> <span class="nb">vars</span> <span class="o">=</span> <span class="n">constants</span><span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">R</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="w">
-</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> | $R = </span><span class="si">{</span><span class="n">latex</span><span class="p">(</span><span class="n">cons</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">vars</span><span class="p">)</span><span class="si">}</span><span class="s2">$ |&quot;</span><span class="p">)</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">()</span><span class="w">
-</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Difficulty is $5 \times R$.&quot;</span><span class="p">)</span><span class="w">
+</span>        <span class="n">cons_r</span> <span class="o">=</span> <span class="n">cons</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">
+</span>        <span class="k">yield</span> <span class="n">shape</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">cons</span><span class="p">,</span> <span class="n">latex</span><span class="p">(</span><span class="n">cons_r</span> <span class="o">*</span> <span class="nb">vars</span><span class="p">),</span> <span class="n">latex</span><span class="p">(</span><span class="n">cons_r</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">vars</span><span class="p">)</span><span class="w">
 
-</span><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span><span class="w">
+</span><span class="n">rule_supplement_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;area_effect_shapes.csv&quot;</span><span class="w">
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">rule_supplement_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rules_file</span><span class="p">:</span><span class="w">
+</span>    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">rules_file</span><span class="p">)</span><span class="w">
+</span>    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&quot;Shape&quot;</span><span class="p">,</span> <span class="s2">&quot;Measures&quot;</span><span class="p">,</span> <span class="s2">&quot;Equivalent Sphere R&quot;</span><span class="p">,</span> <span class="s2">&quot;Difficulty&quot;</span><span class="p">])</span><span class="w">
+</span>    <span class="n">rst_form</span> <span class="o">=</span> <span class="p">(</span><span class="w">
+</span>        <span class="p">[</span><span class="n">shape</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\$(\w+)\$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;:math:`\1`&quot;</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;:math:`</span><span class="si">{</span><span class="n">radius_formula</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;:math:`</span><span class="si">{</span><span class="n">diff_formula</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">]</span><span class="w">
+</span>        <span class="k">for</span> <span class="n">shape</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">cons</span><span class="p">,</span> <span class="n">radius_formula</span><span class="p">,</span> <span class="n">diff_formula</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">()</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+</span>    <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rst_form</span><span class="p">)</span><span class="w">
+</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;See&quot;</span><span class="p">,</span> <span class="n">rule_supplement_path</span><span class="p">)</span><span class="w">
+
+</span><span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="w">
+</span>    <span class="s2">&quot;Shape&quot;</span><span class="p">,</span><span class="s2">&quot;Measures&quot;</span><span class="p">,</span><span class="s2">&quot;Equivalent Sphere R&quot;</span><span class="p">,</span><span class="s2">&quot;Difficulty Weight&quot;</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="w">
+</span>    <span class="p">[</span><span class="s2">&quot;Sphere&quot;</span><span class="p">,</span> <span class="s2">&quot;radius $r$&quot;</span><span class="p">,</span> <span class="s2">&quot;$R = r$&quot;</span><span class="p">,</span> <span class="s2">&quot;$5r$&quot;</span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span><span class="k">for</span> <span class="n">shape</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">cons</span><span class="p">,</span> <span class="n">radius_formula</span><span class="p">,</span> <span class="n">diff_formula</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">():</span><span class="w">
+</span>    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="w">
+</span>        <span class="p">[</span><span class="n">shape</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$R = </span><span class="si">{</span><span class="n">radius_formula</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">diff_formula</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">]</span><span class="w">
+</span>    <span class="p">)</span><span class="w">
+
+</span><span class="n">md</span> <span class="o">=</span> <span class="n">Markdown</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;pipe&quot;</span><span class="p">))</span><span class="w">
 </span><span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
+</pre>
+<pre class="literal-block">
+See /Users/slott/Documents/Hobbies/Gaming/OpenD6/opend6-tools/notebooks/area_effect_shapes.csv
 </pre>
 <table border="1" class="docutils">
 <colgroup>
-<col width="9%" />
-<col width="59%" />
-<col width="32%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">S
-hape</th>
+<tr><th class="head">Shape</th>
 <th class="head">Measures</th>
 <th class="head">Equivalent Sphere R</th>
+<th class="head">Difficulty</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>Sp
-here</td>
+<tr><td>Hemisphere</td>
 <td>radius <span class="math">\(r\)</span></td>
-<td><span class="math">\(R = r\)</span></td>
-</tr>
-<tr><td>He
-misp
-here</td>
-<td>radius <span class="math">\(r\)</span></td>
-<td><span class="math">\(R = 0.79 r\)</span></td>
+<td><span class="math">\(0.79 r\)</span></td>
+<td><span class="math">\(4.0 r\)</span></td>
 </tr>
 <tr><td>Cone</td>
-<td>height <span class="math">\(h\)</span>, base radius
-<span class="math">\(r\)</span></td>
-<td><span class="math">\(R = 0.6
-3 \sqrt[3]{h r^{2}}\)</span></td>
+<td>height <span class="math">\(h\)</span>, base radius <span class="math">\(r\)</span></td>
+<td><span class="math">\(0.63 \sqrt[3]{h r^{2}}\)</span></td>
+<td><span class="math">\(3.1 \sqrt[3]{h r^{2}}\)</span></td>
 </tr>
-<tr><td>Cu
-boid</td>
-<td>height <span class="math">\(h\)</span>, width <span class="math">\(w\)</span>,
-depth <span class="math">\(d\)</span></td>
-<td><span class="math">\(R = 0
-.62 \sqrt[3]{d h w}\)</span></td>
+<tr><td>Cuboid</td>
+<td>height <span class="math">\(h\)</span>, width <span class="math">\(w\)</span>, depth <span class="math">\(d\)</span></td>
+<td><span class="math">\(0.62 \sqrt[3]{d h w}\)</span></td>
+<td><span class="math">\(3.1 \sqrt[3]{d h w}\)</span></td>
 </tr>
-<tr><td>Cyli
-nder</td>
-<td>eight <span class="math">\(h\)</span>, radius <span class="math">\(r\)</span></td>
-<td><span class="math">\(R = 0.9
-1 \sqrt[3]{h r^{2}}\)</span></td>
+<tr><td>Cylinder</td>
+<td>height <span class="math">\(h\)</span>, radius <span class="math">\(r\)</span></td>
+<td><span class="math">\(0.91 \sqrt[3]{h r^{2}}\)</span></td>
+<td><span class="math">\(4.5 \sqrt[3]{h r^{2}}\)</span></td>
 </tr>
-<tr><td>Pyr
-amid</td>
-<td>height <span class="math">\(h\)</span>, base width
-<span class="math">\(w\)</span>, base length <span class="math">\(l\)</span></td>
-<td><span class="math">\(R = 0
-.43 \sqrt[3]{h l w}\)</span></td>
+<tr><td>Pyramid</td>
+<td>height <span class="math">\(h\)</span>, base width <span class="math">\(w\)</span>, base length <span class="math">\(l\)</span></td>
+<td><span class="math">\(0.43 \sqrt[3]{h l w}\)</span></td>
+<td><span class="math">\(2.2 \sqrt[3]{h l w}\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Difficulty is <span class="math">\(5 \times R\)</span>.</p>
 </div>
 <script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
