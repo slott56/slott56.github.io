@@ -1,5 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-05-22T18:20:00-04:00</updated><entry><title>AI Generated Code Means Software Is Worthless</title><link href="https://slott56.github.io/2026-05-22_software_is_worthless.html" rel="alternate"></link><published>2026-05-22T18:20:00-04:00</published><updated>2026-05-22T18:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-05-22:/2026-05-22_software_is_worthless.html</id><summary type="html">&lt;p&gt;What does the AI bubble mean?  It means software has no intrinsic value.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-06-17T07:32:00-04:00</updated><entry><title>OO Design and Card Games</title><link href="https://slott56.github.io/2026-06-17_oodesign_card_games.html" rel="alternate"></link><published>2026-06-17T07:32:00-04:00</published><updated>2026-06-17T07:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-17:/2026-06-17_oodesign_card_games.html</id><summary type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+&lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
+&lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
+&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+&lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
+&lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
+&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
+Here's a use case diagram showing hands and the game overall; this can help provide some context.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Use Case Diagram" src="https://slott56.github.io/media/cards/usecase.png" /&gt;
+&lt;p class="caption"&gt;Use case diagram for card games like Cribbage and Canasta.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-humble-card"&gt;
+&lt;h2&gt;The Humble Card&lt;/h2&gt;
+&lt;p&gt;A card has a small object model, but is fraught with obscure meanings.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of card" src="https://slott56.github.io/media/cards/card.png" /&gt;
+&lt;p class="caption"&gt;Essential class diagram of a card.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Like all real-world problem domains, the &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt; class has methods and attributes with deeper meanings.
+The meanings are scattered throughout the hand, the game, the scoring, everything. Everything.&lt;/p&gt;
+&lt;p&gt;It can be &lt;strong&gt;very&lt;/strong&gt; difficult to isolate and encapsulate the details of a card.&lt;/p&gt;
+&lt;p&gt;Mostly because, the details of a card are not part of the card itself. They're part of the context in which the card is used.&lt;/p&gt;
+&lt;p&gt;The point here is to put two contexts under the microscope: Cribbage and Canasta.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cribbage"&gt;
+&lt;h2&gt;Cribbage&lt;/h2&gt;
+&lt;p&gt;Cribbage cards are used to form different scoring combinations:
+pairs, runs of three or more, cards that sum of 15, and flushes.&lt;/p&gt;
+&lt;p&gt;Note that three or four of a kind are not separate combinations.
+Three of a kind is called a &amp;quot;pair royal&amp;quot; and is scored as three separate pairs: the exhaustive enumeration of 3 things taken 2 at a time, &lt;span class="math"&gt;\(\binom{3}{2}\)&lt;/span&gt;.
+(Really.)&lt;/p&gt;
+&lt;p&gt;Each scoring combination has a distinct point value.
+In addition to the four listed above, there are also &amp;quot;his knobs&amp;quot; and &amp;quot;his heels&amp;quot; which are one card &lt;strong&gt;in a specific context&lt;/strong&gt;.
+The context is essential for this.&lt;/p&gt;
+&lt;p&gt;Flushes, similarly, have nuanced a context the other combinations lack.
+But, we get ahead of ourselves.
+The focus is on cards.&lt;/p&gt;
+&lt;p&gt;We need to distinguish between points scored in the game overall, and the number of &amp;quot;pips&amp;quot; on a card.
+(I've sometimes blurred this distinction. Learning more card games has helped me understand the error of my ways.)&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of Cribbage cards" src="https://slott56.github.io/media/cards/card_cribbage.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Cribbage cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The number of pips for a card is an abstraction, with two concrete implementations. For face cards (J, Q, K), the number of pips is 10.
+For rank cards, the number of pips is the rank (1 to 10).&lt;/p&gt;
+&lt;p&gt;A Deck of cards, is a collection.
+Creating the distinct card subclasses is the work of a &lt;tt class="docutils literal"&gt;Factory&lt;/tt&gt; method of the &lt;tt class="docutils literal"&gt;Deck&lt;/tt&gt; class.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Deck(list[Card]):
+
+    &amp;#64;staticmethod
+    def _make_card(rank: int, suit: str) -&amp;gt; Iterator[Card]:
+        if rank &amp;lt;= 10:
+            return RankCard(rank, suit)
+        else:
+            return FaceCard(rank, suit)
+
+    def __init__(self):
+        super().__init__(
+            Deck._make_card(r, s)
+            for s in ('♣︎', '♢︎', '♡', '♠')
+            for r in range(1, 14)
+        )
+&lt;/pre&gt;
+&lt;p&gt;A scoring combination of a 15 means the total of the pips on the cards is 15.
+This requires enumerating the powerset of all &lt;span class="math"&gt;\(2^5 = 32\)&lt;/span&gt; possible subsets of the four cards in the hand, plus the starter card.&lt;/p&gt;
+&lt;p&gt;(The &lt;tt class="docutils literal"&gt;powerset()&lt;/tt&gt; function on the &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; page is your friend here.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="canasta"&gt;
+&lt;h2&gt;Canasta&lt;/h2&gt;
+&lt;p&gt;In Canasta, on the other hand, there are no &amp;quot;sums&amp;quot; of pips.
+There is no ordering and there are no flushes.
+Canasta melds are based on simple equality of rank.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Of course there's a catch here.
+Actually two catches.&lt;/p&gt;
+&lt;p&gt;There are wild cards. And there are jokers.
+And, we'll have to worry about 3's, as yet two more special cases.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Jokers have neither suit nor rank.&lt;/li&gt;
+&lt;li&gt;2's are wild. They're essentially Jokers but with a rank and a suit. This will become a gnarly OO design issue.&lt;/li&gt;
+&lt;li&gt;3's are complicated.&lt;ul&gt;
+&lt;li&gt;Red 3's (3♢, 3♡) are set aside for scoring purposes, and are replaced when they arrive in a hand. (If they come from the discard pile, they're set aside, but not replaced.) This also means they can't start the discard pile, and they're treated specially when they're the last card in the stock. Complicated, right? But most of those exceptions are part of the game, not part of the essential definition of a card.&lt;/li&gt;
+&lt;li&gt;Black 3's (3︎♣︎, 3♠) cannot be drawn when they're on the top of the discard pile. (This is &lt;strong&gt;also&lt;/strong&gt; true of red 3's. It never occurs, however, that they can get discarded, since they're set aside when they arrive in the hand.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4's through 7's are only worth 5 points.&lt;/li&gt;
+&lt;li&gt;8's through K's are worth 10 points.&lt;/li&gt;
+&lt;li&gt;A's are worth 20 points.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those considerations force us to add a few things to each card.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_1.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Canasta cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This lets us consider the following concrete subclasses of &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt;.
+This should cover all the the needed aspects.
+Except, there's a problem.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Faulty class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_bad.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Canasta cards, with design problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The problem is the &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; complication.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Is it a subclass of the &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; class? If so, it would lack the rank and suit attributes.
+The alternative is unpleasant: the implementations of these attributes would have to be cloned from the &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; class to add to the &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; class.&lt;/li&gt;
+&lt;li&gt;Is it a subclass of the &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; class? If so, its various methods would have to be cloned from the implementation of the &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is where we can make use of a Mixin definition.
+This is a Protocol that's shared by classes without regard to a simple hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mixin-design"&gt;
+&lt;h2&gt;Mixin Design&lt;/h2&gt;
+&lt;p&gt;Each card has several clusters of aspects:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The rank and suit properties. (Except for Jokers.)&lt;/li&gt;
+&lt;li&gt;A &lt;tt class="docutils literal"&gt;match()&lt;/tt&gt; method. For &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt; cards, this is simply True. For &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt; cards, it must compare ranks.&lt;/li&gt;
+&lt;li&gt;The weird rules for 3's: red suited 3's get set aside and replaced, while black suited 3's can't be drawn from the discard pile.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We can unbundle these aspects, and assemble classes from reusable components.
+We call the overall design pattern a &amp;quot;mixin&amp;quot; design.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Base class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_base.png" /&gt;
+&lt;p class="caption"&gt;Base mixin classes for Canasta cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The distinction between &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt; cards is important.
+And clearly, to be a &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt;, the card needs all the aspects of a &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; card.
+The 2's are &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt;.
+All other ranks are &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;We can then build individual subclasses from these.
+We'll start with the two wildcard classes: &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Wild card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_wild.png" /&gt;
+&lt;p class="caption"&gt;Joker and Deuce wild card definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt;. The &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; is both &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt;.
+This is a very tidy capture of the nuances of these two distinct kinds of wild cards.&lt;/p&gt;
+&lt;p&gt;Of course the 3's include some additional features unique to their rank.
+The class definition overrides some definitions from the base &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt; class.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Trey card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_trey.png" /&gt;
+&lt;p class="caption"&gt;Red and Black Trey card definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Threes are -- in a way -- Naturals.  They're not Wild.
+The nuance is that other game rules preclude 3's from being melded or used as naturals to draw the discard pile.
+There's a special &amp;quot;can only meld as part of going out&amp;quot; rule that we've omitted to save space.
+It's yet another method that's True for the &lt;tt class="docutils literal"&gt;Trey&lt;/tt&gt; class and False for all others.&lt;/p&gt;
+&lt;p&gt;Finally, the rest of the deck.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Other card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_other.png" /&gt;
+&lt;p class="caption"&gt;The LowRank, HighRank, and Ace definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Each of these class has almost no unique code in it.
+Mostly the point value used to total up the points melded (and the points unmelded still in the hand.)&lt;/p&gt;
+&lt;p&gt;All in one diagram, this looks like a terrible tangle.
+Separated like this, we can see how the deck of cards is built from instances of
+all the concrete subclasses: &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Ace&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Trey&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;LowRank&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;HighRank&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-code"&gt;
+&lt;h2&gt;Python Code&lt;/h2&gt;
+&lt;p&gt;Here's some code to go with the pictures.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from abc import ABC, abstractmethod
+
+class Card(ABC):
+    &amp;#64;abstractmethod
+    def points(self) -&amp;gt; int: ...
+
+    &amp;#64;abstractmethod
+    def matches(self, other: &amp;quot;Card&amp;quot;) -&amp;gt; bool: ...
+
+    def replace_me(self) -&amp;gt; bool:
+        return False
+
+    def safe_discard(self) -&amp;gt; bool:
+        return False
+
+
+class Ranked:
+    rank: int
+    suit: str
+
+    def __init__(self, rank: int, suit: str) -&amp;gt; None:
+        self.rank = rank
+        self.suit = suit
+
+    def __str__(self) -&amp;gt; str:
+        ranks = {
+            1: 'A',
+            10: 'X',
+            11: 'J',
+            12: 'Q',
+            13: 'K'
+        } | {r: str(r) for r in range(2, 10)}
+        return f&amp;quot;{ranks[self.rank]}{self.suit}&amp;quot;
+
+    def __repr__(self) -&amp;gt; str:
+        return f&amp;quot;{self.__class__.__name__}({self.rank}, {self.suit})&amp;quot;
+
+class Natural(Ranked):
+    def matches(self, other: Card) -&amp;gt; bool:
+        match other:
+            case Wild():
+                return other.matches(self)
+            case Ranked():
+                return self.rank == other.rank
+            case _:
+                return NotImplemented
+
+class Wild():
+    def matches(self, other: Card) -&amp;gt; bool:
+        return True
+&lt;/pre&gt;
+&lt;p&gt;We can build the various card classes. With the mixin design, we can avoid repeating code.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Joker(Wild, Card):
+    def points(self) -&amp;gt; int:
+        return 50
+
+    def __str__(self) -&amp;gt; str:
+        return &amp;quot;? &amp;quot;
+
+    def __repr__(self) -&amp;gt; str:
+        return f&amp;quot;{self.__class__.__name__}()&amp;quot;
+
+class Deuce(Ranked, Wild, Card):
+    def points(self) -&amp;gt; int:
+        return 20
+
+class Trey(Natural, Card):
+    def points(self) -&amp;gt; int:
+        if self.suit in {'♢︎', '♡'}:
+            return 100
+        else:
+            return 5
+
+    def replace_me(self) -&amp;gt; bool:
+        return True
+
+    def safe_discard(self) -&amp;gt; bool:
+        return True
+
+class LowRank(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 5
+
+class HighRank(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 10
+
+class Ace(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 20
+&lt;/pre&gt;
+&lt;p&gt;It's a little tricky imagining how to build the deck as a whole, but a &lt;tt class="docutils literal"&gt;Factory&lt;/tt&gt; function is the ticket.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Deck(list[Card]):
+
+    &amp;#64;staticmethod
+    def _make_card(rank: int, suit: str) -&amp;gt; Card:
+        if rank == 1:
+            class_ = Ace
+        elif rank == 2:
+            class_ = Deuce
+        elif rank == 3:
+            class_ = Trey
+        elif rank in {4, 5, 6, 7}:
+            class_ = LowRank
+        else:
+            class_ = HighRank
+        return class_(rank, suit)
+
+    def __init__(self):
+        super().__init__(
+            Deck._make_card(r, s)
+            for s in ('♣︎', '♢︎', '♡', '♠')
+            for r in range(1, 14)
+            for _ in range(2)
+        )
+        self += [Joker()] * 4
+&lt;/pre&gt;
+&lt;p&gt;What's important is assembling the needed class definitions from a pool of separate aspects.
+The combination of aspects achieves reuse of the aspect definitions, and avoids trying to force the definitions into a too-simple class hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Architecture &amp; Design"></category><category term="python"></category><category term="object-oriented"></category></entry><entry><title>AI Generated Code Means Software Is Worthless</title><link href="https://slott56.github.io/2026-05-22_software_is_worthless.html" rel="alternate"></link><published>2026-05-22T18:20:00-04:00</published><updated>2026-05-22T18:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-05-22:/2026-05-22_software_is_worthless.html</id><summary type="html">&lt;p&gt;What does the AI bubble mean?  It means software has no intrinsic value.
 Since software is worthless, creating good software is a waste of effort.&lt;/p&gt;
 &lt;p&gt;This is a conclusion of reached from observing the software industry for a half-century&lt;/p&gt;
 &lt;div class="section" id="gather-round-the-fire-all-you-youngs"&gt;
@@ -11524,51 +11870,4 @@ GUnicorn will use &lt;tt class="docutils literal"&gt;PYTHONPATH&lt;/tt&gt; to fi
 often run as nobody, you'll need to make sure your code base is
 readable. But. Not. Writable.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="enterprise"></category><category term="#python"></category></entry><entry><title>The Enterprise COBOL Conundrum</title><link href="https://slott56.github.io/2022_07_12-the_enterprise_cobol_conundrum.html" rel="alternate"></link><published>2022-07-12T08:00:00-04:00</published><updated>2022-07-12T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-07-12:/2022_07_12-the_enterprise_cobol_conundrum.html</id><summary type="html">&lt;p&gt;Enterprise COBOL is both a liability and an asset. There's tangible
-value hidden in the code.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/looking-at-cobol"&gt;https://github.com/slott56/looking-at-cobol&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I've tweaked the presentation a little.&lt;/p&gt;
-&lt;p&gt;The essential ingredients in coping with COBOL are these:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Use something like &lt;a class="reference external" href="https://github.com/slott56/Stingray-Reader"&gt;Stingray
-Reader&lt;/a&gt; to parse COBOL
-DDE's and process the data …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Enterprise COBOL is both a liability and an asset. There's tangible
-value hidden in the code.&lt;/p&gt;
-&lt;p&gt;See &lt;a class="reference external" href="https://github.com/slott56/looking-at-cobol"&gt;https://github.com/slott56/looking-at-cobol&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I've tweaked the presentation a little.&lt;/p&gt;
-&lt;p&gt;The essential ingredients in coping with COBOL are these:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Use something like &lt;a class="reference external" href="https://github.com/slott56/Stingray-Reader"&gt;Stingray
-Reader&lt;/a&gt; to parse COBOL
-DDE's and process the data in the native format.&lt;/li&gt;
-&lt;li&gt;Analyze the Job Control Language (JCL) to work out the directed
-acyclic graph (DAG) that leads to file and database updates. These
-&amp;quot;master&amp;quot; files and databases are the data artifacts that matter most.
-This is the value-creating processing. There aren't many of these
-files.&lt;/li&gt;
-&lt;li&gt;Create a process to clone those files, and write Python data access
-modules to process the data. This is a two-way process. You'll be
-shipping files from your Z/OS world to another server running Python.
-In some cases, files will need to come back to Z/OS to permit legacy
-processing to continue.&lt;/li&gt;
-&lt;li&gt;Work backwards through the DAG to understand the COBOL apps that
-update the master files. These can be rewritten as Python apps that
-consume transactions and update master files/databases. Transfer
-transaction files out of Z/OS to a server doing the Python
-processing. Either update a shared database or send updated master
-files back to Z/OS if there's further processing that needs an
-updated master.&lt;/li&gt;
-&lt;li&gt;Continue working backwards through the DAG, replacing COBOL with
-Python until you've found source files for the transactions. Expect
-to find transaction validation programs as well as transaction
-analytics or reporting. The validations are useful; the analytics and
-reporting can be replaced with simpler, more modern tools.&lt;/li&gt;
-&lt;li&gt;When there's no more legacy processing that depends on a given master
-file or database, then the Z/OS can be formally decommissioned. Have
-a party.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This is relatively low risk work. It's high value. The COBOL code
-encodes enterprise knowledge. Preserving this knowledge in a more modern
-language is a value-maintaining exercise. Indeed, the improved clarity
-may be a value-creating exercise.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="COBOL"></category><category term="stingray reader"></category></entry></feed>
+</content><category term="Technologies"></category><category term="enterprise"></category><category term="#python"></category></entry></feed>

@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+actor Dealer
+actor Opponent
+usecase "Play a Hand" as hand
+usecase "Accumulate a Score" as game
+Dealer --> hand
+Dealer --> game
+Opponent --> hand
+Opponent --> game
+
+@enduml

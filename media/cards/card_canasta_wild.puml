@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include card_canasta_base.puml
+
+class Joker {
+    {static} points(): int = 50
+}
+
+class Deuce {
+    rank: int = 2
+    {static} points(): int = 20
+}
+
+Card <|--- Joker
+Wild <|-- Joker
+
+Card <|--- Deuce
+Ranked <|-- Deuce
+Wild <|-- Deuce
+
+hide Natural
+@enduml

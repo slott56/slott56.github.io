@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Card {
+    rank: int
+    suit: enum['♣︎', '♢︎', '♡', '♠']
+    {abstract} pips(): int
+}
+
+class FaceCard {
+    pips(): int
+}
+
+class RankCard {
+    pips(): int
+}
+
+Card <|-- FaceCard
+Card <|-- RankCard
+@enduml

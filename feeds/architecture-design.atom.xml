@@ -1,5 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2025-07-02T15:46:00-04:00</updated><entry><title>The Payout From Learning</title><link href="https://slott56.github.io/2025-06-29-the_payout_from_learning.html" rel="alternate"></link><published>2025-07-02T15:46:00-04:00</published><updated>2025-07-02T15:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-07-02:/2025-06-29-the_payout_from_learning.html</id><summary type="html">&lt;p&gt;The back-story.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-06-17T07:32:00-04:00</updated><entry><title>OO Design and Card Games</title><link href="https://slott56.github.io/2026-06-17_oodesign_card_games.html" rel="alternate"></link><published>2026-06-17T07:32:00-04:00</published><updated>2026-06-17T07:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-17:/2026-06-17_oodesign_card_games.html</id><summary type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+&lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
+&lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
+&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+&lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
+&lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
+&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
+Here's a use case diagram showing hands and the game overall; this can help provide some context.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Use Case Diagram" src="https://slott56.github.io/media/cards/usecase.png" /&gt;
+&lt;p class="caption"&gt;Use case diagram for card games like Cribbage and Canasta.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-humble-card"&gt;
+&lt;h2&gt;The Humble Card&lt;/h2&gt;
+&lt;p&gt;A card has a small object model, but is fraught with obscure meanings.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of card" src="https://slott56.github.io/media/cards/card.png" /&gt;
+&lt;p class="caption"&gt;Essential class diagram of a card.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Like all real-world problem domains, the &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt; class has methods and attributes with deeper meanings.
+The meanings are scattered throughout the hand, the game, the scoring, everything. Everything.&lt;/p&gt;
+&lt;p&gt;It can be &lt;strong&gt;very&lt;/strong&gt; difficult to isolate and encapsulate the details of a card.&lt;/p&gt;
+&lt;p&gt;Mostly because, the details of a card are not part of the card itself. They're part of the context in which the card is used.&lt;/p&gt;
+&lt;p&gt;The point here is to put two contexts under the microscope: Cribbage and Canasta.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cribbage"&gt;
+&lt;h2&gt;Cribbage&lt;/h2&gt;
+&lt;p&gt;Cribbage cards are used to form different scoring combinations:
+pairs, runs of three or more, cards that sum of 15, and flushes.&lt;/p&gt;
+&lt;p&gt;Note that three or four of a kind are not separate combinations.
+Three of a kind is called a &amp;quot;pair royal&amp;quot; and is scored as three separate pairs: the exhaustive enumeration of 3 things taken 2 at a time, &lt;span class="math"&gt;\(\binom{3}{2}\)&lt;/span&gt;.
+(Really.)&lt;/p&gt;
+&lt;p&gt;Each scoring combination has a distinct point value.
+In addition to the four listed above, there are also &amp;quot;his knobs&amp;quot; and &amp;quot;his heels&amp;quot; which are one card &lt;strong&gt;in a specific context&lt;/strong&gt;.
+The context is essential for this.&lt;/p&gt;
+&lt;p&gt;Flushes, similarly, have nuanced a context the other combinations lack.
+But, we get ahead of ourselves.
+The focus is on cards.&lt;/p&gt;
+&lt;p&gt;We need to distinguish between points scored in the game overall, and the number of &amp;quot;pips&amp;quot; on a card.
+(I've sometimes blurred this distinction. Learning more card games has helped me understand the error of my ways.)&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of Cribbage cards" src="https://slott56.github.io/media/cards/card_cribbage.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Cribbage cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The number of pips for a card is an abstraction, with two concrete implementations. For face cards (J, Q, K), the number of pips is 10.
+For rank cards, the number of pips is the rank (1 to 10).&lt;/p&gt;
+&lt;p&gt;A Deck of cards, is a collection.
+Creating the distinct card subclasses is the work of a &lt;tt class="docutils literal"&gt;Factory&lt;/tt&gt; method of the &lt;tt class="docutils literal"&gt;Deck&lt;/tt&gt; class.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Deck(list[Card]):
+
+    &amp;#64;staticmethod
+    def _make_card(rank: int, suit: str) -&amp;gt; Iterator[Card]:
+        if rank &amp;lt;= 10:
+            return RankCard(rank, suit)
+        else:
+            return FaceCard(rank, suit)
+
+    def __init__(self):
+        super().__init__(
+            Deck._make_card(r, s)
+            for s in ('♣︎', '♢︎', '♡', '♠')
+            for r in range(1, 14)
+        )
+&lt;/pre&gt;
+&lt;p&gt;A scoring combination of a 15 means the total of the pips on the cards is 15.
+This requires enumerating the powerset of all &lt;span class="math"&gt;\(2^5 = 32\)&lt;/span&gt; possible subsets of the four cards in the hand, plus the starter card.&lt;/p&gt;
+&lt;p&gt;(The &lt;tt class="docutils literal"&gt;powerset()&lt;/tt&gt; function on the &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; page is your friend here.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="canasta"&gt;
+&lt;h2&gt;Canasta&lt;/h2&gt;
+&lt;p&gt;In Canasta, on the other hand, there are no &amp;quot;sums&amp;quot; of pips.
+There is no ordering and there are no flushes.
+Canasta melds are based on simple equality of rank.&lt;/p&gt;
+&lt;p&gt;But.&lt;/p&gt;
+&lt;p&gt;Of course there's a catch here.
+Actually two catches.&lt;/p&gt;
+&lt;p&gt;There are wild cards. And there are jokers.
+And, we'll have to worry about 3's, as yet two more special cases.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Jokers have neither suit nor rank.&lt;/li&gt;
+&lt;li&gt;2's are wild. They're essentially Jokers but with a rank and a suit. This will become a gnarly OO design issue.&lt;/li&gt;
+&lt;li&gt;3's are complicated.&lt;ul&gt;
+&lt;li&gt;Red 3's (3♢, 3♡) are set aside for scoring purposes, and are replaced when they arrive in a hand. (If they come from the discard pile, they're set aside, but not replaced.) This also means they can't start the discard pile, and they're treated specially when they're the last card in the stock. Complicated, right? But most of those exceptions are part of the game, not part of the essential definition of a card.&lt;/li&gt;
+&lt;li&gt;Black 3's (3︎♣︎, 3♠) cannot be drawn when they're on the top of the discard pile. (This is &lt;strong&gt;also&lt;/strong&gt; true of red 3's. It never occurs, however, that they can get discarded, since they're set aside when they arrive in the hand.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4's through 7's are only worth 5 points.&lt;/li&gt;
+&lt;li&gt;8's through K's are worth 10 points.&lt;/li&gt;
+&lt;li&gt;A's are worth 20 points.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those considerations force us to add a few things to each card.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_1.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Canasta cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This lets us consider the following concrete subclasses of &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt;.
+This should cover all the the needed aspects.
+Except, there's a problem.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Faulty class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_bad.png" /&gt;
+&lt;p class="caption"&gt;Class diagram for Canasta cards, with design problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The problem is the &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; complication.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Is it a subclass of the &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; class? If so, it would lack the rank and suit attributes.
+The alternative is unpleasant: the implementations of these attributes would have to be cloned from the &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; class to add to the &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; class.&lt;/li&gt;
+&lt;li&gt;Is it a subclass of the &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; class? If so, its various methods would have to be cloned from the implementation of the &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; class.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is where we can make use of a Mixin definition.
+This is a Protocol that's shared by classes without regard to a simple hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mixin-design"&gt;
+&lt;h2&gt;Mixin Design&lt;/h2&gt;
+&lt;p&gt;Each card has several clusters of aspects:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The rank and suit properties. (Except for Jokers.)&lt;/li&gt;
+&lt;li&gt;A &lt;tt class="docutils literal"&gt;match()&lt;/tt&gt; method. For &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt; cards, this is simply True. For &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt; cards, it must compare ranks.&lt;/li&gt;
+&lt;li&gt;The weird rules for 3's: red suited 3's get set aside and replaced, while black suited 3's can't be drawn from the discard pile.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We can unbundle these aspects, and assemble classes from reusable components.
+We call the overall design pattern a &amp;quot;mixin&amp;quot; design.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Base class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_base.png" /&gt;
+&lt;p class="caption"&gt;Base mixin classes for Canasta cards.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The distinction between &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt; cards is important.
+And clearly, to be a &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt;, the card needs all the aspects of a &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; card.
+The 2's are &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt;.
+All other ranks are &lt;tt class="docutils literal"&gt;Natural&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;We can then build individual subclasses from these.
+We'll start with the two wildcard classes: &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Wild card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_wild.png" /&gt;
+&lt;p class="caption"&gt;Joker and Deuce wild card definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt; is &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt;. The &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt; is both &lt;tt class="docutils literal"&gt;Wild&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Ranked&lt;/tt&gt;.
+This is a very tidy capture of the nuances of these two distinct kinds of wild cards.&lt;/p&gt;
+&lt;p&gt;Of course the 3's include some additional features unique to their rank.
+The class definition overrides some definitions from the base &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt; class.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Trey card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_trey.png" /&gt;
+&lt;p class="caption"&gt;Red and Black Trey card definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Threes are -- in a way -- Naturals.  They're not Wild.
+The nuance is that other game rules preclude 3's from being melded or used as naturals to draw the discard pile.
+There's a special &amp;quot;can only meld as part of going out&amp;quot; rule that we've omitted to save space.
+It's yet another method that's True for the &lt;tt class="docutils literal"&gt;Trey&lt;/tt&gt; class and False for all others.&lt;/p&gt;
+&lt;p&gt;Finally, the rest of the deck.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Other card class diagram of Canasta cards" src="https://slott56.github.io/media/cards/card_canasta_other.png" /&gt;
+&lt;p class="caption"&gt;The LowRank, HighRank, and Ace definitions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Each of these class has almost no unique code in it.
+Mostly the point value used to total up the points melded (and the points unmelded still in the hand.)&lt;/p&gt;
+&lt;p&gt;All in one diagram, this looks like a terrible tangle.
+Separated like this, we can see how the deck of cards is built from instances of
+all the concrete subclasses: &lt;tt class="docutils literal"&gt;Joker&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Ace&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Deuce&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Trey&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;LowRank&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;HighRank&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-code"&gt;
+&lt;h2&gt;Python Code&lt;/h2&gt;
+&lt;p&gt;Here's some code to go with the pictures.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from abc import ABC, abstractmethod
+
+class Card(ABC):
+    &amp;#64;abstractmethod
+    def points(self) -&amp;gt; int: ...
+
+    &amp;#64;abstractmethod
+    def matches(self, other: &amp;quot;Card&amp;quot;) -&amp;gt; bool: ...
+
+    def replace_me(self) -&amp;gt; bool:
+        return False
+
+    def safe_discard(self) -&amp;gt; bool:
+        return False
+
+
+class Ranked:
+    rank: int
+    suit: str
+
+    def __init__(self, rank: int, suit: str) -&amp;gt; None:
+        self.rank = rank
+        self.suit = suit
+
+    def __str__(self) -&amp;gt; str:
+        ranks = {
+            1: 'A',
+            10: 'X',
+            11: 'J',
+            12: 'Q',
+            13: 'K'
+        } | {r: str(r) for r in range(2, 10)}
+        return f&amp;quot;{ranks[self.rank]}{self.suit}&amp;quot;
+
+    def __repr__(self) -&amp;gt; str:
+        return f&amp;quot;{self.__class__.__name__}({self.rank}, {self.suit})&amp;quot;
+
+class Natural(Ranked):
+    def matches(self, other: Card) -&amp;gt; bool:
+        match other:
+            case Wild():
+                return other.matches(self)
+            case Ranked():
+                return self.rank == other.rank
+            case _:
+                return NotImplemented
+
+class Wild():
+    def matches(self, other: Card) -&amp;gt; bool:
+        return True
+&lt;/pre&gt;
+&lt;p&gt;We can build the various card classes. With the mixin design, we can avoid repeating code.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Joker(Wild, Card):
+    def points(self) -&amp;gt; int:
+        return 50
+
+    def __str__(self) -&amp;gt; str:
+        return &amp;quot;? &amp;quot;
+
+    def __repr__(self) -&amp;gt; str:
+        return f&amp;quot;{self.__class__.__name__}()&amp;quot;
+
+class Deuce(Ranked, Wild, Card):
+    def points(self) -&amp;gt; int:
+        return 20
+
+class Trey(Natural, Card):
+    def points(self) -&amp;gt; int:
+        if self.suit in {'♢︎', '♡'}:
+            return 100
+        else:
+            return 5
+
+    def replace_me(self) -&amp;gt; bool:
+        return True
+
+    def safe_discard(self) -&amp;gt; bool:
+        return True
+
+class LowRank(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 5
+
+class HighRank(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 10
+
+class Ace(Natural, Card):
+    def points(self) -&amp;gt; int:
+        return 20
+&lt;/pre&gt;
+&lt;p&gt;It's a little tricky imagining how to build the deck as a whole, but a &lt;tt class="docutils literal"&gt;Factory&lt;/tt&gt; function is the ticket.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Deck(list[Card]):
+
+    &amp;#64;staticmethod
+    def _make_card(rank: int, suit: str) -&amp;gt; Card:
+        if rank == 1:
+            class_ = Ace
+        elif rank == 2:
+            class_ = Deuce
+        elif rank == 3:
+            class_ = Trey
+        elif rank in {4, 5, 6, 7}:
+            class_ = LowRank
+        else:
+            class_ = HighRank
+        return class_(rank, suit)
+
+    def __init__(self):
+        super().__init__(
+            Deck._make_card(r, s)
+            for s in ('♣︎', '♢︎', '♡', '♠')
+            for r in range(1, 14)
+            for _ in range(2)
+        )
+        self += [Joker()] * 4
+&lt;/pre&gt;
+&lt;p&gt;What's important is assembling the needed class definitions from a pool of separate aspects.
+The combination of aspects achieves reuse of the aspect definitions, and avoids trying to force the definitions into a too-simple class hierarchy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Architecture &amp; Design"></category><category term="python"></category><category term="object-oriented"></category></entry><entry><title>The Payout From Learning</title><link href="https://slott56.github.io/2025-06-29-the_payout_from_learning.html" rel="alternate"></link><published>2025-07-02T15:46:00-04:00</published><updated>2025-07-02T15:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-07-02:/2025-06-29-the_payout_from_learning.html</id><summary type="html">&lt;p&gt;The back-story.
 See &lt;a class="reference external" href="https://slott56.github.io/2025-06-29-an_investment_in_learning.html"&gt;Coping With Complexity&lt;/a&gt;.
 See &lt;a class="reference external" href="https://github.com/cloud-custodian/cel-python"&gt;https://github.com/cloud-custodian/cel-python&lt;/a&gt; for the code base.&lt;/p&gt;
 &lt;p&gt;Back around May 26, I created this branch.
@@ -7828,39 +8174,4 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;p&gt;At some point the cost of KTLO prevents work from being done.  Everyone is tied up replacing fuses, tracking down wiring messes, and trying to troubleshoot production machinery which doesn't work correctly.&lt;/p&gt;
 &lt;p&gt;Eventually, after enough frustration and turnover, this is &amp;quot;business as usual.&amp;quot;  Nothing can get done because we're so busy keeping the lights on.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="management"></category></entry><entry><title>State-Based Object Modeling</title><link href="https://slott56.github.io/2007_06_25-state_based_object_modeling.html" rel="alternate"></link><published>2007-06-25T13:29:00-04:00</published><updated>2007-06-25T13:29:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-06-25:/2007_06_25-state_based_object_modeling.html</id><summary type="html">&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2005_10_16-object_modeling_revised.html"&gt;Object Modeling&lt;/a&gt; , I repeated a procedure for object identification that comes from the classic &lt;a class="reference external" href="http://www.amazon.com/Object-Oriented-Modeling-Design-James-Rumbaugh/dp/0136298419"&gt;Object-Oriented Modeling and Design&lt;/a&gt;  (Rumbaugh, et. al.)&lt;/p&gt;
-&lt;p&gt;Objects are characterized by their state change.  Therefore, to distinguish among classes of objects, we need to determine if two objects have the same states and state transitions …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In &lt;a class="reference external" href="https://slott56.github.io/2005_10_16-object_modeling_revised.html"&gt;Object Modeling&lt;/a&gt; , I repeated a procedure for object identification that comes from the classic &lt;a class="reference external" href="http://www.amazon.com/Object-Oriented-Modeling-Design-James-Rumbaugh/dp/0136298419"&gt;Object-Oriented Modeling and Design&lt;/a&gt;  (Rumbaugh, et. al.)&lt;/p&gt;
-&lt;p&gt;Objects are characterized by their state change.  Therefore, to distinguish among classes of objects, we need to determine if two objects have the same states and state transitions.&lt;/p&gt;
-&lt;p&gt;States are defined by the object that undergoes the state change.  Therefore, we need to examine the object to distinguish among its states.  We need to know the object in order to know the states; we need to know the states in order to know the object.&lt;/p&gt;
-&lt;p&gt;How do we cut through this tangled hierarchy, and locate some place we can begin?&lt;/p&gt;
-&lt;p&gt;One of my &lt;a class="reference external" href="http://www.moleskine.com/eng/default.htm"&gt;Mokeskines&lt;/a&gt;  and this Blog have many features in common.  They have very similar state transitions - writing, reviewing, editing, etc.  There are, however, some slight differences in state transition rules; based on those differences we can see that there may be a common superclass, but the individual subclasses are distinct.  In particular, my Moleskine has no &amp;quot;power off&amp;quot; state.&lt;/p&gt;
-&lt;p&gt;Can we start from object identification and then determine state?  Or do we have to begin with state and use this to inform object identification?&lt;/p&gt;
-&lt;div class="section" id="procedure"&gt;
-&lt;h2&gt;Procedure&lt;/h2&gt;
-&lt;p&gt;Try to begin with &lt;a class="reference external" href="https://slott56.github.io/2005_10_16-object_modeling_revised.html"&gt;noun analysis&lt;/a&gt; .  If, for some reason, you have only one noun, or cannot distinguish among the nouns, then you probably have very serious scope definition problems.  For example, if the only noun you can identify is &amp;quot;the system&amp;quot; or &amp;quot;the user&amp;quot; then your initial summary is deeply flawed.&lt;/p&gt;
-&lt;p&gt;Step 4 suggests that you bounce back and forth among categorizing, associating, defining attributes and defining operations.  An addition activity is defining states.&lt;/p&gt;
-&lt;p&gt;State definition can be tackled for a given noun using something like the following procedure.&lt;/p&gt;
-&lt;ol class="arabic"&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Find examples&lt;/strong&gt;. To prevent fruitless hypothetical and counterfactual discussions it helps to have tangible examples of an object in each state.  For business documents, get print-outs.  For other kinds of objects, use notecards or sticky notes, or &lt;a class="reference external" href="http://www.kooshball.com/"&gt;Koosh Balls&lt;/a&gt; ; use something tangible.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Characterize Each State&lt;/strong&gt;. For each example of a given state, highlight (or circle or underline or write down) the attributes which define the state.  States are defined by the attributes; they are not &amp;quot;implied&amp;quot; or &amp;quot;obvious&amp;quot;.  Expert judgement isn't part of this.  If things are implied, obvious or require judgement, you'll need to add attributes.  The best case is adding attributes to make the implied state into a manifest state.  A bad case is adding attributes that are going to be set by having an expert (i.e., a person) look at the other attributes and make their oracular pronouncement.  The worst case is where you cannot establish a finite, definite list of attributes that characterize the states.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Confirm&lt;/strong&gt;. At this point, you may have learned many things.  You may have, for example, found that your &amp;quot;object&amp;quot; was really a composite and you have multiple, parallel sets of states.  You may have found, for example, that your object has several associations, each of which has it's own set of states.  You may have found that some states are indistinguishable and other states have substates.  This is all good.  In some cases, you'll have to rework your object model, bounce around among categories, associations, attributes, operations, and begin this process again with a new object model.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Determine Transitions&lt;/strong&gt;.  We're not fully specifying things; we're only discovering.  It's important to set aside details for the moment, since many kinds of details only serve to muddy the waters.  In particular, processing details -- which are stateful -- can often confuse the identification of states.  To make it possible to see what's going on, the magic words &amp;quot;processing happens&amp;quot; have to be used when defining the transitions.&lt;/p&gt;
-&lt;p&gt;Examine each state, saying the words &amp;quot;processing happens&amp;quot; and determine what update will move the object to the next state.  The point is to avoid the details of the processing and focus on the net effect of the processing.  Some processing is an object's internal response to arriving in a state; other processing is initiated from outside the object to force it to a particular state.  &amp;quot;Processing Happens&amp;quot; and now the object is in a new state; capture this relationship first, provide details later.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Elaborate&lt;/strong&gt;. You've learned a great deal, and can add a few details at this point.  First, check for orphan states.  If you've got an object state (you have an example, right?) but you don't have any transitions to or from this state, you've got more work to do.  You may be missing some transitions, but you may also be missing some states; states which are intermediate between states you've identified and this orphan state.  An orphan state can also be caused by examining a composite object; this may be a state of one component of the composite object.&lt;/p&gt;
-&lt;p&gt;You should have identified inital and final states, also.  Objects begin their existence in initial states.  Some kind of objects will reach a final state, from which no more state transitions are possible.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Reconcile&lt;/strong&gt;.  You can now march an object through the various state transitions beginning from one of the initial states.  Generally, each &amp;quot;path&amp;quot; or sequence of transitions is a scenario for a potential life of this object.  It is essential that the tangible examples be compared against this model to be sure that all states are part of a scenario and all the scenarios make sense when compared with use cases or other source documentation.  If necessary, rework other elements of the model based on what has been learned so far.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Elaborate&lt;/strong&gt;.  Now, at long last, you can write detailed specifications.  The reason details are left for last is because people often confuse state (&amp;quot;static&amp;quot;, &amp;quot;status&amp;quot;) with processing.  It's inevitable to think of the sequence of steps in an object's processing, not the stages along that lifeline.  At this time, you can finally write state entry and exit processing; this is processing which sets attributes, but doesn't change the overall state being modeled.  Each transition can be annotated with events, guard conditions and processing.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;At this point, you should have a state transition or activity model that helps define your object class.  You can select a diagram, either state diagram or activity diagram, depending on what features need to be emphasized in the state model.&lt;/p&gt;
-&lt;p&gt;Use a state diagram when there is relatively little processing or the entity is relatively active.  When there is relatively little processing, a quick summary on a transition line, or within the state's rectangle conveys everything that's required.&lt;/p&gt;
-&lt;p&gt;Use an activity diagram when there is rather complex processing or the entity is passive, and is acted on by other objects.  An activity diagram adds activity states or responsibility swimlanes to the basic state machine notation.&lt;/p&gt;
-&lt;p&gt;In some cases, both diagrams are required.  The state diagram shows the states and their transitions for a given object class.  An activity diagram may show the ways this object collaborates with other objects to achieve those state transitions.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="object-oriented design"></category><category term="methodology"></category><category term="process"></category><category term="agile"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="management"></category></entry></feed>

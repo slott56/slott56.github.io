@@ -421,7 +421,6 @@ function.)
 We're aimed to start disentangling the HTML and CGI overheads from the
 application and narrowing our focus onto the useful things it does.
 
-| 
 
 
 

@@ -63,7 +63,7 @@ serve:
 serve-global:
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS) -b $(SERVER)
 
-devserver:
+devserver: cards_pics
 	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 devserver-global:
@@ -73,12 +73,15 @@ publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 	echo "Did you mean make github?"
 
-github:
+github: cards_pics
 	# git fetch
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(PUBOUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 	# git add *
 	# git commit -m "Blog updates through yyyy-mmm-dd"
 	# git push
 
+
+cards_pics:
+	cd content/media/cards && $(MAKE)
 
 .PHONY: html help clean regenerate serve serve-global devserver publish github

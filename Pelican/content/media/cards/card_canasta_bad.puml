@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Design Attempt (with problems)
+
+abstract class Card {
+    {static} {abstract} points(): int
+    {abstract} matches(Card): bool
+    {abstract} replace_me(): bool
+    {abstract} safe_from_discard(): bool
+}
+
+class Joker {
+    {static} points(): int = 50
+    matches(Card): bool = True
+    replace_me(): bool = False
+    safe_discard(): bool = False
+}
+
+class Ranked {
+    rank: int
+    suit: enum['♣︎', '♢︎', '♡', '♠']
+    matches(Card): bool
+    replace_me(): bool = False
+    safe_discard(): bool = False
+}
+
+class Deuce {
+    rank: int = 2
+    {static} points(): int = 20
+    matches(Card): bool = True
+}
+
+class Trey {
+    rank: int = 3
+    {static} points(): int
+    replace_me(): bool
+    safe_discard(): bool = True
+}
+
+class LowRank {
+    {static} points(): int = 5
+    ---
+    <i>rank of 4 to 7</i>
+}
+
+class HighRank {
+    {static} points(): int = 10
+    ---
+    <i>rank of 8 to K</i>
+}
+
+class Ace {
+    rank: int = 1
+    {static} points(): int = 20
+}
+
+Card <|-- Joker
+Card <|-- Ranked
+Ranked <|-- Trey
+Ranked <|--- LowRank
+Ranked <|--- HighRank
+Ranked <|---- Ace
+
+Joker <|.. Deuce: "Is a Joker?"
+Ranked <|.. Deuce: "Is a Ranked?"
+
+note "Which is best parent class for Deuce?" as N1
+Deuce .. N1
+
+@enduml

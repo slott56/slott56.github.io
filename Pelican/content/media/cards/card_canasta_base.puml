@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Card {
+    {static} {abstract} points(): int
+    {abstract} matches(Card): bool
+    replace_me(): bool = False
+    safe_discard(): bool = False
+}
+
+class Ranked <<Protocol>> {
+    rank: int
+    suit: str
+}
+
+class Wild <<Protocol>> {
+    matches(Card): bool = True
+}
+
+class Natural <<Protocol>> {
+    matches(Card): bool
+}
+
+Ranked <|-- Natural
+
+@enduml

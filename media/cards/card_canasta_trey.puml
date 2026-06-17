@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include card_canasta_base.puml
+
+class Trey {
+    rank: int = 3
+    {static} points(): int
+    replace_me(Card): bool = True
+    safe_discard(Card): bool = True
+}
+
+Card <|--- Trey
+Natural <|-- Trey
+
+hide Wild
+@enduml

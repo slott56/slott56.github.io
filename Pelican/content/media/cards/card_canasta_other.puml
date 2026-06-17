@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include card_canasta_base.puml
+
+class LowRank {
+    {static} points(): int = 5
+    ---
+    <i>rank of 4 to 7</i>
+}
+
+class HighRank {
+    {static} points(): int = 10
+    ---
+    <i>rank of 8 to K</i>
+}
+
+class Ace {
+    rank: int = 1
+    {static} points(): int = 20
+}
+
+Card <|-- Ace
+Natural <|-- Ace
+
+Card <|--- LowRank
+Natural <|--- LowRank
+
+Card <|---- HighRank
+Natural <|---- HighRank
+
+hide Wild
+@enduml
