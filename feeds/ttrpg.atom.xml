@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-05-06T07:46:00-04:00</updated><entry><title>Experience Points and Levels</title><link href="https://slott56.github.io/2026-05-06_experience_points_and_levels.html" rel="alternate"></link><published>2026-05-06T07:46:00-04:00</published><updated>2026-05-06T07:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-05-06:/2026-05-06_experience_points_and_levels.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - TTRPG</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/ttrpg.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-06-21T09:31:00-04:00</updated><entry><title>OpenD6 Tools Project -- Status</title><link href="https://slott56.github.io/2026-06-21_opend6_tools_status.html" rel="alternate"></link><published>2026-06-21T09:31:00-04:00</published><updated>2026-06-21T09:31:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-21:/2026-06-21_opend6_tools_status.html</id><summary type="html">&lt;p&gt;See the &lt;a class="reference external" href="https://slott56.github.io/tag/opend6.html"&gt;OpenD6&lt;/a&gt; tag for a bunch of related content.
+I have a DSL for OpenD6 spells and OpenD6 characters.
+At this moment, the test suite statistics are these:&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="40%" /&gt;
+&lt;col width="27%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Statements&lt;/td&gt;
+&lt;td&gt;Misses&lt;/td&gt;
+&lt;td&gt;Coverage&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2701&lt;/td&gt;
+&lt;td&gt;166&lt;/td&gt;
+&lt;td&gt;94%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;The OpenD6 tools ahve two DSL's.
+These differ in a profound way:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Spell definitions …&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;See the &lt;a class="reference external" href="https://slott56.github.io/tag/opend6.html"&gt;OpenD6&lt;/a&gt; tag for a bunch of related content.
+I have a DSL for OpenD6 spells and OpenD6 characters.
+At this moment, the test suite statistics are these:&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="40%" /&gt;
+&lt;col width="27%" /&gt;
+&lt;col width="33%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Statements&lt;/td&gt;
+&lt;td&gt;Misses&lt;/td&gt;
+&lt;td&gt;Coverage&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;2701&lt;/td&gt;
+&lt;td&gt;166&lt;/td&gt;
+&lt;td&gt;94%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="section" id="background"&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;The OpenD6 tools ahve two DSL's.
+These differ in a profound way:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Spell definitions are based on a difficulty budget. This is complicated, because some aspects increase the difficulty, while others decrease the difficulty.&lt;/li&gt;
+&lt;li&gt;Character and Creature definitions are based on a dice allocation for attributes, skills, advantages, special abilities, and disadvantages. This is not as complicated: one can start with a handful of 18 dice and physically push them around the character sheet to make a charactet that fits a simplistic budget.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are more complications, of course. A lot more.&lt;/p&gt;
+&lt;p&gt;One response to the complications is to simplify the rules. This is laudable.
+Many people have offered simplified D6 systems. I'm not that clever.&lt;/p&gt;
+&lt;p&gt;Another choice is to create tools to help manage the complexities. This is what I chose to do, instead.
+I don't have a really &lt;strong&gt;good&lt;/strong&gt; reason for this.
+But I can implement a DSL for very complicated TTRPG rules.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="an-example"&gt;
+&lt;h2&gt;An Example&lt;/h2&gt;
+&lt;p&gt;From the unit test suite...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;amulet_protection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Amulet of Protection&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;notes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;An oddly-shaped pendant on a thick leather cord envelopes the wearer in a defensive aura&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;effect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;SpecialAbilityEffect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SpecialAbilityType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attack_resistance&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;non-enchanted weapons&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;modifications&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Limitation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LimitationType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;burn_out&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;can be lost or stolen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;area_effect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;AreaEffectAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2m radius sphere&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;other_aspects&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;fragile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;GenericAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Fragile&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;other_conditions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="n"&gt;GenericAspect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;-1 under a new moon&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Jewelry&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;H (200 G)&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Clearly, it's wordy with a level of redundancy that some might find needless.&lt;/p&gt;
+&lt;p&gt;While annoying to some, the redundancy is helpful for validation.
+If the &lt;tt class="docutils literal"&gt;effect&lt;/tt&gt; isn't some kind of &lt;tt class="docutils literal"&gt;Effect&lt;/tt&gt; class, then there's a fundamental problem with the definition.
+If, as another example, the &lt;tt class="docutils literal"&gt;effect&lt;/tt&gt; is omitted, the definition is incomplete.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;name=...&lt;/span&gt;&lt;/tt&gt; syntax is pure Python; it makes it easy to have a mixture several categories of aspects.
+Some aspects have a formal definition (like a &lt;tt class="docutils literal"&gt;SpecialAbilityEffect&lt;/tt&gt;) while other categories of aspects are best left as descriptive text.
+While the text is important for role-playing, the more formal pieces (like the &lt;tt class="docutils literal"&gt;AreaEffect&lt;/tt&gt;) are required by the game rules to help the GM and players can agree on what happens when someone is wearing this amulet and is whacked over the head with a folding chair.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="objectives"&gt;
+&lt;h2&gt;Objectives&lt;/h2&gt;
+&lt;p&gt;This is &lt;strong&gt;not&lt;/strong&gt; a VTT like &lt;a class="reference external" href="https://roll20.net"&gt;https://roll20.net&lt;/a&gt; or &lt;a class="reference external" href="https://www.fantasygrounds.com"&gt;https://www.fantasygrounds.com&lt;/a&gt;.
+It doesn't play a TTRPG.&lt;/p&gt;
+&lt;p&gt;&amp;quot;What,&amp;quot; you may ask, &amp;quot;is the point?&amp;quot;&lt;/p&gt;
+&lt;p&gt;As someone who's got a unique world, and a campaign in that world, I really need to be &lt;strong&gt;sure&lt;/strong&gt; my non-player characters, creatures, items, spells, etc., and yet more etc., have a reasonable budget when compared with the player characters.&lt;/p&gt;
+&lt;p&gt;For OpenD6 Fantasy the player characters often start with 18D of attributes, 7D of skills, and a net zero of advantages, disadvantages, and special abilities.
+I can't go creating a pool of NPC's with budgets outlandishly larger than this.
+I also can't expect players to have any fun when the NPC's are all based on 12D of attributes and 1D of skills.&lt;/p&gt;
+&lt;p&gt;This may also be useful a GM to help a first-time player get their character's budget correct.
+It is kind of technical-looking, and I've made no effort to create a GUI usable by people who don't happen to be technically tool-savvy.
+Jupyter Lab is usable by a wide spectrum of folks; in my experience, anyone who can make MS-Word work should be able to use this. (I can't make MS-Word work, my level of technical tool-use is relatively low.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-do-i-use-it"&gt;
+&lt;h2&gt;How do I use it?&lt;/h2&gt;
+&lt;p&gt;I use these tools with &lt;a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/index.html"&gt;Jupyter La&lt;/a&gt;.
+I can put the details for a thing in a cell, then compute the resulting budget by clicking the little green triangle.&lt;/p&gt;
+&lt;p&gt;Doing this supports a Change-Compute-Consider cycle of thinking abouts items, characters, monsters, etc.
+Make a change; compute the impact; consider the overall scenario, campaign, and world.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Jupyter Lab, showing a Spell example" src="https://slott56.github.io/media/lab_3.png" /&gt;
+&lt;p class="caption"&gt;Here's a Jupyter Lab notebook, showing the &amp;quot;Add Chapter&amp;quot; spell and the difficulty computation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-next"&gt;
+&lt;h2&gt;What's Next?&lt;/h2&gt;
+&lt;p&gt;Clearly, 100% code coverage is the next step.&lt;/p&gt;
+&lt;p&gt;My world book and campaign book are reasonably complete, which means I have all
+the features I need in the &lt;tt class="docutils literal"&gt;opend6_tools&lt;/tt&gt; project.
+I can then put the tools out to GitHub.&lt;/p&gt;
+&lt;p&gt;Next, I need to publish my world book and campaign, also.
+Stand by.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="TTRPG"></category><category term="OpenD6"></category><category term="#python"></category></entry><entry><title>Experience Points and Levels</title><link href="https://slott56.github.io/2026-05-06_experience_points_and_levels.html" rel="alternate"></link><published>2026-05-06T07:46:00-04:00</published><updated>2026-05-06T07:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-05-06:/2026-05-06_experience_points_and_levels.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="https://slott56.github.io/2026-04-23_a_writing_project.html"&gt;Writing Project -- perhaps a bad idea&lt;/a&gt;.
 I'm trying to dig around in my old notes to pull together a &amp;quot;World Book&amp;quot; with a fantasy setting I think has a lot of good gaming opportunities. I have a problem, though.&lt;/p&gt;
 &lt;div class="section" id="history"&gt;
 &lt;h2&gt;History&lt;/h2&gt;
