@@ -20,7 +20,7 @@ At this moment, the test suite statistics are these:
 Background
 ===========
 
-The OpenD6 tools ahve two DSL's.
+The OpenD6 tools have two extensive DSL's.
 These differ in a profound way:
 
 -   Spell definitions are based on a difficulty budget. This is complicated, because some aspects increase the difficulty, while others decrease the difficulty.
