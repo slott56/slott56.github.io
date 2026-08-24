@@ -4,7 +4,7 @@ We Write Code By Hand
 :date: 2026-07-30 13:54
 :tags: #noAI,#humanjson,codebyhand
 :slug: 2026-07-30_code_by_hand
-:category: Technology
+:category: Technologies
 :status: published
 
 Here's an interesting group:
