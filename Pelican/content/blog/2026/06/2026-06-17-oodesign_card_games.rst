@@ -13,7 +13,7 @@ We'll compare the design of two games: Cribbage and Canasta.
 
 Why? Because they have three common abstractions: cards, hands, and a score.
 
-Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
+Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
 Here's a use case diagram showing hands and the game overall; this can help provide some context.
 
 ..  figure:: {static}/media/cards/usecase.png
@@ -36,7 +36,8 @@ The meanings are scattered throughout the hand, the game, the scoring, everythin
 
 It can be **very** difficult to isolate and encapsulate the details of a card.
 
-Mostly because, the details of a card are not part of the card itself. They're part of the context in which the card is used.
+Mostly because, the details of a card are not part of the card itself.
+The details arise from the context in which the card is used.
 
 The point here is to put two contexts under the microscope: Cribbage and Canasta.
 

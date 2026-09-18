@@ -315,10 +315,10 @@ Stand by.&lt;/p&gt;
 </content><category term="TTRPG"></category><category term="OpenD6"></category><category term="#python"></category></entry><entry><title>OO Design and Card Games</title><link href="https://slott56.github.io/2026-06-17_oodesign_card_games.html" rel="alternate"></link><published>2026-06-17T07:32:00-04:00</published><updated>2026-06-17T07:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-17:/2026-06-17_oodesign_card_games.html</id><summary type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
 &lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
 &lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
-&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+&lt;p&gt;Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
 &lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
 &lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
-&lt;p&gt;Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
+&lt;p&gt;Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
 Here's a use case diagram showing hands and the game overall; this can help provide some context.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="Use Case Diagram" src="https://slott56.github.io/media/cards/usecase.png" /&gt;
@@ -334,7 +334,8 @@ Here's a use case diagram showing hands and the game overall; this can help prov
 &lt;p&gt;Like all real-world problem domains, the &lt;tt class="docutils literal"&gt;Card&lt;/tt&gt; class has methods and attributes with deeper meanings.
 The meanings are scattered throughout the hand, the game, the scoring, everything. Everything.&lt;/p&gt;
 &lt;p&gt;It can be &lt;strong&gt;very&lt;/strong&gt; difficult to isolate and encapsulate the details of a card.&lt;/p&gt;
-&lt;p&gt;Mostly because, the details of a card are not part of the card itself. They're part of the context in which the card is used.&lt;/p&gt;
+&lt;p&gt;Mostly because, the details of a card are not part of the card itself.
+The details arise from the context in which the card is used.&lt;/p&gt;
 &lt;p&gt;The point here is to put two contexts under the microscope: Cribbage and Canasta.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="cribbage"&gt;

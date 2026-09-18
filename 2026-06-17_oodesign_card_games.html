@@ -13,13 +13,13 @@
 
         <meta name="author" content="S.Lott" />
         <meta name="keywords" content="python,object-oriented" />
-        <meta name="description" content="Lets look at my favorite OO-Design problem domain: card games. We&#39;ll compare the design of two games: Cribbage and Canasta. Why? Because they have three common abstractions: cards, hands, and a score. Overall the player&#39;s are dealt cards, form hands, and at some point, accumulate a score. Of course, all …" />
+        <meta name="description" content="Lets look at my favorite OO-Design problem domain: card games. We&#39;ll compare the design of two games: Cribbage and Canasta. Why? Because they have three common abstractions: cards, hands, and a score. Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all …" />
 
         <meta property="og:site_name" content="S.Lott -- Software Architect" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="OO Design and Card Games"/>
         <meta property="og:url" content="https://slott56.github.io/2026-06-17_oodesign_card_games.html"/>
-        <meta property="og:description" content="Lets look at my favorite OO-Design problem domain: card games. We&#39;ll compare the design of two games: Cribbage and Canasta. Why? Because they have three common abstractions: cards, hands, and a score. Overall the player&#39;s are dealt cards, form hands, and at some point, accumulate a score. Of course, all …"/>
+        <meta property="og:description" content="Lets look at my favorite OO-Design problem domain: card games. We&#39;ll compare the design of two games: Cribbage and Canasta. Why? Because they have three common abstractions: cards, hands, and a score. Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all …"/>
         <meta property="article:published_time" content="2026-06-17" />
             <meta property="article:section" content="Architecture & Design" />
             <meta property="article:tag" content="python" />
@@ -122,7 +122,7 @@ S.Lott -- Software Architect            </a>
                 <p>Lets look at my favorite OO-Design problem domain: card games.</p>
 <p>We'll compare the design of two games: Cribbage and Canasta.</p>
 <p>Why? Because they have three common abstractions: cards, hands, and a score.</p>
-<p>Overall the player's are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
+<p>Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all of the implementation details are completely distinct.
 Here's a use case diagram showing hands and the game overall; this can help provide some context.</p>
 <div class="figure">
 <img alt="Use Case Diagram" src="https://slott56.github.io/media/cards/usecase.png" />
@@ -138,7 +138,8 @@ Here's a use case diagram showing hands and the game overall; this can help prov
 <p>Like all real-world problem domains, the <tt class="docutils literal">Card</tt> class has methods and attributes with deeper meanings.
 The meanings are scattered throughout the hand, the game, the scoring, everything. Everything.</p>
 <p>It can be <strong>very</strong> difficult to isolate and encapsulate the details of a card.</p>
-<p>Mostly because, the details of a card are not part of the card itself. They're part of the context in which the card is used.</p>
+<p>Mostly because, the details of a card are not part of the card itself.
+The details arise from the context in which the card is used.</p>
 <p>The point here is to put two contexts under the microscope: Cribbage and Canasta.</p>
 </div>
 <div class="section" id="cribbage">
