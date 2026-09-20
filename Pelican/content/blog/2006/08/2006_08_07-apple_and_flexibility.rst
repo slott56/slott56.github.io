@@ -36,7 +36,7 @@ business.
 
 I just configured my
 daughter's brand-new MacBook, and hooked it up to the household Epson R340 with
-about 3 clicks in the Print &amp; Fax control panel.  No drivers that I needed
+about 3 clicks in the ``Print & Fax`` control panel.  No drivers that I needed
 to see.  Clearly, there are printer-specific drivers buried somewhere in OSX. 
 But I never saw them or any trace of
 them.

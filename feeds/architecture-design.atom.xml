@@ -1,5 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-06-17T07:32:00-04:00</updated><entry><title>OO Design and Card Games</title><link href="https://slott56.github.io/2026-06-17_oodesign_card_games.html" rel="alternate"></link><published>2026-06-17T07:32:00-04:00</published><updated>2026-06-17T07:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-17:/2026-06-17_oodesign_card_games.html</id><summary type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-09-30T13:32:00-04:00</updated><entry><title>Hard Problem? Try Shifting Position</title><link href="https://slott56.github.io/2026-09-30_hard_problem_shift_position.html" rel="alternate"></link><published>2026-09-30T13:32:00-04:00</published><updated>2026-09-30T13:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-30:/2026-09-30_hard_problem_shift_position.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Rewrite it.&lt;/p&gt;
+&lt;p&gt;Seriously.&lt;/p&gt;
+&lt;p&gt;It's often faster to pick a new paradigm and start a rewrite than to bang your head against a wall.&lt;/p&gt;
+&lt;p&gt;Modern languages (like Python) don't require a &lt;strong&gt;lot&lt;/strong&gt; of overhead or boilerplate to start again.&lt;/p&gt;
+&lt;p&gt;Can't get the object model …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Rewrite it.&lt;/p&gt;
+&lt;p&gt;Seriously.&lt;/p&gt;
+&lt;p&gt;It's often faster to pick a new paradigm and start a rewrite than to bang your head against a wall.&lt;/p&gt;
+&lt;p&gt;Modern languages (like Python) don't require a &lt;strong&gt;lot&lt;/strong&gt; of overhead or boilerplate to start again.&lt;/p&gt;
+&lt;p&gt;Can't get the object model right? Try rewriting as a functional program.
+The insight gained will help retool the object design.&lt;/p&gt;
+&lt;p&gt;Can't work out a functional decomposition?
+Try replacing pure functions with stateful callable objects.
+This often reveals where a monad can help.
+And in the Python case, maybe a really simply monad-like data class will help.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-detailed-example"&gt;
+&lt;h2&gt;A Detailed Example&lt;/h2&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.&lt;/p&gt;
+&lt;p&gt;It's not a particularly good machine. (The PDP-8 is much better.)&lt;/p&gt;
+&lt;p&gt;It's &lt;strong&gt;simple&lt;/strong&gt;. Making it a potentially good vehicle for talking about machine-language programming.
+Without getting tangled up up the creeping collection of confusing contraptions that characterize
+a lot of modern CPU's.&lt;/p&gt;
+&lt;p&gt;Also. It's &lt;strong&gt;decimal&lt;/strong&gt;.  We can set the binary-to-decimal-to-hexadecimal stuff aside.&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;The documentation is ancient and brain-scrambling.&lt;/p&gt;
+&lt;p&gt;The object model is not obvious, and had become difficult to debug.
+It's not useless, but the encapsulation is also potentially unhelpful.
+First, I'll give some back story on the problem.
+Then, in &lt;a class="reference internal" href="#what-went-wrong"&gt;What Went Wrong?&lt;/a&gt;, below, I'll reveal the shift in perspective.&lt;/p&gt;
+&lt;p&gt;First. Background.&lt;/p&gt;
+&lt;div class="section" id="ibm-1620-emulation"&gt;
+&lt;h3&gt;IBM 1620 Emulation&lt;/h3&gt;
+&lt;p&gt;Specifically, addition.&lt;/p&gt;
+&lt;p&gt;It turns out add, subtract, and compare are nearly identical operations.
+The 1620 would apply a 10's complement transformation, &lt;span class="math"&gt;\(C(x)\)&lt;/span&gt;, to make &lt;span class="math"&gt;\(p - q\)&lt;/span&gt; into &lt;span class="math"&gt;\(p + C(q)\)&lt;/span&gt;.
+Depending on the sign and the carry-out, it might also recomplement the result.
+Subtraction was addition with a complemented value.&lt;/p&gt;
+&lt;p&gt;Compare was subtract (which is add with a 10's complement) that sets the status latches, but doesn't update memory with a result.&lt;/p&gt;
+&lt;p&gt;Multiplication involved a product computation for each pair of digits; these were then summed.
+Multiply depended on addition.&lt;/p&gt;
+&lt;p&gt;Division involved repetitive subtraction. (Yes, it was slow.)&lt;/p&gt;
+&lt;p&gt;The other operations are trivial.
+Addition is the central feature of the CPU.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so"&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;What's so hard about getting addition to work?
+It's a Finite State Automaton (FSA). Duh.&lt;/p&gt;
+&lt;p&gt;Here's some state transition diagrams.
+Figure 13-3 to 13-7 in &lt;a class="reference external" href="https://archive.org/details/bitsavers_ibm1620fe2stomerEngineeringManualofInstructionAug6_9837978"&gt;https://archive.org/details/bitsavers_ibm1620fe2stomerEngineeringManualofInstructionAug6_9837978&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The document is packed with brain-cramping details of moving data from memory to the Memory Data Register and to the Digit-Branch register where the True-Complement Switch might complement or complement + 1 or something something the digits. Depending on the triggers.&lt;/p&gt;
+&lt;p&gt;It &lt;strong&gt;seems&lt;/strong&gt; like a Finite State Automaton (FSA) with a &lt;strong&gt;lot&lt;/strong&gt; of states.
+It -- however -- isn't really.
+For example, figure 5-2 shows the complexities of the numerous state changes within the the clock cycle to support something as superficially simple as reading a digit from memory.
+(Magnetic core memory read is destructive; the core must be rewritten after a read.
+This level of detail is unhelpful, but carefully described. In bewildering detail.)&lt;/p&gt;
+&lt;p&gt;What this &lt;strong&gt;means&lt;/strong&gt; is the diagrams commingle things which happen concurrently.
+It's a simple box of circuit boards, after all.
+And things which are happening sequentially because they're on different steps of the clock cycle.
+There's a hidden little annotations like &amp;quot;R5-D6&amp;quot; to show how the clock's 10 different internal states were used to make somethings happen sequentially.&lt;/p&gt;
+&lt;p&gt;In spite of this,
+the analysis of how addition works using Triggers 11, 12, 13, 14 &lt;strong&gt;is&lt;/strong&gt; potentially helpful.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Trigger 11: Fetch a digit from P.&lt;/li&gt;
+&lt;li&gt;Trigger 12: Fetch a digit from Q.&lt;/li&gt;
+&lt;li&gt;Trigger 13: Compute a decimal sum and carry based on carry-in and complement processing.&lt;/li&gt;
+&lt;li&gt;Trigger 14: Write the sum to memory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This kind of functional description reveals a useful level of detail about the &lt;strong&gt;Instructions&lt;/strong&gt;, &lt;strong&gt;Memory Access&lt;/strong&gt;, &lt;strong&gt;Registers&lt;/strong&gt;, &lt;strong&gt;Triggers&lt;/strong&gt;, and the overall concept of &lt;strong&gt;Machine State&lt;/strong&gt;.
+It shows how the CPU really worked without too many layers of abstraction.&lt;/p&gt;
+&lt;p&gt;(Triggers are also called Latches. More recently, we've taken to calling them flip-flops or status bits.)&lt;/p&gt;
+&lt;p&gt;The front-panel display (in Single-Cycle Execute mode) showed each of the tiggers as a little lamp.
+The labels for triggers 11 to 14 are E11, E12, E13, E14.
+The &amp;quot;E&amp;quot; prefix means they're part of the &amp;quot;execute&amp;quot; phase of the &amp;quot;fetch-execute&amp;quot; cycle.
+(The fetch triggers used an &amp;quot;I&amp;quot; prefix because they did instruction decode.)&lt;/p&gt;
+&lt;p&gt;On the real hardware, you could see the lamp for the current trigger(s), and the register lamps for the Digit/Branch and Memory Data registers.
+This let you see &lt;strong&gt;exactly&lt;/strong&gt; what the state was and what the state change would be.
+This would update the triggers, registers, and memory.&lt;/p&gt;
+&lt;p&gt;Exactly. Explicitly clear.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-went-wrong"&gt;
+&lt;h2&gt;What Went Wrong?&lt;/h2&gt;
+&lt;p&gt;The hardware of a CPU is an FSA.
+More complicated than the minimal Turing Machine that serves to define &amp;quot;computability.&amp;quot;
+We can model an FSA using a class definition for each state.
+Makes sense, right?&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;Stick closely to what follows.&lt;/p&gt;
+&lt;p&gt;Trigger 11 isn't a &amp;quot;state&amp;quot; of the processor.
+It's a single bit out of maybe 64 or so triggers plus a bunch of registers.
+With potentially 64 distinct triggers, there could be &lt;span class="math"&gt;\(2^{64} = 10^{19}\)&lt;/span&gt; states.
+A bit much for a trivial mapping from IBM 1620 triggers to states of a FSA.&lt;/p&gt;
+&lt;p&gt;Some triggers &lt;strong&gt;are&lt;/strong&gt; exclusive, like triggers 11, 12, 13, and 14.
+Only one of these is on at a time.
+The union of these triggers is 4 states, not 16.&lt;/p&gt;
+&lt;p&gt;Other triggers are not exclusive.
+For example, the &lt;tt class="docutils literal"&gt;carry in&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;true/complement&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;field mk. 1&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;field mk. 2&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;recomp control&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;recomplement&lt;/tt&gt; triggers have &lt;span class="math"&gt;\(2^6 = 64\)&lt;/span&gt; possible states.&lt;/p&gt;
+&lt;p&gt;While not &lt;strong&gt;impossible&lt;/strong&gt;, it's difficult to work out &lt;strong&gt;all&lt;/strong&gt; the combinations
+of these triggers to derive tidy state definitions.
+The narrative functional descriptions don't have a  particularly useful focus.
+The hardware wiring diagrams in the appendix might have this focus.
+(I'm not able to make sense of them, though.)&lt;/p&gt;
+&lt;p&gt;We arrived here: &lt;strong&gt;the triggers described so elegantly in the documentation do not map to tidy blocks of code.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The functional descriptions &lt;strong&gt;almost&lt;/strong&gt; look like they could be code.
+They almost look like FSA state definitions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Function(abc.ABC)
+    &amp;#64;abstractmethod
+    def cycle(self) -&amp;gt; None: ...
+
+class E11(Function):
+    def cycle(self) -&amp;gt; None: ...
+        #  1. Read out of memory per OR-1 and store the digit in D/B register units.
+        MAR.digits = OR_1.digits
+        MEMORY.read()
+        DIGIT_BRANCH[1] = MDR[0]
+
+        # 2. Decrement OR-1.
+        OR_1.digits = MAR.digits
+
+        # 3. Field Mark 1 ON **if** **not** first cycle **and** flag
+        if not TRIGGER['1st CYCLE'] and DIGIT_BRANCH[1].flag:
+            TRIGGER[&amp;quot;FIELD MK 1&amp;quot;].on()
+
+        # etc.
+&lt;/pre&gt;
+&lt;p&gt;The idea here is the globals, &lt;tt class="docutils literal"&gt;MAR&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;MEMORY&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;DIGIT_BRANCH&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;OR_1&lt;/tt&gt;,
+are all part of the console display.&lt;/p&gt;
+&lt;p&gt;(Yes, yes, yes, all those globals...
+The underlying documentation treats all of the Triggers, Latches, Registers, Switches, etc. as global.
+There's [almost] no logical partitioning in the documentation.
+This makes the implementation hard to encapsulate properly until after it works with a bunch of unit tests.
+Lacking any rational basis for making them local to something, they're global.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-the-other-position"&gt;
+&lt;h2&gt;What's the Other Position?&lt;/h2&gt;
+&lt;p&gt;In this case, the other position I adopted was to make two changes:&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unwind the clever &lt;tt class="docutils literal"&gt;Register&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Memory&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;Trigger&lt;/tt&gt; class definitions
+(with their clever observability design to update the console display when they changed.)&lt;/p&gt;
+&lt;p&gt;Replace these with dumb-old lists and dictionaries.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unwind the class definitions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+while True:
+    if trigger_11:
+        # E11, 1 &amp;amp; 2
+        digit_branch, or_1 = q[or_1], or_1 - 1  # Decrement mode
+        # E11, 3
+        if or_1 == -1:  # Check the flag on the leading digit.
+            field_mk_1 = True
+        # etc...
+    elif trigger_12:
+        # do other stuff...
+    elif trigger_13:
+        ...
+    elif trigger_14:
+        ...
+&lt;/pre&gt;
+&lt;p&gt;This tends to &amp;quot;flatten&amp;quot; all the processing into one &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; statement.
+(140 or so lines of code. Not &lt;strong&gt;bad&lt;/strong&gt;.)&lt;/p&gt;
+&lt;p&gt;What's the benefit?&lt;/p&gt;
+&lt;p&gt;This gave me a new perspective where the various bits of code are closer together.
+The tiny overhead of &lt;tt class="docutils literal"&gt;class&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;def&lt;/tt&gt; for methods is stripped away, putting a few more details into a single screen of code.&lt;/p&gt;
+&lt;p&gt;It's not a major rewrite.
+It's a rethinking.
+It's woefully incomplete with respect to the features an application needs to have.
+It has no console implementation with the array of blinkenlights.&lt;/p&gt;
+&lt;p&gt;Rewriting from a new perspective exposed some sources of confusion.
+One example is functional step 7 of trigger 12.
+The contents of the Digit/Branch register are replaced by the contents of the Memory Data Register during a recomplement operation.&lt;/p&gt;
+&lt;p&gt;It was documented. It was easy to ignore.
+Until things didn't work.&lt;/p&gt;
+&lt;p&gt;Sprawled out in &amp;quot;encapsulated&amp;quot; class definitions, the lack of an update to the D/B register wasn't obvious.&lt;/p&gt;
+&lt;p&gt;Mushed together, (with a lot of &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; functions) it was more clear.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;First. Rejoice at having gotten mixed sign add and recomplement to work.&lt;/p&gt;
+&lt;p&gt;There are still a number of examples from the original reference manuals to canonize into unit tests.&lt;/p&gt;
+&lt;p&gt;There aren't too many edge cases.
+Many of us learned them in 4th or 5th grade math when signed numbers were introduced.&lt;/p&gt;
+&lt;p&gt;Then.&lt;/p&gt;
+&lt;p&gt;And this is the important part.&lt;/p&gt;
+&lt;p&gt;Using the massive &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; statement to refactor the original code -- a collection of class definitions -- so it works.
+Given a baseline of ugly code that works, I can then refactor it into less ugly code that still works.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Architecture &amp; Design"></category><category term="codebyhand"></category><category term="ibm1620"></category><category term="retrocomputing"></category></entry><entry><title>OO Design and Card Games</title><link href="https://slott56.github.io/2026-06-17_oodesign_card_games.html" rel="alternate"></link><published>2026-06-17T07:32:00-04:00</published><updated>2026-06-17T07:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-06-17:/2026-06-17_oodesign_card_games.html</id><summary type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
 &lt;p&gt;We'll compare the design of two games: Cribbage and Canasta.&lt;/p&gt;
 &lt;p&gt;Why? Because they have three common abstractions: cards, hands, and a score.&lt;/p&gt;
 &lt;p&gt;Overall the players are dealt cards, form hands, and at some point, accumulate a score. Of course, all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets look at my favorite OO-Design problem domain: card games.&lt;/p&gt;
@@ -8123,56 +8383,4 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;/ul&gt;
 &lt;p&gt;Sure, and I get a Bentley.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="requirements"></category></entry><entry><title>KTLO Management</title><link href="https://slott56.github.io/2007_06_28-ktlo_management.html" rel="alternate"></link><published>2007-06-28T19:20:00-04:00</published><updated>2007-06-28T19:20:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-06-28:/2007_06_28-ktlo_management.html</id><summary type="html">&lt;p&gt;We wind up in this situation from time to time.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Customer&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;[X] is broken, what will it cost to fix it?&lt;/dd&gt;
-&lt;dt&gt;&lt;strong&gt;Us&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;Depends, but put $$$ in your budget.&lt;/dd&gt;
-&lt;dt&gt;&lt;strong&gt;Customer&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;I can't afford $$$, I can barely afford to Keep The Lights On™!&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;At this point, the conversation is usually over.  There …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We wind up in this situation from time to time.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Customer&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;[X] is broken, what will it cost to fix it?&lt;/dd&gt;
-&lt;dt&gt;&lt;strong&gt;Us&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;Depends, but put $$$ in your budget.&lt;/dd&gt;
-&lt;dt&gt;&lt;strong&gt;Customer&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;I can't afford $$$, I can barely afford to Keep The Lights On™!&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;At this point, the conversation is usually over.  There is more to talk about, much more.  However, most customers simply stop talking.  Even if try to respond along the line of the following, the conversation is usually over.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Us&lt;/strong&gt;:&lt;/dt&gt;
-&lt;dd&gt;What do you need to know about the cost?  Software projects can grow without limit, so there's no practical upper bound.  Even with a tiny scope, you can polish and gold-plate that scope until it's too costly to consider.  Do you have some budget already in mind and want to know if I agree with it?  For any amount (even a silly amount like a week's revenue) something positive can be accomplished.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;Somewhere there's this (false) expectation that given a vague statement of &amp;quot;requirements&amp;quot; there's a fixed, single dollar figure that will implement those requirements.  What's irritating is the &amp;quot;Keep The Lights On&amp;quot; rational for preventing progress.&lt;/p&gt;
-&lt;p&gt;Where does this come from?  Why is it so paralyzing?&lt;/p&gt;
-&lt;div class="section" id="the-situation"&gt;
-&lt;h2&gt;The Situation&lt;/h2&gt;
-&lt;p&gt;When it costs a fortune to KTLO, it usually means that a lot of labor is squandered on &amp;quot;break fix&amp;quot; work.  It's like paying a union electrician to replace the 10A fuse every time you use the 12A drill press.  If the motor was in a good position and there's not much load, the draw may be under 10A -- or over 10A for a short-enough period of time -- and everything's fine.&lt;/p&gt;
-&lt;p&gt;When I get called in, it's because the drill press isn't doing everything people want it to do.  The changes will require rewiring the drill press.  The customer, however can't afford to rewire anything because the electrician is fully occupied changing fuses.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-remedy"&gt;
-&lt;h2&gt;The Remedy&lt;/h2&gt;
-&lt;p&gt;So, if we have drill press and power problems, we'll need to fix the power distribution infrastructure first.  That will free up the electrician to rewire the drill press.&lt;/p&gt;
-&lt;p&gt;The sensible thing to do is to replace the fuse panel with higher-rated fuses.  This makes sense to me.  And it makes superficial sense to the customer and the electrician.  However, the customer has a kind of fundamental brain damage that makes this simple, sensible, incremental work impossible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-choke"&gt;
-&lt;h2&gt;The Choke&lt;/h2&gt;
-&lt;p&gt;The customer, for some reason, chokes on this.  Rather than just do it, we get into hand-wringing and justification.  In order to make it &amp;quot;palatable&amp;quot; to executives or peers or someone else, we have to fold in more features.&lt;/p&gt;
-&lt;p&gt;A simple fuse upgrade turns into task to replace the fuses with circuit breakers.  There are fewer safety issues.  In someone's mind, an end-user can flip the breaker, and we don't need a skilled, union electrician to put fuses in.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-choke-after-the-choke"&gt;
-&lt;h2&gt;The Choke After the Choke&lt;/h2&gt;
-&lt;p&gt;An IT manager has taken a simple task, choked, and made it more complex than is required.  Often, they choke a second time.  This second choke is the killer.&lt;/p&gt;
-&lt;p&gt;Rather than upgrade the fuse, we tried to replace the fuse box with a breaker panel.  But we then run out of time (or money or both) and stop the project.&lt;/p&gt;
-&lt;p&gt;We now have a half-rebuilt fuse box and a half-installed breaker panel.  We haven't freed up the union electrician.  We now need him on permanent overtime to sort out the wiring mess that was created by the second choke.  Each time a tool stops, we have to figure out if it is a fuse or a breaker, then make the necessary repair.&lt;/p&gt;
-&lt;p&gt;It's this crazy double-choke that raises the cost of KTLO, and makes progress impossible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="conclusion"&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;At some point the cost of KTLO prevents work from being done.  Everyone is tied up replacing fuses, tracking down wiring messes, and trying to troubleshoot production machinery which doesn't work correctly.&lt;/p&gt;
-&lt;p&gt;Eventually, after enough frustration and turnover, this is &amp;quot;business as usual.&amp;quot;  Nothing can get done because we're so busy keeping the lights on.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="management"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="requirements"></category></entry></feed>

@@ -2,7 +2,7 @@ A get_object_size() Function [Updated]
 #######################################
 
 :date: 2025-10-16 13:08
-:tags: python,oo,oodesign
+:tags: oo,oodesign
 :slug: 2025-10-16-get_object_size_function
 :category: Python
 :status: published

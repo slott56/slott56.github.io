@@ -2,7 +2,7 @@ OO Design Principles: CUPID
 #######################################
 
 :date: 2025-10-03 09:46
-:tags: python,oo,oodesign,design principles,cupid
+:tags: oo,oodesign,design principles,cupid
 :slug: 2025-10-03-oo_design_principles_cupid
 :category: Python
 :status: published

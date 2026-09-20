@@ -2,7 +2,7 @@ OO Design Principles: SOLID
 #######################################
 
 :date: 2025-10-02 09:46
-:tags: python,oo,oodesign,design principles,solid
+:tags: oo,oodesign,design principles,solid
 :slug: 2025-10-02-oo_design_principles_solid
 :category: Python
 :status: published

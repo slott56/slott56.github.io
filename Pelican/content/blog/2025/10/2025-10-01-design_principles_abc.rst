@@ -2,7 +2,7 @@ OO Design Principles: ABC's
 #######################################
 
 :date: 2025-10-01 09:46
-:tags: python,oo,oodesign,design principles,abc
+:tags: oo,oodesign,design principles,abc
 :slug: 2025-10-01-oo_design_principles_abcs
 :category: Python
 :status: published

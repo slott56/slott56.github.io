@@ -49,7 +49,9 @@ Self-Published
 
 -   https://www.amazon.com/Unlearning-Shell-Scripting-hammer-problem-ebook/dp/B0H967ZY2F
 
--   (Coming soon: Google Play and Apple Books.)
+-   https://books.google.com/books?id=DWcOEgAAQBAJ&newbks=0&hl=en&source=newbks_fb
+
+-   (Coming soon: Apple Books.)
 
 Really? "Unlearning"? This about transforming your SQL or BASH skills into Python code.
 

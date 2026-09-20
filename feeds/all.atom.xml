@@ -1,5 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-08-24T10:32:00-04:00</updated><entry><title>A Review of Some Slopware</title><link href="https://slott56.github.io/2026-08-24_a_review_of_some_slopware.html" rel="alternate"></link><published>2026-08-24T10:32:00-04:00</published><updated>2026-08-24T10:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-08-24:/2026-08-24_a_review_of_some_slopware.html</id><summary type="html">&lt;p&gt;I've been subjected to two (obvious) examples of slopware apps.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-09-30T13:32:00-04:00</updated><entry><title>Hard Problem? Try Shifting Position</title><link href="https://slott56.github.io/2026-09-30_hard_problem_shift_position.html" rel="alternate"></link><published>2026-09-30T13:32:00-04:00</published><updated>2026-09-30T13:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-30:/2026-09-30_hard_problem_shift_position.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Rewrite it.&lt;/p&gt;
+&lt;p&gt;Seriously.&lt;/p&gt;
+&lt;p&gt;It's often faster to pick a new paradigm and start a rewrite than to bang your head against a wall.&lt;/p&gt;
+&lt;p&gt;Modern languages (like Python) don't require a &lt;strong&gt;lot&lt;/strong&gt; of overhead or boilerplate to start again.&lt;/p&gt;
+&lt;p&gt;Can't get the object model …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Rewrite it.&lt;/p&gt;
+&lt;p&gt;Seriously.&lt;/p&gt;
+&lt;p&gt;It's often faster to pick a new paradigm and start a rewrite than to bang your head against a wall.&lt;/p&gt;
+&lt;p&gt;Modern languages (like Python) don't require a &lt;strong&gt;lot&lt;/strong&gt; of overhead or boilerplate to start again.&lt;/p&gt;
+&lt;p&gt;Can't get the object model right? Try rewriting as a functional program.
+The insight gained will help retool the object design.&lt;/p&gt;
+&lt;p&gt;Can't work out a functional decomposition?
+Try replacing pure functions with stateful callable objects.
+This often reveals where a monad can help.
+And in the Python case, maybe a really simply monad-like data class will help.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-detailed-example"&gt;
+&lt;h2&gt;A Detailed Example&lt;/h2&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.&lt;/p&gt;
+&lt;p&gt;It's not a particularly good machine. (The PDP-8 is much better.)&lt;/p&gt;
+&lt;p&gt;It's &lt;strong&gt;simple&lt;/strong&gt;. Making it a potentially good vehicle for talking about machine-language programming.
+Without getting tangled up up the creeping collection of confusing contraptions that characterize
+a lot of modern CPU's.&lt;/p&gt;
+&lt;p&gt;Also. It's &lt;strong&gt;decimal&lt;/strong&gt;.  We can set the binary-to-decimal-to-hexadecimal stuff aside.&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;The documentation is ancient and brain-scrambling.&lt;/p&gt;
+&lt;p&gt;The object model is not obvious, and had become difficult to debug.
+It's not useless, but the encapsulation is also potentially unhelpful.
+First, I'll give some back story on the problem.
+Then, in &lt;a class="reference internal" href="#what-went-wrong"&gt;What Went Wrong?&lt;/a&gt;, below, I'll reveal the shift in perspective.&lt;/p&gt;
+&lt;p&gt;First. Background.&lt;/p&gt;
+&lt;div class="section" id="ibm-1620-emulation"&gt;
+&lt;h3&gt;IBM 1620 Emulation&lt;/h3&gt;
+&lt;p&gt;Specifically, addition.&lt;/p&gt;
+&lt;p&gt;It turns out add, subtract, and compare are nearly identical operations.
+The 1620 would apply a 10's complement transformation, &lt;span class="math"&gt;\(C(x)\)&lt;/span&gt;, to make &lt;span class="math"&gt;\(p - q\)&lt;/span&gt; into &lt;span class="math"&gt;\(p + C(q)\)&lt;/span&gt;.
+Depending on the sign and the carry-out, it might also recomplement the result.
+Subtraction was addition with a complemented value.&lt;/p&gt;
+&lt;p&gt;Compare was subtract (which is add with a 10's complement) that sets the status latches, but doesn't update memory with a result.&lt;/p&gt;
+&lt;p&gt;Multiplication involved a product computation for each pair of digits; these were then summed.
+Multiply depended on addition.&lt;/p&gt;
+&lt;p&gt;Division involved repetitive subtraction. (Yes, it was slow.)&lt;/p&gt;
+&lt;p&gt;The other operations are trivial.
+Addition is the central feature of the CPU.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="so"&gt;
+&lt;h2&gt;So?&lt;/h2&gt;
+&lt;p&gt;What's so hard about getting addition to work?
+It's a Finite State Automaton (FSA). Duh.&lt;/p&gt;
+&lt;p&gt;Here's some state transition diagrams.
+Figure 13-3 to 13-7 in &lt;a class="reference external" href="https://archive.org/details/bitsavers_ibm1620fe2stomerEngineeringManualofInstructionAug6_9837978"&gt;https://archive.org/details/bitsavers_ibm1620fe2stomerEngineeringManualofInstructionAug6_9837978&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The document is packed with brain-cramping details of moving data from memory to the Memory Data Register and to the Digit-Branch register where the True-Complement Switch might complement or complement + 1 or something something the digits. Depending on the triggers.&lt;/p&gt;
+&lt;p&gt;It &lt;strong&gt;seems&lt;/strong&gt; like a Finite State Automaton (FSA) with a &lt;strong&gt;lot&lt;/strong&gt; of states.
+It -- however -- isn't really.
+For example, figure 5-2 shows the complexities of the numerous state changes within the the clock cycle to support something as superficially simple as reading a digit from memory.
+(Magnetic core memory read is destructive; the core must be rewritten after a read.
+This level of detail is unhelpful, but carefully described. In bewildering detail.)&lt;/p&gt;
+&lt;p&gt;What this &lt;strong&gt;means&lt;/strong&gt; is the diagrams commingle things which happen concurrently.
+It's a simple box of circuit boards, after all.
+And things which are happening sequentially because they're on different steps of the clock cycle.
+There's a hidden little annotations like &amp;quot;R5-D6&amp;quot; to show how the clock's 10 different internal states were used to make somethings happen sequentially.&lt;/p&gt;
+&lt;p&gt;In spite of this,
+the analysis of how addition works using Triggers 11, 12, 13, 14 &lt;strong&gt;is&lt;/strong&gt; potentially helpful.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Trigger 11: Fetch a digit from P.&lt;/li&gt;
+&lt;li&gt;Trigger 12: Fetch a digit from Q.&lt;/li&gt;
+&lt;li&gt;Trigger 13: Compute a decimal sum and carry based on carry-in and complement processing.&lt;/li&gt;
+&lt;li&gt;Trigger 14: Write the sum to memory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This kind of functional description reveals a useful level of detail about the &lt;strong&gt;Instructions&lt;/strong&gt;, &lt;strong&gt;Memory Access&lt;/strong&gt;, &lt;strong&gt;Registers&lt;/strong&gt;, &lt;strong&gt;Triggers&lt;/strong&gt;, and the overall concept of &lt;strong&gt;Machine State&lt;/strong&gt;.
+It shows how the CPU really worked without too many layers of abstraction.&lt;/p&gt;
+&lt;p&gt;(Triggers are also called Latches. More recently, we've taken to calling them flip-flops or status bits.)&lt;/p&gt;
+&lt;p&gt;The front-panel display (in Single-Cycle Execute mode) showed each of the tiggers as a little lamp.
+The labels for triggers 11 to 14 are E11, E12, E13, E14.
+The &amp;quot;E&amp;quot; prefix means they're part of the &amp;quot;execute&amp;quot; phase of the &amp;quot;fetch-execute&amp;quot; cycle.
+(The fetch triggers used an &amp;quot;I&amp;quot; prefix because they did instruction decode.)&lt;/p&gt;
+&lt;p&gt;On the real hardware, you could see the lamp for the current trigger(s), and the register lamps for the Digit/Branch and Memory Data registers.
+This let you see &lt;strong&gt;exactly&lt;/strong&gt; what the state was and what the state change would be.
+This would update the triggers, registers, and memory.&lt;/p&gt;
+&lt;p&gt;Exactly. Explicitly clear.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-went-wrong"&gt;
+&lt;h2&gt;What Went Wrong?&lt;/h2&gt;
+&lt;p&gt;The hardware of a CPU is an FSA.
+More complicated than the minimal Turing Machine that serves to define &amp;quot;computability.&amp;quot;
+We can model an FSA using a class definition for each state.
+Makes sense, right?&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;However.&lt;/p&gt;
+&lt;p&gt;Stick closely to what follows.&lt;/p&gt;
+&lt;p&gt;Trigger 11 isn't a &amp;quot;state&amp;quot; of the processor.
+It's a single bit out of maybe 64 or so triggers plus a bunch of registers.
+With potentially 64 distinct triggers, there could be &lt;span class="math"&gt;\(2^{64} = 10^{19}\)&lt;/span&gt; states.
+A bit much for a trivial mapping from IBM 1620 triggers to states of a FSA.&lt;/p&gt;
+&lt;p&gt;Some triggers &lt;strong&gt;are&lt;/strong&gt; exclusive, like triggers 11, 12, 13, and 14.
+Only one of these is on at a time.
+The union of these triggers is 4 states, not 16.&lt;/p&gt;
+&lt;p&gt;Other triggers are not exclusive.
+For example, the &lt;tt class="docutils literal"&gt;carry in&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;true/complement&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;field mk. 1&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;field mk. 2&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;recomp control&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;recomplement&lt;/tt&gt; triggers have &lt;span class="math"&gt;\(2^6 = 64\)&lt;/span&gt; possible states.&lt;/p&gt;
+&lt;p&gt;While not &lt;strong&gt;impossible&lt;/strong&gt;, it's difficult to work out &lt;strong&gt;all&lt;/strong&gt; the combinations
+of these triggers to derive tidy state definitions.
+The narrative functional descriptions don't have a  particularly useful focus.
+The hardware wiring diagrams in the appendix might have this focus.
+(I'm not able to make sense of them, though.)&lt;/p&gt;
+&lt;p&gt;We arrived here: &lt;strong&gt;the triggers described so elegantly in the documentation do not map to tidy blocks of code.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The functional descriptions &lt;strong&gt;almost&lt;/strong&gt; look like they could be code.
+They almost look like FSA state definitions.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class Function(abc.ABC)
+    &amp;#64;abstractmethod
+    def cycle(self) -&amp;gt; None: ...
+
+class E11(Function):
+    def cycle(self) -&amp;gt; None: ...
+        #  1. Read out of memory per OR-1 and store the digit in D/B register units.
+        MAR.digits = OR_1.digits
+        MEMORY.read()
+        DIGIT_BRANCH[1] = MDR[0]
+
+        # 2. Decrement OR-1.
+        OR_1.digits = MAR.digits
+
+        # 3. Field Mark 1 ON **if** **not** first cycle **and** flag
+        if not TRIGGER['1st CYCLE'] and DIGIT_BRANCH[1].flag:
+            TRIGGER[&amp;quot;FIELD MK 1&amp;quot;].on()
+
+        # etc.
+&lt;/pre&gt;
+&lt;p&gt;The idea here is the globals, &lt;tt class="docutils literal"&gt;MAR&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;MEMORY&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;DIGIT_BRANCH&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;OR_1&lt;/tt&gt;,
+are all part of the console display.&lt;/p&gt;
+&lt;p&gt;(Yes, yes, yes, all those globals...
+The underlying documentation treats all of the Triggers, Latches, Registers, Switches, etc. as global.
+There's [almost] no logical partitioning in the documentation.
+This makes the implementation hard to encapsulate properly until after it works with a bunch of unit tests.
+Lacking any rational basis for making them local to something, they're global.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-the-other-position"&gt;
+&lt;h2&gt;What's the Other Position?&lt;/h2&gt;
+&lt;p&gt;In this case, the other position I adopted was to make two changes:&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unwind the clever &lt;tt class="docutils literal"&gt;Register&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Memory&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;Trigger&lt;/tt&gt; class definitions
+(with their clever observability design to update the console display when they changed.)&lt;/p&gt;
+&lt;p&gt;Replace these with dumb-old lists and dictionaries.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Unwind the class definitions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="literal-block"&gt;
+while True:
+    if trigger_11:
+        # E11, 1 &amp;amp; 2
+        digit_branch, or_1 = q[or_1], or_1 - 1  # Decrement mode
+        # E11, 3
+        if or_1 == -1:  # Check the flag on the leading digit.
+            field_mk_1 = True
+        # etc...
+    elif trigger_12:
+        # do other stuff...
+    elif trigger_13:
+        ...
+    elif trigger_14:
+        ...
+&lt;/pre&gt;
+&lt;p&gt;This tends to &amp;quot;flatten&amp;quot; all the processing into one &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; statement.
+(140 or so lines of code. Not &lt;strong&gt;bad&lt;/strong&gt;.)&lt;/p&gt;
+&lt;p&gt;What's the benefit?&lt;/p&gt;
+&lt;p&gt;This gave me a new perspective where the various bits of code are closer together.
+The tiny overhead of &lt;tt class="docutils literal"&gt;class&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;def&lt;/tt&gt; for methods is stripped away, putting a few more details into a single screen of code.&lt;/p&gt;
+&lt;p&gt;It's not a major rewrite.
+It's a rethinking.
+It's woefully incomplete with respect to the features an application needs to have.
+It has no console implementation with the array of blinkenlights.&lt;/p&gt;
+&lt;p&gt;Rewriting from a new perspective exposed some sources of confusion.
+One example is functional step 7 of trigger 12.
+The contents of the Digit/Branch register are replaced by the contents of the Memory Data Register during a recomplement operation.&lt;/p&gt;
+&lt;p&gt;It was documented. It was easy to ignore.
+Until things didn't work.&lt;/p&gt;
+&lt;p&gt;Sprawled out in &amp;quot;encapsulated&amp;quot; class definitions, the lack of an update to the D/B register wasn't obvious.&lt;/p&gt;
+&lt;p&gt;Mushed together, (with a lot of &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; functions) it was more clear.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;First. Rejoice at having gotten mixed sign add and recomplement to work.&lt;/p&gt;
+&lt;p&gt;There are still a number of examples from the original reference manuals to canonize into unit tests.&lt;/p&gt;
+&lt;p&gt;There aren't too many edge cases.
+Many of us learned them in 4th or 5th grade math when signed numbers were introduced.&lt;/p&gt;
+&lt;p&gt;Then.&lt;/p&gt;
+&lt;p&gt;And this is the important part.&lt;/p&gt;
+&lt;p&gt;Using the massive &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; statement to refactor the original code -- a collection of class definitions -- so it works.
+Given a baseline of ugly code that works, I can then refactor it into less ugly code that still works.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Architecture &amp; Design"></category><category term="codebyhand"></category><category term="ibm1620"></category><category term="retrocomputing"></category></entry><entry><title>A Review of Some Slopware</title><link href="https://slott56.github.io/2026-08-24_a_review_of_some_slopware.html" rel="alternate"></link><published>2026-08-24T10:32:00-04:00</published><updated>2026-08-24T10:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-08-24:/2026-08-24_a_review_of_some_slopware.html</id><summary type="html">&lt;p&gt;I've been subjected to two (obvious) examples of slopware apps.
 I've read dozens and dozens of conference submissions that appeared to be slopware.
 I have some observations.&lt;/p&gt;
 &lt;div class="section" id="bluf"&gt;
@@ -2262,7 +2522,7 @@ But. I've posted it here so I won't lose it.&lt;/p&gt;
 &lt;p&gt;And. I like to think through alternative implementations.
 One of these is probably faster.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category></entry><entry><title>A get_object_size() Function [Updated]</title><link href="https://slott56.github.io/2025-10-16-get_object_size_function.html" rel="alternate"></link><published>2025-10-16T13:08:00-04:00</published><updated>2025-10-16T13:08:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-16:/2025-10-16-get_object_size_function.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category></entry><entry><title>A get_object_size() Function [Updated]</title><link href="https://slott56.github.io/2025-10-16-get_object_size_function.html" rel="alternate"></link><published>2025-10-16T13:08:00-04:00</published><updated>2025-10-16T13:08:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-16:/2025-10-16-get_object_size_function.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;You rarely need this.
 Python handles memory management for you.
@@ -2502,7 +2762,7 @@ But. I've posted it here so I won't lose it.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category></entry><entry><title>OO Design Principles: GRASP patterns</title><link href="https://slott56.github.io/2025-10-04-oo_design_principles_grasp_patterns.html" rel="alternate"></link><published>2025-10-04T09:46:00-04:00</published><updated>2025-10-04T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-04:/2025-10-04-oo_design_principles_grasp_patterns.html</id><summary type="html">&lt;!-- background:
+&lt;/script&gt;</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category></entry><entry><title>OO Design Principles: GRASP patterns</title><link href="https://slott56.github.io/2025-10-04-oo_design_principles_grasp_patterns.html" rel="alternate"></link><published>2025-10-04T09:46:00-04:00</published><updated>2025-10-04T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-04:/2025-10-04-oo_design_principles_grasp_patterns.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -2644,7 +2904,7 @@ It reflects the purpose behind the software -- show status, update things, allow
 &lt;p&gt;They overlap with -- and can provide some amplification for -- the SOLID design patterns.&lt;/p&gt;
 &lt;p&gt;The Pure Fabrication and Controller GRASP patterns seem to be more significant than the others.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="grasp"></category><category term="patterns"></category></entry><entry><title>OO Design Principles: CUPID</title><link href="https://slott56.github.io/2025-10-03-oo_design_principles_cupid.html" rel="alternate"></link><published>2025-10-03T09:46:00-04:00</published><updated>2025-10-03T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-03:/2025-10-03-oo_design_principles_cupid.html</id><summary type="html">&lt;!-- background:
+</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="grasp"></category><category term="patterns"></category></entry><entry><title>OO Design Principles: CUPID</title><link href="https://slott56.github.io/2025-10-03-oo_design_principles_cupid.html" rel="alternate"></link><published>2025-10-03T09:46:00-04:00</published><updated>2025-10-03T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-03:/2025-10-03-oo_design_principles_cupid.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -2734,7 +2994,7 @@ Providing common behavior among the problem domain objects that are being modell
 &lt;p&gt;These are nice. They're very useful in conjunction with SOLID design principles.&lt;/p&gt;
 &lt;p&gt;It helps to have guideposts to help clarify an underlying &amp;quot;why&amp;quot; we design software.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="cupid"></category></entry><entry><title>OO Design Principles: SOLID</title><link href="https://slott56.github.io/2025-10-02-oo_design_principles_solid.html" rel="alternate"></link><published>2025-10-02T09:46:00-04:00</published><updated>2025-10-02T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-02:/2025-10-02-oo_design_principles_solid.html</id><summary type="html">&lt;!-- background:
+</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="cupid"></category></entry><entry><title>OO Design Principles: SOLID</title><link href="https://slott56.github.io/2025-10-02-oo_design_principles_solid.html" rel="alternate"></link><published>2025-10-02T09:46:00-04:00</published><updated>2025-10-02T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-02:/2025-10-02-oo_design_principles_solid.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -2876,7 +3136,7 @@ But -- viewed from outside -- it's a single, atomic behavior.&lt;/p&gt;
 The SRP requires some careful thought, and -- from different perspectives -- can be awkwardly complicated.&lt;/p&gt;
 &lt;p&gt;The GRASP patterns can be helpful for implementation. Sometimes they are overly focused on Java and C++.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="solid"></category></entry><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
+</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="solid"></category></entry><entry><title>OO Design Principles: ABC's</title><link href="https://slott56.github.io/2025-10-01-oo_design_principles_abcs.html" rel="alternate"></link><published>2025-10-01T09:46:00-04:00</published><updated>2025-10-01T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-10-01:/2025-10-01-oo_design_principles_abcs.html</id><summary type="html">&lt;!-- background:
 
 I’ve been reading quite a lot in the book “Fluent Python”. It's a brilliant resource and is helping me understand details of Python that I hadn't even looked at before. In the last few chapters I read several times that ideally I should avoid inheritance with ABCs and if I do, then from a standard class. That is, I should avoid creating a typical base and subclass construct that is used in a strategy pattern, for example.
 
@@ -3051,7 +3311,7 @@ Just use a concrete base class and extend it as needed.&lt;/p&gt;
 &lt;p&gt;That's enough on ABC's for now. Let's move on to the SOLID principles.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Python"></category><category term="python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="abc"></category></entry><entry><title>The eval() Conundrum and Python-as-DSL</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
+</content><category term="Python"></category><category term="oo"></category><category term="oodesign"></category><category term="design principles"></category><category term="abc"></category></entry><entry><title>The eval() Conundrum and Python-as-DSL</title><link href="https://slott56.github.io/2025-09-28-the_eval_conundrum.html" rel="alternate"></link><published>2025-09-28T09:46:00-04:00</published><updated>2025-09-28T09:46:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2025-09-28:/2025-09-28-the_eval_conundrum.html</id><summary type="html">&lt;p&gt;Many people will proclaim that the &lt;tt class="docutils literal"&gt;eval()&lt;/tt&gt; function is reprentnatly evil.&lt;/p&gt;
 &lt;p&gt;Feel free to skip the two rants.&lt;/p&gt;
 &lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
@@ -11687,165 +11947,4 @@ progress.&lt;/p&gt;
 thinking about sql&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="Technologies"></category><category term="building skills books"></category><category term="#python"></category><category term="SQL"></category></entry><entry><title>Enterprise Python -- Some initial thoughts</title><link href="https://slott56.github.io/2022_08_16-enterprise_python_some_initial_thoughts.html" rel="alternate"></link><published>2022-08-16T08:00:00-04:00</published><updated>2022-08-16T08:00:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-08-16:/2022_08_16-enterprise_python_some_initial_thoughts.html</id><summary type="html">&lt;p&gt;In the long run, I think there's a small book here. See &lt;a class="reference external" href="https://www.infoworld.com/article/3604473/8-reasons-python-will-rule-the-enterprise-and-8-reasons-it-wont.html%20"&gt;8 reasons
-Python will rule the enterprise — and 8 reasons it won’t |
-InfoWorld&lt;/a&gt;.
-The conclusion, &amp;quot;Teams need to migrate slowly into the future, and
-adopting more Python is a way to do that,&amp;quot; seems to be sensible …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the long run, I think there's a small book here. See &lt;a class="reference external" href="https://www.infoworld.com/article/3604473/8-reasons-python-will-rule-the-enterprise-and-8-reasons-it-wont.html%20"&gt;8 reasons
-Python will rule the enterprise — and 8 reasons it won’t |
-InfoWorld&lt;/a&gt;.
-The conclusion, &amp;quot;Teams need to migrate slowly into the future, and
-adopting more Python is a way to do that,&amp;quot; seems to be sensible. Some of
-the cautionary tales along the way, however, don't make as much sense.&lt;/p&gt;
-&lt;p&gt;TL;DR. There are no reasons to avoid Python. Indeed, the 8 points
-suggest that Python is perhaps a smart decision.&lt;/p&gt;
-&lt;p&gt;I want to focus on the negatives part of this because some of them are
-wrong. I think there's a &amp;quot;technology hegemony&amp;quot; viewpoint where
-everything in an enterprise must be exactly the same. This tends to
-prevent creative solutions to problems and mires an enterprise into
-fighting problems that are inherent in bad technology choices. Also, I
-think there's an enterprises are run by idiots subtext.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Popularity&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;Really this is about having polyglot software
-portfolio. The reasoning appears to be that a polyglot software
-portfolio is impossible to maintain because (1) no one can learn an old
-language, and (2) software will never be rewritten from an obsolete
-language to a modern language. If these are both true, it appears the
-organization is full of idiots. The notion that a polyglot tech stack
-&lt;strong&gt;must&lt;/strong&gt; devolve into chaos seems to ignore the endless chain of
-management decisions that are required to create chaos. Leaving obsolete
-tech in place isn't a consequence of the tech, or the tech's lack of
-compatibility, it's a management decision to enshrine bad ideas, frozen
-in amber, forever.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Scripting Languages&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;Specifically, the spreadsheet is already the
-&lt;em&gt;de facto&lt;/em&gt; scripting language of choice, and nothing can be done about
-it. Nothing. No one can learn to use Jupyter Lab to do business
-analytics. If this is true, it appears that the organization is full of
-idiots. Python will not replace all spreadsheets. A pandas data frame
-will replace an opaque macro-filled nightmare with code that can be unit
-tested. Imagine unit testing a spreadsheet. Consider the possibilities
-of expanding business analysis work to include a few test cases; not
-100% code coverage, but a few test cases to confirm the analytical
-process was implemented consistently.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Dynamic Languages&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;Specifically, dynamic languages are useless
-for reliable software because there's no comprehensive type checking
-across some interfaces. Which begs the question of why there are
-software failures in statically typed languages. More importantly,
-complaining about dynamic languages raises important questions about
-integration and acceptance testing procedures in an organization in
-general. All languages require extensive test suites for all developed
-code. All languages benefit from static analysis. Sometimes the compiler
-does this, sometimes external tools do the linting. Sometimes folks use
-both the compiler and linters to check types. If we are sure dynamic
-languages will break, are we equally sure statically typed languages
-cannot break? Or, do we take steps to prevent problems? I think we tend
-to take a lot of steps to make sure software works.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Tooling&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;I can't figure this point out. But somehow C++ or Java
-have better tools for managing large source code bases. There are no
-details behind this claim, so I'm left to guess. I would suggest that
-the &amp;quot;incremental recompilation&amp;quot; problem of large C++ (and Java) code
-bases is its own nightmare. Folks go to great lengths to architect C++
-so that an implementation change does not require recompilation of
-everything. While this could be seen as &amp;quot;evolved to handle the jobs that
-enterprise coders need done&amp;quot;, I submit that there's a deeper problem
-here, and stepping away from the compiler is a better solution than
-complex architectures. See Lakos &lt;a class="reference external" href="https://www.oreilly.com/library/view/large-scale-c-volume/9780133927573/"&gt;Large-Scale C++ Software
-Design&lt;/a&gt; for
-some architectural features that don't solve any enterprise problem, but
-solve the scaling problem of big C++ applications. This bumps into the
-micro-services/monolith discussion, and the question of carefully
-testing each interface. None of which has anything to do with Python
-specifically.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Machine Learning and Data Science&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;These are fads, apparently.
-I'm not sure I can respond to this, since it has little to do with
-Python. Of course, Python has one of the most complete data science
-toolsets, so perhaps avoiding data science makes it easier to avoid
-Python.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Rapid Growth&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;The growth of Python is rapid, and there's no
-promise of endless backwards compatibility. This is a consequence of
-active development and learning. I think it's better than the endless
-backwards compatibility that leads to JavaScript's list of WATs. Or the
-endless confusion between java.util.date and Joda-Time. The idea that no
-one will ever look at the Enterprise code base for Common
-Vulnerabilities and Exposures seems to indicate a lack of concern for
-reliability or security. Since the entire compiled code base has to be
-checked for vulnerabilities, why not also check the Python code base for
-ongoing upgrades and changes and enhancements? Is code really written
-once and never looked at again? If so, it sounds like an organization
-run by idiots.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Python Shipped With Some OS's&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;There's a long story of woe that
-stems from relying on the OS-supplied Python. The lesson learned here is
-&lt;strong&gt;Never Rely on the OS Python; Always Install Your Own&lt;/strong&gt;. This doesn't
-seem like a reason to avoid Python in the enterprise. It seems like an
-important lesson learned for all software that's not part of the OS:
-always install your own. I've been using
-&lt;a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html"&gt;Miniconda&lt;/a&gt; to spin
-up Python environments and absolutely love it.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;dl class="first docutils"&gt;
-&lt;dt&gt;&lt;strong&gt;Open Source Software&lt;/strong&gt;.&lt;/dt&gt;
-&lt;dd&gt;Agreed. Nothing to do with Python
-specifically. Everything to do with tech stack and architecture. The
-question of using Open Source in the first place doesn't seem difficult.
-It's a well-established way to reduce start-up costs for software
-development.&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Of the eight points, two seem to be completely generic issues. Yes,
-Machine Learning is new, and yes, choices must be made. The two
-questions around scripting and dynamic languages seem specious; all
-programming requires careful design and testing. The Python shipped with
-the OS is a non-concern; the lesson learned is clear.&lt;/p&gt;
-&lt;p&gt;We have have three remaining points:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;strong&gt;Polyglot Portfolio&lt;/strong&gt; (From pursuing popularity.) This is already
-the case in most Enterprises, and needs to be managed through
-aggressive retiring of old software. I may have taken decades to
-build that old app, but it often takes months to rewrite it in a new
-language. The legacy app provides acceptance test cases; it's often
-filled with cruft and detritus of old decisions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tooling&lt;/strong&gt;. Agreed. Tooling is important. Not sure that Java or C++
-have a real edge here, but, tooling is important.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Growth and Change&lt;/strong&gt;. Python's rapid evolution requires active
-management. An enterprise must adopt a YBYO (You Build it You Own it)
-attitude so that every level of management is aware of the components
-they're responsible for. CVE's are checked, Python PEP's are checked.
-Tools like &lt;a class="reference external" href="https://tox.wiki/en/latest/"&gt;tox&lt;/a&gt; or
-&lt;a class="reference external" href="https://nox.thea.codes/en/stable/"&gt;nox&lt;/a&gt; are used to build (and
-rebuild) virtual environments.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;If these seem like a high bar, perhaps there are deeper issues in the
-enterprise. If adding Yet Another Language is a problem, then it's
-time to start retiring some languages. If Adding Another Tool is a
-problem, it's worth examining the existing tool chain to see why it's
-such a burden. If the idea of change is terrifying, perhaps the
-ongoing change is not being watched carefully enough.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="enterprise"></category></entry></feed>
+</content><category term="Technologies"></category><category term="building skills books"></category><category term="#python"></category><category term="SQL"></category></entry></feed>

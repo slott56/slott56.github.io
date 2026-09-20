@@ -2,7 +2,7 @@ OO Design Principles: GRASP patterns
 #######################################
 
 :date: 2025-10-04 09:46
-:tags: python,oo,oodesign,design principles,grasp,patterns
+:tags: oo,oodesign,design principles,grasp,patterns
 :slug: 2025-10-04-oo_design_principles_grasp_patterns
 :category: Python
 :status: published

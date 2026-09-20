@@ -2,7 +2,7 @@ Some Notes on Python
 ###########################
 
 :date: 2026-01-08 10:44
-:tags: python,math,object-oriented
+:tags: math,object-oriented
 :slug: 2026-01-08_some_notes_on_python
 :category: Python
 :status: draft
