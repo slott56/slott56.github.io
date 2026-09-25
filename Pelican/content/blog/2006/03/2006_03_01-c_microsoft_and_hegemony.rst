@@ -2,7 +2,7 @@ C#, Microsoft and Hegemony
 ==========================
 
 :date: 2006-03-01 01:26
-:tags: microsoft,perl,c-sharp
+:tags: microsoft,perl,c#
 :slug: 2006_03_01-c_microsoft_and_hegemony
 :category: Management
 :status: published

@@ -2,7 +2,7 @@ Tools Aren't the Answer
 =======================
 
 :date: 2006-08-04 10:47
-:tags: test coverage,abstract classes
+:tags: test coverage,abstraction
 :slug: 2006_08_04-tools_arent_the_answer
 :category: Management
 :status: published

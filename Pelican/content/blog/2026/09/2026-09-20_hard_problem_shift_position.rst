@@ -1,9 +1,9 @@
 Hard Problem? Try Shifting Position
 ################################################
 
-:date: 2026-09-30 13:32
+:date: 2026-09-20 13:32
 :tags: codebyhand,ibm1620,retrocomputing
-:slug: 2026-09-30_hard_problem_shift_position
+:slug: 2026-09-20_hard_problem_shift_position
 :category: Architecture & Design
 :status: published
 

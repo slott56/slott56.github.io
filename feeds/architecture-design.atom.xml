@@ -1,5 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-09-30T13:32:00-04:00</updated><entry><title>Hard Problem? Try Shifting Position</title><link href="https://slott56.github.io/2026-09-30_hard_problem_shift_position.html" rel="alternate"></link><published>2026-09-30T13:32:00-04:00</published><updated>2026-09-30T13:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-30:/2026-09-30_hard_problem_shift_position.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-09-25T09:32:00-04:00</updated><entry><title>Hard Problem? Stop Staring At The Code</title><link href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html" rel="alternate"></link><published>2026-09-25T09:32:00-04:00</published><updated>2026-09-25T09:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-25:/2026-09-25_hard_problem_stop_staring.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Stop Staring At It.&lt;/p&gt;
+&lt;p&gt;Often, there are two problems:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The code doesn't work.&lt;/li&gt;
+&lt;li&gt;You're making faulty assumptions about why it doesn't work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's essential to stop staring (and hand-wringing) over the code and &lt;strong&gt;gather evidence.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This will allow you to challenge your faulty …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;Stop Staring At It.&lt;/p&gt;
+&lt;p&gt;Often, there are two problems:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The code doesn't work.&lt;/li&gt;
+&lt;li&gt;You're making faulty assumptions about why it doesn't work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's essential to stop staring (and hand-wringing) over the code and &lt;strong&gt;gather evidence.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This will allow you to challenge your faulty assumptions.&lt;/p&gt;
+&lt;div class="sidebar"&gt;
+&lt;p class="first"&gt;I had the misfortune for working with someone who was blind to their own assumptions.&lt;/p&gt;
+&lt;p&gt;They made evidence-free assertions.&lt;/p&gt;
+&lt;p&gt;When I asked for evidence they blustered and make random (often contradictory) noises for a dismayingly long time.&lt;/p&gt;
+&lt;p&gt;Eventually (a few times they only stopped when I accused them of lying) they would resort to claiming
+these were &amp;quot;auto-assumptions&amp;quot;: something so obvious it couldn't be false, and
+didn't count as an assumption because it was -- like gravity -- universally true.&lt;/p&gt;
+&lt;p&gt;Except in these cases where they couldn't provide evidence.&lt;/p&gt;
+&lt;p class="last"&gt;They would never self-challenge their assumptions.  &lt;strong&gt;Never.&lt;/strong&gt;
+It had to get heated with me (repeatedly) asking for evidence.
+The need to gather tangible evidence was -- to them -- a whim of mine, not a rational process for assessing the facts.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-detailed-example"&gt;
+&lt;h2&gt;The Detailed Example&lt;/h2&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.&lt;/p&gt;
+&lt;p&gt;(See &lt;a class="reference external" href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html"&gt;Hard Problem? Shift Position&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The IBM1620 is not a particularly good machine. (The PDP-8 is much better.)&lt;/p&gt;
+&lt;p&gt;The IBM1620 is &lt;strong&gt;simple&lt;/strong&gt;. Making it a potentially good vehicle for talking about machine-language programming.
+Without getting tangled up up the creeping collection of confusing contraptions that characterize
+a lot of modern CPU's.&lt;/p&gt;
+&lt;p&gt;Also. It's &lt;strong&gt;decimal&lt;/strong&gt;.  We can set the binary-to-decimal-to-hexadecimal stuff aside.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="test-cases"&gt;
+&lt;h2&gt;Test Cases&lt;/h2&gt;
+&lt;p&gt;I got the examples from the reference manuals to work. Big yay!&lt;/p&gt;
+&lt;p&gt;This meant I needed to add yet more examples.&lt;/p&gt;
+&lt;p&gt;For 2-digit, signed numbers, there are 4,000 pairs.
+(Superficially, it seems like -99 to 00 to +99 is only 199 two-digit values, 39,601 examples.
+Actually, there's signed zeroes -- -00 and +00 -- so, it's a proper 200 values.)&lt;/p&gt;
+&lt;p&gt;Testing &lt;strong&gt;all&lt;/strong&gt; of them is (in a way) dumb, since most of the cases are simply redundant.
+There are 8 conditions in the sign analysis table in figure 13-6 of the documentation.
+Detailed &lt;em&gt;Boundary Value Analysis&lt;/em&gt; could create as many as 40 cases targeting &amp;quot;below minimum&amp;quot;, &amp;quot;at minimum&amp;quot;, &amp;quot;middle&amp;quot;, &amp;quot;at maximum&amp;quot;, &amp;quot;above maximum&amp;quot; sums.&lt;/p&gt;
+&lt;p&gt;My lazy approach is to use 3-digit values like 998, 3, -3, and -998.
+This has a number of overflows, and tricky sign rules.&lt;/p&gt;
+&lt;p&gt;This revealed adding &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-003&lt;/span&gt; + 998&lt;/tt&gt; did not produce &lt;tt class="docutils literal"&gt;995&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="details-matter"&gt;
+&lt;h2&gt;Details Matter&lt;/h2&gt;
+&lt;p&gt;I spent some time improving the output log.&lt;/p&gt;
+&lt;p&gt;And improving it again.&lt;/p&gt;
+&lt;p&gt;I needed to match the code against the processing rules spread over 9 pages.&lt;/p&gt;
+&lt;p&gt;Here's the strategy:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;Not&lt;/strong&gt; staring at the code.&lt;/li&gt;
+&lt;li&gt;Stare at the output from the &lt;tt class="docutils literal"&gt;print()&lt;/tt&gt; functions throughout the code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here's the outline of how the processing cycle is implemented:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+while trigger:
+    match trigger:
+        case trg_11:
+            # Q-digit stuff
+            trigger_next = trg_12
+        case trg_12:
+            # P-digit stuff and sign analysis
+            trigger_next = trg_13
+        # etc.
+    pprint(locals())
+    trigger = trigger_next
+&lt;/pre&gt;
+&lt;p&gt;Yes. I printed &lt;strong&gt;all&lt;/strong&gt; the local variables.  &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;pprint(locals())&lt;/span&gt;&lt;/tt&gt; exposes everything.
+It forces renaming variables so they are located near each other.
+It forces creating intermediate variables to expose complex computations.&lt;/p&gt;
+&lt;p&gt;This let me stop staring at the code (which was my design, with my faulty assumptions)
+and look at the &lt;strong&gt;effect&lt;/strong&gt; of the code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="victory-ish-outcome"&gt;
+&lt;h2&gt;Victory-ish Outcome&lt;/h2&gt;
+&lt;p&gt;Eventually, I uncovered a subtle recomplement condition.&lt;/p&gt;
+&lt;p&gt;Unit tests still failed.&lt;/p&gt;
+&lt;p&gt;What I did &lt;strong&gt;not&lt;/strong&gt; do (for hours) was actually look at the test case failure.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Initially&lt;/strong&gt;.  The incorrect result was -006. A nuanced recomplement problem.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I found and fixed the recomplement problem.&lt;/p&gt;
+&lt;p&gt;There was still a unit test error.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I did not know I fixed this bug.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I actually had a second problem.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Finally&lt;/strong&gt;.  The incorrect result was -995.  A simple failure to set the sign correctly.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Scrolling around randomly, I noticed the failed assertion was different than it was initially.&lt;/p&gt;
+&lt;p&gt;Big sigh. I &lt;strong&gt;assumed&lt;/strong&gt; the test case failure reason had not changed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-steps"&gt;
+&lt;h2&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;First. Rejoice at having gotten mixed sign add and recomplement to &lt;strong&gt;work&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Next. Investigate 3 subtract issues: all &lt;span class="math"&gt;\(-P - -Q\)&lt;/span&gt; computations.
+Two of these have a final machine state issue: the High/Plus trigger logic is wrong.
+One of these is a 10's complement vs. 9's complement nuance: the answer is off by 1; this may be related to the &lt;span class="math"&gt;\(-3 + 998\)&lt;/span&gt; problem.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script type='text/javascript'&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Architecture &amp; Design"></category><category term="codebyhand"></category><category term="ibm1620"></category><category term="retrocomputing"></category></entry><entry><title>Hard Problem? Try Shifting Position</title><link href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html" rel="alternate"></link><published>2026-09-20T13:32:00-04:00</published><updated>2026-09-20T13:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-20:/2026-09-20_hard_problem_shift_position.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Can't get the software to work?&lt;/p&gt;
 &lt;p&gt;Rewrite it.&lt;/p&gt;
@@ -8319,68 +8498,4 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;p&gt;I found it helpful to recast the lessons learned in the Pattern mold.  Document the Context, Problem, Forces, Solution and Consequences to capture the information in a concise, story-like format.  When you have a problem in a context, it's like reading a screenplay.  The second act of the screenplay -- the forces -- is where the conflict plays out.  The solution and consequences are the third act of the story.&lt;/p&gt;
 &lt;p&gt;Having an arc makes the whole something we can understand and use.  It makes it possible for top management to articulate the reasons for the technology solution and maintain some focus and follow-through.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="methodology"></category><category term="agile"></category></entry><entry><title>Use Cases, Why Cases and The Bentley Test</title><link href="https://slott56.github.io/2007_08_05-use_cases_why_cases_and_the_bentley_test.html" rel="alternate"></link><published>2007-08-05T23:09:00-04:00</published><updated>2007-08-05T23:09:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-08-05:/2007_08_05-use_cases_why_cases_and_the_bentley_test.html</id><summary type="html">&lt;p&gt;See &lt;a class="reference external" href="http://www.ddj.com/architect/201202946?cid=RSSfeed_DDJ_All"&gt;So What Are Requirements?&lt;/a&gt;  in Dr. Dobb's.&lt;/p&gt;
-&lt;p&gt;I've seen requirements done badly.  I've seen some notable failures of the use case technique: almost entirely because people refuse to actually apply the technique; they refuse to write use cases from the actor's point of view.  I've whined about this before …&lt;/p&gt;</summary><content type="html">&lt;p&gt;See &lt;a class="reference external" href="http://www.ddj.com/architect/201202946?cid=RSSfeed_DDJ_All"&gt;So What Are Requirements?&lt;/a&gt;  in Dr. Dobb's.&lt;/p&gt;
-&lt;p&gt;I've seen requirements done badly.  I've seen some notable failures of the use case technique: almost entirely because people refuse to actually apply the technique; they refuse to write use cases from the actor's point of view.  I've whined about this before in Notable Failures of Use Cases, &lt;a class="reference external" href="https://slott56.github.io/2005_10_26-notable_failure_of_use_cases.html"&gt;part 1&lt;/a&gt; , &lt;a class="reference external" href="https://slott56.github.io/2005_10_28-notable_failure_of_use_cases_part_2.html"&gt;part 2&lt;/a&gt; , &lt;a class="reference external" href="https://slott56.github.io/2005_10_31-notable_failure_of_use_cases_part_3.html"&gt;part 3&lt;/a&gt; , and &lt;a class="reference external" href="https://slott56.github.io/2006_04_28-notable_failure_of_use_cases_part_4.html"&gt;part 4&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;The interesting point that Wiegers makes is that there are different species of requirements.  Failing to recognize this is what can lead to diluting the use cases with junk.&lt;/p&gt;
-&lt;p&gt;The summary definition (from &lt;a class="reference external" href="http://www.coyotevalley.com/tools.htm"&gt;Coyote Valley Software&lt;/a&gt;  principal Brian Lawrence) appears to be that the line between requirements and design is that requirements lead to design choices.  While I like this, it has to be refined a bit.&lt;/p&gt;
-&lt;p&gt;Pressman calls this the &amp;quot;What vs. How&amp;quot; distinction.  Requirements specify what must happen.  Design chooses how this will happen.  Again, this needs some refinement.  In a way, Pressman throws up his hands in despair, noting only that there is a hierarchy of what's and how's.  For example, interface requirements are &amp;quot;how&amp;quot; we'll implement some business requirement.  On the other hand, the interface requirements are a &amp;quot;what&amp;quot; to a lower-level piece of software that opens and closes sockets.&lt;/p&gt;
-&lt;p&gt;Exacerbating this hierarchy problem is more fundamental confusion on techniques to capture requirements in the first place.&lt;/p&gt;
-&lt;div class="section" id="point-of-view"&gt;
-&lt;h2&gt;Point of View&lt;/h2&gt;
-&lt;p&gt;Recently we were working through some use cases where the author had identified a document as the actor.  The body of the use case was a bunch of technical processing details for the document.  It's painful to claim that all 20 use cases weren't use cases because the actual actor (the user who needed to see the document's processing) was never mentioned even once.&lt;/p&gt;
-&lt;p&gt;At some point, the customer trotted out a use case with no actor.  The use case summary had a passive-voice construction (&amp;quot;will be notified&amp;quot;)  At that point I could drop the bomb that use case actors are usually people (sometimes they are interfaces) by asking &amp;quot;for whom?&amp;quot;&lt;/p&gt;
-&lt;p&gt;The customer's project manager made the claim that he thought that use cases were written from the system's point of view.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="technical-requirements"&gt;
-&lt;h2&gt;&amp;quot;Technical&amp;quot; Requirements&lt;/h2&gt;
-&lt;p&gt;I told the customer's team that it was a common misconception.  It arises because of the vast wealth of technical details with no obvious home when writing use cases.  They wanted to call the details &amp;quot;technical requirements&amp;quot;.  I balked.&lt;/p&gt;
-&lt;p&gt;Wiegers suggests that we have business requirements, user requirements (the proper use cases) and functional requirements.  This certainly peels the outermost layers of the onion, and is a potential tool for guiding people into writing usable requirements.  But it has a small problem.&lt;/p&gt;
-&lt;p&gt;The name &amp;quot;functional&amp;quot; requirements is a fairly serious problem with Wieger's breakdown.  Most people don't know what constitutes non-functional requirements.  Consequently, they just throw the phrase around more-or-less at random.  I have to object strongly when I'm shown a document with dozens of pages related to performance, maintainability, and ownership issues -- all non-functional requirements.&lt;/p&gt;
-&lt;p&gt;The core issue is that everyone wants to design the solution.  The more people you interview, the more you discover that everyone is an architect, and everyone has very strong opinions on precisely how to build the software solution.&lt;/p&gt;
-&lt;p&gt;At every level of the organization, you'll hear the following: &amp;quot;I'm not technical, but wouldn't it be simpler if...&amp;quot; followed by some kind of design.  If I remark on how their solution might have issues, they'll explain to me that one of their non-technical staff built something like their preferred solution in MS-Access during lunch-hours over the previous week.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-why-cases"&gt;
-&lt;h2&gt;The Why Cases&lt;/h2&gt;
-&lt;p&gt;Rather than ask &amp;quot;If your staff member is such a hot-shot programmer, why am I here?&amp;quot; it becomes important to dig into the real requirements.&lt;/p&gt;
-&lt;p&gt;I find that we have the following kinds of requirements.  These aren't presented in a top-down order, but in an inside-out order.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;What the user sees.&lt;/strong&gt;   These are the use cases.  The wisdom here is that we can use the definition (&amp;quot;A user interacts with a system to create business value&amp;quot;) to locate users, interactions, the system and value.  Absent these elements, we don't have a use case, and can set it aside as a solution design.  One of the acid-tests is to see if the use case addresses the &amp;quot;for whom?&amp;quot; question.  If this isn't someone's job, it isn't a use case.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Why the user's even doing this.&lt;/strong&gt;   These are the &lt;strong&gt;Why Cases&lt;/strong&gt;™ that bracket the Use Cases.  We can ask &amp;quot;why?&amp;quot; and locate the overall business requirements that create the use cases in the first place.  Generally, the use cases are a solution to a business problem; in some cases, they're a bad solution.  Asking &amp;quot;why?&amp;quot; periodically helps to focus people on the rational behind the use cases.  It helps us recognize that we're only building software to make someone happier and more productive.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;How we'll support the user.&lt;/strong&gt;   This is a high-level design for the solution.  We can't call it functional requirements because few people know what the non-functional requirements are.  We can't call them &amp;quot;technical requirements&amp;quot; because this also leads to more confusion than it prevents.  We need to call it design.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="passive-voice-reporting"&gt;
-&lt;h2&gt;Passive Voice Reporting&lt;/h2&gt;
-&lt;p&gt;One of the best indicators of confusion seems to be the passive voice constructs like &amp;quot;the exception report will be generated daily.&amp;quot;  This invites us to ask two questions:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;For whom?&lt;/strong&gt; This question will let us locate the proper use case.  Generating an exception report doesn't involve any interaction.  Someone looks at the exceptions, makes a decision, and takes action.  Who does this?  What are they supposed to do?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Why?&lt;/strong&gt;   This question will let us locate the driving business requirement.  For example, we may have a contractual obligation for a particular service level.  Someone must investigate each exception, determine a root cause, and take action to correct problems that are internal and finish processing the exceptional transaction.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="customer-guidance"&gt;
-&lt;h2&gt;Customer Guidance&lt;/h2&gt;
-&lt;p&gt;What do we do when we're confronted with stuff that isn't really a requirement?  Generally, we're given design documents with titles like &amp;quot;Software Requirement Specification&amp;quot; or &amp;quot;Use Case&amp;quot;.  Since the documents don't allow us any design choices, they aren't really requirements; they're specifications.&lt;/p&gt;
-&lt;p&gt;All too often, folks have downloaded an SRS template (like &lt;a class="reference external" href="http://www.processimpact.com/goodies.shtml"&gt;Wieger's&lt;/a&gt; ) and then abused the template.  I've seen SRS documents with the titles and template instructions still in place, essentially ignored by the author.  Large sections of the SRS template are left empty, because the author wasn't writing requirements.&lt;/p&gt;
-&lt;p&gt;I think that we need to look at the design documents we're given ask the two fundamental questions: why? and for whom?  From these two questions we can back up to the business requirements and the use case.&lt;/p&gt;
-&lt;p&gt;Hopefully, we can achieve a fundamental rethinking of the specifications to improve their value in a number of ways.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-architect-gets-a-bentley"&gt;
-&lt;h2&gt;The Architect Gets a Bentley&lt;/h2&gt;
-&lt;p&gt;Defining who does the job gets us away from writing software that seems necessary to the author (&amp;quot;of course we need notification of exceptions&amp;quot;.)  It can help us locate software that really is essential (&amp;quot;typically, Frank checks the exceptions each once or twice a week by looking at the logs, not a report&amp;quot;).  If it isn't going to be done daily, why over-engineer the system?  If the logs satisfy the need, why design a report?  Why not target the implementation for what people will actually do?&lt;/p&gt;
-&lt;p&gt;Including the business requirements can simplify or focus the use cases.  If we can't articulate the business need, then we have the &lt;strong&gt;I Get A Bentley&lt;/strong&gt;™ requirements.&lt;/p&gt;
-&lt;p&gt;I had a customer claim that they required 24x7 availability.  But they would not consider any hardware changes, and the hardware they had purchased couldn't provide the level of availability they were asking for.  When I brought this up, they claimed that 24x7 wasn't really a &amp;quot;requirement&amp;quot; it was more of a &amp;quot;goal.&amp;quot;  My follow-up question was &amp;quot;Where's the line?  What's the least availability that you'll tolerate before you sue me.&amp;quot;  They chuckled nervously, and said that any talk of lawsuits was irrelevant.&lt;/p&gt;
-&lt;p&gt;It isn't irrelevant.  &amp;quot;Required&amp;quot; means required, as in &amp;quot;if the system doesn't do this, you don't get paid.&amp;quot;&lt;/p&gt;
-&lt;p&gt;If 24x7 availability is a requirement, then &amp;quot;Architect gets a Bentley&amp;quot; is also a requirement.  There's no business justification for either position.  They were clearly a 12x5 operation, and could justify requiring 18x6 to cover weekends and west-coast timezones.  They could not show a business reason for 24x7 any more than I could show a business reason for a Bentley.  It may have been my goal, but I couldn't justify it as a contractual requirement.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="the-bentley-test"&gt;
-&lt;h2&gt;The Bentley Test&lt;/h2&gt;
-&lt;p&gt;If the answer to &amp;quot;why?&amp;quot; is isomorphic to &amp;quot;because I'm the customer,&amp;quot; then you've located a place to apply &lt;strong&gt;The Bentley Test&lt;/strong&gt;™.  If you get feature [&lt;strong&gt;X&lt;/strong&gt; ] because you're the customer, then I get a Bentley because I'm the architect.  It sounds fair to me.  Prove that it isn't.&lt;/p&gt;
-&lt;p&gt;Phrases like &amp;quot;you must have known we wanted this when you wrote the proposal&amp;quot; or &amp;quot;if we didn't want that feature, why would we be building software?&amp;quot; are isomorphic to &amp;quot;because I'm the customer.&amp;quot;  Other examples include&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&amp;quot;Don't bother trying to save us money with Linux, we're an all-[&lt;strong&gt;Y&lt;/strong&gt;] shop.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&amp;quot;We absolutely have to have all of our purchased applications share a single common database -- without any of that schema mumbo-jumbo.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&amp;quot;You must fix our database without changing the user interface.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&amp;quot;You have to achieve acceptable performance with no hardware or data model changes.&amp;quot;  Followed by &amp;quot;no, we can't define acceptable.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Sure, and I get a Bentley.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="requirements"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="methodology"></category><category term="agile"></category></entry></feed>

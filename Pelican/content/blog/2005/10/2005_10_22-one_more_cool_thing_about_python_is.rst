@@ -2,7 +2,7 @@ One More Cool Thing About Python Is...
 ======================================
 
 :date: 2005-10-22 15:25
-:tags: data analysis,application example
+:tags: data analysis
 :slug: 2005_10_22-one_more_cool_thing_about_python_is
 :category: Python
 :status: published

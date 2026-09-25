@@ -19,8 +19,7 @@ hand."
 
 
 
-Good point, but only half the
-story.
+Good point, but only half the story.
 
 
 

@@ -2,7 +2,7 @@ Multi-Lingual Solutions: Explore in Python, Implement in Java
 =============================================================
 
 :date: 2005-11-02 00:51
-:tags: building skills books,applications,data analysis
+:tags: building skills books,data analysis
 :slug: 2005_11_02-multi_lingual_solutions_explore_in_python_implement_in_java
 :category: Books
 :status: published

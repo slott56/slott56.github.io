@@ -2,7 +2,7 @@ Specifying-Bidding-Buying Software
 ==================================
 
 :date: 2005-09-02 14:44
-:tags: specification,incremental development,outsourcing
+:tags: specification,agile,outsourcing
 :slug: 2005_09_02-specifying_bidding_buying_software
 :category: Management
 :status: published

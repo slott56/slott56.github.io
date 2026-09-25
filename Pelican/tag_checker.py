@@ -1,12 +1,12 @@
 """
 Check Tags vs. Categories in content/blog
 """
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from pprint import pprint
 import re
 
-tag_domain = Counter()
+tag_domain = defaultdict(list)
 
 counts = Counter()
 source = Path.cwd() / "content" / "blog"
@@ -17,7 +17,7 @@ for entry in sorted(source.glob("**/*.rst")):
         if tag_line := re.match(r"^:tags: (.*)?$", line):
             tags = {t.lower() for t in tag_line.group(1).strip().split(',')}
             for t in tag_line.group(1).strip().split(','):
-                tag_domain[t.lower()] += 1
+                tag_domain[t.lower()].append(entry.stem)
         if cat_line := re.match(r"^:category: (.*)?$", line):
             category = cat_line.group(1).strip()
     if category.lower() in tags:
@@ -27,6 +27,6 @@ for entry in sorted(source.glob("**/*.rst")):
 #     print(year, cleanup)
 
 singletons = {
-    t: tag_domain[t] for t in tag_domain if tag_domain[t] == 1
+    tag_domain[t][0]: t for t in tag_domain if len(tag_domain[t]) == 1
 }
 pprint(singletons)
