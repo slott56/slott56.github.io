@@ -50,9 +50,9 @@ the #RetroComputing IBM 1620.
 
 (See `Hard Problem? Shift Position <{filename}/blog/2026/09/2026-09-20_hard_problem_shift_position.rst>`_.)
 
-The IBM1620 is not a particularly good machine. (The PDP-8 is much better.)
+The IBM 1620 is not a particularly good machine. (The PDP-8 is much better.)
 
-The IBM1620 is **simple**. Making it a potentially good vehicle for talking about machine-language programming.
+The IBM 1620 is **simple**. Making it a potentially good vehicle for talking about machine-language programming.
 Without getting tangled up up the creeping collection of confusing contraptions that characterize
 a lot of modern CPU's.
 

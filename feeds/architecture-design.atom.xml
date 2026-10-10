@@ -1,5 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-09-25T09:32:00-04:00</updated><entry><title>Hard Problem? Stop Staring At The Code</title><link href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html" rel="alternate"></link><published>2026-09-25T09:32:00-04:00</published><updated>2026-09-25T09:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-25:/2026-09-25_hard_problem_stop_staring.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-10-10T12:28:00-04:00</updated><entry><title>Hard Problem? Use Test Cases as Debug Aids</title><link href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html" rel="alternate"></link><published>2026-10-10T12:28:00-04:00</published><updated>2026-10-10T12:28:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-10:/2026-10-10_hard_problem_test_as_debug.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;The test cases are places to gather debugging details.
+Some simple tricks:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Observability: add debugging outputs to the code&lt;/li&gt;
+&lt;li&gt;Enable debugging output in failing test cases&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Make Failure an Option&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-detailed-example"&gt;
+&lt;h2&gt;The Detailed Example&lt;/h2&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Can't get the software to work?&lt;/p&gt;
+&lt;p&gt;The test cases are places to gather debugging details.
+Some simple tricks:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Observability: add debugging outputs to the code&lt;/li&gt;
+&lt;li&gt;Enable debugging output in failing test cases&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Make Failure an Option&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-detailed-example"&gt;
+&lt;h2&gt;The Detailed Example&lt;/h2&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.&lt;/p&gt;
+&lt;p&gt;(See &lt;a class="reference external" href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html"&gt;Hard Problem? Shift Position&lt;/a&gt;, and &lt;a class="reference external" href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html"&gt;Hard Problem? Stop Staring At The Code&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The IBM 1620 has a number of peculiar features.
+See &lt;a class="reference external" href="https://www.cs.utexas.edu/~EWD/transcriptions/EWD00xx/EWD37.html"&gt;EWD37&lt;/a&gt; for a scathing analysis of the problems with this processor's design.
+But, it's really simple, and works in decimal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-broken"&gt;
+&lt;h2&gt;What's Broken&lt;/h2&gt;
+&lt;p&gt;I've got something that doesn't work.
+Paired with a different implementation that does work.
+I need to know what's different.&lt;/p&gt;
+&lt;p&gt;In one hand, I've got a proper Finite-State Automaton (FSA) that should reflect functional features of the CPU.
+It doesn't work.&lt;/p&gt;
+&lt;p&gt;In the other hand, I've got a hackerish &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;while-if&lt;/span&gt;&lt;/tt&gt; big-ball-o-mud monster that &lt;strong&gt;does&lt;/strong&gt; work.
+It works really, really well, passing hundreds of unit tests.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="some-details"&gt;
+&lt;h2&gt;Some Details&lt;/h2&gt;
+&lt;p&gt;Skip this, if you're not interested in #retrocomputing and want to get to the #Python.&lt;/p&gt;
+&lt;p&gt;I'm working with the functional summaries of how the 1620 really worked.
+And they're sometimes incomplete (and in one case, inaccurate.)&lt;/p&gt;
+&lt;p&gt;The IBM 1620 CPU has 64 (or so) &amp;quot;triggers&amp;quot; (or &amp;quot;latches&amp;quot;, which might be more widely known as &amp;quot;flip-flops&amp;quot;), 15 registers of various sizes, and a 10-step clock cycle that controlled the details of the state changes.
+A &amp;quot;functional&amp;quot; state included an illuminated a console lamp, and had as many internal changes as could be crammed into the clock cycle.&lt;/p&gt;
+&lt;p&gt;For example, the &lt;strong&gt;Trigger 11&lt;/strong&gt; illuminated the &lt;tt class="docutils literal"&gt;E11&lt;/tt&gt; lamp, updated the Digit/Branch register with a digit from memory,
+and updated the OR-1 register with the next lower address in memory.
+And set or cleared Field Mark 1, True/Complement, and the Carry Out latches.&lt;/p&gt;
+&lt;p&gt;The machine used magnetic core memory, and a read was destructive. It required a following write to make it idempotent, sucking up clock cycles in the kind of overhead that's really unhelpful to know anything about. Forget I mentioned the idea that reading from memory erased what was there.&lt;/p&gt;
+&lt;p&gt;One version works.
+The other version is fatally broken.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-1-observability"&gt;
+&lt;h2&gt;Step 1 -- Observability&lt;/h2&gt;
+&lt;p&gt;The first thing was to improve observability into both versions.&lt;/p&gt;
+&lt;p&gt;The FSA is designed so each state &lt;strong&gt;is&lt;/strong&gt; highly observable.
+The &amp;quot;functional&amp;quot; state class sets console lamps (in addition to doing internal state changes.)
+The triggers and registers have logging to record state changes as well as display the final state an operator would see on the console.&lt;/p&gt;
+&lt;p&gt;The big-ball-o-mud monster? We need to expose &lt;strong&gt;why&lt;/strong&gt; it works.
+Merely knowing it's correct isn't quite as useful as it might seem.&lt;/p&gt;
+&lt;p&gt;Here's what to do:&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add a locals dump.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+if _DETAILS == 2:
+    pprint(
+        {
+            name: value
+            for name, value in locals().items()
+            if not name.startswith(&amp;quot;_&amp;quot;)
+        },
+        width=156
+    )
+&lt;/pre&gt;
+&lt;p&gt;This goes at the bottom of the &lt;tt class="docutils literal"&gt;while&lt;/tt&gt; loop to dump the locals.
+It elides hidden variables, to reduce clutter somewhat.&lt;/p&gt;
+&lt;p&gt;Also, this &lt;strong&gt;forces&lt;/strong&gt; sensible naming conventions to make possible to understand the locals.
+The most important part of the name is first, clustering functionally-related variables together.
+Which tends to provide copious hints for class designs to encapsulate functionally-related items into a sensible state definition.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add an &amp;quot;Important State&amp;quot; dump.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+if _DETAILS:
+    print(f&amp;quot;\n# 34-41: {multiplier_digit}×{multiplicand_digit}={''.join(map(str, memory.values()))}\n&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;A few of these were scattered around to display a summary of the processing so far.
+This provided context for the detail dumps above and below.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-2-in-test-cases"&gt;
+&lt;h2&gt;Step 2 -- In Test Cases&lt;/h2&gt;
+&lt;p&gt;We don't want the output from &lt;strong&gt;everything&lt;/strong&gt;.
+We want output for selected test cases.
+We're comparing the same test case for two implementations.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Set the &lt;tt class="docutils literal"&gt;_DETAILS&lt;/tt&gt; to &lt;tt class="docutils literal"&gt;2&lt;/tt&gt; for selected test cases.
+This is done with &lt;tt class="docutils literal"&gt;monkeypatch.setattr(ibm1620.algorithms, '_DETAILS', 2)&lt;/tt&gt; in the tests where debugging details are helpful.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;The tricky bit: saving the detailed logs for specific (failing) test cases.
+The goal is to have two parallel logs so we can compare what worked with what didn't work:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;bug_algo.log&lt;/tt&gt; with the (working) big-ball-o-mud dumps of local variables.&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;bug_final.log&lt;/tt&gt; produced by the (not working) FSA's using the ordinary logging that's available from a tidy, well-designed bit of OO programming.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The problem is that &lt;strong&gt;pytest&lt;/strong&gt; won't capture much output from a test that passes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We have two contexts for running the test suite:&lt;/p&gt;
+&lt;ol class="upperalpha"&gt;
+&lt;li&gt;&lt;p class="first"&gt;Does everything work?  A simple Yes/No will do nicely, thank you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Why does something work?&lt;/p&gt;
+&lt;p&gt;Which is really a question of what test case &lt;tt class="docutils literal"&gt;test_s_page_71&lt;/tt&gt; produces as output when it works.
+Normally, &lt;strong&gt;pytest&lt;/strong&gt; doesn't save output from tests that pass.
+Capturing the debugging details requires a test to fail.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Make Failure an Option.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="step-3-forced-failure"&gt;
+&lt;h2&gt;Step 3 -- Forced Failure&lt;/h2&gt;
+&lt;p&gt;The &amp;quot;normal&amp;quot; mode of testing is to run the tests to see what passes.
+We can see the captured output from the failing tests, and use it to debug the problem.
+This is an elegant feature of &lt;strong&gt;pytest&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;side-by-side&amp;quot; mode of testing is to run tests with two implementations, capturing the output to compare them.
+We're going to introduce a &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--debugfail&lt;/span&gt;&lt;/tt&gt; flag into our &lt;strong&gt;pytest&lt;/strong&gt; environment so failure can be an option.&lt;/p&gt;
+&lt;p&gt;Here's a recipe from my Makefile:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bug_logs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;-&lt;span class="w"&gt; &lt;/span&gt;pytest&lt;span class="w"&gt; &lt;/span&gt;-v&lt;span class="w"&gt; &lt;/span&gt;--show-capture&lt;span class="w"&gt; &lt;/span&gt;all&lt;span class="w"&gt; &lt;/span&gt;ibm1620/algorithms.py&lt;span class="w"&gt; &lt;/span&gt;-k&lt;span class="w"&gt; &lt;/span&gt;test_s_page_71&lt;span class="w"&gt; &lt;/span&gt;--debugfail&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;bug_algo.log
+&lt;span class="w"&gt;    &lt;/span&gt;pytest&lt;span class="w"&gt; &lt;/span&gt;ibm1620/test_fcn_ibm1620_1_hw.py&lt;span class="w"&gt; &lt;/span&gt;-k&lt;span class="w"&gt; &lt;/span&gt;test_s_page_71&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;bug_final.log
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;algorithms.py&lt;/tt&gt; works. It has the algorithm code, plus test cases for the algorithm code.
+A big-ball-o-mud. We want to run &lt;tt class="docutils literal"&gt;test_s_page_71&lt;/tt&gt; in &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--debugfail&lt;/span&gt;&lt;/tt&gt; mode.&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;test_fcn_ibm1620_1_hw.py&lt;/tt&gt; is test cases for the FSA implementation.
+We also want to run &lt;tt class="docutils literal"&gt;test_s_page_71&lt;/tt&gt;. Nothing extra is needed here, it's going to fail.
+In fact, that's the point: It's failing.&lt;/p&gt;
+&lt;p&gt;We want to compare the outputs to see what's different between the implementations.&lt;/p&gt;
+&lt;div class="section" id="adding-an-option-to-pytest"&gt;
+&lt;h3&gt;Adding an Option to pytest&lt;/h3&gt;
+&lt;p&gt;We can add an option to &lt;strong&gt;pytest&lt;/strong&gt; that's part of our test regime.
+We do it with a single file, &lt;tt class="docutils literal"&gt;conftest.py&lt;/tt&gt; located near the &lt;tt class="docutils literal"&gt;pyproject.toml&lt;/tt&gt; for the project as a whole.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def pytest_addoption(parser):
+    parser.addoption(
+        &amp;quot;--debugfail&amp;quot;,
+        action=&amp;quot;store_true&amp;quot;,
+        help=&amp;quot;Force a failure to capture debugging details&amp;quot;
+    )
+&lt;/pre&gt;
+&lt;p&gt;This is all that's neeed.&lt;/p&gt;
+&lt;p&gt;The command-line option information is available in the &lt;tt class="docutils literal"&gt;request&lt;/tt&gt; fixture that can be used by a test case.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adding-optional-behavior-to-a-test"&gt;
+&lt;h3&gt;Adding Optional Behavior to a Test&lt;/h3&gt;
+&lt;p&gt;Here's how a test case looks:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_s_page_71&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;monkeypatch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;From A26-5706-3 page 71&lt;/span&gt;
+&lt;span class="sd"&gt;    P 185 - Q 52 = 133.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;monkeypatch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ibm1620&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;algorithms&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_DETAILS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getoption&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--debugfail&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sign&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sign&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;High_Plus&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Equal_Zero&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Arith_Check&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;Number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sign&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getoption&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;--debugfail&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Force capture of details&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;p&gt;Note the two modifications to the test.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;strong&gt;5&lt;/strong&gt;.
+A &lt;tt class="docutils literal"&gt;monkeypatch&lt;/tt&gt; to set the &lt;tt class="docutils literal"&gt;_DETAILS&lt;/tt&gt; level for this test case.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13-14&lt;/strong&gt;.
+The &amp;quot;force failure&amp;quot; assertion that will be used when we want to capture the details to examine why this one worked.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It seems like the force-failure &lt;strong&gt;might&lt;/strong&gt; be doable with more clever hook functions, but I have my doubts.
+Someone smarter than me may have an approach that hides the detail.
+I'm eager to see it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-have-we-got-here"&gt;
+&lt;h3&gt;What Have We Got Here?&lt;/h3&gt;
+&lt;p&gt;Now, the Makefile snippet will create two parallel logs.
+We can side-by-side them to see what's different.&lt;/p&gt;
+&lt;p&gt;The log from the working big-ball-o-mud is a sequence of &lt;tt class="docutils literal"&gt;pprint()&lt;/tt&gt; requests to dump a subset of &lt;tt class="docutils literal"&gt;locals()&lt;/tt&gt;.
+It's ugly, but, detailed.&lt;/p&gt;
+&lt;p&gt;The log from the failing FSA is proper logging messages and console state dumps.
+It's much easier on the eyes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="and-the-bug"&gt;
+&lt;h3&gt;And The Bug?&lt;/h3&gt;
+&lt;p&gt;More #retrocomputing -- skip this, there's no #Python here.&lt;/p&gt;
+&lt;p&gt;I think there's a small error in the description of the Carry-Out trigger.
+It says &amp;quot;2. Reset OFF by Triggers 11, 21, and 23.&amp;quot;, but I don't think it should be
+turned off by trigger 21.&lt;/p&gt;
+&lt;p&gt;I had taken it out of the big-ball-o-mud version, but left it in the FSA implementation of trigger 21.
+Fixed. Tests pass.&lt;/p&gt;
+&lt;p&gt;And. I learned a cool thing about using my unit tests as debugging tools.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="codebyhand"></category><category term="ibm1620"></category><category term="retrocomputing"></category></entry><entry><title>Hard Problem? Stop Staring At The Code</title><link href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html" rel="alternate"></link><published>2026-09-25T09:32:00-04:00</published><updated>2026-09-25T09:32:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-09-25:/2026-09-25_hard_problem_stop_staring.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Can't get the software to work?&lt;/p&gt;
 &lt;p&gt;Stop Staring At It.&lt;/p&gt;
@@ -38,8 +259,8 @@ The need to gather tangible evidence was -- to them -- a whim of mine, not a rat
 &lt;p&gt;I've been struggling to create an accurate emulation of
 the #RetroComputing IBM 1620.&lt;/p&gt;
 &lt;p&gt;(See &lt;a class="reference external" href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html"&gt;Hard Problem? Shift Position&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;The IBM1620 is not a particularly good machine. (The PDP-8 is much better.)&lt;/p&gt;
-&lt;p&gt;The IBM1620 is &lt;strong&gt;simple&lt;/strong&gt;. Making it a potentially good vehicle for talking about machine-language programming.
+&lt;p&gt;The IBM 1620 is not a particularly good machine. (The PDP-8 is much better.)&lt;/p&gt;
+&lt;p&gt;The IBM 1620 is &lt;strong&gt;simple&lt;/strong&gt;. Making it a potentially good vehicle for talking about machine-language programming.
 Without getting tangled up up the creeping collection of confusing contraptions that characterize
 a lot of modern CPU's.&lt;/p&gt;
 &lt;p&gt;Also. It's &lt;strong&gt;decimal&lt;/strong&gt;.  We can set the binary-to-decimal-to-hexadecimal stuff aside.&lt;/p&gt;
@@ -8470,32 +8691,4 @@ to use it and you’re the expert.  We're doing some of this for customers who w
 &lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
 to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="SOA"></category></entry><entry><title>Problems, problems, problems</title><link href="https://slott56.github.io/2007_08_08-problems_problems_problems.html" rel="alternate"></link><published>2007-08-08T19:39:00-04:00</published><updated>2007-08-08T19:39:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-08-08:/2007_08_08-problems_problems_problems.html</id><summary type="html">&lt;p&gt;Centuries ago -- it seems -- Jim Coplien facilitated a session for us at &lt;a class="reference external" href="http://hillside.net/chiliplop/"&gt;ChiliPLoP&lt;/a&gt; .  Eventually, I figured out that patterns are a solution to a problem in a context which resolves various alternative forces, and has some understood consequences.  Context - Problem - Forces - Solution - Consequences.&lt;/p&gt;
-&lt;p&gt;In this month's CACM, the article on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Centuries ago -- it seems -- Jim Coplien facilitated a session for us at &lt;a class="reference external" href="http://hillside.net/chiliplop/"&gt;ChiliPLoP&lt;/a&gt; .  Eventually, I figured out that patterns are a solution to a problem in a context which resolves various alternative forces, and has some understood consequences.  Context - Problem - Forces - Solution - Consequences.&lt;/p&gt;
-&lt;p&gt;In this month's CACM, the article on &amp;quot;&lt;a class="reference external" href="http://portal.acm.org/citation.cfm?id=1278201.1278206&amp;amp;coll=portal&amp;amp;dl=ACM&amp;amp;idx=1278201&amp;amp;part=periodical&amp;amp;WantType=periodical&amp;amp;title=Communications%20of%20the%20ACM&amp;amp;CFID=26238735&amp;amp;CFTOKEN=67485512"&gt;Involving Top Management In IT Projects&lt;/a&gt; &amp;quot; describes a technique called &lt;em&gt;Problem Mapping&lt;/em&gt;.  Wow!  I think this is the other side of the pattern coin.  The article's a tough read -- it requires careful study because it makes a rigorous philosophical argument about the nature of truth in requirements analysis.&lt;/p&gt;
-&lt;p&gt;I find that too many people jump past the problem, past the requirements, straight into design.  I complained about this recently in &lt;a class="reference external" href="https://slott56.github.io/2007_08_05-use_cases_why_cases_and_the_bentley_test.html"&gt;Use Cases, Why Cases and the Bentley Test&lt;/a&gt; .&lt;/p&gt;
-&lt;p&gt;This Problem Mapping thing may be just what's required to stop the blind leap into specifying a solution before the problem is really understood.  The technique is gloriously simple, and requires three relatively simple steps: gathering, organizing and criticizing.&lt;/p&gt;
-&lt;div class="section" id="three-step-process"&gt;
-&lt;h2&gt;Three Step Process&lt;/h2&gt;
-&lt;p&gt;Gathering is what analysts and consultants do anyway.  Interview people, read code, find the problem, document the problem.&lt;/p&gt;
-&lt;p&gt;During the organizing phase, the real magic happens.  Your findings are partitioned into four buckets.&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;strong&gt;Problems and Needs.&lt;/strong&gt;   These are the going-in problems or organizational needs.  Things don't work, or don't work well.  Things are complex, expensive, risky, error-prone.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Causes.&lt;/strong&gt;  These are the answers to &amp;quot;Why does this problem exist?&amp;quot;  This is critical, and often under-documented.  There's a chain of root-cause analysis that leads to things like &amp;quot;That's just the way it is&amp;quot; or &amp;quot;Darned if I know why&amp;quot;.  The whole root-cause analysis isn't as important as separating problems from causes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Consequences.&lt;/strong&gt;   These are the consequences of the problem.  If something's complex, expensive, risky or error-prone, what's wrong with that?  What's the consequence to the enterprise of something being complex?  Complexity -- in and of itself -- isn't a problem; but it can have consequences that include cost, risk, time, pain.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Suggested Solutions.&lt;/strong&gt;   This is the part that can now be set aside.  Without this four-part map, the solutions get muddied in with everything else.  With this problem map, they can be neatly set aside for what they're worth.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="section" id="calling-the-baby-ugly"&gt;
-&lt;h2&gt;Calling the Baby Ugly&lt;/h2&gt;
-&lt;p&gt;The final, criticizing, step is where we bring the interviewees together to learn what the consultants learned.  The point is to achieve a common organizational understanding.  There will be pain involved.  One person's problem may point a finger at someone else's cause.  You can't call someone's baby ugly without the situation becoming tense.&lt;/p&gt;
-&lt;p&gt;Fundamentally, change involves perception of a problem, which can be stressful.  It also requires disruption of the bad situation; disruption by itself is stressful, even if the outcome is better for everyone.&lt;/p&gt;
-&lt;p&gt;Most importantly, this technique coaches everyone in the essential logic of causality.  Something's broken, that breakage has a cause and consequences.  Will the solution actually address the breakage?  Would addressing the cause be smarter?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="follow-up"&gt;
-&lt;h2&gt;Follow-Up&lt;/h2&gt;
-&lt;p&gt;I've fumbled around with something a little bit like this.  I didn't have the clear-headed approach that Simonsen describes.  I merely tried to separate problem, cause and solution so that I could keep folks from implementing their favorite technology when it wouldn't actually help solve the problem.&lt;/p&gt;
-&lt;p&gt;I found it helpful to recast the lessons learned in the Pattern mold.  Document the Context, Problem, Forces, Solution and Consequences to capture the information in a concise, story-like format.  When you have a problem in a context, it's like reading a screenplay.  The second act of the screenplay -- the forces -- is where the conflict plays out.  The solution and consequences are the third act of the story.&lt;/p&gt;
-&lt;p&gt;Having an arc makes the whole something we can understand and use.  It makes it possible for top management to articulate the reasons for the technology solution and maintain some focus and follow-through.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="methodology"></category><category term="agile"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="SOA"></category></entry></feed>
