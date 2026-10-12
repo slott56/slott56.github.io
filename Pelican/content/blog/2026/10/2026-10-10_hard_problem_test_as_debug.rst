@@ -103,7 +103,7 @@ Here's what to do:
     The most important part of the name is first, clustering functionally-related variables together.
     Which tends to provide copious hints for class designs to encapsulate functionally-related items into a sensible state definition.
 
-2.  Add an "Important State" dump.
+2.  Add any "Important State" dumps where needed.
 
     ::
 
@@ -193,7 +193,7 @@ The command-line option information is available in the ``request`` fixture that
 Adding Optional Behavior to a Test
 --------------------------------------
 
-Here's how a test case looks:
+Here's how a test case can look:
 
 ..  code-block:: python
     :linenos:
@@ -221,15 +221,39 @@ Note the two modifications to the test.
 -   **13-14**.
     The "force failure" assertion that will be used when we want to capture the details to examine why this one worked.
 
-It seems like the force-failure **might** be doable with more clever hook functions, but I have my doubts.
-Someone smarter than me may have an approach that hides the detail.
-I'm eager to see it.
+This can be collapsed into a single fixture.
 
+The Fixture
+-----------
+
+Here's a fixture that handles the setup and teardown requirements
+to capture debug logging for a test which with -- otherwise -- pass.
+
+::
+
+    @pytest.fixture
+    def bug_logger(request, monkeypatch):
+        if request.config.getoption("--debugfail"):
+            # Setup
+            monkeypatch.setattr(
+                ibm1620.algorithms,
+                '_DETAILS',
+                2 if request.config.getoption("--debugfail") else 0
+            )
+            # Run Test
+            yield
+            # Teardown
+            assert False, "Force capture of details"
+        else:
+            yield
+
+We can then decorate a test with the ``bug_logger`` fixture to capture detailed logs from a test which is expected to pass.
+If -- and only if -- the ``--debugfail`` option is used.
 
 What Have We Got Here?
 ----------------------
 
-Now, the Makefile snippet will create two parallel logs.
+Now, the ``Makefile`` snippet shown earlier will create two parallel logs.
 We can side-by-side them to see what's different.
 
 The log from the working big-ball-o-mud is a sequence of ``pprint()`` requests to dump a subset of ``locals()``.

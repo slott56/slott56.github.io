@@ -85,7 +85,7 @@ It elides hidden variables, to reduce clutter somewhat.&lt;/p&gt;
 The most important part of the name is first, clustering functionally-related variables together.
 Which tends to provide copious hints for class designs to encapsulate functionally-related items into a sensible state definition.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Add an &amp;quot;Important State&amp;quot; dump.&lt;/p&gt;
+&lt;li&gt;&lt;p class="first"&gt;Add any &amp;quot;Important State&amp;quot; dumps where needed.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 if _DETAILS:
     print(f&amp;quot;\n# 34-41: {multiplier_digit}×{multiplicand_digit}={''.join(map(str, memory.values()))}\n&amp;quot;)
@@ -160,7 +160,7 @@ def pytest_addoption(parser):
 &lt;/div&gt;
 &lt;div class="section" id="adding-optional-behavior-to-a-test"&gt;
 &lt;h3&gt;Adding Optional Behavior to a Test&lt;/h3&gt;
-&lt;p&gt;Here's how a test case looks:&lt;/p&gt;
+&lt;p&gt;Here's how a test case can look:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
 &lt;span class="normal"&gt; 2&lt;/span&gt;
 &lt;span class="normal"&gt; 3&lt;/span&gt;
@@ -196,13 +196,35 @@ A &lt;tt class="docutils literal"&gt;monkeypatch&lt;/tt&gt; to set the &lt;tt cl
 &lt;li&gt;&lt;strong&gt;13-14&lt;/strong&gt;.
 The &amp;quot;force failure&amp;quot; assertion that will be used when we want to capture the details to examine why this one worked.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;It seems like the force-failure &lt;strong&gt;might&lt;/strong&gt; be doable with more clever hook functions, but I have my doubts.
-Someone smarter than me may have an approach that hides the detail.
-I'm eager to see it.&lt;/p&gt;
+&lt;p&gt;This can be collapsed into a single fixture.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-fixture"&gt;
+&lt;h3&gt;The Fixture&lt;/h3&gt;
+&lt;p&gt;Here's a fixture that handles the setup and teardown requirements
+to capture debug logging for a test which with -- otherwise -- pass.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;#64;pytest.fixture
+def bug_logger(request, monkeypatch):
+    if request.config.getoption(&amp;quot;--debugfail&amp;quot;):
+        # Setup
+        monkeypatch.setattr(
+            ibm1620.algorithms,
+            '_DETAILS',
+            2 if request.config.getoption(&amp;quot;--debugfail&amp;quot;) else 0
+        )
+        # Run Test
+        yield
+        # Teardown
+        assert False, &amp;quot;Force capture of details&amp;quot;
+    else:
+        yield
+&lt;/pre&gt;
+&lt;p&gt;We can then decorate a test with the &lt;tt class="docutils literal"&gt;bug_logger&lt;/tt&gt; fixture to capture detailed logs from a test which is expected to pass.
+If -- and only if -- the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--debugfail&lt;/span&gt;&lt;/tt&gt; option is used.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="what-have-we-got-here"&gt;
 &lt;h3&gt;What Have We Got Here?&lt;/h3&gt;
-&lt;p&gt;Now, the Makefile snippet will create two parallel logs.
+&lt;p&gt;Now, the &lt;tt class="docutils literal"&gt;Makefile&lt;/tt&gt; snippet shown earlier will create two parallel logs.
 We can side-by-side them to see what's different.&lt;/p&gt;
 &lt;p&gt;The log from the working big-ball-o-mud is a sequence of &lt;tt class="docutils literal"&gt;pprint()&lt;/tt&gt; requests to dump a subset of &lt;tt class="docutils literal"&gt;locals()&lt;/tt&gt;.
 It's ugly, but, detailed.&lt;/p&gt;

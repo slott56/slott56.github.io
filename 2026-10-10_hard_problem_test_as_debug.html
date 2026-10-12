@@ -194,7 +194,7 @@ It elides hidden variables, to reduce clutter somewhat.</p>
 The most important part of the name is first, clustering functionally-related variables together.
 Which tends to provide copious hints for class designs to encapsulate functionally-related items into a sensible state definition.</p>
 </li>
-<li><p class="first">Add an &quot;Important State&quot; dump.</p>
+<li><p class="first">Add any &quot;Important State&quot; dumps where needed.</p>
 <pre class="literal-block">
 if _DETAILS:
     print(f&quot;\n# 34-41: {multiplier_digit}×{multiplicand_digit}={''.join(map(str, memory.values()))}\n&quot;)
@@ -269,7 +269,7 @@ def pytest_addoption(parser):
 </div>
 <div class="section" id="adding-optional-behavior-to-a-test">
 <h3>Adding Optional Behavior to a Test</h3>
-<p>Here's how a test case looks:</p>
+<p>Here's how a test case can look:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -305,13 +305,35 @@ A <tt class="docutils literal">monkeypatch</tt> to set the <tt class="docutils l
 <li><strong>13-14</strong>.
 The &quot;force failure&quot; assertion that will be used when we want to capture the details to examine why this one worked.</li>
 </ul>
-<p>It seems like the force-failure <strong>might</strong> be doable with more clever hook functions, but I have my doubts.
-Someone smarter than me may have an approach that hides the detail.
-I'm eager to see it.</p>
+<p>This can be collapsed into a single fixture.</p>
+</div>
+<div class="section" id="the-fixture">
+<h3>The Fixture</h3>
+<p>Here's a fixture that handles the setup and teardown requirements
+to capture debug logging for a test which with -- otherwise -- pass.</p>
+<pre class="literal-block">
+&#64;pytest.fixture
+def bug_logger(request, monkeypatch):
+    if request.config.getoption(&quot;--debugfail&quot;):
+        # Setup
+        monkeypatch.setattr(
+            ibm1620.algorithms,
+            '_DETAILS',
+            2 if request.config.getoption(&quot;--debugfail&quot;) else 0
+        )
+        # Run Test
+        yield
+        # Teardown
+        assert False, &quot;Force capture of details&quot;
+    else:
+        yield
+</pre>
+<p>We can then decorate a test with the <tt class="docutils literal">bug_logger</tt> fixture to capture detailed logs from a test which is expected to pass.
+If -- and only if -- the <tt class="docutils literal"><span class="pre">--debugfail</span></tt> option is used.</p>
 </div>
 <div class="section" id="what-have-we-got-here">
 <h3>What Have We Got Here?</h3>
-<p>Now, the Makefile snippet will create two parallel logs.
+<p>Now, the <tt class="docutils literal">Makefile</tt> snippet shown earlier will create two parallel logs.
 We can side-by-side them to see what's different.</p>
 <p>The log from the working big-ball-o-mud is a sequence of <tt class="docutils literal">pprint()</tt> requests to dump a subset of <tt class="docutils literal">locals()</tt>.
 It's ugly, but, detailed.</p>
