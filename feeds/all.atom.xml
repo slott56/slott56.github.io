@@ -143,7 +143,7 @@ visible. Perhaps it writes a log entry.&lt;/p&gt;
 &lt;p&gt;Here's the &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; design we might do to make state changes visible.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 from logging import Logger
-from typing import ClassVar
+from typing import ClassVar, Self
 
 class Scale:
     value: str
@@ -206,6 +206,9 @@ It is, however, dependent on another field, and we can't be &lt;strong&gt;sure&l
 &lt;p&gt;Don't combine &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; class design with an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.
 This is a bad idea.&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
+from enum import Enum
+from typing import Self
+
 class ScaleDomain(Enum):
     F = &amp;quot;F&amp;quot;
     C = &amp;quot;C&amp;quot;
@@ -216,9 +219,11 @@ class Scale:
 
     def set_F(self) -&amp;gt; Self:
         self.value = ScaleDomain.F
+        return self
 
     def set_C(self) -&amp;gt; Self:
         self.value = ScaleDomain.C
+        return self
 &lt;/pre&gt;
 &lt;p&gt;You were warned.&lt;/p&gt;
 &lt;p&gt;The domain of values is stated twice:&lt;/p&gt;

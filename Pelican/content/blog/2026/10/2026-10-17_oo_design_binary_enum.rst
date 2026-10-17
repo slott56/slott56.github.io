@@ -179,7 +179,7 @@ Here's the **Enumeration-by-Method** design we might do to make state changes vi
 ::
 
     from logging import Logger
-    from typing import ClassVar
+    from typing import ClassVar, Self
 
     class Scale:
         value: str
@@ -251,6 +251,9 @@ This is a bad idea.
 
 ::
 
+    from enum import Enum
+    from typing import Self
+
     class ScaleDomain(Enum):
         F = "F"
         C = "C"
@@ -261,9 +264,11 @@ This is a bad idea.
 
         def set_F(self) -> Self:
             self.value = ScaleDomain.F
+            return self
 
         def set_C(self) -> Self:
             self.value = ScaleDomain.C
+            return self
 
 You were warned.
 

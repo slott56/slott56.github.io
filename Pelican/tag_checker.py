@@ -20,7 +20,7 @@ for entry in sorted(source.glob("**/*.rst")):
                 tag_domain[t.lower()].append(entry.stem)
         if cat_line := re.match(r"^:category: (.*)?$", line):
             category = cat_line.group(1).strip()
-    if category.lower() in tags:
+    if category and category.lower() in tags:
         print("Category also in Tags", entry.relative_to(source), category, tags)
         counts[entry.parent.parent.name, entry.parent.name] += 1
 # for year, cleanup in counts.items():
