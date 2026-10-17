@@ -1,5 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-10-10T12:28:00-04:00</updated><entry><title>Hard Problem? Use Test Cases as Debug Aids</title><link href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html" rel="alternate"></link><published>2026-10-10T12:28:00-04:00</published><updated>2026-10-10T12:28:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-10:/2026-10-10_hard_problem_test_as_debug.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect - Architecture &amp; Design</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/architecture-design.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-10-17T07:41:00-04:00</updated><entry><title>Object-Oriented Design: Binary or Enum?</title><link href="https://slott56.github.io/2026-10-17_oo_design_binary_enum.html" rel="alternate"></link><published>2026-10-17T07:41:00-04:00</published><updated>2026-10-17T07:41:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-17:/2026-10-17_oo_design_binary_enum.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Some aspects of a problem are superficially binary, perhaps modeled as a boolean value.&lt;/p&gt;
+&lt;p&gt;Don't be misled.
+Some aspects of a problem are clearly &lt;strong&gt;not&lt;/strong&gt; binary, and a boolean is wrong.
+Other aspects may or may not be binary, and a boolean might not be ideal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="clearly-not-binary"&gt;
+&lt;h2&gt;Clearly Not Binary …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Some aspects of a problem are superficially binary, perhaps modeled as a boolean value.&lt;/p&gt;
+&lt;p&gt;Don't be misled.
+Some aspects of a problem are clearly &lt;strong&gt;not&lt;/strong&gt; binary, and a boolean is wrong.
+Other aspects may or may not be binary, and a boolean might not be ideal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="clearly-not-binary"&gt;
+&lt;h2&gt;Clearly Not Binary&lt;/h2&gt;
+&lt;p&gt;Some part of a problem domain might be described as a simple binary condition or state.
+Often, the claim is untethered from objective reality.
+For example, recording a person's gender as a binary (&amp;quot;male = True&amp;quot;) is nonsense.&lt;/p&gt;
+&lt;p&gt;(Full disclosure: back in the 70's, we did this kind of thing.
+We ignored the reality of some of the people around us.
+I can only issue a weak retroactive apology.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="binary-with-a-story"&gt;
+&lt;h2&gt;Binary with a Story&lt;/h2&gt;
+&lt;p&gt;We often have situations where some condition has a story.
+The story might be something like one of these examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Not Applicable.&lt;/li&gt;
+&lt;li&gt;Invalid or Rejected.&lt;/li&gt;
+&lt;li&gt;Pending some other processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When an attribute has a story, the story is metadata describing the current state.
+In this example, it describes why a binary attribute isn't (currently) one of the two possible values.&lt;/p&gt;
+&lt;p&gt;We might not see these stories in a schema definition.
+Think of SQL, where we might see a column &lt;tt class="docutils literal"&gt;APPROVED BIT(1) NULL&lt;/tt&gt;.
+There's rarely any explanation of when the &lt;tt class="docutils literal"&gt;APPROVED&lt;/tt&gt; field is allowed to be &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+The nuances of how the attribute is used live in the code, not the schema.&lt;/p&gt;
+&lt;p&gt;Also, this is clearly not actually &amp;quot;binary&amp;quot;: it has three values: &lt;tt class="docutils literal"&gt;b'0'&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;b'1'&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+It also has metadata about the value (e.g., not applicable, invalid, or pending.)&lt;/p&gt;
+&lt;div class="section" id="python-implementation"&gt;
+&lt;h3&gt;Python Implementation&lt;/h3&gt;
+&lt;p&gt;How can we handle metadata in Python?&lt;/p&gt;
+&lt;ol class="upperalpha simple"&gt;
+&lt;li&gt;Use a simple &lt;tt class="docutils literal"&gt;bool | None&lt;/tt&gt; type and put the metadata processing details and rules in the code.&lt;/li&gt;
+&lt;li&gt;Define an &lt;strong&gt;Adapter&lt;/strong&gt; to carry both the value and the metadata.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here's an example using an &lt;strong&gt;Adapter&lt;/strong&gt;.
+In this example, we'll us a &amp;quot;Not Applicable&amp;quot; rule as an example
+of a meta condition for an attribute.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Approved:
+    value: bool | None
+    applicable: bool = True
+
+&amp;#64;dataclass
+class Something:
+    approved: Approved
+&lt;/pre&gt;
+&lt;p&gt;Here's how we might see this used:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+s = Something(
+    approved=Approved(None, applicable=False)
+)
+
+assert s.approved.value is None
+assert not s.approved.applicable
+&lt;/pre&gt;
+&lt;p&gt;This adds some complexity, but it can be a useful way to carry details in a form
+that's more public than a simple &lt;tt class="docutils literal"&gt;bool | None&lt;/tt&gt; type annotation.
+It can also be clutter where the metadata storyline is simple and obvious.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="may-not-be-binary"&gt;
+&lt;h2&gt;May Not Be Binary&lt;/h2&gt;
+&lt;p&gt;In some cases, a domain of values is &lt;em&gt;discovered&lt;/em&gt;, not defined by policy (or regulations.)&lt;/p&gt;
+&lt;p&gt;For example, we might be doing analysis of source data with some measurement value and a
+condition. We'll use a temperature and a scale; the scale appears to be binary: &amp;quot;C&amp;quot; or &amp;quot;F&amp;quot;.&lt;/p&gt;
+&lt;p&gt;As a small variant, sometimes the attribute is stateful.
+This is a small consideration, and we'll set it aside for later.&lt;/p&gt;
+&lt;p&gt;We'll start with an attribute that has a domain that we don't really know.
+There are two common reasons for this:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The source data is evolving, and we may discover subsequent data that doesn't match prior data.&lt;/li&gt;
+&lt;li&gt;We've only seen a subset of source data, and we may discover a value of the domain which wasn't present in the initial subset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The distinction between these two is insignificant from a Python programming perspective.
+(Organizationally, it may suggest different parts of the organization should perhaps be in closer contact.)&lt;/p&gt;
+&lt;p&gt;Here's a flawed design in Python.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: bool  # True means &amp;quot;C&amp;quot;; False means &amp;quot;F&amp;quot;.
+&lt;/pre&gt;
+&lt;p&gt;This is risky.  Don't do this.&lt;/p&gt;
+&lt;p&gt;When a &lt;tt class="docutils literal"&gt;Sample&lt;/tt&gt; value arrives with the scale value of &lt;tt class="docutils literal"&gt;&amp;quot;K&amp;quot;&lt;/tt&gt;, this data model collapses into a wreckage of faulty assumptions.&lt;/p&gt;
+&lt;p&gt;The scale value seemed like it might have been binary.
+Without a complete survey of all data, we may discover an attribute domain wasn't actually binary.&lt;/p&gt;
+&lt;div class="section" id="python-methods-for-anticipating-change"&gt;
+&lt;h3&gt;Python Methods for Anticipating Change&lt;/h3&gt;
+&lt;p&gt;When the domain of values is not well-known, or otherwise likely to change,
+we can use an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+from enum import Enum
+
+class Scale(Enum):
+    C = &amp;quot;C&amp;quot;
+    F = &amp;quot;F&amp;quot;
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: Scale
+&lt;/pre&gt;
+&lt;p&gt;This works well; changes are isolate to the &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; enumeration of values.
+If we discover new values in the source data, we can revise the &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; enumeration of values.&lt;/p&gt;
+&lt;p&gt;Above, we mentioned that a stateful attribute may have some additional considerations.
+An attribute which changes during processing can be implemented with a simple &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.
+However, sometimes an alternative implementation is required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-stateful-binary"&gt;
+&lt;h2&gt;A Stateful Binary&lt;/h2&gt;
+&lt;p&gt;Stateful attributes -- and the associated state change -- may require additional care.
+We can use an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;, and a state change is a simple assignment statement.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sample_x.scale = Scale.F
+&lt;/pre&gt;
+&lt;p&gt;This has the advantage of being simple.&lt;/p&gt;
+&lt;p&gt;It has the disadvantage of being difficult to observe.
+Assignment statements can be used anywhere, and it can be difficult to be sure that &lt;strong&gt;all&lt;/strong&gt; changes are known to developers and maintainers (and users.)&lt;/p&gt;
+&lt;p&gt;To promote observability, we want to encapsulate state changes with method that can make the change
+visible. Perhaps it writes a log entry.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; design we might do to make state changes visible.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from logging import Logger
+from typing import ClassVar
+
+class Scale:
+    value: str
+    logger: ClassVar[Logger] = logging.getLogger(&amp;quot;Scale&amp;quot;)
+
+    def __init__(self, source: str) -&amp;gt; None:
+        self.set_value(source)
+
+    def set_C(self) -&amp;gt; Self:
+        self.value = &amp;quot;C&amp;quot;
+        self.logger.info(&amp;quot;Scale set to C&amp;quot;)
+        return self
+
+    def set_F(self) -&amp;gt; Self:
+        self.value = &amp;quot;F&amp;quot;
+        self.logger.info(&amp;quot;Scale set to F&amp;quot;)
+        return self
+
+    def set_value(self, source: str) -&amp;gt; Self:
+        if source == &amp;quot;C&amp;quot;:
+            return self.set_C()
+        elif source == &amp;quot;F&amp;quot;:
+            return self.set_F()
+        else:
+            self.logger.error(&amp;quot;Invalid scale setting %r&amp;quot;, source)
+            raise ValueError(f&amp;quot;invalid {source!r}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This means a state change looks like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sample_x.scale.set_f()
+&lt;/pre&gt;
+&lt;p&gt;While we gained observability, we sacrificed the bare-bones simplicity of an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="actually-binary"&gt;
+&lt;h2&gt;Actually Binary&lt;/h2&gt;
+&lt;p&gt;Some attributes are clearly the result of a binary evaluation.
+For example, we might have a &amp;quot;is below zero&amp;quot; flag.
+This is, manifestly &lt;tt class="docutils literal"&gt;True&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;False&lt;/tt&gt;, and can be modeled with a simple &lt;tt class="docutils literal"&gt;bool&lt;/tt&gt; field.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: str
+    is_below_zero: bool
+
+    def __post_init__(self):
+        assert self.is_below_zero == temperature &amp;lt; 0.0, &amp;quot;consistency error&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;In some cases, a boolean attribute may be independent of other values.&lt;/p&gt;
+&lt;p&gt;In this example, however, the &lt;tt class="docutils literal"&gt;is_below_zero&lt;/tt&gt; attribute is dependent on the &lt;tt class="docutils literal"&gt;temperature&lt;/tt&gt; attribute.
+Database designers call this a &amp;quot;3rd Normal Form&amp;quot; (3NF) problem, a field is dependent on other non-key fields.
+The consequences of the 3NF problem don't have any real impact on the way we implement this in Python.
+The field is boolean: it's not outside of objective reality, nor is it subject to some change through a discovery process.
+It is, however, dependent on another field, and we can't be &lt;strong&gt;sure&lt;/strong&gt; the source application set it properly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-warning"&gt;
+&lt;h2&gt;A Warning&lt;/h2&gt;
+&lt;p&gt;Don't combine &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; class design with an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.
+This is a bad idea.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class ScaleDomain(Enum):
+    F = &amp;quot;F&amp;quot;
+    C = &amp;quot;C&amp;quot;
+
+class Scale:
+    def __init__(self, value: ScaleDomain) -&amp;gt; None:
+        self.value = value
+
+    def set_F(self) -&amp;gt; Self:
+        self.value = ScaleDomain.F
+
+    def set_C(self) -&amp;gt; Self:
+        self.value = ScaleDomain.C
+&lt;/pre&gt;
+&lt;p&gt;You were warned.&lt;/p&gt;
+&lt;p&gt;The domain of values is stated twice:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;ScaleDomain&lt;/tt&gt; lists a set of values.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; class definitions has methods that imply a set of values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two must be kept in strict alignment.
+This doesn't encapsulate the domain well.
+It breaks the &amp;quot;Single Responsibility&amp;quot; S. O. L. I. D. design principle.&lt;/p&gt;
+&lt;p&gt;(Full disclosure. I did this recently. Don't follow my example.)&lt;/p&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.
+(See &lt;a class="reference external" href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html"&gt;Hard Problem? Shift Position&lt;/a&gt;,
+and &lt;a class="reference external" href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html"&gt;Hard Problem? Stop Staring At The Code&lt;/a&gt;,
+and &lt;a class="reference external" href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html"&gt;Hard Problem? Use Test Cases as Debug Aids&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;I was deeply suspicious that the definition of a &amp;quot;lamp&amp;quot; wasn't actually binary.
+Maybe it involved some state other than &amp;quot;on&amp;quot; or &amp;quot;off&amp;quot;.
+Maybe &amp;quot;flashing&amp;quot; or something.&lt;/p&gt;
+&lt;p&gt;It took a few weeks to realize the domain was actually binary.
+It was a proper boolean.
+There were no other methods.&lt;/p&gt;
+&lt;p&gt;Wrapping an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; with another adapter class created a layer of indirection that made debugging painful.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="object-oriented design"></category><category term="enum"></category><category term="binary"></category></entry><entry><title>Hard Problem? Use Test Cases as Debug Aids</title><link href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html" rel="alternate"></link><published>2026-10-10T12:28:00-04:00</published><updated>2026-10-10T12:28:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-10:/2026-10-10_hard_problem_test_as_debug.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Can't get the software to work?&lt;/p&gt;
 &lt;p&gt;The test cases are places to gather debugging details.
@@ -8628,89 +8872,4 @@ They hate us forever because they have to think about what actually matters in t
 They hate us forever for not even trying.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="management"></category><category term="requirements"></category></entry><entry><title>SOA, Web Services, and Other Religious Experiences</title><link href="https://slott56.github.io/2007_08_17-soa_web_services_and_other_religious_experiences.html" rel="alternate"></link><published>2007-08-17T21:53:00-04:00</published><updated>2007-08-17T21:53:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2007-08-17:/2007_08_17-soa_web_services_and_other_religious_experiences.html</id><summary type="html">&lt;p&gt;TC writes:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I’m sitting in the corner, considering SOA from various perspectives:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;What sized company?&lt;/li&gt;
-&lt;li&gt;When you sell/license the tech, what are you actually
-trying to sell? The initial implementation, individual services, ???&lt;/li&gt;
-&lt;li&gt;Chicken vs. egg – implement first or align the culture first?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What is &lt;em&gt;our company's&lt;/em&gt;  approach?&lt;/p&gt;
-&lt;p&gt;Has …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;TC writes:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I’m sitting in the corner, considering SOA from various perspectives:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;What sized company?&lt;/li&gt;
-&lt;li&gt;When you sell/license the tech, what are you actually
-trying to sell? The initial implementation, individual services, ???&lt;/li&gt;
-&lt;li&gt;Chicken vs. egg – implement first or align the culture first?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What is &lt;em&gt;our company's&lt;/em&gt;  approach?&lt;/p&gt;
-&lt;p&gt;Has anyone generated succinct flyers or white papers?
-I’m lost in a Google-lanche of info, and I dearly want to narrow the
-focus a bit before I have to explain it to &lt;em&gt;VP's&lt;/em&gt;  and others.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class="section" id="what-sized-company"&gt;
-&lt;h2&gt;What Sized Company?&lt;/h2&gt;
-&lt;p&gt;TC's an architect, so he's asking about selling something that we'll develop, install and support.&lt;/p&gt;
-&lt;p&gt;SOA is for every size of company.  Developing applications with an SOA is cheaper and
-simpler than traditional &amp;quot;wholistic&amp;quot; apps that don’t have
-clearly defined services.&lt;/p&gt;
-&lt;p&gt;Why?  Simplicty.  Services force you to think about agility and
-simplicity.  The result can be software which is simpler, cheaper and more effective.&lt;/p&gt;
-&lt;p&gt;To achieve the required agility requires you to pare things down to their essence and then build that essential service.  The more traditional approach is to gatther a bunch of requirements and design a bunch of software.  At no point in the process does anyone ask you to simplify those requirements or the resulting software.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-are-you-trying-to-sell"&gt;
-&lt;h2&gt;What Are You Trying to Sell?&lt;/h2&gt;
-&lt;p&gt;Actually, there are two parts to this, because there are two things you can sell.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;2. You can use the technology as a means to an end.  This, I think, is where you are coming from.   The customer
-wants an app -- a solution to a business problem -- and you are going to use an SOA framework to save yourself considerable agony.   Much of
-the glue that takes time to specify, build and test is now part of
-most SOA frameworks.  Generally, the customer could care less
-whether it comes from a vendor or you.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;Consider applications for which we have extensive proprietary source.  We could convert our code to a SOA framework (for example &lt;a class="reference external" href="http://www.sun.com/software/javaenterprisesystem/javacaps/index.jsp"&gt;Sun's JCAPS&lt;/a&gt; ).  Our apps would work
-the same, but the overall installation is MUCH smaller and simpler.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="culture-a-k-a-governance"&gt;
-&lt;h2&gt;Culture (a/k/a Governance)&lt;/h2&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;The culture of
-the developers must precede the implementation.  If they don't get the SOA viewpoint, then you can't build an SOA application.  What's important is separating the final &amp;quot;to the user&amp;quot; presentation, the composite workflows and the underlying services.  In many cases -- particularly where schedules are golden -- managers will undermine the SOA work by insisting that some piece of user interface be completed RIGHT NOW, irrespective of how it devastates the architecture.  Serious, essential business functionality cut and pasted into several JSP pages leaps to mind.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;Some places are brain-dead.  I blogged a specific quote in &amp;quot;&lt;a class="reference external" href="https://slott56.github.io/2006_09_30-why_soa_is_doa_in_some_organizations.html"&gt;SOA is DOA&lt;/a&gt; &amp;quot;.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;Culture of the customer is a “don’t
-care” item if you are using SOA to build a solution.  If the customer is clueless and you’ve built a working solution, the orientation of the architecture doesn't matter.  It could be service oriented, object oriented or aspect oriented.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;However, if you're trying to
-teach them SOA, it had best be strategic for them.  Otherwise, the mentoring will be immediately trumped by management.  &amp;quot;It's taking too long to write the use cases,&amp;quot; for example, will subvert everything by undoing the training and coaching you've done for the first few weeks of the program.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="lost-in-the-google-lanche"&gt;
-&lt;h2&gt;Lost in the Google-lanche&lt;/h2&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;Read up on the &lt;a class="reference external" href="http://www.sun.com/software/javaenterprisesystem/javacaps/index.jsp"&gt;Sun Java Composite Application
-Suite&lt;/a&gt;  (JCAPS).  The presentations are focused on what matters: lowering TCO by making it easy to manage the composite application as a whole.  Look at the eGate Integrator as the lynchpin -- everything else is an add-on.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;p&gt;Also, for the leading-edge folks, there's a lot of SOA goodness in the Python community.  The Python folks exploit the dynamic language to create a proper Don't Repeat Yourself (DRY) technology that's considerably simpler than the Java worldview.&lt;/p&gt;
-&lt;p&gt;1. You can sell the technology as an end in itself.  For example, when the customer wants
-to use it and you’re the expert.  We're doing some of this for customers who want to build in-house skills.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="complexity"></category><category term="SOA"></category></entry></feed>
+</content><category term="Architecture &amp; Design"></category><category term="architecture"></category><category term="software design"></category><category term="management"></category><category term="requirements"></category></entry></feed>

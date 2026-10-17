@@ -1,5 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-10-10T12:28:00-04:00</updated><entry><title>Hard Problem? Use Test Cases as Debug Aids</title><link href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html" rel="alternate"></link><published>2026-10-10T12:28:00-04:00</published><updated>2026-10-10T12:28:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-10:/2026-10-10_hard_problem_test_as_debug.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>S.Lott -- Software Architect</title><link href="https://slott56.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>https://slott56.github.io/</id><updated>2026-10-17T07:41:00-04:00</updated><entry><title>Object-Oriented Design: Binary or Enum?</title><link href="https://slott56.github.io/2026-10-17_oo_design_binary_enum.html" rel="alternate"></link><published>2026-10-17T07:41:00-04:00</published><updated>2026-10-17T07:41:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-17:/2026-10-17_oo_design_binary_enum.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Some aspects of a problem are superficially binary, perhaps modeled as a boolean value.&lt;/p&gt;
+&lt;p&gt;Don't be misled.
+Some aspects of a problem are clearly &lt;strong&gt;not&lt;/strong&gt; binary, and a boolean is wrong.
+Other aspects may or may not be binary, and a boolean might not be ideal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="clearly-not-binary"&gt;
+&lt;h2&gt;Clearly Not Binary …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="section" id="bluf"&gt;
+&lt;h2&gt;BLUF&lt;/h2&gt;
+&lt;p&gt;Some aspects of a problem are superficially binary, perhaps modeled as a boolean value.&lt;/p&gt;
+&lt;p&gt;Don't be misled.
+Some aspects of a problem are clearly &lt;strong&gt;not&lt;/strong&gt; binary, and a boolean is wrong.
+Other aspects may or may not be binary, and a boolean might not be ideal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="clearly-not-binary"&gt;
+&lt;h2&gt;Clearly Not Binary&lt;/h2&gt;
+&lt;p&gt;Some part of a problem domain might be described as a simple binary condition or state.
+Often, the claim is untethered from objective reality.
+For example, recording a person's gender as a binary (&amp;quot;male = True&amp;quot;) is nonsense.&lt;/p&gt;
+&lt;p&gt;(Full disclosure: back in the 70's, we did this kind of thing.
+We ignored the reality of some of the people around us.
+I can only issue a weak retroactive apology.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="binary-with-a-story"&gt;
+&lt;h2&gt;Binary with a Story&lt;/h2&gt;
+&lt;p&gt;We often have situations where some condition has a story.
+The story might be something like one of these examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Not Applicable.&lt;/li&gt;
+&lt;li&gt;Invalid or Rejected.&lt;/li&gt;
+&lt;li&gt;Pending some other processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When an attribute has a story, the story is metadata describing the current state.
+In this example, it describes why a binary attribute isn't (currently) one of the two possible values.&lt;/p&gt;
+&lt;p&gt;We might not see these stories in a schema definition.
+Think of SQL, where we might see a column &lt;tt class="docutils literal"&gt;APPROVED BIT(1) NULL&lt;/tt&gt;.
+There's rarely any explanation of when the &lt;tt class="docutils literal"&gt;APPROVED&lt;/tt&gt; field is allowed to be &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+The nuances of how the attribute is used live in the code, not the schema.&lt;/p&gt;
+&lt;p&gt;Also, this is clearly not actually &amp;quot;binary&amp;quot;: it has three values: &lt;tt class="docutils literal"&gt;b'0'&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;b'1'&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;NULL&lt;/tt&gt;.
+It also has metadata about the value (e.g., not applicable, invalid, or pending.)&lt;/p&gt;
+&lt;div class="section" id="python-implementation"&gt;
+&lt;h3&gt;Python Implementation&lt;/h3&gt;
+&lt;p&gt;How can we handle metadata in Python?&lt;/p&gt;
+&lt;ol class="upperalpha simple"&gt;
+&lt;li&gt;Use a simple &lt;tt class="docutils literal"&gt;bool | None&lt;/tt&gt; type and put the metadata processing details and rules in the code.&lt;/li&gt;
+&lt;li&gt;Define an &lt;strong&gt;Adapter&lt;/strong&gt; to carry both the value and the metadata.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here's an example using an &lt;strong&gt;Adapter&lt;/strong&gt;.
+In this example, we'll us a &amp;quot;Not Applicable&amp;quot; rule as an example
+of a meta condition for an attribute.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Approved:
+    value: bool | None
+    applicable: bool = True
+
+&amp;#64;dataclass
+class Something:
+    approved: Approved
+&lt;/pre&gt;
+&lt;p&gt;Here's how we might see this used:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+s = Something(
+    approved=Approved(None, applicable=False)
+)
+
+assert s.approved.value is None
+assert not s.approved.applicable
+&lt;/pre&gt;
+&lt;p&gt;This adds some complexity, but it can be a useful way to carry details in a form
+that's more public than a simple &lt;tt class="docutils literal"&gt;bool | None&lt;/tt&gt; type annotation.
+It can also be clutter where the metadata storyline is simple and obvious.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="may-not-be-binary"&gt;
+&lt;h2&gt;May Not Be Binary&lt;/h2&gt;
+&lt;p&gt;In some cases, a domain of values is &lt;em&gt;discovered&lt;/em&gt;, not defined by policy (or regulations.)&lt;/p&gt;
+&lt;p&gt;For example, we might be doing analysis of source data with some measurement value and a
+condition. We'll use a temperature and a scale; the scale appears to be binary: &amp;quot;C&amp;quot; or &amp;quot;F&amp;quot;.&lt;/p&gt;
+&lt;p&gt;As a small variant, sometimes the attribute is stateful.
+This is a small consideration, and we'll set it aside for later.&lt;/p&gt;
+&lt;p&gt;We'll start with an attribute that has a domain that we don't really know.
+There are two common reasons for this:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The source data is evolving, and we may discover subsequent data that doesn't match prior data.&lt;/li&gt;
+&lt;li&gt;We've only seen a subset of source data, and we may discover a value of the domain which wasn't present in the initial subset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The distinction between these two is insignificant from a Python programming perspective.
+(Organizationally, it may suggest different parts of the organization should perhaps be in closer contact.)&lt;/p&gt;
+&lt;p&gt;Here's a flawed design in Python.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: bool  # True means &amp;quot;C&amp;quot;; False means &amp;quot;F&amp;quot;.
+&lt;/pre&gt;
+&lt;p&gt;This is risky.  Don't do this.&lt;/p&gt;
+&lt;p&gt;When a &lt;tt class="docutils literal"&gt;Sample&lt;/tt&gt; value arrives with the scale value of &lt;tt class="docutils literal"&gt;&amp;quot;K&amp;quot;&lt;/tt&gt;, this data model collapses into a wreckage of faulty assumptions.&lt;/p&gt;
+&lt;p&gt;The scale value seemed like it might have been binary.
+Without a complete survey of all data, we may discover an attribute domain wasn't actually binary.&lt;/p&gt;
+&lt;div class="section" id="python-methods-for-anticipating-change"&gt;
+&lt;h3&gt;Python Methods for Anticipating Change&lt;/h3&gt;
+&lt;p&gt;When the domain of values is not well-known, or otherwise likely to change,
+we can use an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+from enum import Enum
+
+class Scale(Enum):
+    C = &amp;quot;C&amp;quot;
+    F = &amp;quot;F&amp;quot;
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: Scale
+&lt;/pre&gt;
+&lt;p&gt;This works well; changes are isolate to the &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; enumeration of values.
+If we discover new values in the source data, we can revise the &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; enumeration of values.&lt;/p&gt;
+&lt;p&gt;Above, we mentioned that a stateful attribute may have some additional considerations.
+An attribute which changes during processing can be implemented with a simple &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.
+However, sometimes an alternative implementation is required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-stateful-binary"&gt;
+&lt;h2&gt;A Stateful Binary&lt;/h2&gt;
+&lt;p&gt;Stateful attributes -- and the associated state change -- may require additional care.
+We can use an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;, and a state change is a simple assignment statement.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sample_x.scale = Scale.F
+&lt;/pre&gt;
+&lt;p&gt;This has the advantage of being simple.&lt;/p&gt;
+&lt;p&gt;It has the disadvantage of being difficult to observe.
+Assignment statements can be used anywhere, and it can be difficult to be sure that &lt;strong&gt;all&lt;/strong&gt; changes are known to developers and maintainers (and users.)&lt;/p&gt;
+&lt;p&gt;To promote observability, we want to encapsulate state changes with method that can make the change
+visible. Perhaps it writes a log entry.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; design we might do to make state changes visible.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from logging import Logger
+from typing import ClassVar
+
+class Scale:
+    value: str
+    logger: ClassVar[Logger] = logging.getLogger(&amp;quot;Scale&amp;quot;)
+
+    def __init__(self, source: str) -&amp;gt; None:
+        self.set_value(source)
+
+    def set_C(self) -&amp;gt; Self:
+        self.value = &amp;quot;C&amp;quot;
+        self.logger.info(&amp;quot;Scale set to C&amp;quot;)
+        return self
+
+    def set_F(self) -&amp;gt; Self:
+        self.value = &amp;quot;F&amp;quot;
+        self.logger.info(&amp;quot;Scale set to F&amp;quot;)
+        return self
+
+    def set_value(self, source: str) -&amp;gt; Self:
+        if source == &amp;quot;C&amp;quot;:
+            return self.set_C()
+        elif source == &amp;quot;F&amp;quot;:
+            return self.set_F()
+        else:
+            self.logger.error(&amp;quot;Invalid scale setting %r&amp;quot;, source)
+            raise ValueError(f&amp;quot;invalid {source!r}&amp;quot;)
+&lt;/pre&gt;
+&lt;p&gt;This means a state change looks like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+sample_x.scale.set_f()
+&lt;/pre&gt;
+&lt;p&gt;While we gained observability, we sacrificed the bare-bones simplicity of an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="actually-binary"&gt;
+&lt;h2&gt;Actually Binary&lt;/h2&gt;
+&lt;p&gt;Some attributes are clearly the result of a binary evaluation.
+For example, we might have a &amp;quot;is below zero&amp;quot; flag.
+This is, manifestly &lt;tt class="docutils literal"&gt;True&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;False&lt;/tt&gt;, and can be modeled with a simple &lt;tt class="docutils literal"&gt;bool&lt;/tt&gt; field.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from dataclasses import dataclass
+
+&amp;#64;dataclass
+class Sample:
+    temperature: float
+    scale: str
+    is_below_zero: bool
+
+    def __post_init__(self):
+        assert self.is_below_zero == temperature &amp;lt; 0.0, &amp;quot;consistency error&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;In some cases, a boolean attribute may be independent of other values.&lt;/p&gt;
+&lt;p&gt;In this example, however, the &lt;tt class="docutils literal"&gt;is_below_zero&lt;/tt&gt; attribute is dependent on the &lt;tt class="docutils literal"&gt;temperature&lt;/tt&gt; attribute.
+Database designers call this a &amp;quot;3rd Normal Form&amp;quot; (3NF) problem, a field is dependent on other non-key fields.
+The consequences of the 3NF problem don't have any real impact on the way we implement this in Python.
+The field is boolean: it's not outside of objective reality, nor is it subject to some change through a discovery process.
+It is, however, dependent on another field, and we can't be &lt;strong&gt;sure&lt;/strong&gt; the source application set it properly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-warning"&gt;
+&lt;h2&gt;A Warning&lt;/h2&gt;
+&lt;p&gt;Don't combine &lt;strong&gt;Enumeration-by-Method&lt;/strong&gt; class design with an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt;.
+This is a bad idea.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class ScaleDomain(Enum):
+    F = &amp;quot;F&amp;quot;
+    C = &amp;quot;C&amp;quot;
+
+class Scale:
+    def __init__(self, value: ScaleDomain) -&amp;gt; None:
+        self.value = value
+
+    def set_F(self) -&amp;gt; Self:
+        self.value = ScaleDomain.F
+
+    def set_C(self) -&amp;gt; Self:
+        self.value = ScaleDomain.C
+&lt;/pre&gt;
+&lt;p&gt;You were warned.&lt;/p&gt;
+&lt;p&gt;The domain of values is stated twice:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;ScaleDomain&lt;/tt&gt; lists a set of values.&lt;/li&gt;
+&lt;li&gt;The &lt;tt class="docutils literal"&gt;Scale&lt;/tt&gt; class definitions has methods that imply a set of values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two must be kept in strict alignment.
+This doesn't encapsulate the domain well.
+It breaks the &amp;quot;Single Responsibility&amp;quot; S. O. L. I. D. design principle.&lt;/p&gt;
+&lt;p&gt;(Full disclosure. I did this recently. Don't follow my example.)&lt;/p&gt;
+&lt;p&gt;I've been struggling to create an accurate emulation of
+the #RetroComputing IBM 1620.
+(See &lt;a class="reference external" href="https://slott56.github.io/2026-09-20_hard_problem_shift_position.html"&gt;Hard Problem? Shift Position&lt;/a&gt;,
+and &lt;a class="reference external" href="https://slott56.github.io/2026-09-25_hard_problem_stop_staring.html"&gt;Hard Problem? Stop Staring At The Code&lt;/a&gt;,
+and &lt;a class="reference external" href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html"&gt;Hard Problem? Use Test Cases as Debug Aids&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;I was deeply suspicious that the definition of a &amp;quot;lamp&amp;quot; wasn't actually binary.
+Maybe it involved some state other than &amp;quot;on&amp;quot; or &amp;quot;off&amp;quot;.
+Maybe &amp;quot;flashing&amp;quot; or something.&lt;/p&gt;
+&lt;p&gt;It took a few weeks to realize the domain was actually binary.
+It was a proper boolean.
+There were no other methods.&lt;/p&gt;
+&lt;p&gt;Wrapping an &lt;tt class="docutils literal"&gt;Enum&lt;/tt&gt; with another adapter class created a layer of indirection that made debugging painful.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Architecture &amp; Design"></category><category term="object-oriented design"></category><category term="enum"></category><category term="binary"></category></entry><entry><title>Hard Problem? Use Test Cases as Debug Aids</title><link href="https://slott56.github.io/2026-10-10_hard_problem_test_as_debug.html" rel="alternate"></link><published>2026-10-10T12:28:00-04:00</published><updated>2026-10-10T12:28:00-04:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2026-10-10:/2026-10-10_hard_problem_test_as_debug.html</id><summary type="html">&lt;div class="section" id="bluf"&gt;
 &lt;h2&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Can't get the software to work?&lt;/p&gt;
 &lt;p&gt;The test cases are places to gather debugging details.
@@ -12206,92 +12450,4 @@ having failed to read the rest of the post.&lt;/p&gt;
 example doing something like file parsing might be helpful. But, if you
 go too far, you wind up writing an entire book about Functional
 Programming in Python.&lt;/p&gt;
-</content><category term="Technologies"></category><category term="#python"></category><category term="functional python programming"></category><category term="generator functions"></category></entry><entry><title>Fighting Against Over-Engineering</title><link href="https://slott56.github.io/2022_11_08-fighting_against_over_engineering.html" rel="alternate"></link><published>2022-11-08T16:18:00-05:00</published><updated>2022-11-08T16:18:00-05:00</updated><author><name>S.Lott</name></author><id>tag:slott56.github.io,2022-11-08:/2022_11_08-fighting_against_over_engineering.html</id><summary type="html">&lt;p&gt;I've been trying to help some folks who have a &amp;quot;search&amp;quot; algorithm that's
-slow.&lt;/p&gt;
-&lt;p&gt;They know it's slow -- that's pretty obvious.&lt;/p&gt;
-&lt;p&gt;They're -- unfortunately -- &lt;strong&gt;sure&lt;/strong&gt; that asyncio will help. That's not
-an obvious conclusion. It involves no useful research. Indeed, that's a
-kind of magical thinking. Which leads me to consider …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been trying to help some folks who have a &amp;quot;search&amp;quot; algorithm that's
-slow.&lt;/p&gt;
-&lt;p&gt;They know it's slow -- that's pretty obvious.&lt;/p&gt;
-&lt;p&gt;They're -- unfortunately -- &lt;strong&gt;sure&lt;/strong&gt; that asyncio will help. That's not
-an obvious conclusion. It involves no useful research. Indeed, that's a
-kind of magical thinking. Which leads me to consider the process of
-over-engineering.&lt;/p&gt;
-&lt;div class="section" id="the-problem"&gt;
-&lt;h2&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;Over-engineering is essentially a technique for burning brain-calories
-on planning to build something instead of building something.&lt;/p&gt;
-&lt;p&gt;The distinction is &amp;quot;planning&amp;quot; vs. &amp;quot;doing.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Lots of folks subscribe to Methodology Magic Thinking (MMT™). The core
-tenet of MMT is that some  methodology is good, and more methodology is
-better.&lt;/p&gt;
-&lt;p&gt;The classic waterfall methodology expects requirements, design, code,
-test, and what-not, all flowing downhill. A series of waterfalls.&lt;/p&gt;
-&lt;p&gt;The more modern agile-fall methodology expects requirements, design,
-code, test, and what-not all being done in tiny MVP slices.&lt;/p&gt;
-&lt;p&gt;Why is this bad?&lt;/p&gt;
-&lt;p&gt;Its bad because it falls apart when confronted with really difficult
-algorithm and data structure problems.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-breaks"&gt;
-&lt;h2&gt;What Breaks?&lt;/h2&gt;
-&lt;p&gt;The thing that breaks is the &amp;quot;learn about the technology&amp;quot; or &amp;quot;learn
-about the problem domain&amp;quot; things that we need to do. We like to pretend
-with understand the technology -- in spite of the obvious information
-that we're rarely &lt;strong&gt;experts&lt;/strong&gt;. We're smart. We're capable. But. We're
-not &lt;strong&gt;experts&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;This applies to both the solution technology (i.e., language,
-persistence, framework, etc.) and the problem domain.&lt;/p&gt;
-&lt;p&gt;When we have a process that takes *forever* to run, we've got a bad
-algorithm/data structure, and we don't know what to do.&lt;/p&gt;
-&lt;p&gt;We need to explore.&lt;/p&gt;
-&lt;p&gt;And.&lt;/p&gt;
-&lt;p&gt;Managers rarely permit exploration.&lt;/p&gt;
-&lt;p&gt;They have a schedule. The waterfall comes with a schedule. The agilefall
-sprints have timelines. And these are rarely negotiable.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-are-some-wrong-things-to-do"&gt;
-&lt;h2&gt;What Are Some Wrong Things to Do?&lt;/h2&gt;
-&lt;p&gt;One wrong thing to do is to pick some technology and dig in hard. The
-asyncio module is not magical pixie dust. It doesn't make arbitrary bad
-code run faster. This is true in general. Picking a solution technology
-isn't right. Exploring alternatives -- emphasis on the plural -- is
-essential.&lt;/p&gt;
-&lt;p&gt;Another wrong thing to do is demand yet more process. More design docs.
-More preliminary analysis docs. More preliminary study. More
-over-engineering.&lt;/p&gt;
-&lt;p&gt;This is unhelpful. There are too many intellectual vacuums. And nature
-abhors a vacuum. So random ideas get sucked in. Some expertise in the
-language/tool/framework is required. Some expertise in the problem
-domain is required. Avoid assumptions.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="what-should-we-do"&gt;
-&lt;h2&gt;What Should We Do?&lt;/h2&gt;
-&lt;p&gt;We have to step back from the technology trap. We're not &lt;strong&gt;experts&lt;/strong&gt;: we
-need to learn more. Which means exploring more. Which means putting time
-in the schedule for this.&lt;/p&gt;
-&lt;p&gt;We have to understand the problem domain better. We're not &lt;strong&gt;experts&lt;/strong&gt;:
-we need to learn more. Which means putting time in the schedule for
-this.&lt;/p&gt;
-&lt;p&gt;We have to step back from the &amp;quot;deliverable code&amp;quot; trap. Each line of code
-is not a precious gift from some eternal god of code. It's an idea. And
-since the thing doesn't run well, it's provably a &lt;strong&gt;bad&lt;/strong&gt; idea.&lt;/p&gt;
-&lt;p&gt;Code needs to be deleted. And rewritten. And rewritten again. And
-benchmarked.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="frustration"&gt;
-&lt;h2&gt;Frustration&lt;/h2&gt;
-&lt;p&gt;I like fixing bad code. I like helping people fix bad code.&lt;/p&gt;
-&lt;p&gt;I can't -- however -- work with folks who can't delete the old bad code.&lt;/p&gt;
-&lt;p&gt;It's unfortunate when they reach out and then block progress with a
-number of constraints that amount to &amp;quot;We can't focus on this; we can't
-make changes rapidly. Indeed, we're unlikely to make any changes.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The only way to learn is to become an expert is something. This takes
-time. To minimize the time means work with focus and work rapidly.&lt;/p&gt;
-&lt;p&gt;Instead of working rapidly, they want magical pixie dust that makes
-things faster. They want me to tell them were the &amp;quot;Turbo Boost&amp;quot; button
-is hidden.&lt;/p&gt;
-&lt;p&gt;Sigh.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="Technologies"></category><category term="design"></category><category term="architecture"></category><category term="methodology"></category></entry></feed>
+</content><category term="Technologies"></category><category term="#python"></category><category term="functional python programming"></category><category term="generator functions"></category></entry></feed>
